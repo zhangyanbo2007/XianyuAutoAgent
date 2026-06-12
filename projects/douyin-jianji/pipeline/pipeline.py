@@ -23,14 +23,15 @@ load_dotenv()
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from config import OUTPUT_DIR
+from config import OUTPUT_DIR, DEFAULT_BGM
 from script_converter import convert_excel_to_script, save_script_to_json
 from tts_generator import generate_sections_audio, concat_audio
 from ai_image_generator import generate_section_bg_images
+from slide_renderer import render_slide
 from video_generator import render_video
 
 
-def run_pipeline(excel_path: str, output_name: str = None, voice: str = "zh-CN-YunjianNeural"):
+def run_pipeline(excel_path: str, output_name: str = None, voice: str = None):
     """
     运行完整的视频生成流程
 
@@ -53,7 +54,7 @@ def run_pipeline(excel_path: str, output_name: str = None, voice: str = "zh-CN-Y
     print(f"{'='*60}")
 
     # 1. 转换Excel脚本为JSON格式
-    print("\n[1/5] 转换Excel脚本...")
+    print("\n[1/6] 转换Excel脚本...")
     script_path = os.path.join(work_dir, "script.json")
     if os.path.exists(script_path):
         print("  使用缓存的脚本")
@@ -68,7 +69,7 @@ def run_pipeline(excel_path: str, output_name: str = None, voice: str = "zh-CN-Y
     print(f"  目标时长: {script.get('duration', 'N/A')}")
 
     # 2. 生成TTS音频
-    print("\n[2/5] 生成TTS音频...")
+    print("\n[2/6] 生成TTS音频...")
     audio_dir = os.path.join(work_dir, "audio")
     tts_sections = []
     for s in sections:
@@ -88,47 +89,52 @@ def run_pipeline(excel_path: str, output_name: str = None, voice: str = "zh-CN-Y
     _merge_subtitles(section_results, full_srt)
 
     total_audio = sum(r.get("duration_sec", 0) for r in section_results)
-    print(f"  总音频时长: {total_audio:.1f}秒 ({total_audio/60:.1f}分钟)")
+    print(f"  总音频时长: {total_audio:.1f}秒")
 
     # 更新段落时长（基于实际音频）
     for i, result in enumerate(section_results):
         if i < len(sections):
             sections[i]["duration_sec"] = result.get("duration_sec", 5)
 
-    # 3. 生成AI图片
-    print("\n[3/5] 生成AI图片...")
+    # 3. 生成AI背景图
+    print("\n[3/6] 生成AI背景图...")
     ai_image_cache = os.path.join(work_dir, "_ai_images")
-    theme = script.get("headline", "")
-    ai_images = generate_section_bg_images(sections, ai_image_cache)
-    print(f"  生成了 {len(ai_images)}/{len(sections)} 张AI图片")
+    bg_images = generate_section_bg_images(sections, ai_image_cache)
+    print(f"  生成了 {len(bg_images)}/{len(sections)} 张背景图")
 
-    # 4. 准备幻灯片
-    print("\n[4/5] 准备幻灯片...")
+    # 4. 渲染幻灯片
+    print("\n[4/6] 渲染幻灯片...")
+    slides_dir = os.path.join(work_dir, "slides")
+    os.makedirs(slides_dir, exist_ok=True)
+
     slides = []
-    for i, (section, img_path) in enumerate(zip(sections, ai_images)):
-        if img_path and os.path.exists(img_path):
-            slides.append({
-                "path": img_path,
-                "duration_sec": section.get("duration_sec", 5),
-                "label": section.get("label", f"段落 {i}")
-            })
-        else:
-            print(f"  ⚠ 段落 {i} 没有图片，使用占位图")
-            # 创建占位图
-            placeholder = os.path.join(ai_image_cache, f"placeholder_{i}.png")
-            _create_placeholder_image(placeholder, section.get("label", f"段落 {i}"))
-            slides.append({
-                "path": placeholder,
-                "duration_sec": section.get("duration_sec", 5),
-                "label": section.get("label", f"段落 {i}")
-            })
+    title_text = script.get("headline", output_name)
 
-    print(f"  准备了 {len(slides)} 张幻灯片")
+    for i, (section, bg_img) in enumerate(zip(sections, bg_images)):
+        slide_path = os.path.join(slides_dir, f"slide_{i:02d}.png")
+        slide_data = section.get("slide", {"template": "data_big", "data": {}})
+
+        render_slide(slide_data, bg_img, slide_path, title_text)
+
+        slides.append({
+            "path": slide_path,
+            "duration_sec": section.get("duration_sec", 5),
+        })
+
+    print(f"  渲染了 {len(slides)} 张幻灯片")
 
     # 5. 渲染视频
-    print("\n[5/5] 渲染视频...")
+    print("\n[5/6] 渲染视频...")
     output_path = os.path.join(work_dir, f"{output_name}.mp4")
-    render_video(slides, full_audio, output_path, full_srt)
+
+    # 检查BGM
+    bgm_path = DEFAULT_BGM if os.path.exists(DEFAULT_BGM) else None
+
+    render_video(slides, full_audio, output_path, full_srt, bgm_path)
+
+    # 6. 清理临时文件
+    print("\n[6/6] 清理临时文件...")
+    _cleanup_work_dir(work_dir)
 
     elapsed = time.time() - start
     size = os.path.getsize(output_path) / (1024 * 1024) if os.path.exists(output_path) else 0
@@ -193,40 +199,77 @@ def _sec_to_srt(s):
     return f"{h:02d}:{m:02d}:{sec:06.3f}".replace(".", ",")
 
 
-def _create_placeholder_image(output_path: str, text: str):
-    """创建占位图"""
-    from PIL import Image, ImageDraw, ImageFont
+def _cleanup_work_dir(work_dir: str):
+    """清理工作目录中的临时文件"""
+    import shutil
 
-    # 创建黑色背景
-    img = Image.new("RGB", (1080, 1920), (26, 26, 46))
-    draw = ImageDraw.Draw(img)
+    # 删除音频目录中的临时文件
+    audio_dir = os.path.join(work_dir, "audio")
+    if os.path.exists(audio_dir):
+        for f in os.listdir(audio_dir):
+            if f.startswith("_"):
+                os.remove(os.path.join(audio_dir, f))
 
-    # 尝试加载字体
-    try:
-        font = ImageFont.truetype("/usr/share/fonts/google-noto-cjk/NotoSansCJK-Regular.ttc", 48)
-    except:
-        font = ImageFont.load_default()
+    # 删除AI图片缓存目录
+    ai_cache = os.path.join(work_dir, "_ai_images")
+    if os.path.exists(ai_cache):
+        shutil.rmtree(ai_cache)
 
-    # 绘制文本
-    bbox = draw.textbbox((0, 0), text, font=font)
-    text_width = bbox[2] - bbox[0]
-    text_height = bbox[3] - bbox[1]
-    x = (1080 - text_width) // 2
-    y = (1920 - text_height) // 2
-    draw.text((x, y), text, fill=(255, 255, 255), font=font)
 
-    img.save(output_path)
+def run_batch(excel_paths: list):
+    """
+    批量处理多个Excel脚本
+
+    Args:
+        excel_paths: Excel文件路径列表
+    """
+    print(f"\n{'='*60}")
+    print(f"  批量处理 {len(excel_paths)} 个Excel文件")
+    print(f"{'='*60}\n")
+
+    results = []
+    for excel_path in excel_paths:
+        if not os.path.exists(excel_path):
+            print(f"  ⚠ 文件不存在: {excel_path}")
+            continue
+
+        try:
+            output_path = run_pipeline(excel_path)
+            results.append({"excel": excel_path, "output": output_path, "status": "success"})
+        except Exception as e:
+            print(f"  ❌ 处理失败: {excel_path} - {e}")
+            results.append({"excel": excel_path, "output": None, "status": "failed"})
+
+    # 打印汇总
+    print(f"\n{'='*60}")
+    print(f"  批量处理完成")
+    print(f"{'='*60}")
+    success = sum(1 for r in results if r["status"] == "success")
+    print(f"  成功: {success}/{len(results)}")
+    for r in results:
+        status = "✅" if r["status"] == "success" else "❌"
+        print(f"  {status} {r['excel']}")
+    print()
 
 
 def main():
     parser = argparse.ArgumentParser(description="抖音视频生成Pipeline")
-    parser.add_argument("excel", help="Excel脚本路径")
+    parser.add_argument("excel", nargs="*", help="Excel脚本路径（支持多个）")
     parser.add_argument("--name", "-n", help="输出文件名（不含扩展名）")
-    parser.add_argument("--voice", "-v", default="zh-CN-YunjianNeural",
-                        help="TTS语音（默认: YunjianNeural男声）")
+    parser.add_argument("--voice", "-v", default=None,
+                        help="TTS语音（默认: 苏打）")
+    parser.add_argument("--batch", "-b", action="store_true",
+                        help="批量处理模式")
     args = parser.parse_args()
 
-    run_pipeline(args.excel, args.name, args.voice)
+    if not args.excel:
+        parser.print_help()
+        sys.exit(1)
+
+    if args.batch or len(args.excel) > 1:
+        run_batch(args.excel)
+    else:
+        run_pipeline(args.excel[0], args.name, args.voice)
 
 
 if __name__ == "__main__":
