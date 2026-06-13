@@ -9,7 +9,9 @@ def _get_ffmpeg():
     """获取ffmpeg路径"""
     try:
         import imageio_ffmpeg
-        return imageio_ffmpeg.get_ffmpeg_exe()
+        ffmpeg_path = imageio_ffmpeg.get_ffmpeg_exe()
+        if os.path.exists(ffmpeg_path):
+            return ffmpeg_path
     except:
         pass
     for p in ["/usr/bin/ffmpeg", "/usr/local/bin/ffmpeg"]:
@@ -63,7 +65,8 @@ def render_video(slides: list, audio_path: str, output_path: str,
     concat_path = os.path.join(work_dir, "_concat_list.txt")
     with open(concat_path, "w") as f:
         for seg in segment_files:
-            f.write(f"file '{seg}'\n")
+            # 使用绝对路径
+            f.write(f"file '{os.path.abspath(seg)}'\n")
 
     concat_video = os.path.join(work_dir, "_concat.mp4")
     subprocess.run([
@@ -83,6 +86,7 @@ def render_video(slides: list, audio_path: str, output_path: str,
         "-i", audio_path,
         "-c:v", "copy",
         "-c:a", "aac", "-b:a", "192k",
+        "-ar", "44100",
         "-shortest",
         combined,
     ], capture_output=True)
@@ -97,6 +101,7 @@ def render_video(slides: list, audio_path: str, output_path: str,
             "-filter_complex", "[1:a]volume=0.15[bg];[0:a][bg]amix=inputs=2:duration=first",
             "-c:v", "copy",
             "-c:a", "aac", "-b:a", "192k",
+            "-ar", "44100",
             with_bgm,
         ], capture_output=True)
         if os.path.exists(with_bgm) and os.path.getsize(with_bgm) > 0:
@@ -119,6 +124,7 @@ def render_video(slides: list, audio_path: str, output_path: str,
             if result.returncode == 0:
                 _cleanup(work_dir, segment_files + [concat_path, concat_video, combined, ass_path])
                 return output_path
+            _write_subtitle_error(work_dir, result.stderr)
 
     # 如果字幕烧录失败或没有字幕，直接复制
     import shutil
@@ -134,7 +140,12 @@ def _create_segment(ffmpeg: str, image_path: str, output_path: str,
         ffmpeg, "-y",
         "-loop", "1",
         "-i", image_path,
-        "-vf", f"fps={FPS},format=yuv420p",
+        "-vf", (
+            "scale=iw*1.04:ih*1.04,"
+            f"zoompan=z='min(zoom+0.0006,1.035)':d=1:"
+            f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
+            f"s={VIDEO_WIDTH}x{VIDEO_HEIGHT}:fps={FPS},format=yuv420p"
+        ),
         "-c:v", "libx264",
         "-preset", "fast",
         "-crf", "23",
@@ -142,6 +153,17 @@ def _create_segment(ffmpeg: str, image_path: str, output_path: str,
         output_path
     ]
     subprocess.run(cmd, capture_output=True)
+
+
+def _write_subtitle_error(work_dir: str, stderr):
+    """Persist ASS burn-in errors for quality reports and debugging."""
+    error_path = os.path.join(work_dir, "subtitle_burn_error.log")
+    if isinstance(stderr, bytes):
+        content = stderr.decode("utf-8", errors="replace")
+    else:
+        content = str(stderr)
+    with open(error_path, "w", encoding="utf-8") as f:
+        f.write(content)
 
 
 def _srt_to_styled_ass(srt_path: str, work_dir: str) -> str:
