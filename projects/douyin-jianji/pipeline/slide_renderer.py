@@ -1,500 +1,446 @@
-"""幻灯片渲染器 - 在AI背景图上叠加文字、卡片、图标"""
+"""幻灯片渲染器 - 在AI背景图上叠加参考视频风格的信息图卡片。
+
+设计目标（对标参考视频）：
+- 一致的深蓝科技背景 + 顶部节目标题栏
+- 封面 hero 大标题
+- 信息图卡片：编号流程、彩色三区、数据大字、材料/渠道网格
+- 底部蓝绿色字幕栏，视频合成阶段再叠加同步 ASS 字幕
+"""
 
 import os
 from PIL import Image, ImageDraw, ImageFont
-from config import (
-    VIDEO_WIDTH, VIDEO_HEIGHT, COLORS, FONTS, LAYOUT, FONT_PATH
-)
+from config import VIDEO_WIDTH, VIDEO_HEIGHT, COLORS, LAYOUT, FONT_PATH
+
+W, H = VIDEO_WIDTH, VIDEO_HEIGHT
+TITLE_BAR_H = 104
+CONTENT_TOP = TITLE_BAR_H + 56
+CONTENT_BOTTOM = H - 210          # 底部预留给烧录字幕
+MARGIN = 96
+_FONT_CACHE: dict = {}
 
 
+# ----------------------------------------------------------------------------
+# 公共入口
+# ----------------------------------------------------------------------------
 def render_slide(slide_data: dict, bg_image_path: str, output_path: str,
                  title_text: str = None):
-    """
-    渲染单张幻灯片
-
-    Args:
-        slide_data: 幻灯片数据 {"template": "...", "data": {...}}
-        bg_image_path: AI背景图路径
-        output_path: 输出PNG路径
-        title_text: 顶部标题栏文字（可选）
-    """
-    # 1. 加载AI背景图
-    if bg_image_path and os.path.exists(bg_image_path):
-        img = Image.open(bg_image_path).convert("RGBA")
-        img = img.resize((VIDEO_WIDTH, VIDEO_HEIGHT), Image.LANCZOS)
-    else:
-        # 创建纯色背景
-        img = Image.new("RGBA", (VIDEO_WIDTH, VIDEO_HEIGHT), COLORS["bg_primary"] + (255,))
-
-    # 2. 叠加半透明深色遮罩（保证文字可读）
-    overlay = Image.new("RGBA", (VIDEO_WIDTH, VIDEO_HEIGHT), (0, 0, 0, 128))
-    img = Image.alpha_composite(img, overlay)
-
-    # 3. 创建绘图对象
-    draw = ImageDraw.Draw(img)
-
-    # 4. 渲染顶部标题栏
-    display_title = title_text or slide_data.get("title")
-    if display_title:
-        _draw_title_bar(draw, display_title)
-
-    # 5. 根据模板类型渲染内容区域
-    template = slide_data.get("template", "data_big")
+    """渲染单张幻灯片到 PNG。"""
+    template = slide_data.get("template", "policy_explain")
     data = slide_data.get("data", {})
+    is_cover = template == "cover_dark"
 
-    if template in {"cover_dark", "headline_warning"}:
-        _render_title_template(draw, data)
-    elif template == "data_release":
-        _render_data_big_template(draw, data)
-    elif template == "process_flow":
-        _render_step_list_template(draw, data)
-    elif template == "zone_cards":
-        _render_grid_3x1_template(draw, data)
-    elif template in {"material_grid", "channel_steps"}:
-        _render_grid_2x2_template(draw, data)
-    elif template == "cta_summary":
-        _render_cta_template(draw, data)
-    elif template == "title":
-        _render_title_template(draw, data)
-    elif template == "grid_2x2":
-        _render_grid_2x2_template(draw, data)
-    elif template == "grid_3x1":
-        _render_grid_3x1_template(draw, data)
-    elif template == "data_big":
-        _render_data_big_template(draw, data)
-    elif template == "step_list":
-        _render_step_list_template(draw, data)
-    elif template == "cta":
-        _render_cta_template(draw, data)
+    img = _prepare_background(bg_image_path, dim=(0.34 if is_cover else 0.6))
+    draw = ImageDraw.Draw(img, "RGBA")
+
+    if is_cover:
+        _render_cover(draw, data, title_text)
     else:
-        _render_data_big_template(draw, data)
+        _draw_title_bar(draw, title_text or data.get("kicker", ""))
+        renderer = {
+            "headline_warning": _render_warning,
+            "process_flow": _render_process_flow,
+            "material_grid": _render_grid,
+            "channel_steps": _render_grid,
+            "data_release": _render_data,
+            "zone_cards": _render_zones,
+            "cta_summary": _render_cta,
+            "policy_explain": _render_statement,
+        }.get(template, _render_statement)
+        renderer(draw, data)
+        subtitle = slide_data.get("subtitle") or data.get("subtitle")
+        if subtitle:
+            _draw_subtitle_bar(draw, subtitle)
 
-    # 6. 渲染底部参考视频式字幕栏
-    subtitle = slide_data.get("subtitle") or data.get("subtitle")
-    if subtitle:
-        _draw_bottom_subtitle_bar(draw, subtitle)
-
-    # 7. 保存为PNG
-    img = img.convert("RGB")
-    img.save(output_path, "PNG")
-    print(f"    幻灯片已保存: {output_path}")
-
-
-def _draw_title_bar(draw: ImageDraw.Draw, title_text: str):
-    """绘制顶部标题栏"""
-    # 背景条
-    draw.rectangle(
-        [0, 0, VIDEO_WIDTH, LAYOUT["title_bar_height"]],
-        fill=COLORS["bg_primary"] + (200,)
-    )
-
-    # 标题文字
-    font = _get_font("subtitle")
-    bbox = draw.textbbox((0, 0), title_text, font=font)
-    text_width = bbox[2] - bbox[0]
-    x = (VIDEO_WIDTH - text_width) // 2
-    y = (LAYOUT["title_bar_height"] - 48) // 2
-    draw.text((x, y), title_text, fill=COLORS["text_primary"], font=font)
+    img.convert("RGB").save(output_path, "PNG")
+    print(f"    幻灯片: {os.path.basename(output_path)} [{template}]")
 
 
-def _draw_bottom_subtitle_bar(draw: ImageDraw.Draw, subtitle: str):
-    """绘制底部字幕栏，贴近参考视频样式。"""
-    bar_height = LAYOUT.get("subtitle_bar_height", 120)
-    y0 = VIDEO_HEIGHT - bar_height
-    bar_color = (92, 148, 164, 245)
-    draw.rectangle([0, y0, VIDEO_WIDTH, VIDEO_HEIGHT], fill=bar_color)
+# ----------------------------------------------------------------------------
+# 背景处理
+# ----------------------------------------------------------------------------
+def _prepare_background(bg_path: str, dim: float = 0.55) -> Image.Image:
+    """加载AI背景并裁剪填充，叠加深色渐变保证文字可读。"""
+    if bg_path and os.path.exists(bg_path):
+        base = Image.open(bg_path).convert("RGB")
+        base = _cover_crop(base, W, H)
+    else:
+        base = _gradient_bg()
+    base = base.convert("RGBA")
 
-    font = _get_font("subtitle_bar")
-    lines = _wrap_text(draw, subtitle, font, VIDEO_WIDTH - 160)
-    line_height = 66
-    total_height = len(lines) * line_height
-    start_y = y0 + (bar_height - total_height) // 2 - 4
+    # 全局压暗
+    veil = Image.new("RGBA", (W, H), (8, 14, 26, int(255 * dim)))
+    base = Image.alpha_composite(base, veil)
 
-    for i, line in enumerate(lines):
-        bbox = draw.textbbox((0, 0), line, font=font)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        y = start_y + i * line_height
-        draw.text((x + 3, y + 3), line, fill=(0, 0, 0, 180), font=font)
-        draw.text((x, y), line, fill=COLORS["text_primary"], font=font)
+    # 顶部 + 底部加深的纵向渐变（让标题栏/字幕区更稳）
+    grad = Image.new("L", (1, H), 0)
+    for y in range(H):
+        top = max(0, 150 - int(y * 1.6))           # 顶部
+        bottom = max(0, int((y - (H - 320)) * 0.9)) # 底部
+        grad.putpixel((0, y), min(210, top + bottom))
+    grad = grad.resize((W, H))
+    shade = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    shade.putalpha(grad)
+    base = Image.alpha_composite(base, shade)
+    return base
 
 
-def _wrap_text(draw: ImageDraw.Draw, text: str, font: ImageFont.FreeTypeFont,
-               max_width: int) -> list:
-    """按像素宽度换行。"""
-    text = str(text).strip()
+def _cover_crop(im: Image.Image, w: int, h: int) -> Image.Image:
+    src_ratio = im.width / im.height
+    dst_ratio = w / h
+    if src_ratio > dst_ratio:
+        new_h = h
+        new_w = int(h * src_ratio)
+    else:
+        new_w = w
+        new_h = int(w / src_ratio)
+    im = im.resize((new_w, new_h), Image.LANCZOS)
+    left = (new_w - w) // 2
+    top = (new_h - h) // 2
+    return im.crop((left, top, left + w, top + h))
+
+
+def _gradient_bg() -> Image.Image:
+    top = COLORS["bg_primary"]
+    bot = (10, 16, 30)
+    im = Image.new("RGB", (W, H))
+    px = im.load()
+    for y in range(H):
+        t = y / H
+        c = tuple(int(top[i] * (1 - t) + bot[i] * t) for i in range(3))
+        for x in range(W):
+            px[x, y] = c
+    return im
+
+
+# ----------------------------------------------------------------------------
+# 模板渲染
+# ----------------------------------------------------------------------------
+def _render_cover(draw, data, title_text):
+    kicker = data.get("kicker") or title_text or ""
+    headline = data.get("headline", "")
+
+    # 左上角节目标识
+    ax, ay = MARGIN, 150
+    draw.rectangle([ax, ay, ax + 14, ay + 56], fill=COLORS["accent_blue"])
+    _text(draw, (ax + 32, ay + 4), kicker, "subtitle",
+          COLORS["text_primary"], stroke=2)
+
+    # 中部大标题
+    font = _font("cover")
+    lines = _wrap(draw, headline, font, W - 2 * MARGIN, max_lines=3)
+    line_h = 118
+    total = len(lines) * line_h
+    y = (H - total) // 2 - 20
+    for line in lines:
+        _text(draw, (MARGIN, y), line, "cover", COLORS["text_primary"], stroke=4)
+        y += line_h
+
+    # 强调下划线
+    draw.rectangle([MARGIN, y + 8, MARGIN + 260, y + 20], fill=COLORS["accent_gold"])
+    _text(draw, (MARGIN, y + 44), "干货科普 · 一文讲透", "body",
+          COLORS["accent_blue"], stroke=2)
+
+
+def _render_warning(draw, data):
+    headline = data.get("headline", "")
+    cx = W // 2
+    # 警示标记
+    _warning_badge(draw, cx, CONTENT_TOP + 70, 64)
+    font = _font("h1")
+    lines = _wrap(draw, headline, font, W - 2 * MARGIN, max_lines=3)
+    y = CONTENT_TOP + 200
+    for line in lines:
+        _ctext(draw, cx, y, line, "h1", COLORS["accent_gold"], stroke=4)
+        y += 104
+
+
+def _render_process_flow(draw, data):
+    _headline(draw, data.get("headline", ""))
+    steps = [s for s in data.get("steps", []) if s][:4]
+    if not steps:
+        return
+    n = len(steps)
+    gap = 70
+    box_w = min(360, (W - 2 * MARGIN - (n - 1) * gap) // n)
+    box_h = 150
+    total = n * box_w + (n - 1) * gap
+    x0 = (W - total) // 2
+    cy = (CONTENT_TOP + CONTENT_BOTTOM) // 2 + 10
+    for i, step in enumerate(steps):
+        x = x0 + i * (box_w + gap)
+        _rounded(draw, x, cy - box_h // 2, box_w, box_h, 20,
+                 fill=(*COLORS["bg_card"], 235), outline=COLORS["accent_blue"], width=3)
+        # 编号圆
+        draw.ellipse([x + 22, cy - box_h // 2 - 26, x + 74, cy - box_h // 2 + 26],
+                     fill=COLORS["accent_blue"])
+        _ctext(draw, x + 48, cy - box_h // 2 - 18, str(i + 1), "step", (255, 255, 255), stroke=2)
+        step_lines = _wrap(draw, step, _font("h2"), box_w - 42, max_lines=2)
+        sy = cy - 42 if len(step_lines) == 2 else cy - 30
+        for j, line in enumerate(step_lines):
+            _ctext(draw, x + box_w // 2, sy + j * 50, line, "h2",
+                   COLORS["text_primary"], stroke=3)
+        # 箭头
+        if i < n - 1:
+            ax = x + box_w + gap // 2
+            _arrow(draw, ax, cy, COLORS["accent_gold"])
+
+
+def _render_grid(draw, data):
+    _headline(draw, data.get("headline", ""))
+    items = data.get("items", [])[:4]
+    if not items:
+        return
+    n = len(items)
+    gap = 40
+    card_w = min(420, (W - 2 * MARGIN - (n - 1) * gap) // n)
+    card_h = 320
+    total = n * card_w + (n - 1) * gap
+    x0 = (W - total) // 2
+    y = (CONTENT_TOP + CONTENT_BOTTOM) // 2 - card_h // 2 + 30
+    palette = [COLORS["accent_blue"], COLORS["success"], COLORS["accent_gold"], COLORS["warning"]]
+    for i, item in enumerate(items):
+        x = x0 + i * (card_w + gap)
+        accent = palette[i % len(palette)]
+        _rounded(draw, x, y, card_w, card_h, 22,
+                 fill=(*COLORS["bg_card"], 235), outline=accent, width=3)
+        draw.rectangle([x, y, x + card_w, y + 10], fill=accent)
+        # 编号徽标
+        draw.ellipse([x + card_w // 2 - 38, y + 40, x + card_w // 2 + 38, y + 116], fill=accent)
+        _ctext(draw, x + card_w // 2, y + 54, str(i + 1), "h1", (255, 255, 255), stroke=2)
+        title = item.get("title", "")
+        tl = _wrap(draw, title, _font("h2"), card_w - 48, max_lines=2)
+        ty = y + 150
+        for line in tl:
+            _ctext(draw, x + card_w // 2, ty, line, "h2", COLORS["text_primary"], stroke=2)
+            ty += 56
+        desc = item.get("desc", "")
+        if desc:
+            for line in _wrap(draw, desc, _font("body"), card_w - 56, max_lines=2):
+                _ctext(draw, x + card_w // 2, ty + 6, line, "body", COLORS["text_secondary"])
+                ty += 44
+
+
+def _render_data(draw, data):
+    _headline(draw, data.get("headline", ""))
+    stats = data.get("stats", [])[:3]
+    if not stats:
+        return _render_statement(draw, data)
+    n = len(stats)
+    gap = 70
+    card_w = min(440, (W - 2 * MARGIN - (n - 1) * gap) // n)
+    card_h = 300
+    total = n * card_w + (n - 1) * gap
+    x0 = (W - total) // 2
+    y = (CONTENT_TOP + CONTENT_BOTTOM) // 2 - card_h // 2 + 20
+    for i, st in enumerate(stats):
+        x = x0 + i * (card_w + gap)
+        color = COLORS.get(st.get("color", "accent_gold"), COLORS["accent_gold"])
+        _rounded(draw, x, y, card_w, card_h, 22, fill=(*COLORS["bg_card"], 230),
+                 outline=color, width=3)
+        _ctext(draw, x + card_w // 2, y + 70, st.get("value", ""), "data", color, stroke=4)
+        draw.rectangle([x + 60, y + 215, x + card_w - 60, y + 219], fill=(*color, 200))
+        for j, line in enumerate(_wrap(draw, st.get("label", ""), _font("body"), card_w - 56, max_lines=2)):
+            _ctext(draw, x + card_w // 2, y + 232 + j * 42, line, "body", COLORS["text_secondary"])
+
+
+def _render_zones(draw, data):
+    _headline(draw, data.get("headline", "并网三色分区"))
+    items = data.get("items", [])[:3]
+    colors = [COLORS["success"], COLORS["warning"], COLORS["danger"]]
+    marks = ["✓", "!", "×"]
+    n = max(1, len(items))
+    gap = 48
+    card_w = (W - 2 * MARGIN - (n - 1) * gap) // n
+    card_h = 380
+    x0 = MARGIN
+    y = (CONTENT_TOP + CONTENT_BOTTOM) // 2 - card_h // 2 + 20
+    for i, item in enumerate(items):
+        x = x0 + i * (card_w + gap)
+        color = colors[i % 3]
+        _rounded(draw, x, y, card_w, card_h, 22, fill=(*COLORS["bg_card"], 235),
+                 outline=color, width=4)
+        draw.rectangle([x, y, x + card_w, y + 12], fill=color)
+        draw.ellipse([x + card_w // 2 - 44, y + 42, x + card_w // 2 + 44, y + 130], fill=color)
+        _ctext(draw, x + card_w // 2, y + 56, marks[i % 3], "h1", (255, 255, 255), stroke=2)
+        _ctext(draw, x + card_w // 2, y + 160, item.get("title", ""), "h1", color, stroke=3)
+        for j, line in enumerate(_wrap(draw, item.get("desc", ""), _font("body"), card_w - 56, max_lines=3)):
+            _ctext(draw, x + card_w // 2, y + 248 + j * 46, line, "body", COLORS["text_primary"])
+
+
+def _render_statement(draw, data):
+    _headline(draw, data.get("headline", ""))
+    body = data.get("body") or data.get("subtitle") or ""
+    if not body:
+        return
+    font = _font("h2")
+    lines = _wrap(draw, body, font, W - 2 * MARGIN - 120, max_lines=5)
+    box_h = len(lines) * 70 + 80
+    cy = (CONTENT_TOP + CONTENT_BOTTOM) // 2 + 20
+    y0 = cy - box_h // 2
+    _rounded(draw, MARGIN + 40, y0, W - 2 * MARGIN - 80, box_h, 24,
+             fill=(*COLORS["bg_card"], 215), outline=COLORS["accent_blue"], width=2)
+    draw.rectangle([MARGIN + 40, y0, MARGIN + 52, y0 + box_h], fill=COLORS["accent_blue"])
+    ty = y0 + 40
+    for line in lines:
+        _ctext(draw, W // 2, ty, line, "h2", COLORS["text_primary"], stroke=2)
+        ty += 70
+
+
+def _render_cta(draw, data):
+    headline = data.get("headline", "评论区答疑")
+    sub = data.get("subtitle", "")
+    cx = W // 2
+    _ctext(draw, cx, CONTENT_TOP + 110, headline, "h1", COLORS["accent_gold"], stroke=4)
+    if sub:
+        for j, line in enumerate(_wrap(draw, sub, _font("h2"), W - 2 * MARGIN - 80, max_lines=2)):
+            _ctext(draw, cx, CONTENT_TOP + 240 + j * 70, line, "h2", COLORS["text_primary"], stroke=2)
+    # 评论提示气泡（避免使用 emoji，CJK 字体无字形会渲染成方框）
+    bw, bh = 520, 96
+    bx, by = cx - bw // 2, CONTENT_BOTTOM - 150
+    _rounded(draw, bx, by, bw, bh, 48, fill=(*COLORS["accent_blue"], 235))
+    # 左侧画一个小三角作为“指向”图标
+    tri_x = bx + 46
+    draw.polygon([(tri_x, by + 34), (tri_x + 30, by + 48), (tri_x, by + 62)],
+                 fill=(255, 255, 255))
+    _ctext(draw, cx + 20, by + 26, "评论区留言 · 免费答疑", "h2", (255, 255, 255), stroke=2)
+
+
+# ----------------------------------------------------------------------------
+# 组件
+# ----------------------------------------------------------------------------
+def _draw_title_bar(draw, title_text):
+    draw.rectangle([0, 0, W, TITLE_BAR_H], fill=(*COLORS["bg_primary"], 215))
+    draw.rectangle([0, TITLE_BAR_H, W, TITLE_BAR_H + 4], fill=COLORS["accent_blue"])
+    draw.rectangle([MARGIN, 34, MARGIN + 12, 70], fill=COLORS["accent_gold"])
+    if title_text:
+        line = _wrap(draw, title_text, _font("subtitle"), W - 2 * MARGIN - 40,
+                     max_lines=1)[0]
+        _text(draw, (MARGIN + 30, 30), line, "subtitle",
+              COLORS["text_primary"], stroke=2)
+
+
+def _headline(draw, text):
+    if not text:
+        return
+    line = _wrap(draw, text, _font("subtitle"), W - 2 * MARGIN, max_lines=1)[0]
+    _ctext(draw, W // 2, CONTENT_TOP, line, "subtitle", COLORS["accent_blue"], stroke=2)
+    tw = _measure(draw, line, _font("subtitle"))
+    draw.rectangle([W // 2 - tw // 2, CONTENT_TOP + 62, W // 2 + tw // 2, CONTENT_TOP + 67],
+                   fill=(*COLORS["accent_blue"], 160))
+
+
+def _draw_subtitle_bar(draw, subtitle=None):
+    """绘制底部字幕承托带（蓝绿色半透明）。
+
+    文字不在此烤入：成片阶段由 video_generator 用 ASS 同步烧录旁白，
+    与配音逐句对齐，避免与烤入文字重叠。此处仅铺一条提高可读性的承托带。
+    """
+    bar_h = LAYOUT.get("subtitle_bar_height", 120)
+    y0 = H - bar_h
+    draw.rectangle([0, y0, W, H], fill=(92, 148, 164, 235))
+    draw.rectangle([0, y0, W, y0 + 4], fill=(*COLORS["accent_blue"], 200))
+
+
+def _warning_badge(draw, cx, cy, r):
+    draw.polygon([(cx, cy - r), (cx - r, cy + r), (cx + r, cy + r)],
+                 fill=COLORS["warning"], outline=(255, 255, 255))
+    _ctext(draw, cx, cy - 18, "!", "h1", (40, 30, 0), stroke=0)
+
+
+def _arrow(draw, x, y, color):
+    draw.line([x - 26, y, x + 14, y], fill=color, width=8)
+    draw.polygon([(x + 12, y - 16), (x + 34, y), (x + 12, y + 16)], fill=color)
+
+
+def _rounded(draw, x, y, w, h, r, fill=None, outline=None, width=1):
+    draw.rounded_rectangle([x, y, x + w, y + h], radius=r, fill=fill,
+                           outline=outline, width=width)
+
+
+# ----------------------------------------------------------------------------
+# 文本工具
+# ----------------------------------------------------------------------------
+def _font(key: str) -> ImageFont.FreeTypeFont:
+    sizes = {
+        "cover": 92, "h1": 72, "subtitle": 46, "h2": 48,
+        "body": 32, "data": 84, "step": 40, "subtitle_bar": 52,
+    }
+    size = sizes.get(key, 36)
+    if size not in _FONT_CACHE:
+        try:
+            _FONT_CACHE[size] = ImageFont.truetype(FONT_PATH, size)
+        except Exception:
+            _FONT_CACHE[size] = ImageFont.load_default()
+    return _FONT_CACHE[size]
+
+
+def _text(draw, pos, text, key, color, stroke=0):
+    font = _font(key)
+    draw.text(pos, text, font=font, fill=color,
+              stroke_width=stroke, stroke_fill=(0, 0, 0, 200) if stroke else None)
+
+
+def _ctext(draw, cx, y, text, key, color, stroke=0):
+    font = _font(key)
+    w = _measure(draw, text, font)
+    draw.text((cx - w // 2, y), text, font=font, fill=color,
+              stroke_width=stroke, stroke_fill=(0, 0, 0, 210) if stroke else None)
+
+
+def _measure(draw, text, font) -> int:
+    bbox = draw.textbbox((0, 0), text, font=font)
+    return bbox[2] - bbox[0]
+
+
+def _wrap(draw, text, font, max_w, max_lines=None) -> list:
+    text = str(text or "").strip()
     if not text:
         return []
-
-    lines = []
-    current = ""
-    for char in text:
-        candidate = current + char
-        bbox = draw.textbbox((0, 0), candidate, font=font)
-        if bbox[2] - bbox[0] <= max_width or not current:
-            current = candidate
+    lines, cur = [], ""
+    for ch in text:
+        if _measure(draw, cur + ch, font) <= max_w or not cur:
+            cur += ch
         else:
-            lines.append(current)
-            current = char
-    if current:
-        lines.append(current)
-    return lines[:2]
+            lines.append(cur)
+            cur = ch
+    if cur:
+        lines.append(cur)
+    if max_lines and len(lines) > max_lines:
+        overflow = "".join(lines[max_lines - 1:])
+        lines = lines[:max_lines]
+        lines[-1] = _ellipsize(draw, overflow, font, max_w)
+    elif max_lines and len(lines) == max_lines and _is_orphan_tail(lines[-1]):
+        lines = lines[:-1]
+        lines[-1] = _ellipsize(draw, lines[-1], font, max_w)
+    return lines
 
 
-def _render_title_template(draw: ImageDraw.Draw, data: dict):
-    """渲染标题模板 - 居中大字 + 副标题"""
-    headline = data.get("headline", "")
-    subtitle = data.get("subtitle", "")
-
-    # 装饰元素 - 顶部渐变条
-    for i in range(5):
-        alpha = 200 - i * 40
-        draw.rectangle(
-            [0, i * 2, VIDEO_WIDTH, i * 2 + 2],
-            fill=COLORS["accent_blue"] + (alpha,)
-        )
-
-    # 标题
-    font_title = _get_font("title")
-    bbox = draw.textbbox((0, 0), headline, font=font_title)
-    text_width = bbox[2] - bbox[0]
-    x = (VIDEO_WIDTH - text_width) // 2
-    y = VIDEO_HEIGHT // 2 - 100
-    draw.text((x, y), headline, fill=COLORS["accent_gold"], font=font_title)
-
-    # 副标题
-    if subtitle:
-        font_subtitle = _get_font("subtitle")
-        bbox = draw.textbbox((0, 0), subtitle, font=font_subtitle)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        y = VIDEO_HEIGHT // 2 + 50
-        draw.text((x, y), subtitle, fill=COLORS["text_primary"], font=font_subtitle)
-
-    # 装饰线 - 带渐变效果
-    line_y = VIDEO_HEIGHT // 2 + 120
-    for i in range(3):
-        draw.rectangle(
-            [VIDEO_WIDTH // 2 - 100 + i * 5, line_y + i * 2,
-             VIDEO_WIDTH // 2 + 100 - i * 5, line_y + i * 2 + 4],
-            fill=COLORS["accent_blue"] + (200 - i * 50,)
-        )
+def _ellipsize(draw, text, font, max_w) -> str:
+    suffix = "..."
+    if _measure(draw, suffix, font) > max_w:
+        return ""
+    value = str(text or "").strip()
+    while value and _measure(draw, value + suffix, font) > max_w:
+        value = value[:-1]
+    return value.rstrip() + suffix
 
 
-def _render_grid_2x2_template(draw: ImageDraw.Draw, data: dict):
-    """渲染四宫格模板"""
-    items = data.get("items", [])
-    headline = data.get("headline", "")
-
-    # 标题
-    if headline:
-        font = _get_font("subtitle")
-        bbox = draw.textbbox((0, 0), headline, font=font)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        draw.text((x, 140), headline, fill=COLORS["text_primary"], font=font)
-
-    # 计算网格位置
-    margin = LAYOUT["margin"]
-    gap = LAYOUT["card_gap"]
-    card_width = (VIDEO_WIDTH - 2 * margin - gap) // 2
-    card_height = (VIDEO_HEIGHT - LAYOUT["title_bar_height"] - LAYOUT["subtitle_bar_height"] - 200 - gap) // 2
-
-    positions = [
-        (margin, 220),
-        (margin + card_width + gap, 220),
-        (margin, 220 + card_height + gap),
-        (margin + card_width + gap, 220 + card_height + gap),
-    ]
-
-    # 绘制装饰元素
-    # 左侧装饰条
-    draw.rectangle(
-        [margin - 10, 220, margin, 220 + card_height * 2 + gap],
-        fill=COLORS["accent_blue"] + (150,)
-    )
-
-    # 右侧装饰条
-    draw.rectangle(
-        [VIDEO_WIDTH - margin, 220, VIDEO_WIDTH - margin + 10, 220 + card_height * 2 + gap],
-        fill=COLORS["accent_blue"] + (150,)
-    )
-
-    for i, (x, y) in enumerate(positions):
-        if i < len(items):
-            item = items[i]
-            _draw_card(draw, x, y, card_width, card_height, item.get("title", ""), item.get("desc", ""))
-
-
-def _render_grid_3x1_template(draw: ImageDraw.Draw, data: dict):
-    """渲染三列模板（绿/黄/红三区）"""
-    items = data.get("items", [])
-    headline = data.get("headline", "")
-
-    # 标题
-    if headline:
-        font = _get_font("subtitle")
-        bbox = draw.textbbox((0, 0), headline, font=font)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        draw.text((x, 140), headline, fill=COLORS["text_primary"], font=font)
-
-    # 计算列位置
-    margin = LAYOUT["margin"]
-    gap = LAYOUT["card_gap"]
-    card_width = (VIDEO_WIDTH - 2 * margin - 2 * gap) // 3
-    card_height = VIDEO_HEIGHT - LAYOUT["title_bar_height"] - LAYOUT["subtitle_bar_height"] - 200
-
-    colors = [COLORS["success"], COLORS["warning"], COLORS["danger"]]
-
-    for i in range(3):
-        x = margin + i * (card_width + gap)
-        y = 220
-        color = colors[i % len(colors)]
-
-        if i < len(items):
-            item = items[i]
-            _draw_colored_card(draw, x, y, card_width, card_height,
-                             item.get("title", ""), item.get("desc", ""), color)
-
-
-def _render_data_big_template(draw: ImageDraw.Draw, data: dict):
-    """渲染数据突出模板"""
-    headline = data.get("headline", "")
-    stats = data.get("stats", [])
-
-    # 标题
-    if headline:
-        font = _get_font("subtitle")
-        bbox = draw.textbbox((0, 0), headline, font=font)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        draw.text((x, 140), headline, fill=COLORS["text_primary"], font=font)
-
-    # 数据
-    if stats:
-        font_data = _get_font("data_big")
-        font_label = _get_font("body")
-
-        for i, stat in enumerate(stats):
-            value = stat.get("value", "")
-            label = stat.get("label", "")
-            color_name = stat.get("color", "accent_blue")
-            color = COLORS.get(color_name, COLORS["accent_blue"])
-
-            # 计算位置（水平排列）
-            total_width = len(stats) * 400
-            start_x = (VIDEO_WIDTH - total_width) // 2
-            x = start_x + i * 400
-            y = VIDEO_HEIGHT // 2 - 50
-
-            # 装饰背景
-            draw.rounded_rectangle(
-                [x - 20, y - 30, x + 380, y + 180],
-                radius=16,
-                fill=COLORS["bg_card"] + (150,)
-            )
-
-            # 大数字 - 带阴影效果
-            bbox = draw.textbbox((0, 0), value, font=font_data)
-            text_width = bbox[2] - bbox[0]
-            # 阴影
-            draw.text((x + (400 - text_width) // 2 + 3, y + 3), value,
-                     fill=(0, 0, 0, 100), font=font_data)
-            # 主文字
-            draw.text((x + (400 - text_width) // 2, y), value, fill=color, font=font_data)
-
-            # 标签
-            bbox = draw.textbbox((0, 0), label, font=font_label)
-            text_width = bbox[2] - bbox[0]
-            draw.text((x + (400 - text_width) // 2, y + 120), label, fill=COLORS["text_secondary"], font=font_label)
-
-            # 装饰线
-            draw.rectangle(
-                [x + 50, y + 160, x + 350, y + 163],
-                fill=color + (150,)
-            )
-
-
-def _render_step_list_template(draw: ImageDraw.Draw, data: dict):
-    """渲染步骤列表模板"""
-    headline = data.get("headline", "")
-    steps = data.get("steps", [])
-
-    # 标题
-    if headline:
-        font = _get_font("subtitle")
-        bbox = draw.textbbox((0, 0), headline, font=font)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        draw.text((x, 140), headline, fill=COLORS["text_primary"], font=font)
-
-    # 步骤
-    if steps:
-        font_step = _get_font("step_number")
-        font_text = _get_font("body")
-
-        step_height = 120
-        start_y = 250
-
-        for i, step in enumerate(steps):
-            y = start_y + i * (step_height + 40)
-
-            # 步骤编号（圆形背景）- 带渐变效果
-            circle_x = VIDEO_WIDTH // 2 - 300
-            circle_y = y + 10
-
-            # 外圈渐变
-            for j in range(5):
-                alpha = 255 - j * 30
-                draw.ellipse(
-                    [circle_x - j, circle_y - j, circle_x + 60 + j, circle_y + 60 + j],
-                    fill=COLORS["accent_blue"] + (alpha,)
-                )
-
-            # 内圈
-            draw.ellipse(
-                [circle_x, circle_y, circle_x + 60, circle_y + 60],
-                fill=COLORS["accent_blue"]
-            )
-
-            # 步骤编号
-            draw.text((circle_x + 15, circle_y + 5), str(i + 1),
-                     fill=COLORS["text_primary"], font=font_step)
-
-            # 步骤文字 - 带背景条
-            text_x = VIDEO_WIDTH // 2 - 200
-            draw.rectangle(
-                [text_x - 10, y + 10, text_x + 400, y + 70],
-                fill=COLORS["bg_card"] + (200,)
-            )
-            draw.text((text_x, y + 15), step,
-                     fill=COLORS["text_primary"], font=font_text)
-
-            # 连接线（除了最后一步）- 带渐变效果
-            if i < len(steps) - 1:
-                line_y = y + step_height
-                for j in range(3):
-                    draw.rectangle(
-                        [circle_x + 28 + j, line_y + j * 10,
-                         circle_x + 32 - j, line_y + 40 + j * 10],
-                        fill=COLORS["accent_blue"] + (200 - j * 60,)
-                    )
-
-
-def _render_cta_template(draw: ImageDraw.Draw, data: dict):
-    """渲染CTA模板"""
-    headline = data.get("headline", "评论区留言")
-    subtitle = data.get("subtitle", "免费咨询")
-
-    # 标题
-    font_title = _get_font("title")
-    bbox = draw.textbbox((0, 0), headline, font=font_title)
-    text_width = bbox[2] - bbox[0]
-    x = (VIDEO_WIDTH - text_width) // 2
-    y = VIDEO_HEIGHT // 2 - 100
-    draw.text((x, y), headline, fill=COLORS["accent_gold"], font=font_title)
-
-    # 副标题
-    if subtitle:
-        font_subtitle = _get_font("subtitle")
-        bbox = draw.textbbox((0, 0), subtitle, font=font_subtitle)
-        text_width = bbox[2] - bbox[0]
-        x = (VIDEO_WIDTH - text_width) // 2
-        y = VIDEO_HEIGHT // 2 + 50
-        draw.text((x, y), subtitle, fill=COLORS["text_primary"], font=font_subtitle)
-
-
-def _draw_card(draw: ImageDraw.Draw, x: int, y: int, w: int, h: int,
-               title: str, desc: str):
-    """绘制卡片"""
-    # 卡片背景 - 渐变效果
-    for i in range(LAYOUT["card_radius"]):
-        alpha = 255 - i * 5
-        draw.rounded_rectangle(
-            [x + i, y + i, x + w - i, y + h - i],
-            radius=LAYOUT["card_radius"] - i,
-            fill=COLORS["bg_card"] + (alpha,)
-        )
-
-    # 顶部装饰条
-    draw.rectangle(
-        [x, y, x + w, y + 6],
-        fill=COLORS["accent_blue"]
-    )
-
-    # 左侧装饰条
-    draw.rectangle(
-        [x, y, x + 6, y + h],
-        fill=COLORS["accent_blue"] + (150,)
-    )
-
-    # 标题
-    font_title = _get_font("card_title")
-    draw.text((x + LAYOUT["card_padding"] + 10, y + LAYOUT["card_padding"] + 10),
-             title, fill=COLORS["accent_blue"], font=font_title)
-
-    # 描述
-    if desc:
-        font_desc = _get_font("card_desc")
-        draw.text((x + LAYOUT["card_padding"] + 10, y + LAYOUT["card_padding"] + 60),
-                 desc, fill=COLORS["text_secondary"], font=font_desc)
-
-    # 底部装饰线
-    draw.rectangle(
-        [x + LAYOUT["card_padding"], y + h - 20,
-         x + w - LAYOUT["card_padding"], y + h - 18],
-        fill=COLORS["divider"]
-    )
-
-
-def _draw_colored_card(draw: ImageDraw.Draw, x: int, y: int, w: int, h: int,
-                       title: str, desc: str, color: tuple):
-    """绘制带颜色的卡片"""
-    # 卡片背景
-    draw.rounded_rectangle(
-        [x, y, x + w, y + h],
-        radius=LAYOUT["card_radius"],
-        fill=COLORS["bg_card"],
-        outline=color,
-        width=3
-    )
-
-    # 顶部色条
-    draw.rectangle(
-        [x, y, x + w, y + 8],
-        fill=color
-    )
-
-    # 标题
-    font_title = _get_font("card_title")
-    draw.text((x + LAYOUT["card_padding"], y + LAYOUT["card_padding"] + 20),
-             title, fill=color, font=font_title)
-
-    # 描述
-    if desc:
-        font_desc = _get_font("card_desc")
-        draw.text((x + LAYOUT["card_padding"], y + LAYOUT["card_padding"] + 70),
-                 desc, fill=COLORS["text_secondary"], font=font_desc)
-
-
-def _get_font(font_type: str) -> ImageFont.FreeTypeFont:
-    """获取字体"""
-    try:
-        font_config = FONTS.get(font_type, FONTS["body"])
-        return ImageFont.truetype(FONT_PATH, font_config["size"])
-    except Exception as e:
-        print(f"  ⚠ 字体加载失败: {e}，使用默认字体")
-        return ImageFont.load_default()
+def _is_orphan_tail(text: str) -> bool:
+    value = str(text or "").strip()
+    if not value:
+        return False
+    meaningful = value.strip("，。；、,.!?！？:：")
+    return len(meaningful) <= 1
 
 
 if __name__ == "__main__":
-    # 测试
-    test_data = {
-        "template": "title",
-        "data": {
-            "headline": "测试标题",
-            "subtitle": "测试副标题"
-        }
-    }
-    render_slide(test_data, None, "/tmp/test_slide.png", "测试顶部标题")
+    for tpl, data in [
+        ("cover_dark", {"kicker": "光伏并网流程解读", "headline": "废止80%红线 50GW项目复活"}),
+        ("process_flow", {"headline": "正确顺序", "steps": ["备案", "施工", "并网"]}),
+        ("zone_cards", {"headline": "并网三色分区", "items": [
+            {"title": "绿区", "desc": "承载力充足，直接备案"},
+            {"title": "黄区", "desc": "配储能或安控接入"},
+            {"title": "红区", "desc": "电网改造后有序接入"}]}),
+    ]:
+        render_slide({"template": tpl, "data": data}, None,
+                     f"/tmp/slide_{tpl}.png", "光伏政策解读")

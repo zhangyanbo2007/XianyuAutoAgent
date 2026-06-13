@@ -24,13 +24,17 @@ def load_dotenv():
 load_dotenv()
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from ai_image_generator import generate_bg_image
 from config import OUTPUT_DIR, DEFAULT_BGM
 from quality_report import build_quality_report
 from script_converter import parse_excel_scripts, save_script_to_json
 from slide_renderer import render_slide
 from storyboard_planner import plan_storyboard
-from tts_generator import generate_sections_audio, concat_audio
+from tts_generator import generate_sections_audio
 from video_generator import render_video, _get_ffmpeg
+
+COVER_SEC = 2.0          # 封面停留（无旁白，仅垫乐）
+PAUSE_SEC = 0.4          # 段落间停顿
 
 
 def collect_input_scripts(input_path) -> list[dict]:
@@ -100,25 +104,34 @@ def run_script_pipeline(script: dict, output_name: str = None,
     audio_dir.mkdir(exist_ok=True)
     narration_path = work_dir / "narration.mp3"
     srt_path = work_dir / "narration.srt"
+    ffmpeg = _get_ffmpeg()
 
+    hero_bg = dark_bg = None
     if no_tts:
         tts_status = "silent_smoke"
         total_duration = _storyboard_duration(storyboard)
         _write_storyboard_srt(storyboard, srt_path)
         _create_silent_audio(narration_path, total_duration)
-        section_results = []
     else:
+        # AI 背景：一张 hero（封面）+ 一张统一深蓝信息图底（对标参考视频1）
+        bg_dir = work_dir / "_ai_images"
+        hero_bg = generate_bg_image(storyboard.get("hero_prompt", ""), str(bg_dir), index=0)
+        dark_bg = generate_bg_image(storyboard.get("dark_prompt", ""), str(bg_dir), index=1)
+        print(f"  AI背景: hero={'OK' if hero_bg else 'fallback'} dark={'OK' if dark_bg else 'fallback'}")
+
         section_results = generate_sections_audio(script.get("sections", []), str(audio_dir), voice=voice)
-        concat_audio(section_results, str(narration_path))
-        _merge_subtitles(section_results, str(srt_path))
+        sec_audio = {r.get("index", n): r for n, r in enumerate(section_results)}
+        sec_start, total_dur = _assemble_audio(ffmpeg, work_dir, sec_audio,
+                                               script.get("sections", []), narration_path)
+        _assign_shot_durations(storyboard.get("shots", []), sec_start, total_dur)
+        _merge_subtitles_offset(sec_audio, sec_start, srt_path)
         tts_status = _summarize_tts_status(section_results)
         if not narration_path.exists() or narration_path.stat().st_size == 0:
-            total_duration = _storyboard_duration(storyboard)
             _write_storyboard_srt(storyboard, srt_path)
-            _create_silent_audio(narration_path, total_duration)
+            _create_silent_audio(narration_path, _storyboard_duration(storyboard))
             tts_status = "missing"
 
-    slides = _render_storyboard_slides(storyboard, work_dir)
+    slides = _render_storyboard_slides(storyboard, work_dir, hero_bg, dark_bg)
     output_path = work_dir / f"{output_name}.mp4"
     bgm_path = DEFAULT_BGM if os.path.exists(DEFAULT_BGM) else None
     render_video(slides, str(narration_path), str(output_path), str(srt_path), bgm_path)
@@ -173,7 +186,8 @@ def run_batch(input_paths: list, voice: str = None,
     return results
 
 
-def _render_storyboard_slides(storyboard: dict, work_dir: Path) -> list[dict]:
+def _render_storyboard_slides(storyboard: dict, work_dir: Path,
+                              hero_bg: str = None, dark_bg: str = None) -> list[dict]:
     slides_dir = work_dir / "slides"
     slides_dir.mkdir(exist_ok=True)
     slides = []
@@ -181,9 +195,98 @@ def _render_storyboard_slides(storyboard: dict, work_dir: Path) -> list[dict]:
 
     for i, shot in enumerate(storyboard.get("shots", [])):
         slide_path = slides_dir / f"slide_{i:02d}.png"
-        render_slide(shot, None, str(slide_path), title_text)
+        bg = hero_bg if shot.get("bg_role") == "hero" else dark_bg
+        render_slide(shot, bg, str(slide_path), title_text)
         slides.append({"path": str(slide_path), "duration_sec": shot.get("duration_sec", 3.0)})
     return slides
+
+
+def _assemble_audio(ffmpeg, work_dir: Path, sec_audio: dict,
+                    sections: list, out_path: Path) -> dict:
+    """拼接 封面留白 + 各段配音 + 段间停顿，返回 {section_index: start_sec}。"""
+    import subprocess
+    cover_sil = _silence(ffmpeg, work_dir, COVER_SEC, "_sil_cover.mp3")
+    pause_sil = _silence(ffmpeg, work_dir, PAUSE_SEC, "_sil_pause.mp3")
+
+    ordered = [i for i in range(len(sections))
+               if i in sec_audio and sec_audio[i].get("audio_path")
+               and os.path.exists(sec_audio[i]["audio_path"])]
+    parts = [cover_sil]
+    sec_start, t = {}, COVER_SEC
+    for n, i in enumerate(ordered):
+        sec_start[i] = t
+        parts.append(sec_audio[i]["audio_path"])
+        t += sec_audio[i].get("duration_sec", 0)
+        if n < len(ordered) - 1:
+            parts.append(pause_sil)
+            t += PAUSE_SEC
+
+    list_path = work_dir / "_audio_concat.txt"
+    with open(list_path, "w") as f:
+        for p in parts:
+            f.write(f"file '{os.path.abspath(p)}'\n")
+    subprocess.run([ffmpeg, "-y", "-f", "concat", "-safe", "0", "-i", str(list_path),
+                    "-c:a", "libmp3lame", "-q:a", "2", str(out_path)], capture_output=True)
+    for p in (cover_sil, pause_sil, str(list_path)):
+        if os.path.exists(p):
+            os.remove(p)
+    return sec_start, t
+
+
+def _silence(ffmpeg, work_dir: Path, seconds: float, name: str) -> str:
+    import subprocess
+    path = str(work_dir / name)
+    subprocess.run([ffmpeg, "-y", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono",
+                    "-t", str(seconds), "-c:a", "libmp3lame", "-q:a", "9", path],
+                   capture_output=True)
+    return path
+
+
+def _assign_shot_durations(shots: list, sec_start: dict, total_dur: float):
+    """精确铺满音轨时间线：每段视觉跨度=该段起点到下一段起点（吸收段间停顿），
+    末段铺到音轨结尾；段内分镜均分。这样视觉与配音/字幕严格对齐、无累积漂移。"""
+    from collections import defaultdict
+    by_sec = defaultdict(list)
+    for sh in shots:
+        by_sec[sh.get("section_id", 0)].append(sh)
+
+    ordered = sorted((sid for sid in sec_start), key=lambda s: sec_start[s])
+    for pos, sid in enumerate(ordered):
+        start = sec_start[sid]
+        end = sec_start[ordered[pos + 1]] if pos + 1 < len(ordered) else total_dur
+        group = by_sec.get(sid, [])
+        if not group:
+            continue
+        each = round(max(1.0, (end - start) / len(group)), 3)
+        for sh in group:
+            sh["duration_sec"] = each
+
+    for sh in by_sec.get(-1, []):       # 封面
+        sh["duration_sec"] = COVER_SEC
+
+
+def _merge_subtitles_offset(sec_audio: dict, sec_start: dict, out_path):
+    """合并各段字幕，按 sec_start 偏移（含封面留白与段间停顿）。"""
+    subs = []
+    for i, res in sec_audio.items():
+        if i not in sec_start:
+            continue
+        srt = res.get("subtitle_path", "")
+        if not srt or not os.path.exists(srt):
+            continue
+        with open(srt, encoding="utf-8") as f:
+            for block in f.read().strip().split("\n\n"):
+                lines = block.strip().split("\n")
+                if len(lines) < 3 or "-->" not in lines[1]:
+                    continue
+                a, b = lines[1].split("-->")
+                subs.append((_srt_to_sec(a.strip()) + sec_start[i],
+                             _srt_to_sec(b.strip()) + sec_start[i],
+                             " ".join(lines[2:]).strip()))
+    subs.sort()
+    with open(out_path, "w", encoding="utf-8") as f:
+        for n, (s, e, txt) in enumerate(subs, 1):
+            f.write(f"{n}\n{_sec_to_srt(s)} --> {_sec_to_srt(e)}\n{txt}\n\n")
 
 
 def _storyboard_duration(storyboard: dict) -> float:

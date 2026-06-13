@@ -9,7 +9,7 @@ from config import DASHSCOPE_API_KEY, DASHSCOPE_API, DASHSCOPE_MODEL, PROXY
 
 
 def generate_bg_image(prompt: str, cache_dir: str, index: int = 0,
-                      size: str = "1920*1080") -> str:
+                      size: str = "1280*720") -> str:
     """
     生成单张AI背景图并返回本地路径
 
@@ -17,7 +17,7 @@ def generate_bg_image(prompt: str, cache_dir: str, index: int = 0,
         prompt: 图片生成提示词
         cache_dir: 缓存目录
         index: 帧索引
-        size: 图片尺寸（横屏16:9）
+        size: 图片尺寸（wanx2.1-t2i-turbo 支持的16:9尺寸，渲染时再裁剪填充到1080p）
 
     Returns:
         图片路径，失败返回None

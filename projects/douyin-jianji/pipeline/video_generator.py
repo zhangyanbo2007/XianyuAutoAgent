@@ -91,14 +91,20 @@ def render_video(slides: list, audio_path: str, output_path: str,
         combined,
     ], capture_output=True)
 
-    # Step 4: 混入BGM（如果有）
+    # Step 4: 混入BGM（提供则用文件，否则合成一段克制的氛围垫乐）
+    if not (bgm_path and os.path.exists(bgm_path)):
+        dur = _get_duration(ffmpeg, combined) or 30.0
+        bgm_path = _synth_bgm(ffmpeg, work_dir, dur + 0.5)
+
     if bgm_path and os.path.exists(bgm_path):
         with_bgm = os.path.join(work_dir, "_with_bgm.mp4")
         subprocess.run([
             ffmpeg, "-y",
             "-i", combined,
             "-i", bgm_path,
-            "-filter_complex", "[1:a]volume=0.15[bg];[0:a][bg]amix=inputs=2:duration=first",
+            "-filter_complex",
+            "[1:a]volume=0.10,afade=t=in:st=0:d=1.2,afade=t=out:st=0:d=0[bg];"
+            "[0:a]volume=1.0[v];[v][bg]amix=inputs=2:duration=first:dropout_transition=0",
             "-c:v", "copy",
             "-c:a", "aac", "-b:a", "192k",
             "-ar", "44100",
@@ -155,6 +161,39 @@ def _create_segment(ffmpeg: str, image_path: str, output_path: str,
     subprocess.run(cmd, capture_output=True)
 
 
+def _synth_bgm(ffmpeg: str, work_dir: str, duration: float) -> str:
+    """合成一段克制的暖色氛围垫乐（无版权素材时的兜底）。
+
+    低频暖和弦 + 缓慢颤音 + 低通，听感是“氛围”而非旋律，
+    最终在混音阶段以很低音量铺在旁白下方。
+    """
+    out = os.path.join(work_dir, "_bgm_synth.mp3")
+    d = max(3.0, float(duration))
+    fade_out_st = max(0.0, d - 2.0)
+    flt = (
+        "[0][1][2]amix=inputs=3:normalize=0,"
+        "tremolo=f=0.18:d=0.5,"
+        "lowpass=f=520,highpass=f=70,"
+        "aecho=0.8:0.6:80:0.25,"
+        f"afade=t=in:st=0:d=1.5,afade=t=out:st={fade_out_st:.2f}:d=2.0,"
+        "volume=0.5"
+    )
+    cmd = [
+        ffmpeg, "-y",
+        "-f", "lavfi", "-i", f"sine=frequency=110:duration={d:.2f}",
+        "-f", "lavfi", "-i", f"sine=frequency=165:duration={d:.2f}",
+        "-f", "lavfi", "-i", f"sine=frequency=220:duration={d:.2f}",
+        "-filter_complex", flt,
+        "-ar", "44100", "-ac", "1",
+        "-c:a", "libmp3lame", "-q:a", "5",
+        out,
+    ]
+    r = subprocess.run(cmd, capture_output=True)
+    if r.returncode == 0 and os.path.exists(out) and os.path.getsize(out) > 0:
+        return out
+    return None
+
+
 def _write_subtitle_error(work_dir: str, stderr):
     """Persist ASS burn-in errors for quality reports and debugging."""
     error_path = os.path.join(work_dir, "subtitle_burn_error.log")
@@ -189,16 +228,18 @@ def _srt_to_styled_ass(srt_path: str, work_dir: str) -> str:
             if text:
                 subtitles.append((start.strip(), end.strip(), text))
 
-        # 生成ASS（横屏1920x1080）
+        # 生成ASS（横屏1920x1080，抖音风格底部硬字幕）
         ass_content = """[Script Info]
 Title: Douyin Video Subtitles
 ScriptType: v4.00+
 PlayResX: 1920
 PlayResY: 1080
+WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Noto Sans CJK SC,60,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,3,1,2,40,40,80,1
+Style: Default,Noto Sans CJK SC,62,&H00FFFFFF,&H000000FF,&H00141414,&HA0000000,1,0,0,0,100,100,0.5,0,1,5,2,2,120,120,86,1
+Style: Key,Noto Sans CJK SC,62,&H0000E5FF,&H000000FF,&H00141414,&HA0000000,1,0,0,0,100,100,0.5,0,1,5,2,2,120,120,86,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text

@@ -17,7 +17,7 @@ for _depth in range(5):
         break
 
 # 小米MiMo TTS配置
-API_BASE_URL = "https://token-plan-cn.xiaomimomo.com/v1"
+API_BASE_URL = "https://token-plan-cn.xiaomimimo.com/v1"
 API_KEY = os.environ.get("MIMO_API_KEY", "tp-c1kaznnjsvndkjgih8no34aj4530rk5u9ay61pma0eh3qjhb")
 MIMO_TTS_MODEL = "mimo-v2.5-tts"
 MIMO_TTS_VOICE = "苏打"  # 男性中文音色
@@ -71,13 +71,19 @@ LAYOUT = {
 }
 
 # 输出目录
-OUTPUT_DIR = "./output"
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "output")
 
 # 代理配置
 PROXY = os.environ.get("HTTPS_PROXY") or os.environ.get("HTTP_PROXY")
 
-# 字体路径
-FONT_PATH = os.path.join(os.path.dirname(__file__), "fonts", "NotoSansCJKsc-Regular.otf")
+# 字体路径（优先本地 fonts/ 目录，回退到用户字体）
+_FONT_CANDIDATES = [
+    os.path.join(os.path.dirname(__file__), "fonts", "NotoSansCJKsc-Regular.otf"),
+    os.path.expanduser("~/.local/share/fonts/NotoSansCJKsc-Regular.otf"),
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+]
+FONT_PATH = next((p for p in _FONT_CANDIDATES if os.path.exists(p)), _FONT_CANDIDATES[-1])
+FONT_PATH_BOLD = FONT_PATH  # 仅有 Regular，加粗用描边模拟
 
 # BGM路径
 BGM_DIR = os.path.join(os.path.dirname(__file__), "bgm")

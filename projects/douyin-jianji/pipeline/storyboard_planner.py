@@ -4,31 +4,47 @@ import re
 
 
 DATA_PATTERN = re.compile(r"\d+(?:\.\d+)?\s*(?:GW|%|个工作日)", re.I)
+VISUAL_DIRECTION_WORDS = (
+    "动画",
+    "画面",
+    "轮播",
+    "镜头",
+    "配图",
+    "素材",
+    "发布现场",
+    "政策要点",
+    "项目解冻",
+)
 
 
 def plan_storyboard(script: dict) -> dict:
     """Build reference-style storyboard shots from a parsed script."""
     title = _display_title(script)
     headline = script.get("headline") or script.get("program_title") or title
+    cover_sub = _cover_subtitle(script, headline)
     shots = [_make_shot(
         template="cover_dark",
         title=title,
-        subtitle=headline,
-        duration=3.0,
-        data={"headline": headline},
+        subtitle=cover_sub,
+        duration=2.6,
+        data={"headline": cover_sub, "kicker": title},
+        section_id=-1,
+        bg_role="hero",
     )]
 
-    for section in script.get("sections", []):
-        shots.extend(_shots_for_section(section, title))
+    for index, section in enumerate(script.get("sections", [])):
+        shots.extend(_shots_for_section(section, title, index))
 
     return {
         "title": title,
         "headline": headline,
+        "hero_prompt": _hero_prompt(title, headline),
+        "dark_prompt": _dark_prompt(),
         "shots": shots,
     }
 
 
-def _shots_for_section(section: dict, title: str) -> list[dict]:
+def _shots_for_section(section: dict, title: str, section_id: int) -> list[dict]:
     templates = _templates_for_section(section)
     chunks = _split_section_text(section, max(1, len(templates)))
 
@@ -42,8 +58,36 @@ def _shots_for_section(section: dict, title: str) -> list[dict]:
             subtitle=subtitle,
             duration=duration,
             data=_data_for_template(template, section),
+            section_id=section_id,
+            bg_role="dark",
         ))
     return shots
+
+
+def _cover_subtitle(script: dict, headline: str) -> str:
+    """Pick a punchy cover line: prefer cover_text, then the first headline clause."""
+    cover = (script.get("execution_tips", {}) or {}).get("cover_text", "")
+    if cover:
+        return cover.strip()
+    return re.split(r"[/／]", headline, maxsplit=1)[0].strip()
+
+
+def _hero_prompt(title: str, headline: str) -> str:
+    return (
+        "Cinematic wide shot of a large rooftop and ground solar photovoltaic farm "
+        "at golden hour, glowing green energy light streaks flowing across the panels, "
+        "deep navy blue sky, high-tech clean-energy mood, dramatic professional "
+        "lighting, ultra detailed, 16:9"
+    )
+
+
+def _dark_prompt() -> str:
+    return (
+        "Minimal dark navy blue technology background, subtle abstract solar panel "
+        "grid texture and faint green energy waves in the lower corner, lots of empty "
+        "dark space for text overlay, cinematic soft gradient, professional infographic "
+        "backdrop, 16:9"
+    )
 
 
 def _templates_for_section(section: dict) -> list[str]:
@@ -93,6 +137,8 @@ def _data_for_template(template: str, section: dict) -> dict:
     visual = section.get("visual", "")
     text = section.get("text", "")
     headline = _headline_from_visual(visual, section.get("label", ""))
+    if _looks_like_visual_direction(headline):
+        headline = _headline_from_text(text, section.get("label", ""))
 
     if template == "data_release":
         return {"headline": headline, "stats": _extract_stats(f"{visual} {text}")}
@@ -108,13 +154,16 @@ def _data_for_template(template: str, section: dict) -> dict:
 
 
 def _make_shot(template: str, title: str, subtitle: str,
-               duration: float, data: dict) -> dict:
+               duration: float, data: dict,
+               section_id: int = 0, bg_role: str = "dark") -> dict:
     return {
         "template": template,
         "title": title,
         "subtitle": subtitle,
         "duration_sec": _bounded_duration(duration),
         "data": data,
+        "section_id": section_id,
+        "bg_role": bg_role,
     }
 
 
@@ -133,8 +182,36 @@ def _bounded_duration(value: float) -> float:
 
 def _headline_from_visual(visual: str, fallback: str) -> str:
     if not visual:
-        return fallback
-    return re.split(r"[|｜\n]", visual, maxsplit=1)[0].strip() or fallback
+        return _shorten_headline(fallback)
+    text = visual.replace("→", "->").strip()
+    if "：" in text:
+        prefix, rest = text.split("：", 1)
+        if _looks_like_visual_direction(prefix) or len(prefix) <= 6:
+            text = rest
+    text = re.sub(r"^(配)?(大字提示|大字|提示)[:：]?", "", text).strip()
+    headline = re.split(r"\s*->\s*|[|｜\n，。；,;]", text, maxsplit=1)[0].strip()
+    return _shorten_headline(headline or fallback)
+
+
+def _headline_from_text(text: str, fallback: str) -> str:
+    if not text:
+        return _shorten_headline(fallback)
+    sentence = re.split(r"[。！？；，,]", text, maxsplit=1)[0].strip()
+    sentence = re.sub(r"^(沿用多年的|这一次|直接|行业统计显示)", "", sentence).strip()
+    return _shorten_headline(sentence or fallback)
+
+
+def _shorten_headline(text: str, max_chars: int = 18) -> str:
+    text = str(text or "").replace("→", "->").strip()
+    text = re.sub(r"\s+", "", text)
+    if len(text) <= max_chars:
+        return text
+    return text[:max_chars - 3] + "..."
+
+
+def _looks_like_visual_direction(text: str) -> bool:
+    value = str(text or "")
+    return any(word in value for word in VISUAL_DIRECTION_WORDS)
 
 
 def _extract_stats(text: str) -> list[dict]:
@@ -142,15 +219,22 @@ def _extract_stats(text: str) -> list[dict]:
     if not values:
         return []
     stats = []
-    for value in values[:3]:
+    seen = set()
+    for value in values:
+        normalized = value.replace(" ", "")
+        if normalized in seen:
+            continue
+        seen.add(normalized)
         label = "关键数据"
-        if "GW" in value.upper():
+        if "GW" in normalized.upper():
             label = "存量项目释放"
-        elif "%" in value:
+        elif "%" in normalized:
             label = "政策红线"
-        elif "工作日" in value:
+        elif "工作日" in normalized:
             label = "审批时长"
-        stats.append({"value": value.replace(" ", ""), "label": label, "color": "accent_gold"})
+        stats.append({"value": normalized, "label": label, "color": "accent_gold"})
+        if len(stats) == 3:
+            break
     return stats
 
 

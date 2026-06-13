@@ -73,6 +73,59 @@ class StoryboardPlannerTest(unittest.TestCase):
         self.assertIn("material_grid", templates)
         self.assertNotIn("grid_2x2", templates)
 
+    def test_visual_direction_is_shortened_before_becoming_headline(self):
+        script = {
+            "headline": "卡了6年的光伏80%红线，正式作废！",
+            "program_title": "《618光伏新政1》 - 文件解读",
+            "sections": [
+                {
+                    "label": "核心干货输出",
+                    "duration_sec": 15,
+                    "visual": "轮播动画：文件发布现场 -> 政策要点高亮 -> 项目解冻，配大字提示沿用多年的80%硬性红线正式废止",
+                    "text": "沿用多年的光伏并网80%硬性红线，在新政里直接被废止！行业统计显示，这一次直接盘活50GW被积压的存量光伏项目。",
+                    "template": "data_release",
+                },
+            ],
+        }
+
+        storyboard = plan_storyboard(script)
+        headlines = [
+            shot["data"].get("headline", "")
+            for shot in storyboard["shots"]
+            if shot["template"] == "data_release"
+        ]
+
+        self.assertTrue(headlines)
+        self.assertTrue(all(len(headline) <= 18 for headline in headlines))
+        self.assertTrue(all("->" not in headline for headline in headlines))
+
+    def test_repeated_policy_numbers_are_deduplicated_in_stats(self):
+        script = {
+            "headline": "卡了6年的光伏80%红线，正式作废！",
+            "program_title": "《618光伏新政1》 - 文件解读",
+            "sections": [
+                {
+                    "label": "核心干货输出",
+                    "duration_sec": 10,
+                    "visual": "废止80%红线｜释放50GW存量项目",
+                    "text": "沿用多年的80%硬性红线废止，不再按80%一刀切。行业统计显示，这一次直接盘活50GW被积压的存量项目。",
+                    "template": "data_release",
+                },
+            ],
+        }
+
+        storyboard = plan_storyboard(script)
+        stats = [
+            stat
+            for shot in storyboard["shots"]
+            if shot["template"] == "data_release"
+            for stat in shot["data"].get("stats", [])
+        ]
+        values = [stat["value"] for stat in stats]
+
+        self.assertEqual(values.count("80%"), 1)
+        self.assertIn("50GW", values)
+
 
 if __name__ == "__main__":
     unittest.main()
