@@ -1,0 +1,581 @@
+{
+  "title": "M³Eval: 多模态记忆评估",
+  "paper_slug": "dast-analysis",
+  "total_duration_sec": 600,
+  "sections": [
+    {
+      "id": "s01_title",
+      "type": "title",
+      "sub_type": "main_title",
+      "label": "封面",
+      "text": "AI看视频真的能过目不忘吗？揭秘顶尖大模型的人类级记忆缺陷。基于认知心理学的首个多模态模型记忆评估基准解析。M3Eval: Multi-Modal Memory Evaluation through Cognitively-Grounded Video Tasks.",
+      "on_screen": {
+        "top_label": "Peking University & UW-Madison",
+        "title": "AI看视频真的能「过目不忘」吗？",
+        "subtitle": "揭秘顶尖大模型的人类级记忆缺陷",
+        "description": "基于认知心理学的首个多模态模型记忆评估基准解析",
+        "english": "M³Eval: Multi-Modal Memory Evaluation through Cognitively-Grounded Video Tasks"
+      },
+      "duration_sec": 18,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s02_question",
+      "type": "question",
+      "sub_type": "context_check",
+      "label": "核心问题",
+      "text": "目前的大模型如百倍级上下文，正向超长视频理解迈进。但能看不代表能记住。编码、存储、检索和合成信息的真实记忆机制，仍是当前AI的巨大盲区。",
+      "on_screen": {
+        "title": "上下文窗口越来越长，AI记忆力就越来越好？",
+        "icon_left": "✓",
+        "icon_right": "?"
+      },
+      "duration_sec": 25,
+      "accent_color": "#00ff88"
+    },
+    {
+      "id": "s03_problem",
+      "type": "problem",
+      "sub_type": "gap_reveal",
+      "label": "研究缺口",
+      "text": "我们一直在考大模型的视力，却忽略了脑力。现有的视频数据集主要测试视觉感知和推理，无法系统评估：AI到底记住了什么？信息有多准确？在干扰下记忆有多脆弱？",
+      "on_screen": {
+        "title": "我们一直在考大模型的「视力」，却忽略了「脑力」",
+        "labels_top": [
+          "视觉感知 (Visual Perception)",
+          "逻辑推理 (Reasoning)"
+        ],
+        "labels_bottom": [
+          "容量",
+          "保真度",
+          "抗干扰性",
+          "多维度记忆"
+        ]
+      },
+      "duration_sec": 30,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s04_method",
+      "type": "method",
+      "sub_type": "transfer_diagram",
+      "label": "方法介绍",
+      "text": "M3Eval用人类认知心理学来审问AI。引入受控的认知心理学实验范式。不是简单地让AI看视频回答问题，而是通过精巧构建的记忆干扰视频任务，孤立测试AI特定的记忆维度。",
+      "on_screen": {
+        "title": "M³Eval：用人类认知心理学来「审问」AI",
+        "flow": [
+          "心理学经典实验",
+          "迁移 (Transfer)",
+          "AI多模态记忆评估"
+        ]
+      },
+      "duration_sec": 30,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s05_overview",
+      "type": "overview",
+      "sub_type": "four_dimensions",
+      "label": "四个切面",
+      "text": "解析记忆的四个切面：分散注意力，并发输入时的编码能力；记忆干扰，面对相似内容的抗干扰鲁棒性；交错事件，重组交叉时间线的能力；N-Back测试，跨越时间间隔的符号抽象与记忆容量。",
+      "on_screen": {
+        "title": "解析记忆的四个切面",
+        "center": "M³Eval",
+        "quadrants": [
+          {
+            "id": "1",
+            "title": "分散注意力",
+            "en": "Divided Attention",
+            "desc": "并发输入时的编码能力"
+          },
+          {
+            "id": "2",
+            "title": "记忆干扰",
+            "en": "Memory Interference",
+            "desc": "面对相似内容的抗干扰鲁棒性"
+          },
+          {
+            "id": "3",
+            "title": "交错事件",
+            "en": "Interleaved Events",
+            "desc": "重组交叉时间线的能力"
+          },
+          {
+            "id": "4",
+            "title": "N-Back测试",
+            "en": "N-Back",
+            "desc": "跨越时间间隔的符号抽象与记忆容量"
+          }
+        ]
+      },
+      "duration_sec": 35,
+      "accent_color": "#a855f7"
+    },
+    {
+      "id": "s06_test1_intro",
+      "type": "test_intro",
+      "sub_type": "divided_attention",
+      "label": "测试一介绍",
+      "text": "测试一：分散注意力，一心多用测试。心理学证明并行任务会争夺注意力资源。我们将相似视频左右分屏播放或频繁左右切换，测试AI是否会发生记忆错乱，把左边的情节记成右边的。",
+      "on_screen": {
+        "title": "测试一：分散注意力（「一心多用」测试）",
+        "left_label": "左边画面：炒肉",
+        "right_label": "右边画面：加豆芽",
+        "scenes": [
+          "炒肉",
+          "加豆芽"
+        ]
+      },
+      "duration_sec": 30,
+      "accent_color": "#00ff88"
+    },
+    {
+      "id": "s07_test1_result",
+      "type": "data_result",
+      "sub_type": "bar_chart_result",
+      "label": "测试一结果",
+      "text": "面对双屏，顶级AI瞬间失忆。人类准确率约90%，而GPT-5.4仅27.08%。结论：当并行处理视频流时，模型无法保持独立的记忆表征。根源分析：注意力机制Attention在并发视觉输入中产生了严重的特征混淆Attention Confusion。",
+      "on_screen": {
+        "title": "面对双屏，顶级AI瞬间「失忆」",
+        "chart": {
+          "type": "bar",
+          "data": [
+            {
+              "label": "人类 (Human)",
+              "value": 90,
+              "color": "#00ff88"
+            },
+            {
+              "label": "GPT-5.4",
+              "value": 27.08,
+              "color": "#ff4444"
+            },
+            {
+              "label": "顶级AI",
+              "value": 27,
+              "color": "#ff6666"
+            }
+          ],
+          "y_label": "准确率 (%)",
+          "highlight": "~90%"
+        },
+        "conclusion": "结论：当并行处理视频流时，模型无法保持独立的记忆表征。",
+        "root_cause": "根源分析：注意力机制 (Attention) 在并发视觉输入中产生了严重的特征混淆 (Attention Confusion)。"
+      },
+      "duration_sec": 35,
+      "accent_color": "#00ff88"
+    },
+    {
+      "id": "s08_test2_intro",
+      "type": "test_intro",
+      "sub_type": "memory_interference",
+      "label": "测试二介绍",
+      "text": "测试二：记忆干扰，相似内容的覆盖效应。遗忘不是单纯随时间流逝，而是相似记忆间的激烈竞争。测试AI在前后观看了两段极为相似的视频后，记忆是被前者干扰后者前摄，还是后者覆盖前者倒摄？",
+      "on_screen": {
+        "title": "测试二：记忆干扰（相似内容的「覆盖」效应）",
+        "retroactive": "倒摄干扰 (Retroactive): [视频A] → [相似视频B] → 提问视频A",
+        "proactive": "前摄干扰 (Proactive): [视频A] → [相似视频B] → 提问视频B"
+      },
+      "duration_sec": 30,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s09_test2_result",
+      "type": "comparison",
+      "sub_type": "balance_scale",
+      "label": "测试二结果",
+      "text": "AI的记忆覆盖逻辑完全不同于人类。对于人类，倒摄干扰大于前摄干扰。但对于大模型，前摄干扰和倒摄干扰的破坏力惊人地一致！这揭示了Transformer的全局注意力，所有标记等均访问，与人类序列化记忆更新机制的根本差异。",
+      "on_screen": {
+        "title": "AI的记忆覆盖逻辑完全不同于人类",
+        "human_side": {
+          "label": "人类",
+          "left": "倒摄干扰",
+          "right": "前摄干扰",
+          "balance": "倒摄干扰 > 前摄干扰"
+        },
+        "ai_side": {
+          "label": "AI模型",
+          "left": "倒摄干扰",
+          "right": "前摄干扰",
+          "balance": "倒摄干扰 ≈ 前摄干扰"
+        },
+        "insight": "核心洞察：对于大模型，前摄干扰和倒摄干扰的破坏力惊人地一致！这揭示了Transformer的「全局注意力」（所有标记等均访问）与人类「序列化记忆更新」机制的根本差异。"
+      },
+      "duration_sec": 35,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s10_test3_intro",
+      "type": "test_intro",
+      "sub_type": "interleaved_events",
+      "label": "测试三介绍",
+      "text": "测试三：交错事件，时间线的拼图能力。心理学表明人类善于通过故事图式Story Schema重新组织散落的情节。我们把两个独立视频的片段交叉剪辑播放，要求AI在脑海中将其重新还原为两个连贯的故事。",
+      "on_screen": {
+        "title": "测试三：交错事件（时间线的「拼图」能力）",
+        "left": "案情A",
+        "right": "案情B"
+      },
+      "duration_sec": 30,
+      "accent_color": "#ff00ff"
+    },
+    {
+      "id": "s11_test3_result",
+      "type": "chart_result",
+      "sub_type": "grouped_bar_result",
+      "label": "测试三结果",
+      "text": "意外发现：重复播放竟能强化AI记忆，复读机外挂。在受到干扰时，无论是把目标视频还是干扰视频重复播放一次，所有模型的准确率都神奇地大幅回升！技术原理解析：这一Hack机制表明，重复播放为模型提供了更清晰的因果注意力锚点Causal Attention Anchor，帮助它在注意力层面上刺离了干扰项的特征纠缠。",
+      "on_screen": {
+        "title": "意外发现：重复播放竟能强化AI记忆（「复读机」外挂）",
+        "chart": {
+          "type": "grouped_bar",
+          "groups": [
+            {
+              "label": "Gemini-3.1-Pro-Preview"
+            },
+            {
+              "label": "GPT-5.4"
+            },
+            {
+              "label": "Qwen2.5-VL-72B"
+            },
+            {
+              "label": "InternVL3.5-8B"
+            },
+            {
+              "label": "Qwen3.5-8B"
+            },
+            {
+              "label": "Qwen3.5-27B"
+            }
+          ],
+          "series": [
+            {
+              "label": "Repeat target",
+              "color": "#00ff88"
+            },
+            {
+              "label": "Repeat interfering",
+              "color": "#ff00ff"
+            }
+          ],
+          "y_label": "Δ Accuracy (%)"
+        },
+        "insight": "技术原理解析：重复播放为模型提供了更清晰的因果注意力锚点 (Causal Attention Anchor)，帮助它在注意力层面上刺离了干扰项的特征纠缠。"
+      },
+      "duration_sec": 40,
+      "accent_color": "#00ff88"
+    },
+    {
+      "id": "s12_test4_intro",
+      "type": "test_intro",
+      "sub_type": "nback_test",
+      "label": "测试四介绍",
+      "text": "测试四：N-Back，符号化与工作记忆容量极限。神经科学中最经典的记忆评估法。不仅测试AI能记多长，更测试它能否将复杂的视频画面抽象为符号，如判断两个画面是否都是室外场景或做饭动作，并跨越漫长的时间间隔保持追踪。",
+      "on_screen": {
+        "title": "测试四：N-Back（符号化与工作记忆容量极限）",
+        "sequence": [
+          "匹配?",
+          "[B]",
+          "[A]",
+          "[C]"
+        ],
+        "n_back": "N步之前",
+        "b": "[B]",
+        "a": "[A]",
+        "c": "[C]"
+      },
+      "duration_sec": 30,
+      "accent_color": "#ff8800"
+    },
+    {
+      "id": "s13_test4_result",
+      "type": "chart_result",
+      "sub_type": "line_chart_result",
+      "label": "测试四结果",
+      "text": "鸿沟再现：大模型缺乏人类级的符号记忆力。细分差异：奇妙的物种差异——人类更容易记住抽象的场景Scene，而大模型更容易记住具体的动作Action。数据表现：绝大多数多模态模型在N-Back测试中远远落后于人类，部分仅略好于随机猜测。",
+      "on_screen": {
+        "title": "鸿沟再现：大模型缺乏人类级的「符号记忆力」",
+        "chart": {
+          "type": "line",
+          "lines": [
+            {
+              "label": "人类 (Human)",
+              "color": "#00ff88",
+              "data": [
+                95,
+                90,
+                85,
+                80,
+                75,
+                70,
+                65,
+                60,
+                55,
+                50,
+                48,
+                46,
+                44,
+                42,
+                40
+              ]
+            },
+            {
+              "label": "AI Models",
+              "color": "#ff8800",
+              "data": [
+                50,
+                40,
+                35,
+                30,
+                28,
+                26,
+                25,
+                24,
+                23,
+                22,
+                22,
+                22,
+                22,
+                22,
+                22
+              ]
+            },
+            {
+              "label": "GPT-5.4",
+              "color": "#ff4444",
+              "data": [
+                55,
+                45,
+                38,
+                33,
+                30,
+                28,
+                27,
+                26,
+                25,
+                25,
+                25,
+                25,
+                25,
+                25,
+                25
+              ]
+            }
+          ],
+          "x_label": "步数差距 (N)",
+          "y_label": "准确率",
+          "baseline": "25% 随机猜测线"
+        },
+        "findings": [
+          "人类更容易记住抽象的「场景(Scene)」",
+          "大模型更容易记住具体的「动作(Action)」",
+          "绝大多数多模态模型远落后于人类"
+        ]
+      },
+      "duration_sec": 35,
+      "accent_color": "#ff8800"
+    },
+    {
+      "id": "s14_why_crash",
+      "type": "problem",
+      "sub_type": "deep_analysis",
+      "label": "记忆崩盘原因",
+      "text": "为什么AI的记忆力会在这里崩盘？技术原理：人类工作记忆会战略性遗忘，随时间平滑衰减并只保留相关线索。而大模型由于全局Attention机制，无论输入多长，无法过滤掉任务无关的干扰噪音。结论：不懂遗忘，成为了AI记忆力提升的致命负担。",
+      "on_screen": {
+        "title": "为什么AI的记忆力会在这里崩盘？",
+        "human_side": {
+          "label": "人类大脑",
+          "feature": "选择性保留"
+        },
+        "ai_side": {
+          "label": "AI大模型",
+          "feature": "噪音过载"
+        },
+        "tech_principle": "技术原理：人类工作记忆会「战略性遗忘」，随时间平滑衰减并只保留相关线索。而大模型由于全局Attention机制，无法过滤掉任务无关的干扰噪音。",
+        "conclusion": "结论：「不懂遗忘」，成为了AI记忆力提升的致命负担。"
+      },
+      "duration_sec": 35,
+      "accent_color": "#ff4444"
+    },
+    {
+      "id": "s15_summary_matrix",
+      "type": "summary",
+      "sub_type": "matrix_table",
+      "label": "评估结论矩阵",
+      "text": "M3Eval评估结论矩阵，智能的岔路口。并发输入空间维度，人类受损但能区分源头，AI特征彻底混淆纠缠。干扰模式时间维度，人类显著的后摄覆盖，AI前摄后摄对称破坏。信息重组逻辑维度，人类依赖故事图式重构，AI时间溯源极度薄弱、产生幻觉。符号记忆抽象维度，人类能主动过滤、高度抽象，AI噪音过载、缺乏抽象能力。",
+      "on_screen": {
+        "title": "M³Eval 评估结论矩阵：智能的岔路口",
+        "columns": [
+          "人类 (Human)",
+          "AI"
+        ],
+        "rows": [
+          {
+            "dim": "并发输入（空间）",
+            "human": "受损但能区分源头 ✓",
+            "ai": "特征彻底混淆纠缠 ✗",
+            "human_color": "#00ff88",
+            "ai_color": "#ff4444"
+          },
+          {
+            "dim": "干扰模式（时间）",
+            "human": "显著的后摄覆盖 ✓",
+            "ai": "前摄/后摄对称破坏 ✗",
+            "human_color": "#00ff88",
+            "ai_color": "#ff4444"
+          },
+          {
+            "dim": "信息重组（逻辑）",
+            "human": "依赖故事图式重构 ✓",
+            "ai": "时间溯源极度薄弱、产生幻觉 ✗",
+            "human_color": "#00ff88",
+            "ai_color": "#ff4444"
+          },
+          {
+            "dim": "符号记忆（抽象）",
+            "human": "能主动过滤、高度抽象 ✓",
+            "ai": "噪音过载、缺乏抽象能力 ✗",
+            "human_color": "#00ff88",
+            "ai_color": "#ff4444"
+          }
+        ]
+      },
+      "duration_sec": 40,
+      "accent_color": "#a855f7"
+    },
+    {
+      "id": "s16_ranking",
+      "type": "ranking",
+      "sub_type": "model_ranking",
+      "label": "模型排行",
+      "text": "现役大模型多模态记忆力摸底排行。第一梯队闭源巨头：GPT-5.4得分75.4，Gemini-3.1-Pro-Preview得分70.1。第二梯队开源顶流：Qwen3.5-27B得分55.4，InternVL3.5-8B得分45.1。第三梯队智能体及小模型：M3Agent 25%，VideoLucy 15%。",
+      "on_screen": {
+        "title": "现役大模型多模态记忆力摸底排行",
+        "baseline": "Human Baseline（人类基准）",
+        "tiers": [
+          {
+            "tier": "第一梯队（闭源巨头）",
+            "models": [
+              {
+                "name": "GPT-5.4",
+                "score": 75.4,
+                "color": "#00d4ff"
+              },
+              {
+                "name": "Gemini-3.1-Pro-Preview",
+                "score": 70.1,
+                "color": "#00d4ff"
+              }
+            ]
+          },
+          {
+            "tier": "第二梯队（开源顶流）",
+            "models": [
+              {
+                "name": "Qwen3.5-27B",
+                "score": 55.4,
+                "color": "#00ff88"
+              },
+              {
+                "name": "InternVL3.5-8B",
+                "score": 45.1,
+                "color": "#00ff88"
+              }
+            ]
+          },
+          {
+            "tier": "第三梯队（智能体及小模型）",
+            "models": [
+              {
+                "name": "M3-Agent",
+                "score": 25,
+                "color": "#ff8800"
+              },
+              {
+                "name": "VideoLucy",
+                "score": 15,
+                "color": "#ff8800"
+              }
+            ]
+          }
+        ]
+      },
+      "duration_sec": 35,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s17_future",
+      "type": "future",
+      "sub_type": "improvement_directions",
+      "label": "未来方向",
+      "text": "进化的方向：给AI装上真正的海马体。三个关键改进方向：结构化注意力机制，隔离并行数据流，彻底解决空间维度的特征交叉混淆。时序位置编码重构，提升模型对时间敏感度，赋予AI重组时间碎片的能力。引入遗忘机制，发展具备信息过滤和符号抽象能力的工作记忆模块，丢弃噪音，保留核心。",
+      "on_screen": {
+        "title": "进化的方向：给AI装上真正的「海马体」",
+        "directions": [
+          {
+            "title": "结构化注意力机制",
+            "en": "Structured Attention",
+            "desc": "隔离并行数据流，彻底解决空间维度的特征交叉混淆。",
+            "color": "#00d4ff"
+          },
+          {
+            "title": "时序位置编码重构",
+            "en": "Temporal Grounding",
+            "desc": "提升模型对时间敏感度，赋予AI重组时间碎片的能力。",
+            "color": "#ff00ff"
+          },
+          {
+            "title": "引入「遗忘」机制",
+            "en": "Strategic Forgetting",
+            "desc": "发展具备信息过滤和符号抽象能力的工作记忆模块，丢弃噪音，保留核心。",
+            "color": "#ff8800"
+          }
+        ]
+      },
+      "duration_sec": 35,
+      "accent_color": "#a855f7"
+    },
+    {
+      "id": "s18_takeaway",
+      "type": "takeaway",
+      "sub_type": "three_cards",
+      "label": "关键收获",
+      "text": "我们学到了什么？Key Takeaways。超长上下文不等于真正的记忆。不解决底层的记忆编码与存储缺陷，一味暴力增加Context Length只是伪伤。心理学是AI的绝佳试金石。用评测人类认知的方法评测AI，能暴露传统刷榜Benchmark无法触及的底层逻辑盲区。AI不仅要学记，更要学忘。拥有抽象符号化能力并过滤无关噪音，才是通向高级记忆形态的必经之路。",
+      "on_screen": {
+        "title": "我们学到了什么？(Key Takeaways)",
+        "cards": [
+          {
+            "title": "超长上下文 ≠ 真正的记忆",
+            "desc": "不解决底层的记忆编码与存储缺陷，一味暴力增加 Context Length 只是伪伤。",
+            "color": "#00d4ff"
+          },
+          {
+            "title": "心理学是AI的绝佳试金石",
+            "desc": "用评测人类认知的方法评测AI，能暴露传统刷榜Benchmark无法触及的底层逻辑盲区。",
+            "color": "#ff00ff"
+          },
+          {
+            "title": "AI不仅要学「记」，更要学「忘」",
+            "desc": "拥有抽象符号化能力并过滤无关噪音，才是通向高级记忆形态的必经之路。",
+            "color": "#ff8800"
+          }
+        ]
+      },
+      "duration_sec": 35,
+      "accent_color": "#00d4ff"
+    },
+    {
+      "id": "s19_ending",
+      "type": "ending",
+      "sub_type": "closing_statement",
+      "label": "结尾",
+      "text": "真实的智能，藏在对记忆的重塑之中。M3Eval提供了一面镜子，映照出当前大模型的局限，也照亮了通往具备类人记忆的AGI进化之路。",
+      "on_screen": {
+        "title": "真实的智能，藏在对记忆的重塑之中。",
+        "subtitle": "M³Eval 提供了一面镜子，映照出当前大模型的局限，也照亮了通往具备「类人记忆」的 AGI 进化之路。"
+      },
+      "duration_sec": 20,
+      "accent_color": "#00d4ff"
+    }
+  ]
+}
