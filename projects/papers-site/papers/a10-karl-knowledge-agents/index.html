@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KARL: Knowledge Agents via Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论的是知识型智能体在“难验证任务”上的训练问题。很多 agentic RL 工作依赖代码执行、数学答案或规则评测，但企业搜索、知识检索、复杂问答等任务往往没有这么干净的 reward。KARL 要解决的就是：如何在这类知识工作流中，把强化学习真正用起来。
+
+方法上，KARL 把知识型智能体训练分解成可操作的 RL 设置，引入适合搜索和知识工作流的轨迹级优化，并重点关注质量、时延和成本之间" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a10-karl-knowledge-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="KARL: Knowledge Agents via Reinforcement Learning" />
+    <meta property="og:description" content="这篇论文讨论的是知识型智能体在“难验证任务”上的训练问题。很多 agentic RL 工作依赖代码执行、数学答案或规则评测，但企业搜索、知识检索、复杂问答等任务往往没有这么干净的 reward。KARL 要解决的就是：如何在这类知识工作流中，把强化学习真正用起来。
+
+方法上，KARL 把知识型智能体训练分解成可操作的 RL 设置，引入适合搜索和知识工作流的轨迹级优化，并重点关注质量、时延和成本之间" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a10-karl-knowledge-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="KARL: Knowledge Agents via Reinforcement Learning" />
+    <meta name="twitter:description" content="这篇论文讨论的是知识型智能体在“难验证任务”上的训练问题。很多 agentic RL 工作依赖代码执行、数学答案或规则评测，但企业搜索、知识检索、复杂问答等任务往往没有这么干净的 reward。KARL 要解决的就是：如何在这类知识工作流中，把强化学习真正用起来。
+
+方法上，KARL 把知识型智能体训练分解成可操作的 RL 设置，引入适合搜索和知识工作流的轨迹级优化，并重点关注质量、时延和成本之间" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>KARL: Knowledge Agents via Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05218" target="_blank" rel="noopener noreferrer">2603.05218</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论的是知识型智能体在“难验证任务”上的训练问题。很多 agentic RL 工作依赖代码执行、数学答案或规则评测，但企业搜索、知识检索、复杂问答等任务往往没有这么干净的 reward。KARL 要解决的就是：如何在这类知识工作流中，把强化学习真正用起来。</dd></div><div><dt>方法/机制</dt><dd>方法上，KARL 把知识型智能体训练分解成可操作的 RL 设置，引入适合搜索和知识工作流的轨迹级优化，并重点关注质量、时延和成本之间的平衡。论文不是简单做监督微调，而是把代理行为、检索、规划和回答放进统一的 RL 视角里，让 agent 在知识任务上通过反馈逐步学到更优策略。</dd></div><div><dt>结果/证据</dt><dd>它的重要性在于，这类工作把 agentic RL 从“可验证玩具任务”推进到企业知识场景。对仓库主线里的研究代理、知识代理、工具使用智能体来说，这是一条很关键的补链论文。它说明 RL 不一定只服务于数学或代码，也可以用于更接近真实工作流的知识型任务。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它方向对、方法完整、场景也实用，但证据强度和外溢性还没有达到颠覆性系统论文的级别，目前更像 agentic RL 里的强方法工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论的是知识型智能体在“难验证任务”上的训练问题。很多 agentic RL 工作依赖代码执行、数学答案或规则评测，但企业搜索、知识检索、复杂问答等任务往往没有这么干净的 reward。KARL 要解决的就是：如何在这类知识工作流中，把强化学习真正用起来。</p><p>方法上，KARL 把知识型智能体训练分解成可操作的 RL 设置，引入适合搜索和知识工作流的轨迹级优化，并重点关注质量、时延和成本之间的平衡。论文不是简单做监督微调，而是把代理行为、检索、规划和回答放进统一的 RL 视角里，让 agent 在知识任务上通过反馈逐步学到更优策略。</p><p>它的重要性在于，这类工作把 agentic RL 从“可验证玩具任务”推进到企业知识场景。对仓库主线里的研究代理、知识代理、工具使用智能体来说，这是一条很关键的补链论文。它说明 RL 不一定只服务于数学或代码，也可以用于更接近真实工作流的知识型任务。</p><p>我把它放在“突破性”。原因是它方向对、方法完整、场景也实用，但证据强度和外溢性还没有达到颠覆性系统论文的级别，目前更像 agentic RL 里的强方法工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了一种通过强化学习训练企业搜索代理的系统，该系统在各种难以验证的代理搜索任务中实现了最先进的性能。我们的工作做出了四项核心贡献。首先，我们引入了KARLBench，这是一个涵盖六种不同搜索模式的多能力评估套件，包括约束驱动的实体搜索、跨文档报告合成、表格数值推理、穷尽式实体检索、技术文档上的程序推理以及内部企业笔记上的事实聚合。其次，我们表明，在异构搜索行为上训练的模型比针对任何单一基准进行优化的模型具有显著更好的泛化能力。第三，我们开发了一个代理合成管道，该管道利用长周期推理和工具使用来生成多样化、有根据且高质量的训练数据，并通过日益强大的模型进行迭代自举。第四，我们提出了一种基于迭代大批量离策略强化学习的新型后训练范式，该范式样本高效，对训练器-推理引擎差异具有鲁棒性，并自然地扩展到具有分布外泛化的多任务训练。与Claude 4.6和GPT 5.2相比，KARL在KARLBench上在成本-质量和延迟-质量权衡方面是帕累托最优的，包括训练期间的分布外任务。在足够的测试时计算资源下，它超越了最强的封闭模型。这些结果表明，定制的合成数据与多任务强化学习相结合，能够实现成本高效且高性能的知识代理，用于基础推理。日期：2026年3月6日</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present a system for training enterprise search agents via reinforcement learning that achieves state-of-the-art performance across a diverse suite of hard-to-verify agentic search tasks. Our work makes four core contributions. First, we introduce KARLBench, a multi-capability evaluation suite spanning six distinct search regimes, including constraint-driven entity search, cross-document report synthesis, tabular numerical reasoning, exhaustive entity retrieval, procedural reasoning over technical documentation, and fact aggregation over internal enterprise notes. Second, we show that models trained across heterogeneous search behaviors generalize substantially better than those optimized for any single benchmark. Third, we develop an agentic synthesis pipeline that employs long-horizon reasoning and tool use to generate diverse, grounded, and high-quality training data, with iterative bootstrapping from increasingly capable models. Fourth, we propose a new post-training paradigm based on iterative large-batch off-policy RL that is sample efficient, robust to trainer–inference engine discrepancies, and naturally extends to multi-task training with out-of-distribution generalization. Compared to Claude 4.6 and GPT 5.2, KARL is Pareto-optimal on KARLBench across cost–quality and latency–quality trade-offs, including tasks that were out-of-distribution during training. With sufficient test-time compute, it surpasses the strongest closed models. These results show that tailored synthetic data in combination with multi-task reinforcement learning enables cost-efficient and high-performing knowledge agents for grounded reasoning. Date: March 6, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305a10karlkno,
+  title = {KARL: Knowledge Agents via Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05218.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a10-karl-knowledge-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). KARL: Knowledge Agents via Reinforcement Learning. https://arxiv.org/pdf/2603.05218.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05218.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

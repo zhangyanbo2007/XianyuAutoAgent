@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex | DAST Papers</title>
+    <meta name="description" content="这篇论文的价值在于把当前热门的 group-based RLVR 从经验 recipe 拉回到更清晰的优化对象。它把问题表述为 response simplex 上的 target projection。
+
+这种解释对 RL post-training 很重要，因为 GRPO/RLVR 类方法正在快速扩散，但社区对它们究竟在优化什么、为什么稳定或不稳定仍不够清楚。
+
+它值得正式收录，因为它提供了一" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl65-listwise-policy-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex" />
+    <meta property="og:description" content="这篇论文的价值在于把当前热门的 group-based RLVR 从经验 recipe 拉回到更清晰的优化对象。它把问题表述为 response simplex 上的 target projection。
+
+这种解释对 RL post-training 很重要，因为 GRPO/RLVR 类方法正在快速扩散，但社区对它们究竟在优化什么、为什么稳定或不稳定仍不够清楚。
+
+它值得正式收录，因为它提供了一" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl65-listwise-policy-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex" />
+    <meta name="twitter:description" content="这篇论文的价值在于把当前热门的 group-based RLVR 从经验 recipe 拉回到更清晰的优化对象。它把问题表述为 response simplex 上的 target projection。
+
+这种解释对 RL post-training 很重要，因为 GRPO/RLVR 类方法正在快速扩散，但社区对它们究竟在优化什么、为什么稳定或不稳定仍不够清楚。
+
+它值得正式收录，因为它提供了一" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex</h1>
+          <p class="subtitle">强化学习 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.06139" target="_blank" rel="noopener noreferrer">2605.06139</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的价值在于把当前热门的 group-based RLVR 从经验 recipe 拉回到更清晰的优化对象。它把问题表述为 response simplex 上的 target projection。</dd></div><div><dt>方法/机制</dt><dd>这种解释对 RL post-training 很重要，因为 GRPO/RLVR 类方法正在快速扩散，但社区对它们究竟在优化什么、为什么稳定或不稳定仍不够清楚。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它提供了一个可能复用的理论化接口，有助于把 reasoning RL 从技巧集合推进到可分析的优化框架。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为理论解释需要和更大规模模型、更复杂 reward、真实推理任务上的收益对齐。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的价值在于把当前热门的 group-based RLVR 从经验 recipe 拉回到更清晰的优化对象。它把问题表述为 response simplex 上的 target projection。</p><p>这种解释对 RL post-training 很重要，因为 GRPO/RLVR 类方法正在快速扩散，但社区对它们究竟在优化什么、为什么稳定或不稳定仍不够清楚。</p><p>它值得正式收录，因为它提供了一个可能复用的理论化接口，有助于把 reasoning RL 从技巧集合推进到可分析的优化框架。</p><p>它没有更高，是因为理论解释需要和更大规模模型、更复杂 reward、真实推理任务上的收益对齐。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>可验证奖励强化学习（RLVR）已成为大型语言模型（LLMs）后训练的标准化方法，以激励其推理能力。在现有方法中，基于组的策略梯度很流行，它为每个提示采样一组响应，并通过组相对优势信号更新策略。这项工作揭示了这些优化策略共享一个共同的几何结构：每个策略都在响应单纯形上隐式定义一个目标分布，并通过一阶近似向其投影。基于这一见解，我们提出了列表式策略优化（LPO）来显式地执行目标投影，它通过将近端RL目标限制在响应单纯形上来揭示隐式目标，然后通过精确散度最小化来投影策略。该框架提供了 (i) 列表式目标上的单调改进，具有有界、零和、自校正的投影梯度，以及 (ii) 通过解耦投影步骤在散度选择方面的灵活性，具有独特的结构特性。在各种推理任务和LLM骨干模型上，LPO在匹配目标下始终优于典型的策略梯度基线，同时内在保持了优化稳定性和响应多样性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning with verifiable rewards (RLVR) has become a standard approach for large language models (LLMs) post-training to incentivize reasoning capacity. Among existing recipes, group-based policy gradient is prevalent, which samples a group of responses per prompt and updates the policy via group-relative advantage signals. This work reveals that these optimization strategies share a common geometric structure: each implicitly defines a target distribution on the response simplex and projects toward it via first-order approximation. Building on this insight, we propose Listwise Policy Optimization (LPO) to explicitly conduct the target-projection, which demystifies the implicit target by restricting the proximal RL objective to the response simplex, and then projects the policy via exact divergence minimization. This framework provides (i) monotonic improvement on the listwise objective with bounded, zero-sum, and self-correcting projection gradients, and (ii) flexibility in divergence selection with distinct structural properties through the decoupled projection step. On diverse reasoning tasks and LLM backbones, LPO consistently improves training performance over typical policy gradient baselines under matched targets, while intrinsically preserving optimization stability and response diversity.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511rl65listwi,
+  title = {Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.06139.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl65-listwise-policy-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex. https://arxiv.org/pdf/2605.06139.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.06139.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.06139" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

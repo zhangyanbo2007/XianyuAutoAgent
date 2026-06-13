@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations | DAST Papers</title>
+    <meta name="description" content="这篇工作的核心贡献是把 activation interpretability 从特征列表和人工解释推进到“向量 -&gt; 文本 -&gt; 向量”的可训练 bottleneck。它不是让模型随口解释自己，而是用重构原激活的目标约束解释文本必须携带真实内部状态信息。
+
+方法上，NLA 由 activation verbalizer 和 activation reconstructor 两个模块组成，联合训练" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i18-natural-language-autoencoders/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations" />
+    <meta property="og:description" content="这篇工作的核心贡献是把 activation interpretability 从特征列表和人工解释推进到“向量 -&gt; 文本 -&gt; 向量”的可训练 bottleneck。它不是让模型随口解释自己，而是用重构原激活的目标约束解释文本必须携带真实内部状态信息。
+
+方法上，NLA 由 activation verbalizer 和 activation reconstructor 两个模块组成，联合训练" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i18-natural-language-autoencoders/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations" />
+    <meta name="twitter:description" content="这篇工作的核心贡献是把 activation interpretability 从特征列表和人工解释推进到“向量 -&gt; 文本 -&gt; 向量”的可训练 bottleneck。它不是让模型随口解释自己，而是用重构原激活的目标约束解释文本必须携带真实内部状态信息。
+
+方法上，NLA 由 activation verbalizer 和 activation reconstructor 两个模块组成，联合训练" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-05-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-07</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的核心贡献是把 activation interpretability 从特征列表和人工解释推进到“向量 -&gt; 文本 -&gt; 向量”的可训练 bottleneck。它不是让模型随口解释自己，而是用重构原激活的目标约束解释文本必须携带真实内部状态信息。</dd></div><div><dt>方法/机制</dt><dd>方法上，NLA 由 activation verbalizer 和 activation reconstructor 两个模块组成，联合训练以重构 residual stream activation。这个结构让自然语言解释第一次更像一个可优化的接口，而不是纯事后标注。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 interpretability、auditing、evaluation awareness 和 hidden motivation detection 接到同一个可操作机制上。Anthropic 还释放了代码、open-model checkpoints 和 Neuronpedia 前端，工程复用价值也比较明确。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为 NLA 解释仍可能 hallucinate，且训练和推理成本高；当前更像一个强的新解释接口，而不是已经被证明可靠的通用读心仪。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的核心贡献是把 activation interpretability 从特征列表和人工解释推进到“向量 -&gt; 文本 -&gt; 向量”的可训练 bottleneck。它不是让模型随口解释自己，而是用重构原激活的目标约束解释文本必须携带真实内部状态信息。</p><p>方法上，NLA 由 activation verbalizer 和 activation reconstructor 两个模块组成，联合训练以重构 residual stream activation。这个结构让自然语言解释第一次更像一个可优化的接口，而不是纯事后标注。</p><p>它值得正式收录，因为它把 interpretability、auditing、evaluation awareness 和 hidden motivation detection 接到同一个可操作机制上。Anthropic 还释放了代码、open-model checkpoints 和 Neuronpedia 前端，工程复用价值也比较明确。</p><p>它没有更高，是因为 NLA 解释仍可能 hallucinate，且训练和推理成本高；当前更像一个强的新解释接口，而不是已经被证明可靠的通用读心仪。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自然语言自编码器将残差流激活映射到自然语言解释，并从这些解释中重建激活，从而在模型内部状态中创建文本瓶颈。这项工作将其应用于模型审计、评估意识、隐藏动机以及多个开放模型检查点。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Natural Language Autoencoders map residual-stream activations into natural-language explanations and reconstruct activations from those explanations, creating a text bottleneck for model-internal state. The work applies this to model auditing, evaluation awareness, hidden motivations, and several open-model checkpoints.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260507i18natural,
+  title = {Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations},
+  year = {2026},
+  url = {https://transformer-circuits.pub/2026/nla/},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i18-natural-language-autoencoders/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations. https://transformer-circuits.pub/2026/nla/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+            <a class="related-item" href="../../papers/i17-weight-tying-output-bias/">
+              <span>Weight Tying Biases Token Embeddings Towards the Output Space</span>
+              <small>可解释性与机制分析 · 2026-03-27</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://transformer-circuits.pub/2026/nla/" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://transformer-circuits.pub/2026/nla/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://www.anthropic.com/research/natural-language-autoencoders" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/kitft/natural_language_autoencoders" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

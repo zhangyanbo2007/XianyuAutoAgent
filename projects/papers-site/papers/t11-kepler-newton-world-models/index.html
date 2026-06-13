@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Kepler to Newton: Inductive Biases Guide Learned World Models in Transformers | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论 Transformer 世界模型为什么常常学到表面相关性，却学不到真正可迁移的动力学规律。作者把问题放在“从开普勒式经验拟合，到牛顿式结构规律”的差异上，核心关注点是：世界模型要想外推、组合和泛化，必须依赖更强的归纳偏置。
+
+方法上，论文研究了不同 inductive bias 如何影响 Transformer 对物理动力学的学习，尤其强调结构性偏置对世界模型可解释性和可迁移性的作用" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t11-kepler-newton-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="From Kepler to Newton: Inductive Biases Guide Learned World Models in Transformers" />
+    <meta property="og:description" content="这篇论文讨论 Transformer 世界模型为什么常常学到表面相关性，却学不到真正可迁移的动力学规律。作者把问题放在“从开普勒式经验拟合，到牛顿式结构规律”的差异上，核心关注点是：世界模型要想外推、组合和泛化，必须依赖更强的归纳偏置。
+
+方法上，论文研究了不同 inductive bias 如何影响 Transformer 对物理动力学的学习，尤其强调结构性偏置对世界模型可解释性和可迁移性的作用" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t11-kepler-newton-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From Kepler to Newton: Inductive Biases Guide Learned World Models in Transformers" />
+    <meta name="twitter:description" content="这篇论文讨论 Transformer 世界模型为什么常常学到表面相关性，却学不到真正可迁移的动力学规律。作者把问题放在“从开普勒式经验拟合，到牛顿式结构规律”的差异上，核心关注点是：世界模型要想外推、组合和泛化，必须依赖更强的归纳偏置。
+
+方法上，论文研究了不同 inductive bias 如何影响 Transformer 对物理动力学的学习，尤其强调结构性偏置对世界模型可解释性和可迁移性的作用" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>From Kepler to Newton: Inductive Biases Guide Learned World Models in Transformers</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-02-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.06923" target="_blank" rel="noopener noreferrer">2602.06923</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论 Transformer 世界模型为什么常常学到表面相关性，却学不到真正可迁移的动力学规律。作者把问题放在“从开普勒式经验拟合，到牛顿式结构规律”的差异上，核心关注点是：世界模型要想外推、组合和泛化，必须依赖更强的归纳偏置。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文研究了不同 inductive bias 如何影响 Transformer 对物理动力学的学习，尤其强调结构性偏置对世界模型可解释性和可迁移性的作用。它不是单纯追求更低训练误差，而是在测试 learned world model 是否真正内化了可组合的动力学结构。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于，它为当前 world model 路线补上了一个很关键的理论与方法桥梁：不是所有“能预测未来”的模型都算真正学到世界结构。对于 JEPA、视频世界模型、具身智能和 AI×物理，这都是非常核心的问题。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。它的重要性主要来自问题定义和方法学方向，而不是一个压倒性的 benchmark 碾压结果，所以暂时不到颠覆性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论 Transformer 世界模型为什么常常学到表面相关性，却学不到真正可迁移的动力学规律。作者把问题放在“从开普勒式经验拟合，到牛顿式结构规律”的差异上，核心关注点是：世界模型要想外推、组合和泛化，必须依赖更强的归纳偏置。</p><p>方法上，论文研究了不同 inductive bias 如何影响 Transformer 对物理动力学的学习，尤其强调结构性偏置对世界模型可解释性和可迁移性的作用。它不是单纯追求更低训练误差，而是在测试 learned world model 是否真正内化了可组合的动力学结构。</p><p>这篇工作的价值在于，它为当前 world model 路线补上了一个很关键的理论与方法桥梁：不是所有“能预测未来”的模型都算真正学到世界结构。对于 JEPA、视频世界模型、具身智能和 AI×物理，这都是非常核心的问题。</p><p>我把它放在“突破性”。它的重要性主要来自问题定义和方法学方向，而不是一个压倒性的 benchmark 碾压结果，所以暂时不到颠覆性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Touvron et al., 2023; Radford et al., 2021; Alayrac et al., 2022; Liu et al., 2023; Zitkovich et al., 2023; Kim et al., 2024; Reed et al., 2022)，人们自然会期待它们拥有强大的内部“世界模型”——一种因果抽象，它不仅仅预测接下来会发生什么（例如，开普勒的几何拟合），而是捕捉决定其发生原因的简单物理机制（例如，牛顿的动力学定律）。通用人工智能架构能否超越预测，发现支配宇宙的物理定律？真正的智能依赖于“世界模型”——这种因果抽象不仅能让智能体预测未来状态，还能理解其潜在的支配动力学。虽然先前的“AI物理学家”方法已成功恢复了这些定律，但它们通常依赖于强大的、领域特定的先验知识，这些知识有效地“内置”了物理学。相反地，Vafa et al. (2025) 最近表明，通用Transformer未能习得这些世界模型，它们在没有捕捉到潜在物理定律的情况下，实现了高预测精度。我们通过系统地引入三种最小归纳偏置来弥合这一差距。我们表明，确保空间平滑性（通过将预测表述为连续回归）和稳定性（通过在噪声环境中训练以减轻误差累积）使通用Transformer能够超越先前的失败，并学习一个连贯的开普勒世界模型，成功地将椭圆拟合到行星轨迹上。然而，真正的物理洞察力需要第三种偏置：时间局部性。通过将注意力窗口限制在紧近的过去——施加未来状态仅依赖于局部状态而非复杂历史的简单假设——我们迫使模型放弃曲线拟合，并发现牛顿力表示。我们的结果表明，简单的架构选择决定了AI是成为曲线拟合器还是物理学家，标志着向自动化科学发现迈出了关键一步。这一预期引出了一个核心问题：世界模型是否真的在基础模型中涌现？回答这个问题是一个挑战。这些模型高度复杂，并且“世界模型”的概念通常是上下文相关的或定义模糊的。因此，在基础事实被充分理解的简单、受控环境中研究世界模型的涌现是有益的——例如，牛顿物理学，其中支配性的“世界模型”简化为一组简单的微分方程。在这方面，Vafa et al. (2025) 使用行星运动作为测试平台，并发现尽管Transformer可以做出高度准确的预测，但引力未能在其内部表示中涌现，即使一个GPT-2规模的Transformer在高达200亿（20B）个token的数据集上进行训练。然而，失败的原因仍不清楚。因此，本文的核心研究问题是：研究问题：为什么Transformer未能学习行星运动的牛顿世界模型，以及我们如何解决这个问题？回答这个问题是发展“AI科学家”愿景的关键试金石：如果通用架构无法恢复经典力学中简单、已知的定律，它们就不太可能被信任去发现新现象中未知的定律。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Touvron et al., 2023; Radford et al., 2021; Alayrac et al., 2022; Liu et al., 2023; Zitkovich et al., 2023; Kim et al., 2024; Reed et al., 2022), it is natural to expect that they possess robust internal “world models”—causal abstractions that do not merely predict what happens next (e.g., Kepler’s geometric fits), but capture the simple physical mechanisms determining why it happens (e.g., Newton’s dynamical laws). Can general-purpose AI architectures go beyond prediction to discover the physical laws governing the universe? True intelligence relies on “world models”—causal abstractions that allow an agent to not only predict future states but understand the underlying governing dynamics. While previous “AI Physicist” approaches have successfully recovered such laws, they typically rely on strong, domain-specific priors that effectively “bake in” the physics. Conversely, Vafa et al. (2025) recently showed that generic Transformers fail to acquire these world models, achieving high predictive accuracy without capturing the underlying physical laws. We bridge this gap by systematically introducing three minimal inductive biases. We show that ensuring spatial smoothness (by formulating prediction as continuous regression) and stability (by training with noisy contexts to mitigate error accumulation) enables generic Transformers to surpass prior failures and learn a coherent Keplerian world model, successfully fitting ellipses to planetary trajectories. However, true physical insight requires a third bias: temporal locality. By restricting the attention window to the immediate past—imposing the simple assumption that future states depend only on the local state rather than a complex history—we force the model to abandon curve-fitting and discover Newtonian force representations. Our results demonstrate that simple architectural choices determine whether an AI becomes a curve-fitter or a physicist, marking a critical step toward automated scientific discovery. This expectation raises a central question: do world models truly emerge within foundation models? Answeing this question is a challenge. These models are highly complex, and the notion of a “world model” is often contextdependent or vaguely defined. Thus, it is useful to study world-model emergence in simple, controlled settings where the ground truth is well understood – for instance, Newtonian physics, in which the governing “world model” reduces to a set of simple differential equations. In this vein, Vafa et al. (2025) used planetary motion as a testbed and found that although a transformer can make highly accurate predictions, gravitational forces fail to emerge in its internal representations, even when a GPT-2-scale transformer is trained on datasets as large as 20B tokens. However, the reason behind the failure remains unclear. The central research question of this paper is thus: Research Question: Why do transformers fail to learn the Newtonian world model for planetary motion, and how can we fix this problem? Answering this is a critical litmus test for the vision of developing ‘AI Scientists’: if general-purpose architectures cannot recover the simple, known laws of classical mechanics, they are unlikely to be trusted to discover the unknown laws of novel phenomena.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260206t11keplern,
+  title = {From Kepler to Newton: Inductive Biases Guide Learned World Models in Transformers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.06923.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t11-kepler-newton-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). From Kepler to Newton: Inductive Biases Guide Learned World Models in Transformers. https://arxiv.org/pdf/2602.06923.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.06923.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

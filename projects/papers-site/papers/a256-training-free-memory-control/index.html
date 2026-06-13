@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Control Architecture for Training-Free Memory Use | DAST Papers</title>
+    <meta name="description" content="很多 memory paper 关注“怎么存”，这篇真正抓住的是“什么时候该用、该不该信、用完怎么管”。它把 prompt-injected memory 的收益问题改写成 training-free applicability control，而不是再增加一个 memory bank。
+
+方法上最有复用价值的是 control stack：触发 memory-assisted second pa" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a256-training-free-memory-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A Control Architecture for Training-Free Memory Use" />
+    <meta property="og:description" content="很多 memory paper 关注“怎么存”，这篇真正抓住的是“什么时候该用、该不该信、用完怎么管”。它把 prompt-injected memory 的收益问题改写成 training-free applicability control，而不是再增加一个 memory bank。
+
+方法上最有复用价值的是 control stack：触发 memory-assisted second pa" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a256-training-free-memory-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A Control Architecture for Training-Free Memory Use" />
+    <meta name="twitter:description" content="很多 memory paper 关注“怎么存”，这篇真正抓住的是“什么时候该用、该不该信、用完怎么管”。它把 prompt-injected memory 的收益问题改写成 training-free applicability control，而不是再增加一个 memory bank。
+
+方法上最有复用价值的是 control stack：触发 memory-assisted second pa" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A Control Architecture for Training-Free Memory Use</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.18206" target="_blank" rel="noopener noreferrer">2604.18206</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 memory paper 关注“怎么存”，这篇真正抓住的是“什么时候该用、该不该信、用完怎么管”。它把 prompt-injected memory 的收益问题改写成 training-free applicability control，而不是再增加一个 memory bank。</dd></div><div><dt>方法/机制</dt><dd>方法上最有复用价值的是 control stack：触发 memory-assisted second pass、选择性接受、rule/exemplar bank 选择、以及基于证据的 bank governance。这些部件都能外溢到不改权重的 agent memory 系统。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 training-free memory 是工程上最现实的一条路，而这篇提供了一个清晰的 operating primitive，说明提升来自控制结构而不是单纯暴露更多记忆。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前最强证据仍集中在 arithmetic 与少量 agent/QA 迁移。它作为 memory control 原语很强，但普适性仍需更多复杂任务验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 memory paper 关注“怎么存”，这篇真正抓住的是“什么时候该用、该不该信、用完怎么管”。它把 prompt-injected memory 的收益问题改写成 training-free applicability control，而不是再增加一个 memory bank。</p><p>方法上最有复用价值的是 control stack：触发 memory-assisted second pass、选择性接受、rule/exemplar bank 选择、以及基于证据的 bank governance。这些部件都能外溢到不改权重的 agent memory 系统。</p><p>它值得正式收录，因为 training-free memory 是工程上最现实的一条路，而这篇提供了一个清晰的 operating primitive，说明提升来自控制结构而不是单纯暴露更多记忆。</p><p>它没有更高，是因为当前最强证据仍集中在 arithmetic 与少量 agent/QA 迁移。它作为 memory control 原语很强，但普适性仍需更多复杂任务验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>提示注入记忆可以在不更新模型权重的情况下提高推理能力，但它也产生了一个控制问题：检索到的内容仅在正确状态下应用时才有效。我们研究了在严格的免训练设置中的这个问题，并将其表述为适用性控制：何时触发记忆辅助的第二遍处理，何时信任它，以及如何随时间维护记忆库。我们的方法结合了基于不确定性的路由、基于置信度的选择性接受、规则记忆和范例记忆之间的库选择，以及随时间推移对记忆库进行基于证据的管理。在锁定的免训练协议下，并采用计算匹配的对照，它在两个核心算术基准上有所改进，在SVAMP上比基线提高了+7.0点，在ASDiv上提高了+7.67点。相同的架构也适用于QA和代理基准，具有较小的积极效果，并在主要算术任务的第二个检查点上显示出相同的积极方向。在算术方面，该</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Prompt-injected memory can improve reasoning without updating model weights, but it also creates a control problem: retrieved content helps only when it is applied in the right state. We study this problem in a strict training-free setting and formulate it as applicability control: when to trigger a memory-assisted second pass, when to trust it, and how to maintain the memory bank over time. Our method combines uncertainty-based routing, confidence-based selective acceptance, bank selection across rule and exemplar memory, and evidence-based governance of the memory bank over time. Under a locked training-free protocol with compute-matched controls, it improves two core arithmetic benchmarks by +7.0 points on SVAMP and +7.67 points on ASDiv over baseline. The same architecture also transfers to QA and agent benchmarks with smaller positive effects and shows the same positive direction on a second checkpoint for the main arithmetic tasks. On arithmetic, the</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260420a256traini,
+  title = {A Control Architecture for Training-Free Memory Use},
+  year = {2026},
+  url = {http://arxiv.org/pdf/2604.18206v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a256-training-free-memory-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A Control Architecture for Training-Free Memory Use. http://arxiv.org/pdf/2604.18206v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="http://arxiv.org/pdf/2604.18206v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BrainStack: Neuro-MoE with Functionally Guided Expert Routing for EEG-Based Language Decoding | DAST Papers</title>
+    <meta name="description" content="问题与背景：EEG 语言解码长期受限于信号弱、噪声大、脑区功能异质性强等问题。传统统一编码器往往难以同时兼顾不同脑区和不同认知过程的特征结构。论文关注的是：能否让模型结构更贴近大脑功能组织，用脑区分工来指导 EEG 语言解码。
+
+方法/新意：作者提出 BrainStack，把 mixture-of-experts 与 functionally guided expert routing 结合起来，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n59-brainstack-eeg-language-decoding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="BrainStack: Neuro-MoE with Functionally Guided Expert Routing for EEG-Based Language Decoding" />
+    <meta property="og:description" content="问题与背景：EEG 语言解码长期受限于信号弱、噪声大、脑区功能异质性强等问题。传统统一编码器往往难以同时兼顾不同脑区和不同认知过程的特征结构。论文关注的是：能否让模型结构更贴近大脑功能组织，用脑区分工来指导 EEG 语言解码。
+
+方法/新意：作者提出 BrainStack，把 mixture-of-experts 与 functionally guided expert routing 结合起来，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n59-brainstack-eeg-language-decoding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BrainStack: Neuro-MoE with Functionally Guided Expert Routing for EEG-Based Language Decoding" />
+    <meta name="twitter:description" content="问题与背景：EEG 语言解码长期受限于信号弱、噪声大、脑区功能异质性强等问题。传统统一编码器往往难以同时兼顾不同脑区和不同认知过程的特征结构。论文关注的是：能否让模型结构更贴近大脑功能组织，用脑区分工来指导 EEG 语言解码。
+
+方法/新意：作者提出 BrainStack，把 mixture-of-experts 与 functionally guided expert routing 结合起来，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>BrainStack: Neuro-MoE with Functionally Guided Expert Routing for EEG-Based Language Decoding</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-01-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.21148" target="_blank" rel="noopener noreferrer">2601.21148</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：EEG 语言解码长期受限于信号弱、噪声大、脑区功能异质性强等问题。传统统一编码器往往难以同时兼顾不同脑区和不同认知过程的特征结构。论文关注的是：能否让模型结构更贴近大脑功能组织，用脑区分工来指导 EEG 语言解码。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：作者提出 BrainStack，把 mixture-of-experts 与 functionally guided expert routing 结合起来，让不同专家分支更贴合不同脑区或功能模式的信号处理需求。它的关键新意不是简单把 MoE 套到 EEG 上，而是明确让 expert routing 向脑功能结构靠拢，从而把神经科学先验和深度学习架构设计结合起来。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇工作适合放在认知科学 / 神经工程 / NeuroAI 主线。它代表了 EEG 解码中一种更具结构感的路线：不再把脑信号视为同质序列，而是尝试让模型内部的专家协同去模拟脑区协同。这对脑机接口、神经语言解码以及神经科学启发架构都具有明确参考价值。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：论文目前还是 arXiv 阶段，且影响主要集中在 EEG 解码和神经工程方向。虽然“结构向脑靠拢”的叙事很强，但是否能成为更广泛的模型设计默认范式，还需要更多任务和更大规模验证，因此定为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：EEG 语言解码长期受限于信号弱、噪声大、脑区功能异质性强等问题。传统统一编码器往往难以同时兼顾不同脑区和不同认知过程的特征结构。论文关注的是：能否让模型结构更贴近大脑功能组织，用脑区分工来指导 EEG 语言解码。</p><p>方法/新意：作者提出 BrainStack，把 mixture-of-experts 与 functionally guided expert routing 结合起来，让不同专家分支更贴合不同脑区或功能模式的信号处理需求。它的关键新意不是简单把 MoE 套到 EEG 上，而是明确让 expert routing 向脑功能结构靠拢，从而把神经科学先验和深度学习架构设计结合起来。</p><p>意义/放在仓库中的位置：这篇工作适合放在认知科学 / 神经工程 / NeuroAI 主线。它代表了 EEG 解码中一种更具结构感的路线：不再把脑信号视为同质序列，而是尝试让模型内部的专家协同去模拟脑区协同。这对脑机接口、神经语言解码以及神经科学启发架构都具有明确参考价值。</p><p>局限/为何不再升一级：论文目前还是 arXiv 阶段，且影响主要集中在 EEG 解码和神经工程方向。虽然“结构向脑靠拢”的叙事很强，但是否能成为更广泛的模型设计默认范式，还需要更多任务和更大规模验证，因此定为突破性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>BrainStack：基于功能引导专家路由的神经MoE用于EEG语言解码。由于大脑的分布式和非线性组织，从脑电图（EEG）中解码语言信息仍然具有挑战性。捕获大规模皮层动力学的分辨率技术，使其特别适合实时神经解码[19]。凭借毫秒级精度，现代EEG采集系统能够对分布式大脑区域的神经信号进行可扩展和实用的记录[34]。这些能力构成了脑机接口（BCI）应用的基础，特别是在认知和通信任务中，及时准确地解码大脑活动至关重要[31]。尽管具有潜力，但由于信噪比低、时间非平稳性以及个体和大脑区域之间神经活动的固有异质性，从EEG中解码有意义的信息仍然面临根本性挑战[7, 13]。深度学习的最新进展显著提高了EEG解码器的建模能力。卷积和时间模型，例如CNN、RNN和Transformers，在捕获EEG记录中复杂的时空依赖性方面显示出巨大潜力[4, 11, 14, 39, 48]。此外，大规模预训练和自监督学习等趋势，这些趋势彻底改变了自然语言和视觉领域，也开始在神经解码中展现出令人鼓舞的结果[22, 44, 45, 47, 50, 54]。尽管取得了这些进展，但大多数现有EEG模型隐含地假设皮层结构是同质的，将整个电极蒙太奇处理为单一的统一源。这一假设忽略了大脑公认的功能模块性，即不同皮层区域表现出专门的动力学，并对认知过程做出不同的贡献。因此，全局模型通常会过度拟合富含噪声的全脑信号，而区域感知变体则未能充分利用跨区域互补性[6, 8, 18, 29, 32]。为了解决这些局限性，最近的研究探索了多频带建模、区域特异性注意力、受试者自适应学习和动态神经表征[3, 15, 34, 38]。然而，这些方法本质上仍然是单一的——由于大脑的分布式和非线性组织，从脑电图（EEG）中解码语言信息仍然具有挑战性。我们提出了BrainStack，一个功能引导的神经专家混合（Neuro-MoE）框架，它通过解剖学划分的专家网络来建模大脑的模块化功能架构。每个功能区域由一个专门的专家表示，该专家学习局部神经动力学，而基于Transformer的全局专家捕获跨区域依赖性。一个可学习的路由门自适应地聚合这些异构专家，实现上下文相关的专家协调和选择性融合。为了促进整个层次结构的连贯表示，我们引入了跨区域蒸馏，其中全局专家为区域专家提供自上而下的正则化。我们进一步发布了SilentSpeech-EEG (SS-EEG)，这是一个大规模基准，包含来自12名受试者执行24个无声词的超过120小时的EEG记录——这是同类数据集中最大的。实验表明，BrainStack始终优于最先进的模型，在受试者之间实现了卓越的准确性和泛化能力。我们的结果将BrainStack确立为一个功能模块化、神经启发式的MoE范式，它将神经科学先验知识与自适应专家路由相结合，为可扩展和可解释的脑语言解码铺平了道路。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>resolution technique for capturing large-scale cortical dynamics, making it particularly well-suited for real-time neural decoding [19]. With millisecond-level precision, modern EEG acquisition systems enable scalable and practical recording of neural signals across distributed brain regions [34]. These capabilities form the foundation for braincomputer interface (BCI) applications, especially in cognitive and communication tasks where timely and accurate decoding of brain activity is essential [31]. Despite its potential, decoding meaningful information from EEG remains fundamentally challenging due to the low signal-to-noise ratio, temporal non-stationarity, and the inherent heterogeneity of neural activity across individuals and brain regions [7, 13]. Recent advances in deep learning have significantly improved the modeling capacity of EEG decoders. Convolutional and temporal models, such as CNNs, RNNs, and Transformers—have shown great potential in capturing complex spatiotemporal dependencies in EEG recordings [4, 11, 14, 39, 48]. Moreover, trends like large-scale pretraining and self-supervised learning, which revolutionized natural language and vision domains, are starting to demonstrate encouraging results in neural decoding[22, 44, 45, 47, 50, 54]. Despite this progress, most existing EEG models implicitly assume a homogeneous cortical structure, processing the entire electrode montage as a single unified source. This assumption overlooks the brain’s wellestablished functional modularity, where distinct cortical regions exhibit specialized dynamics and contribute differently to cognitive processes. As a consequence, global models often overfit to noise-rich whole-brain signals, while region-aware variants underutilize cross-regional complementarities [6, 8, 18, 29, 32]. To address these limitations, recent efforts have explored multi-band modeling, region-specific attention, subject-adaptive learning, and dynamic neural representations [3, 15, 34, 38]. However, these approaches remain fundamentally monolithic—they Decoding linguistic information from electroencephalography (EEG) remains challenging due to the brain’s distributed and nonlinear organization. We present BrainStack, a functionally guided neuro–mixture-of-experts (Neuro-MoE) framework that models the brain’s modular functional architecture through anatomically partitioned expert networks. Each functional region is represented by a specialized expert that learns localized neural dynamics, while a transformer-based global expert captures crossregional dependencies. A learnable routing gate adaptively aggregates these heterogeneous experts, enabling contextdependent expert coordination and selective fusion. To promote coherent representation across the hierarchy, we introduce cross-regional distillation, where the global expert provides top-down regularization to the regional experts. We further release SilentSpeech-EEG (SS-EEG), a largescale benchmark comprising over 120 hours of EEG recordings from 12 subjects performing 24 silent words—the largest dataset of its kind. Experiments demonstrate that BrainStack consistently outperforms state-of-the-art models, achieving superior accuracy and generalization across subjects. Our results establish BrainStack as a functionally modular, neuro-inspired MoE paradigm that unifies neuroscientific priors with adaptive expert routing, paving the way for scalable and interpretable brain-language decoding.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260131n59brainst,
+  title = {BrainStack: Neuro-MoE with Functionally Guided Expert Routing for EEG-Based Language Decoding},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.21148.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n59-brainstack-eeg-language-decoding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). BrainStack: Neuro-MoE with Functionally Guided Expert Routing for EEG-Based Language Decoding. https://arxiv.org/pdf/2601.21148.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.21148.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

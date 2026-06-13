@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Parallax: Why AI Agents That Think Must Never Act | DAST Papers</title>
+    <meta name="description" content="Parallax 讨论的是执行型 agent 的结构性安全缺口：当模型能读写文件、运行命令、请求网络或改数据库时，仅靠 prompt-level guardrails 与自然语言自律并不足以约束真实动作。论文明确把“思考”和“执行”视为必须隔离的安全边界。
+
+它提出 Cognitive-Executive Separation、Adversarial Validation 等原则，核心是让推理系统" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a191-parallax-agent-execution-boundary/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Parallax: Why AI Agents That Think Must Never Act" />
+    <meta property="og:description" content="Parallax 讨论的是执行型 agent 的结构性安全缺口：当模型能读写文件、运行命令、请求网络或改数据库时，仅靠 prompt-level guardrails 与自然语言自律并不足以约束真实动作。论文明确把“思考”和“执行”视为必须隔离的安全边界。
+
+它提出 Cognitive-Executive Separation、Adversarial Validation 等原则，核心是让推理系统" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a191-parallax-agent-execution-boundary/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Parallax: Why AI Agents That Think Must Never Act" />
+    <meta name="twitter:description" content="Parallax 讨论的是执行型 agent 的结构性安全缺口：当模型能读写文件、运行命令、请求网络或改数据库时，仅靠 prompt-level guardrails 与自然语言自律并不足以约束真实动作。论文明确把“思考”和“执行”视为必须隔离的安全边界。
+
+它提出 Cognitive-Executive Separation、Adversarial Validation 等原则，核心是让推理系统" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Parallax: Why AI Agents That Think Must Never Act</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12986" target="_blank" rel="noopener noreferrer">2604.12986</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Parallax 讨论的是执行型 agent 的结构性安全缺口：当模型能读写文件、运行命令、请求网络或改数据库时，仅靠 prompt-level guardrails 与自然语言自律并不足以约束真实动作。论文明确把“思考”和“执行”视为必须隔离的安全边界。</dd></div><div><dt>方法/机制</dt><dd>它提出 Cognitive-Executive Separation、Adversarial Validation 等原则，核心是让推理系统不能直接拥有行动权，而要通过独立执行层、验证层和权限边界来完成动作。这与常见“给 agent 一段安全提示词”的做法形成架构级对比。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它提供的是 agent 安全的边界模型，而不是一次 jailbreak demo 或 prompt patch。对 secure computer-use、工具调用隔离、权限分层、执行审计等后续系统设计有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>局限在于论文更偏安全架构论证和原则框架，仍需要更多开源实现、实测攻击集和生产环境案例来证明边界设计的充分性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Parallax 讨论的是执行型 agent 的结构性安全缺口：当模型能读写文件、运行命令、请求网络或改数据库时，仅靠 prompt-level guardrails 与自然语言自律并不足以约束真实动作。论文明确把“思考”和“执行”视为必须隔离的安全边界。</p><p>它提出 Cognitive-Executive Separation、Adversarial Validation 等原则，核心是让推理系统不能直接拥有行动权，而要通过独立执行层、验证层和权限边界来完成动作。这与常见“给 agent 一段安全提示词”的做法形成架构级对比。</p><p>它值得收录，是因为它提供的是 agent 安全的边界模型，而不是一次 jailbreak demo 或 prompt patch。对 secure computer-use、工具调用隔离、权限分层、执行审计等后续系统设计有直接参考价值。</p><p>局限在于论文更偏安全架构论证和原则框架，仍需要更多开源实现、实测攻击集和生产环境案例来证明边界设计的充分性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自主AI代理正在迅速地从实验工具转变为运营基础设施，预计到2026年底，80%的企业应用程序将嵌入AI助手。随着代理获得执行现实世界动作（读取文件、运行命令、发起网络请求、修改数据库）的能力，一个根本性的安全漏洞已出现。目前，代理安全的主要方法是基于提示的护栏：自然语言指令，与它们试图缓解的威胁处于相同的抽象级别。本文认为，基于提示的安全对于具有执行能力的代理来说在架构上是不够的，并引入Parallax，一种基于四个原则的，用于安全自主AI执行的范式：认知-执行分离，结构性地阻止推理系统执行动作；对抗性验证与渐进确定性，在推理和执行之间插入一个独立的、多层级验证器；信息流控制，通过代理工作流程传播数据敏感性标签以检测上下文相关的威胁；以及可逆执行，捕获破坏性状态以在验证失败时启用回滚。我们展示了OpenParallax，一个开源的Go语言参考实现，并使用Assume-Compromise评估方法对其进行评估，该方法完全绕过推理系统来测试在完全代理被攻破的情况下架构边界。在九个攻击类别中的280个对抗性测试案例中，Parallax在默认配置下阻止了98.9%的攻击，在最大安全配置下阻止了100%的攻击。当推理系统被攻破时，基于提示的护栏提供零保护，因为它们只存在于被攻破的系统内部；Parallax的架构边界在任何情况下都有效。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autonomous AI agents are rapidly transitioning from experimental tools to operational infrastructure, with projections that 80% of enterprise applications will embed AI copilots by the end of 2026. As agents gain the ability to execute real-world actions (reading files, running commands, making network requests, modifying databases), a fundamental security gap has emerged. The dominant approach to agent safety relies on prompt-level guardrails: natural language instructions that operate at the same abstraction level as the threats they attempt to mitigate. This paper argues that prompt-based safety is architecturally insufficient for agents with execution capability and introduces Parallax, a paradigm for safe autonomous AI execution grounded in four principles: Cognitive-Executive Separation, which structurally prevents the reasoning system from executing actions; Adversarial Validation with Graduated Determinism, which interposes an independent, multi-tiered validator between reasoning and execution; Information Flow Control, which propagates data sensitivity labels through agent workflows to detect context-dependent threats; and Reversible Execution, which captures pre-destructive state to enable rollback when validation fails. We present OpenParallax, an open-source reference implementation in Go, and evaluate it using Assume-Compromise Evaluation, a methodology that bypasses the reasoning system entirely to test the architectural boundary under full agent compromise. Across 280 adversarial test cases in nine attack categories, Parallax blocks 98.9% of attacks with zero false positives under its default configuration, and 100% of attacks under its maximum-security configuration. When the reasoning system is compromised, prompt-level guardrails provide zero protection because they exist only within the compromised system; Parallax&#x27;s architectural boundary holds regardless.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414a191parall,
+  title = {Parallax: Why AI Agents That Think Must Never Act},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12986.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a191-parallax-agent-execution-boundary/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Parallax: Why AI Agents That Think Must Never Act. https://arxiv.org/pdf/2604.12986.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12986.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

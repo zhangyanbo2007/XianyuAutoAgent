@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Near-Miss: Latent Policy Failure Detection in Agentic Workflows | DAST Papers</title>
+    <meta name="description" content="agentic workflow 的合规评测常默认只看最终系统状态是否与 ground truth 一致，但这会漏掉一类更危险的错误：agent 实际上绕过了必要的 policy checks，只是恰好在这次轨迹里得到了正确结果。问题不只是 policy violation 有没有发生，而是当前评测常看不到“决策过程本身已经失真”的 latent failure。
+
+Near-Miss 针对这一盲" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a127-near-miss-latent-policy-failures/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Near-Miss: Latent Policy Failure Detection in Agentic Workflows" />
+    <meta property="og:description" content="agentic workflow 的合规评测常默认只看最终系统状态是否与 ground truth 一致，但这会漏掉一类更危险的错误：agent 实际上绕过了必要的 policy checks，只是恰好在这次轨迹里得到了正确结果。问题不只是 policy violation 有没有发生，而是当前评测常看不到“决策过程本身已经失真”的 latent failure。
+
+Near-Miss 针对这一盲" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a127-near-miss-latent-policy-failures/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Near-Miss: Latent Policy Failure Detection in Agentic Workflows" />
+    <meta name="twitter:description" content="agentic workflow 的合规评测常默认只看最终系统状态是否与 ground truth 一致，但这会漏掉一类更危险的错误：agent 实际上绕过了必要的 policy checks，只是恰好在这次轨迹里得到了正确结果。问题不只是 policy violation 有没有发生，而是当前评测常看不到“决策过程本身已经失真”的 latent failure。
+
+Near-Miss 针对这一盲" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Near-Miss: Latent Policy Failure Detection in Agentic Workflows</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.29665" target="_blank" rel="noopener noreferrer">2603.29665</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>agentic workflow 的合规评测常默认只看最终系统状态是否与 ground truth 一致，但这会漏掉一类更危险的错误：agent 实际上绕过了必要的 policy checks，只是恰好在这次轨迹里得到了正确结果。问题不只是 policy violation 有没有发生，而是当前评测常看不到“决策过程本身已经失真”的 latent failure。</dd></div><div><dt>方法/机制</dt><dd>Near-Miss 针对这一盲点提出 latent policy failure metric。它建立在 ToolGuard 这类把自然语言 policy 编译成可执行 guard code 的框架上，但进一步分析完整 agent trajectories，判断 agent 的 tool-calling decisions 是否建立在充分、合规的信息条件之上，而不是只比较终态是否正确。这样评测目标从 outcome correctness 延伸到了 process validity。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent evaluation 从“最终结果对不对”推进到“决策过程是否真正遵守约束”。对 enterprise workflow agents、tool-use compliance 和安全审计，这是一种更耐久的评估视角，也直指当前很多 agent benchmark 的结构性盲点。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前验证仍主要集中在 business-process automation 与 ToolGuard/τ²-verified Airlines 这一类设定上。它提出了重要 blind spot 和可执行 metric，但是否会成为更广 agent evaluation 的默认标准，还需要更多跨场景验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>agentic workflow 的合规评测常默认只看最终系统状态是否与 ground truth 一致，但这会漏掉一类更危险的错误：agent 实际上绕过了必要的 policy checks，只是恰好在这次轨迹里得到了正确结果。问题不只是 policy violation 有没有发生，而是当前评测常看不到“决策过程本身已经失真”的 latent failure。</p><p>Near-Miss 针对这一盲点提出 latent policy failure metric。它建立在 ToolGuard 这类把自然语言 policy 编译成可执行 guard code 的框架上，但进一步分析完整 agent trajectories，判断 agent 的 tool-calling decisions 是否建立在充分、合规的信息条件之上，而不是只比较终态是否正确。这样评测目标从 outcome correctness 延伸到了 process validity。</p><p>这篇工作值得收录，因为它把 agent evaluation 从“最终结果对不对”推进到“决策过程是否真正遵守约束”。对 enterprise workflow agents、tool-use compliance 和安全审计，这是一种更耐久的评估视角，也直指当前很多 agent benchmark 的结构性盲点。</p><p>它没有升到更高一级，是因为当前验证仍主要集中在 business-process automation 与 ToolGuard/τ²-verified Airlines 这一类设定上。它提出了重要 blind spot 和可执行 metric，但是否会成为更广 agent evaluation 的默认标准，还需要更多跨场景验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>近失：代理工作流中潜在策略失败检测。用于业务流程自动化的代理系统通常需要遵守管理系统状态条件更新的策略。在基于LLM的代理工作流中，策略遵守情况的评估通常通过将最终系统状态与预定义的真实情况进行比较来执行。尽管这种方法可以检测到明确的策略违规，但它可能会忽略一类更微妙的问题，即代理绕过了必需的策略检查，但由于有利的环境而达到了正确的结果。我们将此类情况称为近失或潜在失败。在这项工作中，我们引入了一种新颖的度量标准，用于检测代理对话轨迹中的潜在策略失败。我们的方法基于ToolGuard框架，该框架将自然语言策略转换为可执行的守卫代码，通过分析代理轨迹来确定代理的工具调用决策是否充分知情。我们在τ 2 -verified Airlines基准上，使用多个充当代理的当代开源和专有LLM评估了我们的方法。我们的结果表明，即使最终结果与预期的真实状态相符，在涉及修改性工具调用的轨迹中，潜在失败仍发生在8–17%的案例中。这些发现揭示了当前评估方法中的一个盲点，并强调了需要不仅评估最终结果，还要评估导致这些结果的决策过程的度量标准。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic systems for business process automation often require compliance with policies governing conditional updates to the system state. Evaluation of policy adherence in LLM-based agentic workflows is typically performed by comparing the final system state against a predefined ground truth. While this approach detects explicit policy violations, it may overlook a more subtle class of issues in which agents bypass required policy checks, yet reach a correct outcome due to favorable circumstances. We refer to such cases as near-misses or latent failures. In this work, we introduce a novel metric for detecting latent policy failures in agent conversations traces. Building on the ToolGuard framework, which converts naturallanguage policies into executable guard code, our method analyzes agent trajectories to determine whether agent’s tool-calling decisions where sufficiently informed. We evaluate our approach on the τ 2 -verified Airlines benchmark across several contemporary open and proprietary LLMs acting as agents. Our results show that latent failures occur in 8–17% of trajectories involving mutating tool calls, even when the final outcome matches the expected ground-truth state. These findings reveal a blind spot in current evaluation methodologies and highlight the need for metrics that assess not only final outcomes but also the decision process leading to them.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260331a127nearmi,
+  title = {Near-Miss: Latent Policy Failure Detection in Agentic Workflows},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.29665.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a127-near-miss-latent-policy-failures/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Near-Miss: Latent Policy Failure Detection in Agentic Workflows. https://arxiv.org/pdf/2603.29665.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.29665.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

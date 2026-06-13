@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking | DAST Papers</title>
+    <meta name="description" content="这篇论文的推进点很明确：把 agent evaluation 从结果对不对，推进到 workflow 内部每一步怎么坏、为什么坏、坏点如何沿依赖关系传播。它把执行轨迹形式化成 evaluation DAG，这比平铺 step-level 打分更接近真实 agent 系统的因果结构。
+
+更关键的是这里不是停在概念层。作者给了 typed quality metrics、三层 failure taxo" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a242-agenteval-dag-workflow-evaluation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking" />
+    <meta property="og:description" content="这篇论文的推进点很明确：把 agent evaluation 从结果对不对，推进到 workflow 内部每一步怎么坏、为什么坏、坏点如何沿依赖关系传播。它把执行轨迹形式化成 evaluation DAG，这比平铺 step-level 打分更接近真实 agent 系统的因果结构。
+
+更关键的是这里不是停在概念层。作者给了 typed quality metrics、三层 failure taxo" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a242-agenteval-dag-workflow-evaluation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking" />
+    <meta name="twitter:description" content="这篇论文的推进点很明确：把 agent evaluation 从结果对不对，推进到 workflow 内部每一步怎么坏、为什么坏、坏点如何沿依赖关系传播。它把执行轨迹形式化成 evaluation DAG，这比平铺 step-level 打分更接近真实 agent 系统的因果结构。
+
+更关键的是这里不是停在概念层。作者给了 typed quality metrics、三层 failure taxo" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.23581" target="_blank" rel="noopener noreferrer">2604.23581</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的推进点很明确：把 agent evaluation 从结果对不对，推进到 workflow 内部每一步怎么坏、为什么坏、坏点如何沿依赖关系传播。它把执行轨迹形式化成 evaluation DAG，这比平铺 step-level 打分更接近真实 agent 系统的因果结构。</dd></div><div><dt>方法/机制</dt><dd>更关键的是这里不是停在概念层。作者给了 typed quality metrics、三层 failure taxonomy、automated root-cause attribution，而且在 production workflow、τ-bench 和 SWE-bench traces 上都验证了迁移性。对 CI/CD 场景的 regression detection 也有直接证据。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这提供的是一个可复用 evaluation interface，而不是一个一次性的 benchmark 分数。后续不管是 computer-use agent、tool-using agent 还是 coding agent，只要执行过程存在依赖图，就能复用这套评测结构。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前 judge 仍依赖 GPT-4o，且主要验证对象以顺序型或近 DAG 型 workflow 为主；对更动态、强分叉、多并发 agent 架构的适配性还要继续看。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的推进点很明确：把 agent evaluation 从结果对不对，推进到 workflow 内部每一步怎么坏、为什么坏、坏点如何沿依赖关系传播。它把执行轨迹形式化成 evaluation DAG，这比平铺 step-level 打分更接近真实 agent 系统的因果结构。</p><p>更关键的是这里不是停在概念层。作者给了 typed quality metrics、三层 failure taxonomy、automated root-cause attribution，而且在 production workflow、τ-bench 和 SWE-bench traces 上都验证了迁移性。对 CI/CD 场景的 regression detection 也有直接证据。</p><p>它值得正式收录，因为这提供的是一个可复用 evaluation interface，而不是一个一次性的 benchmark 分数。后续不管是 computer-use agent、tool-using agent 还是 coding agent，只要执行过程存在依赖图，就能复用这套评测结构。</p><p>它没有更高，是因为当前 judge 仍依赖 GPT-4o，且主要验证对象以顺序型或近 DAG 型 workflow 为主；对更动态、强分叉、多并发 agent 架构的适配性还要继续看。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>将推理、工具使用和合成串联成多步骤工作流程的智能体系统正在投入生产，然而，普遍的评估实践，如端到端结果检查和临时跟踪检查，系统性地掩盖了在实际错误预算中占主导地位的中间故障。我们提出了AGENT E VAL，一个将智能体执行形式化为评估有向无环图（DAG）的框架，其中每个节点都带有由经过校准的LLM评判者（GPT-4o）评估的类型化质量指标，通过分层故障分类法（3个级别，21个子类别）进行分类，并链接到上游依赖项以实现自动化根本原因归因。一项消融研究分离了基于DAG的依赖建模的影响：与使用相同评判者和评估标准的平面步骤级评估相比，它单独对故障检测召回率贡献了+22个百分点，对根本原因准确性贡献了+34个百分点。在三个生产工作流程中（450个测试用例，两个智能体模型家族，主要是顺序架构，非DAG跟踪率为12%），AGENT E VAL的故障检测召回率比端到端评估高2.17倍（0.89 vs. 0.41），与人类专家的Cohen’s κ一致性为0.84，根本原因准确率为72%，而人类上限为81%。对τ-bench和SWEbench跟踪的跨系统评估证实了其可迁移性（故障检测召回率≥0.78），无需修改分类法或评估标准。一项为期4个月、有18名工程师参与的试点项目通过CI/CD集成的回归测试检测到23个预发布回归问题，将中位根本原因识别时间从4.2小时减少到22分钟，并推动了两个工作流程中可衡量的故障率降低。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic systems that chain reasoning, tool use, and synthesis into multi-step workflows are entering production, yet prevailing evaluation practices like end-to-end outcome checks and ad-hoc trace inspection systematically mask the intermediate failures that dominate realworld error budgets. We present AGENT E VAL, a framework that formalizes agent executions as evaluation directed acyclic graphs (DAGs), where each node carries typed quality metrics assessed by a calibrated LLM judge (GPT-4o), classified through a hierarchical failure taxonomy (3 levels, 21 subcategories), and linked to upstream dependencies for automated root cause attribution. An ablation study isolates the impact of DAG-based dependency modeling: it alone contributes +22 percentage points to failure detection recall and +34 pp to root cause accuracy over flat step-level evaluation with identical judges and rubrics. Across three production workflows (450 test cases, two agent model families, predominantly sequential architectures with a 12% nonDAG trace rate), AGENT E VAL achieves 2.17× higher failure detection recall than end-to-end evaluation (0.89 vs. 0.41), Cohen’s κ = 0.84 agreement with human experts, and 72% root cause accuracy against an 81% human ceiling. Cross-system evaluation on τ -bench and SWEbench traces confirms transferability (failure detection recall ≥ 0.78) without taxonomy or rubric modification. A 4-month pilot with 18 engineers detected 23 pre-release regressions through CI/CD-integrated regression testing, reducing median root-cause identification time from 4.2 hours to 22 minutes and driving measurable failure rate reductions in two workflows.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260426a242agente,
+  title = {AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.23581.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a242-agenteval-dag-workflow-evaluation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentEval: DAG-Structured Step-Level Evaluation for Agentic Workflows with Error Propagation Tracking. https://arxiv.org/pdf/2604.23581.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.23581.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

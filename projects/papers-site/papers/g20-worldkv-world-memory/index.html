@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WorldKV: Efficient World Memory with World Retrieval and Compression | DAST Papers</title>
+    <meta name="description" content="WorldKV 针对 action-conditioned video/world generation 的核心瓶颈：完整 KV cache 能保持场景一致性，但 rollout 变长后内存和注意力成本线性增长；滑窗推理则会丢失长期世界一致性。
+
+方法包含 World Retrieval 和 World Compression：前者把被逐出的 KV chunks 存到 GPU/CPU 记忆并按 c" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g20-worldkv-world-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WorldKV: Efficient World Memory with World Retrieval and Compression" />
+    <meta property="og:description" content="WorldKV 针对 action-conditioned video/world generation 的核心瓶颈：完整 KV cache 能保持场景一致性，但 rollout 变长后内存和注意力成本线性增长；滑窗推理则会丢失长期世界一致性。
+
+方法包含 World Retrieval 和 World Compression：前者把被逐出的 KV chunks 存到 GPU/CPU 记忆并按 c" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g20-worldkv-world-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WorldKV: Efficient World Memory with World Retrieval and Compression" />
+    <meta name="twitter:description" content="WorldKV 针对 action-conditioned video/world generation 的核心瓶颈：完整 KV cache 能保持场景一致性，但 rollout 变长后内存和注意力成本线性增长；滑窗推理则会丢失长期世界一致性。
+
+方法包含 World Retrieval 和 World Compression：前者把被逐出的 KV chunks 存到 GPU/CPU 记忆并按 c" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WorldKV: Efficient World Memory with World Retrieval and Compression</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.22718" target="_blank" rel="noopener noreferrer">2605.22718</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>WorldKV 针对 action-conditioned video/world generation 的核心瓶颈：完整 KV cache 能保持场景一致性，但 rollout 变长后内存和注意力成本线性增长；滑窗推理则会丢失长期世界一致性。</dd></div><div><dt>方法/机制</dt><dd>方法包含 World Retrieval 和 World Compression：前者把被逐出的 KV chunks 存到 GPU/CPU 记忆并按 camera/action correspondence 检索回当前 attention window，后者用 key-key similarity 压缩冗余 token。</dd></div><div><dt>结果/证据</dt><dd>在 Matrix-Game-2.0 和 LingBot-World-Fast 上，WorldKV 在无需微调的情况下接近或超过 full-KV 的记忆保真度，并获得约 2 倍吞吐。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把长时世界模型的一致性问题具体化为可操作的 KV memory retrieval/compression 接口，对实时交互世界生成、机器人仿真和 embodied world model 都有直接方法价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>WorldKV 针对 action-conditioned video/world generation 的核心瓶颈：完整 KV cache 能保持场景一致性，但 rollout 变长后内存和注意力成本线性增长；滑窗推理则会丢失长期世界一致性。</p><p>方法包含 World Retrieval 和 World Compression：前者把被逐出的 KV chunks 存到 GPU/CPU 记忆并按 camera/action correspondence 检索回当前 attention window，后者用 key-key similarity 压缩冗余 token。</p><p>在 Matrix-Game-2.0 和 LingBot-World-Fast 上，WorldKV 在无需微调的情况下接近或超过 full-KV 的记忆保真度，并获得约 2 倍吞吐。</p><p>它值得正式收录，因为它把长时世界模型的一致性问题具体化为可操作的 KV memory retrieval/compression 接口，对实时交互世界生成、机器人仿真和 embodied world model 都有直接方法价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自回归视频扩散模型已实现实时、动作条件的世界生成。然而，维持一个持久的世界，即重新访问先前看到的视点会产生一致的内容，仍然是一个悬而未决的问题。全KV缓存注意力保持了这种一致性，但打破了实时约束：内存占用和注意力成本随展开长度线性增长。滑动窗口推理恢复了吞吐量，但丢弃了长期一致性。我们提出了WorldKV，一个免训练框架，包含两个组件：世界检索和世界压缩。世界检索将逐出的KV缓存块存储在GPU/CPU内存中，并通过相机/动作对应关系选择性地检索场景相关块，无需重新编码即可将其插入回原生注意力窗口。世界压缩通过与锚帧的键-键相似性修剪每个块内的冗余token，将每个块的存储减半，以便在固定预算下容纳2倍的历史记录。在Matrix-Game-2.0和LingBotWorld-Fast上，WorldKV在大约2倍吞吐量下，匹配或超过全KV内存保真度，并且无需任何微调即可与经过内存训练的基线相比具有竞争力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autoregressive video diffusion models have enabled real-time, action-conditioned world generation. However, sustaining a persistent world, where revisiting a previously seen viewpoint yields consistent content, remains an open problem. Full KV-cache attention preserves this consistency but breaks real-time constraints: memory footprint and attention cost grow linearly with rollout length. Slidingwindow inference restores throughput but discards long-term consistency. We propose WorldKV, a training-free framework with two components: World Retrieval and World Compression. World Retrieval stores evicted KV-cache chunks in GPU/CPU memory and selectively retrieves scene-relevant chunks via camera/action correspondence, inserting them back into the native attention window without re-encoding. World Compression prunes redundant tokens within each chunk via key-key similarity to an anchor frame, halving per-chunk storage to fit 2× more history under a fixed budget. On Matrix-Game-2.0 and LingBotWorld-Fast, WorldKV matches or exceeds full-KV memory fidelity at roughly 2× the throughput, and is competitive with memory-trained baselines without any fine-tuning.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521g20worldkv,
+  title = {WorldKV: Efficient World Memory with World Retrieval and Compression},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.22718.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g20-worldkv-world-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WorldKV: Efficient World Memory with World Retrieval and Compression. https://arxiv.org/pdf/2605.22718.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.22718.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://cvlab-kaist.github.io/WorldKV/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.22718" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

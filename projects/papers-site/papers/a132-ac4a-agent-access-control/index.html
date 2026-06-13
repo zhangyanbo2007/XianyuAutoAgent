@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AC4A: Access Control for Agents | DAST Papers</title>
+    <meta name="description" content="多数 LLM agent 现在仍然工作在全有或全无的权限模型里：要么拿到完整 API 权限和整页网页内容，要么完全拿不到。随着 agent 更能执行真实任务，这种粗粒度授权会把用户暴露在不必要的能力过度授予之下，也使很多安全控制只能停留在 prompt 约束层。
+
+AC4A 提出面向 agent 的访问控制框架，把 API 资源和网页内容都纳入统一权限模型。它借鉴传统操作系统和文件系统里的 acc" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a132-ac4a-agent-access-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AC4A: Access Control for Agents" />
+    <meta property="og:description" content="多数 LLM agent 现在仍然工作在全有或全无的权限模型里：要么拿到完整 API 权限和整页网页内容，要么完全拿不到。随着 agent 更能执行真实任务，这种粗粒度授权会把用户暴露在不必要的能力过度授予之下，也使很多安全控制只能停留在 prompt 约束层。
+
+AC4A 提出面向 agent 的访问控制框架，把 API 资源和网页内容都纳入统一权限模型。它借鉴传统操作系统和文件系统里的 acc" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a132-ac4a-agent-access-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AC4A: Access Control for Agents" />
+    <meta name="twitter:description" content="多数 LLM agent 现在仍然工作在全有或全无的权限模型里：要么拿到完整 API 权限和整页网页内容，要么完全拿不到。随着 agent 更能执行真实任务，这种粗粒度授权会把用户暴露在不必要的能力过度授予之下，也使很多安全控制只能停留在 prompt 约束层。
+
+AC4A 提出面向 agent 的访问控制框架，把 API 资源和网页内容都纳入统一权限模型。它借鉴传统操作系统和文件系统里的 acc" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AC4A: Access Control for Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.20933" target="_blank" rel="noopener noreferrer">2603.20933</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>多数 LLM agent 现在仍然工作在全有或全无的权限模型里：要么拿到完整 API 权限和整页网页内容，要么完全拿不到。随着 agent 更能执行真实任务，这种粗粒度授权会把用户暴露在不必要的能力过度授予之下，也使很多安全控制只能停留在 prompt 约束层。</dd></div><div><dt>方法/机制</dt><dd>AC4A 提出面向 agent 的访问控制框架，把 API 资源和网页内容都纳入统一权限模型。它借鉴传统操作系统和文件系统里的 access control 思路，用资源层级、权限声明和运行时权限计算来限制 agent 只能访问任务真正需要的部分。重点不在规定固定权限模板，而在提供一套可扩展、可执行、跨 API 与 browser agent 的权限表达与 enforcement 机制。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent 安全里一个长期被忽略的结构性问题明确化了：agent 不应默认继承其工具和页面可见范围的全部能力。对真实生产 agent 来说，permissioning 本身就是基础设施，这篇论文提供的是一套可落地的 agent access-control interface，而不是单次案例防御。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前验证仍以 case studies 为主，更多展示的是 framework feasibility 与 engineering shape，而不是已经重写整个 agent deployment 生态。它是一篇很对方向的系统论文，但路线影响力还在形成期。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>多数 LLM agent 现在仍然工作在全有或全无的权限模型里：要么拿到完整 API 权限和整页网页内容，要么完全拿不到。随着 agent 更能执行真实任务，这种粗粒度授权会把用户暴露在不必要的能力过度授予之下，也使很多安全控制只能停留在 prompt 约束层。</p><p>AC4A 提出面向 agent 的访问控制框架，把 API 资源和网页内容都纳入统一权限模型。它借鉴传统操作系统和文件系统里的 access control 思路，用资源层级、权限声明和运行时权限计算来限制 agent 只能访问任务真正需要的部分。重点不在规定固定权限模板，而在提供一套可扩展、可执行、跨 API 与 browser agent 的权限表达与 enforcement 机制。</p><p>这篇工作值得收录，因为它把 agent 安全里一个长期被忽略的结构性问题明确化了：agent 不应默认继承其工具和页面可见范围的全部能力。对真实生产 agent 来说，permissioning 本身就是基础设施，这篇论文提供的是一套可落地的 agent access-control interface，而不是单次案例防御。</p><p>它没有升到更高一级，是因为当前验证仍以 case studies 为主，更多展示的是 framework feasibility 与 engineering shape，而不是已经重写整个 agent deployment 生态。它是一篇很对方向的系统论文，但路线影响力还在形成期。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260321a132ac4aag,
+  title = {AC4A: Access Control for Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.20933.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a132-ac4a-agent-access-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AC4A: Access Control for Agents. https://arxiv.org/pdf/2603.20933.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.20933.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

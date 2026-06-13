@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows | DAST Papers</title>
+    <meta name="description" content="这篇论文命中的问题很准：很多 agent benchmark 一旦发布就被冻结，任务集合和真实 workflow demand 很快脱节，而且评分常常只看 final response。Claw-Eval-Live 把这两个缺口一起补上。
+
+它的核心设计是把外部变化的需求信号层和可复现的 release snapshot 分开，同时在 grading 上落到 execution traces、au" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a251-claw-eval-live-workflow-benchmark/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows" />
+    <meta property="og:description" content="这篇论文命中的问题很准：很多 agent benchmark 一旦发布就被冻结，任务集合和真实 workflow demand 很快脱节，而且评分常常只看 final response。Claw-Eval-Live 把这两个缺口一起补上。
+
+它的核心设计是把外部变化的需求信号层和可复现的 release snapshot 分开，同时在 grading 上落到 execution traces、au" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a251-claw-eval-live-workflow-benchmark/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows" />
+    <meta name="twitter:description" content="这篇论文命中的问题很准：很多 agent benchmark 一旦发布就被冻结，任务集合和真实 workflow demand 很快脱节，而且评分常常只看 final response。Claw-Eval-Live 把这两个缺口一起补上。
+
+它的核心设计是把外部变化的需求信号层和可复现的 release snapshot 分开，同时在 grading 上落到 execution traces、au" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.28139" target="_blank" rel="noopener noreferrer">2604.28139</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文命中的问题很准：很多 agent benchmark 一旦发布就被冻结，任务集合和真实 workflow demand 很快脱节，而且评分常常只看 final response。Claw-Eval-Live 把这两个缺口一起补上。</dd></div><div><dt>方法/机制</dt><dd>它的核心设计是把外部变化的需求信号层和可复现的 release snapshot 分开，同时在 grading 上落到 execution traces、audit logs、service state 和 workspace artifacts，而不是只看回答文本。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是一个很强的 workflow-agent benchmark interface primitive。对本库一直关注的 Claw / workspace / local-first / business-service agent 评测都高度相关。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前主要贡献仍在 benchmark operating layer，而不是一个已经改变 agent architecture 的方法学突破。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文命中的问题很准：很多 agent benchmark 一旦发布就被冻结，任务集合和真实 workflow demand 很快脱节，而且评分常常只看 final response。Claw-Eval-Live 把这两个缺口一起补上。</p><p>它的核心设计是把外部变化的需求信号层和可复现的 release snapshot 分开，同时在 grading 上落到 execution traces、audit logs、service state 和 workspace artifacts，而不是只看回答文本。</p><p>它值得正式收录，因为这是一个很强的 workflow-agent benchmark interface primitive。对本库一直关注的 Claw / workspace / local-first / business-service agent 评测都高度相关。</p><p>它没有更高，是因为当前主要贡献仍在 benchmark operating layer，而不是一个已经改变 agent architecture 的方法学突破。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM 代理有望在软件工具、业务服务和本地工作区中完成端到端的工作单元。然而，许多代理基准在发布时冻结了精心策划的任务集，并且主要评估最终响应，这使得难以根据不断演变的工作流需求评估代理或验证任务是否已执行。我们引入了 Claw-Eval-Live，这是一个用于工作流代理的实时基准，它将一个可刷新信号层（根据公共工作流需求信号在不同版本中更新）与一个可重现的、带时间戳的版本快照分开。在构建方面，每个版本都由公共工作流需求信号构建，当前版本使用了 ClawHub Top-500 技能，并具体化为具有固定装置、服务、工作区和评分器的受控任务。在评分方面，Claw-Eval-Live 记录执行轨迹、审计日志、服务状态和运行后工作区工件，在证据充分时使用确定性检查，并且仅对语义维度使用结构化 LLM 评判。该版本包含</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLM agents are expected to complete end-to-end units of work across software tools, business services, and local workspaces. Yet many agent benchmarks freeze a curated task set at release time and grade mainly the final response, making it difficult to evaluate agents against evolving workflow demand or verify whether a task was executed. We introduce Claw-Eval-Live, a live benchmark for workflow agents that separates a refreshable signal layer, updated across releases from public workflow-demand signals, from a reproducible, time-stamped release snapshot. On the construction side, each release is constructed from public workflow-demand signals, with ClawHub Top-500 skills used in the current release, and materialized as controlled tasks with fixed fixtures, services, workspaces, and graders. On the grading side, Claw-Eval-Live records execution traces, audit logs, service state, and post-run workspace artifacts, using deterministic checks when evidence is sufficient and structured LLM judging only for semantic dimensions. The release contains</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260430a251clawev,
+  title = {Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.28139.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a251-claw-eval-live-workflow-benchmark/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Claw-Eval-Live: A Live Agent Benchmark for Evolving Real-World Workflows. https://arxiv.org/pdf/2604.28139.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.28139.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

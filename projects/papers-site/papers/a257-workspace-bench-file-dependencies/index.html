@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies | DAST Papers</title>
+    <meta name="description" content="很多 desktop 或 coding agent benchmark 的问题是文件世界太干净、依赖关系太薄。Workspace-Bench 把评测对象换成了更接近真实工作空间的 file graph environment，而不是几份预摆好的小文件。
+
+它的耐用点在于规模和结构同时成立：5 个 worker profile、74 种文件类型、20,476 个文件、388 个任务、7,399 条 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a257-workspace-bench-file-dependencies/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies" />
+    <meta property="og:description" content="很多 desktop 或 coding agent benchmark 的问题是文件世界太干净、依赖关系太薄。Workspace-Bench 把评测对象换成了更接近真实工作空间的 file graph environment，而不是几份预摆好的小文件。
+
+它的耐用点在于规模和结构同时成立：5 个 worker profile、74 种文件类型、20,476 个文件、388 个任务、7,399 条 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a257-workspace-bench-file-dependencies/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies" />
+    <meta name="twitter:description" content="很多 desktop 或 coding agent benchmark 的问题是文件世界太干净、依赖关系太薄。Workspace-Bench 把评测对象换成了更接近真实工作空间的 file graph environment，而不是几份预摆好的小文件。
+
+它的耐用点在于规模和结构同时成立：5 个 worker profile、74 种文件类型、20,476 个文件、388 个任务、7,399 条 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies</h1>
+          <p class="subtitle">软件工程与编程智能体 · 发表：2026-05-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">软件工程与编程智能体</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.03596" target="_blank" rel="noopener noreferrer">2605.03596</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 desktop 或 coding agent benchmark 的问题是文件世界太干净、依赖关系太薄。Workspace-Bench 把评测对象换成了更接近真实工作空间的 file graph environment，而不是几份预摆好的小文件。</dd></div><div><dt>方法/机制</dt><dd>它的耐用点在于规模和结构同时成立：5 个 worker profile、74 种文件类型、20,476 个文件、388 个任务、7,399 条 rubric。这让 agent 不只是做检索，而是在大依赖图里做跨文件推理和决策。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为未来 coworker agent 的核心难题之一就是 workspace dependency reasoning，这篇 benchmark 明确补到了这一层。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为虽然 benchmark 设计非常对路，但目前仍主要聚焦 workspace/task 评测接口，而非更广跨系统办公执行闭环。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 desktop 或 coding agent benchmark 的问题是文件世界太干净、依赖关系太薄。Workspace-Bench 把评测对象换成了更接近真实工作空间的 file graph environment，而不是几份预摆好的小文件。</p><p>它的耐用点在于规模和结构同时成立：5 个 worker profile、74 种文件类型、20,476 个文件、388 个任务、7,399 条 rubric。这让 agent 不只是做检索，而是在大依赖图里做跨文件推理和决策。</p><p>它值得正式收录，因为未来 coworker agent 的核心难题之一就是 workspace dependency reasoning，这篇 benchmark 明确补到了这一层。</p><p>它没有更高，是因为虽然 benchmark 设计非常对路，但目前仍主要聚焦 workspace/task 评测接口，而非更广跨系统办公执行闭环。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>工作区学习要求AI智能体识别、推理、利用和更新工作者工作区中异构文件之间显式和隐式依赖关系，从而使其能够有效地完成常规和高级任务。尽管其重要性，现有相关基准主要在预先指定或合成的文件上评估智能体，这些文件具有有限的真实世界依赖关系，导致工作区级别的评估未被充分探索。为此，我们引入了Workspace-Bench，一个用于评估AI智能体在涉及大规模文件依赖关系的工作区学习方面的基准。我们构建了包含5个工作者配置文件、74种文件类型、20,476个文件（高达20GB）的真实工作区，并策划了388个任务，每个任务都有自己的文件依赖图，通过7,399个总评分标准进行评估，这些标准要求跨文件检索、上下文推理和自适应决策。我们进一步提供了Workspace-Bench-Lite，一个包含100个任务的子集，它保留了基准分布，同时将评估成本降低了约70%。我们评估了4种流行的智能体框架和7个基础模型。实验结果表明，当前的智能体距离可靠的工作区学习仍有很大差距，其中最好的仅达到68.7%，远低于人类的80.7%，并且智能体的平均性能仅为47.4%。项目页面：https://github.com/OpenDataBox/Workspace-Bench</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Workspace learning requires AI agents to identify, reason over, exploit, and update explicit and implicit dependencies among heterogeneous files in a worker’s workspace, enabling them to complete both routine and advanced tasks effectively. Despite its importance, existing relevant benchmarks largely evaluate agents on pre-specified or synthesized files with limited real-world dependencies, leaving workspace-level evaluation underexplored. To this end, we introduce Workspace-Bench, a benchmark for evaluating AI agents on Workspace Learning involving Large-Scale File Dependencies. We construct realistic workspaces with 5 worker profiles, 74 file types, 20,476 files (up to 20GB) and curate 388 tasks, each with its own file dependency graph, evaluated across 7,399 total rubrics that require cross-file retrieval, contextual reasoning, and adaptive decision-making. We further provide Workspace-Bench-Lite, a 100-task subset that preserves the benchmark distribution while reducing evaluation costs by about 70%. We evaluate 4 popular agent harnesses and 7 foundation models. Experimental results show that current agents remain far from reliable workspace learning, where the best reaches only 68.7%, substantially below the human result of 80.7%, and the average performance across agents is only 47.4%. Project Page: https://github.com/OpenDataBox/Workspace-Bench</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260505a257worksp,
+  title = {Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies},
+  year = {2026},
+  url = {http://arxiv.org/pdf/2605.03596v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a257-workspace-bench-file-dependencies/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies. http://arxiv.org/pdf/2605.03596v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/se10-operational-safety-coding-agents/">
+              <span>What Breaks When LLMs Code? Characterizing Operational Safety Failures of Agentic Code Assistants</span>
+              <small>软件工程与编程智能体 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a336-litecoder-terminal-agent-environments/">
+              <span>LiteCoder-Terminal: Scaling Long-Horizon Terminal Environments for Learning Language Agents</span>
+              <small>软件工程与编程智能体 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/sys12-topoevo-rca-agents/">
+              <span>TopoEvo: A Topology-Aware Self-Evolving Multi-Agent Framework for Root Cause Analysis in Microservices</span>
+              <small>软件工程与编程智能体 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys11-star-rca-agents/">
+              <span>STAR: A Stage-attributed Triage and Repair framework for RCA Agents in Microservices</span>
+              <small>软件工程与编程智能体 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys10-flowcompile-llm-workflows/">
+              <span>FlowCompile: An Optimizing Compiler for Structured LLM Workflows</span>
+              <small>软件工程与编程智能体 · 2026-05-13</small>
+            </a>
+            <a class="related-item" href="../../papers/se7-cujbench-crossmodal-failure-diagnosis/">
+              <span>CUJBench: Benchmarking LLM-Agent on Cross-Modal Failure Diagnosis from Browser to Backend</span>
+              <small>软件工程与编程智能体 · 2026-04-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="http://arxiv.org/pdf/2605.03596v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

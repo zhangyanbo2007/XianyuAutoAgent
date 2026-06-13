@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning | DAST Papers</title>
+    <meta name="description" content="这篇论文的关键点不是又做了一个 weather model，而是提出了一个更有工程价值的 generative forecasting recipe：不是直接从零学 probabilistic weather dynamics，而是把 deterministic weather model 作为脚手架，再用 flow matching 把确定性预测投影到概率分布。
+
+这让它同时抓住了两个重要目标：" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/w3-archesweathergen-probabilistic-forecasting/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning" />
+    <meta property="og:description" content="这篇论文的关键点不是又做了一个 weather model，而是提出了一个更有工程价值的 generative forecasting recipe：不是直接从零学 probabilistic weather dynamics，而是把 deterministic weather model 作为脚手架，再用 flow matching 把确定性预测投影到概率分布。
+
+这让它同时抓住了两个重要目标：" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/w3-archesweathergen-probabilistic-forecasting/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning" />
+    <meta name="twitter:description" content="这篇论文的关键点不是又做了一个 weather model，而是提出了一个更有工程价值的 generative forecasting recipe：不是直接从零学 probabilistic weather dynamics，而是把 deterministic weather model 作为脚手架，再用 flow matching 把确定性预测投影到概率分布。
+
+这让它同时抓住了两个重要目标：" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning</h1>
+          <p class="subtitle">天气、气候与地球系统 · 发表：2026-04-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">天气、气候与地球系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-24</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的关键点不是又做了一个 weather model，而是提出了一个更有工程价值的 generative forecasting recipe：不是直接从零学 probabilistic weather dynamics，而是把 deterministic weather model 作为脚手架，再用 flow matching 把确定性预测投影到概率分布。</dd></div><div><dt>方法/机制</dt><dd>这让它同时抓住了两个重要目标：预测质量和计算效率。论文声称在 WeatherBench headline variables 上整体超过 IFS ENS 与 NeuralGCM，同时降低 probabilistic forecasting 的计算门槛。这种“借 deterministic baseline 设计 generative uncertainty layer”的路线，对气候服务、能源调度和极端天气风险评估都更可落地。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它为 AI weather forecasting 提供了一个很可复用的 probabilistic generation pattern，而不只是一个新的 leaderboard 结果。仓库当前也在扩 AI for weather / climate / earth systems，这篇正好是高质量方法型补充。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为它仍处于 weather forecasting 赛道内部的强方法推进，还没有证明会成为更普遍的 geophysical world-model 默认范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的关键点不是又做了一个 weather model，而是提出了一个更有工程价值的 generative forecasting recipe：不是直接从零学 probabilistic weather dynamics，而是把 deterministic weather model 作为脚手架，再用 flow matching 把确定性预测投影到概率分布。</p><p>这让它同时抓住了两个重要目标：预测质量和计算效率。论文声称在 WeatherBench headline variables 上整体超过 IFS ENS 与 NeuralGCM，同时降低 probabilistic forecasting 的计算门槛。这种“借 deterministic baseline 设计 generative uncertainty layer”的路线，对气候服务、能源调度和极端天气风险评估都更可落地。</p><p>它值得正式收录，因为它为 AI weather forecasting 提供了一个很可复用的 probabilistic generation pattern，而不只是一个新的 leaderboard 结果。仓库当前也在扩 AI for weather / climate / earth systems，这篇正好是高质量方法型补充。</p><p>它没有升到更高等级，是因为它仍处于 weather forecasting 赛道内部的强方法推进，还没有证明会成为更普遍的 geophysical world-model 默认范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ArchesWeatherGen：利用机器学习实现熟练且计算高效的概率天气预报。天气预报在当今社会中扮演着至关重要的角色，从农业和物流到预测可再生能源的产出以及为极端天气事件做准备。在ERA5上以下一状态预测为目标训练的深度学习天气预报模型与数值全球环流模型相比，已显示出巨大成功。在此，我们提出了一种方法，利用确定性天气模型来设计概率天气模型，从而提高性能并降低计算成本。我们设计了一个基于流匹配（一种扩散模型的现代变体）的概率天气模型，该模型经过训练，可以将确定性天气预测投影到ERA5天气状态的分布上。我们的模型ArchesWeatherGen在所有WeatherBench主要变量上都超越了IFS ENS和NeuralGCM（NeuralGCM的位势除外）。我们的工作还旨在普及生成式机器学习模型在天气预报研究中的应用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>ArchesWeatherGen: Skillful and compute-­efficient probabilistic weather forecasting with machine learning Guillaume Couairon1*†, Renu Singh1†, Anastase Charantonis1, Christian Lessig2, Claire Monteleoni1,3 Weather forecasting plays a vital role in today’s society, from agriculture and logistics to predicting the output of renewable energies and preparing for extreme weather events. Deep learning weather forecasting models trained with the next state prediction objective on ERA5 have shown great success compared to numerical global circulation models. Here, we propose a methodology to leverage deterministic weather models in the design of probabilistic weather models, leading to improved performance and reduced computing costs. We design a probabilistic weather model based on flow matching, a modern variant of diffusion models, that is trained to project deterministic weather predictions to the distribution of ERA5 weather states. Our model ArchesWeatherGen surpasses IFS ENS and NeuralGCM on all WeatherBench headline variables (except for NeuralGCM’s geopotential). Our work also aims to democratize the use of generative machine learning models in weather forecasting research.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260424w3archeswe,
+  title = {ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning},
+  year = {2026},
+  url = {https://doi.org/10.1126/sciadv.adx2372},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/w3-archesweathergen-probabilistic-forecasting/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning. https://doi.org/10.1126/sciadv.adx2372</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/w4-ai-weather-pipeline-theory/">
+              <span>The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline</span>
+              <small>天气、气候与地球系统 · 2026-04-01</small>
+            </a>
+            <a class="related-item" href="../../papers/w6-geosolver-remote-sensing-reasoning/">
+              <span>GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision</span>
+              <small>天气、气候与地球系统 · 2026-03-10</small>
+            </a>
+            <a class="related-item" href="../../papers/w1-ivsr-wildfire-digital-twin/">
+              <span>Digital Twin and Agentic AI for Wild Fire Disaster Management: Intelligent Virtual Situation Room</span>
+              <small>天气、气候与地球系统 · 2026-02-09</small>
+            </a>
+            <a class="related-item" href="../../papers/w5-geo-bench-2-geospatial-ai/">
+              <span>GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI</span>
+              <small>天气、气候与地球系统 · 2025-11-19</small>
+            </a>
+            <a class="related-item" href="../../papers/w3-zephyrus-weather-science/">
+              <span>Zephyrus: An Agentic Framework for Weather Science</span>
+              <small>天气、气候与地球系统 · 2025-10-05</small>
+            </a>
+            <a class="related-item" href="../../papers/w2-weathernext2-fgn/">
+              <span>Skillful joint probabilistic weather forecasting from marginals</span>
+              <small>天气、气候与地球系统 · 2025-06-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1126/sciadv.adx2372" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FormalRTL: Verified RTL Synthesis at Scale | DAST Papers</title>
+    <meta name="description" content="LLM 用于 RTL 生成已经不少，但真正卡住工业可用性的仍然是 formal correctness。尤其在 datapath-centric、规格模糊且复杂度高的设计里，单靠 simulation-driven debug 很难建立可靠的设计闭环。
+
+FormalRTL 的关键做法是把 software reference model 作为 formal、可执行的 specification，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw12-formalrtl-verified-synthesis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FormalRTL: Verified RTL Synthesis at Scale" />
+    <meta property="og:description" content="LLM 用于 RTL 生成已经不少，但真正卡住工业可用性的仍然是 formal correctness。尤其在 datapath-centric、规格模糊且复杂度高的设计里，单靠 simulation-driven debug 很难建立可靠的设计闭环。
+
+FormalRTL 的关键做法是把 software reference model 作为 formal、可执行的 specification，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw12-formalrtl-verified-synthesis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FormalRTL: Verified RTL Synthesis at Scale" />
+    <meta name="twitter:description" content="LLM 用于 RTL 生成已经不少，但真正卡住工业可用性的仍然是 formal correctness。尤其在 datapath-centric、规格模糊且复杂度高的设计里，单靠 simulation-driven debug 很难建立可靠的设计闭环。
+
+FormalRTL 的关键做法是把 software reference model 作为 formal、可执行的 specification，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FormalRTL: Verified RTL Synthesis at Scale</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-02-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.08738" target="_blank" rel="noopener noreferrer">2603.08738</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LLM 用于 RTL 生成已经不少，但真正卡住工业可用性的仍然是 formal correctness。尤其在 datapath-centric、规格模糊且复杂度高的设计里，单靠 simulation-driven debug 很难建立可靠的设计闭环。</dd></div><div><dt>方法/机制</dt><dd>FormalRTL 的关键做法是把 software reference model 作为 formal、可执行的 specification，再把 planning、RTL synthesis 和 formal equivalence checking 串成一个端到端框架。这样生成不再只是从 prompt 到 HDL，而是始终围绕可验证语义进行，形成比普通 Verilog codegen 更强的 correctness anchor。</dd></div><div><dt>结果/证据</dt><dd>对本仓库来说，这篇论文代表的是 EDA workflow 的结构性变化：AI 不是单独写 RTL，而是和 formal spec、验证、规划共同组成一个更可信的设计流程。这正符合新范围里 `电路设计与仿真` 以及 `硬软件一体设计/验证` 的要求。</dd></div><div><dt>收录价值</dt><dd>它还不是更高一级，因为影响仍集中在 RTL synthesis / verification 这一层，没有继续深入到后端物理设计、系统级协同仿真或量产约束。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LLM 用于 RTL 生成已经不少，但真正卡住工业可用性的仍然是 formal correctness。尤其在 datapath-centric、规格模糊且复杂度高的设计里，单靠 simulation-driven debug 很难建立可靠的设计闭环。</p><p>FormalRTL 的关键做法是把 software reference model 作为 formal、可执行的 specification，再把 planning、RTL synthesis 和 formal equivalence checking 串成一个端到端框架。这样生成不再只是从 prompt 到 HDL，而是始终围绕可验证语义进行，形成比普通 Verilog codegen 更强的 correctness anchor。</p><p>对本仓库来说，这篇论文代表的是 EDA workflow 的结构性变化：AI 不是单独写 RTL，而是和 formal spec、验证、规划共同组成一个更可信的设计流程。这正符合新范围里 `电路设计与仿真` 以及 `硬软件一体设计/验证` 的要求。</p><p>它还不是更高一级，因为影响仍集中在 RTL synthesis / verification 这一层，没有继续深入到后端物理设计、系统级协同仿真或量产约束。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型 (LLMs) 在自动化硬件综合方面展示了巨大潜力，然而，由于规范模糊和缺乏形式化正确性保证，工业规模、数据通路中心的设计仍面临重大障碍。在这项工作中，我们提出了 FormalRTL，这是一个新颖的端到端多智能体框架，它系统地集成了软件参考模型作为形式化的、可执行的规范，以指导寄存器传输级 (RTL) 代码生成和验证。通过紧密耦合规划、综合和形式化等价性检查，FormalRTL 实现了可扩展且可靠的硬件代码生成，解决了工业环境中面临的关键挑战。对一套新的复杂工业级基准测试的全面评估证明了我们方法的有效性和鲁棒性。我们将开源 FormalRTL 框架和基准测试套件，以促进该领域的未来研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) have demonstrated significant potential in automating hardware synthesis, yet substantial barriers remain for industrial-scale, datapath-centric designs due to ambiguous specifications and a lack of formal correctness guarantees. In this work, we present FormalRTL, a novel end-to-end multi-agent framework that systematically integrates software reference models as formal, executable specifications to guide register-transfer level (RTL) code generation and verification. By tightly coupling planning, synthesis, and formal equivalence checking, FormalRTL achieves scalable and reliable hardware code generation that addresses the critical challenges faced in industrial contexts. The comprehensive evaluation of a new suite of complex industrialgrade benchmarks demonstrates the effectiveness and robustness of our approach. We will open-source the FormalRTL framework and the benchmark suite to facilitate future research in this area.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260225hw12formal,
+  title = {FormalRTL: Verified RTL Synthesis at Scale},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.08738.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw12-formalrtl-verified-synthesis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FormalRTL: Verified RTL Synthesis at Scale. https://arxiv.org/pdf/2603.08738.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.08738.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

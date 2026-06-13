@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skill0.5: Joint Skill Internalization and Utilization for Out-of-Distribution Generalization in Agentic Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="agent skills 可以外部调用，也可以内化进模型，但全外部化带来上下文开销，全内化又容易过拟合和知识冲突。
+
+Skill0.5 提出介于两者之间的策略：general skills 通过 privileged distillation 内化，task-specific skills 通过 utilization 保持外部可控，并由 difficulty-aware router 对任务分层" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a331-skill0-5-agentic-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Skill0.5: Joint Skill Internalization and Utilization for Out-of-Distribution Generalization in Agentic Reinforcement Learning" />
+    <meta property="og:description" content="agent skills 可以外部调用，也可以内化进模型，但全外部化带来上下文开销，全内化又容易过拟合和知识冲突。
+
+Skill0.5 提出介于两者之间的策略：general skills 通过 privileged distillation 内化，task-specific skills 通过 utilization 保持外部可控，并由 difficulty-aware router 对任务分层" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a331-skill0-5-agentic-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Skill0.5: Joint Skill Internalization and Utilization for Out-of-Distribution Generalization in Agentic Reinforcement Learning" />
+    <meta name="twitter:description" content="agent skills 可以外部调用，也可以内化进模型，但全外部化带来上下文开销，全内化又容易过拟合和知识冲突。
+
+Skill0.5 提出介于两者之间的策略：general skills 通过 privileged distillation 内化，task-specific skills 通过 utilization 保持外部可控，并由 difficulty-aware router 对任务分层" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Skill0.5: Joint Skill Internalization and Utilization for Out-of-Distribution Generalization in Agentic Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28424" target="_blank" rel="noopener noreferrer">2605.28424</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>agent skills 可以外部调用，也可以内化进模型，但全外部化带来上下文开销，全内化又容易过拟合和知识冲突。</dd></div><div><dt>方法/机制</dt><dd>Skill0.5 提出介于两者之间的策略：general skills 通过 privileged distillation 内化，task-specific skills 通过 utilization 保持外部可控，并由 difficulty-aware router 对任务分层处理。</dd></div><div><dt>结果/证据</dt><dd>在 ALFWorld 和 WebShop 上，论文报告相比 memory-based 和 skill-based RL baselines 有更好的分布内与 OOD 泛化。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它把 agent skill acquisition 明确拆成 internalization 和 utilization 两条路径，对技能库、agent memory、RL 后训练和 OOD 泛化都有可复用启发。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>agent skills 可以外部调用，也可以内化进模型，但全外部化带来上下文开销，全内化又容易过拟合和知识冲突。</p><p>Skill0.5 提出介于两者之间的策略：general skills 通过 privileged distillation 内化，task-specific skills 通过 utilization 保持外部可控，并由 difficulty-aware router 对任务分层处理。</p><p>在 ALFWorld 和 WebShop 上，论文报告相比 memory-based 和 skill-based RL baselines 有更好的分布内与 OOD 泛化。</p><p>它值得收录，因为它把 agent skill acquisition 明确拆成 internalization 和 utilization 两条路径，对技能库、agent memory、RL 后训练和 OOD 泛化都有可复用启发。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>将大型语言模型（LLMs）与显式技能相结合，已成为使自主智能体解决复杂任务的一种有前景的范式。智能体技能本质上可分为用于广泛认知迁移的通用技能和用于动态执行的特定任务技能。然而，现有的基于技能的强化学习（RL）方法通常强制在完全外部化（导致高昂的上下文开销）和完全内部化（存在过拟合和知识冲突的风险）之间做出僵硬选择。为解决这一困境，我们提出了Skill0.5，一个新颖的智能体RL框架，它通过结合通用技能内部化和特定任务技能利用来明确区分技能处理方式。在动态的、难度感知的路由器的驱动下，Skill0.5将任务流式传输到不同的掌握层级以应用量身定制的优化策略：它通过特权蒸馏内部化通用技能，为困难任务构建认知基础，同时在简单任务上使用诊断探测来惩罚捷径并强制执行特定技能的利用。在ALFWorld和WebShop上的实验表明，Skill0.5优于基于记忆和基于技能的RL基线，在分布内和分布外场景中均实现了性能提升。代码可在以下网址获取：https://github.com/JasonZhujp/ Skill0_5。性能瓶颈（Xu and Yan, 2026; Ling et al., 2026）。一项技能将程序性知识封装成模块化、可重用的文本指令，这些指令编码了标准操作程序和启发式方法（Li et al., 2026a）。在实践中，这些技能被动态检索并注入到智能体的提示中，以明确指导其完成复杂的流程（Zhou et al., 2026b）。虽然通过零样本提示引入技能提供了即时效用，但为了进一步增强智能体在复杂环境中稳健导航的能力（Xia et al., 2026b），最近的研究已扩展到基于技能的训练方法。这些方法主要分为两种极端范式。一种范式主张完全外部化，即所有技能在训练和推理过程中都作为外部上下文指导（Xia et al., 2026a; Shi et al., 2026）。相反，另一项研究探索完全内部化，旨在将技能完全同化到模型参数中（Lu et al., 2026b; Wang et al., 2026b）。然而，在真实的部署场景中，技能库通过用户贡献动态扩展，智能体经常面临不熟悉的任务以及未见的分布外（OOD）特定任务技能（Ma et al., 2026b）。因此，这两种范式都表现出显著的局限性：完全外部化对LLMs的上下文学习（ICL）能力提出了严峻挑战（Liu et al., 2024; Zhou et al., 2026a）；随着提示中技能数量的增加，过长的长度会降低推理和指令遵循性能，尤其是在长周期任务中（Si et al., 2026; Hsieh et al., 2024）。另一方面，完全内部化从根本上受限于模型容量（AllenZhu and Li, 2025），并可能引入知识冲突风险（Xu et al., 2024; Wang et al., 2025a）。当这些不熟悉的外部技能与其内部化的技能模式相矛盾时，智能体可能无法吸收和利用新指令，导致——</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>performance bottlenecks (Xu and Yan, 2026; Ling et al., 2026). A skill encapsulates procedural knowledge into modular, reusable textual directives that codify standard operating procedures and heuristics (Li et al., 2026a). In practice, these skills are dynamically retrieved and injected into the agent’s prompt to explicitly guide it through intricate workflows (Zhou et al., 2026b). While introducing skills via zero-shot prompting offers immediate utility, to further empower agents to robustly navigate complex environments (Xia et al., 2026b), recent research has expanded into skill-based training methods. These methods primarily diverge into two extreme paradigms. One paradigm advocates for full externalization, where all skills are maintained as external contextual guidance throughout training and inference (Xia et al., 2026a; Shi et al., 2026). Conversely, another line of research explores full internalization, aiming to completely assimilate the skills into model parameters (Lu et al., 2026b; Wang et al., 2026b). In authentic deployment scenarios, however, skill libraries expand dynamically through user contributions, frequently confronting agents with unfamiliar tasks alongside unseen Out-of-Distribution (OOD) task-specific skills (Ma et al., 2026b). Consequently, both paradigms exhibit notable limitations: full externalization imposes severe challenges on LLMs’ In-Context Learning (ICL) capabilities (Liu et al., 2024; Zhou et al., 2026a); as the prompt expands with numerous skills, the excessive length can degrade reasoning and instruction-following performance, especially in long-horizon tasks (Si et al., 2026; Hsieh et al., 2024). On the other hand, full internalization is fundamentally constrained by model capacity (AllenZhu and Li, 2025) and potentially introduces knowledge conflict risks (Xu et al., 2024; Wang et al., 2025a). Agents may fail to absorb and utilize new instructions when these unfamiliar external skills contradict their internalized skill patterns, lead- Equipping large language models with explicit skills has emerged as a promising paradigm for enabling autonomous agents to solve complex tasks. Agent skills can be inherently divided into general skills for broad cognitive transfer and task-specific skills for dynamic execution. However, existing skill-based reinforcement learning (RL) methods typically force a rigid choice between full externalization, which incurs prohibitive context overhead, and full internalization, which risks overfitting and knowledge conflicts. To address this dilemma, we propose Skill0.5 a novel agentic RL framework that explicitly differentiates skill treatments by combining general skill internalization with task-specific skill utilization. Driven by a dynamic, difficulty-aware router, Skill0.5 streams tasks into distinct mastery tiers to apply tailored optimization strategies: it internalizes general skills via privileged distillation to build a cognitive foundation for hard tasks, while using diagnostic probing on easy tasks to penalize shortcuts and enforce specific skill utilization. Experiments on ALFWorld and WebShop demonstrate that Skill0.5 outperforms both memory-based and skill-based RL baselines, yielding performance improvements across both in-distribution and out-of-distribution scenarios. The code is available at: https://github.com/JasonZhujp/ Skill0_5.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527a331skill0,
+  title = {Skill0.5: Joint Skill Internalization and Utilization for Out-of-Distribution Generalization in Agentic Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28424.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a331-skill0-5-agentic-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Skill0.5: Joint Skill Internalization and Utilization for Out-of-Distribution Generalization in Agentic Reinforcement Learning. https://arxiv.org/pdf/2605.28424.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28424.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28424" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

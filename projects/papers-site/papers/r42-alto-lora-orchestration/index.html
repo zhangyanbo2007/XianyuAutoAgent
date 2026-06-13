@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Workloads | DAST Papers</title>
+    <meta name="description" content="LoRA 已经成为参数高效微调的默认路径，但真实生产里最大的瓶颈往往不是单个 adapter 怎么训，而是海量 LoRA 配置在共享 GPU 集群里的联合调参与调度。现有系统基本把每个 LoRA job 当成独立训练任务处理，这会导致弱配置长期占卡、共享 frozen backbone 的机会被浪费、而多租户集群的空闲能力也很难被真正回收。
+
+ALTO 的新意在于把 heterogeneous L" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r42-alto-lora-orchestration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Workloads" />
+    <meta property="og:description" content="LoRA 已经成为参数高效微调的默认路径，但真实生产里最大的瓶颈往往不是单个 adapter 怎么训，而是海量 LoRA 配置在共享 GPU 集群里的联合调参与调度。现有系统基本把每个 LoRA job 当成独立训练任务处理，这会导致弱配置长期占卡、共享 frozen backbone 的机会被浪费、而多租户集群的空闲能力也很难被真正回收。
+
+ALTO 的新意在于把 heterogeneous L" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r42-alto-lora-orchestration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Workloads" />
+    <meta name="twitter:description" content="LoRA 已经成为参数高效微调的默认路径，但真实生产里最大的瓶颈往往不是单个 adapter 怎么训，而是海量 LoRA 配置在共享 GPU 集群里的联合调参与调度。现有系统基本把每个 LoRA job 当成独立训练任务处理，这会导致弱配置长期占卡、共享 frozen backbone 的机会被浪费、而多租户集群的空闲能力也很难被真正回收。
+
+ALTO 的新意在于把 heterogeneous L" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Workloads</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05426" target="_blank" rel="noopener noreferrer">2604.05426</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LoRA 已经成为参数高效微调的默认路径，但真实生产里最大的瓶颈往往不是单个 adapter 怎么训，而是海量 LoRA 配置在共享 GPU 集群里的联合调参与调度。现有系统基本把每个 LoRA job 当成独立训练任务处理，这会导致弱配置长期占卡、共享 frozen backbone 的机会被浪费、而多租户集群的空闲能力也很难被真正回收。</dd></div><div><dt>方法/机制</dt><dd>ALTO 的新意在于把 heterogeneous LoRA tuning workload 视作一个联合 orchestration 问题来做。系统一边监控 loss trajectory 提前终止弱配置，一边借助 fused grouped GEMM 和新的 rank-local adapter parallelism 把幸存 adapter 更紧密地并置在共享 backbone 上，同时结合 intra-task 和 inter-task scheduling 利用 LoRA 任务时长更可预测这一特征做跨任务放置优化。整体上，它把 LoRA tuning 从“很多小训练任务”提升成“共享主干上的联合资源调度问题”。</dd></div><div><dt>结果/证据</dt><dd>这篇值得入库，因为它明显超出了小技巧或局部 ablation 的范围。对本仓库关心的 PEFT、deployment-time specialization 和训练系统工作流来说，ALTO 提供的是可复用的 orchestration pattern：如何在共享 backbone 前提下把 adapter tuning、早停、并置和调度合成一个系统级优化目标。这种系统设计会影响后续 LoRA 工具链和多租户 PEFT 平台。</dd></div><div><dt>收录价值</dt><dd>局限在于它仍主要服务于 LoRA training cluster 这一特定场景，收益强依赖共享 backbone 与多任务并发条件，也还停留在 arXiv 预印本阶段。它是很强的系统 paper，但不构成更高层级的方法范式改写，因此定为 `breakthrough`。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LoRA 已经成为参数高效微调的默认路径，但真实生产里最大的瓶颈往往不是单个 adapter 怎么训，而是海量 LoRA 配置在共享 GPU 集群里的联合调参与调度。现有系统基本把每个 LoRA job 当成独立训练任务处理，这会导致弱配置长期占卡、共享 frozen backbone 的机会被浪费、而多租户集群的空闲能力也很难被真正回收。</p><p>ALTO 的新意在于把 heterogeneous LoRA tuning workload 视作一个联合 orchestration 问题来做。系统一边监控 loss trajectory 提前终止弱配置，一边借助 fused grouped GEMM 和新的 rank-local adapter parallelism 把幸存 adapter 更紧密地并置在共享 backbone 上，同时结合 intra-task 和 inter-task scheduling 利用 LoRA 任务时长更可预测这一特征做跨任务放置优化。整体上，它把 LoRA tuning 从“很多小训练任务”提升成“共享主干上的联合资源调度问题”。</p><p>这篇值得入库，因为它明显超出了小技巧或局部 ablation 的范围。对本仓库关心的 PEFT、deployment-time specialization 和训练系统工作流来说，ALTO 提供的是可复用的 orchestration pattern：如何在共享 backbone 前提下把 adapter tuning、早停、并置和调度合成一个系统级优化目标。这种系统设计会影响后续 LoRA 工具链和多租户 PEFT 平台。</p><p>局限在于它仍主要服务于 LoRA training cluster 这一特定场景，收益强依赖共享 backbone 与多任务并发条件，也还停留在 arXiv 预印本阶段。它是很强的系统 paper，但不构成更高层级的方法范式改写，因此定为 `breakthrough`。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407r42altolor,
+  title = {ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Workloads},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05426v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r42-alto-lora-orchestration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ALTO: Adaptive LoRA Tuning and Orchestration for Heterogeneous LoRA Training Workloads. https://arxiv.org/pdf/2604.05426v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05426v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

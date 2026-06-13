@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories | DAST Papers</title>
+    <meta name="description" content="这篇 arXiv 论文提出面向语言模型持续学习的 Sleep 范式，通过 Knowledge Seeding 把短期 in-context memories 蒸馏进长期参数能力，并通过 Dreaming 用 RL 生成合成 curriculum 进行自我改进。它不同于库里已有 R81 的 fast-weight/KV consolidation 论文，重点是 self-modification、m" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r90-lm-self-modifying-sleep/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories" />
+    <meta property="og:description" content="这篇 arXiv 论文提出面向语言模型持续学习的 Sleep 范式，通过 Knowledge Seeding 把短期 in-context memories 蒸馏进长期参数能力，并通过 Dreaming 用 RL 生成合成 curriculum 进行自我改进。它不同于库里已有 R81 的 fast-weight/KV consolidation 论文，重点是 self-modification、m" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r90-lm-self-modifying-sleep/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories" />
+    <meta name="twitter:description" content="这篇 arXiv 论文提出面向语言模型持续学习的 Sleep 范式，通过 Knowledge Seeding 把短期 in-context memories 蒸馏进长期参数能力，并通过 Dreaming 用 RL 生成合成 curriculum 进行自我改进。它不同于库里已有 R81 的 fast-weight/KV consolidation 论文，重点是 self-modification、m" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-06-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.03979" target="_blank" rel="noopener noreferrer">2606.03979</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 arXiv 论文提出面向语言模型持续学习的 Sleep 范式，通过 Knowledge Seeding 把短期 in-context memories 蒸馏进长期参数能力，并通过 Dreaming 用 RL 生成合成 curriculum 进行自我改进。它不同于库里已有 R81 的 fast-weight/KV consolidation 论文，重点是 self-modification、memory consolidation 和递归能力改进。值得收录，因为它把 agent memory、参数级知识内化、自生成训练数据和 self-improving agents 串成一个可复用运行周期。限制是仍为早期 arXiv 工作，长期稳定性、安全边界和灾难性遗忘控制需要更强评估。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 arXiv 论文提出面向语言模型持续学习的 Sleep 范式，通过 Knowledge Seeding 把短期 in-context memories 蒸馏进长期参数能力，并通过 Dreaming 用 RL 生成合成 curriculum 进行自我改进。它不同于库里已有 R81 的 fast-weight/KV consolidation 论文，重点是 self-modification、memory consolidation 和递归能力改进。值得收录，因为它把 agent memory、参数级知识内化、自生成训练数据和 self-improving agents 串成一个可复用运行周期。限制是仍为早期 arXiv 工作，长期稳定性、安全边界和灾难性遗忘控制需要更强评估。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>语言模型需要Sleep：学习自我修改和巩固记忆。过去几十年见证了机器学习算法设计方面的重大进展——从早期针对特定任务的浅层模型研究到更通用的深度大型语言模型（LLMs）。尽管现有模型在需要即时预测或上下文学习的任务中表现出有希望的结果，但它们缺乏持续学习并将其临时的上下文知识有效转移到其长期参数的能力。受人类学习过程的启发，我们引入了一种“Sleep”范式，它允许模型持续学习，通过重放将其短期的脆弱记忆提炼成稳定的长期知识，并通过“Dreaming”过程递归地改进自身。更详细地说，Sleep包括两个阶段：(1) Memory Consolidation：一个称为Knowledge Seeding的向上蒸馏过程，其中较小自我的记忆被蒸馏到更大的网络中，以提供更大的容量，同时保留知识。作为概念验证，我们提出了一种用于Knowledge Seeding的新型广义蒸馏过程（即，策略内蒸馏与基于强化学习（RL）的模仿学习的结合）；(2) Dreaming：一个自我改进阶段，模型在此阶段使用RL生成合成数据课程，以排练新知识并完善现有能力，而无需人工监督。我们在长周期、持续学习、知识整合和少样本泛化任务上的实验支持了Sleep阶段的重要性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The past few decades have witnessed significant advances in the design of machine learning algorithms–from early studies on task-specific shallow models to more general deep Large Language Models (LLMs). Despite showing promising results in tasks that require instant prediction or in-context learning, existing models lack the ability to continually learn and effectively transfer their temporal in-context knowledge to their long-term parameters. Inspired by human learning process, we introduce a “Sleep” paradigm that allows the models to continually learn, distill their short-term fragile memories into stable long-term knowledge with replay, and recursively improve themselves with “Dreaming” process. In more detail, sleep consists of two stages: (1) Memory Consolidation: an upward distillation process, called Knowledge Seeding, where the memories of a smaller-self are distilled into a larger network to provide more capacity while preserving the knowledge. As a proof of concept, we present a new Generalized Distillation process for Knowledge Seeding (i.e., the combination of on-policy distillation with Reinforcement Learning (RL)-based imitation learning); (2) Dreaming: a self-improvement phase, where the model uses RL to generate a curriculum of synthetic data to rehearse new knowledge and refine existing capabilities without human supervision. Our experiments on long-horizon, continual learning, knowledge incorporation, and few-shot generalization tasks support the importance of the sleep stage.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260602r90lmselfm,
+  title = {Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories},
+  year = {2026},
+  url = {https://arxiv.org/abs/2606.03979},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r90-lm-self-modifying-sleep/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories. https://arxiv.org/abs/2606.03979</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/r84-omniretrieval-heterogeneous-sources/">
+              <span>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2606.03979" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

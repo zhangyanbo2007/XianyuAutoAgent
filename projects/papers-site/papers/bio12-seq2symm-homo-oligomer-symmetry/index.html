@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rapid and accurate prediction of protein homo-oligomer symmetry using Seq2Symm | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是蛋白结构预测工作流里一个很实用但长期缺口明显的问题：如何快速、准确地从单条氨基酸序列预测蛋白 homo-oligomer 的对称性。很多蛋白必须组装成同链多聚体才能发挥功能，但过去这一步往往依赖模板搜索或成本更高的结构建模流程，速度和覆盖率都受限。
+
+作者的做法是对多类 protein foundation models 做微调，最终得到 Seq2Symm，其中最强版本基于 ESM" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio12-seq2symm-homo-oligomer-symmetry/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Rapid and accurate prediction of protein homo-oligomer symmetry using Seq2Symm" />
+    <meta property="og:description" content="这篇论文解决的是蛋白结构预测工作流里一个很实用但长期缺口明显的问题：如何快速、准确地从单条氨基酸序列预测蛋白 homo-oligomer 的对称性。很多蛋白必须组装成同链多聚体才能发挥功能，但过去这一步往往依赖模板搜索或成本更高的结构建模流程，速度和覆盖率都受限。
+
+作者的做法是对多类 protein foundation models 做微调，最终得到 Seq2Symm，其中最强版本基于 ESM" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio12-seq2symm-homo-oligomer-symmetry/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rapid and accurate prediction of protein homo-oligomer symmetry using Seq2Symm" />
+    <meta name="twitter:description" content="这篇论文解决的是蛋白结构预测工作流里一个很实用但长期缺口明显的问题：如何快速、准确地从单条氨基酸序列预测蛋白 homo-oligomer 的对称性。很多蛋白必须组装成同链多聚体才能发挥功能，但过去这一步往往依赖模板搜索或成本更高的结构建模流程，速度和覆盖率都受限。
+
+作者的做法是对多类 protein foundation models 做微调，最终得到 Seq2Symm，其中最强版本基于 ESM" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Rapid and accurate prediction of protein homo-oligomer symmetry using Seq2Symm</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-02-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-02-27</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-57148-3" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-57148-3</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是蛋白结构预测工作流里一个很实用但长期缺口明显的问题：如何快速、准确地从单条氨基酸序列预测蛋白 homo-oligomer 的对称性。很多蛋白必须组装成同链多聚体才能发挥功能，但过去这一步往往依赖模板搜索或成本更高的结构建模流程，速度和覆盖率都受限。</dd></div><div><dt>方法/机制</dt><dd>作者的做法是对多类 protein foundation models 做微调，最终得到 Seq2Symm，其中最强版本基于 ESM2。它只用单序列作为输入，就能做 proteome-scale 的 symmetry prediction，并且在多个 held-out test sets 上明显超过模板法和已有深度学习方法。方法上的价值不只是精度提升，还在于把一个原本常被留给昂贵下游结构生成去隐式解决的问题，前置成了一个可快速筛查的序列级任务。</dd></div><div><dt>结果/证据</dt><dd>它适合进入仓库，因为这是 AI for biology 工作流里很典型的高价值中间层工具：不直接替代 AlphaFold2-multimer 或 RoseTTAFold2 这类全原子建模，而是作为上游高吞吐筛查模块，为后续更重的结构生成和功能分析节省大量算力与搜索空间。这种‘先用 foundation model 做廉价结构属性预测，再接昂贵生成器’的分层流程本身就有长期价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为它更像一个高效、可复用、很实用的 specialized predictor，而不是改写整条蛋白建模主线的范式级工作。更准确地说，Seq2Symm 是一篇很强的 workflow-enabling biology AI 论文，适合正式收录，但还不到更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是蛋白结构预测工作流里一个很实用但长期缺口明显的问题：如何快速、准确地从单条氨基酸序列预测蛋白 homo-oligomer 的对称性。很多蛋白必须组装成同链多聚体才能发挥功能，但过去这一步往往依赖模板搜索或成本更高的结构建模流程，速度和覆盖率都受限。</p><p>作者的做法是对多类 protein foundation models 做微调，最终得到 Seq2Symm，其中最强版本基于 ESM2。它只用单序列作为输入，就能做 proteome-scale 的 symmetry prediction，并且在多个 held-out test sets 上明显超过模板法和已有深度学习方法。方法上的价值不只是精度提升，还在于把一个原本常被留给昂贵下游结构生成去隐式解决的问题，前置成了一个可快速筛查的序列级任务。</p><p>它适合进入仓库，因为这是 AI for biology 工作流里很典型的高价值中间层工具：不直接替代 AlphaFold2-multimer 或 RoseTTAFold2 这类全原子建模，而是作为上游高吞吐筛查模块，为后续更重的结构生成和功能分析节省大量算力与搜索空间。这种‘先用 foundation model 做廉价结构属性预测，再接昂贵生成器’的分层流程本身就有长期价值。</p><p>它没有更高一级，因为它更像一个高效、可复用、很实用的 specialized predictor，而不是改写整条蛋白建模主线的范式级工作。更准确地说，Seq2Symm 是一篇很强的 workflow-enabling biology AI 论文，适合正式收录，但还不到更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大多数蛋白质必须形成高阶组装体才能执行其生物学功能，然而，很少有机器学习模型能够准确快速地预测涉及同一蛋白质链多个拷贝的组装体的对称性。在本文中，我们通过微调几类蛋白质基础模型来预测同源寡聚体对称性，从而弥补了这一空白。我们名为Seq2Symm的最佳模型利用ESM2，在三个保留测试集上，对同源寡聚体对称性实现了0.47、0.44和0.49的平均AUC-PR，优于现有基于模板和深度学习方法通过基于模板搜索获得的0.24、0.24和0.25。Seq2Symm使用单个序列作为输入，并能以每小时约80,000个蛋白质的速度进行预测。我们将此方法应用于5个蛋白质组和约350万个未标记蛋白质序列，显示了其与RoseTTAFold2和AlphaFold2-multimer等下游计算密集型全原子结构生成方法结合使用的前景。代码、数据集和模型可在以下网址获取：https://github.com/microsoft/seq2symm 。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The majority of proteins must form higher-order assemblies to perform their biological functions, yet few machine learning models can accurately and rapidly predict the symmetry of assemblies involving multiple copies of the same protein chain. Here, we address this gap by finetuning several classes of protein foundation models, to predict homo-oligomer symmetry. Our best model named Seq2Symm, which utilizes ESM2, outperforms existing template-based and deep learning methods achieving an average AUC-PR of 0.47, 0.44 and 0.49 across homo-oligomer symmetries on three held-out test sets compared to 0.24, 0.24 and 0.25 with template-based search. Seq2Symm uses a single sequence as input and can predict at the rate of ~80,000 proteins/hour. We apply this method to 5 proteomes and ~3.5 million unlabeled protein sequences, showing its promise to be used in conjunction with downstream computationally intensive all-atom structure generation methods such as RoseTTAFold2 and AlphaFold2-multimer. Code, datasets, model are available at: https://github.com/microsoft/seq2symm .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250227bio12seq2s,
+  title = {Rapid and accurate prediction of protein homo-oligomer symmetry using Seq2Symm},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-57148-3},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio12-seq2symm-homo-oligomer-symmetry/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Rapid and accurate prediction of protein homo-oligomer symmetry using Seq2Symm. https://www.nature.com/articles/s41467-025-57148-3</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-57148-3" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

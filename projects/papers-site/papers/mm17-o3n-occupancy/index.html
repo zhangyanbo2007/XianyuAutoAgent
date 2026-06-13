@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O3N: Omnidirectional Open-Vocabulary Occupancy Prediction | DAST Papers</title>
+    <meta name="description" content="这篇论文针对具身智能和自动驾驶场景里的一个核心问题：如何在 360 度、开放词汇、仅视觉输入的条件下，对三维场景进行统一的占据与语义重建。现有 occupancy prediction 方法通常依赖有限视角和封闭类别集合，因此很难支撑开放世界探索所需的全局、安全和语义一致的环境理解。
+
+作者提出 O3N，一个端到端的全视觉开放词汇占据预测框架。方法层面包括三部分：用于 360 度体素建模的 Pol" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm17-o3n-occupancy/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="O3N: Omnidirectional Open-Vocabulary Occupancy Prediction" />
+    <meta property="og:description" content="这篇论文针对具身智能和自动驾驶场景里的一个核心问题：如何在 360 度、开放词汇、仅视觉输入的条件下，对三维场景进行统一的占据与语义重建。现有 occupancy prediction 方法通常依赖有限视角和封闭类别集合，因此很难支撑开放世界探索所需的全局、安全和语义一致的环境理解。
+
+作者提出 O3N，一个端到端的全视觉开放词汇占据预测框架。方法层面包括三部分：用于 360 度体素建模的 Pol" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm17-o3n-occupancy/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="O3N: Omnidirectional Open-Vocabulary Occupancy Prediction" />
+    <meta name="twitter:description" content="这篇论文针对具身智能和自动驾驶场景里的一个核心问题：如何在 360 度、开放词汇、仅视觉输入的条件下，对三维场景进行统一的占据与语义重建。现有 occupancy prediction 方法通常依赖有限视角和封闭类别集合，因此很难支撑开放世界探索所需的全局、安全和语义一致的环境理解。
+
+作者提出 O3N，一个端到端的全视觉开放词汇占据预测框架。方法层面包括三部分：用于 360 度体素建模的 Pol" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>O3N: Omnidirectional Open-Vocabulary Occupancy Prediction</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.12144" target="_blank" rel="noopener noreferrer">2603.12144</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对具身智能和自动驾驶场景里的一个核心问题：如何在 360 度、开放词汇、仅视觉输入的条件下，对三维场景进行统一的占据与语义重建。现有 occupancy prediction 方法通常依赖有限视角和封闭类别集合，因此很难支撑开放世界探索所需的全局、安全和语义一致的环境理解。</dd></div><div><dt>方法/机制</dt><dd>作者提出 O3N，一个端到端的全视觉开放词汇占据预测框架。方法层面包括三部分：用于 360 度体素建模的 Polar-spiral Mamba，以极坐标螺旋拓扑组织全景体素；在体素空间中联合几何与语义监督的 Occupancy Cost Aggregation；以及不依赖额外梯度对齐的 Natural Modality Alignment，用于统一像素、体素和文本三种表示。整体上，它试图把几何重建与开放词汇语义理解放进一个一致的表示空间。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，主要因为它不是一般的 3D benchmark 改进，而是在开放词汇 3D world modeling 上给出了一套完整的表示方案。对仓库来说，它落在多模态世界建模、具身感知和开放世界空间理解的交叉位置，具备明显的方法外溢潜力。只要实验结果可靠，它会是近期值得跟踪的 3D occupancy / world-model 方向强论文。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因是当前证据仍主要集中在 occupancy prediction 和相关 benchmark，尚未证明它会重排更广泛的世界模型或具身学习路线。更准确的定位是一篇强而清晰的多模态三维感知论文，而不是已经建立新范式的旗舰工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对具身智能和自动驾驶场景里的一个核心问题：如何在 360 度、开放词汇、仅视觉输入的条件下，对三维场景进行统一的占据与语义重建。现有 occupancy prediction 方法通常依赖有限视角和封闭类别集合，因此很难支撑开放世界探索所需的全局、安全和语义一致的环境理解。</p><p>作者提出 O3N，一个端到端的全视觉开放词汇占据预测框架。方法层面包括三部分：用于 360 度体素建模的 Polar-spiral Mamba，以极坐标螺旋拓扑组织全景体素；在体素空间中联合几何与语义监督的 Occupancy Cost Aggregation；以及不依赖额外梯度对齐的 Natural Modality Alignment，用于统一像素、体素和文本三种表示。整体上，它试图把几何重建与开放词汇语义理解放进一个一致的表示空间。</p><p>这项工作值得收录，主要因为它不是一般的 3D benchmark 改进，而是在开放词汇 3D world modeling 上给出了一套完整的表示方案。对仓库来说，它落在多模态世界建模、具身感知和开放世界空间理解的交叉位置，具备明显的方法外溢潜力。只要实验结果可靠，它会是近期值得跟踪的 3D occupancy / world-model 方向强论文。</p><p>它还不到更高一级，原因是当前证据仍主要集中在 occupancy prediction 和相关 benchmark，尚未证明它会重排更广泛的世界模型或具身学习路线。更准确的定位是一篇强而清晰的多模态三维感知论文，而不是已经建立新范式的旗舰工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>O3N：全向开放词汇占据预测 摘要。通过全向感知理解和重建3D世界是自主智能体和具身智能发展中不可避免的趋势。然而，现有的3D占据预测方法受限于有限的视角输入和预定义的训练分布，这使得它们难以应用于需要在开放世界探索中对场景进行全面安全感知的具身智能体。为此，我们提出了O3N，这是首个纯视觉、端到端的全向开放词汇占据预测框架。O3N通过极螺旋Mamba (PsM) 模块将全向体素嵌入到极螺旋拓扑中，从而实现了360°范围内的连续空间表示和长距离上下文建模。占据成本聚合 (OCA) 模块引入了一种原则性机制，用于在体素空间内统一几何和语义监督，确保重建几何与底层语义结构之间的一致性。此外，自然模态对齐 (NMA) 建立了一条无梯度对齐路径，协调视觉特征、体素嵌入和文本语义，形成一个一致的“像素-体素-文本”表示三元组。在多个模型上进行的广泛实验表明，我们的方法不仅在QuadOcc和Human360Occ基准测试中取得了最先进的性能，而且还展现出卓越的跨场景泛化能力和语义可扩展性，为实现通用3D世界建模铺平了道路。源代码将在O3N上公开发布。 关键词：全景图像 · 开放词汇占据 · 场景理解</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Understanding and reconstructing the 3D world through omnidirectional perception is an inevitable trend in the development of autonomous agents and embodied intelligence. However, existing 3D occupancy prediction methods are constrained by limited perspective inputs and predefined training distribution, making them difficult to apply to embodied agents that require comprehensive and safe perception of scenes in open world exploration. To address this, we present O3N, the first purely visual, end-to-end Omnidirectional Open-vocabulary Occupancy predictioN framework. O3N embeds omnidirectional voxels in a polar-spiral topology via the Polar-spiral Mamba (PsM) module, enabling continuous spatial representation and long-range context modeling across 360°. The Occupancy Cost Aggregation (OCA) module introduces a principled mechanism for unifying geometric and semantic supervision within the voxel space, ensuring consistency between the reconstructed geometry and the underlying semantic structure. Moreover, Natural Modality Alignment (NMA) establishes a gradient-free alignment pathway that harmonizes visual features, voxel embeddings, and text semantics, forming a consistent “pixel-voxel-text” representation triad. Extensive experiments on multiple models demonstrate that our method not only achieves state-of-the-art performance on QuadOcc and Human360Occ benchmarks but also exhibits remarkable cross-scene generalization and semantic scalability, paving the way toward universal 3D world modeling. The source code will be made publicly available at O3N. Keywords: Panoramic Image · Open-vocabulary Occupancy · Scene Understanding</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260312mm17o3nocc,
+  title = {O3N: Omnidirectional Open-Vocabulary Occupancy Prediction},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.12144v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm17-o3n-occupancy/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). O3N: Omnidirectional Open-Vocabulary Occupancy Prediction. https://arxiv.org/pdf/2603.12144v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.12144v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

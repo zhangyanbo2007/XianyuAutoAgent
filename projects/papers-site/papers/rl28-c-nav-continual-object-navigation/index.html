@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>C-NAV: Towards Self-Evolving Continual Object Navigation in Open World | DAST Papers</title>
+    <meta name="description" content="open-world embodied navigation 的真实难点不只是能否在固定类别集合上学会目标导航，而是环境、对象类别和任务分布都在持续变化。现有 object navigation 方法大多假设训练类别固定、轨迹静态，这与机器人长期部署时不断遇到新类别并同时保留旧能力的需求并不一致。
+
+C-NAV 直接把这个问题重写成 continual object navigation。论文一方" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl28-c-nav-continual-object-navigation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="C-NAV: Towards Self-Evolving Continual Object Navigation in Open World" />
+    <meta property="og:description" content="open-world embodied navigation 的真实难点不只是能否在固定类别集合上学会目标导航，而是环境、对象类别和任务分布都在持续变化。现有 object navigation 方法大多假设训练类别固定、轨迹静态，这与机器人长期部署时不断遇到新类别并同时保留旧能力的需求并不一致。
+
+C-NAV 直接把这个问题重写成 continual object navigation。论文一方" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl28-c-nav-continual-object-navigation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="C-NAV: Towards Self-Evolving Continual Object Navigation in Open World" />
+    <meta name="twitter:description" content="open-world embodied navigation 的真实难点不只是能否在固定类别集合上学会目标导航，而是环境、对象类别和任务分布都在持续变化。现有 object navigation 方法大多假设训练类别固定、轨迹静态，这与机器人长期部署时不断遇到新类别并同时保留旧能力的需求并不一致。
+
+C-NAV 直接把这个问题重写成 continual object navigation。论文一方" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>C-NAV: Towards Self-Evolving Continual Object Navigation in Open World</h1>
+          <p class="subtitle">强化学习 · 发表：2025-10-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.20685" target="_blank" rel="noopener noreferrer">2510.20685</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>open-world embodied navigation 的真实难点不只是能否在固定类别集合上学会目标导航，而是环境、对象类别和任务分布都在持续变化。现有 object navigation 方法大多假设训练类别固定、轨迹静态，这与机器人长期部署时不断遇到新类别并同时保留旧能力的需求并不一致。</dd></div><div><dt>方法/机制</dt><dd>C-NAV 直接把这个问题重写成 continual object navigation。论文一方面提出 continual benchmark，要求 embodied agent 在开放环境中不断获得新 object categories 的导航能力，同时避免灾难性遗忘；另一方面提出对应的 continual visual navigation framework，包括 dual-path anti-forgetting mechanism：用 feature distillation 保持多模态表征一致性，用 feature replay 在 action decoder 中保留时序特征以维持 policy consistency，并辅以 adaptive sampling 降低记忆负担。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 object navigation 从静态 benchmark 推进到更接近真实部署的 continual setting，并给出了 benchmark + anti-forgetting mechanism 的完整组合。对 embodied lifelong learning、长期部署机器人和 open-world navigation，这是一种更耐久的问题定义和方法模式，而不只是又一个导航分数提升。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前影响范围仍主要集中在 continual object navigation 这条子线。虽然 framing 很好、方法也完整，但还没有证明它会改写更广的 embodied learning 主流范式，因此目前更适合放在 breakthrough。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>open-world embodied navigation 的真实难点不只是能否在固定类别集合上学会目标导航，而是环境、对象类别和任务分布都在持续变化。现有 object navigation 方法大多假设训练类别固定、轨迹静态，这与机器人长期部署时不断遇到新类别并同时保留旧能力的需求并不一致。</p><p>C-NAV 直接把这个问题重写成 continual object navigation。论文一方面提出 continual benchmark，要求 embodied agent 在开放环境中不断获得新 object categories 的导航能力，同时避免灾难性遗忘；另一方面提出对应的 continual visual navigation framework，包括 dual-path anti-forgetting mechanism：用 feature distillation 保持多模态表征一致性，用 feature replay 在 action decoder 中保留时序特征以维持 policy consistency，并辅以 adaptive sampling 降低记忆负担。</p><p>这篇工作值得收录，因为它把 object navigation 从静态 benchmark 推进到更接近真实部署的 continual setting，并给出了 benchmark + anti-forgetting mechanism 的完整组合。对 embodied lifelong learning、长期部署机器人和 open-world navigation，这是一种更耐久的问题定义和方法模式，而不只是又一个导航分数提升。</p><p>它没有升到更高一级，是因为当前影响范围仍主要集中在 continual object navigation 这条子线。虽然 framing 很好、方法也完整，但还没有证明它会改写更广的 embodied learning 主流范式，因此目前更适合放在 breakthrough。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>C-NAV：迈向开放世界中自演进的持续目标导航具身智能体有望在动态的开放世界环境中执行目标导航。然而，现有方法在训练期间通常依赖静态轨迹和固定对象类别集，忽略了现实世界中对不断演进场景进行持续适应的需求。为促进相关研究，我们引入了持续目标导航基准，该基准要求智能体在避免灾难性遗忘先前所学知识的同时，获取针对新对象类别的导航技能。为应对这一挑战，我们提出了C-Nav，一个持续视觉导航框架，它整合了两项关键创新：(1) 双路径抗遗忘机制，该机制包括特征蒸馏（将多模态输入对齐到一致的表示空间以确保表示一致性）和特征回放（在动作解码器内保留时间特征以确保策略一致性）。(2) 自适应采样策略，该策略选择多样化且信息丰富的经验，从而减少冗余并最小化内存开销。跨多种模型架构的广泛实验表明，C-Nav始终优于现有方法，即使与具有完整轨迹保留的基线相比，也实现了卓越的性能，同时显著降低了内存需求。代码将发布于 https://bigtree765.github.io/C-Nav-project。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Embodied agents are expected to perform object navigation in dynamic, open-world environments. However, existing approaches typically rely on static trajectories and a fixed set of object categories during training, overlooking the real-world requirement for continual adaptation to evolving scenarios. To facilitate related studies, we introduce the continual object navigation benchmark, which requires agents to acquire navigation skills for new object categories while avoiding catastrophic forgetting of previously learned knowledge. To tackle this challenge, we propose C-Nav, a continual visual navigation framework that integrates two key innovations: (1) A dual-path anti-forgetting mechanism, which comprises feature distillation that aligns multi-modal inputs into a consistent representation space to ensure representation consistency, and feature replay that retains temporal features within the action decoder to ensure policy consistency. (2) An adaptive sampling strategy that selects diverse and informative experiences, thereby reducing redundancy and minimizing memory overhead. Extensive experiments across multiple model architectures demonstrate that C-Nav consistently outperforms existing approaches, achieving superior performance even compared to baselines with full trajectory retention, while significantly lowering memory requirements. The code will be available at https://bigtree765.github.io/C-Nav-project.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251023rl28cnavco,
+  title = {C-NAV: Towards Self-Evolving Continual Object Navigation in Open World},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.20685.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl28-c-nav-continual-object-navigation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). C-NAV: Towards Self-Evolving Continual Object Navigation in Open World. https://arxiv.org/pdf/2510.20685.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.20685.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

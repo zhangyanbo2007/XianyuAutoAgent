@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specific Packages | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 hybrid Mamba-Transformer 模型提出了一个硬件层面的关键观察：prefill 和 decode 不只是负载不同，而是对架构与封装的需求都不同，因此单一同构加速器很难同时做好两者。对本仓库来说，这正是 AI 硬件设计里最值得关注的“结构性设计结论”。
+
+DUET 的做法是把 prefill 和 decode 分别放到不同 package：prefill 用偏矩阵乘" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw2-duet-hybrid-llm-accelerator/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specific Packages" />
+    <meta property="og:description" content="这篇论文针对 hybrid Mamba-Transformer 模型提出了一个硬件层面的关键观察：prefill 和 decode 不只是负载不同，而是对架构与封装的需求都不同，因此单一同构加速器很难同时做好两者。对本仓库来说，这正是 AI 硬件设计里最值得关注的“结构性设计结论”。
+
+DUET 的做法是把 prefill 和 decode 分别放到不同 package：prefill 用偏矩阵乘" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw2-duet-hybrid-llm-accelerator/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specific Packages" />
+    <meta name="twitter:description" content="这篇论文针对 hybrid Mamba-Transformer 模型提出了一个硬件层面的关键观察：prefill 和 decode 不只是负载不同，而是对架构与封装的需求都不同，因此单一同构加速器很难同时做好两者。对本仓库来说，这正是 AI 硬件设计里最值得关注的“结构性设计结论”。
+
+DUET 的做法是把 prefill 和 decode 分别放到不同 package：prefill 用偏矩阵乘" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specific Packages</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15530" target="_blank" rel="noopener noreferrer">2603.15530</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 hybrid Mamba-Transformer 模型提出了一个硬件层面的关键观察：prefill 和 decode 不只是负载不同，而是对架构与封装的需求都不同，因此单一同构加速器很难同时做好两者。对本仓库来说，这正是 AI 硬件设计里最值得关注的“结构性设计结论”。</dd></div><div><dt>方法/机制</dt><dd>DUET 的做法是把 prefill 和 decode 分别放到不同 package：prefill 用偏矩阵乘法友好的 systolic-array chiplets，decode 用带高带宽封装内存的 vector-unit arrays。它不只是调度层区分阶段，而是把阶段不对称性直接落实到 package-level disaggregation 与 runtime-configurable hybrid support 上。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为这提供了一个非常清晰的硬件设计原则：对于混合型大模型，prefill/decode asymmetry 应该成为加速器与封装拆分的一级设计变量。这个结论对 hybrid LLM、芯粒化设计和未来大模型硬件分层都有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为虽然 insight 很强，但适用范围目前仍主要围绕 hybrid Mamba-Transformer LLM 及其推理阶段拆分，尚未上升到更广泛 AI accelerator 标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 hybrid Mamba-Transformer 模型提出了一个硬件层面的关键观察：prefill 和 decode 不只是负载不同，而是对架构与封装的需求都不同，因此单一同构加速器很难同时做好两者。对本仓库来说，这正是 AI 硬件设计里最值得关注的“结构性设计结论”。</p><p>DUET 的做法是把 prefill 和 decode 分别放到不同 package：prefill 用偏矩阵乘法友好的 systolic-array chiplets，decode 用带高带宽封装内存的 vector-unit arrays。它不只是调度层区分阶段，而是把阶段不对称性直接落实到 package-level disaggregation 与 runtime-configurable hybrid support 上。</p><p>它值得正式收录，是因为这提供了一个非常清晰的硬件设计原则：对于混合型大模型，prefill/decode asymmetry 应该成为加速器与封装拆分的一级设计变量。这个结论对 hybrid LLM、芯粒化设计和未来大模型硬件分层都有直接参考价值。</p><p>它没有升到更高等级，是因为虽然 insight 很强，但适用范围目前仍主要围绕 hybrid Mamba-Transformer LLM 及其推理阶段拆分，尚未上升到更广泛 AI accelerator 标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>DUET：采用预填充和解码专用封装的解耦混合Mamba-Transformer LLM。大型语言模型在计算密集型预填充阶段之后，接着是内存带宽密集型解码阶段。混合Mamba-Transformer模型继承了这种不对称性，同时增加了状态空间模型（SSM）的递归和逐元素操作，这些操作与以矩阵乘法为中心的加速器匹配不佳。这种不匹配导致了性能瓶颈，表明同构架构无法满足所有要求。我们引入了DUET，这是一种解耦加速器，它将预填充和解码阶段分配给专用封装。预填充封装利用带有封装外存储器的脉动阵列小芯片，以实现高效的大规模矩阵乘法和长序列SSM。解码封装利用带有高带宽封装内存储器的向量单元阵列，以加速逐令牌SSM和向量-矩阵乘法。两种架构都可在运行时配置，以支持混合Mamba和注意力层的混合模型。对Nemotron-H-56B、Zamba2-7B和Llama3-8B在四种工作负载下的评估表明，DUET比B200 GPU实现了4倍更快的首令牌时间、1.4倍更高的吞吐量和1.5倍更低的令牌间时间。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models operate in distinct compute-bound prefill followed by memory bandwidth-bound decode phases. Hybrid Mamba– Transformer models inherit this asymmetry while adding statespace model (SSM) recurrences and element-wise operations that map poorly to matmul-centric accelerators. This mismatch causes performance bottlenecks, showing that a homogeneous architecture cannot satisfy all requirements. We introduce DUET, a disaggregated accelerator that assigns prefill and decode phases to specialized packages. The Prefill package utilizes systolic array chiplets with offpackage memory for efficient large matrix multiplications and longsequence SSMs. The Decode package utilizes vector-unit arrays with high-bandwidth in-package memory to accelerate token-bytoken SSM and vector–matrix multiplications. Both architectures are runtime-configurable to support hybrid models with mixed Mamba and attention layers. Evaluations on Nemotron-H-56B, Zamba2-7B, and Llama3-8B across four workloads show that DUET achieves 4× faster time to first token, 1.4× higher throughput, and 1.5× lower time between tokens over the B200 GPU.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316hw2duethyb,
+  title = {DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specific Packages},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15530.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw2-duet-hybrid-llm-accelerator/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DUET: Disaggregated Hybrid Mamba-Transformer LLMs with Prefill and Decode-Specific Packages. https://arxiv.org/pdf/2603.15530.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15530.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebCompass: Towards Multimodal Web Coding Evaluation for Autonomous Coding Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文针对当前 coding-agent 评测的一个明显盲点：现有 benchmark 多半只测文本条件下的代码生成和静态正确性，几乎不覆盖真实 web engineering 中的视觉保真、交互行为、编辑修复流程以及代码库级推理。WebCompass 的目标就是把这整条生命周期拉进统一评测。
+
+数据设计上，WebCompass 横跨 text/image/video 三种输入模态，以及 gen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a233-webcompass-web-coding-eval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WebCompass: Towards Multimodal Web Coding Evaluation for Autonomous Coding Agents" />
+    <meta property="og:description" content="这篇论文针对当前 coding-agent 评测的一个明显盲点：现有 benchmark 多半只测文本条件下的代码生成和静态正确性，几乎不覆盖真实 web engineering 中的视觉保真、交互行为、编辑修复流程以及代码库级推理。WebCompass 的目标就是把这整条生命周期拉进统一评测。
+
+数据设计上，WebCompass 横跨 text/image/video 三种输入模态，以及 gen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a233-webcompass-web-coding-eval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WebCompass: Towards Multimodal Web Coding Evaluation for Autonomous Coding Agents" />
+    <meta name="twitter:description" content="这篇论文针对当前 coding-agent 评测的一个明显盲点：现有 benchmark 多半只测文本条件下的代码生成和静态正确性，几乎不覆盖真实 web engineering 中的视觉保真、交互行为、编辑修复流程以及代码库级推理。WebCompass 的目标就是把这整条生命周期拉进统一评测。
+
+数据设计上，WebCompass 横跨 text/image/video 三种输入模态，以及 gen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WebCompass: Towards Multimodal Web Coding Evaluation for Autonomous Coding Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.18224" target="_blank" rel="noopener noreferrer">2604.18224</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对当前 coding-agent 评测的一个明显盲点：现有 benchmark 多半只测文本条件下的代码生成和静态正确性，几乎不覆盖真实 web engineering 中的视觉保真、交互行为、编辑修复流程以及代码库级推理。WebCompass 的目标就是把这整条生命周期拉进统一评测。</dd></div><div><dt>方法/机制</dt><dd>数据设计上，WebCompass 横跨 text/image/video 三种输入模态，以及 generation/editing/repair 三类任务，形成七类 web engineering 场景；评测上，编辑和修复采用 checklist-guided LLM judge，生成部分则引入 agent-as-a-judge，让评测 agent 在真实浏览器里运行、探索交互并给出更接近实际体验的判断。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是 coding-agent / computer-use 方向非常缺的 durable evaluation interface。它不只是多一套题，而是把 web coding 作为带视觉、交互和维护闭环的长期任务来测，对 autonomous software engineering 的外溢很明确。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为 judge 体系仍然复杂，成本与可重复性还要观察；此外它目前聚焦 web engineering，虽然代表性强，但还不是整个 coding-agent 评测的统一上位框架。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对当前 coding-agent 评测的一个明显盲点：现有 benchmark 多半只测文本条件下的代码生成和静态正确性，几乎不覆盖真实 web engineering 中的视觉保真、交互行为、编辑修复流程以及代码库级推理。WebCompass 的目标就是把这整条生命周期拉进统一评测。</p><p>数据设计上，WebCompass 横跨 text/image/video 三种输入模态，以及 generation/editing/repair 三类任务，形成七类 web engineering 场景；评测上，编辑和修复采用 checklist-guided LLM judge，生成部分则引入 agent-as-a-judge，让评测 agent 在真实浏览器里运行、探索交互并给出更接近实际体验的判断。</p><p>它值得正式收录，因为这是 coding-agent / computer-use 方向非常缺的 durable evaluation interface。它不只是多一套题，而是把 web coding 作为带视觉、交互和维护闭环的长期任务来测，对 autonomous software engineering 的外溢很明确。</p><p>它没有升到更高等级，是因为 judge 体系仍然复杂，成本与可重复性还要观察；此外它目前聚焦 web engineering，虽然代表性强，但还不是整个 coding-agent 评测的统一上位框架。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）正迅速发展成为能够进行端到端网络编码的交互式编码智能体，然而现有基准仅评估了这种能力的狭窄部分——通常是带有静态正确性指标的文本条件生成——使得视觉保真度、交互质量和代码库级推理在很大程度上未被衡量。我们引入了WebCompass，一个全面、多模态的基准，它提供了网络工程能力的统一生命周期评估。认识到真实世界的网络编码是一个生成、编辑和修复的迭代循环，WebCompass涵盖了三种输入模态（文本、图像和视频）和三种紧密耦合的任务类型（生成、编辑和修复），从而产生了七个互补的任务类别，这些类别密切反映了专业工作流程。通过一个多阶段、人机协作的流程，我们策划了高质量的实例，涵盖了15个生成领域、16种编辑操作类型和11种修复缺陷类型，每个实例都标注了简单/中等/困难的难度级别。在评估方面，我们采用了一种清单引导的LLM作为评判者（LLM-as-a-Judge）协议进行编辑和修复，并提出了一种新颖的智能体作为评判者（Agent-as-a-Judge）范式进行生成，该范式在真实浏览器中自主执行生成的网站，通过模型上下文协议（Model Context Protocol, MCP）探索交互行为，并迭代合成目标测试用例——这密切近似了人类验收测试。我们评估了一系列多样化的代表性闭源和开源模型，并观察到：(1) 闭源模型仍然显著更强且更均衡；(2) 编辑和修复表现出不同的难度特征，其中修复更好地保持交互性但仍具有执行挑战性；(3) 美学是最持久的瓶颈，特别是对于开源模型；(4) 框架选择实质性影响结果，Vue始终具有挑战性，而React和Vanilla/HTML根据任务类型表现更强。所有基准数据1、评估代码2和项目页面3均公开可用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models are rapidly evolving into interactive coding agents capable of end-to-end web coding, yet existing benchmarks evaluate only narrow slices of this capability—typically text-conditioned generation with static-correctness metrics— leaving visual fidelity, interaction quality, and codebase-level reasoning largely unmeasured. We introduce WebCompass, a comprehensive, multimodal benchmark that provides a unified lifecycle evaluation of web engineering capability. Recognizing that realworld web coding is an iterative cycle of generation, editing, and repair, WebCompass spans three input modalities (text, image, and video) and three tightly coupled task types (generation, editing, and repair), yielding seven complementary task categories that closely mirror professional workflows. Through a multi-stage, human-in-the-loop pipeline, we curate high-quality instances covering 15 generation domains, 16 editing operation types, and 11 repair defect types, each annotated at Easy/Medium/Hard difficulty levels. On the evaluation side, we adopt a checklist-guided LLM-as-a-Judge protocol for editing and repair, and propose a novel Agent-as-a-Judge paradigm for generation that autonomously executes generated websites in a real browser, explores interactive behaviors via the Model Context Protocol (MCP), and iteratively synthesizes targeted test cases—closely approximating human acceptance testing. We evaluate a diverse set of representative closed-source and open-source models and observe that: (1) closed-source models remain substantially stronger and more balanced; (2) editing and repair exhibit distinct difficulty profiles, with repair preserving interactivity better but remaining execution-challenging; (3) aesthetics is the most persistent bottleneck, especially for open-source models; and (4) framework choice materially affects outcomes, with Vue consistently challenging while React and Vanilla/HTML perform more strongly depending on task type. All benchmark data1 , evaluation code2 , and project page3 are publicly available.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260421a233webcom,
+  title = {WebCompass: Towards Multimodal Web Coding Evaluation for Autonomous Coding Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.18224.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a233-webcompass-web-coding-eval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WebCompass: Towards Multimodal Web Coding Evaluation for Autonomous Coding Agents. https://arxiv.org/pdf/2604.18224.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.18224.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

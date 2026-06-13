@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion | DAST Papers</title>
+    <meta name="description" content="当前大多数 multimodal large language models 仍默认依赖 autoregressive backbone，再在其上叠加不同模态编码器和生成头。这种范式虽然有效，但把多模态理解与生成统一到同一 backbone 的能力仍受限，尤其在 any-to-any setting 下更明显。
+
+Omni-Diffusion 的核心贡献，是把 masked discrete di" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm40-omni-diffusion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion" />
+    <meta property="og:description" content="当前大多数 multimodal large language models 仍默认依赖 autoregressive backbone，再在其上叠加不同模态编码器和生成头。这种范式虽然有效，但把多模态理解与生成统一到同一 backbone 的能力仍受限，尤其在 any-to-any setting 下更明显。
+
+Omni-Diffusion 的核心贡献，是把 masked discrete di" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm40-omni-diffusion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion" />
+    <meta name="twitter:description" content="当前大多数 multimodal large language models 仍默认依赖 autoregressive backbone，再在其上叠加不同模态编码器和生成头。这种范式虽然有效，但把多模态理解与生成统一到同一 backbone 的能力仍受限，尤其在 any-to-any setting 下更明显。
+
+Omni-Diffusion 的核心贡献，是把 masked discrete di" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.06577" target="_blank" rel="noopener noreferrer">2603.06577</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前大多数 multimodal large language models 仍默认依赖 autoregressive backbone，再在其上叠加不同模态编码器和生成头。这种范式虽然有效，但把多模态理解与生成统一到同一 backbone 的能力仍受限，尤其在 any-to-any setting 下更明显。</dd></div><div><dt>方法/机制</dt><dd>Omni-Diffusion 的核心贡献，是把 masked discrete diffusion 直接提升为 any-to-any multimodal backbone，用统一的离散 token joint distribution 同时处理文本、语音和图像的理解与生成。它不是简单地把 diffusion 用在某一个模态上，而是把 diffusion 变成跨模态统一接口，用同一类建模机制覆盖双模态与更复杂的多模态场景。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作真正挑战的是 multimodal foundation model 的默认结构选择。对仓库来说，价值不只是性能对比，而是它提出了一个可能长期存在的替代 blueprint：多模态系统未必必须围绕 autoregressive language modeling 组织，diffusion 也可以成为理解与生成一体化的底座。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要是早期 benchmark 证明和架构可行性展示，距离形成社区默认范式还差生态采用和更广模态覆盖。现阶段更像一条非常强的新 backbone 路线，而不是已经完成范式替换的事实标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前大多数 multimodal large language models 仍默认依赖 autoregressive backbone，再在其上叠加不同模态编码器和生成头。这种范式虽然有效，但把多模态理解与生成统一到同一 backbone 的能力仍受限，尤其在 any-to-any setting 下更明显。</p><p>Omni-Diffusion 的核心贡献，是把 masked discrete diffusion 直接提升为 any-to-any multimodal backbone，用统一的离散 token joint distribution 同时处理文本、语音和图像的理解与生成。它不是简单地把 diffusion 用在某一个模态上，而是把 diffusion 变成跨模态统一接口，用同一类建模机制覆盖双模态与更复杂的多模态场景。</p><p>它值得正式收录，因为这类工作真正挑战的是 multimodal foundation model 的默认结构选择。对仓库来说，价值不只是性能对比，而是它提出了一个可能长期存在的替代 blueprint：多模态系统未必必须围绕 autoregressive language modeling 组织，diffusion 也可以成为理解与生成一体化的底座。</p><p>它没有升到更高一级，是因为当前证据仍主要是早期 benchmark 证明和架构可行性展示，距离形成社区默认范式还差生态采用和更广模态覆盖。现阶段更像一条非常强的新 backbone 路线，而不是已经完成范式替换的事实标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>理解和生成能力 [5, 10, 12, 40, 44, 46, 54]，这些能力由于LLM强大的语言理解能力而表现出令人印象深刻的性能。然而，多模态智能中大多数现有方法依赖于自回归架构，这为探索替代的概率建模方法留下了巨大的空间。近几个月来，将扩散模型应用于自然语言处理任务的研究兴趣激增，这已成为经典自回归架构 [47, 55] 的一个有前景的替代方案。扩散模型相对于自回归模型 [28, 51] 展现出几个显著优势。例如，扩散生成过程的初始token序列和生成轨迹可以被引导，以控制生成内容的语义结构、输出格式和响应风格 [43]。此外，扩散模型支持并行解码，为高效生成提供了潜力 [38, 39]。鉴于这些优势，探索利用扩散模型构建多模态智能系统的潜力是顺理成章的。在这项工作中，我们介绍了Omni-Diffusion，这是第一个基于掩码离散扩散模型构建的任意到任意多模态语言模型，用于统一的理解和生成。如图1所示，Omni-Diffusion采用基于掩码的离散扩散模型来学习通过对原始文本、图像和语音数据进行token化获得的多种模态语义token的联合分布。与现有利用LLM生成文本数据并依赖额外输出模型将LLM的文本隐藏状态转换为其他模态输出 [27, 40] 的多模态模型不同，这种多模态离散token的联合建模使模型能够开发出内在对齐的语义表示空间，从而使其具备跨各种模态的统一理解和生成能力。我们引入了一套针对基于掩码的离散扩散模型特性量身定制的训练和推理技术，这些技术有助于将预训练的扩散语言模型扩展为多模态系统。首先，尽管最近的多模态大型语言模型（MLLMs）取得了令人瞩目的进展，但它们主要采用传统的自回归架构作为其骨干模型，这为探索架构设计中有效且高效的替代方案留下了巨大的空间。同时，最近的研究已成功将离散扩散模型应用于各种领域，例如视觉理解和图像生成，揭示了它们作为多模态系统有前景的骨干模型的巨大潜力。受这些开创性研究的启发，我们引入了Omni-Diffusion，这是第一个完全基于掩码离散扩散模型构建的任意到任意多模态语言模型，它统一了文本、语音和图像的理解和生成。Omni-Diffusion采用统一的基于掩码的离散扩散模型来直接捕获离散多模态token的联合分布。这种方法不仅支持双模态任务，还支持涉及多种模态的更复杂场景。在一系列多样化的基准测试中，我们的方法优于或与处理两种或更多模态的现有多模态系统表现相当，突显了扩散模型在推动下一代多模态基础模型方面的巨大前景。项目网页：https://omni-diffusion.github.io。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>ception and generation capabilities [5, 10, 12, 40, 44, 46, 54], which exhibit impressive performance thanks to the strong language understanding capabilities of LLMs. However, most existing approaches in multimodal intelligence rely on autoregressive architectures, leaving substantial room to explore alternative probabilistic modeling approaches. Recent months have witnessed a surge of research interest in applying diffusion models to natural language processing tasks, which has emerged as a promising alternative to classical autoregressive architectures [47, 55]. Diffusion models demonstrate several distinct advantages over autoregressive models [28, 51]. For example, the initial token sequence and the generation trajectory of the diffusion generation process can be steered to control the semantic structure, output format and response style of generated content [43]. Furthermore, diffusion models support parallel decoding, offering the potential for efficient generation [38, 39]. Given these advantages, it is natural to explore the potential of employing diffusion models to build multimodal intelligence systems. In this work, we introduce Omni-Diffusion, the first anyto-any multimodal language model that builds upon a maskbased discrete diffusion model for unified comprehension and generation. As illustrated in Fig. 1, Omni-Diffusion employs a mask-based discrete diffusion model to learn the joint distribution of multimodal semantic tokens obtained by tokenizing raw text, image, and speech data. In contrast to existing multimodal models that utilize an LLM to generate textual data and rely on additional output models to convert the LLM’s textual hidden states into outputs of other modalities [27, 40], this joint modeling of multimodal discrete tokens enables the model to develop an intrinsically aligned semantic representation space, thereby equipping it with unified comprehension and generation capabilities across various modalities. We introduce a suite of training and inference techniques tailored to the characteristics of mask-based discrete diffusion models, which facilitate the extension of a pre-trained diffusion language model into a multimodal system. First, While recent multimodal large language models (MLLMs) have made impressive strides, they predominantly employ a conventional autoregressive architecture as their backbone, leaving significant room to explore effective and efficient alternatives in architectural design. Concurrently, recent studies have successfully applied discrete diffusion models to various domains, such as visual understanding and image generation, revealing their considerable potential as a promising backbone for multimodal systems. Drawing inspiration from these pioneering research, we introduce Omni-Diffusion, the first any-to-any multimodal language model built entirely on mask-based discrete diffusion models, which unifies understanding and generation across text, speech, and images. Omni-Diffusion employs a unified mask-based discrete diffusion model to directly capture the joint distribution over discrete multimodal tokens. This approach supports not only bimodal tasks but also more complex scenarios involving multiple modalities. On a diverse set of benchmarks, our method outperforms or performs on par with existing multimodal systems that process two or more modalities, highlighting the significant promise of diffusion models in powering the next generation of multimodal foundation models. Project webpage: https://omni-diffusion.github.io.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260306mm40omnidi,
+  title = {Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.06577.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm40-omni-diffusion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Omni-Diffusion: Unified Multimodal Understanding and Generation with Masked Discrete Diffusion. https://arxiv.org/pdf/2603.06577.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.06577.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

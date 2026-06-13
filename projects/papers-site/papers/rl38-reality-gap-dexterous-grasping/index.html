@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Closing the Reality Gap: Zero-Shot Sim-to-Real Deployment for Dexterous Force-Based Grasping and Manipulation | DAST Papers</title>
+    <meta name="description" content="多指灵巧手的 sim-to-real 一直比常规操作任务更难，因为接触丰富、执行器不理想，而且真实系统通常缺少高质量力觉和扭矩观测。很多方法能在模拟器里学到动作，但无法真正做到零样本落到硬件上。
+
+这篇工作的关键在于把几件真正决定 transfer 的系统组件补全：高频虚拟触觉模拟、无需额外扭矩传感器的 current-to-torque calibration，以及对 backlash、torq" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl38-reality-gap-dexterous-grasping/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Closing the Reality Gap: Zero-Shot Sim-to-Real Deployment for Dexterous Force-Based Grasping and Manipulation" />
+    <meta property="og:description" content="多指灵巧手的 sim-to-real 一直比常规操作任务更难，因为接触丰富、执行器不理想，而且真实系统通常缺少高质量力觉和扭矩观测。很多方法能在模拟器里学到动作，但无法真正做到零样本落到硬件上。
+
+这篇工作的关键在于把几件真正决定 transfer 的系统组件补全：高频虚拟触觉模拟、无需额外扭矩传感器的 current-to-torque calibration，以及对 backlash、torq" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl38-reality-gap-dexterous-grasping/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Closing the Reality Gap: Zero-Shot Sim-to-Real Deployment for Dexterous Force-Based Grasping and Manipulation" />
+    <meta name="twitter:description" content="多指灵巧手的 sim-to-real 一直比常规操作任务更难，因为接触丰富、执行器不理想，而且真实系统通常缺少高质量力觉和扭矩观测。很多方法能在模拟器里学到动作，但无法真正做到零样本落到硬件上。
+
+这篇工作的关键在于把几件真正决定 transfer 的系统组件补全：高频虚拟触觉模拟、无需额外扭矩传感器的 current-to-torque calibration，以及对 backlash、torq" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Closing the Reality Gap: Zero-Shot Sim-to-Real Deployment for Dexterous Force-Based Grasping and Manipulation</h1>
+          <p class="subtitle">强化学习 · 发表：2026-01-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.02778" target="_blank" rel="noopener noreferrer">2601.02778</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>多指灵巧手的 sim-to-real 一直比常规操作任务更难，因为接触丰富、执行器不理想，而且真实系统通常缺少高质量力觉和扭矩观测。很多方法能在模拟器里学到动作，但无法真正做到零样本落到硬件上。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的关键在于把几件真正决定 transfer 的系统组件补全：高频虚拟触觉模拟、无需额外扭矩传感器的 current-to-torque calibration，以及对 backlash、torque-speed saturation 等执行器非理想性的随机化建模。作者据此用 asymmetric actor-critic PPO 在纯模拟中训练，并零样本部署到五指手上完成 force tracking 和 in-hand reorientation。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是单一任务技巧，而是一套可复用的 dexterous sim-to-real system recipe。对 tactile-rich manipulation、感知-执行器联合建模和现实差距闭合，这样的组合式方法有明显系统外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前验证仍集中在特定硬件和两类关键技能上。虽然方法很强，但是否能成为更广泛 dexterous manipulation 的标准迁移接口，还需要更多平台和任务上的后续证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>多指灵巧手的 sim-to-real 一直比常规操作任务更难，因为接触丰富、执行器不理想，而且真实系统通常缺少高质量力觉和扭矩观测。很多方法能在模拟器里学到动作，但无法真正做到零样本落到硬件上。</p><p>这篇工作的关键在于把几件真正决定 transfer 的系统组件补全：高频虚拟触觉模拟、无需额外扭矩传感器的 current-to-torque calibration，以及对 backlash、torque-speed saturation 等执行器非理想性的随机化建模。作者据此用 asymmetric actor-critic PPO 在纯模拟中训练，并零样本部署到五指手上完成 force tracking 和 in-hand reorientation。</p><p>它值得正式收录，因为这不是单一任务技巧，而是一套可复用的 dexterous sim-to-real system recipe。对 tactile-rich manipulation、感知-执行器联合建模和现实差距闭合，这样的组合式方法有明显系统外溢。</p><p>它暂时不升到更高一级，原因在于当前验证仍集中在特定硬件和两类关键技能上。虽然方法很强，但是否能成为更广泛 dexterous manipulation 的标准迁移接口，还需要更多平台和任务上的后续证明。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>弥合现实差距：灵巧力控抓取与操作的零样本虚实迁移部署 具有多指的类人灵巧手提供了人类水平的操作能力，但由于接触丰富的物理特性和不完善的驱动，训练能够直接部署到真实硬件上的控制策略仍然很困难。我们通过一个实用的虚实迁移强化学习（RL）框架弥合了这一差距，该框架利用密集的触觉反馈结合关节扭矩传感来明确调节物理交互。为了实现有效的虚实迁移，我们引入了 (i) 一种计算快速的触觉仿真，它通过并行正运动学计算密集虚拟触觉单元与物体之间的距离，从而提供RL所需的高速率、高分辨率触觉信号；(ii) 一种电流-扭矩校准，通过将电机电流映射到关节扭矩，消除了灵巧手上对扭矩传感器的需求；以及 (iii) 执行器动力学建模，通过随机化非理想效应（如间隙、扭矩-速度饱和）来弥合驱动差距。我们的策略使用完全在仿真中训练的非对称Actor-Critic PPO管线，直接部署到五指手上。所得策略展示了两项基本技能：(1) 基于命令的可控抓取力跟踪，以及 (2) 手中物体的重新定向，这两项技能都在机器人上无需微调即可稳健执行。通过在观测空间中结合触觉和扭矩，并采用有效的传感/驱动建模，我们的系统为实现可靠的灵巧操作提供了一个实用解决方案。据我们所知，这是首次在多指灵巧手上展示可控抓取，该抓取完全在仿真中训练并零样本迁移到真实硬件上。日期：2025年12月22日 项目页面：https://dexmanip-seed.github.io/dexmanip</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Human-like dexterous hands with multiple fingers offer human-level manipulation capabilities, but training control policies that can directly deploy on real hardware remains difficult due to contactrich physics and imperfect actuation. We close this gap with a practical sim-to-real reinforcement learning (RL) framework that utilizes dense tactile feedback combined with joint torque sensing to explicitly regulate physical interactions. To enable effective sim-to-real transfer, we introduce (i) a computationally fast tactile simulation that computes distances between dense virtual tactile units and the object via parallel forward kinematics, providing high-rate, high-resolution touch signals needed by RL; (ii) a current-to-torque calibration that eliminates the need for torque sensors on dexterous hands by mapping motor current to joint torque; and (iii) actuator dynamics modeling to bridge the actuation gaps with randomization of non-ideal effects such as backlash, torque–speed saturation. Using an asymmetric actor–critic PPO pipeline trained entirely in simulation, our policies deploy directly to a five-finger hand. The resulting policies demonstrated two essential skills: (1) command-based, controllable grasp force tracking, and (2) reorientation of objects in the hand, both of which were robustly executed without fine-tuning on the robot. By combining tactile and torque in the observation space with effective sensing/actuation modeling, our system provides a practical solution to achieve reliable dexterous manipulation. To our knowledge, this is the first demonstration of controllable grasping on a multi-finger dexterous hand trained entirely in simulation and transferred zero-shot on real hardware. Date: 22 December, 2025 Project Page: https://dexmanip-seed.github.io/dexmanip</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260106rl38realit,
+  title = {Closing the Reality Gap: Zero-Shot Sim-to-Real Deployment for Dexterous Force-Based Grasping and Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.02778.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl38-reality-gap-dexterous-grasping/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Closing the Reality Gap: Zero-Shot Sim-to-Real Deployment for Dexterous Force-Based Grasping and Manipulation. https://arxiv.org/pdf/2601.02778.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.02778.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

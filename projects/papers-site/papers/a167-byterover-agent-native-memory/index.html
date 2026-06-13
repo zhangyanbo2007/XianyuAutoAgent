@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context | DAST Papers</title>
+    <meta name="description" content="现有 memory-augmented generation 系统大多把记忆外包给向量数据库、嵌入服务或图数据库，导致“负责存”的流水线并不真正理解“负责用”的知识。结果是语义漂移、多智能体上下文丢失和故障恢复脆弱，记忆层和推理层之间长期割裂。
+
+ByteRover 的核心贡献是把记忆变成 agent-native：由同一个 LLM 亲自执行记忆的整理、写入、更新和检索。它用纯 Markdown " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a167-byterover-agent-native-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context" />
+    <meta property="og:description" content="现有 memory-augmented generation 系统大多把记忆外包给向量数据库、嵌入服务或图数据库，导致“负责存”的流水线并不真正理解“负责用”的知识。结果是语义漂移、多智能体上下文丢失和故障恢复脆弱，记忆层和推理层之间长期割裂。
+
+ByteRover 的核心贡献是把记忆变成 agent-native：由同一个 LLM 亲自执行记忆的整理、写入、更新和检索。它用纯 Markdown " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a167-byterover-agent-native-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context" />
+    <meta name="twitter:description" content="现有 memory-augmented generation 系统大多把记忆外包给向量数据库、嵌入服务或图数据库，导致“负责存”的流水线并不真正理解“负责用”的知识。结果是语义漂移、多智能体上下文丢失和故障恢复脆弱，记忆层和推理层之间长期割裂。
+
+ByteRover 的核心贡献是把记忆变成 agent-native：由同一个 LLM 亲自执行记忆的整理、写入、更新和检索。它用纯 Markdown " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01599" target="_blank" rel="noopener noreferrer">2604.01599</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有 memory-augmented generation 系统大多把记忆外包给向量数据库、嵌入服务或图数据库，导致“负责存”的流水线并不真正理解“负责用”的知识。结果是语义漂移、多智能体上下文丢失和故障恢复脆弱，记忆层和推理层之间长期割裂。</dd></div><div><dt>方法/机制</dt><dd>ByteRover 的核心贡献是把记忆变成 agent-native：由同一个 LLM 亲自执行记忆的整理、写入、更新和检索。它用纯 Markdown 维护分层 Context Tree，以显式关系和 Adaptive Knowledge Lifecycle 管理知识成熟度，再通过五级渐进式检索在大多数情况下避免昂贵的 LLM 调用。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它不是又一个 memory benchmark 小改良，而是提出了清晰的新架构模式：让智能体自己维护可读、可审计、可恢复的上下文树。这条路线和仓库长期关注的 agent memory、capability extension、local-first tooling 高度一致，且具有很强工程实施价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前写入路径仍然昂贵，对底座模型遵循格式和归纳质量依赖很强，而且当知识库继续扩大时，文件系统和轻量索引方案的伸缩性还需要更多实战验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有 memory-augmented generation 系统大多把记忆外包给向量数据库、嵌入服务或图数据库，导致“负责存”的流水线并不真正理解“负责用”的知识。结果是语义漂移、多智能体上下文丢失和故障恢复脆弱，记忆层和推理层之间长期割裂。</p><p>ByteRover 的核心贡献是把记忆变成 agent-native：由同一个 LLM 亲自执行记忆的整理、写入、更新和检索。它用纯 Markdown 维护分层 Context Tree，以显式关系和 Adaptive Knowledge Lifecycle 管理知识成熟度，再通过五级渐进式检索在大多数情况下避免昂贵的 LLM 调用。</p><p>它值得正式收录，因为它不是又一个 memory benchmark 小改良，而是提出了清晰的新架构模式：让智能体自己维护可读、可审计、可恢复的上下文树。这条路线和仓库长期关注的 agent memory、capability extension、local-first tooling 高度一致，且具有很强工程实施价值。</p><p>它暂时不升到更高一级，原因在于当前写入路径仍然昂贵，对底座模型遵循格式和归纳质量依赖很强，而且当知识库继续扩大时，文件系统和轻量索引方案的伸缩性还需要更多实战验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>记忆增强生成（MAG）通过外部记忆扩展大语言模型以支持长上下文推理，但现有方法普遍将记忆视为智能体调用的外部服务——将存储委托给分块、嵌入和图提取的独立管道。这种架构分离意味着存储知识的系统不理解知识，导致智能体意图记住的内容与管道实际捕获的内容之间存在语义漂移，智能体之间协调上下文的丢失，以及故障后脆弱的恢复。在本文中，我们提出了ByteRover，一种智能体原生记忆架构，它颠覆了记忆管道：对任务进行推理的同一个LLM也负责策划、构建和检索知识。ByteRover以分层上下文树（Context Tree）的形式表示知识——一个基于文件的知识图谱，组织为领域 &gt; 主题 &gt; 子主题 &gt; 条目——其中每个条目都带有明确的关系、来源以及一个具有重要性评分、成熟度级别和新近度衰减的自适应知识生命周期（AKL）。检索采用5层渐进策略，在无需LLM调用的情况下，以低于100毫秒的延迟解决大多数查询，仅对新颖问题才升级到智能体推理。在LoCoMo和LongMemEval上的实验表明，ByteRover在LoCoMo上实现了最先进的准确性，并在LongMemEval上取得了有竞争力的结果，同时无需任何外部基础设施——没有向量数据库，没有图数据库，没有嵌入服务——所有知识都以人类可读的Markdown文件形式存储在本地文件系统上。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Memory-Augmented Generation (MAG) extends large language models with external memory to support long-context reasoning, but existing approaches universally treat memory as an external service that agents call into—delegating storage to separate pipelines of chunking, embedding, and graph extraction. This architectural separation means the system that stores knowledge does not understand it, leading to semantic drift between what the agent intended to remember and what the pipeline actually captured, loss of coordination context across agents, and fragile recovery after failures. In this paper, we propose ByteRover, an agent-native memory architecture that inverts the memory pipeline: the same LLM that reasons about a task also curates, structures, and retrieves knowledge. ByteRover represents knowledge in a hierarchical Context Tree—a file-based knowledge graph organized as Domain &gt; Topic &gt; Subtopic &gt; Entry—where each entry carries explicit relations, provenance, and an Adaptive Knowledge Lifecycle (AKL) with importance scoring, maturity tiers, and recency decay. Retrieval uses a 5-tier progressive strategy that resolves most queries at sub-100 ms latency without LLM calls, escalating to agentic reasoning only for novel questions. Experiments on LoCoMo and LongMemEval demonstrate that ByteRover achieves state-of-the-art accuracy on LoCoMo and competitive results on LongMemEval while requiring zero external infrastructure—no vector database, no graph database, no embedding service—with all knowledge stored as human-readable markdown files on the local filesystem.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260402a167bytero,
+  title = {ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01599.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a167-byterover-agent-native-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context. https://arxiv.org/pdf/2604.01599.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01599.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neural Computers | DAST Papers</title>
+    <meta name="description" content="这篇论文重新定义了 agent、world model 和传统计算机之间的边界。它提出 Neural Computer（NC）：让神经网络的潜在运行时状态同时承载计算、工作内存和 I/O，而不是让模型只作为外部操作系统、GUI 或工具链上的 agent。长期目标是 Completely Neural Computer（CNC），即具备通用可编程性、稳定执行、可复用能力和显式更新治理的 learne" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a182-neural-computers/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Neural Computers" />
+    <meta property="og:description" content="这篇论文重新定义了 agent、world model 和传统计算机之间的边界。它提出 Neural Computer（NC）：让神经网络的潜在运行时状态同时承载计算、工作内存和 I/O，而不是让模型只作为外部操作系统、GUI 或工具链上的 agent。长期目标是 Completely Neural Computer（CNC），即具备通用可编程性、稳定执行、可复用能力和显式更新治理的 learne" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a182-neural-computers/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Neural Computers" />
+    <meta name="twitter:description" content="这篇论文重新定义了 agent、world model 和传统计算机之间的边界。它提出 Neural Computer（NC）：让神经网络的潜在运行时状态同时承载计算、工作内存和 I/O，而不是让模型只作为外部操作系统、GUI 或工具链上的 agent。长期目标是 Completely Neural Computer（CNC），即具备通用可编程性、稳定执行、可复用能力和显式更新治理的 learne" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Neural Computers</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06425" target="_blank" rel="noopener noreferrer">2604.06425</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文重新定义了 agent、world model 和传统计算机之间的边界。它提出 Neural Computer（NC）：让神经网络的潜在运行时状态同时承载计算、工作内存和 I/O，而不是让模型只作为外部操作系统、GUI 或工具链上的 agent。长期目标是 Completely Neural Computer（CNC），即具备通用可编程性、稳定执行、可复用能力和显式更新治理的 learned runtime substrate。</dd></div><div><dt>方法/机制</dt><dd>论文不是只给概念图，而是用 Wan2.1 视频模型构建了两个原型：NCCLIGen 用文本/初始终端帧生成 CLI 交互 rollout，NCGUIWorld 用屏幕像素和鼠标/键盘动作生成 GUI 交互 rollout。实验系统性评估了数据质量、caption 粒度、动作注入位置、动作编码和光标监督等设计变量，并指出当前模型主要学到的是 I/O 对齐、界面渲染和短时程控制，而不是可靠符号计算。</dd></div><div><dt>结果/证据</dt><dd>它值得升级为正式收录，并给 `disruptive`，因为它把“计算机使用智能体”的问题从外部软件栈操作，推进到“模型自身是否能成为运行时”的系统级问题重构。更重要的是，论文给出了一组可复用设计结论：高质量目标导向轨迹比 1400 小时随机探索更有价值；GUI 微操需要把坐标翻译成显式视觉光标；深层 action injection 明显优于浅层条件注入；reprompting 造成的算术提升应被解释为条件渲染而非原生推理。</dd></div><div><dt>收录价值</dt><dd>它不是 `paradigm`，因为当前原型离 CNC 的核心要求仍很远：native symbolic reasoning 只有 4% 算术准确率，83% 的提升主要来自 reprompting/条件注入；能力安装、长期复用、行为一致性、run/update 边界和治理机制都还停留在路线图层面。它的价值在于建立一个强问题框架和早期工程约束，而不是已经实现了可替代传统计算机或 agent stack 的神经运行时。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文重新定义了 agent、world model 和传统计算机之间的边界。它提出 Neural Computer（NC）：让神经网络的潜在运行时状态同时承载计算、工作内存和 I/O，而不是让模型只作为外部操作系统、GUI 或工具链上的 agent。长期目标是 Completely Neural Computer（CNC），即具备通用可编程性、稳定执行、可复用能力和显式更新治理的 learned runtime substrate。</p><p>论文不是只给概念图，而是用 Wan2.1 视频模型构建了两个原型：NCCLIGen 用文本/初始终端帧生成 CLI 交互 rollout，NCGUIWorld 用屏幕像素和鼠标/键盘动作生成 GUI 交互 rollout。实验系统性评估了数据质量、caption 粒度、动作注入位置、动作编码和光标监督等设计变量，并指出当前模型主要学到的是 I/O 对齐、界面渲染和短时程控制，而不是可靠符号计算。</p><p>它值得升级为正式收录，并给 `disruptive`，因为它把“计算机使用智能体”的问题从外部软件栈操作，推进到“模型自身是否能成为运行时”的系统级问题重构。更重要的是，论文给出了一组可复用设计结论：高质量目标导向轨迹比 1400 小时随机探索更有价值；GUI 微操需要把坐标翻译成显式视觉光标；深层 action injection 明显优于浅层条件注入；reprompting 造成的算术提升应被解释为条件渲染而非原生推理。</p><p>它不是 `paradigm`，因为当前原型离 CNC 的核心要求仍很远：native symbolic reasoning 只有 4% 算术准确率，83% 的提升主要来自 reprompting/条件注入；能力安装、长期复用、行为一致性、run/update 边界和治理机制都还停留在路线图层面。它的价值在于建立一个强问题框架和早期工程约束，而不是已经实现了可替代传统计算机或 agent stack 的神经运行时。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了一个新前沿：神经计算机（NCs）——一种新兴的机器形式，它在学习到的运行时状态中统一了计算、内存和I/O。与执行显式程序的传统计算机、作用于外部执行环境的智能体以及学习环境动态的世界模型不同，NCs旨在使模型本身成为运行中的计算机。我们的长期目标是完全神经计算机（CNC）：这种新兴机器形式的成熟、通用实现，具有稳定的执行、显式重编程和持久的能力复用。作为第一步，我们研究了是否可以仅从收集到的I/O轨迹中学习早期的NC原语，而无需检测程序状态。具体来说，我们将NCs实例化为视频模型，这些模型在CLI和GUI设置中根据指令、像素和用户操作（如果可用）展开屏幕帧。这些实现表明，学习到的运行时可以获取早期的接口原语，特别是I/O对齐和短时程控制，而例行复用、受控更新和符号稳定性仍然是开放问题。我们围绕这些挑战概述了通向CNC的路线图。如果这些挑战得以克服，CNCs可能会建立一种超越当今智能体、世界模型和传统计算机的新计算范式。日期：2026年4月9日 通讯：mczhuge@gmail.com, cszhao@meta.com 博客文章：https://metauto.ai/neuralcomputer</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We propose a new frontier: Neural Computers (NCs)—an emerging machine form that unifies computation, memory, and I/O in a learned runtime state. Unlike conventional computers, which execute explicit programs, agents, which act over external execution environments, and world models, which learn environment dynamics, NCs aim to make the model itself the running computer. Our long-term goal is the Completely Neural Computer (CNC): the mature, general-purpose realization of this emerging machine form, with stable execution, explicit reprogramming, and durable capability reuse. As an initial step, we study whether early NC primitives can be learned solely from collected I/O traces, without instrumented program state. Concretely, we instantiate NCs as video models that roll out screen frames from instructions, pixels, and user actions (when available) in CLI and GUI settings. These implementations show that learned runtimes can acquire early interface primitives, especially I/O alignment and short-horizon control, while routine reuse, controlled updates, and symbolic stability remain open. We outline a roadmap toward CNCs around these challenges. If overcome, CNCs could establish a new computing paradigm beyond today’s agents, world models, and conventional computers. Date: April 9, 2026 Correspond: mczhuge@gmail.com, cszhao@meta.com Blogpost: https://metauto.ai/neuralcomputer</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407a182neural,
+  title = {Neural Computers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06425.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a182-neural-computers/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Neural Computers. https://arxiv.org/pdf/2604.06425.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06425.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

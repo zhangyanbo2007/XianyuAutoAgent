@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RAD-2: Scaling Reinforcement Learning in a Generator-Discriminator Framework | DAST Papers</title>
+    <meta name="description" content="问题与背景：自动驾驶高层规划必须同时处理多模态未来和闭环鲁棒性。纯 imitation 的 diffusion planner 能生成多样轨迹，但缺少负反馈和闭环纠错。
+
+方法与新意：RAD-2 将 diffusion generator 与 RL discriminator 解耦：generator 生成候选轨迹，discriminator 根据长期驾驶质量重排，并用 Temporally Co" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl53-rad2-autonomous-driving/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RAD-2: Scaling Reinforcement Learning in a Generator-Discriminator Framework" />
+    <meta property="og:description" content="问题与背景：自动驾驶高层规划必须同时处理多模态未来和闭环鲁棒性。纯 imitation 的 diffusion planner 能生成多样轨迹，但缺少负反馈和闭环纠错。
+
+方法与新意：RAD-2 将 diffusion generator 与 RL discriminator 解耦：generator 生成候选轨迹，discriminator 根据长期驾驶质量重排，并用 Temporally Co" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl53-rad2-autonomous-driving/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RAD-2: Scaling Reinforcement Learning in a Generator-Discriminator Framework" />
+    <meta name="twitter:description" content="问题与背景：自动驾驶高层规划必须同时处理多模态未来和闭环鲁棒性。纯 imitation 的 diffusion planner 能生成多样轨迹，但缺少负反馈和闭环纠错。
+
+方法与新意：RAD-2 将 diffusion generator 与 RL discriminator 解耦：generator 生成候选轨迹，discriminator 根据长期驾驶质量重排，并用 Temporally Co" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RAD-2: Scaling Reinforcement Learning in a Generator-Discriminator Framework</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.15308" target="_blank" rel="noopener noreferrer">2604.15308</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：自动驾驶高层规划必须同时处理多模态未来和闭环鲁棒性。纯 imitation 的 diffusion planner 能生成多样轨迹，但缺少负反馈和闭环纠错。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：RAD-2 将 diffusion generator 与 RL discriminator 解耦：generator 生成候选轨迹，discriminator 根据长期驾驶质量重排，并用 Temporally Consistent GRPO 和 on-policy generator optimization 引入闭环反馈。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇符合 embodied/control workflow 标准，因为它不是普通预测模型，而是把生成式轨迹建模和 RL 闭环评价组合成可复用 planner 训练结构。对自动驾驶、机器人规划和多候选动作选择都有借鉴价值。</dd></div><div><dt>收录价值</dt><dd>局限：当前价值仍依赖自动驾驶仿真/数据设置，迁移到开放真实道路和其他机器人任务还需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：自动驾驶高层规划必须同时处理多模态未来和闭环鲁棒性。纯 imitation 的 diffusion planner 能生成多样轨迹，但缺少负反馈和闭环纠错。</p><p>方法与新意：RAD-2 将 diffusion generator 与 RL discriminator 解耦：generator 生成候选轨迹，discriminator 根据长期驾驶质量重排，并用 Temporally Consistent GRPO 和 on-policy generator optimization 引入闭环反馈。</p><p>收录意义：这篇符合 embodied/control workflow 标准，因为它不是普通预测模型，而是把生成式轨迹建模和 RL 闭环评价组合成可复用 planner 训练结构。对自动驾驶、机器人规划和多候选动作选择都有借鉴价值。</p><p>局限：当前价值仍依赖自动驾驶仿真/数据设置，迁移到开放真实道路和其他机器人任务还需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>高级自动驾驶需要运动规划器能够模拟多模态的未来不确定性，同时在闭环交互中保持鲁棒性。尽管基于扩散的规划器在建模复杂轨迹分布方面是有效的，但当纯粹通过模仿学习进行训练时，它们常常遭受随机不稳定性和缺乏纠正性负反馈的问题。为了解决这些问题，我们提出了RAD-2，一个用于闭环规划的统一生成器-判别器框架。具体来说，一个基于扩散的生成器用于产生多样化的轨迹候选，而一个经过RL优化的判别器根据其长期驾驶质量对这些候选进行重新排序。这种解耦设计避免了将稀疏标量奖励直接应用于完整的高维轨迹空间，从而提高了优化稳定性。为了进一步增强强化学习，我们引入了时间一致性组相对策略优化（Temporally Consistent Group Relative Policy Optimization），它利用时间连贯性来缓解信用分配问题。此外，我们提出了在线策略生成器优化（On-policy Generator Optimization），它将闭环反馈转换为结构化的纵向优化信号，并逐步将生成器推向高奖励轨迹流形。为了支持高效的大规模训练，我们引入了BEV-Warp，一个高吞吐量仿真环境，通过空间扭曲直接在鸟瞰图特征空间中执行闭环评估。与强大的基于扩散的规划器相比，RAD-2将碰撞率降低了56%。实际部署进一步证明了在复杂城市交通中感知安全性和驾驶平稳性的提高。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>High-level autonomous driving requires motion planners capable of modeling multimodal future uncertainties while remaining robust in closed-loop interactions. Although diffusion-based planners are effective at modeling complex trajectory distributions, they often suffer from stochastic instabilities and the lack of corrective negative feedback when trained purely with imitation learning. To address these issues, we propose RAD-2, a unified generatordiscriminator framework for closed-loop planning. Specifically, a diffusion-based generator is used to produce diverse trajectory candidates, while an RL-optimized discriminator reranks these candidates according to their long-term driving quality. This decoupled design avoids directly applying sparse scalar rewards to the full high-dimensional trajectory space, thereby improving optimization stability. To further enhance reinforcement learning, we introduce Temporally Consistent Group Relative Policy Optimization, which exploits temporal coherence to alleviate the credit assignment problem. In addition, we propose On-policy Generator Optimization, which converts closed-loop feedback into structured longitudinal optimization signals and progressively shifts the generator toward high-reward trajectory manifolds. To support efficient large-scale training, we introduce BEV-Warp, a high-throughput simulation environment that performs closed-loop evaluation directly in Bird’s-Eye View feature space via spatial warping. RAD-2 reduces the collision rate by 56% compared with strong diffusion-based planners. Real-world deployment further demonstrates improved perceived safety and driving smoothness in complex urban traffic.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416rl53rad2au,
+  title = {RAD-2: Scaling Reinforcement Learning in a Generator-Discriminator Framework},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.15308.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl53-rad2-autonomous-driving/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RAD-2: Scaling Reinforcement Learning in a Generator-Discriminator Framework. https://arxiv.org/pdf/2604.15308.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.15308.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

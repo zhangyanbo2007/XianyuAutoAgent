@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minimizing Modality Gap from the Input Side: Your Speech LLM Can Be a Prosody-Aware Text LLM | DAST Papers</title>
+    <meta name="description" content="这篇论文重新定位 Speech LLM 的 modality gap：问题不只在输出端把语音生成变得更像文本生成，剩余瓶颈主要来自输入端给 LLM 的 speech representation 不够 TLM-compatible。
+
+作者提出 TextPro-SLM，把 Speech LLM 改造成 prosody-aware text LLM。核心组件 WhisperPro 同时输出同步 te" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm71-textpro-slm-prosody-aware-text-llm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Minimizing Modality Gap from the Input Side: Your Speech LLM Can Be a Prosody-Aware Text LLM" />
+    <meta property="og:description" content="这篇论文重新定位 Speech LLM 的 modality gap：问题不只在输出端把语音生成变得更像文本生成，剩余瓶颈主要来自输入端给 LLM 的 speech representation 不够 TLM-compatible。
+
+作者提出 TextPro-SLM，把 Speech LLM 改造成 prosody-aware text LLM。核心组件 WhisperPro 同时输出同步 te" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm71-textpro-slm-prosody-aware-text-llm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Minimizing Modality Gap from the Input Side: Your Speech LLM Can Be a Prosody-Aware Text LLM" />
+    <meta name="twitter:description" content="这篇论文重新定位 Speech LLM 的 modality gap：问题不只在输出端把语音生成变得更像文本生成，剩余瓶颈主要来自输入端给 LLM 的 speech representation 不够 TLM-compatible。
+
+作者提出 TextPro-SLM，把 Speech LLM 改造成 prosody-aware text LLM。核心组件 WhisperPro 同时输出同步 te" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Minimizing Modality Gap from the Input Side: Your Speech LLM Can Be a Prosody-Aware Text LLM</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.05927" target="_blank" rel="noopener noreferrer">2605.05927</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文重新定位 Speech LLM 的 modality gap：问题不只在输出端把语音生成变得更像文本生成，剩余瓶颈主要来自输入端给 LLM 的 speech representation 不够 TLM-compatible。</dd></div><div><dt>方法/机制</dt><dd>作者提出 TextPro-SLM，把 Speech LLM 改造成 prosody-aware text LLM。核心组件 WhisperPro 同时输出同步 text tokens 和 prosody embeddings，显式分离 what is said 与 how it is said。</dd></div><div><dt>结果/证据</dt><dd>LLM backbone 通过知识蒸馏保留原始 text LLM 的语义能力，同时学习 emotion、speaking style、speaker timbre 等 paralinguistic understanding；实验显示 3B/7B 规模下 modality gap 更低，并且只需约 1,000 小时 LLM 训练音频。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它给 speech-language multimodal foundation models 提供了清晰的输入侧接口设计：让语音输入尽量贴近文本 LLM 的工作形态，同时保留韵律和副语言信息。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文重新定位 Speech LLM 的 modality gap：问题不只在输出端把语音生成变得更像文本生成，剩余瓶颈主要来自输入端给 LLM 的 speech representation 不够 TLM-compatible。</p><p>作者提出 TextPro-SLM，把 Speech LLM 改造成 prosody-aware text LLM。核心组件 WhisperPro 同时输出同步 text tokens 和 prosody embeddings，显式分离 what is said 与 how it is said。</p><p>LLM backbone 通过知识蒸馏保留原始 text LLM 的语义能力，同时学习 emotion、speaking style、speaker timbre 等 paralinguistic understanding；实验显示 3B/7B 规模下 modality gap 更低，并且只需约 1,000 小时 LLM 训练音频。</p><p>它值得正式收录，因为它给 speech-language multimodal foundation models 提供了清晰的输入侧接口设计：让语音输入尽量贴近文本 LLM 的工作形态，同时保留韵律和副语言信息。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>语音大型语言模型（SLMs）通常基于文本大型语言模型（TLM）检查点构建，但它们仍然存在显著的模态差距。先前的工作主要试图通过使语音生成更像文本来从输出端缩小这一差距，但差距依然存在。我们认为，关键的剩余瓶颈在于输入端。我们提出了TextPro-SLM，一个使语音输入更接近于韵律感知文本LLM的SLM。TextPro-SLM将WhisperPro（一个产生同步文本token和韵律嵌入的统一语音编码器）与一个LLM骨干模型相结合，该骨干模型经过训练，旨在保留原始TLM的语义能力，同时学习副语言理解。实验表明，TextPro-SLM在3B和7B规模上均实现了领先SLM中最低的模态差距，同时在副语言理解任务上提供了强大的整体性能。这些成果仅通过大约1,000小时的LLM训练音频实现，这表明从输入端缩小模态差距既有效又数据高效。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Speech large language models (SLMs) are typically built from text large language model (TLM) checkpoints, yet they still suffer from a substantial modality gap. Prior work has mainly attempted to reduce this gap from the output side by making speech generation more text-like, but the gap remains. We argue that the key remaining bottleneck lies on the input side. We propose TextPro-SLM, an SLM that makes spoken input more closely resemble that of a prosody-aware text LLM. TextPro-SLM combines WhisperPro, a unified speech encoder that produces synchronized text tokens and prosody embeddings, with an LLM backbone trained to preserve the semantic capabilities of the original TLM while learning paralinguistic understanding. Experiments show that TextPro-SLM achieves the lowest modality gap among leading SLMs at both 3B and 7B scales, while also delivering strong overall performance on paralinguistic understanding tasks. These gains are achieved with only roughly 1,000 hours of LLM training audio, suggesting that reducing the modality gap from the input side is both effective and data-efficient.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260508mm71textpr,
+  title = {Minimizing Modality Gap from the Input Side: Your Speech LLM Can Be a Prosody-Aware Text LLM},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.05927.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm71-textpro-slm-prosody-aware-text-llm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Minimizing Modality Gap from the Input Side: Your Speech LLM Can Be a Prosody-Aware Text LLM. https://arxiv.org/pdf/2605.05927.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.05927.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

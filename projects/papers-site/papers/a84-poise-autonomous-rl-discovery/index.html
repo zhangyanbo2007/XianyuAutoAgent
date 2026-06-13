@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From AI Assistant to AI Scientist: Autonomous Discovery of LLM-RL Algorithms with LLM Agents | DAST Papers</title>
+    <meta name="description" content="改进语言模型的 policy optimization 算法一直高度依赖研究者手工试错，因为它不只是调参数，而是要围绕训练动力学、机制改写和评测证据持续迭代。POISE 处理的正是这个层面的问题：能不能让 LLM agents 不只是帮人跑实验，而是自己形成提案、实现、验证和反思闭环，从而发现新的 LLM-RL 算法机制。
+
+论文提出一个闭环算法发现框架，维护带 genealogy 的 archi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a84-poise-autonomous-rl-discovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="From AI Assistant to AI Scientist: Autonomous Discovery of LLM-RL Algorithms with LLM Agents" />
+    <meta property="og:description" content="改进语言模型的 policy optimization 算法一直高度依赖研究者手工试错，因为它不只是调参数，而是要围绕训练动力学、机制改写和评测证据持续迭代。POISE 处理的正是这个层面的问题：能不能让 LLM agents 不只是帮人跑实验，而是自己形成提案、实现、验证和反思闭环，从而发现新的 LLM-RL 算法机制。
+
+论文提出一个闭环算法发现框架，维护带 genealogy 的 archi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a84-poise-autonomous-rl-discovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From AI Assistant to AI Scientist: Autonomous Discovery of LLM-RL Algorithms with LLM Agents" />
+    <meta name="twitter:description" content="改进语言模型的 policy optimization 算法一直高度依赖研究者手工试错，因为它不只是调参数，而是要围绕训练动力学、机制改写和评测证据持续迭代。POISE 处理的正是这个层面的问题：能不能让 LLM agents 不只是帮人跑实验，而是自己形成提案、实现、验证和反思闭环，从而发现新的 LLM-RL 算法机制。
+
+论文提出一个闭环算法发现框架，维护带 genealogy 的 archi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>From AI Assistant to AI Scientist: Autonomous Discovery of LLM-RL Algorithms with LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23951" target="_blank" rel="noopener noreferrer">2603.23951</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>改进语言模型的 policy optimization 算法一直高度依赖研究者手工试错，因为它不只是调参数，而是要围绕训练动力学、机制改写和评测证据持续迭代。POISE 处理的正是这个层面的问题：能不能让 LLM agents 不只是帮人跑实验，而是自己形成提案、实现、验证和反思闭环，从而发现新的 LLM-RL 算法机制。</dd></div><div><dt>方法/机制</dt><dd>论文提出一个闭环算法发现框架，维护带 genealogy 的 archive，把 proposal、可执行实现、标准化评测和自然语言反思全部串起来，支持 evidence-driven iteration。以 GRPO 为起点，系统在 64 个候选里发现了 analytic-variance scaling 和 validity masking 等更优机制，并在数学推理训练里显著提升了 weighted Overall 和 AIME25 pass@32。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它给出了“LLM agents 发现 RL algorithm mechanism”的硬证据，而不是泛泛的 AI scientist 叙事。对 autoresearch、自我改进 agent、post-training algorithm discovery 以及 agent-driven ML systems research 都有明确外溢，也和仓库已收录的 autoresearch 主线形成闭环。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为当前验证仍集中在一条 LLM-RL 算法族和数学推理评测上。它已经说明 agent 可以参与机制级算法发现，但距离广泛迁移到更多研究领域和更开放的发现任务，还有一段距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>改进语言模型的 policy optimization 算法一直高度依赖研究者手工试错，因为它不只是调参数，而是要围绕训练动力学、机制改写和评测证据持续迭代。POISE 处理的正是这个层面的问题：能不能让 LLM agents 不只是帮人跑实验，而是自己形成提案、实现、验证和反思闭环，从而发现新的 LLM-RL 算法机制。</p><p>论文提出一个闭环算法发现框架，维护带 genealogy 的 archive，把 proposal、可执行实现、标准化评测和自然语言反思全部串起来，支持 evidence-driven iteration。以 GRPO 为起点，系统在 64 个候选里发现了 analytic-variance scaling 和 validity masking 等更优机制，并在数学推理训练里显著提升了 weighted Overall 和 AIME25 pass@32。</p><p>它值得正式收录，因为它给出了“LLM agents 发现 RL algorithm mechanism”的硬证据，而不是泛泛的 AI scientist 叙事。对 autoresearch、自我改进 agent、post-training algorithm discovery 以及 agent-driven ML systems research 都有明确外溢，也和仓库已收录的 autoresearch 主线形成闭环。</p><p>它目前仍是 breakthrough，而不是更高一级，因为当前验证仍集中在一条 LLM-RL 算法族和数学推理评测上。它已经说明 agent 可以参与机制级算法发现，但距离广泛迁移到更多研究领域和更开放的发现任务，还有一段距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从AI助手到AI科学家：利用LLM智能体自主发现LLM-RL算法。为语言模型发现改进的策略优化算法仍然是一个耗费成本的手动过程，需要反复进行机制层面的修改和验证。与简单的组合代码搜索不同，这个问题需要搜索与训练动态紧密耦合的算法机制，同时在迭代过程中重用经验证据。我们提出了POISE，一个用于自动发现语言模型策略优化算法的闭环框架。POISE维护一个结构化、谱系关联的档案，将提案、可执行实现、标准化评估和自然语言反思联系起来，以支持证据驱动的迭代。在从GRPO开始的数学推理实验中，POISE评估了64个候选算法，并发现了改进的机制，包括解析方差缩放和有效性掩蔽。最佳变体将加权总体（weighted Overall）从47.8提高到52.5（+4.6），并将AIME25 pass@32从26.7%提高到43.3%，这证明了自动策略优化发现的可行性，同时支持可解释的设计原则。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Discovering improved policy optimization algorithms for language models remains a costly manual process requiring repeated mechanismlevel modification and validation. Unlike simple combinatorial code search, this problem requires searching over algorithmic mechanisms tightly coupled with training dynamics while reusing empirical evidence across iterations. We propose POISE, a closed-loop framework for automated discovery of policy optimization algorithms for language models. POISE maintains a structured, genealogically linked archive linking proposals, executable implementations, standardized evaluations, and natural-language reflections to support evidence-driven iteration. In mathematical reasoning experiments starting from GRPO, POISE evaluates 64 candidate algorithms and discovers improved mechanisms, including analytic-variance scaling and validity masking. The best variant improves weighted Overall from 47.8 to 52.5 (+4.6) and increases AIME25 pass@32 from 26.7% to 43.3%, demonstrating the feasibility of automated policy optimization discovery while supporting interpretable design principles.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325a84poiseau,
+  title = {From AI Assistant to AI Scientist: Autonomous Discovery of LLM-RL Algorithms with LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23951.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a84-poise-autonomous-rl-discovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). From AI Assistant to AI Scientist: Autonomous Discovery of LLM-RL Algorithms with LLM Agents. https://arxiv.org/pdf/2603.23951.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23951.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

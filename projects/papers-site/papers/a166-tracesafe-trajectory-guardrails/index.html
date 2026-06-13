@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TraceSafe: A Systematic Assessment of LLM Guardrails on Multi-Step Tool-Calling Trajectories | DAST Papers</title>
+    <meta name="description" content="这篇论文瞄准的是一个在 agent systems 里越来越关键但之前缺少系统评测的问题：随着 LLM 从聊天接口转向多步 tool-calling execution，真正的风险表面已经从最终自然语言输出转移到中间执行轨迹，但大多数 guardrail 评测仍停留在 final-response safety。结果是很多看起来“安全”的系统，在真实工具轨迹里仍可能暴露 prompt inject" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a166-tracesafe-trajectory-guardrails/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TraceSafe: A Systematic Assessment of LLM Guardrails on Multi-Step Tool-Calling Trajectories" />
+    <meta property="og:description" content="这篇论文瞄准的是一个在 agent systems 里越来越关键但之前缺少系统评测的问题：随着 LLM 从聊天接口转向多步 tool-calling execution，真正的风险表面已经从最终自然语言输出转移到中间执行轨迹，但大多数 guardrail 评测仍停留在 final-response safety。结果是很多看起来“安全”的系统，在真实工具轨迹里仍可能暴露 prompt inject" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a166-tracesafe-trajectory-guardrails/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TraceSafe: A Systematic Assessment of LLM Guardrails on Multi-Step Tool-Calling Trajectories" />
+    <meta name="twitter:description" content="这篇论文瞄准的是一个在 agent systems 里越来越关键但之前缺少系统评测的问题：随着 LLM 从聊天接口转向多步 tool-calling execution，真正的风险表面已经从最终自然语言输出转移到中间执行轨迹，但大多数 guardrail 评测仍停留在 final-response safety。结果是很多看起来“安全”的系统，在真实工具轨迹里仍可能暴露 prompt inject" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TraceSafe: A Systematic Assessment of LLM Guardrails on Multi-Step Tool-Calling Trajectories</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.07223" target="_blank" rel="noopener noreferrer">2604.07223</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文瞄准的是一个在 agent systems 里越来越关键但之前缺少系统评测的问题：随着 LLM 从聊天接口转向多步 tool-calling execution，真正的风险表面已经从最终自然语言输出转移到中间执行轨迹，但大多数 guardrail 评测仍停留在 final-response safety。结果是很多看起来“安全”的系统，在真实工具轨迹里仍可能暴露 prompt injection、隐私泄漏、幻觉传染和接口状态错配等风险。</dd></div><div><dt>方法/机制</dt><dd>TraceSafe 的核心贡献不是再造一个单点防御器，而是提出面向 mid-trajectory safety 的系统 benchmark。论文构建了 TraceSafe-Bench，覆盖 12 类风险、超过 1000 个执行实例，并统一评测 13 个 LLM-as-a-guard 模型与 7 类专用 guardrails。它把 safety 问题从“最后一句话是否违规”改写成“执行过程中每一步是否仍可控、可审计、可拦截”，这对 tool-use agents 的评测接口有明显外溢。</dd></div><div><dt>结果/证据</dt><dd>这篇应收进仓库，因为它补的是 governed execution 主线里此前相对缺口的一层：trajectory-level safety evaluation。相比只做 policy、runtime enforcement 或 static verification，TraceSafe 让我们能系统比较 guardrails 在多步真实工具调用中的结构性瓶颈，适合作为后续 agent safety、tool risk mitigation、trajectory diagnosis 和 deployment review 的基础参考。</dd></div><div><dt>收录价值</dt><dd>这篇目前仍是 arXiv 预印本，主要价值在 benchmark 与系统性评测，而不是提出一个已经被广泛验证的新 guardrail 标准栈。它更像一个非常强的 evaluation interface 和 failure-surface clarifier，还没有达到范式级改写，因此先定为 `breakthrough`。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文瞄准的是一个在 agent systems 里越来越关键但之前缺少系统评测的问题：随着 LLM 从聊天接口转向多步 tool-calling execution，真正的风险表面已经从最终自然语言输出转移到中间执行轨迹，但大多数 guardrail 评测仍停留在 final-response safety。结果是很多看起来“安全”的系统，在真实工具轨迹里仍可能暴露 prompt injection、隐私泄漏、幻觉传染和接口状态错配等风险。</p><p>TraceSafe 的核心贡献不是再造一个单点防御器，而是提出面向 mid-trajectory safety 的系统 benchmark。论文构建了 TraceSafe-Bench，覆盖 12 类风险、超过 1000 个执行实例，并统一评测 13 个 LLM-as-a-guard 模型与 7 类专用 guardrails。它把 safety 问题从“最后一句话是否违规”改写成“执行过程中每一步是否仍可控、可审计、可拦截”，这对 tool-use agents 的评测接口有明显外溢。</p><p>这篇应收进仓库，因为它补的是 governed execution 主线里此前相对缺口的一层：trajectory-level safety evaluation。相比只做 policy、runtime enforcement 或 static verification，TraceSafe 让我们能系统比较 guardrails 在多步真实工具调用中的结构性瓶颈，适合作为后续 agent safety、tool risk mitigation、trajectory diagnosis 和 deployment review 的基础参考。</p><p>这篇目前仍是 arXiv 预印本，主要价值在 benchmark 与系统性评测，而不是提出一个已经被广泛验证的新 guardrail 标准栈。它更像一个非常强的 evaluation interface 和 failure-surface clarifier，还没有达到范式级改写，因此先定为 `breakthrough`。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>随着大型语言模型（LLMs）从静态聊天机器人演变为自主代理，主要漏洞表面从最终输出转向中间执行轨迹。尽管安全护栏在自然语言响应方面已得到充分基准测试，但它们在多步骤工具使用轨迹中的有效性仍未得到充分探索。为弥补这一空白，我们引入了T RACE S AFE -B ENCH，这是第一个专门设计用于评估轨迹中安全性的综合基准。它涵盖了12个风险类别，从安全威胁（例如，提示注入、隐私泄露）到操作故障（例如，幻觉、接口不一致），包含超过1,000个独特的执行实例。我们的评估</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>As large language models (LLMs) evolve from static chatbots into autonomous agents, the primary vulnerability surface shifts from final outputs to intermediate execution traces. While safety guardrails are wellbenchmarked for natural language responses, their efficacy remains largely unexplored within multi-step tool-use trajectories. To address this gap, we introduce T RACE S AFE -B ENCH, the first comprehensive benchmark specifically designed to assess mid-trajectory safety. It encompasses 12 risk categories, ranging from security threats (e.g., prompt injection, privacy leaks) to operational failures (e.g., hallucinations, interface inconsistencies), featuring over 1,000 unique execution instances. Our evaluation of</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260408a166traces,
+  title = {TraceSafe: A Systematic Assessment of LLM Guardrails on Multi-Step Tool-Calling Trajectories},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.07223.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a166-tracesafe-trajectory-guardrails/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TraceSafe: A Systematic Assessment of LLM Guardrails on Multi-Step Tool-Calling Trajectories. https://arxiv.org/pdf/2604.07223.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.07223.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

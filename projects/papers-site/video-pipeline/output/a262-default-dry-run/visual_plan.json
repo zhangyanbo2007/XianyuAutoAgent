@@ -1,0 +1,412 @@
+[
+  {
+    "index": 0,
+    "kind": "title",
+    "title": "这篇论文真正要解决什么？",
+    "narration": "这期视频拆解《Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction》，先抓住 retrieval 这条主线，再沿着论文证据一步步还原它的贡献。这一页的任务是先立住论文问题，而不是先堆结论；观众需要马上知道这篇论文为什么值得被拆解。 本页绑定对应论文锚点。",
+    "paper_anchor": "method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+    "template": "hero_title",
+    "duration_sec": 18.0,
+    "data": {},
+    "visual_prompt": "这篇论文真正要解决什么？ method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction; central symbolic object from the paper inside a holographic technical interface; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "cyan"
+  },
+  {
+    "index": 1,
+    "kind": "question",
+    "title": "Retrieval 的关键问题",
+    "narration": "不要把这篇论文看成几个术语的组合，它真正要回答的是：retrieval 和 corpus 之间到底缺了哪种可验证的连接。这里把标题里的概念翻译成一个可追问的问题，让后面的实验、指标或案例都围绕同一个判断展开。 本页绑定对应论文锚点。",
+    "paper_anchor": "method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+    "template": "core_question",
+    "duration_sec": 24.0,
+    "data": {},
+    "visual_prompt": "Retrieval 的关键问题 method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction; large investigative question structure with evidence particles and data paths; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "magenta"
+  },
+  {
+    "index": 2,
+    "kind": "gap",
+    "title": "论文要补上的缺口",
+    "narration": "这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。这一页说明论文补上的空白：过去的做法哪里不够，作者为什么要换一种观察方式。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。",
+    "template": "paper_gap_iceberg",
+    "duration_sec": 24.0,
+    "data": {},
+    "visual_prompt": "论文要补上的缺口 task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。; visible surface claim above a hidden mechanism layer made of luminous data blocks; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "green"
+  },
+  {
+    "index": 3,
+    "kind": "method",
+    "title": "方法：把问题变成证据链",
+    "narration": "现代检索系统，无论是词汇型还是语义型，都通过一个固定的相似性接口来暴露语料库，该接口在推理之前将访问压缩为单个top-k检索步骤。这种抽象是高效的，但对于智能体搜索而言，它成为了一个瓶颈：精确的词汇约束、稀疏线索的结合、局部上下文检查以及多步假设细化很难通过调用传统的现成检索器来实现，并且早期被过滤掉的证据无法通过更强的下游推理来恢复。智能体任务进一步加剧了这一限制，因为它们要求智能体协调多个步骤，包括发现中间实体、组合弱线索以及在观察到部分证据后修改计划。为了解决这一限制，我们研究了直接语料库交互（DCI），其中智能体使用通用终端工具（例如grep、文件读取、shell命令、轻量级脚本）直接搜索原始语料库，无需任何嵌入模型、向量索引或检索API。这种方法不需要离线索引，并且自然地适应不断演变的本地语料库。在IR基准测试和端到端智能体搜索任务中，这种简单的设置在多个BRIGHT和BEIR数据集上显著优于强大的稀疏、密集和重排序基线，并在BrowseComp-Plus和多跳QA上获得了很高的准确性，而无需依赖任何传统的语义检索器。我们的结果表明，随着语言智能体变得更强大，检索质量不仅取决于推理能力，还取决于模型与语料库交互的接口的分辨率，DCI为智能体搜索开辟了更广阔的接口设计空间。图1：BrowseComp-Plus上性能与成本的帕累托前沿，比较了两种范式：检索（Qwen3-Embed-8B检索器）和我们提出的直接语料库交互（两个DCI-Agents ⋆ 和 ⋆）。x轴显示了整个评估集上的估计API成本。†：项目负责人。*：核心贡献者。B：通讯作者。预印本。方法页要把抽象贡献落到流程上：输入是什么，系统如何处理，最后用什么证据证明它有效。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段",
+    "template": "method_transfer",
+    "duration_sec": 24.0,
+    "data": {},
+    "visual_prompt": "方法：把问题变成证据链 task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段; source problem transforming into a method pipeline and evaluation architecture; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "gold"
+  },
+  {
+    "index": 4,
+    "kind": "overview",
+    "title": "全片路线图",
+    "narration": "视频会按论文主线展开：先讲问题和方法，再看关键证据，最后回到限制与下一步方向。路线图页负责给观众定位，后面的每个画面都会回到这些核心概念、证据链和结论节点。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 而是要主动和语料互动",
+    "template": "task_matrix",
+    "duration_sec": 24.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ]
+    },
+    "visual_prompt": "全片路线图 task: 而是要主动和语料互动 retrieval corpus agentic interaction; four quadrant technical matrix showing paper concepts as modular system nodes; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "cyan"
+  },
+  {
+    "index": 5,
+    "kind": "data",
+    "title": "证据链从哪里来",
+    "narration": "在进入具体结论前，先把论文里可追溯的锚点和核心概念摆出来，让每一页画面都能回到原文依据。证据页先建立可信度：不是孤立观点，而是来自论文里的任务、指标、实验设置或可复查材料。 本页绑定对应论文锚点。",
+    "paper_anchor": "finding: 这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。",
+    "template": "metric_cards",
+    "duration_sec": 24.0,
+    "data": {
+      "metrics": [
+        {
+          "label": "论文锚点",
+          "value": "14"
+        },
+        {
+          "label": "核心概念",
+          "value": "10"
+        }
+      ]
+    },
+    "visual_prompt": "证据链从哪里来 finding: 这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。 论文锚点 14 核心概念 10; floating measurement panels and audit cards arranged in a clean interface; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "magenta"
+  },
+  {
+    "index": 6,
+    "kind": "method",
+    "title": "方法：Beyond Semantic Similarity:…",
+    "narration": "这一页聚焦论文里的具体锚点：Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction。把它放回 retrieval 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。方法页要把抽象贡献落到流程上：输入是什么，系统如何处理，最后用什么证据证明它有效。 本页绑定对应论文锚点。",
+    "paper_anchor": "method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+    "template": "method_transfer",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "方法：Beyond Semantic Similarity:… method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERAC; source problem transforming into a method pipeline and evaluation architecture; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "green"
+  },
+  {
+    "index": 7,
+    "kind": "task",
+    "title": "任务：这篇论文的价值在于挑战 agentic search…",
+    "narration": "这一页聚焦论文里的具体锚点：这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。。把它放回 corpus 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。这一页只展开一个论文锚点，先解释它测什么，再解释它为什么能支撑全片主线。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。",
+    "template": "task_matrix",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "任务：这篇论文的价值在于挑战 agentic search… task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。 retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERACTION 44; four quadrant technical matrix showing paper concepts as modular system nodes; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "gold"
+  },
+  {
+    "index": 8,
+    "kind": "task",
+    "title": "任务：这篇论文的价值在于挑战 agentic search…",
+    "narration": "这一页聚焦论文里的具体锚点：这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段。把它放回 agentic 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。这一页只展开一个论文锚点，先解释它测什么，再解释它为什么能支撑全片主线。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段",
+    "template": "split_comparison",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "任务：这篇论文的价值在于挑战 agentic search… task: 这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段 retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERACTION 44; two technical systems compared side by side with signal paths between them; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "cyan"
+  },
+  {
+    "index": 9,
+    "kind": "task",
+    "title": "任务：而是要主动和语料互动",
+    "narration": "这一页聚焦论文里的具体锚点：而是要主动和语料互动。把它放回 interaction 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。这一页只展开一个论文锚点，先解释它测什么，再解释它为什么能支撑全片主线。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 而是要主动和语料互动",
+    "template": "task_matrix",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "任务：而是要主动和语料互动 task: 而是要主动和语料互动 retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERACTION 44; four quadrant technical matrix showing paper concepts as modular system nodes; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "magenta"
+  },
+  {
+    "index": 10,
+    "kind": "finding",
+    "title": "发现：这个 framing 对搜索 agent 很关键。长期…",
+    "narration": "这一页聚焦论文里的具体锚点：这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。。把它放回 search 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。讲发现时不只读结果，而是把结果翻译成一句诊断：它改变了我们对这个问题的哪一层理解。 本页绑定对应论文锚点。",
+    "paper_anchor": "finding: 这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。",
+    "template": "ranking_board",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "发现：这个 framing 对搜索 agent 很关键。长期… finding: 这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。 retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERACTION 44; model or method comparison board with progress bars and confidence traces; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "green"
+  },
+  {
+    "index": 11,
+    "kind": "task",
+    "title": "任务：这个 framing 对搜索 agent 很关键。长期…",
+    "narration": "这一页聚焦论文里的具体锚点：这个 framing 对搜索 agent 很关键。长期研究。把它放回 direct 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。这一页只展开一个论文锚点，先解释它测什么，再解释它为什么能支撑全片主线。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 这个 framing 对搜索 agent 很关键。长期研究",
+    "template": "task_matrix",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "任务：这个 framing 对搜索 agent 很关键。长期… task: 这个 framing 对搜索 agent 很关键。长期研究 retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERACTION 44; four quadrant technical matrix showing paper concepts as modular system nodes; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "gold"
+  },
+  {
+    "index": 12,
+    "kind": "task",
+    "title": "任务：代码和科学文献任务都要求 agent 直接操作证据集合",
+    "narration": "这一页聚焦论文里的具体锚点：代码和科学文献任务都要求 agent 直接操作证据集合。把它放回 api 这条主线里看，观众能看到作者不是在泛泛描述，而是在逐步建立可验证的判断。这一页只展开一个论文锚点，先解释它测什么，再解释它为什么能支撑全片主线。 本页绑定对应论文锚点。",
+    "paper_anchor": "task: 代码和科学文献任务都要求 agent 直接操作证据集合",
+    "template": "split_comparison",
+    "duration_sec": 22.0,
+    "data": {
+      "tasks": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction"
+      ],
+      "rows": [
+        "retrieval",
+        "corpus",
+        "agentic",
+        "interaction",
+        "search"
+      ],
+      "bars": [
+        [
+          "RETRIEVAL",
+          92
+        ],
+        [
+          "CORPUS",
+          76
+        ],
+        [
+          "AGENTIC",
+          61
+        ],
+        [
+          "INTERACTION",
+          44
+        ]
+      ]
+    },
+    "visual_prompt": "任务：代码和科学文献任务都要求 agent 直接操作证据集合 task: 代码和科学文献任务都要求 agent 直接操作证据集合 retrieval corpus agentic interaction retrieval corpus agentic interaction search RETRIEVAL 92 CORPUS 76 AGENTIC 61 INTERACTION 44; two technical systems compared side by side with signal paths between them; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "cyan"
+  },
+  {
+    "index": 13,
+    "kind": "ending",
+    "title": "回到论文的核心判断",
+    "narration": "最后回到这篇论文本身：它真正留下的不是一个孤立结论，而是一条关于 retrieval、corpus 和证据边界的判断路径。好的论文视频应该让观众记住这条路径，而不是只记住几个热闹名词。结尾回扣开头问题，把论文的核心判断收束成观众能记住的一句话，并保留继续追问的入口。 本页绑定对应论文锚点。",
+    "paper_anchor": "method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+    "template": "hero_title",
+    "duration_sec": 20.0,
+    "data": {},
+    "visual_prompt": "回到论文的核心判断 method: Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction; central symbolic object from the paper inside a holographic technical interface; cinematic high-tech paper explainer visual, dark background, neon HUD, holographic interface, technical data flow, sharp depth, no readable text, no watermark",
+    "accent": "magenta"
+  }
+]

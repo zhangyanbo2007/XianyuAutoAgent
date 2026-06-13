@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlashSampling: Fast and Memory-Efficient Exact Sampling | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是大词表解码里一个看似简单、但在系统上长期低效的步骤：从语言模型输出分布中采样下一个 token。传统实现通常在 LM head matmul 之后把完整 logits 张量写回 HBM，再单独做 softmax / sampling 或 Gumbel 采样，这会引入额外的显存流量和 kernel 开销，尤其在推理解码阶段很不划算。
+
+FlashSampling 的核心思路是把 ex" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys8-flashsampling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FlashSampling: Fast and Memory-Efficient Exact Sampling" />
+    <meta property="og:description" content="这篇论文处理的是大词表解码里一个看似简单、但在系统上长期低效的步骤：从语言模型输出分布中采样下一个 token。传统实现通常在 LM head matmul 之后把完整 logits 张量写回 HBM，再单独做 softmax / sampling 或 Gumbel 采样，这会引入额外的显存流量和 kernel 开销，尤其在推理解码阶段很不划算。
+
+FlashSampling 的核心思路是把 ex" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys8-flashsampling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FlashSampling: Fast and Memory-Efficient Exact Sampling" />
+    <meta name="twitter:description" content="这篇论文处理的是大词表解码里一个看似简单、但在系统上长期低效的步骤：从语言模型输出分布中采样下一个 token。传统实现通常在 LM head matmul 之后把完整 logits 张量写回 HBM，再单独做 softmax / sampling 或 Gumbel 采样，这会引入额外的显存流量和 kernel 开销，尤其在推理解码阶段很不划算。
+
+FlashSampling 的核心思路是把 ex" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FlashSampling: Fast and Memory-Efficient Exact Sampling</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15854" target="_blank" rel="noopener noreferrer">2603.15854</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是大词表解码里一个看似简单、但在系统上长期低效的步骤：从语言模型输出分布中采样下一个 token。传统实现通常在 LM head matmul 之后把完整 logits 张量写回 HBM，再单独做 softmax / sampling 或 Gumbel 采样，这会引入额外的显存流量和 kernel 开销，尤其在推理解码阶段很不划算。</dd></div><div><dt>方法/机制</dt><dd>FlashSampling 的核心思路是把 exact categorical sampling 直接融合进 LM head matmul，不再显式 materialize 完整 logits。它按 tile 在片上计算 logits，注入 Gumbel 噪声，只保留每个 tile 的候选最大值，最后再做一个很小的跨 tile 归约。关键点在于这仍然是精确采样，不是近似或裁剪式替代；论文还给出在线和张量并行场景下的 grouped exact variants。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这是一个很干净、可复用的推理系统 primitive。和很多只在特定框架里做工程技巧堆叠的优化不同，这篇工作直接改写了 large-vocab decoding 里 sampling 这一步的实现边界：把一个带宽受限的后处理步骤压缩进 matmul epilogue。对高吞吐推理、vLLM 类 serving 系统和未来 decoder kernel 设计都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，原因在于它仍然属于推理 kernel/primitive 层的强系统论文，而不是会改变模型训练或架构范式的工作。它的价值在于 exact、通用、工程收益明确，但影响面仍主要集中在解码系统栈。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是大词表解码里一个看似简单、但在系统上长期低效的步骤：从语言模型输出分布中采样下一个 token。传统实现通常在 LM head matmul 之后把完整 logits 张量写回 HBM，再单独做 softmax / sampling 或 Gumbel 采样，这会引入额外的显存流量和 kernel 开销，尤其在推理解码阶段很不划算。</p><p>FlashSampling 的核心思路是把 exact categorical sampling 直接融合进 LM head matmul，不再显式 materialize 完整 logits。它按 tile 在片上计算 logits，注入 Gumbel 噪声，只保留每个 tile 的候选最大值，最后再做一个很小的跨 tile 归约。关键点在于这仍然是精确采样，不是近似或裁剪式替代；论文还给出在线和张量并行场景下的 grouped exact variants。</p><p>它值得收录，因为这是一个很干净、可复用的推理系统 primitive。和很多只在特定框架里做工程技巧堆叠的优化不同，这篇工作直接改写了 large-vocab decoding 里 sampling 这一步的实现边界：把一个带宽受限的后处理步骤压缩进 matmul epilogue。对高吞吐推理、vLLM 类 serving 系统和未来 decoder kernel 设计都有明显外溢价值。</p><p>它没有升到更高一级，原因在于它仍然属于推理 kernel/primitive 层的强系统论文，而不是会改变模型训练或架构范式的工作。它的价值在于 exact、通用、工程收益明确，但影响面仍主要集中在解码系统栈。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：FlashSampling：快速且内存高效的精确采样从分类分布中采样在数学上很简单，但在大词汇量解码中，它通常会在LM头之后触发额外的内存流量和额外的内核。我们提出了FlashSampling，这是一种精确采样原语，它将采样融合到LM头矩阵乘法（matmul）中，并且从不在HBM中具体化logits张量。该方法很简单：在芯片上逐块计算logits，添加Gumbel噪声，每行和每个词汇块只保留一个最大值，最后对块进行少量归约。融合的平铺内核是精确的，因为argmax可以分解为分区；用于在线和张量并行设置的分组变体通过分类分布的层次分解实现精确。在H100、H200、B200和B300 GPU上，FlashSampling加速了内核级解码工作负载，并且在端到端vLLM实验中，它在我们测试的模型上将每个输出token的时间减少了高达19%。这些结果表明，精确采样（不带任何近似）可以集成到矩阵乘法本身中，将带宽受限的后处理步骤转变为轻量级的尾声。项目页面：https://github.com/FlashSampling/FlashSampling</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Sampling from a categorical distribution is mathematically simple, but in large-vocabulary decoding, it often triggers extra memory traffic and extra kernels after the LM head. We present FlashSampling, an exact sampling primitive that fuses sampling into the LM-head matmul and never materializes the logits tensor in HBM. The method is simple: compute logits tile-by-tile on chip, add Gumbel noise, keep only one maximizer per row and per vocabulary tile, and finish with a small reduction over tiles. The fused tiled kernel is exact because argmax decomposes over a partition; grouped variants for online and tensor-parallel settings are exact by hierarchical factorization of the categorical distribution. Across H100, H200, B200, and B300 GPUs, FlashSampling speeds up kernel-level decode workloads, and in end-to-end vLLM experiments, it reduces time per output token by up to 19% on the models we test. These results show that exact sampling, with no approximation, can be integrated into the matmul itself, turning a bandwidth-bound postprocessing step into a lightweight epilogue. Project Page: https://github.com/FlashSampling/FlashSampling</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316sys8flashs,
+  title = {FlashSampling: Fast and Memory-Efficient Exact Sampling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15854v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys8-flashsampling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FlashSampling: Fast and Memory-Efficient Exact Sampling. https://arxiv.org/pdf/2603.15854v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15854v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

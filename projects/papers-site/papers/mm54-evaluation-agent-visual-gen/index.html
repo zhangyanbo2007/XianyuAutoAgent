@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluation Agent: Efficient and Promptable Evaluation Framework for Visual Generative Models | DAST Papers</title>
+    <meta name="description" content="这篇 ACL 2025 论文关注视觉生成模型评估问题：固定指标很难覆盖用户想要的质量、对齐、细节一致性和任务特定要求。Evaluation Agent 把评估做成可 prompt 的 agentic framework。
+
+它的复用价值在于评测接口：用户可以指定评价维度，系统通过更结构化的检查流程评估生成结果。这比单一 CLIPScore、FID 或一次性 VLM judge 更接近可操作评估工作" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm54-evaluation-agent-visual-gen/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Evaluation Agent: Efficient and Promptable Evaluation Framework for Visual Generative Models" />
+    <meta property="og:description" content="这篇 ACL 2025 论文关注视觉生成模型评估问题：固定指标很难覆盖用户想要的质量、对齐、细节一致性和任务特定要求。Evaluation Agent 把评估做成可 prompt 的 agentic framework。
+
+它的复用价值在于评测接口：用户可以指定评价维度，系统通过更结构化的检查流程评估生成结果。这比单一 CLIPScore、FID 或一次性 VLM judge 更接近可操作评估工作" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm54-evaluation-agent-visual-gen/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Evaluation Agent: Efficient and Promptable Evaluation Framework for Visual Generative Models" />
+    <meta name="twitter:description" content="这篇 ACL 2025 论文关注视觉生成模型评估问题：固定指标很难覆盖用户想要的质量、对齐、细节一致性和任务特定要求。Evaluation Agent 把评估做成可 prompt 的 agentic framework。
+
+它的复用价值在于评测接口：用户可以指定评价维度，系统通过更结构化的检查流程评估生成结果。这比单一 CLIPScore、FID 或一次性 VLM judge 更接近可操作评估工作" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Evaluation Agent: Efficient and Promptable Evaluation Framework for Visual Generative Models</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2025-07-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-07-01</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 ACL 2025 论文关注视觉生成模型评估问题：固定指标很难覆盖用户想要的质量、对齐、细节一致性和任务特定要求。Evaluation Agent 把评估做成可 prompt 的 agentic framework。</dd></div><div><dt>方法/机制</dt><dd>它的复用价值在于评测接口：用户可以指定评价维度，系统通过更结构化的检查流程评估生成结果。这比单一 CLIPScore、FID 或一次性 VLM judge 更接近可操作评估工作流。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它属于 multimodal generation 的 durable evaluation workflow。生成模型竞争越来越依赖评估可靠性，这类 promptable evaluation agent 有明显基础设施价值。</dd></div><div><dt>收录价值</dt><dd>局限是 agent judge 仍会继承底座 VLM 偏差，评估一致性、抗提示操纵和与人类偏好的校准需要持续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 ACL 2025 论文关注视觉生成模型评估问题：固定指标很难覆盖用户想要的质量、对齐、细节一致性和任务特定要求。Evaluation Agent 把评估做成可 prompt 的 agentic framework。</p><p>它的复用价值在于评测接口：用户可以指定评价维度，系统通过更结构化的检查流程评估生成结果。这比单一 CLIPScore、FID 或一次性 VLM judge 更接近可操作评估工作流。</p><p>按本库标准，它属于 multimodal generation 的 durable evaluation workflow。生成模型竞争越来越依赖评估可靠性，这类 promptable evaluation agent 有明显基础设施价值。</p><p>局限是 agent judge 仍会继承底座 VLM 偏差，评估一致性、抗提示操纵和与人类偏好的校准需要持续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>评估代理：面向视觉生成模型的有效且可提示的评估框架。视觉生成模型最近的进展使得高质量图像和视频生成成为可能，开辟了多样化的应用。然而，评估这些模型通常需要采样数百或数千张图像或视频，这使得评估过程计算成本高昂，特别是对于固有的慢采样扩散模型。此外，现有的评估方法依赖于僵化的流程，这些流程忽视了特定的用户需求，并且在没有清晰解释的情况下提供数值结果。相比之下，人类只需观察少量样本就能快速形成对模型能力的印象。为了模仿这一点，我们提出了评估代理（Evaluation Agent）框架，该框架采用类人策略进行高效、动态、多轮评估，每轮仅使用少量样本，同时提供详细的、用户定制的分析。它提供了四个主要优势：1) 效率，2) 可根据不同用户需求定制的可提示评估，3) 超越单一数值分数的解释性，以及 4) 跨各种模型和工具的可扩展性。实验表明，评估代理将评估时间缩短至传统方法的10%，同时提供可比较的结果。评估代理框架已完全开源，以推动视觉生成模型及其高效评估的研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent advancements in visual generative models have enabled high-quality image and video generation, opening diverse applications. However, evaluating these models often demands sampling hundreds or thousands of images or videos, making the process computationally exEvaluation pensive, especially for models Evaluation Agent Benchmarks / diffusion-based with inherently Metrics slow sampling. VisualMoreover, existGenerative ing evaluation methods relyModels on rigid pipelines Evaluation Results 𝑦 Evaluation Results 𝑦ො that overlook specific user needs and provide + Intermediate Analysis Domain without Experts numerical results clear explanations. In contrast, Evaluation humans can quickly form impresSummary Evaluation Summary and Analysis and Analysis sions of a model’s capabilities by observing Evaluation Agent (Ours) Approaches only a few Existing samples. To mimic this, we pro(a) Comparison of Evaluation Paradigms pose the Evaluation Agent framework, which employs human-like strategies for efficient, dynamic, multi-round evaluations using only a few samples per round, while offering detailed, user-tailored analyses. It offers four key advantages: 1) efficiency, 2) promptable evaluation tailored to diverse user needs, 3) explainability beyond single numerical scores, and 4) scalability across various models and tools. Experiments show that Evaluation Agent reduces evaluation time to 10% of traditional methods while delivering comparable results. The Evaluation Agent framework is fully open-sourced to advance research in visual generative models and their efficient evaluation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250701mm54evalua,
+  title = {Evaluation Agent: Efficient and Promptable Evaluation Framework for Visual Generative Models},
+  year = {2025},
+  url = {https://aclanthology.org/2025.acl-long.374.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm54-evaluation-agent-visual-gen/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Evaluation Agent: Efficient and Promptable Evaluation Framework for Visual Generative Models. https://aclanthology.org/2025.acl-long.374.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://aclanthology.org/2025.acl-long.374.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

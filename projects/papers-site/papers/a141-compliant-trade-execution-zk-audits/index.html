@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Safe and Compliant Cross-Market Trade Execution via Constrained RL and Zero-Knowledge Audits | DAST Papers</title>
+    <meta name="description" content="算法交易系统真正困难的部分，不只是执行质量，而是如何在复杂多市场环境中同时满足监管约束、避免自成交、控制参与率，并在事后能够向审计方证明整个执行过程确实守规。很多方法能优化交易结果，却没有把合规和可证明审计做成同等优先级的系统原语。
+
+这篇工作把问题建模为带硬约束的 CMDP，用 PPO 训练执行 agent，并通过 runtime action shield 把任何不安全动作投影回可行集合。更关" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a141-compliant-trade-execution-zk-audits/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Safe and Compliant Cross-Market Trade Execution via Constrained RL and Zero-Knowledge Audits" />
+    <meta property="og:description" content="算法交易系统真正困难的部分，不只是执行质量，而是如何在复杂多市场环境中同时满足监管约束、避免自成交、控制参与率，并在事后能够向审计方证明整个执行过程确实守规。很多方法能优化交易结果，却没有把合规和可证明审计做成同等优先级的系统原语。
+
+这篇工作把问题建模为带硬约束的 CMDP，用 PPO 训练执行 agent，并通过 runtime action shield 把任何不安全动作投影回可行集合。更关" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a141-compliant-trade-execution-zk-audits/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Safe and Compliant Cross-Market Trade Execution via Constrained RL and Zero-Knowledge Audits" />
+    <meta name="twitter:description" content="算法交易系统真正困难的部分，不只是执行质量，而是如何在复杂多市场环境中同时满足监管约束、避免自成交、控制参与率，并在事后能够向审计方证明整个执行过程确实守规。很多方法能优化交易结果，却没有把合规和可证明审计做成同等优先级的系统原语。
+
+这篇工作把问题建模为带硬约束的 CMDP，用 PPO 训练执行 agent，并通过 runtime action shield 把任何不安全动作投影回可行集合。更关" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Safe and Compliant Cross-Market Trade Execution via Constrained RL and Zero-Knowledge Audits</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-10-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.04952" target="_blank" rel="noopener noreferrer">2510.04952</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>算法交易系统真正困难的部分，不只是执行质量，而是如何在复杂多市场环境中同时满足监管约束、避免自成交、控制参与率，并在事后能够向审计方证明整个执行过程确实守规。很多方法能优化交易结果，却没有把合规和可证明审计做成同等优先级的系统原语。</dd></div><div><dt>方法/机制</dt><dd>这篇工作把问题建模为带硬约束的 CMDP，用 PPO 训练执行 agent，并通过 runtime action shield 把任何不安全动作投影回可行集合。更关键的是，它额外加入 zero-knowledge compliance audit layer，在不暴露专有信号的前提下，对所有动作满足约束给出可验证密码学证明。这里的新意不是单一的 safe RL 或合规模块，而是把 constrained RL、运行时屏蔽和 cryptographic auditability 收成一体化执行架构。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这种模式明显超出金融垂直应用。凡是高风险、强约束、需要第三方可验证合规的自主决策系统，都可以借鉴这套设计：先让策略在约束下学习，再用 runtime shield 保底，最后用 proof layer 做外部审计。这对未来 agentic finance、regulated automation，甚至高合规企业工作流都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>当前证据仍主要来自 ABIDES 模拟器中的 cross-market execution 场景，真实市场部署、延迟模型和更广监管环境下的耐久性还没有完全证明。因此我给它 breakthrough，而不抬到更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>算法交易系统真正困难的部分，不只是执行质量，而是如何在复杂多市场环境中同时满足监管约束、避免自成交、控制参与率，并在事后能够向审计方证明整个执行过程确实守规。很多方法能优化交易结果，却没有把合规和可证明审计做成同等优先级的系统原语。</p><p>这篇工作把问题建模为带硬约束的 CMDP，用 PPO 训练执行 agent，并通过 runtime action shield 把任何不安全动作投影回可行集合。更关键的是，它额外加入 zero-knowledge compliance audit layer，在不暴露专有信号的前提下，对所有动作满足约束给出可验证密码学证明。这里的新意不是单一的 safe RL 或合规模块，而是把 constrained RL、运行时屏蔽和 cryptographic auditability 收成一体化执行架构。</p><p>它值得正式收录，因为这种模式明显超出金融垂直应用。凡是高风险、强约束、需要第三方可验证合规的自主决策系统，都可以借鉴这套设计：先让策略在约束下学习，再用 runtime shield 保底，最后用 proof layer 做外部审计。这对未来 agentic finance、regulated automation，甚至高合规企业工作流都有外溢价值。</p><p>当前证据仍主要来自 ABIDES 模拟器中的 cross-market execution 场景，真实市场部署、延迟模型和更广监管环境下的耐久性还没有完全证明。因此我给它 breakthrough，而不抬到更高一级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。我们提出了一种最先进的跨市场算法交易系统，该系统在执行性能与严格合规性之间取得平衡。我们的架构包括一个高级规划器（Planner）、一个基于强化学习（RL）的执行代理（Execution Agent）和一个合规代理（Compliance Agent）。我们将交易执行问题形式化为一个约束马尔可夫决策过程（CMDP），其中包含对交易量参与、价格边界和避免自成交的硬性约束。近端策略优化（PPO）算法作为执行代理的RL骨干，而运行时防护（Shield）模块通过实时将任何不安全动作投射到可行集中来保证约束满足。为确保可审计性，我们引入了一个新颖的零知识合规审计（zkCA）层，该层生成加密零知识证明，验证所有交易行为均符合约束，同时不泄露敏感交易信息。我们在基于ABIDES的高保真多代理市场模拟器中，跨多个交易场所评估了我们的系统。实验表明，与基准算法（如TWAP、VWAP等）相比，我们的RL代理实现了卓越的执行性能（更低的实施短缺和方差），同时未发生任何合规违规。在高网络延迟、部分订单成交、合规模块切换和不同约束限制下的压力测试表明，系统性能稳健且严格遵守约束。我们报告了95%置信水平下的统计显著性（配对t检验），并通过CVaR分析了尾部风险。详尽的相关工作回顾将我们的贡献置于最优交易执行、安全强化学习（CMDP和动作防护）、监管科技（RegTech）和可验证AI的交叉点。我们讨论了伦理影响、局限性（例如模型假设和计算开销）以及在实际交易中部署安全强化学习的未来方向。我们的结果表明，将正式合规机制整合到RL驱动的交易中，可以使可信赖的AI代理在提供有竞争力的执行质量的同时，可证明地遵守市场法规。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. We present a state-of-the-art cross-market algorithmic trading system that balances execution performance with rigorous compliance enforcement. Our architecture consists of a high-level Planner, a Reinforcement Learning (RL) based Execution Agent, and a Compliance Agent. We formalize the trade execution problem as a Constrained Markov Decision Process (CMDP) with hard constraints on trade volume participation, price boundaries, and self-trading avoidance. A Proximal Policy Optimization (PPO) algorithm serves as the RL backbone for the Execution Agent, while a runtime Shield module guarantees constraint satisfaction by projecting any unsafe action into a feasible set in real time. To ensure auditability, we introduce a novel Zero-Knowledge Compliance Audit (zkCA) layer that produces cryptographic zero-knowledge proofs verifying that all trading actions complied with constraints, without revealing sensitive trading information. We evaluate our system in a high-fidelity multi-agent market simulator (based on ABIDES) across multiple trading venues. Experiments demonstrate that our RL agent achieves superior execution performance (lower implementation shortfall and variance) compared to benchmark algorithms (TWAP, VWAP, etc.), while incurring zero compliance violations. Stress tests under high network latency, partial order fills, compliance module toggling, and varying constraint limits show robust performance and strict adherence to constraints. We report statistical significance at the 95% confidence level (paired t-tests) and analyze tail-risk via CVaR. A thorough related work review situates our contributions at the intersection of optimal trade execution, safe RL (CMDPs and action shielding), regulatory technology (RegTech), and verifiable AI. We discuss ethical implications, limitations (e.g. model assumptions and computational overhead), and future directions for deploying safe RL in real-world trading. Our results indicate that integrating formal compliance mechanisms into RL-driven trading can enable trustworthy AI agents that deliver competitive execution quality while provably respecting market regulations.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251006a141compli,
+  title = {Safe and Compliant Cross-Market Trade Execution via Constrained RL and Zero-Knowledge Audits},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.04952v2.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a141-compliant-trade-execution-zk-audits/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Safe and Compliant Cross-Market Trade Execution via Constrained RL and Zero-Knowledge Audits. https://arxiv.org/pdf/2510.04952v2.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.04952v2.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

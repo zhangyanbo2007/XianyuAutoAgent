@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IRASim: A Fine-Grained World Model for Robot Manipulation | DAST Papers</title>
+    <meta name="description" content="机器人操作中的 world model 一直受限于一个很具体但关键的问题：动作和视觉结果之间往往对不齐，尤其在精细交互场景里，已有方法难以稳定建模机器人与物体之间的细粒度接触和状态变化。这直接限制了 world model 在策略评估、规划和测试时扩展中的实际价值。
+
+IRASim 的核心做法是训练一个面向机器人操作的视频生成 world model，并在 diffusion transforme" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl33-irasim-robot-world-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="IRASim: A Fine-Grained World Model for Robot Manipulation" />
+    <meta property="og:description" content="机器人操作中的 world model 一直受限于一个很具体但关键的问题：动作和视觉结果之间往往对不齐，尤其在精细交互场景里，已有方法难以稳定建模机器人与物体之间的细粒度接触和状态变化。这直接限制了 world model 在策略评估、规划和测试时扩展中的实际价值。
+
+IRASim 的核心做法是训练一个面向机器人操作的视频生成 world model，并在 diffusion transforme" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl33-irasim-robot-world-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="IRASim: A Fine-Grained World Model for Robot Manipulation" />
+    <meta name="twitter:description" content="机器人操作中的 world model 一直受限于一个很具体但关键的问题：动作和视觉结果之间往往对不齐，尤其在精细交互场景里，已有方法难以稳定建模机器人与物体之间的细粒度接触和状态变化。这直接限制了 world model 在策略评估、规划和测试时扩展中的实际价值。
+
+IRASim 的核心做法是训练一个面向机器人操作的视频生成 world model，并在 diffusion transforme" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>IRASim: A Fine-Grained World Model for Robot Manipulation</h1>
+          <p class="subtitle">强化学习 · 发表：2024-06-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-06-20</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>机器人操作中的 world model 一直受限于一个很具体但关键的问题：动作和视觉结果之间往往对不齐，尤其在精细交互场景里，已有方法难以稳定建模机器人与物体之间的细粒度接触和状态变化。这直接限制了 world model 在策略评估、规划和测试时扩展中的实际价值。</dd></div><div><dt>方法/机制</dt><dd>IRASim 的核心做法是训练一个面向机器人操作的视频生成 world model，并在 diffusion transformer 内引入 frame-level 的 action conditioning 模块，强化动作与帧之间的精细对齐。论文报告它不仅能生成更细粒度的操作视频，而且在 policy evaluation 上与真实 simulator 表现出更强相关性，并可用于 test-time scaling 的 model-based planning 来提升操作性能。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它不是单纯把视频生成搬到机器人场景，而是把 world model 真正推向了可用于操作策略评估和规划的基础设施层。这对 embodied world model、robot planning 和部署期扩展都有直接方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因是这条线仍主要集中在 robot manipulation world model 子方向；虽然结果扎实，但是否会成为更广泛 embodied planning 的长期默认接口，还需要更多跨任务和跨平台复用来验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>机器人操作中的 world model 一直受限于一个很具体但关键的问题：动作和视觉结果之间往往对不齐，尤其在精细交互场景里，已有方法难以稳定建模机器人与物体之间的细粒度接触和状态变化。这直接限制了 world model 在策略评估、规划和测试时扩展中的实际价值。</p><p>IRASim 的核心做法是训练一个面向机器人操作的视频生成 world model，并在 diffusion transformer 内引入 frame-level 的 action conditioning 模块，强化动作与帧之间的精细对齐。论文报告它不仅能生成更细粒度的操作视频，而且在 policy evaluation 上与真实 simulator 表现出更强相关性，并可用于 test-time scaling 的 model-based planning 来提升操作性能。</p><p>它值得正式收录，因为它不是单纯把视频生成搬到机器人场景，而是把 world model 真正推向了可用于操作策略评估和规划的基础设施层。这对 embodied world model、robot planning 和部署期扩展都有直接方法外溢。</p><p>它暂时不升到更高一级，原因是这条线仍主要集中在 robot manipulation world model 子方向；虽然结果扎实，但是否会成为更广泛 embodied planning 的长期默认接口，还需要更多跨任务和跨平台复用来验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>IRASim：一种用于机器人操作的细粒度世界模型世界模型通过预测不同动作的视觉结果，使自主智能体能够进行规划和探索。然而，对于机器人操作而言，现有方法在视觉空间中准确建模细粒度的机器人-物体交互具有挑战性，因为它们忽略了每个动作与相应帧之间的精确对齐。在本文中，我们提出了IRASim，这是一种新颖的世界模型，能够根据历史观测和机器人动作轨迹生成具有细粒度机器人-物体交互细节的视频。我们训练了一个扩散Transformer，并在每个Transformer块中引入了一个新颖的帧级动作条件模块，以明确建模并加强动作-帧对齐。大量实验表明：（1）我们方法生成的视频质量超越了所有基线方法，并随着模型尺寸和计算量的增加而有效扩展；（2）使用IRASim进行的策略评估与使用真实模拟器进行的评估表现出很强的相关性，突显了其加速真实世界策略评估的潜力；（3）通过IRASim进行基于模型的规划在测试时扩展显著提升了策略性能，IoU指标在Push-T基准上从0.637提高到0.961即是明证；（4）IRASim提供了灵活的动作可控性，允许通过键盘或VR控制器控制数据集中虚拟机械臂。视频和代码可在https://gen-irasim.github.io/获取。图1. IRASim概述。IRASim是一种用于机器人操作的细粒度世界模型。它根据历史观测，生成高保真视频，模拟机器人执行动作轨迹时精确的机器人-物体交互。策略评估——它们可以生成真实且合理的物理交互，为真实世界评估提供了一种高效的替代方案[32]。在训练用于机器人操作的世界模型时，准确模拟机器人、物体和周围环境之间复杂的交互仍然是一个重大挑战。操作任务本质上是精细的，即使是细微的变化也可能导致任务失败。因此，构建一个细粒度的世界模型对于忠实捕捉这些精确交互至关重要。此外，现代机器人操作策略利用动作分块技术[9, 57]，该技术生成动作轨迹而非单个动作来完成复杂的操纵任务。在本文中，我们专注于构建一个世界模型，该模型根据历史观测（图1）生成机器人执行动作轨迹的视频，其中包含细粒度的机器人-物体交互细节。我们将此任务称为轨迹到视频任务。受文本到视频生成[6, 59]最新进展的启发，我们利用生成模型来捕捉对于表示世界复杂动态（例如，机器人-物体接触和物体关节运动）至关重要的视觉细节。然而，文本到视频模型是基于提供一般上下文线索而非详细帧级指令的高级文本描述来生成视频的。这与轨迹到视频任务不同，在轨迹到视频任务中，每个</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>World models allow autonomous agents to plan and explore by predicting the visual outcomes of different actions. However, for robot manipulation, it is challenging to accurately model the fine-grained robot-object interaction within the visual space using existing methods which overlooks precise alignment between each action and the corresponding frame. In this paper, we present IRASim, a novel world model capable of generating videos with fine-grained robotobject interaction details, conditioned on historical observations and robot action trajectories. We train a diffusion transformer and introduce a novel frame-level actionconditioning module within each transformer block to explicitly model and strengthen the action-frame alignment. Extensive experiments show that: (1) the quality of the videos generated by our method surpasses all the baseline methods and scales effectively with increased model size and computation; (2) policy evaluations using IRASim exhibit a strong correlation with those using the ground-truth simulator, highlighting its potential to accelerate real-world policy evaluation; (3) testing-time scaling through modelbased planning with IRASim significantly enhances policy performance, as evidenced by an improvement in the IoU metric on the Push-T benchmark from 0.637 to 0.961; (4) IRASim provides flexible action controllability, allowing virtual robotic arms in datasets to be controlled via a keyboard or VR controller. Video and code are available at https://gen-irasim.github.io/. Figure 1. Overview of IRASim. IRASim is a fine-grained world model for robot manipulation. It generates high-fidelity videos that simulate accurate robot-object interactions of a robot executes an action trajectory, given historical observation. icy evaluation – they can generate realistic and reasonable physical interactions, providing an efficient alternative to real-world evaluation [32]. When training a world model for robot manipulation, accurately simulating the intricate interactions between the robot, objects, and the surrounding environment remains a substantial challenge. Manipulation tasks are inherently delicate, where even subtle variations can result in task failure. Consequently, constructing a fine-grained world model is essential for faithfully capturing these precise interactions. Moreover, modern robotic manipulation policy leverages an action chunking technique [9, 57] which generates action trajectories rather than single actions to accomplish complex manipulation tasks. In this paper, we focus on building a world model that generates videos, with fine-grained robotobject interaction details, of a robot executing an action trajectory given historical observation (Fig. 1). We refer to this task as the trajectory-to-video task. Inspired by recent advances in text-to-video generation [6, 59], we leverage generative models to capture visual details that are essential for representing the intricate dynamics of the world (e.g., robot-object contact and object articulation). However, textto-video models are trained to generate videos based on high-level textual descriptions that provide general contextual cues rather than detailed, frame-level instructions. This is different from the trajectory-to-video task in which each</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240620rl33irasim,
+  title = {IRASim: A Fine-Grained World Model for Robot Manipulation},
+  year = {2024},
+  url = {https://openaccess.thecvf.com/content/ICCV2025/papers/Zhu_IRASim_A_Fine-Grained_World_Model_for_Robot_Manipulation_ICCV_2025_paper.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl33-irasim-robot-world-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). IRASim: A Fine-Grained World Model for Robot Manipulation. https://openaccess.thecvf.com/content/ICCV2025/papers/Zhu_IRASim_A_Fine-Grained_World_Model_for_Robot_Manipulation_ICCV_2025_paper.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Zhu_IRASim_A_Fine-Grained_World_Model_for_Robot_Manipulation_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

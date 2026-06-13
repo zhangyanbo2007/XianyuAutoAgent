@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Optimal Brain Decomposition for Accurate LLM Low-Rank Approximation | DAST Papers</title>
+    <meta name="description" content="低秩分解已经成为 LLM 压缩、部署和高效适配中的常见工具，但很多方法仍主要围绕输入侧激活白化或简单 SVD 展开，对分解误差与模型损失之间的关系建模并不充分。这使得不少低秩近似方法虽然实用，却仍然更像经验手艺而不是真正最优的分解方案。OBD-LLM 针对的就是这个问题。
+
+论文利用二阶 Hessian 信息重新推导 LLM 权重分解问题，通过 Kronecker 因子化显示最优分解需要同时考虑层" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r28-obd-llm-low-rank/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Optimal Brain Decomposition for Accurate LLM Low-Rank Approximation" />
+    <meta property="og:description" content="低秩分解已经成为 LLM 压缩、部署和高效适配中的常见工具，但很多方法仍主要围绕输入侧激活白化或简单 SVD 展开，对分解误差与模型损失之间的关系建模并不充分。这使得不少低秩近似方法虽然实用，却仍然更像经验手艺而不是真正最优的分解方案。OBD-LLM 针对的就是这个问题。
+
+论文利用二阶 Hessian 信息重新推导 LLM 权重分解问题，通过 Kronecker 因子化显示最优分解需要同时考虑层" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r28-obd-llm-low-rank/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Optimal Brain Decomposition for Accurate LLM Low-Rank Approximation" />
+    <meta name="twitter:description" content="低秩分解已经成为 LLM 压缩、部署和高效适配中的常见工具，但很多方法仍主要围绕输入侧激活白化或简单 SVD 展开，对分解误差与模型损失之间的关系建模并不充分。这使得不少低秩近似方法虽然实用，却仍然更像经验手艺而不是真正最优的分解方案。OBD-LLM 针对的就是这个问题。
+
+论文利用二阶 Hessian 信息重新推导 LLM 权重分解问题，通过 Kronecker 因子化显示最优分解需要同时考虑层" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Optimal Brain Decomposition for Accurate LLM Low-Rank Approximation</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00821" target="_blank" rel="noopener noreferrer">2604.00821</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>低秩分解已经成为 LLM 压缩、部署和高效适配中的常见工具，但很多方法仍主要围绕输入侧激活白化或简单 SVD 展开，对分解误差与模型损失之间的关系建模并不充分。这使得不少低秩近似方法虽然实用，却仍然更像经验手艺而不是真正最优的分解方案。OBD-LLM 针对的就是这个问题。</dd></div><div><dt>方法/机制</dt><dd>论文利用二阶 Hessian 信息重新推导 LLM 权重分解问题，通过 Kronecker 因子化显示最优分解需要同时考虑层的输入与输出信息，而不是只看输入统计。基于这一点，作者提出 bi-directional whitening 的 loss-aware decomposition，并给出 closed-form solution，用更严格的模型空间视角取代单侧白化近似。实验上，相比 SVD-LLM 等已有方法报告了约 20% 到 40% 的改进。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把低秩分解从经验性压缩技巧推进成更清晰的二阶优化对象。对仓库关注的低秩方法、模型压缩和可复用适配接口来说，这种从 Hessian 结构出发的 closed-form decomposition 有明显长期价值，不只是一次局部提分。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前影响仍主要集中在 LLM low-rank approximation 这条子线，外溢范围还不足以重写更广泛的 PEFT 或部署范式。它是很强的方法推进，但暂时还不是路线级变化。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>低秩分解已经成为 LLM 压缩、部署和高效适配中的常见工具，但很多方法仍主要围绕输入侧激活白化或简单 SVD 展开，对分解误差与模型损失之间的关系建模并不充分。这使得不少低秩近似方法虽然实用，却仍然更像经验手艺而不是真正最优的分解方案。OBD-LLM 针对的就是这个问题。</p><p>论文利用二阶 Hessian 信息重新推导 LLM 权重分解问题，通过 Kronecker 因子化显示最优分解需要同时考虑层的输入与输出信息，而不是只看输入统计。基于这一点，作者提出 bi-directional whitening 的 loss-aware decomposition，并给出 closed-form solution，用更严格的模型空间视角取代单侧白化近似。实验上，相比 SVD-LLM 等已有方法报告了约 20% 到 40% 的改进。</p><p>这篇工作值得收录，因为它把低秩分解从经验性压缩技巧推进成更清晰的二阶优化对象。对仓库关注的低秩方法、模型压缩和可复用适配接口来说，这种从 Hessian 结构出发的 closed-form decomposition 有明显长期价值，不只是一次局部提分。</p><p>它没有升到更高一级，是因为当前影响仍主要集中在 LLM low-rank approximation 这条子线，外溢范围还不足以重写更广泛的 PEFT 或部署范式。它是很强的方法推进，但暂时还不是路线级变化。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r28obdllml,
+  title = {Optimal Brain Decomposition for Accurate LLM Low-Rank Approximation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00821.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r28-obd-llm-low-rank/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Optimal Brain Decomposition for Accurate LLM Low-Rank Approximation. https://arxiv.org/pdf/2604.00821.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00821.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

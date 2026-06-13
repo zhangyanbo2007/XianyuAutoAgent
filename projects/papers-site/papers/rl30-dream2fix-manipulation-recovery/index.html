@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis | DAST Papers</title>
+    <meta name="description" content="机器人操作系统已经能完成越来越复杂的抓取与装配任务，但真正难落地的地方往往不是成功执行，而是失败后能否安全、低成本地恢复。现有 failure-learning 路线通常依赖真实失败数据采集或 simulator perturbation，两者分别受制于成本/安全和明显的 sim-to-real gap。
+
+这篇工作的关键新意是 Dream2Fix：它不从模拟器里合成粗糙错误，而是从成功真实演示出" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl30-dream2fix-manipulation-recovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis" />
+    <meta property="og:description" content="机器人操作系统已经能完成越来越复杂的抓取与装配任务，但真正难落地的地方往往不是成功执行，而是失败后能否安全、低成本地恢复。现有 failure-learning 路线通常依赖真实失败数据采集或 simulator perturbation，两者分别受制于成本/安全和明显的 sim-to-real gap。
+
+这篇工作的关键新意是 Dream2Fix：它不从模拟器里合成粗糙错误，而是从成功真实演示出" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl30-dream2fix-manipulation-recovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis" />
+    <meta name="twitter:description" content="机器人操作系统已经能完成越来越复杂的抓取与装配任务，但真正难落地的地方往往不是成功执行，而是失败后能否安全、低成本地恢复。现有 failure-learning 路线通常依赖真实失败数据采集或 simulator perturbation，两者分别受制于成本/安全和明显的 sim-to-real gap。
+
+这篇工作的关键新意是 Dream2Fix：它不从模拟器里合成粗糙错误，而是从成功真实演示出" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.13528" target="_blank" rel="noopener noreferrer">2603.13528</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>机器人操作系统已经能完成越来越复杂的抓取与装配任务，但真正难落地的地方往往不是成功执行，而是失败后能否安全、低成本地恢复。现有 failure-learning 路线通常依赖真实失败数据采集或 simulator perturbation，两者分别受制于成本/安全和明显的 sim-to-real gap。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的关键新意是 Dream2Fix：它不从模拟器里合成粗糙错误，而是从成功真实演示出发，在 generative world model 中做动作扰动，生成成对的 counterfactual failure-correction rollouts，再通过任务有效性、视觉一致性和运动学安全的结构化验证机制筛掉不可用样本。基于得到的 12 万级高保真 paired dataset，作者再微调 VLM，让模型直接从视觉异常预测失败类型和可执行的恢复轨迹。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为真正可复用的价值不只是 manipulation accuracy 提升，而是提供了一个从成功演示自动构造 recovery training data 的 durable workflow。对具身智能和 long-horizon robot control 来说，这是一条比直接采集真实失败数据更可扩展的 failure-to-recovery learning pattern，也把 generative world model 与 closed-loop recovery 更紧地接到了一起。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要集中在 manipulation failure recovery 这一子线，且真实世界验证规模还不足以证明它会改写更广义的 embodied learning default。现阶段更像一条很强的方法和数据生成接口，而不是整个机器人学习范式的重写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>机器人操作系统已经能完成越来越复杂的抓取与装配任务，但真正难落地的地方往往不是成功执行，而是失败后能否安全、低成本地恢复。现有 failure-learning 路线通常依赖真实失败数据采集或 simulator perturbation，两者分别受制于成本/安全和明显的 sim-to-real gap。</p><p>这篇工作的关键新意是 Dream2Fix：它不从模拟器里合成粗糙错误，而是从成功真实演示出发，在 generative world model 中做动作扰动，生成成对的 counterfactual failure-correction rollouts，再通过任务有效性、视觉一致性和运动学安全的结构化验证机制筛掉不可用样本。基于得到的 12 万级高保真 paired dataset，作者再微调 VLM，让模型直接从视觉异常预测失败类型和可执行的恢复轨迹。</p><p>它值得正式收录，因为真正可复用的价值不只是 manipulation accuracy 提升，而是提供了一个从成功演示自动构造 recovery training data 的 durable workflow。对具身智能和 long-horizon robot control 来说，这是一条比直接采集真实失败数据更可扩展的 failure-to-recovery learning pattern，也把 generative world model 与 closed-loop recovery 更紧地接到了一起。</p><p>它没有升到更高一级，是因为当前证据仍主要集中在 manipulation failure recovery 这一子线，且真实世界验证规模还不足以证明它会改写更广义的 embodied learning default。现阶段更像一条很强的方法和数据生成接口，而不是整个机器人学习范式的重写。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260313rl30dream2,
+  title = {Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.13528v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl30-dream2fix-manipulation-recovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning Actionable Manipulation Recovery via Counterfactual Failure Synthesis. https://arxiv.org/pdf/2603.13528v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.13528v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

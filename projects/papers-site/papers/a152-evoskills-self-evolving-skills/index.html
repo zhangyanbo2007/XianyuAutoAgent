@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EvoSkills: Self-Evolving Agent Skills via Co-Evolutionary Verification | DAST Papers</title>
+    <meta name="description" content="随着 agent 从简单 tool call 走向长链任务执行，单一函数式工具已经不够，越来越多能力需要以 skill 的形式被组织成多文件、多步骤、带约束的能力包。现实问题在于，这类 skill 仍高度依赖人工 authoring，成本高，而且容易出现人类预期与模型实际使用方式不一致。
+
+EvoSkills 的核心贡献，是把 self-evolving tools 的思路扩展到更复杂的 skil" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a152-evoskills-self-evolving-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EvoSkills: Self-Evolving Agent Skills via Co-Evolutionary Verification" />
+    <meta property="og:description" content="随着 agent 从简单 tool call 走向长链任务执行，单一函数式工具已经不够，越来越多能力需要以 skill 的形式被组织成多文件、多步骤、带约束的能力包。现实问题在于，这类 skill 仍高度依赖人工 authoring，成本高，而且容易出现人类预期与模型实际使用方式不一致。
+
+EvoSkills 的核心贡献，是把 self-evolving tools 的思路扩展到更复杂的 skil" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a152-evoskills-self-evolving-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EvoSkills: Self-Evolving Agent Skills via Co-Evolutionary Verification" />
+    <meta name="twitter:description" content="随着 agent 从简单 tool call 走向长链任务执行，单一函数式工具已经不够，越来越多能力需要以 skill 的形式被组织成多文件、多步骤、带约束的能力包。现实问题在于，这类 skill 仍高度依赖人工 authoring，成本高，而且容易出现人类预期与模型实际使用方式不一致。
+
+EvoSkills 的核心贡献，是把 self-evolving tools 的思路扩展到更复杂的 skil" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EvoSkills: Self-Evolving Agent Skills via Co-Evolutionary Verification</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01687" target="_blank" rel="noopener noreferrer">2604.01687</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 agent 从简单 tool call 走向长链任务执行，单一函数式工具已经不够，越来越多能力需要以 skill 的形式被组织成多文件、多步骤、带约束的能力包。现实问题在于，这类 skill 仍高度依赖人工 authoring，成本高，而且容易出现人类预期与模型实际使用方式不一致。</dd></div><div><dt>方法/机制</dt><dd>EvoSkills 的核心贡献，是把 self-evolving tools 的思路扩展到更复杂的 skills。它不只是让模型生成 skill，而是让 Skill Generator 与不依赖真实测试内容的 Surrogate Verifier 共同演化：前者持续改写多文件 skill 包，后者提供可操作的反馈信号，从而把复杂 skill 的构造、修正和泛化能力放进一个 co-evolutionary loop。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它切中的不是单次 benchmark 结果，而是 agent capability acquisition 的更长期问题：如果 skill 可以被自动生成、修正并跨模型泛化，那么 capability extension 就不再只是人工维护库，而会变成自演化系统的一部分。对本仓库已有的 skill discovery、memory skill、self-evolving agent 主线来说，这是一条明显延伸。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前验证仍主要集中在 SkillsBench 和若干 coding-agent 模型，外部生态的长期采用还没有形成。现阶段更像非常强的 skill-generation 方法路线，而不是已经成为默认 agent capability layer 的公共基础设施。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 agent 从简单 tool call 走向长链任务执行，单一函数式工具已经不够，越来越多能力需要以 skill 的形式被组织成多文件、多步骤、带约束的能力包。现实问题在于，这类 skill 仍高度依赖人工 authoring，成本高，而且容易出现人类预期与模型实际使用方式不一致。</p><p>EvoSkills 的核心贡献，是把 self-evolving tools 的思路扩展到更复杂的 skills。它不只是让模型生成 skill，而是让 Skill Generator 与不依赖真实测试内容的 Surrogate Verifier 共同演化：前者持续改写多文件 skill 包，后者提供可操作的反馈信号，从而把复杂 skill 的构造、修正和泛化能力放进一个 co-evolutionary loop。</p><p>它值得正式收录，因为它切中的不是单次 benchmark 结果，而是 agent capability acquisition 的更长期问题：如果 skill 可以被自动生成、修正并跨模型泛化，那么 capability extension 就不再只是人工维护库，而会变成自演化系统的一部分。对本仓库已有的 skill discovery、memory skill、self-evolving agent 主线来说，这是一条明显延伸。</p><p>它没有升到更高一级，是因为当前验证仍主要集中在 SkillsBench 和若干 coding-agent 模型，外部生态的长期采用还没有形成。现阶段更像非常强的 skill-generation 方法路线，而不是已经成为默认 agent capability layer 的公共基础设施。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Anthropic提出了LLM代理技能的概念，以解决简单工具调用无法处理的多步骤专业任务。工具是一个单一的、自包含的函数，而技能是相互依赖的多文件工件的结构化捆绑。目前，技能生成不仅由于手动编写而需要大量标签，而且可能遭受人机认知错位，这可能导致代理性能下降，正如SkillsBench上的评估所证明的那样。因此，我们旨在使代理能够自主生成技能。然而，现有为工具设计的自演化方法由于其复杂性增加而无法直接应用于技能。为了解决这些问题，我们提出了EvoSkills，一个自演化技能框架，使代理能够自主构建复杂的、多文件技能包。具体来说，EvoSkills将一个迭代改进技能的技能生成器与一个共同演化以提供信息丰富且可操作反馈的替代验证器相结合，而无需访问真实测试内容。在SkillsBench上，EvoSkills在Claude Code和Codex上均在五个基线中取得了最高的通过率，并且对六个额外的LLM也表现出强大的泛化能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Anthropic proposes the concept of skills for LLM agents to tackle multi-step professional tasks that simple tool invocations cannot address. A tool is a single, self-contained function, whereas a skill is a structured bundle of interdependent multi-file artifacts. Currently, skill generation is not only label-intensive due to manual authoring, but also may suffer from human– machine cognitive misalignment, which can lead to degraded agent performance, as evidenced by evaluations on SkillsBench. Therefore, we aim to enable agents to autonomously generate skills. However, existing selfevolving methods designed for tools cannot be directly applied to skills due to their increased complexity. To address these issues, we propose EvoSkills, a self-evolving skills framework that enables agents to autonomously construct complex, multi-file skill packages. Specifically, EvoSkills couples a Skill Generator that iteratively refines skills with a Surrogate Verifier that co-evolves to provide informative and actionable feedback without access to ground-truth test content. On SkillsBench, EvoSkills achieves the highest pass rate among five baselines on both Claude Code and Codex, and also exhibits strong generalization capabilities to six additional LLMs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260402a152evoski,
+  title = {EvoSkills: Self-Evolving Agent Skills via Co-Evolutionary Verification},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01687v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a152-evoskills-self-evolving-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EvoSkills: Self-Evolving Agent Skills via Co-Evolutionary Verification. https://arxiv.org/pdf/2604.01687v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01687v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

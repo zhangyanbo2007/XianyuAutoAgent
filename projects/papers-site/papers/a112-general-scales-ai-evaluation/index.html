@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>General scales unlock AI evaluation with explanatory and predictive power | DAST Papers</title>
+    <meta name="description" content="这篇 Nature 论文针对当前大模型评测体系的根本缺陷发力：常见 benchmark 能给出分数，却难以解释模型到底具备什么能力，也难以可靠预测模型在新任务、新实例上的表现。作者把问题从‘比较模型在固定题集上的平均表现’改写为‘用通用量尺刻画任务需求与模型能力，并据此解释和预测表现’。
+
+论文提出一套面向 AI 评测的 general scales 方法学，用 18 条通用能力/知识/外生维度刻" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a112-general-scales-ai-evaluation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="General scales unlock AI evaluation with explanatory and predictive power" />
+    <meta property="og:description" content="这篇 Nature 论文针对当前大模型评测体系的根本缺陷发力：常见 benchmark 能给出分数，却难以解释模型到底具备什么能力，也难以可靠预测模型在新任务、新实例上的表现。作者把问题从‘比较模型在固定题集上的平均表现’改写为‘用通用量尺刻画任务需求与模型能力，并据此解释和预测表现’。
+
+论文提出一套面向 AI 评测的 general scales 方法学，用 18 条通用能力/知识/外生维度刻" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a112-general-scales-ai-evaluation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="General scales unlock AI evaluation with explanatory and predictive power" />
+    <meta name="twitter:description" content="这篇 Nature 论文针对当前大模型评测体系的根本缺陷发力：常见 benchmark 能给出分数，却难以解释模型到底具备什么能力，也难以可靠预测模型在新任务、新实例上的表现。作者把问题从‘比较模型在固定题集上的平均表现’改写为‘用通用量尺刻画任务需求与模型能力，并据此解释和预测表现’。
+
+论文提出一套面向 AI 评测的 general scales 方法学，用 18 条通用能力/知识/外生维度刻" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>General scales unlock AI evaluation with explanatory and predictive power</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10303-2" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10303-2</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature 论文针对当前大模型评测体系的根本缺陷发力：常见 benchmark 能给出分数，却难以解释模型到底具备什么能力，也难以可靠预测模型在新任务、新实例上的表现。作者把问题从‘比较模型在固定题集上的平均表现’改写为‘用通用量尺刻画任务需求与模型能力，并据此解释和预测表现’。</dd></div><div><dt>方法/机制</dt><dd>论文提出一套面向 AI 评测的 general scales 方法学，用 18 条通用能力/知识/外生维度刻画任务实例需求，并为模型估计对应的 ability profile。核心不是再造一个排行榜，而是把 benchmark 项拆成可解释的 demand profile，并在此基础上对模型进行 commensurate profiling，从而实现实例级、跨任务、尤其是 out-of-distribution 条件下的性能预测。</dd></div><div><dt>结果/证据</dt><dd>这项工作对仓库的价值很高，因为它改变的是 AI evaluation 的组织方式，而不是单个测试集或单个 predictor。它把 psychometrics、rubric annotation、instance-level prediction 结合起来，直接外溢到模型路由、安全 operating area、拒答规则和部署前评估等实际问题，更像一套可扩展的评测科学基础设施。</dd></div><div><dt>收录价值</dt><dd>它还没有升到更高一级，是因为这套 general scales 目前主要在 LLM 和作者定义的评测电池上验证，领域采纳度仍有待时间检验。它已经明显超出普通 benchmark paper，但是否成为长期默认标准，还要看后续独立复现、扩展到更多模型形态和真实部署场景的情况。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature 论文针对当前大模型评测体系的根本缺陷发力：常见 benchmark 能给出分数，却难以解释模型到底具备什么能力，也难以可靠预测模型在新任务、新实例上的表现。作者把问题从‘比较模型在固定题集上的平均表现’改写为‘用通用量尺刻画任务需求与模型能力，并据此解释和预测表现’。</p><p>论文提出一套面向 AI 评测的 general scales 方法学，用 18 条通用能力/知识/外生维度刻画任务实例需求，并为模型估计对应的 ability profile。核心不是再造一个排行榜，而是把 benchmark 项拆成可解释的 demand profile，并在此基础上对模型进行 commensurate profiling，从而实现实例级、跨任务、尤其是 out-of-distribution 条件下的性能预测。</p><p>这项工作对仓库的价值很高，因为它改变的是 AI evaluation 的组织方式，而不是单个测试集或单个 predictor。它把 psychometrics、rubric annotation、instance-level prediction 结合起来，直接外溢到模型路由、安全 operating area、拒答规则和部署前评估等实际问题，更像一套可扩展的评测科学基础设施。</p><p>它还没有升到更高一级，是因为这套 general scales 目前主要在 LLM 和作者定义的评测电池上验证，领域采纳度仍有待时间检验。它已经明显超出普通 benchmark paper，但是否成为长期默认标准，还要看后续独立复现、扩展到更多模型形态和真实部署场景的情况。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>确保人工智能（AI）的安全有效使用，需要理解并预测其在新任务上的表现，这些任务涵盖从先进科学挑战到转型工作场所活动。迄今为止，基准测试指导了AI的进展，但对于通用AI系统而言，其解释力和预测力有限，这归因于特定任务之间的可迁移性受限。在本文中，我们引入了用于AI评估的通用量表，这些量表能够揭示需求画像，解释常见AI基准真正衡量了哪些能力；提取能力画像，量化AI系统的通用优势和局限性；并稳健地预测AI在新任务实例上的表现。我们的全自动化方法基于18个评估标准（rubrics），这些标准涵盖了广泛的认知和智力需求，将不同的任务实例置于相同的通用量表上，并在15个大型语言模型（LLMs）和63个任务上进行了演示。这些量表上的需求画像和能力画像都带来了新的见解，例如通过基准敏感性和特异性实现的结构效度，并解释了关于AI是否具有推理能力的相互矛盾的主张。最终，利用通用量表可以在实例层面实现高预测力，相比强大的黑盒基线预测器，它能提供更优的估计，尤其是在分布外设置（新任务和基准）中。本文提出的量表、评估标准、测试集（battery）、技术和结果构成了AI评估科学的坚实基础，为未来AI的可靠部署提供了支撑。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Ensuring safe and effective use of artificial intelligence (AI) requires understanding and anticipating its performance on new tasks, from advanced scientific challenges to transformed workplace activities . So far, benchmarking has guided progress in AI but has offered limited explanatory and predictive power for general-purpose AI systems , attributed to limited transferability across specific tasks . Here we introduce general scales for AI evaluation that elicit demand profiles explaining what capabilities common AI benchmarks truly measure, extract ability profiles quantifying the general strengths and limits of AI systems and robustly predict AI performance for new task instances. Our fully automated methodology builds on 18 rubrics, capturing a broad range of cognitive and intellectual demands, which place different task instances on the same general scales, illustrated on 15 large language models (LLMs) and 63 tasks. Both the demand and the ability profiles on these scales bring new insights such as construct validity through benchmark sensitivity and specificity and explain conflicting claims about whether AI has reasoning capabilities. Ultimately, high predictive power at the instance level becomes possible using the general scales, providing superior estimates over strong black-box baseline predictors, especially in out-of-distribution settings (new tasks and benchmarks). The scales, rubrics, battery, techniques and results presented here constitute a solid foundation for a science of AI evaluation, underpinning the reliable deployment of AI in the years ahead.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a112genera,
+  title = {General scales unlock AI evaluation with explanatory and predictive power},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10303-2},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a112-general-scales-ai-evaluation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). General scales unlock AI evaluation with explanatory and predictive power. https://www.nature.com/articles/s41586-026-10303-2</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10303-2" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

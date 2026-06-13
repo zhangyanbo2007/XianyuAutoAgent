@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models | DAST Papers</title>
+    <meta name="description" content="VLA 模型声称语言语义能指导动作，但很多评测可能被视觉捷径或 instruction-action shortcuts 解决。
+
+RoboSemanticBench 让机器人根据数学/常识多选题选择并抓取正确答案积木，直接测试 VLA 是否能把复杂语义映射到物理动作目标。
+
+它值得收录，因为它提供了 VLA semantic grounding 的诊断 benchmark，有助于区分真实语义控制" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl96-robosemanticbench-vla-grounding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models" />
+    <meta property="og:description" content="VLA 模型声称语言语义能指导动作，但很多评测可能被视觉捷径或 instruction-action shortcuts 解决。
+
+RoboSemanticBench 让机器人根据数学/常识多选题选择并抓取正确答案积木，直接测试 VLA 是否能把复杂语义映射到物理动作目标。
+
+它值得收录，因为它提供了 VLA semantic grounding 的诊断 benchmark，有助于区分真实语义控制" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl96-robosemanticbench-vla-grounding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models" />
+    <meta name="twitter:description" content="VLA 模型声称语言语义能指导动作，但很多评测可能被视觉捷径或 instruction-action shortcuts 解决。
+
+RoboSemanticBench 让机器人根据数学/常识多选题选择并抓取正确答案积木，直接测试 VLA 是否能把复杂语义映射到物理动作目标。
+
+它值得收录，因为它提供了 VLA semantic grounding 的诊断 benchmark，有助于区分真实语义控制" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.02277" target="_blank" rel="noopener noreferrer">2606.02277</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>VLA 模型声称语言语义能指导动作，但很多评测可能被视觉捷径或 instruction-action shortcuts 解决。</dd></div><div><dt>方法/机制</dt><dd>RoboSemanticBench 让机器人根据数学/常识多选题选择并抓取正确答案积木，直接测试 VLA 是否能把复杂语义映射到物理动作目标。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它提供了 VLA semantic grounding 的诊断 benchmark，有助于区分真实语义控制和模仿捷径。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>VLA 模型声称语言语义能指导动作，但很多评测可能被视觉捷径或 instruction-action shortcuts 解决。</p><p>RoboSemanticBench 让机器人根据数学/常识多选题选择并抓取正确答案积木，直接测试 VLA 是否能把复杂语义映射到物理动作目标。</p><p>它值得收录，因为它提供了 VLA semantic grounding 的诊断 benchmark，有助于区分真实语义控制和模仿捷径。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作 (VLA) 模型建立在预训练的语言或视觉-语言支架的语义理解应该指导机器人动作预测的前提下。然而，机器人的微调被优化为在特定任务的动作分布上进行模仿，并且许多评估可以通过视觉或指令-动作捷径来解决。我们引入了 RoboSemanticBench (RSB)，这是一个用于诊断动作预测中语义基准的身体化基准：后训练的 VLA 模型是否能够利用复杂的指令语义来选择和操纵正确的物理目标。在每个回合中，机器人会收到多项选择的数学或常识问题，观察候选答案块，并必须抓取与正确答案对应的块。RSB 涵盖了受控算术、小学数学理解和常识或事实理解，在四项选择和十项选择套件下进行。在具有代表性的 VLA 模型中，我们发现许多策略学会抓取候选块，但在控制抓取成功后，选择语义上正确的块的速率接近随机或低于随机水平，这表明支架级别的语义能力与动作预测之间存在持续的差距。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-language-action (VLA) models are built on the premise that semantic understanding from pretrained language or vision-language backbones should guide robot action prediction. Yet robot fine-tuning is optimized as imitation over task-specific action distributions, and many evaluations can be solved through visual or instruction-action shortcuts. We introduce RoboSemanticBench (RSB), an embodied benchmark for diagnosing semantic grounding in action prediction: whether post-trained VLA models can use complex instruction semantics to select and manipulate the correct physical target. In each episode, a robot receives a multiple-choice math or general-knowledge question, observes candidate answer blocks, and must grasp the block corresponding to the correct answer. RSB covers controlled arithmetic, grade-school mathematical understanding, and commonsense or factual understanding under four-choice and ten-choice suites. Across representative VLA models, we find that many policies learn to grasp candidate blocks but select the semantically correct block at near-random or below-random rates after controlling for grasp success, revealing a persistent gap between backbone-level semantic competence and action prediction.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601rl96robose,
+  title = {RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.02277.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl96-robosemanticbench-vla-grounding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models. https://arxiv.org/pdf/2606.02277.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl85-qwen-vla-unified-embodied-model/">
+              <span>Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments</span>
+              <small>机器人与具身智能 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.02277.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.02277" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

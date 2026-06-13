@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Long-Horizon Plan Execution in Large Tool Spaces through Entropy-Guided Branching | DAST Papers</title>
+    <meta name="description" content="这篇论文面向大工具空间里的长程计划执行，指出当前 tool agents 缺少 plan-level 评估，也缺少在巨大 API 决策空间中高效搜索的机制。
+
+它提出 SLATE 作为大规模上下文感知 API benchmark，并提出 Entropy-Guided Branching，在预测熵高的位置动态展开分支，平衡探索和计算成本。
+
+按本库标准，它值得收录，因为它同时提供 benchmark" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a209-slate-entropy-guided-tools/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Long-Horizon Plan Execution in Large Tool Spaces through Entropy-Guided Branching" />
+    <meta property="og:description" content="这篇论文面向大工具空间里的长程计划执行，指出当前 tool agents 缺少 plan-level 评估，也缺少在巨大 API 决策空间中高效搜索的机制。
+
+它提出 SLATE 作为大规模上下文感知 API benchmark，并提出 Entropy-Guided Branching，在预测熵高的位置动态展开分支，平衡探索和计算成本。
+
+按本库标准，它值得收录，因为它同时提供 benchmark" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a209-slate-entropy-guided-tools/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Long-Horizon Plan Execution in Large Tool Spaces through Entropy-Guided Branching" />
+    <meta name="twitter:description" content="这篇论文面向大工具空间里的长程计划执行，指出当前 tool agents 缺少 plan-level 评估，也缺少在巨大 API 决策空间中高效搜索的机制。
+
+它提出 SLATE 作为大规模上下文感知 API benchmark，并提出 Entropy-Guided Branching，在预测熵高的位置动态展开分支，平衡探索和计算成本。
+
+按本库标准，它值得收录，因为它同时提供 benchmark" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Long-Horizon Plan Execution in Large Tool Spaces through Entropy-Guided Branching</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12126" target="_blank" rel="noopener noreferrer">2604.12126</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文面向大工具空间里的长程计划执行，指出当前 tool agents 缺少 plan-level 评估，也缺少在巨大 API 决策空间中高效搜索的机制。</dd></div><div><dt>方法/机制</dt><dd>它提出 SLATE 作为大规模上下文感知 API benchmark，并提出 Entropy-Guided Branching，在预测熵高的位置动态展开分支，平衡探索和计算成本。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它值得收录，因为它同时提供 benchmark 和执行算法，直接服务 tool orchestration、large tool library 和 long-horizon agent planning。</dd></div><div><dt>收录价值</dt><dd>局限是 SLATE 是 synthetic e-commerce toolkit，真实企业工具空间中的权限、状态副作用和错误恢复会更复杂。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文面向大工具空间里的长程计划执行，指出当前 tool agents 缺少 plan-level 评估，也缺少在巨大 API 决策空间中高效搜索的机制。</p><p>它提出 SLATE 作为大规模上下文感知 API benchmark，并提出 Entropy-Guided Branching，在预测熵高的位置动态展开分支，平衡探索和计算成本。</p><p>按本库标准，它值得收录，因为它同时提供 benchmark 和执行算法，直接服务 tool orchestration、large tool library 和 long-horizon agent planning。</p><p>局限是 SLATE 是 synthetic e-commerce toolkit，真实企业工具空间中的权限、状态副作用和错误恢复会更复杂。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLM）显著推动了工具增强型代理的发展，通过API交互实现自主推理。然而，在庞大的工具库中执行多步骤任务仍然充满挑战，这主要归因于两个关键瓶颈：(1) 缺乏严格的计划级评估框架；(2) 探索巨大决策空间的计算需求，这源于大型工具集和长周期规划。为了弥合这些差距，我们首先介绍了SLATE（电子商务合成大规模API工具包），一个为自动化评估工具集成代理而设计的大规模上下文感知基准。与静态指标不同，SLATE能够适应多样化但功能有效的执行轨迹，揭示了当前代理在自我纠正和搜索效率方面的不足。受这些发现的启发，我们接着提出了熵引导分支（EGB），一种不确定性感知搜索算法，它在预测熵高的地方动态扩展决策分支。EGB优化了探索-利用权衡，显著提高了任务成功率和计算效率。在SLATE上进行的广泛实验表明，我们的双重贡献为在工具丰富的环境中开发可靠和可扩展的LLM代理提供了坚实的基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>scientific discovery (Boiko et al., 2023), and embodied AI (Ahn et al., 2024). Despite this potential, the transition toward context-grounded, long-horizon tool-use planning reveals a significant performance gap. In these sophisticated scenarios, agents are required to navigate massive tool libraries and execute multi-step plans that involve intricate dependencies (Qin et al., 2023). We argue that the development of robust tool-use agents is primarily bottlenecked by two intertwined challenges. The first is the absence of rigorous, plan-level evaluation frameworks capable of assessing agents in high-complexity settings with diverse trajectories and deterministic outcome rules for scoring (Qu et al., 2025). The second challenge stems from the limitations of existing agentic methods in navigating the vast decision spaces inherent to these tasks, which often results in computational inefficiency and reduced autonomy (Huang et al., 2023; Xu et al., 2025). The first challenge lies in evaluation. Current benchmarks are inadequate, primarily in two respects. Many employ limited toolsets that do not reflect the scale or diversity of real-world applications (Yao et al., 2022, 2024a; Shridhar et al., 2020). Conversely, benchmarks that do incorporate large tool libraries often assess only single-step tool invocation, neglecting the sequential dependencies crucial for multi-step task execution (Tang et al., 2023; Patil et al., 2024; Li et al., 2023a). Furthermore, attempts at plan-level evaluation frequently depend on subjective LLM-as-a-judge assessments (Qin et al., 2023; Huang et al., 2024), which cannot reliably measure an agent’s true end-to-end task completion capabilities. This is especially problematic as such methods may penalize valid, alternative solution paths (for instance, those with redundant but harmless tool calls or different but effective execution orders), thereby failing to capture a holistic view of agent proficiency. Complementary to the evaluation gap, the sec- Large Language Models (LLMs) have significantly advanced tool-augmented agents, enabling autonomous reasoning via API interactions. However, executing multi-step tasks within massive tool libraries remains challenging due to two critical bottlenecks: (1) the absence of rigorous, plan-level evaluation frameworks and (2) the computational demand of exploring vast decision spaces, stemming from large toolsets and long-horizon planning. To bridge these gaps, we first introduce SLATE (Synthetic Large-scale API Toolkit for Ecommerce), a large-scale context-aware benchmark designed for the automated assessment of tool-integrated agents. Unlike static metrics, SLATE accommodates diverse yet functionally valid execution trajectories, revealing that current agents struggle with self-correction and search efficiency. Motivated by these findings, we next propose Entropy-Guided Branching (EGB), an uncertainty-aware search algorithm that dynamically expands decision branches where predictive entropy is high. EGB optimizes the exploration-exploitation trade-off, significantly enhancing both task success rates and computational efficiency. Extensive experiments on SLATE demonstrate that our dual contribution provides a robust foundation for developing reliable and scalable LLM agents in tool-rich environments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415a209slatee,
+  title = {Long-Horizon Plan Execution in Large Tool Spaces through Entropy-Guided Branching},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12126.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a209-slate-entropy-guided-tools/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Long-Horizon Plan Execution in Large Tool Spaces through Entropy-Guided Branching. https://arxiv.org/pdf/2604.12126.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12126.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

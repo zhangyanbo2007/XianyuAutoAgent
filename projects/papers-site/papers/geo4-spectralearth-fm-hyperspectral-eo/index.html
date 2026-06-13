@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining | DAST Papers</title>
+    <meta name="description" content="SpectralEarth-FM 针对 Earth observation foundation models 的一个关键缺口：现有多传感器预训练很少把 hyperspectral imagery 纳入统一表示学习。
+
+方法使用 spectral tokenization、sensor-specific encoders、cross-sensor fusion 和 shared hierarchi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/geo4-spectralearth-fm-hyperspectral-eo/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining" />
+    <meta property="og:description" content="SpectralEarth-FM 针对 Earth observation foundation models 的一个关键缺口：现有多传感器预训练很少把 hyperspectral imagery 纳入统一表示学习。
+
+方法使用 spectral tokenization、sensor-specific encoders、cross-sensor fusion 和 shared hierarchi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/geo4-spectralearth-fm-hyperspectral-eo/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining" />
+    <meta name="twitter:description" content="SpectralEarth-FM 针对 Earth observation foundation models 的一个关键缺口：现有多传感器预训练很少把 hyperspectral imagery 纳入统一表示学习。
+
+方法使用 spectral tokenization、sensor-specific encoders、cross-sensor fusion 和 shared hierarchi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining</h1>
+          <p class="subtitle">地理空间、遥感与灾害系统 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">地理空间、遥感与灾害系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21075" target="_blank" rel="noopener noreferrer">2605.21075</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SpectralEarth-FM 针对 Earth observation foundation models 的一个关键缺口：现有多传感器预训练很少把 hyperspectral imagery 纳入统一表示学习。</dd></div><div><dt>方法/机制</dt><dd>方法使用 spectral tokenization、sensor-specific encoders、cross-sensor fusion 和 shared hierarchical encoder，把 HSI、Sentinel/Landsat optical、LST、SAR 等异构传感器统一到多模态 EO 预训练框架中。</dd></div><div><dt>结果/证据</dt><dd>论文同时构建 SpectralEarth-MM，约 2M 全球位置、25M georeferenced patches、40TB 级别数据，并用 JEPA-style objective 做跨传感器/跨视图表征对齐。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 hyperspectral EO 从孤立模型推进到多模态地球系统 foundation model 工作流，数据集和架构都有后续复用价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SpectralEarth-FM 针对 Earth observation foundation models 的一个关键缺口：现有多传感器预训练很少把 hyperspectral imagery 纳入统一表示学习。</p><p>方法使用 spectral tokenization、sensor-specific encoders、cross-sensor fusion 和 shared hierarchical encoder，把 HSI、Sentinel/Landsat optical、LST、SAR 等异构传感器统一到多模态 EO 预训练框架中。</p><p>论文同时构建 SpectralEarth-MM，约 2M 全球位置、25M georeferenced patches、40TB 级别数据，并用 JEPA-style objective 做跨传感器/跨视图表征对齐。</p><p>它值得正式收录，因为它把 hyperspectral EO 从孤立模型推进到多模态地球系统 foundation model 工作流，数据集和架构都有后续复用价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>地球观测（EO）基础模型（FM）越来越多地在多传感器数据上进行训练，这些数据涵盖多光谱图像（MSI）、合成孔径雷达（SAR）和派生的地理空间层，但高光谱图像（HSI）的代表性仍然不足。相反，现有高光谱FM仅在HSI上进行训练，使得HSI与同位EO传感器的联合预训练和融合尚未被探索。我们引入了SpectralEarth-FM，这是一种用于具有异构光谱维度的多传感器EO输入的分层Transformer。该架构结合了高光谱输入的光谱分词、传感器专用编码器、跨传感器融合模块和共享分层编码器，从而能够联合处理HSI和低通道观测。为了预训练SpectralEarth-FM，我们整理了SpectralEarth-MM数据集，该数据集将来自三个星载传感器（EnMAP、EMIT、DESIS）的HSI与Sentinel-2、Landsat-8/9光学图像、Landsat地表温度（LST）和Sentinel-1 SAR在共同地理足迹上进行同位。它包含大约200万个全球分布位置、2500万个地理参考图像块和超过40TB的数据。预训练使用联合嵌入预测架构（JEPA）风格的目标，该目标匹配来自同一位置的全局视图和单传感器局部视图之间的表示。我们根据PANGAEA协议，在光谱下游任务和标准EO基准上评估了SpectralEarth-FM，在两种评估设置中均取得了最先进的结果。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Earth observation (EO) foundation models (FMs) are increasingly trained on multisensor data, spanning multispectral imagery (MSI), synthetic aperture radar (SAR), and derived geospatial layers, but hyperspectral imagery (HSI) remains underrepresented. Conversely, existing hyperspectral FMs are trained on HSI alone, leaving joint pretraining and fusion of HSI with co-located EO sensors unexplored. We introduce SpectralEarth-FM, a hierarchical transformer for multisensor EO input with heterogeneous spectral dimensionality. The architecture combines spectral tokenization for hyperspectral inputs, sensor-specific encoders, a cross-sensor fusion module, and a shared hierarchical encoder, enabling joint processing of HSI and lower-channel observations. To pretrain SpectralEarth-FM, we curate SpectralEarth-MM, a dataset that co-locates HSI from three spaceborne sensors (EnMAP, EMIT, DESIS) with Sentinel-2, Landsat-8/9 optical imagery, Landsat land surface temperature (LST), and Sentinel-1 SAR, over common geographic footprints. It comprises approximately 2M globally distributed locations, 25M georeferenced patches, and over 40TB of data. Pretraining uses a Joint-Embedding Predictive Architecture (JEPA)-style objective that matches representations between global views and single-sensor local views from the same location. We evaluate SpectralEarth-FM on hyperspectral downstream tasks and standard EO benchmarks following the PANGAEA protocol, achieving state-of-the-art results across both evaluation settings.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521geo4spectr,
+  title = {SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21075.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/geo4-spectralearth-fm-hyperspectral-eo/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining. https://arxiv.org/pdf/2605.21075.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/geo3-geoagentbench-gis-agents/">
+              <span>GeoAgentBench: A Dynamic Execution Benchmark for Tool-Augmented Agents in Spatial Analysis</span>
+              <small>地理空间、遥感与灾害系统 · 2026-04-15</small>
+            </a>
+            <a class="related-item" href="../../papers/geo2-prithvi-eo-2-0/">
+              <span>Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications</span>
+              <small>地理空间、遥感与灾害系统 · 2025-12-11</small>
+            </a>
+            <a class="related-item" href="../../papers/geo1-instageo-geospatial-deployment/">
+              <span>InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment</span>
+              <small>地理空间、遥感与灾害系统 · 2025-10-07</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21075.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

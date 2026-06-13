@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization | DAST Papers</title>
+    <meta name="description" content="这篇论文关注一个很实际的 agent capability 问题：当前大量 agent skill 机制依赖推理时动态检索和注入 skill 文件，但这样会引入检索噪声、额外 token 开销，也意味着模型并没有真正学会技能，只是在运行时照着外部说明执行。作者因此把目标改成 skill internalization，即把技能从外部上下文迁入模型参数。
+
+SKILL0 的核心方法是一个 in-co" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a158-skill0-skill-internalization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization" />
+    <meta property="og:description" content="这篇论文关注一个很实际的 agent capability 问题：当前大量 agent skill 机制依赖推理时动态检索和注入 skill 文件，但这样会引入检索噪声、额外 token 开销，也意味着模型并没有真正学会技能，只是在运行时照着外部说明执行。作者因此把目标改成 skill internalization，即把技能从外部上下文迁入模型参数。
+
+SKILL0 的核心方法是一个 in-co" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a158-skill0-skill-internalization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization" />
+    <meta name="twitter:description" content="这篇论文关注一个很实际的 agent capability 问题：当前大量 agent skill 机制依赖推理时动态检索和注入 skill 文件，但这样会引入检索噪声、额外 token 开销，也意味着模型并没有真正学会技能，只是在运行时照着外部说明执行。作者因此把目标改成 skill internalization，即把技能从外部上下文迁入模型参数。
+
+SKILL0 的核心方法是一个 in-co" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.02268" target="_blank" rel="noopener noreferrer">2604.02268</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注一个很实际的 agent capability 问题：当前大量 agent skill 机制依赖推理时动态检索和注入 skill 文件，但这样会引入检索噪声、额外 token 开销，也意味着模型并没有真正学会技能，只是在运行时照着外部说明执行。作者因此把目标改成 skill internalization，即把技能从外部上下文迁入模型参数。</dd></div><div><dt>方法/机制</dt><dd>SKILL0 的核心方法是一个 in-context reinforcement learning curriculum。训练初期给予完整 skill context，随后动态评估每个 skill 文件对当前策略的 on-policy 帮助程度，并在逐步缩小的预算下持续撤去外部 skill 依赖，直到 agent 在 fully zero-shot 设置下完成任务。作者还把 skill 按类别离线分组，并结合交互历史构造成紧凑上下文，以训练模型掌握 tool invocation 和 multi-turn completion。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的仓库价值在于，它不是再做一个 retrieval policy 小修小补，而是给 capability acquisition 提供了一个更强的研究方向：把 skill marketplace / skill retrieval 这条工程路线，与参数内化、持续训练和 agent RL 连接起来。对 agent memory、skill evolution、长期能力积累这些主线都有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>局限也很清楚：目前主要验证仍集中在 ALFWorld 和 Search-QA 这类 agent benchmark，外推到更复杂的企业工具链、真实软件环境和开放世界任务还缺少强证据。因此它更适合作为 `breakthrough` 收录，而不是更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注一个很实际的 agent capability 问题：当前大量 agent skill 机制依赖推理时动态检索和注入 skill 文件，但这样会引入检索噪声、额外 token 开销，也意味着模型并没有真正学会技能，只是在运行时照着外部说明执行。作者因此把目标改成 skill internalization，即把技能从外部上下文迁入模型参数。</p><p>SKILL0 的核心方法是一个 in-context reinforcement learning curriculum。训练初期给予完整 skill context，随后动态评估每个 skill 文件对当前策略的 on-policy 帮助程度，并在逐步缩小的预算下持续撤去外部 skill 依赖，直到 agent 在 fully zero-shot 设置下完成任务。作者还把 skill 按类别离线分组，并结合交互历史构造成紧凑上下文，以训练模型掌握 tool invocation 和 multi-turn completion。</p><p>这篇工作的仓库价值在于，它不是再做一个 retrieval policy 小修小补，而是给 capability acquisition 提供了一个更强的研究方向：把 skill marketplace / skill retrieval 这条工程路线，与参数内化、持续训练和 agent RL 连接起来。对 agent memory、skill evolution、长期能力积累这些主线都有直接参考价值。</p><p>局限也很清楚：目前主要验证仍集中在 ALFWorld 和 Search-QA 这类 agent benchmark，外推到更复杂的企业工具链、真实软件环境和开放世界任务还缺少强证据。因此它更适合作为 `breakthrough` 收录，而不是更高一级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>代理技能，即代理在推理时动态加载的程序知识和可执行资源的结构化包，已成为增强LLM代理的可靠机制。然而，推理时技能增强存在根本性限制：检索噪声引入不相关指导，注入的技能内容带来大量token开销，并且模型从未真正获取它仅仅遵循的知识。我们提出疑问，技能是否可以内化到模型参数中，从而在无需任何运行时技能检索的情况下实现零样本自主行为。我们引入了S KILL 0，一个为技能内化设计的上下文强化学习框架。S KILL 0引入了一个训练时课程，该课程从完整的技能上下文开始并逐步撤回。技能按类别离线分组，并与交互历史一起渲染成紧凑的视觉上下文，从而教授模型工具调用和多轮任务完成。动态课程随后评估每个技能文件的在策略有用性，仅保留那些当前策略在线性衰减预算内仍受益的技能，直到代理在完全零样本设置下运行。广泛的代理实验表明，S KILL 0相对于标准RL基线取得了显著改进（ALFWorld提高了+9.7%，Search-QA提高了+6.6%），同时每步保持了少于0.5k token的高效上下文。我们的代码可在https://github.com/ZJU-REAL/SkillZero获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agent skills, structured packages of procedural knowledge and executable resources that agents dynamically load at inference time, have become a reliable mechanism for augmenting LLM agents. Yet inference-time skill augmentation is fundamentally limited: retrieval noise introduces irrelevant guidance, injected skill content imposes substantial token overhead, and the model never truly acquires the knowledge it merely follows. We ask whether skills can instead be internalized into model parameters, enabling zero-shot autonomous behavior without any runtime skill retrieval. We introduce S KILL 0, an in-context reinforcement learning framework designed for skill internalization. S KILL 0 introduces a training-time curriculum that begins with full skill context and progressively withdraws it. Skills are grouped offline by category and rendered with interaction history into a compact visual context, teaching he model tool invocation and multi-turn task completion. A Dynamic Curriculum then evaluates each skill file’s on-policy helpfulness, retaining only those from which the current policy still benefits within a linearly decaying budget, until the agent operates in a fully zero-shot setting. Extensive agentic experiments demonstrate that S KILL 0 achieves substantial improvements over the standard RL baseline (+9.7% for ALFWorld and +6.6% for Search-QA), while maintaining a highly efficient context of fewer than 0.5k tokens per step. Our code is available at https://github.com/ZJU-REAL/SkillZero.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260402a158skill0,
+  title = {SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.02268v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a158-skill0-skill-internalization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SKILL0: In-Context Agentic Reinforcement Learning for Skill Internalization. https://arxiv.org/pdf/2604.02268v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.02268v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

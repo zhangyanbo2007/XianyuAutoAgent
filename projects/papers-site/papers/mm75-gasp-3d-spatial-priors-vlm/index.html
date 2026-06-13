@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 VLM 的 3D spatial reasoning 薄弱点：只靠 3D VQA 微调容易学到数据集偏差，引入专用 3D encoder 又不够灵活。
+
+GASP 的核心是把几何先验直接注入 LLM transformer layers，用小型 correspondence head 做深层监督，并通过视频场景中的 ground-truth point correspondence " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm75-gasp-3d-spatial-priors-vlm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning" />
+    <meta property="og:description" content="这篇论文针对 VLM 的 3D spatial reasoning 薄弱点：只靠 3D VQA 微调容易学到数据集偏差，引入专用 3D encoder 又不够灵活。
+
+GASP 的核心是把几何先验直接注入 LLM transformer layers，用小型 correspondence head 做深层监督，并通过视频场景中的 ground-truth point correspondence " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm75-gasp-3d-spatial-priors-vlm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning" />
+    <meta name="twitter:description" content="这篇论文针对 VLM 的 3D spatial reasoning 薄弱点：只靠 3D VQA 微调容易学到数据集偏差，引入专用 3D encoder 又不够灵活。
+
+GASP 的核心是把几何先验直接注入 LLM transformer layers，用小型 correspondence head 做深层监督，并通过视频场景中的 ground-truth point correspondence " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30231" target="_blank" rel="noopener noreferrer">2605.30231</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 VLM 的 3D spatial reasoning 薄弱点：只靠 3D VQA 微调容易学到数据集偏差，引入专用 3D encoder 又不够灵活。</dd></div><div><dt>方法/机制</dt><dd>GASP 的核心是把几何先验直接注入 LLM transformer layers，用小型 correspondence head 做深层监督，并通过视频场景中的 ground-truth point correspondence 和 depth consistency 学习 2D view-invariance 与 3D ambiguity resolution。</dd></div><div><dt>结果/证据</dt><dd>作者报告标准 VLM 的内部 correspondence matching accuracy 很低，常低于 5%；GASP 训练后 peak layer-wise correspondence 超过 70%，temporal robustness 超过 85%，并在 All-Angles Bench 和 VSI-Bench 上显著提升。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它把多模态几何推理从问答监督推进到内部空间对应关系训练，为 VLM 学习可泛化 3D priors 提供了可复用训练接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 VLM 的 3D spatial reasoning 薄弱点：只靠 3D VQA 微调容易学到数据集偏差，引入专用 3D encoder 又不够灵活。</p><p>GASP 的核心是把几何先验直接注入 LLM transformer layers，用小型 correspondence head 做深层监督，并通过视频场景中的 ground-truth point correspondence 和 depth consistency 学习 2D view-invariance 与 3D ambiguity resolution。</p><p>作者报告标准 VLM 的内部 correspondence matching accuracy 很低，常低于 5%；GASP 训练后 peak layer-wise correspondence 超过 70%，temporal robustness 超过 85%，并在 All-Angles Bench 和 VSI-Bench 上显著提升。</p><p>收录价值在于它把多模态几何推理从问答监督推进到内部空间对应关系训练，为 VLM 学习可泛化 3D priors 提供了可复用训练接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言模型 (VLMs) 经常在鲁棒的 3D 空间推理方面挣扎。主流方法依赖于使用 3D 视觉问答 (VQA) 数据集进行微调，可能导致对数据集特定偏见的过拟合，而将专门的 3D 视觉编码器集成通常既不灵活又繁琐。在本文中，我们认为真正的空间理解应该从学习基本几何先验中产生，而不是仅仅从高层 VQA 监督中产生。我们提出了一种名为 GASP (几何感知空间先验) 的框架，它直接将这些先验注入到 LLM 的 Transformer 层中。GASP 采用一个小型对应头，作为一种深度监督信号在所有层上应用，并使用来自大规模视频场景的真实几何信息进行双目标训练：一种对比损失在真实点对应关系上强制 2D 视图不变性，同时深度一致性监督解决 3D 几何歧义。我们的分析首先提供了一个诊断，表明标准 VLMs 的内部对应匹配准确率非常低（通常低于 5%）。然后，我们证明我们的训练显著改善了这种行为，将峰值层级对应关系提升至 70% 以上，同时保持 85% 以上的时间鲁棒性，而基线则保持在 5% 以下。这些内部改进在 All-Angles Bench 和 VSI-Bench 等下游空间基准上产生了显著收益，分别 +18.2% 和 +29.0%，所有这些都没有在任何 3D VQA 数据上进行训练。我们的研究表明，从基本几何先验中学习是通向具有更可靠 3D 空间推理的 VLMs 的有前景且可推广的途径。日期：2026 年 5 月 28 日 项目页面：https://danielchyeh.github.io/GASP/</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-Language Models (VLMs) often struggle with robust 3D spatial reasoning. Prevailing methods that rely on fine-tuning with 3D visual question-answering (VQA) datasets may overfit dataset-specific biases, while integrating specialized 3D visual encoders is often inflexible and cumbersome. In this paper, we argue that genuine spatial understanding should emerge from learning fundamental geometric priors, not only from high-level VQA supervision. We propose GASP (Geometric-Aware Spatial Priors), a framework that injects these priors directly into the LLM’s transformer layers. GASP employs a small correspondence head, applied as a deep supervision signal across all layers, and is trained with a dual objective leveraging ground-truth geometry from large-scale video scenes: a contrastive loss on ground-truth point correspondences enforces 2D view-invariance, while a depth consistency supervision resolves 3D geometric ambiguities. Our analysis first provides a diagnostic showing that standard VLMs’ internal correspondence matching accuracy is very low (often below 5%). We then demonstrate that our training substantially improves this behavior, boosting peak layer-wise correspondence to over 70% and maintaining over 85% temporal robustness while baselines remain below 5%. These internal improvements translate to significant gains on downstream spatial benchmarks including +18.2% on All-Angles Bench and +29.0% on VSI-Bench, all without training on any 3D VQA data. Our findings indicate that learning from fundamental geometric priors is a promising and generalizable pathway towards VLMs with more reliable 3D spatial reasoning. Date: May 28, 2026 Project Page: https://danielchyeh.github.io/GASP/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528mm75gasp3d,
+  title = {Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30231.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm75-gasp-3d-spatial-priors-vlm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning. https://arxiv.org/pdf/2605.30231.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm73-locateanything-parallel-box-decoding/">
+              <span>LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding</span>
+              <small>多模态基础模型 · 2026-05-26</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30231.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.30231" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

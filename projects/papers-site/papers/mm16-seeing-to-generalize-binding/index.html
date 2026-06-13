@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Seeing to Generalize: How Visual Data Corrects Binding Shortcuts | DAST Papers</title>
+    <meta name="description" content="这篇论文关注一个非常值得跟的现象：一些 VLM 在纯文本任务上反而能超过其底层 LLM。作者把这个现象具体化为“视觉训练是否帮助模型修正文本里的 binding shortcuts”，并构造了受控检索任务来做机制分析。
+
+方法上，论文比较了纯文本训练和图像 token 训练下的 transformer 内部表征，发现视觉训练引入的空间平移不变性会打破位置捷径，迫使模型学到更稳健的符号绑定机制。作者" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm16-seeing-to-generalize-binding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Seeing to Generalize: How Visual Data Corrects Binding Shortcuts" />
+    <meta property="og:description" content="这篇论文关注一个非常值得跟的现象：一些 VLM 在纯文本任务上反而能超过其底层 LLM。作者把这个现象具体化为“视觉训练是否帮助模型修正文本里的 binding shortcuts”，并构造了受控检索任务来做机制分析。
+
+方法上，论文比较了纯文本训练和图像 token 训练下的 transformer 内部表征，发现视觉训练引入的空间平移不变性会打破位置捷径，迫使模型学到更稳健的符号绑定机制。作者" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm16-seeing-to-generalize-binding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Seeing to Generalize: How Visual Data Corrects Binding Shortcuts" />
+    <meta name="twitter:description" content="这篇论文关注一个非常值得跟的现象：一些 VLM 在纯文本任务上反而能超过其底层 LLM。作者把这个现象具体化为“视觉训练是否帮助模型修正文本里的 binding shortcuts”，并构造了受控检索任务来做机制分析。
+
+方法上，论文比较了纯文本训练和图像 token 训练下的 transformer 内部表征，发现视觉训练引入的空间平移不变性会打破位置捷径，迫使模型学到更稳健的符号绑定机制。作者" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Seeing to Generalize: How Visual Data Corrects Binding Shortcuts</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-02-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.15183" target="_blank" rel="noopener noreferrer">2602.15183</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注一个非常值得跟的现象：一些 VLM 在纯文本任务上反而能超过其底层 LLM。作者把这个现象具体化为“视觉训练是否帮助模型修正文本里的 binding shortcuts”，并构造了受控检索任务来做机制分析。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文比较了纯文本训练和图像 token 训练下的 transformer 内部表征，发现视觉训练引入的空间平移不变性会打破位置捷径，迫使模型学到更稳健的符号绑定机制。作者不仅看行为结果，还做了内部机制跟踪，因此这不是普通的“加视觉数据后效果变好”报告。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里值得收，是因为它把多模态训练的收益解释成一种可追踪的归纳偏置修正机制，而不是笼统的“多模态更强”。对 VLM、binding、OOD 泛化和 mechanistic interpretability 都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它提出了一个很好的机制性解释，但目前仍主要是受控任务和分析性工作，离更大范围的范式改写还有距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注一个非常值得跟的现象：一些 VLM 在纯文本任务上反而能超过其底层 LLM。作者把这个现象具体化为“视觉训练是否帮助模型修正文本里的 binding shortcuts”，并构造了受控检索任务来做机制分析。</p><p>方法上，论文比较了纯文本训练和图像 token 训练下的 transformer 内部表征，发现视觉训练引入的空间平移不变性会打破位置捷径，迫使模型学到更稳健的符号绑定机制。作者不仅看行为结果，还做了内部机制跟踪，因此这不是普通的“加视觉数据后效果变好”报告。</p><p>它在仓库里值得收，是因为它把多模态训练的收益解释成一种可追踪的归纳偏置修正机制，而不是笼统的“多模态更强”。对 VLM、binding、OOD 泛化和 mechanistic interpretability 都有外溢价值。</p><p>我把它放在“突破性”。原因是它提出了一个很好的机制性解释，但目前仍主要是受控任务和分析性工作，离更大范围的范式改写还有距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>它们自身无法利用视觉信息。视觉-语言模型（VLM）通过学习将图像编码为预训练LLM可用于执行以视觉为中心任务（如图像字幕和视觉问答）的token表示来解决这一局限性（Alayrac et al., 2022; Zhang et al., 2024a）。标准训练流程首先采用一个预训练LLM，并为其配备一个视觉编码器——通常是视觉Transformer（Dosovitskiy et al., 2021）——将视觉输入映射成一系列token（Li et al., 2023）。这些视觉token随后被输入到LLM中，整个组合系统在需要视觉和文本理解的任务上进行端到端训练（Bai et al., 2023; Liu et al., 2023）。视觉语言模型（VLM）旨在扩展大型语言模型（LLM）的视觉能力，然而在这项工作中，我们观察到一个令人惊讶的现象：VLM在纯文本任务上，尤其是在长上下文信息检索中，可以超越其底层的LLM。为了探究这一效应，我们构建了一个受控的合成检索任务，发现仅在文本上训练的Transformer实现了完美的分布内准确率，但未能泛化到分布外；而随后在相同任务的图像token化版本上进行训练，使纯文本的OOD性能几乎翻倍。机制可解释性揭示，视觉训练改变了模型的内部绑定策略：纯文本训练鼓励位置捷径，而基于图像的训练通过空间平移不变性打乱了这些捷径，迫使模型采用更鲁棒的符号绑定机制，即使在重新引入纯文本示例后，该机制仍然存在。我们进一步描述了绑定策略如何在不同训练方案、视觉编码器和初始化之间变化，并表明在预训练LLM到VLM的转换过程中也发生了类似的转变。我们的发现表明，跨模态训练即使对于基于单一模态的任务，也能增强推理和泛化能力。在本文中，我们研究了一个有趣的观察结果：在某些情况下，VLM在纯文本任务上优于其底层的预训练LLM。也就是说，对于某些仅需要文本推理的任务，原始LLM在进一步训练了考虑视觉和语言元素的任务目标后，其性能得到了提升。我们发现，这种方案显著且系统地提升了信息检索问题（Liu et al., 2024; Feng &amp; Steinhardt, 2024; Gur-Arieh et al., 2025; Urrutia et al., 2025）的性能，尤其是在长上下文设置中。例如，在我们的实验中，VLM Qwen3-VL-8B（Yang et al., 2025a）在纯文本检索任务上达到了76.0%的准确率，而其基础模型Qwen3-8B在相同评估中仅达到62.6%。这一结果令人费解：为什么基于图像的任务训练会导致纯文本评估的系统性改进？为了研究这个问题，我们设计了一组以纯文本检索任务为中心的受控实验（如图1所示）。概括而言，该任务涉及描述一组彩色形状，为每个形状分配一个字母，并向模型查询与指定颜色形状相关联的字母。例如，给定上下文描述“红色圆形和绿色三角形”以及关联“圆形是项目a，三角形是项目b”，模型被问及“哪个项目对应红色形状”（正确答案是项目a）。我们训练了一个小型Transformer模型来解决这项任务，使用的上下文最多包含八个形状（图1第一行）。该模型迅速掌握了任务，实现了完美的分布内准确率——即当输入最多包含八个对象时。然而，其分布外...</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>on their own, they cannot leverage visual information. Vision–Language Models (VLMs) address this limitation by learning to encode images into token representations that a pre-trained LLM can consume to perform vision-centric tasks such as image captioning and visual question answering (Alayrac et al., 2022; Zhang et al., 2024a). A standard training pipeline begins by taking a pre-trained LLM and augmenting it with a vision encoder—typically a vision transformer (Dosovitskiy et al., 2021)—that maps visual inputs into a sequence of tokens (Li et al., 2023). These visual tokens are then fed into the LLM, and the combined system is trained end-to-end on tasks that require both visual and textual understanding (Bai et al., 2023; Liu et al., 2023). Vision Language Models (VLMs) are designed to extend Large Language Models (LLMs) with visual capabilities, yet in this work we observe a surprising phenomenon: VLMs can outperform their underlying LLMs on purely text-only tasks, particularly in long-context information retrieval. To investigate this effect, we build a controlled synthetic retrieval task and find that a transformer trained only on text achieves perfect in-distribution accuracy but fails to generalize out of distribution, while subsequent training on an image-tokenized version of the same task nearly doubles text-only OOD performance. Mechanistic interpretability reveals that visual training changes the model’s internal binding strategy: text-only training encourages positional shortcuts, whereas image-based training disrupts them through spatial translation invariance, forcing the model to adopt a more robust symbolic binding mechanism that persists even after text-only examples are reintroduced. We further characterize how binding strategies vary across training regimes, visual encoders, and initializations, and show that analogous shifts occur during pretrained LLM-to-VLM transitions. Our findings suggest that cross-modal training can enhance reasoning and generalization even for tasks grounded in a single modality. In this paper, we study an intriguing observation: in some cases, VLMs outperform their underlying pre-trained LLMs on text-only tasks. That is, for certain tasks that require exclusively textual reasoning, the performance of the original LLM improves after being further trained on objectives that consider vision and language elements. We find that this scheme significantly and systematically enhances performance on information retrieval problems (Liu et al., 2024; Feng &amp; Steinhardt, 2024; Gur-Arieh et al., 2025; Urrutia et al., 2025), especially in long-context settings. For instance, in our experiments, the VLM Qwen3-VL-8B (Yang et al., 2025a) achieves 76.0% accuracy on a text-only retrieval task, while its base model Qwen3-8B reaches only 62.6% on the same evaluation. This result is puzzling: why would training on image-based tasks lead to systematic improvements on purely text-based evaluations? To study this question, we designed a set of controlled experiments centered on a text-only retrieval task (shown in Figure 1). At a high level, the task involves describing a set of colored shapes, assigning a letter to each shape, and querying the model for the letter associated with a shape of a specified color. For example, given the context description “red circle and green triangle” and the associations “the circle is item a and the triangle is item b,” the model is asked “which item corresponds to the red shape” (the correct answer being item a). We trained a small transformer model to solve this task using contexts containing up to eight shapes (first row in Figure 1). The model quickly mastered the task, achieving perfect in-distribution accuracy—i.e., when the input contained at most eight objects. However, its out-of-</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260216mm16seeing,
+  title = {Seeing to Generalize: How Visual Data Corrects Binding Shortcuts},
+  year = {2026},
+  url = {https://arxiv.org/abs/2602.15183},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm16-seeing-to-generalize-binding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Seeing to Generalize: How Visual Data Corrects Binding Shortcuts. https://arxiv.org/abs/2602.15183</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2602.15183" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

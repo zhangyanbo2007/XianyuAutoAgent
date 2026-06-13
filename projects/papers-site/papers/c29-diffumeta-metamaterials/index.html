@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Algebraic language models for inverse design of metamaterials via diffusion transformers | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是 3D metamaterial inverse design 里一个长期卡点：结构空间太复杂、表示不统一，导致生成模型很难同时拥有表达能力、可控性和跨拓扑泛化。作者的做法是把三维几何编码成 algebraic language，把结构设计转成更适合 transformer 处理的“数学句子”。
+
+在这个表示之上，DiffuMeta 用 diffusion transformer " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c29-diffumeta-metamaterials/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Algebraic language models for inverse design of metamaterials via diffusion transformers" />
+    <meta property="og:description" content="这篇论文解决的是 3D metamaterial inverse design 里一个长期卡点：结构空间太复杂、表示不统一，导致生成模型很难同时拥有表达能力、可控性和跨拓扑泛化。作者的做法是把三维几何编码成 algebraic language，把结构设计转成更适合 transformer 处理的“数学句子”。
+
+在这个表示之上，DiffuMeta 用 diffusion transformer " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c29-diffumeta-metamaterials/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Algebraic language models for inverse design of metamaterials via diffusion transformers" />
+    <meta name="twitter:description" content="这篇论文解决的是 3D metamaterial inverse design 里一个长期卡点：结构空间太复杂、表示不统一，导致生成模型很难同时拥有表达能力、可控性和跨拓扑泛化。作者的做法是把三维几何编码成 algebraic language，把结构设计转成更适合 transformer 处理的“数学句子”。
+
+在这个表示之上，DiffuMeta 用 diffusion transformer " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Algebraic language models for inverse design of metamaterials via diffusion transformers</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-04-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-23</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01218-8" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01218-8</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是 3D metamaterial inverse design 里一个长期卡点：结构空间太复杂、表示不统一，导致生成模型很难同时拥有表达能力、可控性和跨拓扑泛化。作者的做法是把三维几何编码成 algebraic language，把结构设计转成更适合 transformer 处理的“数学句子”。</dd></div><div><dt>方法/机制</dt><dd>在这个表示之上，DiffuMeta 用 diffusion transformer 做 one-to-many inverse design，不只对单一目标做回归，而是直接生成满足目标应力-应变响应的一组结构，并支持线性与非线性机械指标的联合控制。对 fabricated shell structures 的实验验证也说明这不是纯 simulation 内循环。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这里贡献的是一个可复用的 design representation + generative inverse-design workflow，而不是窄材料体系的小改良。对材料设计、结构优化和 AI-for-science 的方法外溢都比较强。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为影响范围目前仍主要集中在 architected metamaterials 和 mechanical shell structures，是否会扩展成更通用的材料语言接口还有待观察。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是 3D metamaterial inverse design 里一个长期卡点：结构空间太复杂、表示不统一，导致生成模型很难同时拥有表达能力、可控性和跨拓扑泛化。作者的做法是把三维几何编码成 algebraic language，把结构设计转成更适合 transformer 处理的“数学句子”。</p><p>在这个表示之上，DiffuMeta 用 diffusion transformer 做 one-to-many inverse design，不只对单一目标做回归，而是直接生成满足目标应力-应变响应的一组结构，并支持线性与非线性机械指标的联合控制。对 fabricated shell structures 的实验验证也说明这不是纯 simulation 内循环。</p><p>它值得正式收录，因为这里贡献的是一个可复用的 design representation + generative inverse-design workflow，而不是窄材料体系的小改良。对材料设计、结构优化和 AI-for-science 的方法外溢都比较强。</p><p>它没有升到更高等级，是因为影响范围目前仍主要集中在 architected metamaterials 和 mechanical shell structures，是否会扩展成更通用的材料语言接口还有待观察。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过扩散变换器实现超材料逆向设计的代数语言模型。生成式机器学习模型通过捕获复杂的结构-性能关系，彻底改变了材料发现，然而，由于缺乏富有表现力的表示，将这些方法扩展到三维超材料的逆向设计仍然受到计算复杂性和未充分探索的设计空间的限制。在本文中，我们提出了DiffuMeta，这是一个生成式框架，它将扩散变换器与代数语言表示相结合，将三维几何结构编码为数学语句。这种紧凑统一的参数化涵盖了多样化的拓扑结构，使得变换器能够直接应用于结构设计。DiffuMeta利用扩散模型生成新的壳结构，这些结构在大变形下具有精确目标应力-应变响应，同时考虑了屈曲和接触，并通过产生多样化的解决方案来解决固有的多对一映射问题。独特的是，我们的方法能够同时控制多个力学目标，包括超出训练域的线性和非线性响应。制造结构的实验验证进一步证实了我们方法在加速设计具有定制性能的超材料和结构方面的有效性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Generative machine learning models have revolutionized material discovery by capturing complex structure–property relationships, yet extending these approaches to the inverse design of three-dimensional metamaterials remains limited by computational complexity and underexplored design spaces due to the lack of expressive representations. Here we present DiffuMeta, a generative framework integrating diffusion transformers with an algebraic language representation, encoding three-dimensional geometries as mathematical sentences. This compact, unified parameterization spans diverse topologies, enabling the direct application of transformers to structural design. DiffuMeta leverages diffusion models to generate new shell structures with precisely targeted stress–strain responses under large deformations, accounting for buckling and contact while addressing the inherent one-to-many mapping by producing diverse solutions. Uniquely, our approach enables simultaneous control over multiple mechanical objectives, including linear and nonlinear responses beyond training domains. Experimental validation of fabricated structures further confirms the efficacy of our approach for accelerated design of metamaterials and structures with tailored properties.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260423c29diffume,
+  title = {Algebraic language models for inverse design of metamaterials via diffusion transformers},
+  year = {2026},
+  url = {https://doi.org/10.1038/s42256-026-01218-8},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c29-diffumeta-metamaterials/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Algebraic language models for inverse design of metamaterials via diffusion transformers. https://doi.org/10.1038/s42256-026-01218-8</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s42256-026-01218-8" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MetaClaw: Just Talk -- An Agent That Meta-Learns and Evolves in the Wild | DAST Papers</title>
+    <meta name="description" content="这篇论文针对的是一个很现实但长期被弱化的问题：部署后的 LLM agent 往往是静态的，用户需求和任务分布在变，系统却只能靠人工整理记忆、重启训练或停机更新来追赶。作者把这个问题放到 OpenClaw 这类多渠道、持续在线的 agent 平台上来讨论，强调核心矛盾不是单次任务求解，而是如何在不中断服务的前提下持续获得新能力。
+
+MetaClaw 的关键设计是把持续演化拆成两条互补回路。第一条是 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a50-metaclaw-continual-agent-learning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MetaClaw: Just Talk -- An Agent That Meta-Learns and Evolves in the Wild" />
+    <meta property="og:description" content="这篇论文针对的是一个很现实但长期被弱化的问题：部署后的 LLM agent 往往是静态的，用户需求和任务分布在变，系统却只能靠人工整理记忆、重启训练或停机更新来追赶。作者把这个问题放到 OpenClaw 这类多渠道、持续在线的 agent 平台上来讨论，强调核心矛盾不是单次任务求解，而是如何在不中断服务的前提下持续获得新能力。
+
+MetaClaw 的关键设计是把持续演化拆成两条互补回路。第一条是 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a50-metaclaw-continual-agent-learning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MetaClaw: Just Talk -- An Agent That Meta-Learns and Evolves in the Wild" />
+    <meta name="twitter:description" content="这篇论文针对的是一个很现实但长期被弱化的问题：部署后的 LLM agent 往往是静态的，用户需求和任务分布在变，系统却只能靠人工整理记忆、重启训练或停机更新来追赶。作者把这个问题放到 OpenClaw 这类多渠道、持续在线的 agent 平台上来讨论，强调核心矛盾不是单次任务求解，而是如何在不中断服务的前提下持续获得新能力。
+
+MetaClaw 的关键设计是把持续演化拆成两条互补回路。第一条是 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MetaClaw: Just Talk -- An Agent That Meta-Learns and Evolves in the Wild</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.17187" target="_blank" rel="noopener noreferrer">2603.17187</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对的是一个很现实但长期被弱化的问题：部署后的 LLM agent 往往是静态的，用户需求和任务分布在变，系统却只能靠人工整理记忆、重启训练或停机更新来追赶。作者把这个问题放到 OpenClaw 这类多渠道、持续在线的 agent 平台上来讨论，强调核心矛盾不是单次任务求解，而是如何在不中断服务的前提下持续获得新能力。</dd></div><div><dt>方法/机制</dt><dd>MetaClaw 的关键设计是把持续演化拆成两条互补回路。第一条是 skill-driven fast adaptation：分析失败轨迹，由 LLM evolver 直接合成新技能，实现零停机的即时改进；第二条是 opportunistic policy optimization：在用户空闲窗口里，通过云端 LoRA 微调和 RL-PRM 做策略更新，并由 Opportunistic Meta-Learning Scheduler 结合系统空闲和日历信息来触发。作者还加入版本隔离机制，把 support 与 query 数据分开，避免持续学习时的数据污染。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是普通的 agent benchmark 提升，而是提出了一个更接近真实系统维护方式的 continual agent learning 框架：技能库演化与底座策略更新相互增强，且明确围绕在线服务约束来设计。对 agent memory、capability acquisition、长期部署与系统自我改进这几条主线都有明显外溢，也和仓库当前对 agent systems 的扩展方向一致。</dd></div><div><dt>收录价值</dt><dd>它目前仍适合定为 breakthrough，而不是更高一级。原因是这套框架虽然完整，也给出了在 MetaClaw-Bench 和 AutoResearchClaw 上的显著提升，但证据仍主要来自作者自建系统和平台环境。它更像一篇高质量的 agent continual learning 系统论文，距离成为更广泛 agent infra 默认范式，还需要更多独立复现与跨平台验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对的是一个很现实但长期被弱化的问题：部署后的 LLM agent 往往是静态的，用户需求和任务分布在变，系统却只能靠人工整理记忆、重启训练或停机更新来追赶。作者把这个问题放到 OpenClaw 这类多渠道、持续在线的 agent 平台上来讨论，强调核心矛盾不是单次任务求解，而是如何在不中断服务的前提下持续获得新能力。</p><p>MetaClaw 的关键设计是把持续演化拆成两条互补回路。第一条是 skill-driven fast adaptation：分析失败轨迹，由 LLM evolver 直接合成新技能，实现零停机的即时改进；第二条是 opportunistic policy optimization：在用户空闲窗口里，通过云端 LoRA 微调和 RL-PRM 做策略更新，并由 Opportunistic Meta-Learning Scheduler 结合系统空闲和日历信息来触发。作者还加入版本隔离机制，把 support 与 query 数据分开，避免持续学习时的数据污染。</p><p>这篇工作值得正式收录，因为它不是普通的 agent benchmark 提升，而是提出了一个更接近真实系统维护方式的 continual agent learning 框架：技能库演化与底座策略更新相互增强，且明确围绕在线服务约束来设计。对 agent memory、capability acquisition、长期部署与系统自我改进这几条主线都有明显外溢，也和仓库当前对 agent systems 的扩展方向一致。</p><p>它目前仍适合定为 breakthrough，而不是更高一级。原因是这套框架虽然完整，也给出了在 MetaClaw-Bench 和 AutoResearchClaw 上的显著提升，但证据仍主要来自作者自建系统和平台环境。它更像一篇高质量的 agent continual learning 系统论文，距离成为更广泛 agent infra 默认范式，还需要更多独立复现与跨平台验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MetaClaw：只言片语——一个在野外元学习和进化的智能体大型语言模型（LLM）智能体已迅速崛起，成为复杂多步任务的强大助手，然而，部署在实际环境中的智能体大多保持静态，一次训练后便保持不变，无论用户需求如何演变。这产生了一个根本性的矛盾：它们必须不间断地持续服务用户，但随着任务分布随实际使用而漂移，它们的能力会逐渐过时。在OpenClaw等平台上，单个智能体连接到20多个消息通道并处理多样化、不断演变的工作负载，现有方法要么存储原始轨迹而不提炼可迁移的行为知识，要么维护与权重优化脱节的静态技能库，要么在再训练期间导致服务停机。我们提出了MetaClaw，一个持续元学习框架，它共同维护一个基础LLM策略和一个不断演进的可重用行为指令技能库，通过两种互补机制来改进两者。技能驱动的快速适应通过LLM进化器分析失败轨迹并合成新技能，立即生效，零服务停机时间。机会性策略优化通过使用带有过程奖励模型的RL进行云LoRA微调来执行基于梯度的权重更新，仅在用户非活跃时段由机会性元学习调度器（OMLS）触发，该调度器监控可配置的睡眠时间、系统键盘不活动和Google日历占用情况。这两种机制相互强化：更好的策略为技能合成产生更具信息量的失败，而更丰富的技能为策略优化带来更高奖励的轨迹。为防止陈旧奖励污染，技能生成版本控制机制严格区分支持数据（由技能进化消耗的失败轨迹）和查询数据（用于RL更新的适应后轨迹）。MetaClaw基于代理架构构建，无需本地GPU即可扩展到生产规模的LLM。在MetaClaw-Bench（934个问题，44个模拟工作日）和AutoResearchClaw（23阶段自主研究管道）上的实验表明持续改进：技能驱动的适应性将准确率相对提高了高达32%；完整管道将Kimi-K2.5的准确率从21.4%提升到40.6%（对比GPT-5.2基线41.1%），端到端任务完成率提高了8.25倍；仅技能注入就将AutoResearchClaw的综合鲁棒性提高了18.3%。Github：https://github.com/aiming-lab/MetaClaw</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM) agents have rapidly emerged as powerful assistants for complex, multi-step tasks, yet agents deployed in the wild remain largely static, trained once and served unchanged regardless of how user needs evolve. This creates a fundamental tension: they must serve users continuously without interruption, yet their capabilities grow stale as the task distribution drifts with real-world usage. On platforms such as OpenClaw, where a single agent connects to 20+ messaging channels and handles diverse, evolving workloads, existing approaches either store raw trajectories without distilling transferable behavioral knowledge, maintain static skill libraries disconnected from weight optimization, or incur service downtime during retraining. We present MetaClaw, a continual meta-learning framework that jointly maintains a base LLM policy and an evolving skill library of reusable behavioral instructions, improving both through two complementary mechanisms. Skill-driven fast adaptation analyzes failure trajectories and synthesizes new skills via an LLM evolver, taking effect immediately with zero service downtime. Opportunistic policy optimization performs gradient-based weight updates via cloud LoRA fine-tuning using RL with a process reward model, triggered only during user-inactive windows by the Opportunistic Meta-Learning Scheduler (OMLS), which monitors configurable sleep hours, system keyboard inactivity, and Google Calendar occupancy. The two mechanisms are mutually reinforcing: a better policy produces more informative failures for skill synthesis, and richer skills yield higher-reward trajectories for policy optimization. To prevent stale reward contamination, a skill generation versioning mechanism strictly separates support data (failure trajectories consumed by skill evolution) from query data (post-adaptation trajectories used for RL updates). Built on a proxybased architecture, MetaClaw scales to production-size LLMs without a local GPU. Experiments on MetaClaw-Bench (934 questions, 44 simulated workdays) and AutoResearchClaw (23-stage autonomous research pipeline) demonstrate consistent improvements: skill-driven adaptation improves accuracy by up to 32% relative; the full pipeline advances Kimi-K2.5 from 21.4% to 40.6% accuracy (vs. GPT-5.2 baseline 41.1%) with an 8.25× gain in end-to-end task completion; and skill injection alone improves AutoResearchClaw composite robustness by 18.3%. Github: https://github.com/aiming-lab/MetaClaw</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317a50metacla,
+  title = {MetaClaw: Just Talk -- An Agent That Meta-Learns and Evolves in the Wild},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.17187v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a50-metaclaw-continual-agent-learning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MetaClaw: Just Talk -- An Agent That Meta-Learns and Evolves in the Wild. https://arxiv.org/pdf/2603.17187v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.17187v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

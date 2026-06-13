@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation | DAST Papers</title>
+    <meta name="description" content="扩散模型定制编辑常用多个 LoRA 表达不同视觉效果，但部署时动态加载大量 adapters 会带来内存、延迟和参数干扰。
+
+CollectionLoRA 用 multi-teacher on-policy distillation 把多个效果收进一个 LoRA，目标是在一个 adapter 中复用多种编辑能力。
+
+虽然应用集中在图像编辑，但它对 modular capability inject" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r86-collectionlora-multi-effect-lora/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation" />
+    <meta property="og:description" content="扩散模型定制编辑常用多个 LoRA 表达不同视觉效果，但部署时动态加载大量 adapters 会带来内存、延迟和参数干扰。
+
+CollectionLoRA 用 multi-teacher on-policy distillation 把多个效果收进一个 LoRA，目标是在一个 adapter 中复用多种编辑能力。
+
+虽然应用集中在图像编辑，但它对 modular capability inject" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r86-collectionlora-multi-effect-lora/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation" />
+    <meta name="twitter:description" content="扩散模型定制编辑常用多个 LoRA 表达不同视觉效果，但部署时动态加载大量 adapters 会带来内存、延迟和参数干扰。
+
+CollectionLoRA 用 multi-teacher on-policy distillation 把多个效果收进一个 LoRA，目标是在一个 adapter 中复用多种编辑能力。
+
+虽然应用集中在图像编辑，但它对 modular capability inject" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">watchlist</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.25378" target="_blank" rel="noopener noreferrer">2605.25378</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>扩散模型定制编辑常用多个 LoRA 表达不同视觉效果，但部署时动态加载大量 adapters 会带来内存、延迟和参数干扰。</dd></div><div><dt>方法/机制</dt><dd>CollectionLoRA 用 multi-teacher on-policy distillation 把多个效果收进一个 LoRA，目标是在一个 adapter 中复用多种编辑能力。</dd></div><div><dt>结果/证据</dt><dd>虽然应用集中在图像编辑，但它对 modular capability injection 和 PEFT deployment 有参考价值。</dd></div><div><dt>收录价值</dt><dd>因此本轮只按 watchlist 收录：它不是 agent/LLM 核心突破，但对 LoRA 组合、能力压缩和部署接口有可复用启发。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>扩散模型定制编辑常用多个 LoRA 表达不同视觉效果，但部署时动态加载大量 adapters 会带来内存、延迟和参数干扰。</p><p>CollectionLoRA 用 multi-teacher on-policy distillation 把多个效果收进一个 LoRA，目标是在一个 adapter 中复用多种编辑能力。</p><p>虽然应用集中在图像编辑，但它对 modular capability injection 和 PEFT deployment 有参考价值。</p><p>因此本轮只按 watchlist 收录：它不是 agent/LLM 核心突破，但对 LoRA 组合、能力压缩和部署接口有可复用启发。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>图 1：我们提出了一种名为 CollectionLoRA 的多教师蒸馏框架，能够将各种效果和少步推理能力整合到一个 LoRA 中。摘要。定制化图像编辑旨在通过有限的配对数据为预训练的扩散模型配备特定的视觉效果，通常通过低秩适应 (LoRA) 实现。随着所需效果数量的增加，存储和动态加载大量的效果 LoRA 会显著增加部署开销。此外，当前的流水线通常会将这些效果 LoRA 与加速模块级联，从而导致严重的参数干扰，并导致概念混淆和风格退化。我们提出 CollectionLoRA，一种多教师 on-policy 蒸馏框架，能够将最多 50 个不同效果 LoRA 的概念以及少步生成能力蒸馏到一个 LoRA 中。这从根本上解决了特征干扰问题，并显著降低了部署成本。具体而言，该方法引入了 (i) 一种概率双流路由机制，使模型能够在训练期间随机在数据源之间切换，从而有效地增强了其在未见场景中的泛化能力；(ii) 一种不对称正交提示策略，以在提示空间内实现概念隔离；(iii) 一种粗到精蒸馏目标函数，以缓解教师模型和学生模型之间的分布差距。广泛的评估表明</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Fig. 1: We propose CollectionLoRA, a multi-teacher distillation framework capable of consolidating diverse effects and few-step inference capabilities into a single LoRA. Abstract. Customized image editing aims to equip pre-trained diffusion models with specific visual effects using limited paired data, typically via Low-Rank Adaptation (LoRA). As the number of desired effects grows, storing and dynamically loading numerous these effect LoRAs significantly increases deployment overhead. Furthermore, current pipelines typically cascade these effect LoRAs with acceleration modules for fast generation, which triggers severe parameter interference and results in concept bleeding and style degradation. We propose CollectionLoRA, a multi-teacher on-policy distillation framework capable of distilling the concepts of up to 50 different effect LoRAs along with few-step generation capabilities into a single LoRA. This fundamentally resolves the feature interference issue and significantly reduces deployment costs. Specifically, the method introduces (i) a Probabilistic Dual-Stream Routing mechanism that enables the model to randomly switch between data sources during training, effectively enhancing its generalization in unseen scenarios; (ii) an Asymmetric Orthogonal Prompting strategy to achieve concept isolation within the prompt space; (iii) a Coarse-to-Fine Distillation Objective to mitigate the distribution gap between the teacher and student models. Extensive evaluations show</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260529r86collect,
+  title = {CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.25378.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r86-collectionlora-multi-effect-lora/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation. https://arxiv.org/pdf/2605.25378.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/r84-omniretrieval-heterogeneous-sources/">
+              <span>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.25378.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.25378" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

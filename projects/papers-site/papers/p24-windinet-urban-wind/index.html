@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pretrained Video Models as Differentiable Physics Simulators for Urban Wind Flows | DAST Papers</title>
+    <meta name="description" content="这篇工作针对城市风环境设计中的一个核心瓶颈：高质量 CFD 仿真太慢，导致行人风舒适性与安全性的设计空间探索成本极高。作者把这个问题重新表述为可微的时空生成与优化问题，而不是单纯训练一个更快的数值替代器。
+
+方法上，它从预训练视频扩散模型出发，微调成风场时序 rollout 的代理模拟器，并加入物理约束的解码损失，使模型既能快速生成完整时序流场，又能对布局参数反向传播。这样一来，模型不只是预测器，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p24-windinet-urban-wind/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Pretrained Video Models as Differentiable Physics Simulators for Urban Wind Flows" />
+    <meta property="og:description" content="这篇工作针对城市风环境设计中的一个核心瓶颈：高质量 CFD 仿真太慢，导致行人风舒适性与安全性的设计空间探索成本极高。作者把这个问题重新表述为可微的时空生成与优化问题，而不是单纯训练一个更快的数值替代器。
+
+方法上，它从预训练视频扩散模型出发，微调成风场时序 rollout 的代理模拟器，并加入物理约束的解码损失，使模型既能快速生成完整时序流场，又能对布局参数反向传播。这样一来，模型不只是预测器，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p24-windinet-urban-wind/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Pretrained Video Models as Differentiable Physics Simulators for Urban Wind Flows" />
+    <meta name="twitter:description" content="这篇工作针对城市风环境设计中的一个核心瓶颈：高质量 CFD 仿真太慢，导致行人风舒适性与安全性的设计空间探索成本极高。作者把这个问题重新表述为可微的时空生成与优化问题，而不是单纯训练一个更快的数值替代器。
+
+方法上，它从预训练视频扩散模型出发，微调成风场时序 rollout 的代理模拟器，并加入物理约束的解码损失，使模型既能快速生成完整时序流场，又能对布局参数反向传播。这样一来，模型不只是预测器，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Pretrained Video Models as Differentiable Physics Simulators for Urban Wind Flows</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-03-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.21210" target="_blank" rel="noopener noreferrer">2603.21210</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作针对城市风环境设计中的一个核心瓶颈：高质量 CFD 仿真太慢，导致行人风舒适性与安全性的设计空间探索成本极高。作者把这个问题重新表述为可微的时空生成与优化问题，而不是单纯训练一个更快的数值替代器。</dd></div><div><dt>方法/机制</dt><dd>方法上，它从预训练视频扩散模型出发，微调成风场时序 rollout 的代理模拟器，并加入物理约束的解码损失，使模型既能快速生成完整时序流场，又能对布局参数反向传播。这样一来，模型不只是预测器，也是可用于逆向设计的 differentiable simulator。</dd></div><div><dt>结果/证据</dt><dd>这篇论文对仓库的价值在于，它把视频生成模型、神经代理仿真和物理设计优化连成了一个统一工作流，明确展示了 foundation-model 级视频建模如何进入科学计算和工程设计闭环。这个接口比普通 neural PDE surrogate 更有外溢性。</dd></div><div><dt>收录价值</dt><dd>它目前仍有边界：任务是 2D incompressible urban wind setting，验证范围也还集中在特定 CFD 数据分布内，因此还不足以把更广义的 AI 物理模拟路线整体重排。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作针对城市风环境设计中的一个核心瓶颈：高质量 CFD 仿真太慢，导致行人风舒适性与安全性的设计空间探索成本极高。作者把这个问题重新表述为可微的时空生成与优化问题，而不是单纯训练一个更快的数值替代器。</p><p>方法上，它从预训练视频扩散模型出发，微调成风场时序 rollout 的代理模拟器，并加入物理约束的解码损失，使模型既能快速生成完整时序流场，又能对布局参数反向传播。这样一来，模型不只是预测器，也是可用于逆向设计的 differentiable simulator。</p><p>这篇论文对仓库的价值在于，它把视频生成模型、神经代理仿真和物理设计优化连成了一个统一工作流，明确展示了 foundation-model 级视频建模如何进入科学计算和工程设计闭环。这个接口比普通 neural PDE surrogate 更有外溢性。</p><p>它目前仍有边界：任务是 2D incompressible urban wind setting，验证范围也还集中在特定 CFD 数据分布内，因此还不足以把更广义的 AI 物理模拟路线整体重排。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：预训练视频模型作为城市风流的可微分物理模拟器。设计能够提供行人风舒适度和安全性的城市空间需要时间分辨的计算流体动力学（CFD）模拟，但其当前的计算成本使得广泛的设计探索不切实际。我们引入了WinDiNet（风扩散网络），这是一个预训练的视频扩散模型，被重新用作此任务的快速、可微分替代模型。我们从LTX-Video（一个20亿参数的潜在视频Transformer）开始，在10,000个程序生成建筑布局的2D不可压缩CFD模拟上进行微调。对训练方案、条件机制和VAE适应策略（包括物理信息解码器损失）的系统研究，确定了一种性能优于专用神经偏微分方程求解器的配置。所得模型在不到一秒的时间内生成完整的112帧展开。由于该替代模型是端到端可微分的，它也可用作基于梯度的逆向优化的物理模拟器：给定一个城市占地布局，我们通过反向传播直接优化建筑物位置，以提高风安全性和行人风舒适度。在单入口和多入口布局上的实验表明，即使在具有挑战性的多目标配置下，优化器也能发现有效的布局，所有改进均通过真实CFD模拟得到证实。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Designing urban spaces that provide pedestrian wind comfort and safety requires time-resolved Computational Fluid Dynamics (CFD) simulations, but their current computational cost makes extensive design exploration impractical. We introduce WinDiNet (Wind Diffusion Network), a pretrained video diffusion model that is repurposed as a fast, differentiable surrogate for this task. Starting from LTX-Video, a 2B-parameter latent video transformer, we fine-tune on 10,000 2D incompressible CFD simulations over procedurally generated building layouts. A systematic study of training regimes, conditioning mechanisms, and VAE adaptation strategies, including a physics-informed decoder loss, identifies a configuration that outperforms purpose-built neural PDE solvers. The resulting model generates full 112-frame rollouts in under a second. As the surrogate is end-to-end differentiable, it doubles as a physics simulator for gradient-based inverse optimization: given an urban footprint layout, we optimize building positions directly through backpropagation to improve wind safety as well as pedestrian wind comfort. Experiments on singleand multi-inlet layouts show that the optimizer discovers effective layouts even under challenging multi-objective configurations, with all improvements confirmed by ground-truth CFD simulations.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260322p24windine,
+  title = {Pretrained Video Models as Differentiable Physics Simulators for Urban Wind Flows},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.21210v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p24-windinet-urban-wind/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Pretrained Video Models as Differentiable Physics Simulators for Urban Wind Flows. https://arxiv.org/pdf/2603.21210v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.21210v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

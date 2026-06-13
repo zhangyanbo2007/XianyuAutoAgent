@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluating Very Long-Term Conversational Memory of LLM Agents | DAST Papers</title>
+    <meta name="description" content="在 LongMemEval 之前，超长对话记忆的评测长期缺少高质量、长跨度、可检验时间与因果一致性的会话数据。LoCoMo 试图填补的就是这个空白：它不是简单拉长上下文，而是围绕 persona、时间事件图和跨 session 互动去构建真正需要长期记忆和时间线理解的会话基准。
+
+这篇工作的核心新意在于其 machine-human 数据生成流程。系统先基于 persona 与 temporal " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a105-locomo-conversational-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Evaluating Very Long-Term Conversational Memory of LLM Agents" />
+    <meta property="og:description" content="在 LongMemEval 之前，超长对话记忆的评测长期缺少高质量、长跨度、可检验时间与因果一致性的会话数据。LoCoMo 试图填补的就是这个空白：它不是简单拉长上下文，而是围绕 persona、时间事件图和跨 session 互动去构建真正需要长期记忆和时间线理解的会话基准。
+
+这篇工作的核心新意在于其 machine-human 数据生成流程。系统先基于 persona 与 temporal " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a105-locomo-conversational-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Evaluating Very Long-Term Conversational Memory of LLM Agents" />
+    <meta name="twitter:description" content="在 LongMemEval 之前，超长对话记忆的评测长期缺少高质量、长跨度、可检验时间与因果一致性的会话数据。LoCoMo 试图填补的就是这个空白：它不是简单拉长上下文，而是围绕 persona、时间事件图和跨 session 互动去构建真正需要长期记忆和时间线理解的会话基准。
+
+这篇工作的核心新意在于其 machine-human 数据生成流程。系统先基于 persona 与 temporal " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Evaluating Very Long-Term Conversational Memory of LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2024-02-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-02-27</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>在 LongMemEval 之前，超长对话记忆的评测长期缺少高质量、长跨度、可检验时间与因果一致性的会话数据。LoCoMo 试图填补的就是这个空白：它不是简单拉长上下文，而是围绕 persona、时间事件图和跨 session 互动去构建真正需要长期记忆和时间线理解的会话基准。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心新意在于其 machine-human 数据生成流程。系统先基于 persona 与 temporal event graph 生成很长的对话，再由人工核验和编辑，以保证长程一致性、事件锚定和角色约束；同时 benchmark 不只测 QA，还覆盖 event summarization 与 multimodal dialogue generation，使它比普通 retrieval QA 数据更接近真实长期对话代理的工作负载。</dd></div><div><dt>结果/证据</dt><dd>它对仓库的价值在于提供了 agent memory 这条线最早一批真正耐用的长时对话基准之一。后续很多 memory architecture、graph memory、temporal retrieval、episodic-semantic memory 工作都把 LoCoMo 当成标准战场，因此它已经是理解这条路线不可绕开的 reference。</dd></div><div><dt>收录价值</dt><dd>它目前是 breakthrough 而不是更高一级，因为它更偏 benchmark/data resource，而不像 LongMemEval 那样同时显式提供了一套更系统的 memory design decomposition；此外，公开讨论中也开始出现对评分和标注稳定性的审视，因此作为 durable benchmark reference 值得收录，但仍需要带着质量边界意识来使用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>在 LongMemEval 之前，超长对话记忆的评测长期缺少高质量、长跨度、可检验时间与因果一致性的会话数据。LoCoMo 试图填补的就是这个空白：它不是简单拉长上下文，而是围绕 persona、时间事件图和跨 session 互动去构建真正需要长期记忆和时间线理解的会话基准。</p><p>这篇工作的核心新意在于其 machine-human 数据生成流程。系统先基于 persona 与 temporal event graph 生成很长的对话，再由人工核验和编辑，以保证长程一致性、事件锚定和角色约束；同时 benchmark 不只测 QA，还覆盖 event summarization 与 multimodal dialogue generation，使它比普通 retrieval QA 数据更接近真实长期对话代理的工作负载。</p><p>它对仓库的价值在于提供了 agent memory 这条线最早一批真正耐用的长时对话基准之一。后续很多 memory architecture、graph memory、temporal retrieval、episodic-semantic memory 工作都把 LoCoMo 当成标准战场，因此它已经是理解这条路线不可绕开的 reference。</p><p>它目前是 breakthrough 而不是更高一级，因为它更偏 benchmark/data resource，而不像 LongMemEval 那样同时显式提供了一套更系统的 memory design decomposition；此外，公开讨论中也开始出现对评分和标注稳定性的审视，因此作为 durable benchmark reference 值得收录，但仍需要带着质量边界意识来使用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>评估LLM智能体的超长期对话记忆。现有关于长期开放域对话的研究主要集中在评估模型在不超过五个聊天会话的上下文中的响应。尽管长上下文大型语言模型（LLMs）和检索增强生成（RAG）技术取得了进展，但它们在超长期对话中的有效性仍未被探索。为了弥补这一研究空白，我们引入了一种人机协作流程，通过利用基于LLM的智能体架构并将对话建立在角色和时间事件图的基础上，生成高质量的超长期对话。此外，我们为每个智能体配备了分享和响应图像的能力。生成式对话由人工标注者进行验证和编辑，以确保其长期一致性以及与事件图的关联性。利用这一流程，我们收集了L O C O M O数据集，这是一个包含超长期对话的数据集，每个对话平均包含约600轮和16K个token，跨越多达32个会话。基于L O C O M O，我们提出了一个全面的评估基准，用于衡量模型中的长期记忆，包括问答、事件摘要和多模态对话生成任务。我们的实验结果表明，LLMs在理解冗长对话以及对话中长距离的时间和因果动态方面面临挑战。采用长上下文LLMs或RAG等策略可以提供改进，但这些模型在性能上仍远低于人类水平。1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Existing works on long-term open-domain dialogues focus on evaluating model responses within contexts spanning no more than five chat sessions. Despite advancements in longcontext large language models (LLMs) and retrieval augmented generation (RAG) techniques, their efficacy in very long-term dialogues remains unexplored. To address this research gap, we introduce a machine-human pipeline to generate high-quality, very longterm dialogues by leveraging LLM-based agent architectures and grounding their dialogues on personas and temporal event graphs. Moreover, we equip each agent with the capability of sharing and reacting to images. The generated conversations are verified and edited by human annotators for long-range consistency and grounding to the event graphs. Using this pipeline, we collect L O C O M O, a dataset of very long-term conversations, each encompassing approx. 600 turns and 16K tokens on avg., over up to 32 sessions. Based on L O C O M O, we present a comprehensive evaluation benchmark to measure long-term memory in models, encompassing question answering, event summarization, and multi-modal dialogue generation tasks. Our experimental results indicate that LLMs exhibit challenges in understanding lengthy conversations and comprehending long-range temporal and causal dynamics within dialogues. Employing strategies like long-context LLMs or RAG can offer improvements but these models still substantially lag behind human performance.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240227a105locomo,
+  title = {Evaluating Very Long-Term Conversational Memory of LLM Agents},
+  year = {2024},
+  url = {https://aclanthology.org/2024.acl-long.747.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a105-locomo-conversational-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). Evaluating Very Long-Term Conversational Memory of LLM Agents. https://aclanthology.org/2024.acl-long.747.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://aclanthology.org/2024.acl-long.747.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

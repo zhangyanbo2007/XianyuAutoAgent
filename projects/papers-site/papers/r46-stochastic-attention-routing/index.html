@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention | DAST Papers</title>
+    <meta name="description" content="高效注意力长期面临一个结构瓶颈：滑动窗口和大多数线性时间方案虽然把复杂度压下来了，但代价通常是全局路由能力显著下降，感受野扩展非常慢。很多工作只能在复杂稀疏模式、额外路由器或自定义 kernel 之间做折中。
+
+这篇工作的核心是 Stochastic Attention。它在窗口注意力前先对 token 做随机重排，计算完局部窗口注意力后再恢复原顺序，从而把固定局部窗口变成随机全局窗口。跨层使用独" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r46-stochastic-attention-routing/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention" />
+    <meta property="og:description" content="高效注意力长期面临一个结构瓶颈：滑动窗口和大多数线性时间方案虽然把复杂度压下来了，但代价通常是全局路由能力显著下降，感受野扩展非常慢。很多工作只能在复杂稀疏模式、额外路由器或自定义 kernel 之间做折中。
+
+这篇工作的核心是 Stochastic Attention。它在窗口注意力前先对 token 做随机重排，计算完局部窗口注意力后再恢复原顺序，从而把固定局部窗口变成随机全局窗口。跨层使用独" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r46-stochastic-attention-routing/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention" />
+    <meta name="twitter:description" content="高效注意力长期面临一个结构瓶颈：滑动窗口和大多数线性时间方案虽然把复杂度压下来了，但代价通常是全局路由能力显著下降，感受野扩展非常慢。很多工作只能在复杂稀疏模式、额外路由器或自定义 kernel 之间做折中。
+
+这篇工作的核心是 Stochastic Attention。它在窗口注意力前先对 token 做随机重排，计算完局部窗口注意力后再恢复原顺序，从而把固定局部窗口变成随机全局窗口。跨层使用独" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00754" target="_blank" rel="noopener noreferrer">2604.00754</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>高效注意力长期面临一个结构瓶颈：滑动窗口和大多数线性时间方案虽然把复杂度压下来了，但代价通常是全局路由能力显著下降，感受野扩展非常慢。很多工作只能在复杂稀疏模式、额外路由器或自定义 kernel 之间做折中。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心是 Stochastic Attention。它在窗口注意力前先对 token 做随机重排，计算完局部窗口注意力后再恢复原顺序，从而把固定局部窗口变成随机全局窗口。跨层使用独立随机排列后，感受野会以指数速度扩展；再和标准 SWA 做门控组合，就形成了兼顾局部聚集与全局捷径的小世界式注意力结构。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一种复杂稀疏 pattern，而是一个极简、可复用、训练和推理都能接的路由原语。对于长上下文、线性时间注意力和 training-free inference acceleration，这种随机化全局路由接口都有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前从头训练实验的规模仍有限，而且纯 SA 本身会破坏局部语义，仍需要和 SWA 组合使用。它已经是很强的结构推进，但是否会成为默认注意力路线还要看更大规模验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>高效注意力长期面临一个结构瓶颈：滑动窗口和大多数线性时间方案虽然把复杂度压下来了，但代价通常是全局路由能力显著下降，感受野扩展非常慢。很多工作只能在复杂稀疏模式、额外路由器或自定义 kernel 之间做折中。</p><p>这篇工作的核心是 Stochastic Attention。它在窗口注意力前先对 token 做随机重排，计算完局部窗口注意力后再恢复原顺序，从而把固定局部窗口变成随机全局窗口。跨层使用独立随机排列后，感受野会以指数速度扩展；再和标准 SWA 做门控组合，就形成了兼顾局部聚集与全局捷径的小世界式注意力结构。</p><p>它值得正式收录，因为这不是又一种复杂稀疏 pattern，而是一个极简、可复用、训练和推理都能接的路由原语。对于长上下文、线性时间注意力和 training-free inference acceleration，这种随机化全局路由接口都有明显方法外溢。</p><p>它暂时不升到更高一级，原因在于当前从头训练实验的规模仍有限，而且纯 SA 本身会破坏局部语义，仍需要和 SWA 组合使用。它已经是很强的结构推进，但是否会成为默认注意力路线还要看更大规模验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>果蝇的全脑连接组包含超过13万个神经元，连接概率仅为0.02%，但平均最短路径仅为4.4跳。尽管在电路层面高度结构化，该网络的远程连接广泛分布于大脑区域，充当随机捷径，实现高效的全局通信。受此观察启发，我们提出了随机注意力（Stochastic Attention, SA），这是一种滑动窗口注意力（SWA）的即插即用增强，它在窗口注意力之前对token序列应用随机置换，并在之后恢复原始顺序。这在相同的O(nw)每层预算内将固定的局部窗口转换为随机的全局窗口。通过深度，独立采样的置换产生指数增长的感受野，在O(logw n)层中实现完整的序列覆盖，而SWA则需要O(n/w)层。我们在两种设置中验证了SA：从头开始预训练语言模型，其中门控SA + SWA组合实现了最佳平均零样本准确率；以及在Qwen3-8B和Qwen3-30B-A3B上进行免训练推理，其中SA始终优于SWA，并在可比的计算预算下与Mixture of Block Attention持平或超越。这些结果表明，受连接组启发的随机路由是提高高效注意力表达能力的一种实用原语，与现有线性稀疏方法互补。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The whole-brain connectome of a fruit fly comprises over 130K neurons connected with a probability of merely 0.02%, yet achieves an average shortest path of only 4.4 hops. Despite being highly structured at the circuit level, the network’s long-range connections are broadly distributed across brain regions, functioning as stochastic shortcuts that enable efficient global communication. Inspired by this observation, we propose Stochastic Attention (SA), a drop-in enhancement for sliding-window attention (SWA) that applies a random permutation to the token sequence before windowed attention and restores the original order afterward. This transforms the fixed local window into a stochastic global one within the same O(nw) perlayer budget. Through depth, independently sampled permutations yield exponentially growing receptive fields, achieving full sequence coverage in O(logw n) layers versus O(n/w) for SWA. We validate SA in two settings: pre-training language models from scratch, where a gated SA + SWA combination achieves the best average zero-shot accuracy, and training-free inference on Qwen3-8B and Qwen3-30B-A3B, where SA consistently outperforms SWA and matches or exceeds Mixture of Block Attention at comparable compute budgets. These results suggest that connectome-inspired stochastic routing is a practical primitive for improving the expressivity of efficient attention, complementary to existing linear and sparse approaches.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r46stochas,
+  title = {Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00754.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r46-stochastic-attention-routing/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Stochastic Attention: Connectome-Inspired Randomized Routing for Expressive Linear-Time Attention. https://arxiv.org/pdf/2604.00754.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00754.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

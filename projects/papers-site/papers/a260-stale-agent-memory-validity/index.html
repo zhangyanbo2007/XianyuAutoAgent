@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STALE: Can LLM Agents Know When Their Memories Are No Longer Valid? | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了 agent memory 里经常被忽略的核心问题：记住不难，知道什么时候记忆过期才难。长期 agent 如果不能识别 stale memory，会把历史状态当成现实，从而系统性犯错。
+
+STALE 的价值在于把 memory validity 变成可测试问题，而不是泛泛讨论长期记忆。它对个人 agent、企业 agent、coding agent 和多日 coworker agen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a260-stale-agent-memory-validity/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?" />
+    <meta property="og:description" content="这篇论文抓住了 agent memory 里经常被忽略的核心问题：记住不难，知道什么时候记忆过期才难。长期 agent 如果不能识别 stale memory，会把历史状态当成现实，从而系统性犯错。
+
+STALE 的价值在于把 memory validity 变成可测试问题，而不是泛泛讨论长期记忆。它对个人 agent、企业 agent、coding agent 和多日 coworker agen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a260-stale-agent-memory-validity/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?" />
+    <meta name="twitter:description" content="这篇论文抓住了 agent memory 里经常被忽略的核心问题：记住不难，知道什么时候记忆过期才难。长期 agent 如果不能识别 stale memory，会把历史状态当成现实，从而系统性犯错。
+
+STALE 的价值在于把 memory validity 变成可测试问题，而不是泛泛讨论长期记忆。它对个人 agent、企业 agent、coding agent 和多日 coworker agen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.06527" target="_blank" rel="noopener noreferrer">2605.06527</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了 agent memory 里经常被忽略的核心问题：记住不难，知道什么时候记忆过期才难。长期 agent 如果不能识别 stale memory，会把历史状态当成现实，从而系统性犯错。</dd></div><div><dt>方法/机制</dt><dd>STALE 的价值在于把 memory validity 变成可测试问题，而不是泛泛讨论长期记忆。它对个人 agent、企业 agent、coding agent 和多日 coworker agent 都有直接工程意义。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 agent memory 子领域不能只比较 recall 和 retrieval，还必须评估遗忘、更新、冲突和时效性。STALE 补的是一个长期会反复出现的评估接口。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为它目前主要是 benchmark / diagnostic framing，还不是完整的 memory maintenance architecture。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了 agent memory 里经常被忽略的核心问题：记住不难，知道什么时候记忆过期才难。长期 agent 如果不能识别 stale memory，会把历史状态当成现实，从而系统性犯错。</p><p>STALE 的价值在于把 memory validity 变成可测试问题，而不是泛泛讨论长期记忆。它对个人 agent、企业 agent、coding agent 和多日 coworker agent 都有直接工程意义。</p><p>它值得正式收录，因为 agent memory 子领域不能只比较 recall 和 retrieval，还必须评估遗忘、更新、冲突和时效性。STALE 补的是一个长期会反复出现的评估接口。</p><p>它没有更高，是因为它目前主要是 benchmark / diagnostic framing，还不是完整的 memory maintenance architecture。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLM）代理越来越被期望维护连贯的、长期的个性化记忆，然而当前的基准测试主要衡量静态事实检索，忽视了在新证据出现时修正存储信念的能力。我们识别出一种关键且未充分探索的失败模式，即隐式冲突：后来的观察在没有明确否定前的情况下使早期记忆失效，这需要上下文推理和常识推理来检测。为了严格评估这种能力，我们引入了STALE，一个包含400个专家验证的冲突场景（跨三个探测维度共1,200个评估查询）的基准，涵盖100多个日常主题，上下文长度高达150K词元。我们提出了一个三维探测框架，用于测试状态解析（检测先前的信念是否过时）、前提抵抗（拒绝错误预设过时状态的查询）和隐式策略适应（在下游行为中主动应用更新后的状态）。对前沿LLMs和专门记忆框架的系统评估揭示了检索更新证据与根据其行动之间普遍存在的差距，即使是评估中表现最好的模型也仅达到55.2%的总体准确率。模型经常接受用户查询中嵌入的过时假设，并且它们难以识别用户状态某一方面发生变化时何时应使相关记忆失效。为了建立状态感知记忆的初始基线，我们进一步提出了CUPM EM，这是一个通过结构化状态整合和传播感知搜索来加强写入时修订的原型，表明明确的状态裁决是实现稳健代理记忆的一个有前景的方向。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Model (LLM) agents are increasingly expected to maintain coherent, long-term personalized memory, yet current benchmarks primarily measure static fact retrieval, overlooking the ability to revise stored beliefs when new evidence emerges. We identify a critical and underexplored failure mode, Implicit Conflict: a later observation invalidates an earlier memory without explicit negation, requiring contextual inference and commonsense reasoning to detect. To rigorously evaluate this capability, we introduce STALE, a benchmark of 400 expert-validated conflict scenarios (1,200 evaluation queries across three probing dimensions) spanning over 100 everyday topics with contexts up to 150K tokens. We propose a three-dimensional probing framework that tests State Resolution (detecting that a prior belief is outdated), Premise Resistance (rejecting queries that falsely presuppose a stale state), and Implicit Policy Adaptation (proactively applying updated states in downstream behavior). A systematic evaluation of frontier LLMs and specialized memory frameworks reveals a pervasive gap between retrieving updated evidence and acting on it, with even the best evaluated model achieving only 55.2% overall accuracy. Models often accept outdated assumptions embedded in a user’s query, and they struggle to recognize when a change in one aspect of the user’s state should invalidate related memories. To establish an initial baseline for state-aware memory, we further present CUPM EM, a prototype that strengthens write-time revision through structured state consolidation and propagation-aware search, suggesting that explicit state adjudication is a promising direction for robust agentic memory.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260507a260stalea,
+  title = {STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.06527.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a260-stale-agent-memory-validity/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). STALE: Can LLM Agents Know When Their Memories Are No Longer Valid?. https://arxiv.org/pdf/2605.06527.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.06527.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

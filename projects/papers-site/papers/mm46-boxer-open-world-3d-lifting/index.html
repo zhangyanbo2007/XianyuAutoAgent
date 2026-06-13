@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Boxer: Robust Lifting of Open-World 2D Bounding Boxes to 3D | DAST Papers</title>
+    <meta name="description" content="这篇论文处理开放世界 3D 目标定位中的一个核心数据鸿沟：2D 开放词汇检测已经能借助大规模网页图文数据识别大量类别，但 3D 边界框标注昂贵、稀缺且受传感器形态限制，导致端到端 3D 检测器难以覆盖真实世界物体。
+
+Boxer 的核心设计是把语义识别和几何提升解耦。系统先用现成 2D open-vocabulary detector 产生候选框，再用 BoxerNet 结合带位姿图像和可选深度，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm46-boxer-open-world-3d-lifting/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Boxer: Robust Lifting of Open-World 2D Bounding Boxes to 3D" />
+    <meta property="og:description" content="这篇论文处理开放世界 3D 目标定位中的一个核心数据鸿沟：2D 开放词汇检测已经能借助大规模网页图文数据识别大量类别，但 3D 边界框标注昂贵、稀缺且受传感器形态限制，导致端到端 3D 检测器难以覆盖真实世界物体。
+
+Boxer 的核心设计是把语义识别和几何提升解耦。系统先用现成 2D open-vocabulary detector 产生候选框，再用 BoxerNet 结合带位姿图像和可选深度，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm46-boxer-open-world-3d-lifting/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Boxer: Robust Lifting of Open-World 2D Bounding Boxes to 3D" />
+    <meta name="twitter:description" content="这篇论文处理开放世界 3D 目标定位中的一个核心数据鸿沟：2D 开放词汇检测已经能借助大规模网页图文数据识别大量类别，但 3D 边界框标注昂贵、稀缺且受传感器形态限制，导致端到端 3D 检测器难以覆盖真实世界物体。
+
+Boxer 的核心设计是把语义识别和几何提升解耦。系统先用现成 2D open-vocabulary detector 产生候选框，再用 BoxerNet 结合带位姿图像和可选深度，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Boxer: Robust Lifting of Open-World 2D Bounding Boxes to 3D</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05212" target="_blank" rel="noopener noreferrer">2604.05212</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理开放世界 3D 目标定位中的一个核心数据鸿沟：2D 开放词汇检测已经能借助大规模网页图文数据识别大量类别，但 3D 边界框标注昂贵、稀缺且受传感器形态限制，导致端到端 3D 检测器难以覆盖真实世界物体。</dd></div><div><dt>方法/机制</dt><dd>Boxer 的核心设计是把语义识别和几何提升解耦。系统先用现成 2D open-vocabulary detector 产生候选框，再用 BoxerNet 结合带位姿图像和可选深度，将 2D 框提升为全局 7-DoF 3D bounding boxes。它用 median depth patch encoding 同时兼容稠密深度和稀疏 SLAM/SfM 点云，并引入 3D aleatoric uncertainty 与 2D 置信度联合排序。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它给开放世界空间理解提供了一个可复用工程模式：用 2D VLM 负责语义，用小型几何网络负责 3D lifting。论文在 122 万独立 3DBB 的混合训练集上训练，并在 egocentric sparse-depth 场景把 CuTR 的 mAP 从 0.010 提升到 0.532，这对 AR/机器人/具身空间感知都很有参考价值。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为 Boxer 仍依赖上游 2D 检测、相机位姿和静态世界假设；动态物体、非长方体物体和复杂交互场景仍未解决。其贡献是强空间感知模块和数据解耦策略，而不是完整通用 3D 世界模型。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理开放世界 3D 目标定位中的一个核心数据鸿沟：2D 开放词汇检测已经能借助大规模网页图文数据识别大量类别，但 3D 边界框标注昂贵、稀缺且受传感器形态限制，导致端到端 3D 检测器难以覆盖真实世界物体。</p><p>Boxer 的核心设计是把语义识别和几何提升解耦。系统先用现成 2D open-vocabulary detector 产生候选框，再用 BoxerNet 结合带位姿图像和可选深度，将 2D 框提升为全局 7-DoF 3D bounding boxes。它用 median depth patch encoding 同时兼容稠密深度和稀疏 SLAM/SfM 点云，并引入 3D aleatoric uncertainty 与 2D 置信度联合排序。</p><p>它值得收录，因为它给开放世界空间理解提供了一个可复用工程模式：用 2D VLM 负责语义，用小型几何网络负责 3D lifting。论文在 122 万独立 3DBB 的混合训练集上训练，并在 egocentric sparse-depth 场景把 CuTR 的 mAP 从 0.010 提升到 0.532，这对 AR/机器人/具身空间感知都很有参考价值。</p><p>它不是更高一级，因为 Boxer 仍依赖上游 2D 检测、相机位姿和静态世界假设；动态物体、非长方体物体和复杂交互场景仍未解决。其贡献是强空间感知模块和数据解耦策略，而不是完整通用 3D 世界模型。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。在空间中检测和定位物体是一个基本的计算机视觉问题。虽然在解决2D物体检测方面取得了很大进展，但3D物体定位的研究较少，远未解决，特别是对于开放世界类别。为了解决这一研究挑战，我们提出了Boxer，一种从2D开放词汇物体检测、姿态图像和可选深度（表示为稀疏点云或密集深度）估计静态3D边界框（3DBBs）的算法。其核心是BoxerNet，一个基于Transformer的网络，它将2D边界框（2DBB）提议提升到3D，然后进行多视图融合和几何过滤，以在度量世界空间中生成全局一致的去重3DBBs。Boxer利用现有2DBB检测算法（例如，DETIC [54]、OWLv2 [31]、SAM3 [8]）的强大功能在2D中定位物体。这使得主要的BoxerNet模型能够专注于提升到3D而不是检测，最终减少了对昂贵的标注3DBB训练数据的需求。我们扩展了CuTR [21]的公式，纳入了用于鲁棒回归的偶然不确定性、支持稀疏深度输入的中间深度块编码，以及超过120万个独特3DBB的大规模训练。BoxerNet在开放世界3DBB提升方面优于最先进的基线，包括在没有密集深度的自我中心设置中优于CuTR（0.532 vs. 0.010 mAP），以及在CA-1M上可用密集深度时优于CuTR（0.412 vs. 0.250 mAP）。项目页面和代码可在此处获取：https://facebookresearch.github.io/boxer。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Detecting and localizing objects in space is a fundamental computer vision problem. While much progress has been made to solve 2D object detection, 3D object localization is much less explored and far from solved, especially for open-world categories. To address this research challenge, we propose Boxer, an algorithm to estimate static 3D bounding boxes (3DBBs) from 2D open-vocabulary object detections, posed images and optional depth either represented as a sparse point cloud or dense depth. At its core is BoxerNet, a transformer-based network which lifts 2D bounding box (2DBB) proposals into 3D, followed by multi-view fusion and geometric filtering to produce globally consistent de-duplicated 3DBBs in metric world space. Boxer leverages the power of existing 2DBB detection algorithms (e.g., DETIC [54], OWLv2 [31], SAM3 [8]) to localize objects in 2D. This allows the main BoxerNet model to focus on lifting to 3D rather than detecting, ultimately reducing the demand for costly annotated 3DBB training data. Extending the CuTR [21] formulation, we incorporate an aleatoric uncertainty for robust regression, a median depth patch encoding to support sparse depth inputs, and large-scale training with over 1.2 million unique 3DBBs. BoxerNet outperforms state-of-theart baselines in open-world 3DBB lifting, including CuTR in egocentric settings without dense depth (0.532 vs. 0.010 mAP) and on CA-1M with dense depth available (0.412 vs. 0.250 mAP). Project page with code available here: https://facebookresearch.github.io/boxer.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406mm46boxero,
+  title = {Boxer: Robust Lifting of Open-World 2D Bounding Boxes to 3D},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05212.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm46-boxer-open-world-3d-lifting/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Boxer: Robust Lifting of Open-World 2D Bounding Boxes to 3D. https://arxiv.org/pdf/2604.05212.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05212.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

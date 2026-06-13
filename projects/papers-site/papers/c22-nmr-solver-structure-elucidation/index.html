@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NMR-Solver: automated structure elucidation via large-scale spectral matching and physics-guided fragment optimization | DAST Papers</title>
+    <meta name="description" content="这篇工作处理的是化学里一个长期高价值但高度依赖专家经验的逆问题：如何从 1H 和 13C NMR 光谱自动恢复未知小分子结构。传统结构解析虽然成熟，但在复杂样品、陌生骨架和高通量场景下仍然劳动密集、门槛高且难以规模化，直接限制了化学发现与实验闭环的自动化程度。
+
+论文提出 NMR-Solver，把大规模谱图匹配、深度学习和 physics-guided fragment optimization " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c22-nmr-solver-structure-elucidation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="NMR-Solver: automated structure elucidation via large-scale spectral matching and physics-guided fragment optimization" />
+    <meta property="og:description" content="这篇工作处理的是化学里一个长期高价值但高度依赖专家经验的逆问题：如何从 1H 和 13C NMR 光谱自动恢复未知小分子结构。传统结构解析虽然成熟，但在复杂样品、陌生骨架和高通量场景下仍然劳动密集、门槛高且难以规模化，直接限制了化学发现与实验闭环的自动化程度。
+
+论文提出 NMR-Solver，把大规模谱图匹配、深度学习和 physics-guided fragment optimization " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c22-nmr-solver-structure-elucidation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NMR-Solver: automated structure elucidation via large-scale spectral matching and physics-guided fragment optimization" />
+    <meta name="twitter:description" content="这篇工作处理的是化学里一个长期高价值但高度依赖专家经验的逆问题：如何从 1H 和 13C NMR 光谱自动恢复未知小分子结构。传统结构解析虽然成熟，但在复杂样品、陌生骨架和高通量场景下仍然劳动密集、门槛高且难以规模化，直接限制了化学发现与实验闭环的自动化程度。
+
+论文提出 NMR-Solver，把大规模谱图匹配、深度学习和 physics-guided fragment optimization " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>NMR-Solver: automated structure elucidation via large-scale spectral matching and physics-guided fragment optimization</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-04-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-02</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-71315-0" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-71315-0</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作处理的是化学里一个长期高价值但高度依赖专家经验的逆问题：如何从 1H 和 13C NMR 光谱自动恢复未知小分子结构。传统结构解析虽然成熟，但在复杂样品、陌生骨架和高通量场景下仍然劳动密集、门槛高且难以规模化，直接限制了化学发现与实验闭环的自动化程度。</dd></div><div><dt>方法/机制</dt><dd>论文提出 NMR-Solver，把大规模谱图匹配、深度学习和 physics-guided fragment optimization 结合成一个可解释的自动化框架。它不是单纯做 end-to-end 黑箱预测，而是显式利用原子级 structure-spectrum 关系，把谱图检索与物理约束下的结构优化串成统一流程，重点强调真实实验可用性、可解释性和对复杂分子的泛化。</dd></div><div><dt>结果/证据</dt><dd>这使它符合本仓库对 AI x chemistry 的高门槛：AI 在这里不是做边缘辅助，而是把结构解析这个核心瓶颈推进成可扩展、可自动化的研究基础设施。相比单一性质预测器，自动结构解析更直接地影响实验效率、分子发现吞吐和后续实验设计，因此有更强的方法复用价值和工作流外溢。</dd></div><div><dt>收录价值</dt><dd>它仍更适合定在 breakthrough。原因是影响力虽然扎实，但当前主要集中在 NMR-driven structure elucidation 这条化学工作流主线，还没有证明会重写更广泛的分子表征与实验自动化范式；另外目前最强证据仍来自作者给出的基准、文献实验和实测任务，后续是否成为标准工具链还需要更多独立采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作处理的是化学里一个长期高价值但高度依赖专家经验的逆问题：如何从 1H 和 13C NMR 光谱自动恢复未知小分子结构。传统结构解析虽然成熟，但在复杂样品、陌生骨架和高通量场景下仍然劳动密集、门槛高且难以规模化，直接限制了化学发现与实验闭环的自动化程度。</p><p>论文提出 NMR-Solver，把大规模谱图匹配、深度学习和 physics-guided fragment optimization 结合成一个可解释的自动化框架。它不是单纯做 end-to-end 黑箱预测，而是显式利用原子级 structure-spectrum 关系，把谱图检索与物理约束下的结构优化串成统一流程，重点强调真实实验可用性、可解释性和对复杂分子的泛化。</p><p>这使它符合本仓库对 AI x chemistry 的高门槛：AI 在这里不是做边缘辅助，而是把结构解析这个核心瓶颈推进成可扩展、可自动化的研究基础设施。相比单一性质预测器，自动结构解析更直接地影响实验效率、分子发现吞吐和后续实验设计，因此有更强的方法复用价值和工作流外溢。</p><p>它仍更适合定在 breakthrough。原因是影响力虽然扎实，但当前主要集中在 NMR-driven structure elucidation 这条化学工作流主线，还没有证明会重写更广泛的分子表征与实验自动化范式；另外目前最强证据仍来自作者给出的基准、文献实验和实测任务，后续是否成为标准工具链还需要更多独立采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>核磁共振（NMR）光谱学是有机化学中用于分子结构解析的最强大和最广泛使用的工具之一。然而，解释核磁共振谱图以确定未知分子结构仍然是一个劳动密集型且依赖专业知识的过程，特别是对于复杂或新型化合物。尽管最近提出了用于分子结构解析的方法，但由于固有的算法局限性和有限的高质量数据，它们在实际应用中往往表现不佳。在本文中，我们提出了NMR-Solver，这是一个实用且可解释的框架，用于基于H和C核磁共振谱图自动确定小有机分子结构。我们的方法引入了一个用于分子结构解析的自动化框架，该框架整合了大规模谱图匹配与物理引导的分子优化，利用了核磁共振中的原子级结构-谱图关系。我们在模拟基准、文献中精选的实验数据和实际实验中评估了NMR-Solver，证明了其在实际场景中的强大泛化能力、鲁棒性和实用性。通过将计算核磁共振分析、深度学习和可解释的化学推理整合到一个统一系统中，它促进了可扩展、自动化且具有化学意义的分子结构解析，为解决分子科学中的逆问题建立了可泛化的范式。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Nuclear Magnetic Resonance (NMR) spectroscopy is one of the most powerful and widely used tools for molecular structure elucidation in organic chemistry. However, the interpretation of NMR spectra to determine unknown molecular structures remains a labor-intensive and expertise-dependent process, particularly for complex or novel compounds. Although recent methods have been proposed for molecular structure elucidation, they often underperform in real-world applications due to inherent algorithmic limitations and limited high-quality data. Here, we present NMR-Solver, a practical and interpretable framework for the automated determination of small organic molecule structures from H and C NMR spectra. Our method introduces an automated framework for molecular structure elucidation, integrating large-scale spectral matching with physics-guided molecular optimization that exploits atomic-level structure–spectrum relationships in NMR. We evaluate NMR-Solver on simulated benchmarks, curated experimental data from the literature, and real-world experiments, demonstrating its strong generalization, robustness, and practical utility in real-life scenarios. By integrating computational NMR analysis, deep learning, and interpretable chemical reasoning into a unified system, it facilitates scalable, automated, and chemically meaningful molecular structure elucidation, establishing a generalizable paradigm for solving inverse problems in molecular science.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260402c22nmrsolv,
+  title = {NMR-Solver: automated structure elucidation via large-scale spectral matching and physics-guided fragment optimization},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-71315-0},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c22-nmr-solver-structure-elucidation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). NMR-Solver: automated structure elucidation via large-scale spectral matching and physics-guided fragment optimization. https://www.nature.com/articles/s41467-026-71315-0</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-71315-0" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

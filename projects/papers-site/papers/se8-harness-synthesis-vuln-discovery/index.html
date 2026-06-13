@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Synthesizing Multi-Agent Harnesses for Vulnerability Discovery | DAST Papers</title>
+    <meta name="description" content="这篇工作的切入点是对的：真正决定多 agent 漏洞发现效果的，往往不是单个模型更聪明，而是 harness 如何定义角色、信息流、工具权限和重试逻辑。它把这个被低估的系统层变量正式化了。
+
+如果 harness synthesis 能被系统搜索和优化，那漏洞发现就从“堆 agent”变成“设计 agentic workflow”。这比单次 finding 更有耐用性，因为它提供的是一类软件安全执" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/se8-harness-synthesis-vuln-discovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Synthesizing Multi-Agent Harnesses for Vulnerability Discovery" />
+    <meta property="og:description" content="这篇工作的切入点是对的：真正决定多 agent 漏洞发现效果的，往往不是单个模型更聪明，而是 harness 如何定义角色、信息流、工具权限和重试逻辑。它把这个被低估的系统层变量正式化了。
+
+如果 harness synthesis 能被系统搜索和优化，那漏洞发现就从“堆 agent”变成“设计 agentic workflow”。这比单次 finding 更有耐用性，因为它提供的是一类软件安全执" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/se8-harness-synthesis-vuln-discovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Synthesizing Multi-Agent Harnesses for Vulnerability Discovery" />
+    <meta name="twitter:description" content="这篇工作的切入点是对的：真正决定多 agent 漏洞发现效果的，往往不是单个模型更聪明，而是 harness 如何定义角色、信息流、工具权限和重试逻辑。它把这个被低估的系统层变量正式化了。
+
+如果 harness synthesis 能被系统搜索和优化，那漏洞发现就从“堆 agent”变成“设计 agentic workflow”。这比单次 finding 更有耐用性，因为它提供的是一类软件安全执" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Synthesizing Multi-Agent Harnesses for Vulnerability Discovery</h1>
+          <p class="subtitle">软件工程与编程智能体 · 发表：2026-04-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">软件工程与编程智能体</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.20801" target="_blank" rel="noopener noreferrer">2604.20801</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的切入点是对的：真正决定多 agent 漏洞发现效果的，往往不是单个模型更聪明，而是 harness 如何定义角色、信息流、工具权限和重试逻辑。它把这个被低估的系统层变量正式化了。</dd></div><div><dt>方法/机制</dt><dd>如果 harness synthesis 能被系统搜索和优化，那漏洞发现就从“堆 agent”变成“设计 agentic workflow”。这比单次 finding 更有耐用性，因为它提供的是一类软件安全执行模式。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为仓库一直偏重 agent 能力本身，而这篇补的是 orchestration architecture 这层。对 vuln discovery、code auditing 和高风险 autonomous tooling 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前主要证据还是 source-available vulnerability discovery。更广泛的软件工程任务上，这种 harness synthesis 的统一性还需要继续证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的切入点是对的：真正决定多 agent 漏洞发现效果的，往往不是单个模型更聪明，而是 harness 如何定义角色、信息流、工具权限和重试逻辑。它把这个被低估的系统层变量正式化了。</p><p>如果 harness synthesis 能被系统搜索和优化，那漏洞发现就从“堆 agent”变成“设计 agentic workflow”。这比单次 finding 更有耐用性，因为它提供的是一类软件安全执行模式。</p><p>它值得正式收录，因为仓库一直偏重 agent 能力本身，而这篇补的是 orchestration architecture 这层。对 vuln discovery、code auditing 和高风险 autonomous tooling 都有明显外溢。</p><p>它没有更高，是因为当前主要证据还是 source-available vulnerability discovery。更广泛的软件工程任务上，这种 harness synthesis 的统一性还需要继续证明。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM智能体已开始在源代码可用的目标中发现人类审计员和自动化模糊测试器几十年来一直未能发现的真实安全漏洞，在这些目标中，分析师可以构建和检测代码。在实践中，这项工作被分配给多个智能体，并通过一个harness连接在一起：harness是一个程序，它规定了哪些角色存在、它们如何传递信息、每个角色可以调用哪些工具以及如何重试。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLM agents have begun to find real security vulnerabilities that human auditors and automated fuzzers missed for decades, in sourceavailable targets where the analyst can build and instrument the code. In practice the work is split among several agents, wired together by a harness: the program that fixes which roles exist, how they pass information, which tools each may call, and how retries</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260422se8harness,
+  title = {Synthesizing Multi-Agent Harnesses for Vulnerability Discovery},
+  year = {2026},
+  url = {http://arxiv.org/pdf/2604.20801v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/se8-harness-synthesis-vuln-discovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Synthesizing Multi-Agent Harnesses for Vulnerability Discovery. http://arxiv.org/pdf/2604.20801v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/se10-operational-safety-coding-agents/">
+              <span>What Breaks When LLMs Code? Characterizing Operational Safety Failures of Agentic Code Assistants</span>
+              <small>软件工程与编程智能体 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a336-litecoder-terminal-agent-environments/">
+              <span>LiteCoder-Terminal: Scaling Long-Horizon Terminal Environments for Learning Language Agents</span>
+              <small>软件工程与编程智能体 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/sys12-topoevo-rca-agents/">
+              <span>TopoEvo: A Topology-Aware Self-Evolving Multi-Agent Framework for Root Cause Analysis in Microservices</span>
+              <small>软件工程与编程智能体 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys11-star-rca-agents/">
+              <span>STAR: A Stage-attributed Triage and Repair framework for RCA Agents in Microservices</span>
+              <small>软件工程与编程智能体 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys10-flowcompile-llm-workflows/">
+              <span>FlowCompile: An Optimizing Compiler for Structured LLM Workflows</span>
+              <small>软件工程与编程智能体 · 2026-05-13</small>
+            </a>
+            <a class="related-item" href="../../papers/a257-workspace-bench-file-dependencies/">
+              <span>Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies</span>
+              <small>软件工程与编程智能体 · 2026-05-05</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="http://arxiv.org/pdf/2604.20801v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

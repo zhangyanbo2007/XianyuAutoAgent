@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation | DAST Papers</title>
+    <meta name="description" content="这篇论文要解决的问题不是一般的视频生成，而是更接近机器人训练需求的 embodied simulation：既要保留机器人控制轨迹的精确性，又要让环境反应具备真实的时空生成能力。作者明确指出，传统模拟器在视觉与交互上过于刚性，而已有生成式模拟方法又大多停留在 2D 或静态环境条件，无法真正覆盖机器人与世界相互作用的 4D 本质。
+
+论文的核心设计是把机器人—环境交互拆成两部分分别建模，再在 4D " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a49-kinema4d-embodied-simulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation" />
+    <meta property="og:description" content="这篇论文要解决的问题不是一般的视频生成，而是更接近机器人训练需求的 embodied simulation：既要保留机器人控制轨迹的精确性，又要让环境反应具备真实的时空生成能力。作者明确指出，传统模拟器在视觉与交互上过于刚性，而已有生成式模拟方法又大多停留在 2D 或静态环境条件，无法真正覆盖机器人与世界相互作用的 4D 本质。
+
+论文的核心设计是把机器人—环境交互拆成两部分分别建模，再在 4D " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a49-kinema4d-embodied-simulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation" />
+    <meta name="twitter:description" content="这篇论文要解决的问题不是一般的视频生成，而是更接近机器人训练需求的 embodied simulation：既要保留机器人控制轨迹的精确性，又要让环境反应具备真实的时空生成能力。作者明确指出，传统模拟器在视觉与交互上过于刚性，而已有生成式模拟方法又大多停留在 2D 或静态环境条件，无法真正覆盖机器人与世界相互作用的 4D 本质。
+
+论文的核心设计是把机器人—环境交互拆成两部分分别建模，再在 4D " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.16669" target="_blank" rel="noopener noreferrer">2603.16669</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文要解决的问题不是一般的视频生成，而是更接近机器人训练需求的 embodied simulation：既要保留机器人控制轨迹的精确性，又要让环境反应具备真实的时空生成能力。作者明确指出，传统模拟器在视觉与交互上过于刚性，而已有生成式模拟方法又大多停留在 2D 或静态环境条件，无法真正覆盖机器人与世界相互作用的 4D 本质。</dd></div><div><dt>方法/机制</dt><dd>论文的核心设计是把机器人—环境交互拆成两部分分别建模，再在 4D 时空中重新对齐。第一部分用基于 URDF 和运动学的方式生成精确的 4D 机器人控制轨迹；第二部分把这条 4D 轨迹投影成 pointmap 作为时空视觉信号，条件控制生成模型去合成环境的同步 RGB 与 pointmap 反应序列。为了支撑训练，作者还构建了 Robo4D-200k 数据集，包含 201,426 条高质量 4D 机器人交互片段。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，是因为它补上了传统机器人模拟器和纯视频世界模型之间的一个关键缺口：前者控制精确但缺乏真实生成能力，后者能生成但难以保证机器人控制和几何一致性。Kinema4D 提供了一个更像基础设施的中间层 framing，对 embodied simulation、real-to-sim、robot interaction generation 和下一代机器人训练环境都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍更适合定为 breakthrough，而不是更高一级。原因是这条路线虽然问题定义和系统组合都很强，但现阶段仍主要落在 embodied simulation 子方向，距离成为更通用的机器人训练底座还差一步；零样本迁移潜力被提出了，但是否能稳定改变更大规模机器人学习工作流，还需要后续社区验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文要解决的问题不是一般的视频生成，而是更接近机器人训练需求的 embodied simulation：既要保留机器人控制轨迹的精确性，又要让环境反应具备真实的时空生成能力。作者明确指出，传统模拟器在视觉与交互上过于刚性，而已有生成式模拟方法又大多停留在 2D 或静态环境条件，无法真正覆盖机器人与世界相互作用的 4D 本质。</p><p>论文的核心设计是把机器人—环境交互拆成两部分分别建模，再在 4D 时空中重新对齐。第一部分用基于 URDF 和运动学的方式生成精确的 4D 机器人控制轨迹；第二部分把这条 4D 轨迹投影成 pointmap 作为时空视觉信号，条件控制生成模型去合成环境的同步 RGB 与 pointmap 反应序列。为了支撑训练，作者还构建了 Robo4D-200k 数据集，包含 201,426 条高质量 4D 机器人交互片段。</p><p>这篇工作值得正式收录，是因为它补上了传统机器人模拟器和纯视频世界模型之间的一个关键缺口：前者控制精确但缺乏真实生成能力，后者能生成但难以保证机器人控制和几何一致性。Kinema4D 提供了一个更像基础设施的中间层 framing，对 embodied simulation、real-to-sim、robot interaction generation 和下一代机器人训练环境都有明显外溢。</p><p>它目前仍更适合定为 breakthrough，而不是更高一级。原因是这条路线虽然问题定义和系统组合都很强，但现阶段仍主要落在 embodied simulation 子方向，距离成为更通用的机器人训练底座还差一步；零样本迁移潜力被提出了，但是否能稳定改变更大规模机器人学习工作流，还需要后续社区验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317a49kinema4,
+  title = {Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.16669v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a49-kinema4d-embodied-simulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Kinema4D: Kinematic 4D World Modeling for Spatiotemporal Embodied Simulation. https://arxiv.org/pdf/2603.16669v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.16669v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

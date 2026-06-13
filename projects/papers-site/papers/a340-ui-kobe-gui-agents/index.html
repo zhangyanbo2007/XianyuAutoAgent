@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UI-KOBE: Knowledge-Oriented Behavior Exploration for Lightweight Graph-Guided GUI Agents | DAST Papers</title>
+    <meta name="description" content="UI-KOBE 针对 mobile GUI agent 的部署矛盾：强系统依赖大 VLM 做截图理解和长程规划，但 on-device agent 更需要低成本、隐私友好和可解释。
+
+方法上，系统先自主探索应用，构建 app-specific knowledge graph：节点是 UI states，边是可执行 transitions；运行时轻量 agent 根据当前截图和用户任务定位图节点，再" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a340-ui-kobe-gui-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="UI-KOBE: Knowledge-Oriented Behavior Exploration for Lightweight Graph-Guided GUI Agents" />
+    <meta property="og:description" content="UI-KOBE 针对 mobile GUI agent 的部署矛盾：强系统依赖大 VLM 做截图理解和长程规划，但 on-device agent 更需要低成本、隐私友好和可解释。
+
+方法上，系统先自主探索应用，构建 app-specific knowledge graph：节点是 UI states，边是可执行 transitions；运行时轻量 agent 根据当前截图和用户任务定位图节点，再" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a340-ui-kobe-gui-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="UI-KOBE: Knowledge-Oriented Behavior Exploration for Lightweight Graph-Guided GUI Agents" />
+    <meta name="twitter:description" content="UI-KOBE 针对 mobile GUI agent 的部署矛盾：强系统依赖大 VLM 做截图理解和长程规划，但 on-device agent 更需要低成本、隐私友好和可解释。
+
+方法上，系统先自主探索应用，构建 app-specific knowledge graph：节点是 UI states，边是可执行 transitions；运行时轻量 agent 根据当前截图和用户任务定位图节点，再" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>UI-KOBE: Knowledge-Oriented Behavior Exploration for Lightweight Graph-Guided GUI Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.29534" target="_blank" rel="noopener noreferrer">2605.29534</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>UI-KOBE 针对 mobile GUI agent 的部署矛盾：强系统依赖大 VLM 做截图理解和长程规划，但 on-device agent 更需要低成本、隐私友好和可解释。</dd></div><div><dt>方法/机制</dt><dd>方法上，系统先自主探索应用，构建 app-specific knowledge graph：节点是 UI states，边是可执行 transitions；运行时轻量 agent 根据当前截图和用户任务定位图节点，再在自循环、邻接转移、完成或 fallback free actions 中选择。</dd></div><div><dt>结果/证据</dt><dd>这种设计把 GUI planning 的一部分从端到端视觉推理转移到可复用 app graph 上，降低小模型负担，并让 agent 行为更可解释、更适合端侧部署。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提供了 GUI agent 的外部结构记忆/地图化 primitive：先探索建图，再用图指导轻量执行，对 computer-use agents、mobile agents 和 privacy-conscious local agents 都有工程复用价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>UI-KOBE 针对 mobile GUI agent 的部署矛盾：强系统依赖大 VLM 做截图理解和长程规划，但 on-device agent 更需要低成本、隐私友好和可解释。</p><p>方法上，系统先自主探索应用，构建 app-specific knowledge graph：节点是 UI states，边是可执行 transitions；运行时轻量 agent 根据当前截图和用户任务定位图节点，再在自循环、邻接转移、完成或 fallback free actions 中选择。</p><p>这种设计把 GUI planning 的一部分从端到端视觉推理转移到可复用 app graph 上，降低小模型负担，并让 agent 行为更可解释、更适合端侧部署。</p><p>收录价值在于它提供了 GUI agent 的外部结构记忆/地图化 primitive：先探索建图，再用图指导轻量执行，对 computer-use agents、mobile agents 和 privacy-conscious local agents 都有工程复用价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>并执行一系列动作。尽管对于大型专有或开源模型有效，但这种范式带来了两个实际挑战。首先，大型开源模型需要大量的计算资源，使得在设备上部署困难，而专有模型则需要高昂的API成本。其次，适合在设备上部署的小型模型，例如4B规模的模型，通常在长程推理和规划方面表现不佳，导致任务执行不可靠。尽管存在这些限制，轻量级GUI智能体仍然非常受欢迎。它们提供更低的推理成本，并更好地适应敏感用户数据可以保留在本地的实际部署场景。然而，使小型模型能够执行复杂的GUI任务仍然是一个开放的挑战。特别是，要求小型模型在每一步都对整个任务进行推理，会对其有限的能力造成沉重负担。在这项工作中，我们认为移动GUI任务执行不应仅仅依赖于运行时的端到端推理。相反，我们建议将应用程序知识获取与任务执行时间解耦。我们引入了面向知识的行为探索（UI-KOBE），这是一个通过自主探索构建应用程序可重用知识图谱的框架，该图谱可用于在任务执行期间指导运行时智能体。图1展示了整体流程，包括应用程序探索、图谱构建和图谱引导的运行时使用。UI-KOBE将应用程序表示为一个有向图，其中节点对应于不同的UI状态，边对应于状态之间的转换。该图谱由一个探索智能体构建，该智能体迭代地观察屏幕、执行动作并记录转换。每个节点捕获UI状态的语义和结构信息，而每条边则编码低级动作和高级交互模式。重要的是，该图谱代表了通用的应用程序行为，而不是移动GUI智能体最近的进展已显示出自动化移动任务的强大潜力，但大多数有效的系统仍然依赖大型视觉语言模型进行屏幕截图理解和长程规划。可以直接部署在移动设备上的小型GUI智能体在实际使用中更具吸引力，它们提供更低的推理成本和更好的敏感设备上信息保护。然而，由于模型容量有限，此类轻量级智能体在仅凭屏幕截图进行端到端GUI任务规划和执行时仍然不可靠。我们提出了面向知识的行为探索（UI-KOBE），这是一个通过可重用应用程序特定图谱知识来改进轻量级移动GUI智能体的框架。UI-KOBE首先自主探索移动应用程序并构建一个应用程序知识图谱，其中节点代表不同的UI状态，边代表可执行的转换。在运行时，轻量级GUI智能体将该图谱作为外部指导：给定用户任务和当前屏幕截图，它识别当前图谱节点，并从与该节点相关的自循环动作、相邻转换、任务完成或回退自由动作中进行选择。通过使用应用程序特定图谱指导支持运行时决策，UI-KOBE减轻了端到端GUI规划的负担，并帮助轻量级模型更有效地执行移动GUI任务，为实现高效、可解释和注重隐私的设备上GUI智能体迈出了实用的一步。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>and executes a sequence of actions. While effective with large-scale proprietary or open-source models, this paradigm introduces two practical challenges. First, large open-source models require substantial computational resources, making deployment on-device difficult, while proprietary models requires high API costs. Second, smaller models that are suitable for on-device deployment, such as 4B-scale models, often struggle with long-horizon reasoning and planning, leading to unreliable task execution. Despite the limitation, lightweight GUI agents are highly desirable. They offer lower inference cost and better alignment with real-world deployment scenarios where sensitive user data can remain local. However, enabling small models to perform complex GUI tasks remains an open challenge. In particular, asking a small model to reason over the entire task at each step places a heavy burden on its limited capacity. In this work, we argue that mobile GUI task execution should not rely solely on end-to-end reasoning at runtime. Instead, we propose to decouple app knowledge acquisition from task-time execution. We introduce Knowledge-Oriented Behavior Exploration (UI-KOBE), a framework that builds a reusable knowledge graph of an application through autonomous exploration, and this graph can be used to guide a runtime agent during task execution. Figure 1 illustrates the overall pipeline, including app exploration, graph construction, and graph-guided runtime usage. UIKOBE represents an application as a directed graph, where nodes correspond to distinct UI states and edges correspond to transitions between states. The graph is constructed by an exploration agent that iteratively observes screens, executes actions, and records transitions. Each node captures semantic and structural information about a UI state, while each edge encodes both low-level actions and higher-level interaction patterns. Importantly, this graph represents general app behavior rather Recent advances in mobile GUI agents have shown strong potential for automating mobile tasks, but most effective systems still depend on large vision-language models for screenshot understanding and long-horizon planning. Small GUI agents that can be deployed directly on mobile devices are more attractive for practical use, offering lower inference cost and better protection of sensitive on-device information. However, due to limited model capacity, such lightweight agents remain unreliable when planning and executing GUI tasks end-to-end from screenshots alone. We propose Knowledge-Oriented Behavior Exploration (UI-KOBE), a framework that improves lightweight mobile GUI agents with reusable app-specific graph knowledge. UI-KOBE first autonomously explores a mobile application and constructs an app knowledge graph, where nodes represent distinct UI states and edges represent executable transitions. At runtime, a lightweight GUI agent uses the graph as external guidance: given a user task and the current screenshot, it identifies the current graph node and selects among self-loop actions, neighboring transitions, task completion, or fallback free actions associated with that node. By supporting runtime decisions with app-specific graph guidance, UI-KOBE reduces the burden of endto-end GUI planning and helps lightweight models perform mobile GUI tasks more effectively, offering a practical step toward efficient, interpretable, and privacy-conscious on-device GUI agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528a340uikobe,
+  title = {UI-KOBE: Knowledge-Oriented Behavior Exploration for Lightweight Graph-Guided GUI Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.29534.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a340-ui-kobe-gui-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). UI-KOBE: Knowledge-Oriented Behavior Exploration for Lightweight Graph-Guided GUI Agents. https://arxiv.org/pdf/2605.29534.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.29534.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.29534" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scal3R: Scalable Test-Time Training for Large-Scale 3D Reconstruction | DAST Papers</title>
+    <meta name="description" content="这篇论文面向长视频的大规模 3D 重建。现有 feed-forward 3D reconstruction 模型能从 RGB 直接回归几何，但在长序列上受限于上下文窗口和全局记忆，chunk-wise 方案又会丢失跨片段一致性并累积对齐误差。
+
+Scal3R 引入神经全局上下文表示，用一组轻量子网络在测试时通过自监督目标快速适配，将长程场景信息压缩、保留并跨 chunk 共享。它把 test-ti" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm49-scal3r-test-time-3d-reconstruction/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Scal3R: Scalable Test-Time Training for Large-Scale 3D Reconstruction" />
+    <meta property="og:description" content="这篇论文面向长视频的大规模 3D 重建。现有 feed-forward 3D reconstruction 模型能从 RGB 直接回归几何，但在长序列上受限于上下文窗口和全局记忆，chunk-wise 方案又会丢失跨片段一致性并累积对齐误差。
+
+Scal3R 引入神经全局上下文表示，用一组轻量子网络在测试时通过自监督目标快速适配，将长程场景信息压缩、保留并跨 chunk 共享。它把 test-ti" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm49-scal3r-test-time-3d-reconstruction/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Scal3R: Scalable Test-Time Training for Large-Scale 3D Reconstruction" />
+    <meta name="twitter:description" content="这篇论文面向长视频的大规模 3D 重建。现有 feed-forward 3D reconstruction 模型能从 RGB 直接回归几何，但在长序列上受限于上下文窗口和全局记忆，chunk-wise 方案又会丢失跨片段一致性并累积对齐误差。
+
+Scal3R 引入神经全局上下文表示，用一组轻量子网络在测试时通过自监督目标快速适配，将长程场景信息压缩、保留并跨 chunk 共享。它把 test-ti" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Scal3R: Scalable Test-Time Training for Large-Scale 3D Reconstruction</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08542" target="_blank" rel="noopener noreferrer">2604.08542</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文面向长视频的大规模 3D 重建。现有 feed-forward 3D reconstruction 模型能从 RGB 直接回归几何，但在长序列上受限于上下文窗口和全局记忆，chunk-wise 方案又会丢失跨片段一致性并累积对齐误差。</dd></div><div><dt>方法/机制</dt><dd>Scal3R 引入神经全局上下文表示，用一组轻量子网络在测试时通过自监督目标快速适配，将长程场景信息压缩、保留并跨 chunk 共享。它把 test-time training 用作场景级工作记忆更新，而不是简单对每个样本做局部 refinement。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它是测试时适应在 3D/视觉几何系统中的高价值用法：用在线适配的全局上下文解决长序列重建的记忆和一致性问题。论文在 ScanNet、ETH3D、7-Scenes、Oxford Spires 等数据上报告领先 pose 和几何精度，并展示公里级场景统一重建，这对机器人感知、SLAM 替代路线和长上下文视觉系统都有可复用启发。</dd></div><div><dt>收录价值</dt><dd>主要限制是方法仍绑定 3D 重建和 VGGT 类 feed-forward 几何模型，测试时适配的稳定性、时间开销和失败模式需要更多实机/闭环验证。它体现了很好的 TTT 系统模式，但不是通用语言模型或 agent 的部署时学习框架。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文面向长视频的大规模 3D 重建。现有 feed-forward 3D reconstruction 模型能从 RGB 直接回归几何，但在长序列上受限于上下文窗口和全局记忆，chunk-wise 方案又会丢失跨片段一致性并累积对齐误差。</p><p>Scal3R 引入神经全局上下文表示，用一组轻量子网络在测试时通过自监督目标快速适配，将长程场景信息压缩、保留并跨 chunk 共享。它把 test-time training 用作场景级工作记忆更新，而不是简单对每个样本做局部 refinement。</p><p>它值得收录，因为它是测试时适应在 3D/视觉几何系统中的高价值用法：用在线适配的全局上下文解决长序列重建的记忆和一致性问题。论文在 ScanNet、ETH3D、7-Scenes、Oxford Spires 等数据上报告领先 pose 和几何精度，并展示公里级场景统一重建，这对机器人感知、SLAM 替代路线和长上下文视觉系统都有可复用启发。</p><p>主要限制是方法仍绑定 3D 重建和 VGGT 类 feed-forward 几何模型，测试时适配的稳定性、时间开销和失败模式需要更多实机/闭环验证。它体现了很好的 TTT 系统模式，但不是通用语言模型或 agent 的部署时学习框架。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文旨在解决从长视频序列进行大规模3D场景重建的任务。最近的前馈重建模型通过直接从RGB图像回归3D几何形状，而无需明确的3D先验或几何约束，显示出有希望的结果。然而，这些方法由于内存容量有限以及无法有效捕获全局上下文线索，在长序列上往往难以保持重建的准确性和一致性。相比之下，人类可以自然地利用对场景的全局理解来指导局部感知。受此启发，我们提出了一种新颖的神经全局上下文表示，它有效地压缩和保留了长距离场景信息，使模型能够利用广泛的上下文线索来提高重建的准确性和一致性。该上下文表示通过一组轻量级神经子网络实现，这些子网络在测试时通过自监督目标快速适应，从而显著增加了内存容量，而不会产生显著的计算开销。在多个大规模基准测试（包括KITTI Odometry [22]和Oxford Spires [70]数据集）上的实验证明了我们方法在处理超大场景方面的有效性，实现了领先的姿态精度和最先进的3D重建精度，同时保持了效率。代码可在https://zju3dv.github.io/scal3r获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper addresses the task of large-scale 3D scene reconstruction from long video sequences. Recent feedforward reconstruction models have shown promising results by directly regressing 3D geometry from RGB images without explicit 3D priors or geometric constraints. However, these methods often struggle to maintain reconstruction accuracy and consistency over long sequences due to limited memory capacity and the inability to effectively capture global contextual cues. In contrast, humans can naturally exploit the global understanding of the scene to inform local perception. Motivated by this, we propose a *The authors from Zhejiang University are affiliated with the State Key Lab of CAD&amp;CG. † Co-corresponding authors: Xiaoyang Guo, Xiaowei Zhou novel neural global context representation that efficiently compresses and retains long-range scene information, enabling the model to leverage extensive contextual cues for enhanced reconstruction accuracy and consistency. The context representation is realized through a set of lightweight neural sub-networks that are rapidly adapted during test time via self-supervised objectives, which substantially increases memory capacity without incurring significant computational overhead. The experiments on multiple largescale benchmarks, including the KITTI Odometry [22] and Oxford Spires [70] datasets, demonstrate the effectiveness of our approach in handling ultra-large scenes, achieving leading pose accuracy and state-of-the-art 3D reconstruction accuracy while maintaining efficiency. Code is available at https://zju3dv.github.io/scal3r.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409mm49scal3r,
+  title = {Scal3R: Scalable Test-Time Training for Large-Scale 3D Reconstruction},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08542.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm49-scal3r-test-time-3d-reconstruction/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Scal3R: Scalable Test-Time Training for Large-Scale 3D Reconstruction. https://arxiv.org/pdf/2604.08542.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08542.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

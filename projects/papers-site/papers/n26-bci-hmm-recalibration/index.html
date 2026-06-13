@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Long-term unsupervised recalibration of cursor-based intracortical brain–computer interfaces using a hidden Markov model | DAST Papers</title>
+    <meta name="description" content="这篇论文关注长期脑机接口部署中的一个核心工程问题：神经信号分布会随时间漂移，导致原本有效的解码器逐渐失效。作者提出用隐马尔可夫模型做长期无监督重校准，目标是在尽量少人工干预的情况下维持 cursor-based intracortical BCI 的可用性。
+
+方法上，作者把用户意图和神经观测的时序结构结合起来，用 HMM 在长期使用过程中持续修正解码器参数，而不是依赖频繁人工重新标定。重点在于把" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n26-bci-hmm-recalibration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Long-term unsupervised recalibration of cursor-based intracortical brain–computer interfaces using a hidden Markov model" />
+    <meta property="og:description" content="这篇论文关注长期脑机接口部署中的一个核心工程问题：神经信号分布会随时间漂移，导致原本有效的解码器逐渐失效。作者提出用隐马尔可夫模型做长期无监督重校准，目标是在尽量少人工干预的情况下维持 cursor-based intracortical BCI 的可用性。
+
+方法上，作者把用户意图和神经观测的时序结构结合起来，用 HMM 在长期使用过程中持续修正解码器参数，而不是依赖频繁人工重新标定。重点在于把" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n26-bci-hmm-recalibration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Long-term unsupervised recalibration of cursor-based intracortical brain–computer interfaces using a hidden Markov model" />
+    <meta name="twitter:description" content="这篇论文关注长期脑机接口部署中的一个核心工程问题：神经信号分布会随时间漂移，导致原本有效的解码器逐渐失效。作者提出用隐马尔可夫模型做长期无监督重校准，目标是在尽量少人工干预的情况下维持 cursor-based intracortical BCI 的可用性。
+
+方法上，作者把用户意图和神经观测的时序结构结合起来，用 HMM 在长期使用过程中持续修正解码器参数，而不是依赖频繁人工重新标定。重点在于把" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Long-term unsupervised recalibration of cursor-based intracortical brain–computer interfaces using a hidden Markov model</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-12-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-08</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41551-025-01536-z" target="_blank" rel="noopener noreferrer">10.1038/s41551-025-01536-z</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注长期脑机接口部署中的一个核心工程问题：神经信号分布会随时间漂移，导致原本有效的解码器逐渐失效。作者提出用隐马尔可夫模型做长期无监督重校准，目标是在尽量少人工干预的情况下维持 cursor-based intracortical BCI 的可用性。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者把用户意图和神经观测的时序结构结合起来，用 HMM 在长期使用过程中持续修正解码器参数，而不是依赖频繁人工重新标定。重点在于把行为时序先验和解码漂移修正结合。</dd></div><div><dt>结果/证据</dt><dd>这篇工作适合放在认知/脑机接口主线。它的价值不在于提出一个更大的模型，而在于解决真实闭环 BCI 系统“如何长期稳定运行”的关键障碍，这种长期重校准能力很有转化意义。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，因为方法的外溢范围主要仍在特定 intracortical BCI 场景，虽然很实用，但还不足以称为脑机接口范式重排。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注长期脑机接口部署中的一个核心工程问题：神经信号分布会随时间漂移，导致原本有效的解码器逐渐失效。作者提出用隐马尔可夫模型做长期无监督重校准，目标是在尽量少人工干预的情况下维持 cursor-based intracortical BCI 的可用性。</p><p>方法上，作者把用户意图和神经观测的时序结构结合起来，用 HMM 在长期使用过程中持续修正解码器参数，而不是依赖频繁人工重新标定。重点在于把行为时序先验和解码漂移修正结合。</p><p>这篇工作适合放在认知/脑机接口主线。它的价值不在于提出一个更大的模型，而在于解决真实闭环 BCI 系统“如何长期稳定运行”的关键障碍，这种长期重校准能力很有转化意义。</p><p>它没有升到更高一级，因为方法的外溢范围主要仍在特定 intracortical BCI 场景，虽然很实用，但还不足以称为脑机接口范式重排。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251208n26bcihmmr,
+  title = {Long-term unsupervised recalibration of cursor-based intracortical brain–computer interfaces using a hidden Markov model},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41551-025-01536-z.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n26-bci-hmm-recalibration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Long-term unsupervised recalibration of cursor-based intracortical brain–computer interfaces using a hidden Markov model. https://www.nature.com/articles/s41551-025-01536-z.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41551-025-01536-z.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

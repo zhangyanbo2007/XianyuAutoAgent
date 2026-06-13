@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proactive Agent Research Environment: Simulating Active Users to Evaluate Proactive Assistants | DAST Papers</title>
+    <meta name="description" content="proactive assistants 要真正有用，关键不只是能回应用户请求，而是能在合适时机主动介入、推断目标并执行任务。但这个方向长期缺少像样的评测环境，因为很多现有框架把 app 抽象成平面化的 tool-calling API，根本无法模拟真实用户与状态化数字环境之间的序列交互。Pare 正是在补这一层。
+
+论文提出 Proactive Agent Research Environmen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a120-pare-proactive-agent-eval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Proactive Agent Research Environment: Simulating Active Users to Evaluate Proactive Assistants" />
+    <meta property="og:description" content="proactive assistants 要真正有用，关键不只是能回应用户请求，而是能在合适时机主动介入、推断目标并执行任务。但这个方向长期缺少像样的评测环境，因为很多现有框架把 app 抽象成平面化的 tool-calling API，根本无法模拟真实用户与状态化数字环境之间的序列交互。Pare 正是在补这一层。
+
+论文提出 Proactive Agent Research Environmen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a120-pare-proactive-agent-eval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Proactive Agent Research Environment: Simulating Active Users to Evaluate Proactive Assistants" />
+    <meta name="twitter:description" content="proactive assistants 要真正有用，关键不只是能回应用户请求，而是能在合适时机主动介入、推断目标并执行任务。但这个方向长期缺少像样的评测环境，因为很多现有框架把 app 抽象成平面化的 tool-calling API，根本无法模拟真实用户与状态化数字环境之间的序列交互。Pare 正是在补这一层。
+
+论文提出 Proactive Agent Research Environmen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Proactive Agent Research Environment: Simulating Active Users to Evaluate Proactive Assistants</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00842" target="_blank" rel="noopener noreferrer">2604.00842</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>proactive assistants 要真正有用，关键不只是能回应用户请求，而是能在合适时机主动介入、推断目标并执行任务。但这个方向长期缺少像样的评测环境，因为很多现有框架把 app 抽象成平面化的 tool-calling API，根本无法模拟真实用户与状态化数字环境之间的序列交互。Pare 正是在补这一层。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Proactive Agent Research Environment，把应用建模为 finite state machines，并为 user simulator 提供 stateful navigation 与 state-dependent action space，从而支持 active user simulation。基于这个环境，作者又构建 Pare-Bench，覆盖 communication、productivity、scheduling、lifestyle 等 143 个任务，用来测试 context observation、goal inference、intervention timing 和 multi-app orchestration。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为 proactive agent 目前最大的缺口正是评测接口，而 Pare 给出了比平面 API mock 更接近真实使用场景的环境建模方式。对 proactive assistants、computer-use agents 和 context-aware agent evaluation，这种 stateful user simulation 具有明显长期参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍然是一个较新的 benchmark/environment 提案，是否会成为该方向默认评测底座还需要社区采用与持续维护证明。它已经很强，但还不到更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>proactive assistants 要真正有用，关键不只是能回应用户请求，而是能在合适时机主动介入、推断目标并执行任务。但这个方向长期缺少像样的评测环境，因为很多现有框架把 app 抽象成平面化的 tool-calling API，根本无法模拟真实用户与状态化数字环境之间的序列交互。Pare 正是在补这一层。</p><p>论文提出 Proactive Agent Research Environment，把应用建模为 finite state machines，并为 user simulator 提供 stateful navigation 与 state-dependent action space，从而支持 active user simulation。基于这个环境，作者又构建 Pare-Bench，覆盖 communication、productivity、scheduling、lifestyle 等 143 个任务，用来测试 context observation、goal inference、intervention timing 和 multi-app orchestration。</p><p>这篇工作值得收录，因为 proactive agent 目前最大的缺口正是评测接口，而 Pare 给出了比平面 API mock 更接近真实使用场景的环境建模方式。对 proactive assistants、computer-use agents 和 context-aware agent evaluation，这种 stateful user simulation 具有明显长期参考价值。</p><p>它没有升到更高一级，是因为当前仍然是一个较新的 benchmark/environment 提案，是否会成为该方向默认评测底座还需要社区采用与持续维护证明。它已经很强，但还不到更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>能够预测用户需求并自主执行任务的主动代理作为数字助理具有巨大潜力，但缺乏真实的用户模拟框架阻碍了它们的发展。现有方法将应用程序建模为扁平的工具调用API，未能捕捉数字环境中用户交互的状态性和序列性，使得真实的用户模拟不可行。我们引入了主动代理研究环境（Pare），这是一个用于在数字环境中构建和评估主动代理的框架。Pare将应用程序建模为具有状态导航和用户模拟器状态相关动作空间的有限状态机，从而实现主动用户模拟。在此基础上，我们提出了Pare-Bench，一个包含143个多样化任务的基准，涵盖通信、生产力、日程安排和生活方式应用程序，旨在测试上下文观察、目标推断、干预时机和多应用程序编排。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Proactive agents that anticipate user needs and autonomously execute tasks hold great promise as digital assistants, yet the lack of realistic user simulation frameworks hinders their development. Existing approaches model apps as flat tool-calling APIs, failing to capture the stateful and sequential nature of user interaction in digital environments and making realistic user simulation infeasible. We introduce Proactive Agent Research Environment (Pare), a framework for building and evaluating proactive agents in digital environments. Pare models applications as finite state machines with stateful navigation and state-dependent action space for the user simulator, enabling active user simulation. Building on this foundation, we present Pare-Bench, a benchmark of 143 diverse tasks spanning communication, productivity, scheduling, and lifestyle apps, designed to test context observation, goal inference, intervention timing, and multi-app orchestration.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a120parepr,
+  title = {Proactive Agent Research Environment: Simulating Active Users to Evaluate Proactive Assistants},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00842.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a120-pare-proactive-agent-eval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Proactive Agent Research Environment: Simulating Active Users to Evaluate Proactive Assistants. https://arxiv.org/pdf/2604.00842.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00842.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

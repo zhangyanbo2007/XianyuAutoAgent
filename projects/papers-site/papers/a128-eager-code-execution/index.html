@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Executing as You Generate: Hiding Execution Latency in LLM Code Generation | DAST Papers</title>
+    <meta name="description" content="当前 LLM coding agent 的默认执行范式几乎都是串行的：先把完整代码吐完，再把代码交给解释器执行。这样生成阶段 executor 闲置，执行阶段 generator 闲置，导致端到端时延被无谓拉长。真正的问题不只是模型快不快，而是 code generation 与 execution pipeline 根本没有重叠。
+
+这篇工作把这一问题形式化为 generation、detect" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a128-eager-code-execution/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Executing as You Generate: Hiding Execution Latency in LLM Code Generation" />
+    <meta property="og:description" content="当前 LLM coding agent 的默认执行范式几乎都是串行的：先把完整代码吐完，再把代码交给解释器执行。这样生成阶段 executor 闲置，执行阶段 generator 闲置，导致端到端时延被无谓拉长。真正的问题不只是模型快不快，而是 code generation 与 execution pipeline 根本没有重叠。
+
+这篇工作把这一问题形式化为 generation、detect" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a128-eager-code-execution/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Executing as You Generate: Hiding Execution Latency in LLM Code Generation" />
+    <meta name="twitter:description" content="当前 LLM coding agent 的默认执行范式几乎都是串行的：先把完整代码吐完，再把代码交给解释器执行。这样生成阶段 executor 闲置，执行阶段 generator 闲置，导致端到端时延被无谓拉长。真正的问题不只是模型快不快，而是 code generation 与 execution pipeline 根本没有重叠。
+
+这篇工作把这一问题形式化为 generation、detect" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Executing as You Generate: Hiding Execution Latency in LLM Code Generation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00491" target="_blank" rel="noopener noreferrer">2604.00491</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前 LLM coding agent 的默认执行范式几乎都是串行的：先把完整代码吐完，再把代码交给解释器执行。这样生成阶段 executor 闲置，执行阶段 generator 闲置，导致端到端时延被无谓拉长。真正的问题不只是模型快不快，而是 code generation 与 execution pipeline 根本没有重叠。</dd></div><div><dt>方法/机制</dt><dd>这篇工作把这一问题形式化为 generation、detection、execution 三阶段并行流水线，并提出 Eager 作为具体实现。Eager 结合 AST-based chunking、带门控的动态批处理以及 early error interruption，让代码在生成过程中就能被切分、检测并尽早执行，从而把一部分 execution latency 藏到 generation 过程中。作者还给出闭式时延界，明确不同 operating regime 下的理论收益空间。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 coding agent 的执行模型从串行后处理推进到可重叠的 pipeline 设计，这是一种清晰可复用的系统模式，而不是单纯对某个 benchmark 做 prompt 优化。对本地 coding agent、IDE assistant、tool-using program synthesis 和 code-interpreter runtime，这种并行执行视角都有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要价值仍集中在 code generation 与 interpreter execution 这一场景，尚未证明这一 pipeline 会普遍外溢到更广的 agent runtime 设计。它是很强的 coding-agent systems 工作，但还不宜拔得过高。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前 LLM coding agent 的默认执行范式几乎都是串行的：先把完整代码吐完，再把代码交给解释器执行。这样生成阶段 executor 闲置，执行阶段 generator 闲置，导致端到端时延被无谓拉长。真正的问题不只是模型快不快，而是 code generation 与 execution pipeline 根本没有重叠。</p><p>这篇工作把这一问题形式化为 generation、detection、execution 三阶段并行流水线，并提出 Eager 作为具体实现。Eager 结合 AST-based chunking、带门控的动态批处理以及 early error interruption，让代码在生成过程中就能被切分、检测并尽早执行，从而把一部分 execution latency 藏到 generation 过程中。作者还给出闭式时延界，明确不同 operating regime 下的理论收益空间。</p><p>这篇工作值得收录，因为它把 coding agent 的执行模型从串行后处理推进到可重叠的 pipeline 设计，这是一种清晰可复用的系统模式，而不是单纯对某个 benchmark 做 prompt 优化。对本地 coding agent、IDE assistant、tool-using program synthesis 和 code-interpreter runtime，这种并行执行视角都有直接参考价值。</p><p>它没有升到更高一级，是因为当前主要价值仍集中在 code generation 与 interpreter execution 这一场景，尚未证明这一 pipeline 会普遍外溢到更广的 agent runtime 设计。它是很强的 coding-agent systems 工作，但还不宜拔得过高。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>当前的基于 LLM 的编码代理遵循串行执行范式：模型首先生成完整的代码，然后调用解释器执行它。这种顺序工作流导致执行器在生成期间空闲，生成器在执行期间空闲，从而导致不必要的端到端延迟。我们观察到，与人类开发者不同，LLMs 顺序生成代码 token 而不进行修改，这使得在代码生成时执行代码成为可能。我们形式化了这种并行执行范式，将其建模为生成、检测和执行的三阶段管道，并推导出了表征其加速潜力和操作机制的闭式延迟界限。然后，我们提出了 Eager，一个具体的实现，其特点是基于 AST 的分块、带门控执行的动态批处理以及早期错误中断。我们在四个基准测试、七个 LLMs 和三个执行环境中评估了 Eager。结果表明，Eager 在七个 LLMs 和四个基准测试中将非重叠执行延迟降低了高达 99.9%，将端到端延迟降低了高达 55%。对于人类开发者而言，编写源代码的过程本质上是非线性的：他们不断地在代码文件的不同部分之间导航，以修改、重构和完善其逻辑。自然地，代码只有在被认为准备就绪后才会被执行。在本文中，我们将这种先编写后执行的范式称为串行执行。这种范式在很大程度上被当前的 LLMs 继承，用于处理其任务，例如文件操作 [18, 29]、数据处理 [12] 和代码测试 [27]。具体来说，语言模型首先生成一个代码块，调用代码解释器进行执行，暂停等待执行结果，然后根据该结果恢复生成。然而，与人类开发者不同，现代基于 token 的语言模型一旦生成 token 就不会修改——每个 token 在生成的那一刻就被提交。受此特性启发，我们为 LLMs 提出了一种新的代码执行范式，即并行执行，其中每个代码语句都可以在生成的那一刻被分派给解释器，而不是等待整个代码块完成。这种范式自然受到 Python 和 JavaScript 等解释型编程语言的支持，这些语言的代码不需要作为一个整体进行编译。它的好处是直观的：由于生成和执行现在在时间上重叠，端到端延迟不再是两者的总和。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Current LLM-based coding agents follow a serial execution paradigm: the model first generates the complete code, then invokes an interpreter to execute it. This sequential workflow leaves the executor idle during generation and the generator idle during execution, resulting in unnecessary end-to-end latency. We observe that, unlike human developers, LLMs produce code tokens sequentially without revision, making it possible to execute code as it is being generated. We formalize this parallel execution paradigm, modeling it as a three-stage pipeline of generation, detection, and execution, and derive closed-form latency bounds that characterize its speedup potential and operating regimes. We then present Eager, a concrete implementation featuring AST-based chunking, dynamic batching with gated execution, and early error interruption. We evaluate Eager across four benchmarks, seven LLMs, and three execution environments. Results show that Eager reduces the non-overlapped execution latency by up to 99.9% and the end-toend latency by up to 55% across seven LLMs and four benchmarks. For human developers, the process of writing source code is inherently non-linear: they constantly navigate across different sections of a code file to revise, restructure, and refine their logic. Naturally, the code is executed only after it is deemed ready. In this paper, we refer to this write-then-execute paradigm as serial execution. This paradigm has been largely inherited by current LLMs for dealing with their tasks, such as file manipulation [18, 29], data processing [12], and code testing [27]. Specifically, a language model first generates a code block, invokes the code interpreter for execution, pauses to wait for the execution result, and then resumes generation conditioned on that result. However, unlike human developers, modern token-based language models do not revise tokens once they are generated—each token is committed the moment it is produced. Inspired by this property, we propose a new code execution paradigm for LLMs, i.e., parallel execution, in which every code statement can be dispatched to the interpreter the moment it is produced, rather than waiting for the full block to be complete. This paradigm is naturally supported by interpreted programming languages such as Python and JavaScript, where code does not need to be compiled as a whole. Its benefit is intuitive: since generation and execution now overlap in time, the end-to-end latency is no longer the sum of the</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a128eagerc,
+  title = {Executing as You Generate: Hiding Execution Latency in LLM Code Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00491.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a128-eager-code-execution/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Executing as You Generate: Hiding Execution Latency in LLM Code Generation. https://arxiv.org/pdf/2604.00491.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00491.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

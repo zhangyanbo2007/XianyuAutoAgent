@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Online Experiential Learning for Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文针对的是部署后语言模型如何持续学习的问题。当前大模型能力的提升几乎全部发生在离线阶段，依赖人工标注的 SFT 或模拟环境里的 RL，而真实部署中积累的大量交互经验往往只被当作日志保存，无法转化为稳定的能力改进。作者因此把重点放在一个更现实的 setting 上：只有文本反馈、没有显式标量奖励、也不要求训练时访问用户环境。
+
+方法上的核心是 OEL（Online Experiential L" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a51-online-experiential-learning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Online Experiential Learning for Language Models" />
+    <meta property="og:description" content="这篇论文针对的是部署后语言模型如何持续学习的问题。当前大模型能力的提升几乎全部发生在离线阶段，依赖人工标注的 SFT 或模拟环境里的 RL，而真实部署中积累的大量交互经验往往只被当作日志保存，无法转化为稳定的能力改进。作者因此把重点放在一个更现实的 setting 上：只有文本反馈、没有显式标量奖励、也不要求训练时访问用户环境。
+
+方法上的核心是 OEL（Online Experiential L" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a51-online-experiential-learning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Online Experiential Learning for Language Models" />
+    <meta name="twitter:description" content="这篇论文针对的是部署后语言模型如何持续学习的问题。当前大模型能力的提升几乎全部发生在离线阶段，依赖人工标注的 SFT 或模拟环境里的 RL，而真实部署中积累的大量交互经验往往只被当作日志保存，无法转化为稳定的能力改进。作者因此把重点放在一个更现实的 setting 上：只有文本反馈、没有显式标量奖励、也不要求训练时访问用户环境。
+
+方法上的核心是 OEL（Online Experiential L" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Online Experiential Learning for Language Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.16856" target="_blank" rel="noopener noreferrer">2603.16856</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对的是部署后语言模型如何持续学习的问题。当前大模型能力的提升几乎全部发生在离线阶段，依赖人工标注的 SFT 或模拟环境里的 RL，而真实部署中积累的大量交互经验往往只被当作日志保存，无法转化为稳定的能力改进。作者因此把重点放在一个更现实的 setting 上：只有文本反馈、没有显式标量奖励、也不要求训练时访问用户环境。</dd></div><div><dt>方法/机制</dt><dd>方法上的核心是 OEL（Online Experiential Learning）闭环。第一阶段，从用户侧交互轨迹中提取可迁移的经验知识，而不是直接拿原始轨迹学习；第二阶段，利用 on-policy context distillation 把这些经验知识内化到模型参数中。论文的一个重要结论是：原始交互轨迹本身噪声很大，必须先抽象成规则、策略或经验；另一个关键发现是同策略一致性很重要，小模型从自己轨迹中总结的经验往往比大模型替它提炼的高级经验更有效。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是普通的 post-training recipe，而是提出了一个较完整的部署后在线学习框架：交互、经验抽取、知识内化、再交互形成闭环。它对 agent memory、online adaptation、experience distillation 和 continual LM improvement 都有明确外溢，也契合仓库目前对长期运行 AI 系统的关注方向。</dd></div><div><dt>收录价值</dt><dd>它目前适合定为 breakthrough，而不是更高一级。原因是实验场景仍主要集中在文字游戏等较受控环境上，虽然结果稳定且洞见很强，但距离成为开放式真实部署环境中的默认方案还差更复杂任务和多模态场景的验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对的是部署后语言模型如何持续学习的问题。当前大模型能力的提升几乎全部发生在离线阶段，依赖人工标注的 SFT 或模拟环境里的 RL，而真实部署中积累的大量交互经验往往只被当作日志保存，无法转化为稳定的能力改进。作者因此把重点放在一个更现实的 setting 上：只有文本反馈、没有显式标量奖励、也不要求训练时访问用户环境。</p><p>方法上的核心是 OEL（Online Experiential Learning）闭环。第一阶段，从用户侧交互轨迹中提取可迁移的经验知识，而不是直接拿原始轨迹学习；第二阶段，利用 on-policy context distillation 把这些经验知识内化到模型参数中。论文的一个重要结论是：原始交互轨迹本身噪声很大，必须先抽象成规则、策略或经验；另一个关键发现是同策略一致性很重要，小模型从自己轨迹中总结的经验往往比大模型替它提炼的高级经验更有效。</p><p>这篇工作值得正式收录，因为它不是普通的 post-training recipe，而是提出了一个较完整的部署后在线学习框架：交互、经验抽取、知识内化、再交互形成闭环。它对 agent memory、online adaptation、experience distillation 和 continual LM improvement 都有明确外溢，也契合仓库目前对长期运行 AI 系统的关注方向。</p><p>它目前适合定为 breakthrough，而不是更高一级。原因是实验场景仍主要集中在文字游戏等较受控环境上，虽然结果稳定且洞见很强，但距离成为开放式真实部署环境中的默认方案还差更复杂任务和多模态场景的验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317a51onlinee,
+  title = {Online Experiential Learning for Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.16856v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a51-online-experiential-learning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Online Experiential Learning for Language Models. https://arxiv.org/pdf/2603.16856v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.16856v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multi-Agent Computer Use | DAST Papers</title>
+    <meta name="description" content="当前 computer-use agents 多是单串行 agent，复杂长程任务需要分解、并行执行和根据新信息持续重规划。
+
+这篇论文提出 multi-agent computer use 设定：manager 将任务分解为 DAG，分派并行 CUA subagents 执行 ready frontier，并随着发现增删改任务节点。
+
+它值得收录，因为它把 CUA 从单 agent 操作提升到可" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a358-multi-agent-computer-use/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Multi-Agent Computer Use" />
+    <meta property="og:description" content="当前 computer-use agents 多是单串行 agent，复杂长程任务需要分解、并行执行和根据新信息持续重规划。
+
+这篇论文提出 multi-agent computer use 设定：manager 将任务分解为 DAG，分派并行 CUA subagents 执行 ready frontier，并随着发现增删改任务节点。
+
+它值得收录，因为它把 CUA 从单 agent 操作提升到可" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a358-multi-agent-computer-use/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Multi-Agent Computer Use" />
+    <meta name="twitter:description" content="当前 computer-use agents 多是单串行 agent，复杂长程任务需要分解、并行执行和根据新信息持续重规划。
+
+这篇论文提出 multi-agent computer use 设定：manager 将任务分解为 DAG，分派并行 CUA subagents 执行 ready frontier，并随着发现增删改任务节点。
+
+它值得收录，因为它把 CUA 从单 agent 操作提升到可" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Multi-Agent Computer Use</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.01533" target="_blank" rel="noopener noreferrer">2606.01533</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前 computer-use agents 多是单串行 agent，复杂长程任务需要分解、并行执行和根据新信息持续重规划。</dd></div><div><dt>方法/机制</dt><dd>这篇论文提出 multi-agent computer use 设定：manager 将任务分解为 DAG，分派并行 CUA subagents 执行 ready frontier，并随着发现增删改任务节点。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 CUA 从单 agent 操作提升到可并行的操作系统式调度问题，符合 agent orchestration 方向。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前 computer-use agents 多是单串行 agent，复杂长程任务需要分解、并行执行和根据新信息持续重规划。</p><p>这篇论文提出 multi-agent computer use 设定：manager 将任务分解为 DAG，分派并行 CUA subagents 执行 ready frontier，并随着发现增删改任务节点。</p><p>它值得收录，因为它把 CUA 从单 agent 操作提升到可并行的操作系统式调度问题，符合 agent orchestration 方向。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>今天，计算机使用代理（CUAs）主要部署为单串代理。这种设置对于需要任务分解、并行执行和基于新信息的一致重新规划的复杂长时限任务来说是不理想的。在本文中，我们认为我们应该转向评估和构建多代理计算机使用（MACU）系统。这些系统，强调规划和并行执行，消除了单代理CUAs的许多缺点。我们提出了一种通用的多代理设置，其中一个管理器模型将计算机使用任务分解为由子任务组成的有向无环图（DAG），编码了子代理的相关依赖关系和目标。在每次迭代中，管理器将并行CUA子代理分配到DAG的已准备好前沿的节点上，并在从子代理获得新发现时不断修改DAG（添加、取消或重写节点）。这种设计将计算机使用的部分可观测环境视为一个首要挑战：下游代理可能无法重新观察的信息被保留并通过管理器和DAG结构传递。我们在桌面（OSWorld）和网络导航（Online-Mind2Web、WebTailBench、Odysseys）基准上，通过MACU在强单代理基线之上持续改进3.4-25.5%，表现出更友好的测试时间计算缩放，并解决了单代理CUAs陷入困境的复杂长时限任务。在Odysseys，一个长时限网络导航基准上，MACU还使平均任务完成时钟时间提高了约1.5倍，证明了其加速传统缓慢的CUA管道的有效性。我们的研究表明，多代理协调是扩展计算机使用代理以更有效地更长时间地工作的一个有希望的方向。所有代码和交互式可视化均可在https://jykoh.com/multi-agent-computer-use上发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Computer use agents (CUAs) today are primarily deployed as single serial agents. This setup is suboptimal for complex long-horizon tasks that benefit from task decomposition, parallel execution, and consistent re-planning based on new information. In this paper, we argue that we should instead move towards evaluating and building multi-agent computer use (MACU) systems. These systems, which emphasize planning and parallel execution, alleviate many of the shortcomings of single-agent CUAs. We propose a general multi-agent setup in which a manager model decomposes computer use tasks as a directed acyclic graph (DAG) of subtasks, encoding relevant dependencies and goals for subagents. At each iteration, the manager dispatches parallel CUA subagents to carry out nodes on the ready frontier of the DAG, and continuously revises the DAG (adding, canceling, or rewriting nodes) as new findings arrive from subagents. This design treats the partially observable environment of computer use as a first class challenge: information that downstream agents may not be able to re-observe are retained and passed forward through the manager and DAG structure. We demonstrate that MACU consistently improves over strong single-agent baselines by 3.4 − 25.5% on desktop (OSWorld) and web navigation (Online-Mind2Web, WebTailBench, Odysseys) benchmarks, exhibits more favorable test-time compute scaling, and solves complex long-horizon tasks where single-agent CUAs get stuck. On Odysseys, a long-horizon web navigation benchmark, MACU also improves average task completion wall-clock time by ∼1.5×, demonstrating its efficacy in speeding up traditionally slow CUA pipelines. Our findings highlight that multiagent coordination is a promising axis for scaling computer use agents to work productively for longer and more effectively. We release all code and interactive visualizations at https://jykoh.com/multi-agent-computer-use.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601a358multia,
+  title = {Multi-Agent Computer Use},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.01533.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a358-multi-agent-computer-use/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Multi-Agent Computer Use. https://arxiv.org/pdf/2606.01533.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a353-harness1-search-agent-rl/">
+              <span>Harness-1: Reinforcement Learning for Search Agents with State-Externalizing Harnesses</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.01533.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.01533" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

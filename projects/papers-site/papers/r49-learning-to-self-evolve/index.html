@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Self-Evolve | DAST Papers</title>
+    <meta name="description" content="很多 test-time self-evolution 工作默认假设模型天然会根据反馈改写自身上下文，但实际上大多数方法只是把更强模型或更复杂搜索包在外层，并没有显式训练“如何根据反馈进化上下文”这项能力。
+
+这篇工作的核心推进，是把 self-evolution 本身重写成可学习的 RL 目标：每次上下文编辑都按下游性能改善来奖励，并配合 tree-guided evolution loop，让" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r49-learning-to-self-evolve/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Self-Evolve" />
+    <meta property="og:description" content="很多 test-time self-evolution 工作默认假设模型天然会根据反馈改写自身上下文，但实际上大多数方法只是把更强模型或更复杂搜索包在外层，并没有显式训练“如何根据反馈进化上下文”这项能力。
+
+这篇工作的核心推进，是把 self-evolution 本身重写成可学习的 RL 目标：每次上下文编辑都按下游性能改善来奖励，并配合 tree-guided evolution loop，让" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r49-learning-to-self-evolve/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Self-Evolve" />
+    <meta name="twitter:description" content="很多 test-time self-evolution 工作默认假设模型天然会根据反馈改写自身上下文，但实际上大多数方法只是把更强模型或更复杂搜索包在外层，并没有显式训练“如何根据反馈进化上下文”这项能力。
+
+这篇工作的核心推进，是把 self-evolution 本身重写成可学习的 RL 目标：每次上下文编辑都按下游性能改善来奖励，并配合 tree-guided evolution loop，让" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Self-Evolve</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.18620" target="_blank" rel="noopener noreferrer">2603.18620</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 test-time self-evolution 工作默认假设模型天然会根据反馈改写自身上下文，但实际上大多数方法只是把更强模型或更复杂搜索包在外层，并没有显式训练“如何根据反馈进化上下文”这项能力。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心推进，是把 self-evolution 本身重写成可学习的 RL 目标：每次上下文编辑都按下游性能改善来奖励，并配合 tree-guided evolution loop，让模型直接学会怎样在测试时持续重写自己的上下文，而不是只依赖底座模型的静态推理能力。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 test-time adaptation 从“外部 prompt 优化技巧”推进成“可训练技能”。这对 deployment-time learning、context editing、small-model self-improvement 和 agentic adaptation 都有明显方法外溢，尤其契合本仓库对 test-time learning / self-improving agents 的主线。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前验证仍集中在 Text-to-SQL 和 general QA 等少数任务，长期稳定性、跨模态泛化和更复杂 agent workflows 上的耐久价值还需要进一步证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 test-time self-evolution 工作默认假设模型天然会根据反馈改写自身上下文，但实际上大多数方法只是把更强模型或更复杂搜索包在外层，并没有显式训练“如何根据反馈进化上下文”这项能力。</p><p>这篇工作的核心推进，是把 self-evolution 本身重写成可学习的 RL 目标：每次上下文编辑都按下游性能改善来奖励，并配合 tree-guided evolution loop，让模型直接学会怎样在测试时持续重写自己的上下文，而不是只依赖底座模型的静态推理能力。</p><p>它值得正式收录，因为它把 test-time adaptation 从“外部 prompt 优化技巧”推进成“可训练技能”。这对 deployment-time learning、context editing、small-model self-improvement 和 agentic adaptation 都有明显方法外溢，尤其契合本仓库对 test-time learning / self-improving agents 的主线。</p><p>它暂时不升到更高一级，原因在于当前验证仍集中在 Text-to-SQL 和 general QA 等少数任务，长期稳定性、跨模态泛化和更复杂 agent workflows 上的耐久价值还需要进一步证明。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260319r49learnin,
+  title = {Learning to Self-Evolve},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.18620.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r49-learning-to-self-evolve/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Self-Evolve. https://arxiv.org/pdf/2603.18620.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.18620.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

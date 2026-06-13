@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Language Models Need Sleep | DAST Papers</title>
+    <meta name="description" content="这篇论文把长上下文处理重新表述为 sleep-like consolidation：模型不必无限增长 KV cache，而是周期性把近期上下文压入可持续状态。
+
+方法在 sleep 阶段对累积上下文做离线 recurrent passes，并通过 learned local rule 更新 SSM blocks 中的 fast weights，然后清空 KV cache。
+
+wake-time 预" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r81-language-models-need-sleep/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Language Models Need Sleep" />
+    <meta property="og:description" content="这篇论文把长上下文处理重新表述为 sleep-like consolidation：模型不必无限增长 KV cache，而是周期性把近期上下文压入可持续状态。
+
+方法在 sleep 阶段对累积上下文做离线 recurrent passes，并通过 learned local rule 更新 SSM blocks 中的 fast weights，然后清空 KV cache。
+
+wake-time 预" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r81-language-models-need-sleep/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Language Models Need Sleep" />
+    <meta name="twitter:description" content="这篇论文把长上下文处理重新表述为 sleep-like consolidation：模型不必无限增长 KV cache，而是周期性把近期上下文压入可持续状态。
+
+方法在 sleep 阶段对累积上下文做离线 recurrent passes，并通过 learned local rule 更新 SSM blocks 中的 fast weights，然后清空 KV cache。
+
+wake-time 预" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Language Models Need Sleep</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.26099" target="_blank" rel="noopener noreferrer">2605.26099</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把长上下文处理重新表述为 sleep-like consolidation：模型不必无限增长 KV cache，而是周期性把近期上下文压入可持续状态。</dd></div><div><dt>方法/机制</dt><dd>方法在 sleep 阶段对累积上下文做离线 recurrent passes，并通过 learned local rule 更新 SSM blocks 中的 fast weights，然后清空 KV cache。</dd></div><div><dt>结果/证据</dt><dd>wake-time 预测保持低延迟，而额外计算被移动到 sleep 阶段；实验覆盖 cellular automata、多跳图检索和数学推理等需要深层上下文整合的任务。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把记忆压缩、SSM fast weights、长上下文和测试时计算调度连接成新的模型运行时模式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把长上下文处理重新表述为 sleep-like consolidation：模型不必无限增长 KV cache，而是周期性把近期上下文压入可持续状态。</p><p>方法在 sleep 阶段对累积上下文做离线 recurrent passes，并通过 learned local rule 更新 SSM blocks 中的 fast weights，然后清空 KV cache。</p><p>wake-time 预测保持低延迟，而额外计算被移动到 sleep 阶段；实验覆盖 cellular automata、多跳图检索和数学推理等需要深层上下文整合的任务。</p><p>它值得正式收录，因为它把记忆压缩、SSM fast weights、长上下文和测试时计算调度连接成新的模型运行时模式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于 Transformer 的大型语言模型越来越多地用于长周期任务；然而，它们的注意力机制随上下文长度的扩展性较差。为解决此问题，我们研究了一种类似睡眠的巩固机制，其中模型在清除其键值缓存之前，定期将近期上下文转换为持久的快速权重。在睡眠期间，模型对累积的上下文执行 N 次离线循环传递，并通过学习到的局部规则更新其状态空间模型 (SSM) 块中的快速权重。在推理过程中，这会将额外的计算转移到睡眠阶段，同时保持唤醒时预测的延迟。我们在受控合成任务（包括细胞自动机和多跳图检索）以及常规 Transformer 和 SSM-注意力混合模型均失败的真实数学推理任务上测试了我们的方法。我们进一步表明，增加模型的睡眠持续时间 N 可以提高性能，在需要更深层次推理的示例上收益最大。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Transformer-based large language models are increasingly used for long-horizon tasks; however, their attention mechanism scales poorly with context length. To handle this, we study a sleep-like consolidation mechanism in which a model periodically converts recent context into persistent fast weights before clearing its key-value cache. During the sleep, the model performs N offline recurrent passes over the accumulated context and updates the fast weights in its state-space model (SSM) blocks through a learned local rule. During inference, this shifts extra computation to the sleep while preserving the latency of wake-time prediction. We test our method on controlled synthetic tasks, including cellular automata and multi-hop graph retrieval, as well as a realistic math reasoning task, on which a regular transformer as well as SSM-attention hybrid models fail. We then show that increasing sleep duration N for our models improves performance, with the largest gains on examples that require deeper reasoning.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260525r81languag,
+  title = {Language Models Need Sleep},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.26099.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r81-language-models-need-sleep/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Language Models Need Sleep. https://arxiv.org/pdf/2605.26099.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.26099.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.26099" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文针对一个越来越重要但经常被低估的问题：很多 agent 和知识密集型 LLM 系统的真实能力并不主要取决于权重更新，而取决于 context adaptation，也就是系统 prompt、外部记忆、策略说明和证据组织方式如何随着运行逐步演化。作者指出现有方法在这条路线上常见两个问题：一是 brevity bias，会把详细经验压缩成过于简短的抽象提示；二是 context collaps" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a64-agentic-context-engineering/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models" />
+    <meta property="og:description" content="这篇论文针对一个越来越重要但经常被低估的问题：很多 agent 和知识密集型 LLM 系统的真实能力并不主要取决于权重更新，而取决于 context adaptation，也就是系统 prompt、外部记忆、策略说明和证据组织方式如何随着运行逐步演化。作者指出现有方法在这条路线上常见两个问题：一是 brevity bias，会把详细经验压缩成过于简短的抽象提示；二是 context collaps" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a64-agentic-context-engineering/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models" />
+    <meta name="twitter:description" content="这篇论文针对一个越来越重要但经常被低估的问题：很多 agent 和知识密集型 LLM 系统的真实能力并不主要取决于权重更新，而取决于 context adaptation，也就是系统 prompt、外部记忆、策略说明和证据组织方式如何随着运行逐步演化。作者指出现有方法在这条路线上常见两个问题：一是 brevity bias，会把详细经验压缩成过于简短的抽象提示；二是 context collaps" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-10-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.04618" target="_blank" rel="noopener noreferrer">2510.04618</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对一个越来越重要但经常被低估的问题：很多 agent 和知识密集型 LLM 系统的真实能力并不主要取决于权重更新，而取决于 context adaptation，也就是系统 prompt、外部记忆、策略说明和证据组织方式如何随着运行逐步演化。作者指出现有方法在这条路线上常见两个问题：一是 brevity bias，会把详细经验压缩成过于简短的抽象提示；二是 context collapse，反复重写上下文后细节不断流失，最终把真正有用的知识擦掉。</dd></div><div><dt>方法/机制</dt><dd>ACE（Agentic Context Engineering）的核心贡献是把 context 明确建模成持续演化的 playbook，而不是一次性 prompt。它在 Dynamic Cheatsheet 的 adaptive memory 基础上，引入 Generator、Reflector、Curator 三角色分工，并用增量 delta updates 替代整段重写，让系统能在 offline 场景下优化 system prompts，也能在 online 场景下把 agent memory 作为可生长、可整理、可反思的上下文资产持续改进。更关键的是，这套更新不依赖标注监督，而是直接利用执行反馈和环境信号完成自我改进。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它不再只是 prompt engineering 经验总结，而是把 context adaptation 提升成一种独立的 self-improving systems paradigm。论文在 agents 和 domain-specific benchmarks 上都给出稳定收益，在 AppWorld 上还能以更小的开源模型匹配甚至超过生产级系统的一部分结果，同时显著降低 adaptation latency 和 rollout cost。对仓库主线而言，它直接命中 agent memory、deployment-time improvement 和 capability acquisition 三个方向，并且给出了一种很清晰的可复用 workflow。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因在于证据仍主要集中在 AppWorld 和金融类 benchmark，以及与 prompt/context baselines 的对比，距离真正重排更广 agent infra 生态还有一步。它已经证明了 evolving contexts 是一条强路线，但是否会成为长期默认范式，还要看更多跨任务、跨企业场景和更长时运行验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对一个越来越重要但经常被低估的问题：很多 agent 和知识密集型 LLM 系统的真实能力并不主要取决于权重更新，而取决于 context adaptation，也就是系统 prompt、外部记忆、策略说明和证据组织方式如何随着运行逐步演化。作者指出现有方法在这条路线上常见两个问题：一是 brevity bias，会把详细经验压缩成过于简短的抽象提示；二是 context collapse，反复重写上下文后细节不断流失，最终把真正有用的知识擦掉。</p><p>ACE（Agentic Context Engineering）的核心贡献是把 context 明确建模成持续演化的 playbook，而不是一次性 prompt。它在 Dynamic Cheatsheet 的 adaptive memory 基础上，引入 Generator、Reflector、Curator 三角色分工，并用增量 delta updates 替代整段重写，让系统能在 offline 场景下优化 system prompts，也能在 online 场景下把 agent memory 作为可生长、可整理、可反思的上下文资产持续改进。更关键的是，这套更新不依赖标注监督，而是直接利用执行反馈和环境信号完成自我改进。</p><p>这项工作值得正式收录，因为它不再只是 prompt engineering 经验总结，而是把 context adaptation 提升成一种独立的 self-improving systems paradigm。论文在 agents 和 domain-specific benchmarks 上都给出稳定收益，在 AppWorld 上还能以更小的开源模型匹配甚至超过生产级系统的一部分结果，同时显著降低 adaptation latency 和 rollout cost。对仓库主线而言，它直接命中 agent memory、deployment-time improvement 和 capability acquisition 三个方向，并且给出了一种很清晰的可复用 workflow。</p><p>它暂时还不到更高一级，原因在于证据仍主要集中在 AppWorld 和金融类 benchmark，以及与 prompt/context baselines 的对比，距离真正重排更广 agent infra 生态还有一步。它已经证明了 evolving contexts 是一条强路线，但是否会成为长期默认范式，还要看更多跨任务、跨企业场景和更长时运行验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Agentic Context Engineering：面向自改进语言模型的演进式上下文大型语言模型（LLM）应用，例如智能体和领域特定推理，越来越依赖于上下文适应——通过指令、策略或证据修改输入，而非权重更新。先前的方法提高了可用性，但常受制于简洁偏误（为求简洁摘要而舍弃领域洞察）和上下文崩溃（迭代重写随时间侵蚀细节）。基于Dynamic Cheatsheet引入的自适应记忆，我们提出了ACE（Agentic Context Engineering），这是一个将上下文视为演进式策略手册的框架，通过生成、反思和整理的模块化过程来积累、提炼和组织策略。ACE通过结构化、增量式更新来防止崩溃，这些更新保留了详细知识并能与长上下文模型一同扩展。在智能体和领域特定基准测试中，ACE同时优化离线（例如，系统提示）和在线（例如，智能体记忆）上下文，持续优于强基线：在智能体上提升10.6%，在金融领域提升8.6%，同时显著降低了适应延迟和部署成本。值得注意的是，ACE无需标注监督即可有效适应，而是通过利用自然执行反馈。在AppWorld排行榜上，尽管使用了较小的开源模型，ACE在总体平均表现上与排名第一的生产级智能体持平，并在更具挑战性的测试-挑战分割上超越了它。这些结果表明，全面、演进的上下文能够实现可扩展、高效且低开销的自改进LLM系统。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM) applications such as agents and domain-specific reasoning increasingly rely on context adaptation—modifying inputs with instructions, strategies, or evidence, rather than weight updates. Prior approaches improve usability but often suffer from brevity bias, which drops domain insights for concise summaries, and from context collapse, where iterative rewriting erodes details over time. Building on the adaptive memory introduced by Dynamic Cheatsheet, we introduce ACE (Agentic Context Engineering), a framework that treats contexts as evolving playbooks that accumulate, refine, and organize strategies through a modular process of generation, reflection, and curation. ACE prevents collapse with structured, incremental updates that preserve detailed knowledge and scale with long-context models. Across agent and domain-specific benchmarks, ACE optimizes contexts both offline (e.g., system prompts) and online (e.g., agent memory), consistently outperforming strong baselines: +10.6% on agents and +8.6% on finance, while significantly reducing adaptation latency and rollout cost. Notably, ACE could adapt effectively without labeled supervision and instead by leveraging natural execution feedback. On the AppWorld leaderboard, ACE matches the top-ranked production-level agent on the overall average and surpasses it on the harder test-challenge split, despite using a smaller open-source model. These results show that comprehensive, evolving contexts enable scalable, efficient, and self-improving LLM systems with low overhead.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251006a64agentic,
+  title = {Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.04618v2.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a64-agentic-context-engineering/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models. https://arxiv.org/pdf/2510.04618v2.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.04618v2.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

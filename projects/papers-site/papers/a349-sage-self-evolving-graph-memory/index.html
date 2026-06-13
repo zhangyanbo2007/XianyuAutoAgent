@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory | DAST Papers</title>
+    <meta name="description" content="SAGE 把 agent long-term memory 从静态 RAG/GraphRAG 检索层推进到动态、自演化的 graph-memory substrate。核心问题不是单次召回，而是如何从局部线索恢复完整 evidence chain，并让记忆结构在使用反馈中持续变好。
+
+关键机制是 writer-reader loop：memory writer 从交互历史增量构建结构化图记忆；Gr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a349-sage-self-evolving-graph-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory" />
+    <meta property="og:description" content="SAGE 把 agent long-term memory 从静态 RAG/GraphRAG 检索层推进到动态、自演化的 graph-memory substrate。核心问题不是单次召回，而是如何从局部线索恢复完整 evidence chain，并让记忆结构在使用反馈中持续变好。
+
+关键机制是 writer-reader loop：memory writer 从交互历史增量构建结构化图记忆；Gr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a349-sage-self-evolving-graph-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory" />
+    <meta name="twitter:description" content="SAGE 把 agent long-term memory 从静态 RAG/GraphRAG 检索层推进到动态、自演化的 graph-memory substrate。核心问题不是单次召回，而是如何从局部线索恢复完整 evidence chain，并让记忆结构在使用反馈中持续变好。
+
+关键机制是 writer-reader loop：memory writer 从交互历史增量构建结构化图记忆；Gr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.12061" target="_blank" rel="noopener noreferrer">2605.12061</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SAGE 把 agent long-term memory 从静态 RAG/GraphRAG 检索层推进到动态、自演化的 graph-memory substrate。核心问题不是单次召回，而是如何从局部线索恢复完整 evidence chain，并让记忆结构在使用反馈中持续变好。</dd></div><div><dt>方法/机制</dt><dd>关键机制是 writer-reader loop：memory writer 从交互历史增量构建结构化图记忆；Graph Foundation Model-based reader 执行检索，并把检索/回答反馈回 writer，形成写入、读取、更新的闭环。</dd></div><div><dt>结果/证据</dt><dd>评测覆盖 multi-hop QA、open-domain retrieval、domain-specific review QA、LongMemEval 和 HaluMem。论文报告两轮 self-evolution 后 multi-hop QA 平均排名最好，NQ zero-shot Recall@2/5 达到 82.5/91.6，并改善长期记忆和幻觉诊断指标。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提出了一个可复用的 agent memory primitive：结构化图记忆 + 关联式读取 + reader-writer feedback + self-evolution。这个模式对长期代理、个人记忆、研究助手、知识工作流和 hallucination-aware memory 都有直接工程外溢。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SAGE 把 agent long-term memory 从静态 RAG/GraphRAG 检索层推进到动态、自演化的 graph-memory substrate。核心问题不是单次召回，而是如何从局部线索恢复完整 evidence chain，并让记忆结构在使用反馈中持续变好。</p><p>关键机制是 writer-reader loop：memory writer 从交互历史增量构建结构化图记忆；Graph Foundation Model-based reader 执行检索，并把检索/回答反馈回 writer，形成写入、读取、更新的闭环。</p><p>评测覆盖 multi-hop QA、open-domain retrieval、domain-specific review QA、LongMemEval 和 HaluMem。论文报告两轮 self-evolution 后 multi-hop QA 平均排名最好，NQ zero-shot Recall@2/5 达到 82.5/91.6，并改善长期记忆和幻觉诊断指标。</p><p>收录价值在于它提出了一个可复用的 agent memory primitive：结构化图记忆 + 关联式读取 + reader-writer feedback + self-evolution。这个模式对长期代理、个人记忆、研究助手、知识工作流和 hallucination-aware memory 都有直接工程外溢。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>长期记忆正成为语言智能体的核心瓶颈。现有的RAG和GraphRAG系统大多将记忆图谱视为静态检索中间件，这限制了它们从部分线索中恢复完整的证据链、利用可重用的图结构角色以及通过下游反馈改进记忆本身的能力。我们引入了SAGE，一个自演化智能体图记忆引擎，它将图记忆建模为动态的长期记忆基质。SAGE耦合了两个角色：一个记忆写入器，从交互历史中逐步构建结构化图记忆；以及一个基于图基础模型的记忆读取器，用于执行检索并向记忆写入器提供反馈。我们提供了严谨的理论分析，支持精心设计的架构组件和框架的有效性。在多跳问答、开放域检索、领域特定评论问答和长期智能体记忆基准测试中，SAGE提高了证据恢复、答案落地和检索效率：经过两轮自演化后，它在多跳问答中达到了最佳平均排名；在零样本开放域迁移中，它在NQ上达到了82.5/91.6的Recall@2/5。LongMemEval和HaluMem上的进一步结果表明，训练和读写器反馈改进了多个长期记忆和幻觉诊断指标，这表明自演化、结构感知的图记忆是构建鲁棒的长期语言智能体的一个有前景的基础。我们的代码可在此处获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-term memory is becoming a central bottleneck for language agents. Existing RAG and GraphRAG systems largely treat memory graphs as static retrieval middleware, which limits their ability to recover complete evidence chains from partial cues, exploit reusable graph-structural roles, and improve the memory itself through downstream feedback. We introduce SAGE, a Self-evolving Agentic Graph-memory Engine that models graph memory as a dynamic long-term memory substrate. SAGE couples two roles: a memory writer that incrementally constructs structured graph memory from interaction histories, and a Graph Foundation Modelbased memory reader to perform retrieval and provide feedback to the memory writer. We provide rigorous theoretical analyses supporting the effectiveness of carefully designed architectural components and the framework. Across multi-hop QA, open-domain retrieval, domain-specific review QA, and long-term agentmemory benchmarks, SAGE improves evidence recovery, answer grounding, and retrieval efficiency: after two self-evolution rounds, it achieves the best average rank on multi-hop QA; in zero-shot open-domain transfer, it reaches 82.5/91.6 Recall@2/5 on NQ. Further results on LongMemEval and HaluMem show that training and reader–writer feedback improve multiple long-term memory and hallucination-diagnostic metrics, suggesting that self-evolving, structure-aware graph memory is a promising foundation for robust long-horizon language agents. Our code is available here.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512a349sagese,
+  title = {SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.12061.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a349-sage-self-evolving-graph-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SAGE: A Self-Evolving Agentic Graph-Memory Engine for Structure-Aware Associative Memory. https://arxiv.org/pdf/2605.12061.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.12061.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://anonymous.4open.science/r/Unified-Representation-A9D9/" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

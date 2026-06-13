@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs | DAST Papers</title>
+    <meta name="description" content="这篇论文把 LLM jailbreak 的攻击面从用户 prompt 扩展到 chat template。许多模型部署依赖模板把 system/user/assistant 内容拼成上下文，模板细节本身可能成为系统性漏洞。
+
+TEMPLATEFUZZ 通过元素级 mutation、启发式搜索和主动学习 oracle 系统挖掘模板漏洞，并在多个开源模型上展示高 ASR。这比手工 prompt 越狱更" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s9-templatefuzz-chat-template/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs" />
+    <meta property="og:description" content="这篇论文把 LLM jailbreak 的攻击面从用户 prompt 扩展到 chat template。许多模型部署依赖模板把 system/user/assistant 内容拼成上下文，模板细节本身可能成为系统性漏洞。
+
+TEMPLATEFUZZ 通过元素级 mutation、启发式搜索和主动学习 oracle 系统挖掘模板漏洞，并在多个开源模型上展示高 ASR。这比手工 prompt 越狱更" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s9-templatefuzz-chat-template/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs" />
+    <meta name="twitter:description" content="这篇论文把 LLM jailbreak 的攻击面从用户 prompt 扩展到 chat template。许多模型部署依赖模板把 system/user/assistant 内容拼成上下文，模板细节本身可能成为系统性漏洞。
+
+TEMPLATEFUZZ 通过元素级 mutation、启发式搜索和主动学习 oracle 系统挖掘模板漏洞，并在多个开源模型上展示高 ASR。这比手工 prompt 越狱更" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12232" target="_blank" rel="noopener noreferrer">2604.12232</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 LLM jailbreak 的攻击面从用户 prompt 扩展到 chat template。许多模型部署依赖模板把 system/user/assistant 内容拼成上下文，模板细节本身可能成为系统性漏洞。</dd></div><div><dt>方法/机制</dt><dd>TEMPLATEFUZZ 通过元素级 mutation、启发式搜索和主动学习 oracle 系统挖掘模板漏洞，并在多个开源模型上展示高 ASR。这比手工 prompt 越狱更像安全工程里的 fuzzing。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它值得收录，因为它提供了可复用 red-teaming 方法和新的安全边界模型：模板层也是需要测试和治理的接口。</dd></div><div><dt>收录价值</dt><dd>局限是论文需要控制双用途风险；公开细节对防御有价值，但也可能降低攻击门槛。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 LLM jailbreak 的攻击面从用户 prompt 扩展到 chat template。许多模型部署依赖模板把 system/user/assistant 内容拼成上下文，模板细节本身可能成为系统性漏洞。</p><p>TEMPLATEFUZZ 通过元素级 mutation、启发式搜索和主动学习 oracle 系统挖掘模板漏洞，并在多个开源模型上展示高 ASR。这比手工 prompt 越狱更像安全工程里的 fuzzing。</p><p>按本库标准，它值得收录，因为它提供了可复用 red-teaming 方法和新的安全边界模型：模板层也是需要测试和治理的接口。</p><p>局限是论文需要控制双用途风险；公开细节对防御有价值，但也可能降低攻击门槛。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>TEMPLATEFUZZ：用于越狱和红队LLM的细粒度聊天模板模糊测试。沈清超，天津大学，中国；肖子博，天津大学，中国；黄丽丽，天津大学，中国；胡恩伟，天津大学，中国；田永强，蒙纳士大学，澳大利亚；陈俊杰*，天津大学，中国。大型语言模型（LLMs）越来越多地部署在不同领域，但它们对越狱攻击的脆弱性（即对抗性输入绕过安全机制以引发有害输出）带来了重大的安全风险。虽然先前的工作主要集中在提示注入攻击上，但这些方法通常需要资源密集型的提示工程，并忽略了其他关键组件，例如聊天模板。本文介绍了TemplateFuzz，一个细粒度模糊测试框架，它系统地揭示了聊天模板中的漏洞，这是LLM中一个关键但未被充分探索的攻击面。具体来说，TemplateFuzz（1）设计了一系列元素级变异规则以生成多样化的聊天模板变体，（2）提出了一种启发式搜索策略来引导聊天模板生成，使其在保持模型准确性的同时提高攻击成功率（ASR），以及（3）集成了一种基于主动学习的策略，以推导出一个轻量级的基于规则的预言机，用于准确高效的越狱评估。在多个攻击场景下对十二个开源LLM进行评估，TemplateFuzz实现了98.2%的平均ASR，准确性仅下降1.1%，在ASR方面优于最先进的方法9.1%-47.9%，在准确性下降方面优于8.4%。此外，即使在五个无法指定聊天模板的行业领先商业LLM上，TemplateFuzz通过基于聊天模板的提示注入攻击也达到了90%的平均ASR。警告：本文包含未经筛选的LLM生成内容，部分读者可能会觉得冒犯。CCS概念：• 安全与隐私 → 软件安全工程。附加关键词和短语：越狱攻击，模糊测试，漏洞检测，大型语言模型。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs QINGCHAO SHEN, Tianjin University, China ZIBO XIAO, Tianjin University, China LILI HUANG, Tianjin University, China ENWEI HU, Tianjin University, China YONGQINAG TIAN, Monash University, Australia JUNJIE CHEN∗ , Tianjin University, China Large Language Models (LLMs) are increasingly deployed across diverse domains, yet their vulnerability to jailbreak attacks, where adversarial inputs bypass safety mechanisms to elicit harmful outputs, poses significant security risks. While prior work has primarily focused on prompt injection attacks, these approaches often require resource-intensive prompt engineering and overlook other critical components, such as chat templates. This paper introduces TemplateFuzz, a fine-grained fuzzing framework that systematically exposes vulnerabilities in chat templates, a critical yet underexplored attack surface in LLMs. Specifically, TemplateFuzz (1) designs a series of element-level mutation rules to generate diverse chat template variants, (2) proposes a heuristic search strategy to guide the chat template generation toward the direction of amplifying the attack success rate (ASR) while preserving model accuracy, and (3) integrates an active learning–based strategy to derive a lightweight rule-based oracle for accurate and efficient jailbreak evaluation. Evaluated on twelve open-source LLMs across multiple attack scenarios, TemplateFuzz achieves an average ASR of 98.2% with only 1.1% accuracy degradation, outperforming state-of-the-art methods by 9.1%-47.9% in ASR and 8.4% in accuracy degradation. Moreover, even on five industry-leading commercial LLMs where chat templates cannot be specified, TemplateFuzz attains a 90% average ASR via chat template-based prompt injection attacks. Warning: This paper includes unfiltered LLM-generated content that some readers may find offensive. CCS Concepts: • Security and privacy → Software security engineering. Additional Key Words and Phrases: Jailbreak Attack, Fuzzing, Vulnerability Detection, Large Language Models</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414s9template,
+  title = {TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12232.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s9-templatefuzz-chat-template/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TEMPLATEFUZZ: Fine-Grained Chat Template Fuzzing for Jailbreaking and Red Teaming LLMs. https://arxiv.org/pdf/2604.12232.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12232.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

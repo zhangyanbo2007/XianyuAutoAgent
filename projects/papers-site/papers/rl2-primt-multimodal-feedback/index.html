@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRIMT: Preference-based Reinforcement Learning with Multimodal Feedback and Trajectory Synthesis from Foundation Models | DAST Papers</title>
+    <meta name="description" content="## 问题与背景
+问题与背景：偏好强化学习在机器人里很有潜力，但长期受制于人类反馈成本高、早期轨迹难比较、credit assignment 弱等问题。尤其在复杂操作和 locomotion 任务里，单一模态反馈常常不稳定。
+
+## 方法/新意
+方法/新意：PRIMT 利用 foundation models 生成 multimodal synthetic feedback，并结合 foresig" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl2-primt-multimodal-feedback/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PRIMT: Preference-based Reinforcement Learning with Multimodal Feedback and Trajectory Synthesis from Foundation Models" />
+    <meta property="og:description" content="## 问题与背景
+问题与背景：偏好强化学习在机器人里很有潜力，但长期受制于人类反馈成本高、早期轨迹难比较、credit assignment 弱等问题。尤其在复杂操作和 locomotion 任务里，单一模态反馈常常不稳定。
+
+## 方法/新意
+方法/新意：PRIMT 利用 foundation models 生成 multimodal synthetic feedback，并结合 foresig" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl2-primt-multimodal-feedback/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PRIMT: Preference-based Reinforcement Learning with Multimodal Feedback and Trajectory Synthesis from Foundation Models" />
+    <meta name="twitter:description" content="## 问题与背景
+问题与背景：偏好强化学习在机器人里很有潜力，但长期受制于人类反馈成本高、早期轨迹难比较、credit assignment 弱等问题。尤其在复杂操作和 locomotion 任务里，单一模态反馈常常不稳定。
+
+## 方法/新意
+方法/新意：PRIMT 利用 foundation models 生成 multimodal synthetic feedback，并结合 foresig" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PRIMT: Preference-based Reinforcement Learning with Multimodal Feedback and Trajectory Synthesis from Foundation Models</h1>
+          <p class="subtitle">强化学习 · 发表：2025-09-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2509.15607" target="_blank" rel="noopener noreferrer">2509.15607</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>## 问题与背景</dd></div><div><dt>方法/机制</dt><dd>问题与背景：偏好强化学习在机器人里很有潜力，但长期受制于人类反馈成本高、早期轨迹难比较、credit assignment 弱等问题。尤其在复杂操作和 locomotion 任务里，单一模态反馈常常不稳定。</dd></div><div><dt>结果/证据</dt><dd>## 方法/新意</dd></div><div><dt>收录价值</dt><dd>方法/新意：PRIMT 利用 foundation models 生成 multimodal synthetic feedback，并结合 foresight / hindsight trajectory synthesis 改善查询歧义和 credit assignment。它不是只换奖励模型，而是把偏好学习的数据构造和反馈源都做了升级。</dd></div><div><dt>要点 5</dt><dd>## 意义/放在仓库中的位置</dd></div><div><dt>要点 6</dt><dd>意义/放在仓库中的位置：它适合放在 agentic RL / robotics 主线，代表“用 foundation models 教机器人偏好学习”的路线。和 KARL、MOSAIC、WoVR 这类条目一起看，会很清楚地看到 agent training 正从纯人工标注走向合成反馈。</dd></div><div><dt>要点 7</dt><dd>## 局限/为何不更高</dd></div><div><dt>要点 8</dt><dd>局限/为何不更高：它是很扎实的 RL/robotics 方法论文，但仍属于赛道内改进，不是重排整条智能体训练范式的工作，因此先归为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>## 问题与背景</p><p>问题与背景：偏好强化学习在机器人里很有潜力，但长期受制于人类反馈成本高、早期轨迹难比较、credit assignment 弱等问题。尤其在复杂操作和 locomotion 任务里，单一模态反馈常常不稳定。</p><p>## 方法/新意</p><p>方法/新意：PRIMT 利用 foundation models 生成 multimodal synthetic feedback，并结合 foresight / hindsight trajectory synthesis 改善查询歧义和 credit assignment。它不是只换奖励模型，而是把偏好学习的数据构造和反馈源都做了升级。</p><p>## 意义/放在仓库中的位置</p><p>意义/放在仓库中的位置：它适合放在 agentic RL / robotics 主线，代表“用 foundation models 教机器人偏好学习”的路线。和 KARL、MOSAIC、WoVR 这类条目一起看，会很清楚地看到 agent training 正从纯人工标注走向合成反馈。</p><p>## 局限/为何不更高</p><p>局限/为何不更高：它是很扎实的 RL/robotics 方法论文，但仍属于赛道内改进，不是重排整条智能体训练范式的工作，因此先归为突破性。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250919rl2primtmu,
+  title = {PRIMT: Preference-based Reinforcement Learning with Multimodal Feedback and Trajectory Synthesis from Foundation Models},
+  year = {2025},
+  url = {https://arxiv.org/abs/2509.15607},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl2-primt-multimodal-feedback/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). PRIMT: Preference-based Reinforcement Learning with Multimodal Feedback and Trajectory Synthesis from Foundation Models. https://arxiv.org/abs/2509.15607</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2509.15607" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

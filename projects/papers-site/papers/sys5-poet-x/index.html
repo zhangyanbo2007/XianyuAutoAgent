@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation | DAST Papers</title>
+    <meta name="description" content="大语言模型预训练仍受制于优化器的显存和稳定性开销。原始 POET 通过正交等价变换保持频谱结构，理论上有稳定性优势，但实现代价高，难以在真正的大模型预训练里扩展。POET-X 处理的就是这个落地缺口：如何把谱保持式训练从概念方法变成可扩展的预训练算法。
+
+这篇工作的核心新意不在于再提出一个全新训练目标，而在于把 POET 的每个关键计算步骤重新实现成更可扩展的内存与并行路径，并围绕参数高效重参数化" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys5-poet-x/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation" />
+    <meta property="og:description" content="大语言模型预训练仍受制于优化器的显存和稳定性开销。原始 POET 通过正交等价变换保持频谱结构，理论上有稳定性优势，但实现代价高，难以在真正的大模型预训练里扩展。POET-X 处理的就是这个落地缺口：如何把谱保持式训练从概念方法变成可扩展的预训练算法。
+
+这篇工作的核心新意不在于再提出一个全新训练目标，而在于把 POET 的每个关键计算步骤重新实现成更可扩展的内存与并行路径，并围绕参数高效重参数化" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys5-poet-x/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation" />
+    <meta name="twitter:description" content="大语言模型预训练仍受制于优化器的显存和稳定性开销。原始 POET 通过正交等价变换保持频谱结构，理论上有稳定性优势，但实现代价高，难以在真正的大模型预训练里扩展。POET-X 处理的就是这个落地缺口：如何把谱保持式训练从概念方法变成可扩展的预训练算法。
+
+这篇工作的核心新意不在于再提出一个全新训练目标，而在于把 POET 的每个关键计算步骤重新实现成更可扩展的内存与并行路径，并围绕参数高效重参数化" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05500" target="_blank" rel="noopener noreferrer">2603.05500</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>大语言模型预训练仍受制于优化器的显存和稳定性开销。原始 POET 通过正交等价变换保持频谱结构，理论上有稳定性优势，但实现代价高，难以在真正的大模型预训练里扩展。POET-X 处理的就是这个落地缺口：如何把谱保持式训练从概念方法变成可扩展的预训练算法。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心新意不在于再提出一个全新训练目标，而在于把 POET 的每个关键计算步骤重新实现成更可扩展的内存与并行路径，并围绕参数高效重参数化、稀疏化和 CUDA 级实现做系统优化。结果是显存占用相对原始 POET 降低 70% 以上，并能在单张 H100 上预训练十亿级参数模型，而同设定下 AdamW 会直接耗尽显存。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里更接近高价值系统与训练基础设施论文：一方面它保留了 POET 的训练稳定性叙事，另一方面把这种方法推进到了真正可操作的 LLM 预训练规模。对优化器设计、低显存预训练和大模型训练系统都有明显外溢价值，不是单纯的工程小修小补。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高等级，因为证据主要来自单一方法家族和预训练系统对比，社区是否会把 POET-X 作为通用默认训练路线还没有定论；同时它目前仍是 arXiv 阶段，长期采用度与跨模型族泛化还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>大语言模型预训练仍受制于优化器的显存和稳定性开销。原始 POET 通过正交等价变换保持频谱结构，理论上有稳定性优势，但实现代价高，难以在真正的大模型预训练里扩展。POET-X 处理的就是这个落地缺口：如何把谱保持式训练从概念方法变成可扩展的预训练算法。</p><p>这篇工作的核心新意不在于再提出一个全新训练目标，而在于把 POET 的每个关键计算步骤重新实现成更可扩展的内存与并行路径，并围绕参数高效重参数化、稀疏化和 CUDA 级实现做系统优化。结果是显存占用相对原始 POET 降低 70% 以上，并能在单张 H100 上预训练十亿级参数模型，而同设定下 AdamW 会直接耗尽显存。</p><p>它在仓库里更接近高价值系统与训练基础设施论文：一方面它保留了 POET 的训练稳定性叙事，另一方面把这种方法推进到了真正可操作的 LLM 预训练规模。对优化器设计、低显存预训练和大模型训练系统都有明显外溢价值，不是单纯的工程小修小补。</p><p>它暂时还不到更高等级，因为证据主要来自单一方法家族和预训练系统对比，社区是否会把 POET-X 作为通用默认训练路线还没有定论；同时它目前仍是 arXiv 阶段，长期采用度与跨模型族泛化还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）的高效稳定训练仍然是现代机器学习系统中的一个核心挑战。为应对这一挑战，已提出了重参数化正交等价训练（POET），这是一个通过正交等价变换优化每个权重矩阵的谱保持框架。尽管POET提供了强大的训练稳定性，但其原始实现由于密集的矩阵乘法而导致高内存消耗和计算开销。为克服这些限制，我们引入了POET-X，这是一个可扩展且内存高效的变体，它以显著降低的计算成本执行正交等价变换。POET-X在保持POET的泛化和稳定性优势的同时，在吞吐量和内存效率方面取得了显著提升。为解决此问题，我们提出了POET-X，一种快速、可扩展且内存高效的训练算法，它在保留POET谱保持特性的同时，显著提升了POET的GPU内存和运行时效率。POET的核心在于正交等价变换，而我们的关键贡献是使这种变换具有可扩展性。这通过对POET中涉及的每个计算的GPU内存使用和运行时成本进行全面分析和优化来实现。通过充分利用POET固有的稀疏训练特性，POETX实现了与LoRA (Hu et al., 2022)等参数高效微调方法相当的极高内存利用率，同时达到了与Adam (Kingma &amp; Ba, 2014)相当的运行时性能。这些结果尤其重要，因为POET-X有效地支持在单个NVIDIA H100 GPU上预训练数十亿参数的LLMs（例如Llama-8B），同时始终比事实上的AdamW优化器取得更好的性能。在我们的实验中，POET-X使得在单个Nvidia H100 GPU上预训练数十亿参数的LLMs成为可能，相比之下，AdamW等标准优化器在相同设置下会耗尽内存。我们扩展POET的根本动机源于稀疏训练的巨大潜力。POET优化了转换神经元的正交矩阵，这些矩阵通常被限制为稀疏的。这种稀疏性带来了强大的参数效率。然而，在POET的原始实现中，这种效率并未体现在GPU内存使用上，从而阻碍了POET的实际应用。我们的工作旨在弥合参数效率和内存效率之间的差距，从而释放POET稀疏训练的全部潜力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>To address this, we propose POET-X, a fast, scalable and memory-efficient training algorithm that significantly enhances POET’s GPU memory and runtime efficiency while preserving its spectrum-preserving property. At the core of POET lies the orthogonal equivalence transformation, and our key contribution is to make this transformation scalable. This is achieved through a comprehensive analysis and optimization of the GPU memory usage and runtime cost of every computation involved in POET. By fully exploiting POET’s inherent sparse-training nature, POETX achieves extremely efficient memory utilization comparable to parameter-efficient finetuning methods such as LoRA (Hu et al., 2022), while attaining a runtime comparable to Adam (Kingma &amp; Ba, 2014). These results are particularly significant, as POET-X effectively enables the pretraining of billion-parameter LLMs (e.g., Llama-8B) on a single NVIDIA H100 GPU while achieving consistently better performance than the de facto AdamW optimizer. Efficient and stable training of large language models (LLMs) remains a core challenge in modern machine learning systems. To address this challenge, Reparameterized Orthogonal Equivalence Training (POET), a spectrum-preserving framework that optimizes each weight matrix through orthogonal equivalence transformation, has been proposed. Although POET provides strong training stability, its original implementation incurs high memory consumption and computational overhead due to intensive matrix multiplications. To overcome these limitations, we introduce POET-X, a scalable and memory-efficient variant that performs orthogonal equivalence transformations with significantly reduced computational cost. POET-X maintains the generalization and stability benefits of POET while achieving substantial improvements in throughput and memory efficiency. In our experiments, POET-X enables the pretraining of billion-parameter LLMs on a single Nvidia H100 GPU, and in contrast, standard optimizers such as AdamW run out of memory under the same settings. Our underlying motivation for scaling POET arises from the great potential of sparse training. POET optimizes orthogonal matrices that transform neurons, and these matrices are generally constrained to be sparse. Such sparsity leads to strong parameter efficiency. However, in the original implementation of POET, this efficiency was not reflected in GPU memory usage, preventing POET from being practically applicable. Our work aims to bridge the gap between parameter and memory efficiency, thereby unlocking the full potential of POET’s sparse training.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305sys5poetx,
+  title = {POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05500.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys5-poet-x/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation. https://arxiv.org/pdf/2603.05500.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05500.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

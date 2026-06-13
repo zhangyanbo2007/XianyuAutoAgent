@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Controllable Molecular Generative Foundation Models | DAST Papers</title>
+    <meta name="description" content="CoMole 针对分子图生成的关键短板：虽然 foundation model 在语言和视觉中成熟，但分子生成缺少统一、可控、跨任务的生成框架。
+
+它用 motif-aware graph diffusion 把预训练结构先验迁移到可控生成中，并用 RL 优化化学上有意义的 reverse-policy 决策，避免 atom-level action space 和无效中间状态带来的困难。
+
+它值" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio53-comole-molecular-gfm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Controllable Molecular Generative Foundation Models" />
+    <meta property="og:description" content="CoMole 针对分子图生成的关键短板：虽然 foundation model 在语言和视觉中成熟，但分子生成缺少统一、可控、跨任务的生成框架。
+
+它用 motif-aware graph diffusion 把预训练结构先验迁移到可控生成中，并用 RL 优化化学上有意义的 reverse-policy 决策，避免 atom-level action space 和无效中间状态带来的困难。
+
+它值" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio53-comole-molecular-gfm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Controllable Molecular Generative Foundation Models" />
+    <meta name="twitter:description" content="CoMole 针对分子图生成的关键短板：虽然 foundation model 在语言和视觉中成熟，但分子生成缺少统一、可控、跨任务的生成框架。
+
+它用 motif-aware graph diffusion 把预训练结构先验迁移到可控生成中，并用 RL 优化化学上有意义的 reverse-policy 决策，避免 atom-level action space 和无效中间状态带来的困难。
+
+它值" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Controllable Molecular Generative Foundation Models</h1>
+          <p class="subtitle">生物医药与药物发现 · 发表：2026-05-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生物医药与药物发现</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15354" target="_blank" rel="noopener noreferrer">2605.15354</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>CoMole 针对分子图生成的关键短板：虽然 foundation model 在语言和视觉中成熟，但分子生成缺少统一、可控、跨任务的生成框架。</dd></div><div><dt>方法/机制</dt><dd>它用 motif-aware graph diffusion 把预训练结构先验迁移到可控生成中，并用 RL 优化化学上有意义的 reverse-policy 决策，避免 atom-level action space 和无效中间状态带来的困难。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 molecular generative model 推向 foundation-model + controllable RL 的组合，对材料、药物发现和多目标分子设计有工作流价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为分子生成论文需要湿实验、真实优化闭环和更广泛 property transfer 才能确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>CoMole 针对分子图生成的关键短板：虽然 foundation model 在语言和视觉中成熟，但分子生成缺少统一、可控、跨任务的生成框架。</p><p>它用 motif-aware graph diffusion 把预训练结构先验迁移到可控生成中，并用 RL 优化化学上有意义的 reverse-policy 决策，避免 atom-level action space 和无效中间状态带来的困难。</p><p>它值得正式收录，因为它把 molecular generative model 推向 foundation-model + controllable RL 的组合，对材料、药物发现和多目标分子设计有工作流价值。</p><p>它没有更高，是因为分子生成论文需要湿实验、真实优化闭环和更广泛 property transfer 才能确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管基础模型在语言和视觉领域取得了成功，但分子图生成仍然缺乏一个统一的框架，以实现异构设计任务的可靠可控性。虽然强化学习（RL）为任务特定优化提供了一种自然的后训练机制，但将其应用于图生成模型却受到庞大的原子级动作空间和化学无效中间状态的阻碍。我们提出了可控分子生成基础模型（CoMole），它建立在一个统一的基序感知图扩散管道之上。通过学习基序感知图空间，CoMole将预训练的结构先验知识转化为可控生成，其中RL在化学上有意义的决策上优化条件逆向策略。我们从理论上描述了原子级RL的瓶颈，并论证了基序感知策略优化的合理性。在涵盖材料和药物发现的三个异构基准测试中，CoMole在所有九个目标的可控性方面均排名第一，相对于最强的基线，MAE降低了高达48.2%，并且在没有基于规则的校正或事后过滤的情况下，有效性保持在0.94以上。我们进一步表明，CoMole通过仅优化任务嵌入（生成器冻结）即可将可控性转移到未见的属性，实现了与强大任务特定基线相当的性能。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Despite the success of foundation models in language and vision, molecular graph generation still lacks a unified framework for heterogeneous design tasks with reliable controllability. While reinforcement learning (RL) offers a natural posttraining mechanism for task-specific optimization, applying it to graph generative models is hindered by the vast atom-wise action spaces and chemically invalid intermediate states. We propose Controllable Molecular Generative Foundation Models (CoMole), built with a unified motif-aware graph diffusion pipeline. By learning a motif-aware graph space, CoMole transfers pretrained structural priors into controllable generation, where RL optimizes conditional reverse policies over chemically meaningful decisions. We theoretically characterize the bottleneck of atom-level RL and justify motif-aware policy optimization. Across three heterogeneous benchmarks spanning materials and drug discovery, CoMole ranks first in controllability on all nine targets, reduces MAE by up to 48.2% relative to the strongest baselines, and maintains validity above 0.94 without rule-based correction or post-hoc filtering. We further show that CoMole transfers controllability to unseen properties by optimizing only task embeddings with the generator frozen, achieving performance competitive with strong task-specific baselines.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260518bio53comol,
+  title = {Controllable Molecular Generative Foundation Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15354.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio53-comole-molecular-gfm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Controllable Molecular Generative Foundation Models. https://arxiv.org/pdf/2605.15354.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/bio50-raise-sarbecovirus-spillover/">
+              <span>RAISE: A computational tool for evaluating sarbecovirus spillover potential</span>
+              <small>生物医药与药物发现 · 2026-04-25</small>
+            </a>
+            <a class="related-item" href="../../papers/ph5-octcube-m-oct-foundation/">
+              <span>A three-dimensional multi-modal foundation model for optical coherence tomography</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/bio49-ires-programmable-rna-translation/">
+              <span>Programmable RNA translation through deep learning-driven IRES discovery and de novo generation</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/bio48-deepdrugdiscovery-ad-autophagy/">
+              <span>DeepDrugDiscovery identifies blood–brain barrier permeable autophagy enhancers for Alzheimer’s disease</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15354.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LinearARD: Linear-Memory Attention Distillation for RoPE Restoration | DAST Papers</title>
+    <meta name="description" content="长上下文扩展通常靠缩放 positional encoding 再做 continual pretraining，但这套流程常常以短文本能力受损为代价。真正困难的不只是把 context 拉长，而是在不破坏原生 attention dynamics 的前提下，把模型从 native RoPE 平稳迁移到 long-context regime。
+
+论文提出 LinearARD，用 frozen n" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r34-linearard-rope-restoration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LinearARD: Linear-Memory Attention Distillation for RoPE Restoration" />
+    <meta property="og:description" content="长上下文扩展通常靠缩放 positional encoding 再做 continual pretraining，但这套流程常常以短文本能力受损为代价。真正困难的不只是把 context 拉长，而是在不破坏原生 attention dynamics 的前提下，把模型从 native RoPE 平稳迁移到 long-context regime。
+
+论文提出 LinearARD，用 frozen n" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r34-linearard-rope-restoration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LinearARD: Linear-Memory Attention Distillation for RoPE Restoration" />
+    <meta name="twitter:description" content="长上下文扩展通常靠缩放 positional encoding 再做 continual pretraining，但这套流程常常以短文本能力受损为代价。真正困难的不只是把 context 拉长，而是在不破坏原生 attention dynamics 的前提下，把模型从 native RoPE 平稳迁移到 long-context regime。
+
+论文提出 LinearARD，用 frozen n" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LinearARD: Linear-Memory Attention Distillation for RoPE Restoration</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00004" target="_blank" rel="noopener noreferrer">2604.00004</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长上下文扩展通常靠缩放 positional encoding 再做 continual pretraining，但这套流程常常以短文本能力受损为代价。真正困难的不只是把 context 拉长，而是在不破坏原生 attention dynamics 的前提下，把模型从 native RoPE 平稳迁移到 long-context regime。</dd></div><div><dt>方法/机制</dt><dd>论文提出 LinearARD，用 frozen native-RoPE teacher 对 RoPE-scaled student 做 attention-structure distillation。它不去对齐难解释的 hidden states，而是直接对齐 Q/Q、K/K、V/V self-relation matrices 的行分布，从 attention dynamics 层面恢复模型。为避免关系矩阵的二次内存开销，作者进一步设计 linear-memory kernel，通过 per-token log-sum-exp 统计和 backward 中的 logit recomputation 来精确计算 KL divergence 与梯度。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 long-context restoration 从粗糙的继续训练推进到更结构化、更数据高效的蒸馏方案。在 4K 扩到 32K 的场景里，它用远少于现有方法的训练 token 恢复短文本能力并保持长上下文表现，对 context extension、attention supervision 和 low-budget long-context adaptation 都有明确复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要是在 RoPE restoration 这一明确子问题上大幅推进，而不是重写更广的 long-context 基础范式。它是很强的方法论文，但影响范围仍相对聚焦。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长上下文扩展通常靠缩放 positional encoding 再做 continual pretraining，但这套流程常常以短文本能力受损为代价。真正困难的不只是把 context 拉长，而是在不破坏原生 attention dynamics 的前提下，把模型从 native RoPE 平稳迁移到 long-context regime。</p><p>论文提出 LinearARD，用 frozen native-RoPE teacher 对 RoPE-scaled student 做 attention-structure distillation。它不去对齐难解释的 hidden states，而是直接对齐 Q/Q、K/K、V/V self-relation matrices 的行分布，从 attention dynamics 层面恢复模型。为避免关系矩阵的二次内存开销，作者进一步设计 linear-memory kernel，通过 per-token log-sum-exp 统计和 backward 中的 logit recomputation 来精确计算 KL divergence 与梯度。</p><p>这篇工作值得收录，因为它把 long-context restoration 从粗糙的继续训练推进到更结构化、更数据高效的蒸馏方案。在 4K 扩到 32K 的场景里，它用远少于现有方法的训练 token 恢复短文本能力并保持长上下文表现，对 context extension、attention supervision 和 low-budget long-context adaptation 都有明确复用价值。</p><p>它没有升到更高一级，是因为当前仍主要是在 RoPE restoration 这一明确子问题上大幅推进，而不是重写更广的 long-context 基础范式。它是很强的方法论文，但影响范围仍相对聚焦。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>这对于检索增强生成（Asai et al., 2024）、多步智能体工作流（Yao et al., 2022）和文档级推理（Liu et al., 2024）等高级任务至关重要。然而，从头开始在扩展上下文窗口上训练LLM成本过高，这促使了利用预训练模型的事后上下文扩展方法的发展（Chen et al., 2023; Peng et al., 2023; Ding et al., 2024; Zhu et al., 2024）。大型语言模型中上下文窗口的扩展通常通过缩放位置编码，然后进行轻量级持续预训练（CPT）来实现。尽管这种范式对于处理长序列有效，但它通常会破坏原始模型的能力，导致在标准短文本基准测试上的性能下降。我们提出了LinearARD，这是一种自蒸馏方法，通过与冻结的原始RoPE教师模型保持注意力结构一致性，来恢复经过旋转位置嵌入（RoPE）缩放的学生模型。LinearARD不是匹配不透明的隐藏状态，而是对齐密集Q/Q、K/K和V/V自关系矩阵的行向分布，以直接监督注意力动态。为了克服n × n关系图的二次内存瓶颈，我们引入了一种线性内存核。该核利用每token的log-sum-exp统计量，并将logit重新计算融合到反向传播中，以计算精确的Kullback-Leibler散度和梯度。在从4K扩展到32K的LLaMA2-7B上，LinearARD恢复了最先进基线模型98.3%的短文本性能，同时在长上下文基准测试上超越了它们。值得注意的是，我们的方法仅使用4.25M训练token就取得了这些结果，而LongReD和CPT则需要256M token。我们的代码可在https://github.com/gracefulning/LinearARD获取。一系列广泛使用的技术通过修改旋转位置嵌入（RoPE）（Su et al., 2024）在推理时扩展上下文窗口。这些方法包括位置插值和相关的缩放策略，例如线性插值（Chen et al., 2023）、另一种RoPE扩展方法（YaRN）（Peng et al., 2023）和LongRoPE（Ding et al., 2024）。尽管这种缩放对于长上下文推理有效，但它通常会降低短上下文的准确性。这是因为改变旋转频率调度会改变token之间的相对位置关系，并破坏学习到的注意力模式，从而损害短序列的性能。为了缓解这种权衡，已经提出了各种方法。持续预训练（CPT）（Ke et al., 2023）通过在缩放配置下对长上下文数据进行进一步训练来适应模型。然而，这种方法通常需要大量的计算资源和高质量的长上下文语料库（这些通常很稀缺），并且存在灾难性遗忘原始短上下文能力的风险。因此，随后的工作（Gu et al., 2023; Dong et al., 2025）引入了恢复蒸馏，它将原始模型视为教师模型，将RoPE缩放模型视为学生模型，微调学生模型以在教师模型的原始长度序列上匹配教师模型，同时保留扩展的最大上下文。尽管如此，现有的恢复方法主要侧重于隐藏状态匹配。由于隐藏状态是聚合输出，它们只提供间接约束，无法精确纠正注意力机制中细粒度的位置失真，从而限制了恢复的效率和准确性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>which are essential for advanced tasks such as retrievalaugmented generation (Asai et al., 2024), multi-step agentic workflows (Yao et al., 2022), and document-level reasoning (Liu et al., 2024). However, training LLMs from scratch on extended context windows is prohibitively expensive, which motivates the development of post-hoc context extension methods that leverage pretrained models (Chen et al., 2023; Peng et al., 2023; Ding et al., 2024; Zhu et al., 2024). The extension of context windows in Large Language Models is typically facilitated by scaling positional encodings followed by lightweight Continual Pre-Training (CPT). While effective for processing long sequences, this paradigm often disrupts original model capabilities, leading to performance degradation on standard shorttext benchmarks. We propose LinearARD, a self-distillation method that restores Rotary Position Embeddings (RoPE)-scaled students through attention-structure consistency with a frozen native-RoPE teacher. Rather than matching opaque hidden states, LinearARD aligns the rowwise distributions of dense Q/Q, K/K, and V /V self-relation matrices to directly supervise attention dynamics. To overcome the quadratic memory bottleneck of n × n relation maps, we introduce a linear-memory kernel. This kernel leverages per-token log-sum-exp statistics and fuses logit recomputation into the backward pass to compute exact Kullback-Leibler divergence and gradients. On LLaMA2-7B extended from 4K to 32K, LinearARD recovers 98.3% of the short-text performance of state-of-the-art baselines while surpassing them on long-context benchmarks. Notably, our method achieves these results using only 4.25M training tokens compared to the 256M tokens required by LongReD and CPT. Our code is available at https://github.com/ gracefulning/LinearARD. A widely used family of techniques extends the context window at inference time by modifying Rotary Position Embeddings (RoPE) (Su et al., 2024). These methods include position interpolation and related scaling schedules such as linear interpolation (Chen et al., 2023), Yet another RoPE extension method (YaRN) (Peng et al., 2023), and LongRoPE (Ding et al., 2024). While effective for longcontext inference, such scaling often degrades short-context accuracy. This is because altering the rotary frequency schedule shifts the relative positional relationships between tokens and disrupts the learned attention patterns, which consequently impairs performance on shorter sequences. To mitigate this trade-off, various approaches have been proposed. Continued Pre-Training (CPT) (Ke et al., 2023) adapts the model by further training on long-context data under the scaled configuration. However, this approach typically requires substantial computational resources and highquality long-context corpora, which are often scarce, and it runs the risk of catastrophic forgetting regarding the original short-context capabilities. Consequently, restoration distillation was introduced in subsequent works (Gu et al., 2023; Dong et al., 2025), which treats the original model as a teacher and the RoPE-scaled model as a student, fine-tuning the student to match the teacher on sequences within the teacher’s native length while retaining the expanded maximum context. Nevertheless, existing restoration methods primarily focus on hidden-state matching. Because hidden states are aggregated outputs, they provide only indirect constraints that fail to precisely rectify the fine-grained positional distortions in the attention mechanism, limiting the efficiency and accuracy of the restoration.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309r34lineara,
+  title = {LinearARD: Linear-Memory Attention Distillation for RoPE Restoration},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00004.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r34-linearard-rope-restoration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LinearARD: Linear-Memory Attention Distillation for RoPE Restoration. https://arxiv.org/pdf/2604.00004.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00004.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

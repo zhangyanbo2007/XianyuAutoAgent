@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via Continuous Integration | DAST Papers</title>
+    <meta name="description" content="现有软件工程 agent benchmark 大多停留在静态 bug fixing 或一次性 patch correctness 上，但真实软件开发更接近持续演化过程：需求不断变化，功能在几十轮提交与回归中被维护、修改和延展。只看单次修复是否通过，无法衡量 agent 是否真的具备维护代码库的能力。
+
+SWE-CI 把 Continuous Integration loop 引入 agent ev" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a129-swe-ci-codebase-maintenance/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via Continuous Integration" />
+    <meta property="og:description" content="现有软件工程 agent benchmark 大多停留在静态 bug fixing 或一次性 patch correctness 上，但真实软件开发更接近持续演化过程：需求不断变化，功能在几十轮提交与回归中被维护、修改和延展。只看单次修复是否通过，无法衡量 agent 是否真的具备维护代码库的能力。
+
+SWE-CI 把 Continuous Integration loop 引入 agent ev" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a129-swe-ci-codebase-maintenance/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via Continuous Integration" />
+    <meta name="twitter:description" content="现有软件工程 agent benchmark 大多停留在静态 bug fixing 或一次性 patch correctness 上，但真实软件开发更接近持续演化过程：需求不断变化，功能在几十轮提交与回归中被维护、修改和延展。只看单次修复是否通过，无法衡量 agent 是否真的具备维护代码库的能力。
+
+SWE-CI 把 Continuous Integration loop 引入 agent ev" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via Continuous Integration</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.03823" target="_blank" rel="noopener noreferrer">2603.03823</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有软件工程 agent benchmark 大多停留在静态 bug fixing 或一次性 patch correctness 上，但真实软件开发更接近持续演化过程：需求不断变化，功能在几十轮提交与回归中被维护、修改和延展。只看单次修复是否通过，无法衡量 agent 是否真的具备维护代码库的能力。</dd></div><div><dt>方法/机制</dt><dd>SWE-CI 把 Continuous Integration loop 引入 agent evaluation，提出第一个 repository-level benchmark，明确把评估目标从短期 functional correctness 转向动态、长期 maintainability。任务来自真实仓库演化历史，每个任务跨越长时间开发轨迹和多轮连续提交，要求 agent 在几十轮分析与编码迭代中持续修正并维持代码质量，而不是只交一份最终 patch。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它补上了 coding-agent 评测里最关键的缺口之一：长期维护能力。它不是再造一个 static repair benchmark，而是把 CI 过程本身变成可复现评估接口，对 repository-scale coding agents、长期 feature iteration 和 maintainability-oriented evaluation 都有耐久参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要是一条 benchmark/evaluation 路线，而不是新的 agent training or runtime 范式。它的重要性在于评估目标的升级，但是否会成为整个 coding-agent 社区的默认基准，还需要更多采用信号。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有软件工程 agent benchmark 大多停留在静态 bug fixing 或一次性 patch correctness 上，但真实软件开发更接近持续演化过程：需求不断变化，功能在几十轮提交与回归中被维护、修改和延展。只看单次修复是否通过，无法衡量 agent 是否真的具备维护代码库的能力。</p><p>SWE-CI 把 Continuous Integration loop 引入 agent evaluation，提出第一个 repository-level benchmark，明确把评估目标从短期 functional correctness 转向动态、长期 maintainability。任务来自真实仓库演化历史，每个任务跨越长时间开发轨迹和多轮连续提交，要求 agent 在几十轮分析与编码迭代中持续修正并维持代码质量，而不是只交一份最终 patch。</p><p>这篇工作值得收录，因为它补上了 coding-agent 评测里最关键的缺口之一：长期维护能力。它不是再造一个 static repair benchmark，而是把 CI 过程本身变成可复现评估接口，对 repository-scale coding agents、长期 feature iteration 和 maintainability-oriented evaluation 都有耐久参考价值。</p><p>它没有升到更高一级，是因为当前仍主要是一条 benchmark/evaluation 路线，而不是新的 agent training or runtime 范式。它的重要性在于评估目标的升级，但是否会成为整个 coding-agent 社区的默认基准，还需要更多采用信号。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLM）驱动的智能体已在自动化软件工程任务（例如静态错误修复）方面展现出强大的能力。然而，在现实世界中，成熟软件的开发通常基于复杂的S需求变更和长期的功能迭代——这一过程是静态的、一次性修复范式无法捕捉的。为弥合这一差距，我们提出了SWE-CI，这是首个基于持续集成（Continuous Integration）循环构建的仓库级基准，旨在将代码生成的评估范式从静态的、短期功能正确性转向动态的、长期可维护性。核心思想很简单：可维护性可以通过跟踪功能正确性如何随时间变化来揭示。该基准包含100项任务，每项任务都源自一个真实世界的代码仓库，其开发历史平均跨越233天和71次连续提交。SWE-CI要求智能体通过数十轮的分析和编码迭代来系统地解决这些任务。SWE-CI提供了关于智能体在长期演进过程中如何良好地保持代码质量的有价值见解。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM)-powered agents have demonstrated strong capabilities in automating software engineering tasks such as static bug fixing. However, in the real world, the development of mature software is typically predicated on complex requirement changes and long-term feature iterations — a process that static, one-shot repair paradigms fail to capture. To bridge this gap, we propose SWE-CI, the first repository-level benchmark built upon the Continuous Integration loop, aiming to shift the evaluation paradigm for code generation from static, short-term functional correctness toward dynamic, long-term maintainability. The key insight is simple: Maintainability can be revealed by tracking how functional correctness changes over time. The benchmark comprises 100 tasks, each deriving from a real-world code repository with a development history spanning an average of 233 days and 71 consecutive commits. SWE-CI requires agents to systematically resolve these tasks through dozens of rounds of analysis and coding iterations. SWE-CI provides valuable insights into how well agents can sustain code quality throughout long-term evolution.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260304a129swecic,
+  title = {SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via Continuous Integration},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.03823.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a129-swe-ci-codebase-maintenance/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SWE-CI: Evaluating Agent Capabilities in Maintaining Codebases via Continuous Integration. https://arxiv.org/pdf/2603.03823.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.03823.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

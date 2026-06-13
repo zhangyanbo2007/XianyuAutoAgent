@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SEVerA: Verified Synthesis of Self-Evolving Agents | DAST Papers</title>
+    <meta name="description" content="self-evolving agents 这条线越来越强，但大多数框架只关心 planner 能否自动生成和改写 agent program，几乎不对 autonomy 带来的安全性、约束遵守和 correctness 给出形式保证。一旦这些程序在未见输入上自动执行，这个缺口就会直接变成 reliability 和 security 风险。
+
+SEVerA 的核心推进，是把 agentic cod" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a169-severa-verified-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SEVerA: Verified Synthesis of Self-Evolving Agents" />
+    <meta property="og:description" content="self-evolving agents 这条线越来越强，但大多数框架只关心 planner 能否自动生成和改写 agent program，几乎不对 autonomy 带来的安全性、约束遵守和 correctness 给出形式保证。一旦这些程序在未见输入上自动执行，这个缺口就会直接变成 reliability 和 security 风险。
+
+SEVerA 的核心推进，是把 agentic cod" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a169-severa-verified-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SEVerA: Verified Synthesis of Self-Evolving Agents" />
+    <meta name="twitter:description" content="self-evolving agents 这条线越来越强，但大多数框架只关心 planner 能否自动生成和改写 agent program，几乎不对 autonomy 带来的安全性、约束遵守和 correctness 给出形式保证。一旦这些程序在未见输入上自动执行，这个缺口就会直接变成 reliability 和 security 风险。
+
+SEVerA 的核心推进，是把 agentic cod" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SEVerA: Verified Synthesis of Self-Evolving Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.25111" target="_blank" rel="noopener noreferrer">2603.25111</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>self-evolving agents 这条线越来越强，但大多数框架只关心 planner 能否自动生成和改写 agent program，几乎不对 autonomy 带来的安全性、约束遵守和 correctness 给出形式保证。一旦这些程序在未见输入上自动执行，这个缺口就会直接变成 reliability 和 security 风险。</dd></div><div><dt>方法/机制</dt><dd>SEVerA 的核心推进，是把 agentic code generation 改写成带 hard constraints 的学习问题，并用 Formally Guarded Generative Models 为每次生成调用加 formal output contract。每个 generative call 都由 rejection sampler 和 verified fallback 包住，于是 planner 搜索、verification 证明和 learning 优化可以组合起来：软目标继续优化，但硬约束始终不被违反。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这条路线把 formal methods 真正接到了 self-evolving agents 的核心循环里，而不是做外围 guardrail。对安全 agent synthesis、tool-using agents 和可验证的 self-improvement，这是一条很清晰的 durable pattern。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前 formal contract 的表达能力和任务覆盖还有限，主要验证也集中在 Dafny、symbolic math 和 policy-compliant tool use。它非常强，但还没证明自己会成为更广 agent synthesis 的默认接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>self-evolving agents 这条线越来越强，但大多数框架只关心 planner 能否自动生成和改写 agent program，几乎不对 autonomy 带来的安全性、约束遵守和 correctness 给出形式保证。一旦这些程序在未见输入上自动执行，这个缺口就会直接变成 reliability 和 security 风险。</p><p>SEVerA 的核心推进，是把 agentic code generation 改写成带 hard constraints 的学习问题，并用 Formally Guarded Generative Models 为每次生成调用加 formal output contract。每个 generative call 都由 rejection sampler 和 verified fallback 包住，于是 planner 搜索、verification 证明和 learning 优化可以组合起来：软目标继续优化，但硬约束始终不被违反。</p><p>它值得正式收录，因为这条路线把 formal methods 真正接到了 self-evolving agents 的核心循环里，而不是做外围 guardrail。对安全 agent synthesis、tool-using agents 和可验证的 self-improvement，这是一条很清晰的 durable pattern。</p><p>它暂时不升到更高一级，原因在于当前 formal contract 的表达能力和任务覆盖还有限，主要验证也集中在 Dafny、symbolic math 和 policy-compliant tool use。它非常强，但还没证明自己会成为更广 agent synthesis 的默认接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>美国伊利诺伊大学香槟分校 近期进展表明，自演化LLM智能体在程序修复和科学发现等任务上表现出有效性。在这种范式中，规划器LLM合成一个智能体程序，该程序调用参数化模型，包括概率生成模型（如LLM）、小型神经网络以及SMT求解器等外部工具。这些组件随后针对每个任务进行调优以提高性能。然而，与传统的约束引导程序合成不同，现有的自演化智能体框架不提供安全性或正确性的形式化保证。由于此类合成程序通常在未见输入上自主执行，缺乏形式化保证引发了严重可靠性和安全问题。为解决这一空白，我们将智能体代码生成表述为一个约束学习问题，该问题结合了硬性形式化规范和捕获任务效用的软性目标。我们引入了形式化受控生成模型（Formally Guarded Generative Models, FGGM），它允许规划器LLM使用一阶逻辑为每个生成模型调用指定一个形式化输出契约。每个FGGM调用都会自动将底层参数化生成模型封装在一个带有验证回退的拒绝采样器中，将模型输出视为来自提议分布的样本。因此，对于任何输入和底层模型的任何参数设置，每个返回的输出都满足指定的契约。基于FGGM，我们提出了SEVerA（自演化验证智能体），这是一个用于解决智能体合成中出现的约束学习问题的三阶段框架。在搜索阶段（Search），规划器LLM合成可能包含多个FGGM调用的候选参数化程序。在验证阶段（Verification），我们针对所有参数值证明了相对于硬约束的正确性，将问题简化为无约束学习。在学习阶段（Learning），我们应用可扩展的基于梯度的优化，包括针对LLM的GRPO风格微调，以在保持形式化正确性的同时改进软性目标。我们在约束符号回归、Dafny程序的 invariance generation、符号数学表达式合成以及符合策略的智能体工具使用（𝜏 2 -bench）等任务上评估了SEVerA。在所有任务中，SEVerA实现了零约束违反，同时相对于无约束和最先进的基线提高了任务性能。我们的结果表明，形式化行为约束不仅保证了正确性，而且还修剪了候选程序的空间，引导合成生成更高质量的智能体。CCS概念：• LLM智能体 → 自动化验证。附加关键词和短语：LLM智能体，自动化验证，演绎程序合成。ACM参考格式：Debangshu Banerjee, Changming Xu, and Gagandeep Singh. 2026. SEVerA: Verified Synthesis of Self-Evolving Agents. 1, 1 (March 2026), 42 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Illinois Urbana-Champaign, USA Recent advances have demonstrated the effectiveness of self-evolving LLM agents on tasks such as program repair and scientific discovery. In this paradigm, a planner LLM synthesizes an agent program that invokes parametric models, including probabilistic generative models such as LLMs, smaller neural networks, and external tools such as SMT solvers. These components are then tuned per task to improve performance. However, unlike traditional constraint-guided program synthesis, existing self-evolving agent frameworks provide no formal guarantees of safety or correctness. Because such synthesized programs are often executed autonomously on unseen inputs, the lack of formal guarantees raises serious reliability and security concerns. To address this gap, we formulate agentic code generation as a constrained learning problem that combines hard formal specifications with soft objectives capturing task utility. We introduce Formally Guarded Generative Models (FGGM), which allow the planner LLM to specify a formal output contract for each generative-model call using first-order logic. Each FGGM call automatically wraps the underlying parametric generative model in a rejection sampler with a verified fallback, treating model outputs as samples from a proposal distribution. As a result, every returned output satisfies the specified contract for any input and any parameter setting of the underlying model. Building on FGGM, we present SEVerA (Self-Evolving Verified Agents), a three-stage framework for solving constrained learning problems arising from agent synthesis. In Search, the planner LLM synthesizes candidate parametric programs that may contain multiple FGGM calls. In Verification, we prove correctness with respect to the hard constraints for all parameter values, reducing the problem to unconstrained learning. In Learning, we apply scalable gradient-based optimization, including GRPO-style fine-tuning for LLMs, to improve the soft objective while preserving formal correctness. We evaluate SEVerA on constrained symbolic regression, invariant generation for Dafny programs, symbolic mathematical expression synthesis, and policy-compliant agentic tool use (𝜏 2 -bench). Across all tasks, SEVerA achieves zero constraint violations while simultaneously improving task performance over unconstrained and state-of-the-art baselines. Our results demonstrate that formal behavioral constraints not only guarantee correctness but also prune the space of candidate programs, steering synthesis toward higher-quality agents. CCS Concepts: • LLM Agents → Automated Verification. Additional Key Words and Phrases: LLM Agents, Automated Verification, Deductive Program Synthesis. ACM Reference Format: Debangshu Banerjee, Changming Xu, and Gagandeep Singh. 2026. SEVerA: Verified Synthesis of Self-Evolving Agents. 1, 1 (March 2026), 42 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260326a169severa,
+  title = {SEVerA: Verified Synthesis of Self-Evolving Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.25111.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a169-severa-verified-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SEVerA: Verified Synthesis of Self-Evolving Agents. https://arxiv.org/pdf/2603.25111.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.25111.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

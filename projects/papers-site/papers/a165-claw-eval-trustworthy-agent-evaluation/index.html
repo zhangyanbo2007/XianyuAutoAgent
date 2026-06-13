@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents | DAST Papers</title>
+    <meta name="description" content="随着 LLM agents 逐渐进入真实软件环境，benchmark 的核心问题已经不只是任务会不会做，而是评测能不能真实反映 agent 的全过程行为。现有很多 agent benchmark 只看 final output，忽略中间轨迹、跳过安全与鲁棒性、并且模态覆盖狭窄，导致模型看起来完成了任务，但其实中途可能已经发生危险行为、脆弱决策或不可接受的失败。
+
+Claw-Eval 的方法贡献是把" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a165-claw-eval-trustworthy-agent-evaluation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents" />
+    <meta property="og:description" content="随着 LLM agents 逐渐进入真实软件环境，benchmark 的核心问题已经不只是任务会不会做，而是评测能不能真实反映 agent 的全过程行为。现有很多 agent benchmark 只看 final output，忽略中间轨迹、跳过安全与鲁棒性、并且模态覆盖狭窄，导致模型看起来完成了任务，但其实中途可能已经发生危险行为、脆弱决策或不可接受的失败。
+
+Claw-Eval 的方法贡献是把" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a165-claw-eval-trustworthy-agent-evaluation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents" />
+    <meta name="twitter:description" content="随着 LLM agents 逐渐进入真实软件环境，benchmark 的核心问题已经不只是任务会不会做，而是评测能不能真实反映 agent 的全过程行为。现有很多 agent benchmark 只看 final output，忽略中间轨迹、跳过安全与鲁棒性、并且模态覆盖狭窄，导致模型看起来完成了任务，但其实中途可能已经发生危险行为、脆弱决策或不可接受的失败。
+
+Claw-Eval 的方法贡献是把" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06132" target="_blank" rel="noopener noreferrer">2604.06132</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 LLM agents 逐渐进入真实软件环境，benchmark 的核心问题已经不只是任务会不会做，而是评测能不能真实反映 agent 的全过程行为。现有很多 agent benchmark 只看 final output，忽略中间轨迹、跳过安全与鲁棒性、并且模态覆盖狭窄，导致模型看起来完成了任务，但其实中途可能已经发生危险行为、脆弱决策或不可接受的失败。</dd></div><div><dt>方法/机制</dt><dd>Claw-Eval 的方法贡献是把 autonomous agent evaluation 做成 end-to-end 证据化体系。它用 execution traces、audit logs 和 environment snapshots 三路独立证据记录每一步动作，再围绕 300 个人工验证任务和 2,159 个细粒度 rubric 条目，对 Completion、Safety、Robustness 做 trajectory-aware grading；同时用 `Pass@k` 和 `Pass^k` 区分侥幸成功与稳定能力，并在 multimodal perception/generation 和 multi-turn dialogue 场景下统一评估。</dd></div><div><dt>结果/证据</dt><dd>这篇值得收录，因为它不是再加几百题任务，而是把 trustworthy agent evaluation 的接口重新定义了。特别是 evidence-channel 设计、trajectory-aware grading 和对安全/鲁棒性的显式拆分，具有很强的后续 benchmark 复用价值。它对 agent benchmarking、safety evaluation 和部署前验证都有直接方法外溢，比普通 agent leaderboard paper 更耐久。</dd></div><div><dt>收录价值</dt><dd>局限也很明确：这仍然是作者自建评测套件，任务选择、rubric 设计和错误注入方式都会影响结论；而且目前还主要是 arXiv 预印本，是否会成为社区共用基线还有待验证。因此这里给 `breakthrough`，不再上调。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 LLM agents 逐渐进入真实软件环境，benchmark 的核心问题已经不只是任务会不会做，而是评测能不能真实反映 agent 的全过程行为。现有很多 agent benchmark 只看 final output，忽略中间轨迹、跳过安全与鲁棒性、并且模态覆盖狭窄，导致模型看起来完成了任务，但其实中途可能已经发生危险行为、脆弱决策或不可接受的失败。</p><p>Claw-Eval 的方法贡献是把 autonomous agent evaluation 做成 end-to-end 证据化体系。它用 execution traces、audit logs 和 environment snapshots 三路独立证据记录每一步动作，再围绕 300 个人工验证任务和 2,159 个细粒度 rubric 条目，对 Completion、Safety、Robustness 做 trajectory-aware grading；同时用 `Pass@k` 和 `Pass^k` 区分侥幸成功与稳定能力，并在 multimodal perception/generation 和 multi-turn dialogue 场景下统一评估。</p><p>这篇值得收录，因为它不是再加几百题任务，而是把 trustworthy agent evaluation 的接口重新定义了。特别是 evidence-channel 设计、trajectory-aware grading 和对安全/鲁棒性的显式拆分，具有很强的后续 benchmark 复用价值。它对 agent benchmarking、safety evaluation 和部署前验证都有直接方法外溢，比普通 agent leaderboard paper 更耐久。</p><p>局限也很明确：这仍然是作者自建评测套件，任务选择、rubric 设计和错误注入方式都会影响结论；而且目前还主要是 arXiv 预印本，是否会成为社区共用基线还有待验证。因此这里给 `breakthrough`，不再上调。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）正越来越多地作为自主智能体部署，在真实软件环境中执行多步骤工作流。然而，现有的智能体基准面临三个关键限制：(1) 轨迹不透明的评分，仅检查最终输出；(2) 安全性和鲁棒性评估不明确；(3) 模态覆盖和交互范式狭窄。我们引入了Claw-Eval，一个解决所有这三个空白的端到端评估套件。它包含300个人工验证的任务，涵盖9个类别，分为三组（通用服务编排、多模态感知与生成以及多轮专业对话）。每个智能体动作都通过三个独立的证据通道（执行轨迹、审计日志和环境快照）进行记录，从而能够对2,159个细粒度评分项进行轨迹感知评分。评分协议评估完成度（Completion）、安全性（Safety）和鲁棒性（Robustness），报告三次试验的平均分数（Average Score）、Pass@k和Passk，以区分真实能力和偶然结果。对14个前沿模型的实验表明：(1) 轨迹不透明评估系统性地不可靠，遗漏了我们混合管道捕获的44%的安全违规和13%的鲁棒性故障；(2) 受控错误注入主要降低了一致性而非峰值能力，Pass3下降高达24%，而Pass@3保持稳定；(3) 多模态性能差异显著，大多数模型在视频上的表现差于文档或图像，并且没有单一模型在所有模态上占据主导地位。除了基准测试，Claw-Eval还为智能体开发指明了可行的方向，阐明了构建不仅有能力而且可靠部署的智能体所需的一切。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models are increasingly deployed as autonomous agents executing multi-step workflows in real-world software environments. However, existing agent benchmarks suffer from three critical limitations: (1) trajectory-opaque grading that checks only final outputs, (2) underspecified safety and robustness evaluation, and (3) narrow modality coverage and interaction paradigms. We introduce Claw-Eval, an end-to-end evaluation suite addressing all three gaps. It comprises 300 human-verified tasks spanning 9 categories across three groups (general service orchestration, multimodal perception and generation, and multi-turn professional dialogue). Every agent action is recorded through three independent evidence channels (execution traces, audit logs, and environment snapshots), enabling trajectory-aware grading over 2,159 fine-grained rubric items. The scoring protocol evaluates Completion, Safety, and Robustness, reporting Average Score, Pass@k, and Passk across three trials to distinguish genuine capability from lucky outcomes. Experiments on 14 frontier models reveal that: (1) trajectory-opaque evaluation is systematically unreliable, missing 44% of safety violations and 13% of robustness failures that our hybrid pipeline catches; (2) controlled error injection primarily degrades consistency rather than peak capability, with Pass3 dropping up to 24% while Pass@3 remains stable; (3) multimodal performance varies sharply, with most models performing poorer on video than on document or image, and no single model dominating across all modalities. Beyond benchmarking, Claw-Eval highlights actionable directions for agent development, shedding light on what it takes to build agents that are not only capable but reliably deployable.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407a165clawev,
+  title = {Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06132v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a165-claw-eval-trustworthy-agent-evaluation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents. https://arxiv.org/pdf/2604.06132v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06132v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

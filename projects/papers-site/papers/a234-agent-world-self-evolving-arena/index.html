@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence | DAST Papers</title>
+    <meta name="description" content="这篇论文的重要性在于它不再把 agent 训练理解为固定 benchmark 上的 policy optimization，而是把重点转向“真实环境如何被系统化合成出来并持续扩张”。在 MCP 和工具生态开始标准化之后，真正的瓶颈不只是模型本身，而是训练环境和任务分布过于贫乏。
+
+Agent-World 的两部分设计都很关键：一是 Agentic Environment-Task Discover" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a234-agent-world-self-evolving-arena/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence" />
+    <meta property="og:description" content="这篇论文的重要性在于它不再把 agent 训练理解为固定 benchmark 上的 policy optimization，而是把重点转向“真实环境如何被系统化合成出来并持续扩张”。在 MCP 和工具生态开始标准化之后，真正的瓶颈不只是模型本身，而是训练环境和任务分布过于贫乏。
+
+Agent-World 的两部分设计都很关键：一是 Agentic Environment-Task Discover" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a234-agent-world-self-evolving-arena/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence" />
+    <meta name="twitter:description" content="这篇论文的重要性在于它不再把 agent 训练理解为固定 benchmark 上的 policy optimization，而是把重点转向“真实环境如何被系统化合成出来并持续扩张”。在 MCP 和工具生态开始标准化之后，真正的瓶颈不只是模型本身，而是训练环境和任务分布过于贫乏。
+
+Agent-World 的两部分设计都很关键：一是 Agentic Environment-Task Discover" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.18292" target="_blank" rel="noopener noreferrer">2604.18292</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的重要性在于它不再把 agent 训练理解为固定 benchmark 上的 policy optimization，而是把重点转向“真实环境如何被系统化合成出来并持续扩张”。在 MCP 和工具生态开始标准化之后，真正的瓶颈不只是模型本身，而是训练环境和任务分布过于贫乏。</dd></div><div><dt>方法/机制</dt><dd>Agent-World 的两部分设计都很关键：一是 Agentic Environment-Task Discovery，从真实数据库和可执行工具生态中自动生成可验证、可控难度的环境任务；二是 Continuous Self-Evolving Agent Training，在多环境 RL 基础上，通过能力缺口驱动的新任务合成，让环境和策略共同演化。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这代表 agent training workflow 的明显升级：从静态 benchmark collection 走向 self-evolving environment arena。对于通用 agent、tool-use RL、capability-gap diagnosis 和长期 agent 训练都有很强的外溢，尤其契合本仓库对 memory / skill / environment co-evolution 的主线。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为 Agent-World 仍主要展示了训练场搭建和 benchmark 泛化收益，是否会成为通用 agent 训练的默认基础设施，还要看社区复现、开放生态接入和长期演化成本。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的重要性在于它不再把 agent 训练理解为固定 benchmark 上的 policy optimization，而是把重点转向“真实环境如何被系统化合成出来并持续扩张”。在 MCP 和工具生态开始标准化之后，真正的瓶颈不只是模型本身，而是训练环境和任务分布过于贫乏。</p><p>Agent-World 的两部分设计都很关键：一是 Agentic Environment-Task Discovery，从真实数据库和可执行工具生态中自动生成可验证、可控难度的环境任务；二是 Continuous Self-Evolving Agent Training，在多环境 RL 基础上，通过能力缺口驱动的新任务合成，让环境和策略共同演化。</p><p>它值得正式收录，因为这代表 agent training workflow 的明显升级：从静态 benchmark collection 走向 self-evolving environment arena。对于通用 agent、tool-use RL、capability-gap diagnosis 和长期 agent 训练都有很强的外溢，尤其契合本仓库对 memory / skill / environment co-evolution 的主线。</p><p>它没有升到更高等级，是因为 Agent-World 仍主要展示了训练场搭建和 benchmark 泛化收益，是否会成为通用 agent 训练的默认基础设施，还要看社区复现、开放生态接入和长期演化成本。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）越来越被期望作为通用智能体，与外部有状态工具环境进行交互。模型上下文协议（MCP）和更广泛的智能体技能为智能体与可扩展的真实世界服务连接提供了统一接口，但鲁棒智能体的训练仍然受限于缺乏真实环境和终身学习的原则性机制。在本文中，我们提出了Agent-World，一个自我演进的训练场，通过可扩展的环境来提升通用智能体智能。Agent-World有两个主要组成部分：（1）智能体环境-任务发现，它自主探索数千个真实世界环境主题中与主题对齐的数据库和可执行工具生态系统，并合成具有可控难度的可验证任务；（2）持续自我演进智能体训练，它将多环境强化学习与一个自我演进的智能体竞技场相结合，该竞技场通过动态任务合成自动识别能力差距并推动有针对性的学习，从而实现智能体策略和环境的共同演进。在23个具有挑战性的智能体基准测试中，Agent-World-8B和14B始终优于强大的专有模型和环境扩展基线。进一步的分析揭示了与环境多样性和自我演进轮次相关的扩展趋势，为构建通用智能体智能提供了见解。日期：2026年4月21日 通讯：董冠廷 dongguanting@ruc.edu.cn，窦志成 dou@ruc.edu.cn 项目页面：https://agent-tars-world.github.io/-/</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models are increasingly expected to serve as general-purpose agents that interact with external, stateful tool environments. The Model Context Protocol (MCP) and broader agent skills offer a unified interface for connecting agents with scalable real-world services, but training robust agents remains limited by the lack of realistic environments and principled mechanisms for life-long learning. In this paper, we present Agent-World, a self-evolving training arena for advancing general agent intelligence through scalable environments. Agent-World has two main components: (1) Agentic Environment-Task Discovery, which autonomously explores topic-aligned databases and executable tool ecosystems from thousands of real-world environment themes and synthesizes verifiable tasks with controllable difficulty; and (2) Continuous Self-Evolving Agent Training, which combines multi-environment reinforcement learning with a self-evolving agent arena that automatically identifies capability gaps through dynamic task synthesis and drives targeted learning, enabling the co-evolution of agent policies and environments. Across 23 challenging agent benchmarks, Agent-World-8B and 14B consistently outperforms strong proprietary models and environment scaling baselines. Further analyses reveal scaling trends in relation to environment diversity and self-evolution rounds, offering insights for building general agent intelligence. Date: April 21, 2026 Correspondence: Guanting Dong at dongguanting@ruc.edu.cn, Zhicheng Dou at dou@ruc.edu.cn Project Page: https://agent-tars-world.github.io/-/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260420a234agentw,
+  title = {Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.18292.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a234-agent-world-self-evolving-arena/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Agent-World: Scaling Real-World Environment Synthesis for Evolving General Agent Intelligence. https://arxiv.org/pdf/2604.18292.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.18292.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computational framework to predict and shape human-machine interactions in closed-loop, co-adaptive neural interfaces | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是神经接口和脑机接口里一个很关键但长期缺少统一分析工具的问题：一旦用户和解码器都在闭环中同时学习，系统就不再是“模型适配人”或“人适配模型”的单边过程，而变成了两个学习者相互耦合的动态系统。过去这类 co-adaptive neural interface 大多依赖经验调参，很难在设计阶段就预测不同解码策略会如何改变用户行为和整体性能。
+
+论文提出一套建立在控制理论和博弈论之上的计算" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n65-coadaptive-neural-interfaces/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Computational framework to predict and shape human-machine interactions in closed-loop, co-adaptive neural interfaces" />
+    <meta property="og:description" content="这篇论文处理的是神经接口和脑机接口里一个很关键但长期缺少统一分析工具的问题：一旦用户和解码器都在闭环中同时学习，系统就不再是“模型适配人”或“人适配模型”的单边过程，而变成了两个学习者相互耦合的动态系统。过去这类 co-adaptive neural interface 大多依赖经验调参，很难在设计阶段就预测不同解码策略会如何改变用户行为和整体性能。
+
+论文提出一套建立在控制理论和博弈论之上的计算" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n65-coadaptive-neural-interfaces/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Computational framework to predict and shape human-machine interactions in closed-loop, co-adaptive neural interfaces" />
+    <meta name="twitter:description" content="这篇论文处理的是神经接口和脑机接口里一个很关键但长期缺少统一分析工具的问题：一旦用户和解码器都在闭环中同时学习，系统就不再是“模型适配人”或“人适配模型”的单边过程，而变成了两个学习者相互耦合的动态系统。过去这类 co-adaptive neural interface 大多依赖经验调参，很难在设计阶段就预测不同解码策略会如何改变用户行为和整体性能。
+
+论文提出一套建立在控制理论和博弈论之上的计算" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Computational framework to predict and shape human-machine interactions in closed-loop, co-adaptive neural interfaces</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-03-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-23</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01194-z" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01194-z</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是神经接口和脑机接口里一个很关键但长期缺少统一分析工具的问题：一旦用户和解码器都在闭环中同时学习，系统就不再是“模型适配人”或“人适配模型”的单边过程，而变成了两个学习者相互耦合的动态系统。过去这类 co-adaptive neural interface 大多依赖经验调参，很难在设计阶段就预测不同解码策略会如何改变用户行为和整体性能。</dd></div><div><dt>方法/机制</dt><dd>论文提出一套建立在控制理论和博弈论之上的计算框架，用来分析、预测并塑造闭环共适应神经接口中的 user–decoder dynamics。作者在一个自适应肌电接口实验平台上做了验证，让受试者通过在线适配的解码器控制二维光标，随后用控制理论模型分离用户与解码器的变化，并用 game-theoretic 视角去预测不同解码更新策略下的共适应结果。重点不只是证明 co-adaptation 存在，而是给出了一套可用于设计这种交互的可计算方法。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这篇工作把闭环人机交互、神经接口和在线适应解码器从经验工程推进到了更可复用的理论/系统框架。对 BCI、肌电接口、辅助设备 personalization、adaptive decoder 设计，以及更广义的 human-in-the-loop learning systems 都有明显外溢价值。对于这个仓库，它既符合 NeuroAI 的严格标准，也符合 test-time / deployment-time adaptation 对“闭环适配机制”而非单点技巧的要求。</dd></div><div><dt>收录价值</dt><dd>它暂时不到更高一级，原因在于影响范围目前主要还是集中在神经接口与相关 human-machine control 场景。虽然方法论上很干净，也有实验验证，但还没到足以重排更广 AI 适配范式或更一般多智能体学习框架的程度，因此定为 breakthrough 更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是神经接口和脑机接口里一个很关键但长期缺少统一分析工具的问题：一旦用户和解码器都在闭环中同时学习，系统就不再是“模型适配人”或“人适配模型”的单边过程，而变成了两个学习者相互耦合的动态系统。过去这类 co-adaptive neural interface 大多依赖经验调参，很难在设计阶段就预测不同解码策略会如何改变用户行为和整体性能。</p><p>论文提出一套建立在控制理论和博弈论之上的计算框架，用来分析、预测并塑造闭环共适应神经接口中的 user–decoder dynamics。作者在一个自适应肌电接口实验平台上做了验证，让受试者通过在线适配的解码器控制二维光标，随后用控制理论模型分离用户与解码器的变化，并用 game-theoretic 视角去预测不同解码更新策略下的共适应结果。重点不只是证明 co-adaptation 存在，而是给出了一套可用于设计这种交互的可计算方法。</p><p>它值得正式收录，因为这篇工作把闭环人机交互、神经接口和在线适应解码器从经验工程推进到了更可复用的理论/系统框架。对 BCI、肌电接口、辅助设备 personalization、adaptive decoder 设计，以及更广义的 human-in-the-loop learning systems 都有明显外溢价值。对于这个仓库，它既符合 NeuroAI 的严格标准，也符合 test-time / deployment-time adaptation 对“闭环适配机制”而非单点技巧的要求。</p><p>它暂时不到更高一级，原因在于影响范围目前主要还是集中在神经接口与相关 human-machine control 场景。虽然方法论上很干净，也有实验验证，但还没到足以重排更广 AI 适配范式或更一般多智能体学习框架的程度，因此定为 breakthrough 更稳。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>神经接口可以通过解码器算法将高带宽生物信号转换为外部设备的控制信号，从而恢复或增强人类的感觉运动能力。利用用户和解码器的适应性来创建协同适应性接口，为提高可用性和个性化设备提供了机会。然而，我们缺乏建模和优化协同适应性接口中出现的复杂双学习者动态的原则性方法。在本文中，我们提出了基于控制理论和博弈论的计算方法，用于分析和预测连续交互中用户-解码器协同适应性结果。我们使用一个实验平台测试了这些计算方法，在该平台中，人类参与者（N = 14）学习使用自适应肌电接口控制光标以跟踪计算机显示器上的目标。我们的框架使我们能够表征协同适应性肌电接口中用户和解码器的变化。我们的框架进一步使我们能够预测解码器算法的变化如何影响协同适应性接口的性能，并揭示了接口特性如何塑造用户行为。我们的研究结果展示了一个经实验验证的计算框架，可用于设计闭环、协同适应性神经接口中的用户-解码器交互。该框架为未来优化协同适应性神经接口以扩展神经接口的性能和应用领域开辟了机会。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Neural interfaces can restore or augment human sensorimotor capabilities by converting high-bandwidth biological signals into control signals for an external device via a decoder algorithm. Leveraging user and decoder adaptation to create co-adaptive interfaces presents opportunities to improve usability and personalize devices. However, we lack principled methods to model and optimize the complex two-learner dynamics that arise in co-adaptive interfaces. Here we present computational methods based on control theory and game theory to analyse and generate predictions for user–decoder co-adaptive outcomes in continuous interactions. We tested these computational methods using an experimental platform in which human participants ( N = 14) learn to control a cursor using an adaptive myoelectric interface to track a target on a computer display. Our framework allowed us to characterize user and decoder changes within co-adaptive myoelectric interfaces. Our framework further allowed us to predict how changes in the decoder algorithm impacted co-adaptive interface performance and revealed how interface properties can shape user behaviour. Our findings demonstrate an experimentally validated computational framework that can be used to design user–decoder interactions in closed-loop, co-adaptive neural interfaces. This framework opens future opportunities to optimize co-adaptive neural interfaces to expand the performance and application domains for neural interfaces.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260323n65coadapt,
+  title = {Computational framework to predict and shape human-machine interactions in closed-loop, co-adaptive neural interfaces},
+  year = {2026},
+  url = {https://www.nature.com/articles/s42256-026-01194-z},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n65-coadaptive-neural-interfaces/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Computational framework to predict and shape human-machine interactions in closed-loop, co-adaptive neural interfaces. https://www.nature.com/articles/s42256-026-01194-z</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-026-01194-z" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

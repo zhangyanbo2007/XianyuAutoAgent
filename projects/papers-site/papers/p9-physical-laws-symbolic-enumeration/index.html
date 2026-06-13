@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discovering physical laws with parallel symbolic enumeration | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论的是符号回归和物理规律发现里的核心瓶颈：表达式搜索太慢、重复计算太多、很难扩展到更复杂的规律恢复任务。作者把重点放在并行 symbolic enumeration 上，目标不是做一个小改良 baseline，而是把这条路线推进到可扩展工具层面。
+
+方法上，论文提出并行 symbolic enumeration 框架，把表达式搜索中的公共子结构复用和大规模并行结合起来，并与物理规律发现任" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p9-physical-laws-symbolic-enumeration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Discovering physical laws with parallel symbolic enumeration" />
+    <meta property="og:description" content="这篇论文讨论的是符号回归和物理规律发现里的核心瓶颈：表达式搜索太慢、重复计算太多、很难扩展到更复杂的规律恢复任务。作者把重点放在并行 symbolic enumeration 上，目标不是做一个小改良 baseline，而是把这条路线推进到可扩展工具层面。
+
+方法上，论文提出并行 symbolic enumeration 框架，把表达式搜索中的公共子结构复用和大规模并行结合起来，并与物理规律发现任" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p9-physical-laws-symbolic-enumeration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Discovering physical laws with parallel symbolic enumeration" />
+    <meta name="twitter:description" content="这篇论文讨论的是符号回归和物理规律发现里的核心瓶颈：表达式搜索太慢、重复计算太多、很难扩展到更复杂的规律恢复任务。作者把重点放在并行 symbolic enumeration 上，目标不是做一个小改良 baseline，而是把这条路线推进到可扩展工具层面。
+
+方法上，论文提出并行 symbolic enumeration 框架，把表达式搜索中的公共子结构复用和大规模并行结合起来，并与物理规律发现任" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Discovering physical laws with parallel symbolic enumeration</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2025-11-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-21</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-025-00904-8" target="_blank" rel="noopener noreferrer">10.1038/s43588-025-00904-8</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论的是符号回归和物理规律发现里的核心瓶颈：表达式搜索太慢、重复计算太多、很难扩展到更复杂的规律恢复任务。作者把重点放在并行 symbolic enumeration 上，目标不是做一个小改良 baseline，而是把这条路线推进到可扩展工具层面。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出并行 symbolic enumeration 框架，把表达式搜索中的公共子结构复用和大规模并行结合起来，并与物理规律发现任务耦合。文章页和开源资源都强调相较既有方法在搜索效率上有数量级提升，同时在规律恢复成功率上优于多个基线。</dd></div><div><dt>结果/证据</dt><dd>它的重要性在于，这类工作处在 AI for science 最硬的一条线上：不是黑箱近似，而是恢复可解释、可读、可验证的物理定律。对于仓库里关注物理发现、符号学习和科学发现工具链的人，这是一篇很值得正式收录的论文。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。它明显超过普通 symbolic regression 工作，但目前影响仍主要集中在规律发现与符号枚举这条主线上，还没扩展成更大范围的范式重排。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论的是符号回归和物理规律发现里的核心瓶颈：表达式搜索太慢、重复计算太多、很难扩展到更复杂的规律恢复任务。作者把重点放在并行 symbolic enumeration 上，目标不是做一个小改良 baseline，而是把这条路线推进到可扩展工具层面。</p><p>方法上，论文提出并行 symbolic enumeration 框架，把表达式搜索中的公共子结构复用和大规模并行结合起来，并与物理规律发现任务耦合。文章页和开源资源都强调相较既有方法在搜索效率上有数量级提升，同时在规律恢复成功率上优于多个基线。</p><p>它的重要性在于，这类工作处在 AI for science 最硬的一条线上：不是黑箱近似，而是恢复可解释、可读、可验证的物理定律。对于仓库里关注物理发现、符号学习和科学发现工具链的人，这是一篇很值得正式收录的论文。</p><p>我把它放在“突破性”。它明显超过普通 symbolic regression 工作，但目前影响仍主要集中在规律发现与符号枚举这条主线上，还没扩展成更大范围的范式重排。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>利用并行符号枚举发现物理定律。符号回归在现代科学研究中扮演着至关重要的角色，因为它能够从数据中发现简洁且可解释的数学表达式。一个关键挑战在于，在无限的搜索空间中，在旨在拟合训练数据的情况下，寻找简约且可泛化的数学公式。现有算法在处理复杂问题时，在过去十年中一直面临准确性和效率的关键瓶颈，这实质上阻碍了符号回归在跨学科领域科学探索中的应用步伐。为此，我们引入了并行符号枚举（PSE），以从有限数据中高效地提炼出通用数学表达式。实验表明，与最先进的基线算法相比，PSE 在超过200个合成和实验问题集上实现了更高的准确性和更快的计算速度（例如，将恢复准确率提高了99%，并将运行时间缩短了一个数量级）。PSE 代表了在准确高效地数据驱动发现符号化、可解释模型（例如，潜在的物理定律）方面的进步，并提高了符号学习的可扩展性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Symbolic regression plays a crucial role in modern scientific research thanks to its capability of discovering concise and interpretable mathematical expressions from data. A key challenge lies in the search for parsimonious and generalizable mathematical formulas, in an infinite search space, while intending to fit the training data. Existing algorithms have faced a critical bottleneck of accuracy and efficiency over a decade when handling problems of complexity, which essentially hinders the pace of applying symbolic regression for scientific exploration across interdisciplinary domains. To this end, we introduce parallel symbolic enumeration (PSE) to efficiently distill generic mathematical expressions from limited data. Experiments show that PSE achieves higher accuracy and faster computation compared to the state-of-the-art baseline algorithms across over 200 synthetic and experimental problem sets (e.g., improving the recovery accuracy by up to 99% and reducing runtime by an order of magnitude). PSE represents an advance in accurate and efficient data-driven discovery of symbolic, interpretable models (e.g., underlying physical laws), and improves the scalability of symbolic learning.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251121p9physical,
+  title = {Discovering physical laws with parallel symbolic enumeration},
+  year = {2025},
+  url = {https://www.nature.com/articles/s43588-025-00904-8},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p9-physical-laws-symbolic-enumeration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Discovering physical laws with parallel symbolic enumeration. https://www.nature.com/articles/s43588-025-00904-8</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s43588-025-00904-8" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

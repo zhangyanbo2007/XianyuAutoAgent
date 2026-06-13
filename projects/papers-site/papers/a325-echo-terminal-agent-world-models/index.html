@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECHO: Terminal Agents Learn World Models for Free | DAST Papers</title>
+    <meta name="description" content="ECHO 把 terminal agents 的环境交互视为可学习世界模型问题：命令执行后的文件系统、stdout、stderr 和状态变化可以作为自监督信号。
+
+论文通过辅助预测环境后继状态，让 agent 在完成任务的同时学习 CLI world model，不需要额外人工标注即可改善后续规划。
+
+这对 coding agents 和本地自动化尤其重要，因为终端环境有明确动作、观测和可验证状态" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a325-echo-terminal-agent-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ECHO: Terminal Agents Learn World Models for Free" />
+    <meta property="og:description" content="ECHO 把 terminal agents 的环境交互视为可学习世界模型问题：命令执行后的文件系统、stdout、stderr 和状态变化可以作为自监督信号。
+
+论文通过辅助预测环境后继状态，让 agent 在完成任务的同时学习 CLI world model，不需要额外人工标注即可改善后续规划。
+
+这对 coding agents 和本地自动化尤其重要，因为终端环境有明确动作、观测和可验证状态" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a325-echo-terminal-agent-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ECHO: Terminal Agents Learn World Models for Free" />
+    <meta name="twitter:description" content="ECHO 把 terminal agents 的环境交互视为可学习世界模型问题：命令执行后的文件系统、stdout、stderr 和状态变化可以作为自监督信号。
+
+论文通过辅助预测环境后继状态，让 agent 在完成任务的同时学习 CLI world model，不需要额外人工标注即可改善后续规划。
+
+这对 coding agents 和本地自动化尤其重要，因为终端环境有明确动作、观测和可验证状态" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ECHO: Terminal Agents Learn World Models for Free</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.24517" target="_blank" rel="noopener noreferrer">2605.24517</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ECHO 把 terminal agents 的环境交互视为可学习世界模型问题：命令执行后的文件系统、stdout、stderr 和状态变化可以作为自监督信号。</dd></div><div><dt>方法/机制</dt><dd>论文通过辅助预测环境后继状态，让 agent 在完成任务的同时学习 CLI world model，不需要额外人工标注即可改善后续规划。</dd></div><div><dt>结果/证据</dt><dd>这对 coding agents 和本地自动化尤其重要，因为终端环境有明确动作、观测和可验证状态，是 agent 世界模型最现实的落地点之一。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 world modeling 从机器人/视频扩展到软件执行环境，为 terminal agent 的长期学习提供了低成本训练信号。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ECHO 把 terminal agents 的环境交互视为可学习世界模型问题：命令执行后的文件系统、stdout、stderr 和状态变化可以作为自监督信号。</p><p>论文通过辅助预测环境后继状态，让 agent 在完成任务的同时学习 CLI world model，不需要额外人工标注即可改善后续规划。</p><p>这对 coding agents 和本地自动化尤其重要，因为终端环境有明确动作、观测和可验证状态，是 agent 世界模型最现实的落地点之一。</p><p>它值得正式收录，因为它把 world modeling 从机器人/视频扩展到软件执行环境，为 terminal agent 的长期学习提供了低成本训练信号。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ECHO：终端智能体免费学习世界模型 CLI智能体是语言模型最接近具身环境的设置：模型发出命令，终端执行它们，返回的流——标准输出、错误、文件、日志和跟踪——记录了结果。我们认为这个流是一个监督信号，但标准的智能体强化学习（RL）却将其丢弃：GRPO风格的训练用稀疏的结果级奖励更新动作token，同时忽略了rollout中已有的环境响应。失败的rollout提供了很少的策略梯度信号，尽管它们包含了关于环境如何响应的丰富证据。我们引入了ECHO（环境交叉熵混合目标），这是一个混合目标，它将动作token上的标准策略梯度损失与一个辅助损失相结合，该辅助损失训练策略来预测由其自身动作产生的环境观察token。ECHO重用与GRPO相同的前向传播，不需要额外的rollout，并将终端反馈转化为所有rollout的密集监督。ECHO使GRPO在TerminalBench2.0上的pass@1翻倍：Qwen3-8B从2.70%提高到5.17%，Qwen3-14B从5.17%提高到10.79%。ECHO还生成了能更好预测终端动态的策略，即使是在它们未生成的轨迹上：在保留的rollout中，它显著降低了环境token的交叉熵，而单独的GRPO几乎没有改变。从基础Qwen3-8B开始，ECHO在没有专家演示的情况下，在保留的终端任务上达到了专家SFT-然后-GRPO的性能，并恢复了TerminalBench-2.0上专家SFT初始化收益的大约一半。在某些设置中，仅环境预测损失就能实现无验证器的自我改进，允许策略仅通过学习环境交互来改进未见的OOD任务。总而言之，这些结果表明，环境观察不仅仅是未来动作的上下文，而是每个rollout中已经存在的密集、在策略监督信号。图1：ECHO在智能体RL期间将终端反馈转化为监督。终端智能体rollout交错了助手动作和环境观察。在标准GRPO中，先前的终端输出可以为未来的命令提供信息，但损失仅应用于动作token位置，并由稀疏的结果级奖励驱动。ECHO在环境观察token上添加了一个互补的交叉熵损失，训练相同的策略来预测由其自身动作引起的终端响应。ECHO重用相同的rollout和前向传播，同时使每个终端响应成为一个额外的训练目标。底部：在保留的评估中，ECHO相对于匹配的仅GRPO运行提高了任务解决率，并且在训练中也显著更早地达到了GRPO的峰值性能。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>CLI agents are the closest thing language models have to an embodied setting: the model emits commands, the terminal executes them, and the returned stream—stdout, errors, files, logs, and traces—records the consequences. We argue that this stream is a supervision signal, but standard agent RL discards it: GRPO-style training updates action tokens with sparse outcome-level rewards while ignoring environment responses already in the rollout. Failed rollouts provide little policy-gradient signal despite containing rich evidence about how the environment responds. We introduce ECHO (Environment Cross-entropy Hybrid Objective), a hybrid objective that combines the standard policy-gradient loss on action tokens with an auxiliary loss that trains the policy to predict environment observation tokens resulting from its own actions. ECHO reuses the same forward pass as GRPO, requires no additional rollouts, and turns terminal feedback into dense supervision for all rollouts. ECHO doubles GRPO pass@1 on TerminalBench2.0: Qwen3-8B improves from 2.70% to 5.17%, and Qwen3-14B from 5.17% to 10.79%. ECHO also produces policies that better predict terminal dynamics, even on trajectories they did not generate: across held-out rollouts, it sharply reduces environment-token cross-entropy while GRPO alone barely changes it. From base Qwen3-8B, ECHO matches expert-SFT-then-GRPO performance on held-out terminal tasks without expert demonstrations, and recovers roughly half of the expert-SFT initialization benefit on TerminalBench-2.0. In some settings, the environment prediction loss alone enables verifier-free self-improvement, allowing policies to improve on unseen OOD tasks by learning only from environment interactions. Together, these results suggest that environment observations are not merely context for future actions, but a dense, on-policy supervision signal already present in every rollout. Figure 1: ECHO turns terminal feedback into supervision during agent RL. A terminal-agent rollout interleaves assistant actions, with environment observations. In standard GRPO, previous terminal outputs can inform future commands, but loss is applied only to action-token positions and is driven by sparse outcome-level rewards. ECHO adds a complementary cross-entropy loss on environment-observation tokens, training the same policy to predict the terminal responses caused by its own actions. ECHO reuses the same rollout and forward pass while making every terminal response an additional training target. Bottom: across held-out evaluations, ECHO improves task solve rate relative to matched GRPO-only runs and also reaches the peak GRPO performance substantially earlier in training.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260523a325echote,
+  title = {ECHO: Terminal Agents Learn World Models for Free},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.24517.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a325-echo-terminal-agent-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ECHO: Terminal Agents Learn World Models for Free. https://arxiv.org/pdf/2605.24517.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.24517.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.24517" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

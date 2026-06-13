@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Execution-Verified Reinforcement Learning for Optimization Modeling | DAST Papers</title>
+    <meta name="description" content="用 LLM 自动完成 optimization modeling 一直很有吸引力，但现实里常见方案要么依赖闭源 agent pipeline，推理成本高、延迟大；要么靠过程监督微调较小模型，却容易把能力绑定到单一 solver API 上，难以泛化到不同求解后端。EVOM 直接对这个核心瓶颈下手。
+
+论文把 solver execution 当成确定性的交互式 verifier，提出 Execut" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a118-evom-optimization-modeling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Execution-Verified Reinforcement Learning for Optimization Modeling" />
+    <meta property="og:description" content="用 LLM 自动完成 optimization modeling 一直很有吸引力，但现实里常见方案要么依赖闭源 agent pipeline，推理成本高、延迟大；要么靠过程监督微调较小模型，却容易把能力绑定到单一 solver API 上，难以泛化到不同求解后端。EVOM 直接对这个核心瓶颈下手。
+
+论文把 solver execution 当成确定性的交互式 verifier，提出 Execut" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a118-evom-optimization-modeling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Execution-Verified Reinforcement Learning for Optimization Modeling" />
+    <meta name="twitter:description" content="用 LLM 自动完成 optimization modeling 一直很有吸引力，但现实里常见方案要么依赖闭源 agent pipeline，推理成本高、延迟大；要么靠过程监督微调较小模型，却容易把能力绑定到单一 solver API 上，难以泛化到不同求解后端。EVOM 直接对这个核心瓶颈下手。
+
+论文把 solver execution 当成确定性的交互式 verifier，提出 Execut" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Execution-Verified Reinforcement Learning for Optimization Modeling</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00442" target="_blank" rel="noopener noreferrer">2604.00442</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>用 LLM 自动完成 optimization modeling 一直很有吸引力，但现实里常见方案要么依赖闭源 agent pipeline，推理成本高、延迟大；要么靠过程监督微调较小模型，却容易把能力绑定到单一 solver API 上，难以泛化到不同求解后端。EVOM 直接对这个核心瓶颈下手。</dd></div><div><dt>方法/机制</dt><dd>论文把 solver execution 当成确定性的交互式 verifier，提出 Execution-Verified Optimization Modeling。给定自然语言问题和目标 solver，模型生成 solver-specific 代码，放到沙箱中执行，再把 execution outcome 映射成 scalar reward，用 GRPO 和 DAPO 在 generate-execute-feedback-update 闭环里优化。这样做的关键好处是，不再需要昂贵的 process supervision，而且跨 solver 泛化可以通过切换 verification environment 实现，而不用重建整套 solver-specific 训练数据。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它提供了一个很干净的 execution-verified RL pattern：把外部 deterministic executor 当作 verifier，直接训练模型学习可执行、可验证的优化建模代码。这不仅对 optimization modeling 有意义，也对更广的 program synthesis、tool-verified learning 和 decision-intelligence workflow 有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要集中在 optimization modeling 和少数 solver 生态，离更广泛的 execution-verified agent learning 默认范式还有距离。它很强，但现在仍更像一条重要方法推进。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>用 LLM 自动完成 optimization modeling 一直很有吸引力，但现实里常见方案要么依赖闭源 agent pipeline，推理成本高、延迟大；要么靠过程监督微调较小模型，却容易把能力绑定到单一 solver API 上，难以泛化到不同求解后端。EVOM 直接对这个核心瓶颈下手。</p><p>论文把 solver execution 当成确定性的交互式 verifier，提出 Execution-Verified Optimization Modeling。给定自然语言问题和目标 solver，模型生成 solver-specific 代码，放到沙箱中执行，再把 execution outcome 映射成 scalar reward，用 GRPO 和 DAPO 在 generate-execute-feedback-update 闭环里优化。这样做的关键好处是，不再需要昂贵的 process supervision，而且跨 solver 泛化可以通过切换 verification environment 实现，而不用重建整套 solver-specific 训练数据。</p><p>这篇工作值得收录，因为它提供了一个很干净的 execution-verified RL pattern：把外部 deterministic executor 当作 verifier，直接训练模型学习可执行、可验证的优化建模代码。这不仅对 optimization modeling 有意义，也对更广的 program synthesis、tool-verified learning 和 decision-intelligence workflow 有明显外溢。</p><p>它没有升到更高一级，是因为当前证据仍主要集中在 optimization modeling 和少数 solver 生态，离更广泛的 execution-verified agent learning 默认范式还有距离。它很强，但现在仍更像一条重要方法推进。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>数学规划程序——具有挑战性且高度专业化（Xiao et al., 2025; Ramamonjison et al., 2021）。它需要在求解器约束下仔细解释问题描述并进行精确的数学形式化。因此，从自然语言可靠地生成正确、求解器兼容的公式仍然具有挑战性，并且通常仍需要人类专家。使用LLM自动化优化建模是实现可扩展决策智能的一个有前景的途径，但现有方法要么依赖于基于闭源LLM构建的代理管道，具有高推理延迟，要么使用昂贵的过程监督微调小型LLM，这通常会导致对单个求解器API的过度拟合。受带有可验证奖励的强化学习启发，我们提出了执行验证优化建模（EVOM），这是一个执行验证学习框架，它将数学规划求解器视为一个确定性的交互式验证器。给定一个自然语言问题和目标求解器，EVOM生成求解器特定代码，在沙盒环境中执行，并将执行结果转换为标量奖励，通过GRPO和DAPO在生成-执行-反馈-更新的闭环过程中进行优化。这种仅基于结果的公式消除了对过程级监督的需求，并通过切换验证环境而不是重建求解器特定数据集来实现跨求解器泛化。在NL4OPT、MAMO、IndustryOR和OptiBench上，跨Gurobi、OR-Tools和COPT进行的实验表明，EVOM匹配或优于过程监督的SFT，支持零样本求解器迁移，并通过在目标求解器后端下继续训练实现有效的低成本求解器适应。大型语言模型（LLM）（Grattafiori et al., 2024）在代码生成和逻辑推理方面的最新进展为自动化优化建模开辟了新途径。现有工作主要遵循两个方向。首先，基于提示的方法（AhmadiTeshnizi et al., 2024; Xiao et al., 2024）构建了具有多轮交互、反思和自我纠正的代理系统，以提高准确性和可执行性。尽管有效，但这些系统通常依赖于闭源模型，并且由于多轮提示而产生显著的推理延迟。其次，基于训练的方法微调小型LLM以实现高效、低成本的推理。然而，为了处理更难的实例并提高可靠性，其中许多方法越来越依赖于策划或合成带有细粒度过程监督的数据集——包括显式中间步骤，如变量定义、推导和参考代码（Huang et al., 2025a; Wu et al., 2025; Lu et al., 2025）。尽管更丰富的标注可以提高性能，但这种范式有两个主要缺点。首先，过程级监督成本高昂，因为收集高质量的中间步骤标注很困难。其次，它在不同求解器之间泛化能力差。在实践中，求解器API在建模构造和编程接口方面存在显著差异。因此，训练用于模仿单个求解器参考代码的模型可能会过度拟合求解器特定的语法模式，并且当求解器改变时（例如，从Gurobi迁移到OR-Tools）可能会失效，即使底层数学模型本质上相同。适应新的求解器通常需要昂贵的求解器特定数据集重建和再训练。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>ical program—is challenging and highly specialized (Xiao et al., 2025; Ramamonjison et al., 2021). It requires careful interpretation of the problem description and precise mathematical formalization under solver constraints. As a result, reliably generating correct, solver-compatible formulations from natural language remains challenging and often still requires human experts. Automating optimization modeling with LLMs is a promising path toward scalable decision intelligence, but existing approaches either rely on agentic pipelines built on closed-source LLMs with high inference latency, or fine-tune smaller LLMs using costly process supervision that often overfits to a single solver API. Inspired by reinforcement learning with verifiable rewards, we propose Execution-Verified Optimization Modeling (EVOM), an execution-verified learning framework that treats a mathematical programming solver as a deterministic, interactive verifier. Given a natural-language problem and a target solver, EVOM generates solver-specific code, executes it in a sandboxed harness, and converts execution outcomes into scalar rewards, optimized with GRPO and DAPO in a closed-loop generate– execute–feedback–update process. This outcomeonly formulation removes the need for processlevel supervision, and enables cross-solver generalization by switching the verification environment rather than reconstructing solver-specific datasets. Experiments on NL4OPT, MAMO, IndustryOR, and OptiBench across Gurobi, OR-Tools, and COPT show that EVOM matches or outperforms process-supervised SFT, supports zero-shot solver transfer, and achieves effective low-cost solver adaptation by continuing training under the target solver backend. Recent advances in large language models (LLMs) (Grattafiori et al., 2024) for code generation and logical reasoning have opened new avenues for automating optimization modeling. Existing work largely follows two directions. First, prompting-based methods (AhmadiTeshnizi et al., 2024; Xiao et al., 2024) build agentic systems with multi-turn interaction, reflection, and self-correction to improve accuracy and executability. While effective, these systems commonly depend on closedsource models and incur substantial inference latency due to multi-round prompting. Second, training-based methods fine-tune smaller LLMs to enable efficient, low-cost inference. Yet, to handle harder instances and improve reliability, many of these methods increasingly rely on curating or synthesizing datasets with fine-grained process supervision—including explicit intermediate steps such as variable definitions, derivations, and reference code (Huang et al., 2025a; Wu et al., 2025; Lu et al., 2025). Although richer annotations can improve performance, this paradigm has two major drawbacks. First, processlevel supervision is expensive, since collecting high-quality intermediate-step annotations is difficult. Second, it tends to generalize poorly across solvers. In practice, solver APIs differ substantially in modeling constructs and programming interfaces. Consequently, models trained to imitate reference code for a single solver can overfit solver-specific syntactic patterns, and may fail when the solver changes (e.g., migrating from Gurobi to OR-Tools), even if the underlying mathematical model is essentially the same. Adapting to a new solver then typically requires costly solver-specific dataset reconstruction and retraining.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a118evomop,
+  title = {Execution-Verified Reinforcement Learning for Optimization Modeling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00442.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a118-evom-optimization-modeling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Execution-Verified Reinforcement Learning for Optimization Modeling. https://arxiv.org/pdf/2604.00442.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00442.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

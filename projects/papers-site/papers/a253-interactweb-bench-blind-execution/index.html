@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation? | DAST Papers</title>
+    <meta name="description" content="现在很多 web coding benchmark 默认用户需求是清晰的、信息充分的，agent 只要执行就行。但真实低代码场景里，真正的难点往往是用户本身表达含混、矛盾甚至带噪，这会让 agent 陷入一种更根本的失败模式：blind execution。
+
+InteractWeb-Bench 的价值就在于把这个失败模式正式命名并 benchmark 化。它不是简单加点噪声，而是围绕非专家用户条" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a253-interactweb-bench-blind-execution/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?" />
+    <meta property="og:description" content="现在很多 web coding benchmark 默认用户需求是清晰的、信息充分的，agent 只要执行就行。但真实低代码场景里，真正的难点往往是用户本身表达含混、矛盾甚至带噪，这会让 agent 陷入一种更根本的失败模式：blind execution。
+
+InteractWeb-Bench 的价值就在于把这个失败模式正式命名并 benchmark 化。它不是简单加点噪声，而是围绕非专家用户条" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a253-interactweb-bench-blind-execution/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?" />
+    <meta name="twitter:description" content="现在很多 web coding benchmark 默认用户需求是清晰的、信息充分的，agent 只要执行就行。但真实低代码场景里，真正的难点往往是用户本身表达含混、矛盾甚至带噪，这会让 agent 陷入一种更根本的失败模式：blind execution。
+
+InteractWeb-Bench 的价值就在于把这个失败模式正式命名并 benchmark 化。它不是简单加点噪声，而是围绕非专家用户条" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.27419" target="_blank" rel="noopener noreferrer">2604.27419</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现在很多 web coding benchmark 默认用户需求是清晰的、信息充分的，agent 只要执行就行。但真实低代码场景里，真正的难点往往是用户本身表达含混、矛盾甚至带噪，这会让 agent 陷入一种更根本的失败模式：blind execution。</dd></div><div><dt>方法/机制</dt><dd>InteractWeb-Bench 的价值就在于把这个失败模式正式命名并 benchmark 化。它不是简单加点噪声，而是围绕非专家用户条件，引入 persona-driven instruction perturbations 和 Clarify / Implement / Verify / Submit 的统一交互动作空间，使 benchmark 真正覆盖 intent refinement 这一层。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它为 multimodal web / coding agent 提供了一个更耐用的 evaluation interface。真正可复用的不是网页题目本身，而是把 agent 从盲执行推向澄清-实现-验证闭环的评测框架。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，因为目前任务域仍集中在 interactive website generation。尽管 failure mode 很通用，但它还不是所有 computer-use agent 的统一上位 benchmark。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现在很多 web coding benchmark 默认用户需求是清晰的、信息充分的，agent 只要执行就行。但真实低代码场景里，真正的难点往往是用户本身表达含混、矛盾甚至带噪，这会让 agent 陷入一种更根本的失败模式：blind execution。</p><p>InteractWeb-Bench 的价值就在于把这个失败模式正式命名并 benchmark 化。它不是简单加点噪声，而是围绕非专家用户条件，引入 persona-driven instruction perturbations 和 Clarify / Implement / Verify / Submit 的统一交互动作空间，使 benchmark 真正覆盖 intent refinement 这一层。</p><p>这篇工作值得正式收录，因为它为 multimodal web / coding agent 提供了一个更耐用的 evaluation interface。真正可复用的不是网页题目本身，而是把 agent 从盲执行推向澄清-实现-验证闭环的评测框架。</p><p>它没有升到更高等级，因为目前任务域仍集中在 interactive website generation。尽管 failure mode 很通用，但它还不是所有 computer-use agent 的统一上位 benchmark。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要 | 随着多模态大型语言模型 (MLLM) 和编码代理的进步，网站开发已从手动编程转向基于代理的项目级代码合成。现有基准依赖于理想化假设，特别是对于结构良好、信息丰富的输入和静态执行设置。相比之下，现实世界的开发受到一个关键瓶颈的限制：非专业用户模糊、低质量指令与模型理解之间的语义错位，这导致了一种我们称之为“盲目执行”的故障模式。为了解决这一差距，我们引入了 InteractWeb-Bench，这是第一个在非专业低代码用户条件下进行网站生成的多模态交互式基准。InteractWeb-Bench 引入了四种类型的用户代理和角色驱动的指令扰动，以系统地模拟多样化的用户行为，包括模糊性、冗余性和矛盾性，这些都基于需求工程缺陷分类法。我们为代理开发了一个交互式执行环境，其特点是统一的动作空间，包括澄清 (Clarify)、实现 (Implement)、验证 (Verify) 和提交 (Submit)，从而实现迭代意图细化、代码合成和基于视觉反馈的验证。广泛的实验和分析表明，前沿的基于 MLLM 的代理仍然陷入盲目执行，暴露出意图识别和自适应交互方面的局限性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract | With the advancement of multimodal large language models (MLLMs) and coding agents, the website development has shifted from manual programming to agent-based project-level code synthesis. Existing benchmarks rely on idealized assumptions, especially for well-structured, information-rich inputs and static execution settings. In contrast, real-world development is constrained by a critical bottleneck: the semantic misalignment between ambiguous, low-quality instructions from non-expert users and model understanding, which results in a failure mode that we term blind execution. To address this gap, we introduce InteractWebBench, the first multimodal interactive benchmark for website generation under non-expert low-code user conditions. InteractWeb-Bench introduces four types of user agents and persona-driven instruction perturbations to systematically simulate diverse user behaviors, including ambiguity, redundancy, and contradiction, grounded in requirement engineering defect taxonomies. We develop an interactive execution environment for agents, featuring a unified action space comprising Clarify, Implement, Verify, and Submit, enabling iterative intent refinement, code synthesis, and visual feedback–based validation. Extensive experiments and analysis reveal that frontier MLLM-based agents remain trapped in blind execution, exposing limitations in intent recognition and adaptive interaction.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260430a253intera,
+  title = {InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.27419v1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a253-interactweb-bench-blind-execution/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). InteractWeb-Bench: Can Multimodal Agent Escape Blind Execution in Interactive Website Generation?. https://arxiv.org/pdf/2604.27419v1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.27419v1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

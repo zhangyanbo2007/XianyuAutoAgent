@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dual-encoder contrastive learning accelerates enzyme discovery | DAST Papers</title>
+    <meta name="description" content="酶工程里的核心瓶颈往往不在后续定向进化本身，而在于能否先从巨大蛋白空间里找到值得起步的候选酶。很多机器学习工作能做局部打分，但真正把反应需求映射到可实验验证的 enzyme recommendation，并在大规模数据和真实实验里证明有效，门槛一直很高。
+
+这篇论文提出 Horizyn-1，用 dual-encoder contrastive learning 把 reaction fingerp" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio27-horizyn-1-enzyme-discovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Dual-encoder contrastive learning accelerates enzyme discovery" />
+    <meta property="og:description" content="酶工程里的核心瓶颈往往不在后续定向进化本身，而在于能否先从巨大蛋白空间里找到值得起步的候选酶。很多机器学习工作能做局部打分，但真正把反应需求映射到可实验验证的 enzyme recommendation，并在大规模数据和真实实验里证明有效，门槛一直很高。
+
+这篇论文提出 Horizyn-1，用 dual-encoder contrastive learning 把 reaction fingerp" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio27-horizyn-1-enzyme-discovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Dual-encoder contrastive learning accelerates enzyme discovery" />
+    <meta name="twitter:description" content="酶工程里的核心瓶颈往往不在后续定向进化本身，而在于能否先从巨大蛋白空间里找到值得起步的候选酶。很多机器学习工作能做局部打分，但真正把反应需求映射到可实验验证的 enzyme recommendation，并在大规模数据和真实实验里证明有效，门槛一直很高。
+
+这篇论文提出 Horizyn-1，用 dual-encoder contrastive learning 把 reaction fingerp" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Dual-encoder contrastive learning accelerates enzyme discovery</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>酶工程里的核心瓶颈往往不在后续定向进化本身，而在于能否先从巨大蛋白空间里找到值得起步的候选酶。很多机器学习工作能做局部打分，但真正把反应需求映射到可实验验证的 enzyme recommendation，并在大规模数据和真实实验里证明有效，门槛一直很高。</dd></div><div><dt>方法/机制</dt><dd>这篇论文提出 Horizyn-1，用 dual-encoder contrastive learning 把 reaction fingerprint 与 protein language model 表征接到同一个推荐框架里，在数百万 reaction-enzyme pairs 上训练，实现大规模 reaction-to-enzyme retrieval。它的关键不是单一 benchmark 提升，而是把推荐结果直接推到实验层面，覆盖 orphan reactions、酶 promiscuity 预测，以及非天然生化反应的酶发现，并展示少样本 fine-tuning 对稀缺反应类的快速增益。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是普通的 biocatalysis predictor，而是一种可复用的 enzyme discovery workflow：给定反应，先在大规模酶空间里高召回检索，再把结果转入实验验证和后续优化。对 AI x chemistry / synthetic biology / enzyme engineering 来说，这种 reaction-to-enzyme recommendation interface 有明确外溢，也和仓库当前对 AI 驱动科学发现工作流的重点方向一致。</dd></div><div><dt>收录价值</dt><dd>它目前仍然是 breakthrough，而不是更高一级，因为虽然实验验证很重要，但方法主轴仍然集中在 enzyme sourcing 这一层，而不是更完整的药物发现或多步生物合成闭环。它证明了一个强有力的 discovery primitive，但要上升到更高层级，还需要更广泛的工业级采用、跨家族泛化和与下游 design-build-test loops 的深度整合。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>酶工程里的核心瓶颈往往不在后续定向进化本身，而在于能否先从巨大蛋白空间里找到值得起步的候选酶。很多机器学习工作能做局部打分，但真正把反应需求映射到可实验验证的 enzyme recommendation，并在大规模数据和真实实验里证明有效，门槛一直很高。</p><p>这篇论文提出 Horizyn-1，用 dual-encoder contrastive learning 把 reaction fingerprint 与 protein language model 表征接到同一个推荐框架里，在数百万 reaction-enzyme pairs 上训练，实现大规模 reaction-to-enzyme retrieval。它的关键不是单一 benchmark 提升，而是把推荐结果直接推到实验层面，覆盖 orphan reactions、酶 promiscuity 预测，以及非天然生化反应的酶发现，并展示少样本 fine-tuning 对稀缺反应类的快速增益。</p><p>它值得正式收录，因为这不是普通的 biocatalysis predictor，而是一种可复用的 enzyme discovery workflow：给定反应，先在大规模酶空间里高召回检索，再把结果转入实验验证和后续优化。对 AI x chemistry / synthetic biology / enzyme engineering 来说，这种 reaction-to-enzyme recommendation interface 有明确外溢，也和仓库当前对 AI 驱动科学发现工作流的重点方向一致。</p><p>它目前仍然是 breakthrough，而不是更高一级，因为虽然实验验证很重要，但方法主轴仍然集中在 enzyme sourcing 这一层，而不是更完整的药物发现或多步生物合成闭环。它证明了一个强有力的 discovery primitive，但要上升到更高层级，还需要更广泛的工业级采用、跨家族泛化和与下游 design-build-test loops 的深度整合。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>双编码器对比学习加速酶发现。设计具有所需反应的酶是现代生物技术的基础，然而，识别合适的起始蛋白质仍然是一个关键瓶颈。双编码器对比学习模型已成为酶发现的一种有前景的方法，通过共享嵌入空间学习将化学反应与催化酶进行匹配。然而，它们在计算基准之外的实际性能尚未得到证实。在本文中，我们通过Horizyn-1弥补了这一空白，Horizyn-1是一个用于直接反应到酶推荐的深度学习框架，并通过全面的实验测试进行了验证。Horizyn-1利用反应指纹和蛋白质语言模型的计算高效组合，在890万个反应-酶对上进行训练，实现了最先进的性能，在超过75%的测试反应中，能在前100个命中结果中找到具有正确活性的酶。我们通过实验验证了Horizyn-1在三种酶发现场景中的表现：识别孤儿反应的酶，预测已表征和未表征酶的兼性，以及发现非天然生化反应的酶，包括赖氨酸驱动的转氨基反应，这些反应能够高效合成非规范氨基酸。对于代表性不足的反应类别，我们发现使用少于10个额外反应进行微调可以显著提高性能。此外，模型性能与训练数据集大小呈对数关系，这表明随着更大、更多样化的反应数据集的出现，性能将持续提升。Horizyn-1解决了优化活动中获取初始酶的关键瓶颈，实现了对具有所需活性的酶进行高效且可扩展的计算机模拟筛选，并有望加速未来在生物催化和代谢工程方面的努力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The ability to engineer enzymes for desired reactions is a cornerstone of modern biotechnology, yet identifying suitable starting proteins remains a critical bottleneck. Dual-encoder contrastive learning models have emerged as a promising approach for enzyme discovery, learning to match chemical reactions with catalyzing enzymes through a shared embedding space. However, their practical performance beyond computational benchmarks remains unproven. Here, we close this gap with Horizyn-1, a deep learning framework for direct reaction-to-enzyme recommendation validated through comprehensive experimental testing. Leveraging a computationally efficient combination of reaction fingerprints and protein language models, we trained Horizyn-1 on 8.9 million reaction-enzyme pairs to achieve state-of-the-art performance, recovering an enzyme with correct activity within the top 100 hits for over 75% of test reactions. We experimentally validate Horizyn-1 across three enzyme discovery scenarios: identifying enzymes for orphan reactions, predicting enzyme promiscuity for both characterized and uncharacterized enzymes, and discovering enzymes for non-natural biochemical reactions including lysine-driven transaminations that enable efficient synthesis of non-canonical amino acids. On underrepresented reaction classes, we find that fine-tuning with fewer than 10 additional reactions can dramatically improve performance. Furthermore, a logarithmic scaling of model performance with training dataset size suggests continued improvement with larger and more diverse reaction datasets. Horizyn-1 addresses the critical bottleneck of sourcing initial enzymes for optimization campaigns, enabling efficient and scalable in silico screening for enzymes with desired activities and promising to accelerate future efforts in biocatalysis and metabolic engineering.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317bio27horiz,
+  title = {Dual-encoder contrastive learning accelerates enzyme discovery},
+  year = {2026},
+  url = {https://www.biorxiv.org/content/10.1101/2025.08.21.671639v1.full.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio27-horizyn-1-enzyme-discovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Dual-encoder contrastive learning accelerates enzyme discovery. https://www.biorxiv.org/content/10.1101/2025.08.21.671639v1.full.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.biorxiv.org/content/10.1101/2025.08.21.671639v1.full.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

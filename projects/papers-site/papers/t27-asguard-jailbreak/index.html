@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack | DAST Papers</title>
+    <meta name="description" content="问题与背景：安全对齐模型会因简单语言变化暴露拒绝泛化缺陷，例如 harmful request 改成过去时后绕过拒绝。
+
+方法与新意：ASGuard 先用 circuit analysis 定位与 targeted jailbreak 相关的 attention heads，再学习 channel-wise scaling vector 重新校准脆弱 head，并把该机制并入 preventati" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t27-asguard-jailbreak/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack" />
+    <meta property="og:description" content="问题与背景：安全对齐模型会因简单语言变化暴露拒绝泛化缺陷，例如 harmful request 改成过去时后绕过拒绝。
+
+方法与新意：ASGuard 先用 circuit analysis 定位与 targeted jailbreak 相关的 attention heads，再学习 channel-wise scaling vector 重新校准脆弱 head，并把该机制并入 preventati" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t27-asguard-jailbreak/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack" />
+    <meta name="twitter:description" content="问题与背景：安全对齐模型会因简单语言变化暴露拒绝泛化缺陷，例如 harmful request 改成过去时后绕过拒绝。
+
+方法与新意：ASGuard 先用 circuit analysis 定位与 targeted jailbreak 相关的 attention heads，再学习 channel-wise scaling vector 重新校准脆弱 head，并把该机制并入 preventati" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2025-09-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2509.25843" target="_blank" rel="noopener noreferrer">2509.25843</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：安全对齐模型会因简单语言变化暴露拒绝泛化缺陷，例如 harmful request 改成过去时后绕过拒绝。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：ASGuard 先用 circuit analysis 定位与 targeted jailbreak 相关的 attention heads，再学习 channel-wise scaling vector 重新校准脆弱 head，并把该机制并入 preventative fine-tuning。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇值得进入 safety/core ML，因为它不是 prompt patch，而是把 jailbreak 防御连接到可解释电路定位和激活缩放干预，提供了较可复用的 mechanistic guardrail 思路。</dd></div><div><dt>收录价值</dt><dd>局限：方法针对 targeted linguistic jailbreak，防御覆盖面和对 adaptive attacker 的鲁棒性仍需扩展；因此按 breakthrough 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：安全对齐模型会因简单语言变化暴露拒绝泛化缺陷，例如 harmful request 改成过去时后绕过拒绝。</p><p>方法与新意：ASGuard 先用 circuit analysis 定位与 targeted jailbreak 相关的 attention heads，再学习 channel-wise scaling vector 重新校准脆弱 head，并把该机制并入 preventative fine-tuning。</p><p>收录意义：这篇值得进入 safety/core ML，因为它不是 prompt patch，而是把 jailbreak 防御连接到可解释电路定位和激活缩放干预，提供了较可复用的 mechanistic guardrail 思路。</p><p>局限：方法针对 targeted linguistic jailbreak，防御覆盖面和对 adaptive attacker 的鲁棒性仍需扩展；因此按 breakthrough 收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ASGuard 识别出与针对性漏洞攻击（如时序变化攻击）等相关的注意力头之间的因果关系，学习了通道级别的激活缩放向量，并应用预防性微调以提高拒绝鲁棒性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>ASGuard identifies attention heads causally linked to targeted jailbreaks such as tense-changing attacks, learns channel-wise activation scaling vectors, and applies preventative fine-tuning to improve refusal robustness.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250930t27asguard,
+  title = {ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2509.25843.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t27-asguard-jailbreak/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). ASGuard: Activation-Scaling Guard to Mitigate Targeted Jailbreaking Attack. https://arxiv.org/pdf/2509.25843.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2509.25843.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

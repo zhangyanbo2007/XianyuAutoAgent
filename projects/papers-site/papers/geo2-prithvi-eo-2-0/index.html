@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications | DAST Papers</title>
+    <meta name="description" content="地理空间和遥感方向这几年已经有不少 foundation model，但很多工作仍然停在单模态、单分辨率或单下游任务的窄范围提升，缺少真正可以成为 Earth observation 通用底座的多时序表征模型。Prithvi-EO-2.0 直接把问题放在 multitemporal EO foundation interface 上，试图服务灾害响应、土地覆盖、作物与生态动态监测等一整类任务。
+
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/geo2-prithvi-eo-2-0/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications" />
+    <meta property="og:description" content="地理空间和遥感方向这几年已经有不少 foundation model，但很多工作仍然停在单模态、单分辨率或单下游任务的窄范围提升，缺少真正可以成为 Earth observation 通用底座的多时序表征模型。Prithvi-EO-2.0 直接把问题放在 multitemporal EO foundation interface 上，试图服务灾害响应、土地覆盖、作物与生态动态监测等一整类任务。
+
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/geo2-prithvi-eo-2-0/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications" />
+    <meta name="twitter:description" content="地理空间和遥感方向这几年已经有不少 foundation model，但很多工作仍然停在单模态、单分辨率或单下游任务的窄范围提升，缺少真正可以成为 Earth observation 通用底座的多时序表征模型。Prithvi-EO-2.0 直接把问题放在 multitemporal EO foundation interface 上，试图服务灾害响应、土地覆盖、作物与生态动态监测等一整类任务。
+
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications</h1>
+          <p class="subtitle">地理空间、遥感与灾害系统 · 发表：2025-12-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">地理空间、遥感与灾害系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2412.02732" target="_blank" rel="noopener noreferrer">2412.02732</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>地理空间和遥感方向这几年已经有不少 foundation model，但很多工作仍然停在单模态、单分辨率或单下游任务的窄范围提升，缺少真正可以成为 Earth observation 通用底座的多时序表征模型。Prithvi-EO-2.0 直接把问题放在 multitemporal EO foundation interface 上，试图服务灾害响应、土地覆盖、作物与生态动态监测等一整类任务。</dd></div><div><dt>方法/机制</dt><dd>这篇论文的核心在于使用 420 万级全球多时序样本进行训练，并显式引入 temporal 和 location embeddings，使模型在 GEO-Bench 及更广 EO 下游任务中稳定超过前代和多种对比 foundation models。它的贡献不只是一个更大的 remote sensing transformer，而是把多时序 EO 任务的统一表示学习路线做得更清楚、更可复用，并且配套了开源模型和部署入口。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它对 geospatial / EO 方向提供的是 durable foundation interface，而不是一次性的任务模型。对仓库来说，这类论文比单一洪水、作物或地物分类结果更有长期价值：它改变的是后续多种环境、农业、灾害和生态监测任务应当如何共享表示与迁移能力。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是它仍然是 Earth observation 子领域内的强 foundation model，而不是跨模态或跨科学领域的更大范式重排。它的影响大概率会很实在，但目前主要仍局限在 geospatial foundation-model 主线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>地理空间和遥感方向这几年已经有不少 foundation model，但很多工作仍然停在单模态、单分辨率或单下游任务的窄范围提升，缺少真正可以成为 Earth observation 通用底座的多时序表征模型。Prithvi-EO-2.0 直接把问题放在 multitemporal EO foundation interface 上，试图服务灾害响应、土地覆盖、作物与生态动态监测等一整类任务。</p><p>这篇论文的核心在于使用 420 万级全球多时序样本进行训练，并显式引入 temporal 和 location embeddings，使模型在 GEO-Bench 及更广 EO 下游任务中稳定超过前代和多种对比 foundation models。它的贡献不只是一个更大的 remote sensing transformer，而是把多时序 EO 任务的统一表示学习路线做得更清楚、更可复用，并且配套了开源模型和部署入口。</p><p>它值得正式收录，因为它对 geospatial / EO 方向提供的是 durable foundation interface，而不是一次性的任务模型。对仓库来说，这类论文比单一洪水、作物或地物分类结果更有长期价值：它改变的是后续多种环境、农业、灾害和生态监测任务应当如何共享表示与迁移能力。</p><p>它暂时还不到更高一级，原因是它仍然是 Earth observation 子领域内的强 foundation model，而不是跨模态或跨科学领域的更大范式重排。它的影响大概率会很实在，但目前主要仍局限在 geospatial foundation-model 主线。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251211geo2prithv,
+  title = {Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2412.02732.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/geo2-prithvi-eo-2-0/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications. https://arxiv.org/pdf/2412.02732.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/geo4-spectralearth-fm-hyperspectral-eo/">
+              <span>SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining</span>
+              <small>地理空间、遥感与灾害系统 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/geo3-geoagentbench-gis-agents/">
+              <span>GeoAgentBench: A Dynamic Execution Benchmark for Tool-Augmented Agents in Spatial Analysis</span>
+              <small>地理空间、遥感与灾害系统 · 2026-04-15</small>
+            </a>
+            <a class="related-item" href="../../papers/geo1-instageo-geospatial-deployment/">
+              <span>InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment</span>
+              <small>地理空间、遥感与灾害系统 · 2025-10-07</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2412.02732.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

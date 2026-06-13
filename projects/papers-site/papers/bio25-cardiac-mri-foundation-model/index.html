@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Building foundation models for cardiac MRI | DAST Papers</title>
+    <meta name="description" content="医学影像里的 foundation model 真正难的地方，不是简单把图像模型搬到医疗数据上，而是如何利用临床场景中天然存在但噪声很高的弱监督信号，让模型学到跨疾病谱、跨任务可迁移的表示。心脏 MRI 尤其如此：它是时序影像、结构复杂、病种跨度大，而且临床价值高度依赖下游诊断和报告场景。
+
+这篇工作提出的核心，是利用 routine clinical practice 中天然成对出现的 card" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio25-cardiac-mri-foundation-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Building foundation models for cardiac MRI" />
+    <meta property="og:description" content="医学影像里的 foundation model 真正难的地方，不是简单把图像模型搬到医疗数据上，而是如何利用临床场景中天然存在但噪声很高的弱监督信号，让模型学到跨疾病谱、跨任务可迁移的表示。心脏 MRI 尤其如此：它是时序影像、结构复杂、病种跨度大，而且临床价值高度依赖下游诊断和报告场景。
+
+这篇工作提出的核心，是利用 routine clinical practice 中天然成对出现的 card" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio25-cardiac-mri-foundation-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Building foundation models for cardiac MRI" />
+    <meta name="twitter:description" content="医学影像里的 foundation model 真正难的地方，不是简单把图像模型搬到医疗数据上，而是如何利用临床场景中天然存在但噪声很高的弱监督信号，让模型学到跨疾病谱、跨任务可迁移的表示。心脏 MRI 尤其如此：它是时序影像、结构复杂、病种跨度大，而且临床价值高度依赖下游诊断和报告场景。
+
+这篇工作提出的核心，是利用 routine clinical practice 中天然成对出现的 card" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Building foundation models for cardiac MRI</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-26</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41551-026-01638-2" target="_blank" rel="noopener noreferrer">10.1038/s41551-026-01638-2</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>医学影像里的 foundation model 真正难的地方，不是简单把图像模型搬到医疗数据上，而是如何利用临床场景中天然存在但噪声很高的弱监督信号，让模型学到跨疾病谱、跨任务可迁移的表示。心脏 MRI 尤其如此：它是时序影像、结构复杂、病种跨度大，而且临床价值高度依赖下游诊断和报告场景。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出的核心，是利用 routine clinical practice 中天然成对出现的 cardiac MRI 视频与对应文本报告，做 self-supervised / contrastive-style 预训练，构建面向心脏 MRI 的 domain foundation model。它不是围绕单一病种或单个 segmentation/classification 任务调模型，而是把临床生成的 scan-report pairing 当成可扩展监督接口，借此学习覆盖更完整心血管疾病谱的表征。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这条路线对 biomed foundation modeling 很有代表性：不是再做一个窄任务 predictor，而是把日常临床工作流本身转化成模型训练资源。对医学多模态基础模型、医疗报告配对学习、以及领域 foundation model 的构建方式都有直接外溢，也符合仓库对 AI x biomed 的高门槛要求。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为它的主要外溢仍然绑定在 cardiac MRI 这一高价值但明确收敛的模态与学科内。它展示了很强的 domain foundation-model 思路，但是否能进一步变成更一般的医学影像-文本建模范式，还需要跨模态、跨器官和跨机构的更广验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>医学影像里的 foundation model 真正难的地方，不是简单把图像模型搬到医疗数据上，而是如何利用临床场景中天然存在但噪声很高的弱监督信号，让模型学到跨疾病谱、跨任务可迁移的表示。心脏 MRI 尤其如此：它是时序影像、结构复杂、病种跨度大，而且临床价值高度依赖下游诊断和报告场景。</p><p>这篇工作提出的核心，是利用 routine clinical practice 中天然成对出现的 cardiac MRI 视频与对应文本报告，做 self-supervised / contrastive-style 预训练，构建面向心脏 MRI 的 domain foundation model。它不是围绕单一病种或单个 segmentation/classification 任务调模型，而是把临床生成的 scan-report pairing 当成可扩展监督接口，借此学习覆盖更完整心血管疾病谱的表征。</p><p>它值得正式收录，因为这条路线对 biomed foundation modeling 很有代表性：不是再做一个窄任务 predictor，而是把日常临床工作流本身转化成模型训练资源。对医学多模态基础模型、医疗报告配对学习、以及领域 foundation model 的构建方式都有直接外溢，也符合仓库对 AI x biomed 的高门槛要求。</p><p>它目前仍是 breakthrough，而不是更高一级，因为它的主要外溢仍然绑定在 cardiac MRI 这一高价值但明确收敛的模态与学科内。它展示了很强的 domain foundation-model 思路，但是否能进一步变成更一般的医学影像-文本建模范式，还需要跨模态、跨器官和跨机构的更广验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>一个基于视频的深度学习系统，通过对比学习的自监督方法，利用常规临床实践中生成的心脏MRI扫描图像及其对应的文本报告对，被训练用于理解人类心血管疾病的谱系。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A video-based deep-learning system was trained to understand the spectrum of human cardiovascular disease by the self-supervised method of contrastive learning, using pairs of cardiac MRI scans and their corresponding text reports that are generated as part of routine clinical practice.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260326bio25cardi,
+  title = {Building foundation models for cardiac MRI},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41551-026-01638-2},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio25-cardiac-mri-foundation-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Building foundation models for cardiac MRI. https://www.nature.com/articles/s41551-026-01638-2</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41551-026-01638-2" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

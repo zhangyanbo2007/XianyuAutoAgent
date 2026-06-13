@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScholarPeer: A Context-Aware Multi-Agent Framework for Automated Peer Review | DAST Papers</title>
+    <meta name="description" content="自动化 peer review 这些年已经从简单打分和摘要生成，推进到生成 structured feedback，但主流系统依然有一个根本缺陷：它们大多只看论文本身，不主动补齐领域背景、已有 baseline、相邻工作和 claim 的外部验证，因此很容易停留在 surface-level critique，难以真正判断 novelty、significance 和深层方法问题。
+
+Schola" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a172-scholarpeer-automated-peer-review/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ScholarPeer: A Context-Aware Multi-Agent Framework for Automated Peer Review" />
+    <meta property="og:description" content="自动化 peer review 这些年已经从简单打分和摘要生成，推进到生成 structured feedback，但主流系统依然有一个根本缺陷：它们大多只看论文本身，不主动补齐领域背景、已有 baseline、相邻工作和 claim 的外部验证，因此很容易停留在 surface-level critique，难以真正判断 novelty、significance 和深层方法问题。
+
+Schola" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a172-scholarpeer-automated-peer-review/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ScholarPeer: A Context-Aware Multi-Agent Framework for Automated Peer Review" />
+    <meta name="twitter:description" content="自动化 peer review 这些年已经从简单打分和摘要生成，推进到生成 structured feedback，但主流系统依然有一个根本缺陷：它们大多只看论文本身，不主动补齐领域背景、已有 baseline、相邻工作和 claim 的外部验证，因此很容易停留在 surface-level critique，难以真正判断 novelty、significance 和深层方法问题。
+
+Schola" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ScholarPeer: A Context-Aware Multi-Agent Framework for Automated Peer Review</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.22638" target="_blank" rel="noopener noreferrer">2601.22638</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>自动化 peer review 这些年已经从简单打分和摘要生成，推进到生成 structured feedback，但主流系统依然有一个根本缺陷：它们大多只看论文本身，不主动补齐领域背景、已有 baseline、相邻工作和 claim 的外部验证，因此很容易停留在 surface-level critique，难以真正判断 novelty、significance 和深层方法问题。</dd></div><div><dt>方法/机制</dt><dd>ScholarPeer 的关键推进，是把 automated review 改写成一个 context-aware multi-agent workflow。它不是单模型直接吐 review，而是用 historian agent 构造领域叙事、用 baseline scout 查缺漏、再用多方面 Q&amp;A verification engine 对论文 claim 做主动核验，把 critique grounding 到 live web-scale literature 上。这个结构更接近资深研究者的工作方式，而不是闭卷式评论生成。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作对仓库关心的 agent-driven academic workflow 有明显的 durable value。它把 literature search、context building、claim verification 和 structured critique 组织成一条清晰的 agent pipeline，对自动科研助手、学术评审辅助、文献审查和 research ops 都有可复用外溢，不只是“自动写 review”这么窄。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于 automated peer review 仍是一个高度主观且制度依赖的场景，当前评估也主要建立在 DeepReview-13K 这类数据和 side-by-side 比较上。它很强，但距离成为更广科研工作流的默认基础设施，还需要更长期、更跨学科的稳定验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>自动化 peer review 这些年已经从简单打分和摘要生成，推进到生成 structured feedback，但主流系统依然有一个根本缺陷：它们大多只看论文本身，不主动补齐领域背景、已有 baseline、相邻工作和 claim 的外部验证，因此很容易停留在 surface-level critique，难以真正判断 novelty、significance 和深层方法问题。</p><p>ScholarPeer 的关键推进，是把 automated review 改写成一个 context-aware multi-agent workflow。它不是单模型直接吐 review，而是用 historian agent 构造领域叙事、用 baseline scout 查缺漏、再用多方面 Q&amp;A verification engine 对论文 claim 做主动核验，把 critique grounding 到 live web-scale literature 上。这个结构更接近资深研究者的工作方式，而不是闭卷式评论生成。</p><p>它值得正式收录，因为这类工作对仓库关心的 agent-driven academic workflow 有明显的 durable value。它把 literature search、context building、claim verification 和 structured critique 组织成一条清晰的 agent pipeline，对自动科研助手、学术评审辅助、文献审查和 research ops 都有可复用外溢，不只是“自动写 review”这么窄。</p><p>它暂时不升到更高一级，原因在于 automated peer review 仍是一个高度主观且制度依赖的场景，当前评估也主要建立在 DeepReview-13K 这类数据和 side-by-side 比较上。它很强，但距离成为更广科研工作流的默认基础设施，还需要更长期、更跨学科的稳定验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ScholarPeer：一种上下文感知多智能体自动化同行评审框架。自动化同行评审已从简单的文本分类发展到结构化反馈生成。然而，当前最先进的系统仍然难以应对“表面化”的评论：它们擅长总结内容，但往往无法准确评估新颖性和重要性，也无法识别深层的方法论缺陷，因为它们在脱离语境的情况下评估论文，缺乏人类专家所拥有的外部上下文。在本文中，我们介绍了ScholarPeer，这是一个支持搜索的多智能体框架，旨在模拟资深研究人员的认知过程。ScholarPeer采用上下文获取和主动验证的双流过程。它利用历史学家智能体动态构建领域叙事，通过基线侦察员识别缺失的比较，并通过多方面问答引擎验证主张，将评论建立在实时的网络规模文献之上。我们在DeepReview-13K上评估了ScholarPeer，结果表明ScholarPeer在并排评估中相对于最先进的方法取得了显著的胜率，并缩小了与人类水平多样性的差距。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Automated peer review has evolved from simple text classification to structured feedback generation. However, current state-of-the-art systems still struggle with “surface-level” critiques: they excel at summarizing content but often fail to accurately assess novelty and significance or identify deep methodological flaws because they evaluate papers in a vacuum, lacking the external context a human expert possesses. In this paper, we introduce ScholarPeer, a search-enabled multi-agent framework designed to emulate the cognitive processes of a senior researcher. ScholarPeer employs a dual-stream process of context acquisition and active verification. It dynamically constructs a domain narrative using a historian agent, identifies missing comparisons via a baseline scout, and verifies claims through a multi-aspect Q&amp;A engine, grounding the critique in live web-scale literature. We evaluate ScholarPeer on DeepReview-13K and the results demonstrate that ScholarPeer achieves significant win-rates against state-of-the-art approaches in side-by-side evaluations and reduces the gap to human-level diversity.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260130a172schola,
+  title = {ScholarPeer: A Context-Aware Multi-Agent Framework for Automated Peer Review},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.22638.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a172-scholarpeer-automated-peer-review/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ScholarPeer: A Context-Aware Multi-Agent Framework for Automated Peer Review. https://arxiv.org/pdf/2601.22638.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.22638.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

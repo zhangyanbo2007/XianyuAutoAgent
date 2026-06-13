@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hyperagents | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 self-improving AI systems 的一个根本限制：现有方法虽然强调自我改进，但元层机制往往仍是人工写死的，系统只能在固定的自改进框架里搜索更好的策略。Darwin Gödel Machine 已经展示了 coding 领域中的开放式自改进，但它依赖一个特殊前提，即“做任务”和“改进自己”都可以统一成代码修改任务，因此任务能力提升天然能反馈到自改进能力上。这个前提在更" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a65-hyperagents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Hyperagents" />
+    <meta property="og:description" content="这篇论文针对 self-improving AI systems 的一个根本限制：现有方法虽然强调自我改进，但元层机制往往仍是人工写死的，系统只能在固定的自改进框架里搜索更好的策略。Darwin Gödel Machine 已经展示了 coding 领域中的开放式自改进，但它依赖一个特殊前提，即“做任务”和“改进自己”都可以统一成代码修改任务，因此任务能力提升天然能反馈到自改进能力上。这个前提在更" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a65-hyperagents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hyperagents" />
+    <meta name="twitter:description" content="这篇论文针对 self-improving AI systems 的一个根本限制：现有方法虽然强调自我改进，但元层机制往往仍是人工写死的，系统只能在固定的自改进框架里搜索更好的策略。Darwin Gödel Machine 已经展示了 coding 领域中的开放式自改进，但它依赖一个特殊前提，即“做任务”和“改进自己”都可以统一成代码修改任务，因此任务能力提升天然能反馈到自改进能力上。这个前提在更" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Hyperagents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.19461" target="_blank" rel="noopener noreferrer">2603.19461</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 self-improving AI systems 的一个根本限制：现有方法虽然强调自我改进，但元层机制往往仍是人工写死的，系统只能在固定的自改进框架里搜索更好的策略。Darwin Gödel Machine 已经展示了 coding 领域中的开放式自改进，但它依赖一个特殊前提，即“做任务”和“改进自己”都可以统一成代码修改任务，因此任务能力提升天然能反馈到自改进能力上。这个前提在更一般的领域里并不成立。</dd></div><div><dt>方法/机制</dt><dd>Hyperagents 的核心贡献，是把 task agent 和 meta agent 融合进一个统一的可编辑程序里，让系统不仅能改进完成任务的行为，也能直接改写生成未来改进的元程序。作者把这种框架实例化为 DGM-Hyperagents（DGM-H），核心点在于 meta-level modification procedure 本身也是可编辑对象，因此系统具备 metacognitive self-modification 能力，而不是停留在固定的 search loop。论文还强调，这种改进会积累成跨任务、跨运行可迁移的元层资产，例如更好的 persistent memory 和 performance tracking。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它把 self-improvement 从“搜索更好解”推进到“搜索如何更好地搜索如何改进自己”，直接触及 agent systems 里最重要也最难的开放式能力增长问题。它不是普通 multi-agent orchestration，也不是简单反思式 agent，而是明确提出一个更通用的自指代理框架，试图去掉 coding-only alignment 的前提。对仓库主线而言，它和 agent memory、capability acquisition、research agents、deployment-time self-improvement 都直接相关。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是当前证据主要仍来自 arXiv 首版和作者构造的对比体系，距离真正证明这是通用 self-improving agent 的默认蓝图还有距离。它的概念很强，但能否在更多真实任务、长期运行和更开放环境里持续兑现自加速改进，还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 self-improving AI systems 的一个根本限制：现有方法虽然强调自我改进，但元层机制往往仍是人工写死的，系统只能在固定的自改进框架里搜索更好的策略。Darwin Gödel Machine 已经展示了 coding 领域中的开放式自改进，但它依赖一个特殊前提，即“做任务”和“改进自己”都可以统一成代码修改任务，因此任务能力提升天然能反馈到自改进能力上。这个前提在更一般的领域里并不成立。</p><p>Hyperagents 的核心贡献，是把 task agent 和 meta agent 融合进一个统一的可编辑程序里，让系统不仅能改进完成任务的行为，也能直接改写生成未来改进的元程序。作者把这种框架实例化为 DGM-Hyperagents（DGM-H），核心点在于 meta-level modification procedure 本身也是可编辑对象，因此系统具备 metacognitive self-modification 能力，而不是停留在固定的 search loop。论文还强调，这种改进会积累成跨任务、跨运行可迁移的元层资产，例如更好的 persistent memory 和 performance tracking。</p><p>这项工作值得正式收录，因为它把 self-improvement 从“搜索更好解”推进到“搜索如何更好地搜索如何改进自己”，直接触及 agent systems 里最重要也最难的开放式能力增长问题。它不是普通 multi-agent orchestration，也不是简单反思式 agent，而是明确提出一个更通用的自指代理框架，试图去掉 coding-only alignment 的前提。对仓库主线而言，它和 agent memory、capability acquisition、research agents、deployment-time self-improvement 都直接相关。</p><p>它暂时还不到更高一级，原因是当前证据主要仍来自 arXiv 首版和作者构造的对比体系，距离真正证明这是通用 self-improving agent 的默认蓝图还有距离。它的概念很强，但能否在更多真实任务、长期运行和更开放环境里持续兑现自加速改进，还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自我改进的AI系统旨在通过学习改进自身的学习和问题解决过程，从而减少对人类工程的依赖。现有的递归自我改进方法通常依赖于固定的、手工设计的元级机制，这从根本上限制了此类系统改进的速度。达尔文-哥德尔机器（DGM）（Zhang et al., 2025b）表明，开放式自我改进在编码领域是可实现的。DGM从一个单一的编码智能体开始，反复生成并评估自我修改的变体，形成一个不断增长的垫脚石档案，以供未来改进。由于评估和自我修改都是编码任务，编码能力的提升可以转化为自我改进能力的提升。然而，这种对齐关系通常在编码领域之外并不成立。我们引入了超级智能体（hyperagents），这是一种自指智能体，它将任务智能体（解决目标任务）和元智能体（修改自身和任务智能体）集成到一个可编辑的程序中。至关重要的是，元级修改过程本身是可编辑的，这使得元认知自我修改成为可能，不仅改进了任务解决行为，还改进了生成未来改进的机制。我们通过扩展DGM来创建DGM-超级智能体（DGM-H）来实例化这一框架。通过允许改进过程演化，DGM-H消除了任务性能与自我修改技能之间领域特定对齐的假设，并可能支持在任何可计算任务上的自我加速进展。在不同领域（编码、论文评审、机器人奖励设计和奥林匹克级别数学解题评分）中，DGM-H的性能随时间推移而提高，并优于没有自我改进或开放式探索的基线，以及DGM等先前的自我改进系统。我们进一步表明，DGM-H改进了其生成新智能体的过程（例如，持久记忆、性能跟踪），并且这些元级改进可以跨领域转移并在多次运行中累积。所有实验均在安全预防措施（例如，沙盒、人工监督）下进行。我们讨论了在此设置中安全所包含的意义以及自我改进系统的更广泛影响。DGM-超级智能体展现了开放式AI系统的一瞥，这些系统不仅搜索更好的解决方案，而且不断改进其如何改进的搜索过程。日期：2026年3月23日 通讯：Jenny Zhang (jennyzzt@cs.ubc.ca)，Tatiana Shavrina (rybolos@meta.com) 代码：https://github.com/facebookresearch/Hyperagents</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Self-improving AI systems aim to reduce reliance on human engineering by learning to improve their own learning and problem-solving processes. Existing approaches to recursive self-improvement typically rely on fixed, handcrafted meta-level mechanisms, which fundamentally limit how fast such systems can improve. The Darwin Gödel Machine (DGM) (Zhang et al., 2025b) demonstrates that open-ended self-improvement is achievable in coding. Starting from a single coding agent, the DGM repeatedly generates and evaluates self-modified variants, forming a growing archive of stepping stones for future improvement. Because both evaluation and self-modification are coding tasks, gains in coding ability can translate into gains in self-improvement ability. However, this alignment does not generally hold beyond coding domains. We introduce hyperagents, self-referential agents that integrate a task agent (which solves the target task) and a meta agent (which modifies itself and the task agent) into a single editable program. Crucially, the meta-level modification procedure is itself editable, enabling metacognitive self-modification, improving not only task-solving behavior, but also the mechanism that generates future improvements. We instantiate this framework by extending DGM to create DGM-Hyperagents (DGM-H). By allowing the improvement procedure to evolve, the DGM-H eliminates the assumption of domain-specific alignment between task performance and self-modification skill, and can potentially support self-accelerating progress on any computable task. Across diverse domains (coding, paper review, robotics reward design, and Olympiad-level math-solution grading), the DGM-H improves performance over time and outperforms baselines without self-improvement or open-ended exploration, as well as prior self-improving systems like DGM. We further show that the DGM-H improves the process by which it generates new agents (e.g., persistent memory, performance tracking), and that these meta-level improvements transfer across domains and accumulate across runs. All experiments were conducted with safety precautions (e.g., sandboxing, human oversight). We discuss what safety entails in this setting and the broader implications of self-improving systems. DGM-Hyperagents offer a glimpse of open-ended AI systems that do not merely search for better solutions, but continually improve their search for how to improve. Date: March 23, 2026 Correspondence: Jenny Zhang at jennyzzt@cs.ubc.ca, Tatiana Shavrina at rybolos@meta.com Code: https://github.com/facebookresearch/Hyperagents</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260319a65hyperag,
+  title = {Hyperagents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.19461v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a65-hyperagents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Hyperagents. https://arxiv.org/pdf/2603.19461v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.19461v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

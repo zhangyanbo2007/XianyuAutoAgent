@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory | DAST Papers</title>
+    <meta name="description" content="面向长期交互的 chat assistant，真正关键的能力不是单轮问答，而是跨很多 session 持续记住用户事实、更新旧知识、处理时间变化并在无证据时拒答。LongMemEval 针对的正是这个现实缺口：此前很多记忆评测要么上下文过短，要么缺少知识更新与多 session 结构，导致系统很难被逼近真实长期助理场景。
+
+这篇工作的核心贡献有两层。第一层是 benchmark 本身：它把长期记忆" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a104-longmemeval-interactive-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory" />
+    <meta property="og:description" content="面向长期交互的 chat assistant，真正关键的能力不是单轮问答，而是跨很多 session 持续记住用户事实、更新旧知识、处理时间变化并在无证据时拒答。LongMemEval 针对的正是这个现实缺口：此前很多记忆评测要么上下文过短，要么缺少知识更新与多 session 结构，导致系统很难被逼近真实长期助理场景。
+
+这篇工作的核心贡献有两层。第一层是 benchmark 本身：它把长期记忆" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a104-longmemeval-interactive-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory" />
+    <meta name="twitter:description" content="面向长期交互的 chat assistant，真正关键的能力不是单轮问答，而是跨很多 session 持续记住用户事实、更新旧知识、处理时间变化并在无证据时拒答。LongMemEval 针对的正是这个现实缺口：此前很多记忆评测要么上下文过短，要么缺少知识更新与多 session 结构，导致系统很难被逼近真实长期助理场景。
+
+这篇工作的核心贡献有两层。第一层是 benchmark 本身：它把长期记忆" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2024-10-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-10-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2410.10813" target="_blank" rel="noopener noreferrer">2410.10813</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>面向长期交互的 chat assistant，真正关键的能力不是单轮问答，而是跨很多 session 持续记住用户事实、更新旧知识、处理时间变化并在无证据时拒答。LongMemEval 针对的正是这个现实缺口：此前很多记忆评测要么上下文过短，要么缺少知识更新与多 session 结构，导致系统很难被逼近真实长期助理场景。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心贡献有两层。第一层是 benchmark 本身：它把长期记忆能力拆成信息提取、多 session 推理、时间推理、知识更新和 abstention 五个维度，并构造出可自由扩展的长历史聊天环境。第二层是方法分析框架：作者把 memory system 明确分解为 indexing、retrieval、reading 等阶段，并从 value granularity、key expansion、time-aware query expansion 等设计点系统比较，使它不只是“一个榜”，而是一个能反向指导 memory architecture 设计的评测接口。</dd></div><div><dt>结果/证据</dt><dd>对这个仓库来说，它的重要性不在于又多了一个 benchmark，而在于它把 chat assistant long-term memory 评测从模糊的“能不能记住”推进成了结构化设计问题。后续很多 agent memory、profile memory、context infrastructure 和 update-aware retrieval 工作都直接或间接围绕这几个维度展开，因此它已经具备 durable reference 的地位。</dd></div><div><dt>收录价值</dt><dd>它目前定为 disruptive 而不是更高一级，因为它主要重排的是 agent memory evaluation 与系统设计，而不是直接提出一个普适的新学习范式；同时其数据生成和评测框架仍然主要聚焦 user-assistant chat assistant 场景，离更广的 embodied、multi-agent、tool-interactive lifelong memory 还有边界。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>面向长期交互的 chat assistant，真正关键的能力不是单轮问答，而是跨很多 session 持续记住用户事实、更新旧知识、处理时间变化并在无证据时拒答。LongMemEval 针对的正是这个现实缺口：此前很多记忆评测要么上下文过短，要么缺少知识更新与多 session 结构，导致系统很难被逼近真实长期助理场景。</p><p>这篇工作的核心贡献有两层。第一层是 benchmark 本身：它把长期记忆能力拆成信息提取、多 session 推理、时间推理、知识更新和 abstention 五个维度，并构造出可自由扩展的长历史聊天环境。第二层是方法分析框架：作者把 memory system 明确分解为 indexing、retrieval、reading 等阶段，并从 value granularity、key expansion、time-aware query expansion 等设计点系统比较，使它不只是“一个榜”，而是一个能反向指导 memory architecture 设计的评测接口。</p><p>对这个仓库来说，它的重要性不在于又多了一个 benchmark，而在于它把 chat assistant long-term memory 评测从模糊的“能不能记住”推进成了结构化设计问题。后续很多 agent memory、profile memory、context infrastructure 和 update-aware retrieval 工作都直接或间接围绕这几个维度展开，因此它已经具备 durable reference 的地位。</p><p>它目前定为 disruptive 而不是更高一级，因为它主要重排的是 agent memory evaluation 与系统设计，而不是直接提出一个普适的新学习范式；同时其数据生成和评测框架仍然主要聚焦 user-assistant chat assistant 场景，离更广的 embodied、multi-agent、tool-interactive lifelong memory 还有边界。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20241014a104longme,
+  title = {LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2410.10813.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a104-longmemeval-interactive-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive Memory. https://arxiv.org/pdf/2410.10813.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2410.10813.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

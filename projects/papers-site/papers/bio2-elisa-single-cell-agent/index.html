@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics | DAST Papers</title>
+    <meta name="description" content="问题与背景：单细胞 RNA 测序数据极其丰富，但从表达矩阵到机制性生物学假设之间仍有明显鸿沟。现有 agent 往往缺少对真实表达表示的访问，而表达基础模型又难以直接和自然语言推理对接。
+
+方法/新意：ELISA 将 scGPT 表达嵌入、BioBERT 语义检索和 LLM 解释器组合起来，形成一个可交互、可解释的混合 agent。核心不是单纯检索文献，而是让单细胞表达表示和语言语义层在同一推理回" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio2-elisa-single-cell-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics" />
+    <meta property="og:description" content="问题与背景：单细胞 RNA 测序数据极其丰富，但从表达矩阵到机制性生物学假设之间仍有明显鸿沟。现有 agent 往往缺少对真实表达表示的访问，而表达基础模型又难以直接和自然语言推理对接。
+
+方法/新意：ELISA 将 scGPT 表达嵌入、BioBERT 语义检索和 LLM 解释器组合起来，形成一个可交互、可解释的混合 agent。核心不是单纯检索文献，而是让单细胞表达表示和语言语义层在同一推理回" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio2-elisa-single-cell-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics" />
+    <meta name="twitter:description" content="问题与背景：单细胞 RNA 测序数据极其丰富，但从表达矩阵到机制性生物学假设之间仍有明显鸿沟。现有 agent 往往缺少对真实表达表示的访问，而表达基础模型又难以直接和自然语言推理对接。
+
+方法/新意：ELISA 将 scGPT 表达嵌入、BioBERT 语义检索和 LLM 解释器组合起来，形成一个可交互、可解释的混合 agent。核心不是单纯检索文献，而是让单细胞表达表示和语言语义层在同一推理回" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.11872" target="_blank" rel="noopener noreferrer">2603.11872</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：单细胞 RNA 测序数据极其丰富，但从表达矩阵到机制性生物学假设之间仍有明显鸿沟。现有 agent 往往缺少对真实表达表示的访问，而表达基础模型又难以直接和自然语言推理对接。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：ELISA 将 scGPT 表达嵌入、BioBERT 语义检索和 LLM 解释器组合起来，形成一个可交互、可解释的混合 agent。核心不是单纯检索文献，而是让单细胞表达表示和语言语义层在同一推理回路中发生耦合。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇论文位于 AI x genomics / agentic biology 主线，代表的是‘基础表达模型 + 语言 agent’的融合方向。它很适合和 AlphaGenome、MOSAIC、LUMI-lab 一起看，体现生成式与检索式 agent 如何进入生物发现流程。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：目前还是 arXiv 阶段，且更偏框架整合与交互式发现，离真正形成大规模自动科学发现平台还有距离。外部验证和真实 wet-lab 闭环证据仍需继续补强。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：单细胞 RNA 测序数据极其丰富，但从表达矩阵到机制性生物学假设之间仍有明显鸿沟。现有 agent 往往缺少对真实表达表示的访问，而表达基础模型又难以直接和自然语言推理对接。</p><p>方法/新意：ELISA 将 scGPT 表达嵌入、BioBERT 语义检索和 LLM 解释器组合起来，形成一个可交互、可解释的混合 agent。核心不是单纯检索文献，而是让单细胞表达表示和语言语义层在同一推理回路中发生耦合。</p><p>意义/放在仓库中的位置：这篇论文位于 AI x genomics / agentic biology 主线，代表的是‘基础表达模型 + 语言 agent’的融合方向。它很适合和 AlphaGenome、MOSAIC、LUMI-lab 一起看，体现生成式与检索式 agent 如何进入生物发现流程。</p><p>局限/为何不再升一级：目前还是 arXiv 阶段，且更偏框架整合与交互式发现，离真正形成大规模自动科学发现平台还有距离。外部验证和真实 wet-lab 闭环证据仍需继续补强。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要 将单细胞RNA测序（scRNA-seq）数据转化为机制性生物学假设仍然是一个关键瓶颈，因为智能体AI系统缺乏直接访问转录组表示的能力，而表达基础模型对自然语言来说仍然不透明。在本文中，我们介绍了ELISA（Embedding-Linked Interactive Single-cell Agent），这是一个可解释的框架，它将scGPT表达嵌入与基于BioBERT的语义检索和LLM介导的解释相结合，以实现交互式单细胞发现。一个自动查询分类器根据查询是基因特征、自然语言概念还是两者的混合，将输入路由到基因标记评分、语义匹配或互惠排名融合管道。集成的分析模块执行60多个基因集的通路活性评分、使用280多个精选配对的配体-受体相互作用预测、条件感知比较分析以及细胞类型比例估计，所有这些都直接在嵌入数据上操作，无需访问原始计数矩阵。ELISA在涵盖炎症性肺病、儿童和成人癌症、类器官模型、健康组织和神经发育的六个不同scRNA-seq数据集上进行了基准测试，在细胞类型检索方面显著优于CellWhisperer（组合置换检验，p &lt; 0.001），尤其在基因特征查询上取得了巨大提升（MRR的Cohen’s d = 5.98）。ELISA以近乎完美的通路对齐和主题覆盖率（均为0.98）重现了已发表的生物学发现（平均综合得分0.90），并通过基于LLM的推理生成候选假设，弥合了转录组数据探索与生物学发现之间的鸿沟。代码可在以下网址获取：https://github.com/omaruno/ELISA-AnAI-Agent-for-Expression-Grounded-Discovery-in-Single-Cell-Genomics.git（如果您在研究中使用ELISA，请引用此工作）。关键词 AI智能体，单细胞基因组学，AI发现</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Translating single-cell RNA sequencing (scRNA-seq) data into mechanistic biological hypotheses remains a critical bottleneck, as agentic AI systems lack direct access to transcriptomic representations while expression foundation models remain opaque to natural language. Here we introduce ELISA (Embedding-Linked Interactive Single-cell Agent), an interpretable framework that unifies scGPT expression embeddings with BioBERT-based semantic retrieval and LLM-mediated interpretation for interactive single-cell discovery. An automatic query classifier routes inputs to gene marker scoring, semantic matching, or reciprocal rank fusion pipelines depending on whether the query is a gene signature, natural language concept, or mixture of both. Integrated analytical modules perform pathway activity scoringacross 60+ gene sets, ligand–receptor interaction prediction using 280+ curated pairs, condition-aware comparative analysis, and cell-type proportion estimation all operating directly on embedded data without access to the original count matrix. Benchmarked across six diverse scRNA-seq datasets spanning inflammatory lung disease, pediatric and adult cancers, organoid models, healthy tissue, and neurodevelopment, ELISA significantly outperforms CellWhisperer in cell type retrieval (combined permutation test, p &lt; 0.001), with particularly large gains on gene-signature queries (Cohen’s d = 5.98 for MRR). ELISA replicates published biological findings (mean composite score 0.90) with near-perfect pathway alignment and theme coverage (0.98 each), and generates candidate hypotheses through grounded LLM reasoning, bridging the gap between transcriptomic data exploration and biological discovery. Code available at: https://github.com/omaruno/ELISA-AnAI-Agent-for-Expression-Grounded-Discovery-in-Single-Cell-Genomics.git (If you use ELISA in your research, please cite this work). Keywords AI Agents, Single Cell Genomics, AI Discovery</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260312bio2elisas,
+  title = {ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.11872v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio2-elisa-single-cell-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ELISA: An Interpretable Hybrid Generative AI Agent for Expression-Grounded Discovery in Single-Cell Genomics. https://arxiv.org/pdf/2603.11872v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.11872v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

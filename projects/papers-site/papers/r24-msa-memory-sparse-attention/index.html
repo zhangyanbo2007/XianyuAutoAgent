@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens | DAST Papers</title>
+    <meta name="description" content="长程记忆一直是通用模型能力扩展的硬瓶颈。传统 full attention 路线在上下文长度升到百万级后，计算与 KV cache 成本都会迅速失控；而 RAG、外部 memory agent 或固定状态模型虽然能绕开部分长度限制，却往往带来精度下降、延迟膨胀、记忆不可编辑，或缺乏端到端优化的问题。MSA 正面瞄准的是‘如何让模型本体具备 lifetime-scale intrinsic memo" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r24-msa-memory-sparse-attention/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens" />
+    <meta property="og:description" content="长程记忆一直是通用模型能力扩展的硬瓶颈。传统 full attention 路线在上下文长度升到百万级后，计算与 KV cache 成本都会迅速失控；而 RAG、外部 memory agent 或固定状态模型虽然能绕开部分长度限制，却往往带来精度下降、延迟膨胀、记忆不可编辑，或缺乏端到端优化的问题。MSA 正面瞄准的是‘如何让模型本体具备 lifetime-scale intrinsic memo" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r24-msa-memory-sparse-attention/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens" />
+    <meta name="twitter:description" content="长程记忆一直是通用模型能力扩展的硬瓶颈。传统 full attention 路线在上下文长度升到百万级后，计算与 KV cache 成本都会迅速失控；而 RAG、外部 memory agent 或固定状态模型虽然能绕开部分长度限制，却往往带来精度下降、延迟膨胀、记忆不可编辑，或缺乏端到端优化的问题。MSA 正面瞄准的是‘如何让模型本体具备 lifetime-scale intrinsic memo" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23516" target="_blank" rel="noopener noreferrer">2603.23516</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长程记忆一直是通用模型能力扩展的硬瓶颈。传统 full attention 路线在上下文长度升到百万级后，计算与 KV cache 成本都会迅速失控；而 RAG、外部 memory agent 或固定状态模型虽然能绕开部分长度限制，却往往带来精度下降、延迟膨胀、记忆不可编辑，或缺乏端到端优化的问题。MSA 正面瞄准的是‘如何让模型本体具备 lifetime-scale intrinsic memory’。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Memory Sparse Attention，把 long-context 扩展做成一条完整的 end-to-end memory model 路线。核心部件包括可训练的 scalable sparse attention、面向超长文档的 document-wise RoPE、配合 KV cache compression 与 Memory Parallel 的超长推理方案，以及支持跨离散记忆段多跳推理的 Memory Interleaving。论文报告从 16K 扩展到 100M tokens 时性能衰减小于 9%，并在长上下文 benchmark 上超过前沿 LLM、RAG 系统和 memory agents。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不只是某个 sparse attention trick，而是在模型层重新组织了 memory capacity 与 reasoning 的关系。与仅靠外部检索或 agent glue 的方法不同，MSA 给出了一条‘端到端可训练的内生超长记忆模型’路线；而且它已经不止停留在 paper demo，EverMind 后续的 EverMemOS、EverMemBench 和相关工程项目明显都在围绕它展开，说明它开始具备路线牵引力。</dd></div><div><dt>收录价值</dt><dd>它没有升到 disruptive，是因为现阶段的强证据仍主要来自作者生态和官方评测。虽然项目群落地信号很强，但是否会成为社区更广泛采用的默认 memory interface，还要看独立复现、外部系统整合，以及更多非作者团队是否围绕这条路线构建长期工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长程记忆一直是通用模型能力扩展的硬瓶颈。传统 full attention 路线在上下文长度升到百万级后，计算与 KV cache 成本都会迅速失控；而 RAG、外部 memory agent 或固定状态模型虽然能绕开部分长度限制，却往往带来精度下降、延迟膨胀、记忆不可编辑，或缺乏端到端优化的问题。MSA 正面瞄准的是‘如何让模型本体具备 lifetime-scale intrinsic memory’。</p><p>论文提出 Memory Sparse Attention，把 long-context 扩展做成一条完整的 end-to-end memory model 路线。核心部件包括可训练的 scalable sparse attention、面向超长文档的 document-wise RoPE、配合 KV cache compression 与 Memory Parallel 的超长推理方案，以及支持跨离散记忆段多跳推理的 Memory Interleaving。论文报告从 16K 扩展到 100M tokens 时性能衰减小于 9%，并在长上下文 benchmark 上超过前沿 LLM、RAG 系统和 memory agents。</p><p>这篇工作值得正式收录，因为它不只是某个 sparse attention trick，而是在模型层重新组织了 memory capacity 与 reasoning 的关系。与仅靠外部检索或 agent glue 的方法不同，MSA 给出了一条‘端到端可训练的内生超长记忆模型’路线；而且它已经不止停留在 paper demo，EverMind 后续的 EverMemOS、EverMemBench 和相关工程项目明显都在围绕它展开，说明它开始具备路线牵引力。</p><p>它没有升到 disruptive，是因为现阶段的强证据仍主要来自作者生态和官方评测。虽然项目群落地信号很强，但是否会成为社区更广泛采用的默认 memory interface，还要看独立复现、外部系统整合，以及更多非作者团队是否围绕这条路线构建长期工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MSA：用于高效端到端记忆模型扩展至1亿Token的记忆稀疏注意力。长期记忆是人类智能的基石。使人工智能能够处理生命周期规模的信息，达到数亿个token，一直是该领域长期以来的追求。由于全注意力架构的限制，大型语言模型（LLMs）的有效上下文长度通常被限制在100万个token。现有的探索，例如混合线性注意力、固定大小的记忆状态（例如RNNs）以及RAG或代理系统等外部存储方法，试图扩展这一限制。然而，这些方法通常面临着随着上下文长度增长而出现的严重精度下降和延迟迅速增加、无法动态修改记忆内容或缺乏端到端优化等问题。这些瓶颈阻碍了诸如大规模语料库摘要、具有稳定人格的数字孪生以及长历史代理推理等复杂场景，同时限制了记忆容量并减慢了推理速度。我们提出了记忆稀疏注意力（MSA），这是一个端到端可训练、高效且可大规模扩展的记忆模型框架。通过包括可扩展稀疏注意力架构和文档级RoPE在内的核心创新，MSA在训练和推理中均实现了线性复杂度，同时保持了卓越的精度稳定性，在从1.6万个token扩展到1亿个token时，精度下降不到9%。此外，KV缓存压缩与推理过程中的记忆并行（Memory Parallel）相结合，使得在2块A800 GPU上进行1亿个token的推理成为可能。此外，我们提出了一种记忆交错（Memory Interleaving）机制，可有效促进跨分散记忆片段的复杂多跳推理。在长上下文基准测试中，MSA显著超越了前沿语言模型、最先进（SOTA）的RAG系统和领先的记忆代理。这些结果表明，通过将记忆容量与推理解耦，MSA为赋予通用模型内在的、生命周期规模的记忆提供了可扩展的基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-term memory is a cornerstone of human intelligence. Enabling AI to process lifetime-scale information, reaching hundreds of millions of tokens, remains a longstanding pursuit in the field. Due to the constraints of full-attention architectures, the effective context length of large language models (LLMs) is typically limited to 1M tokens. Existing explorations, such as hybrid linear attention, fixed-size memory states (e.g., RNNs), and external storage methods like RAG or agent systems, attempt to extend this limit. However, these approaches often suffer from severe precision degradation and rapidly increasing latency as context length grows, an inability to dynamically modify memory content, or a lack of end-to-end optimization. These bottlenecks impede complex scenarios like large-corpus summarization, Digital Twins with stable personas, and long-history agent reasoning, while limiting memory capacity and slowing inference. We present Memory Sparse Attention (MSA), an end-to-end trainable, efficient, and massively scalable memory model framework. Through core innovations including scalable sparse attention architecture and document-wise RoPE, MSA achieves linear complexity in both training and inference while maintaining exceptional precision stability, exhibiting less than 9% degradation when scaling from 16K to 100M tokens. Furthermore, KV cache compression, combined with Memory Parallel during inference, enables 100M tokens inference on 2×A800 GPUs. In addition, we propose a Memory Interleaving mechanism that effectively facilitates complex multi-hop reasoning across scattered memory segments. MSA significantly surpasses frontier language models, state-of-the-art (SOTA) RAG systems, and leading memory agents in long-context benchmarks. These results demonstrate that by decoupling memory capacity from reasoning, MSA provides a scalable foundation to endow general-purpose models with intrinsic, lifetime-scale memory.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260306r24msamemo,
+  title = {MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23516v1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r24-msa-memory-sparse-attention/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MSA: Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens. https://arxiv.org/pdf/2603.23516v1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23516v1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

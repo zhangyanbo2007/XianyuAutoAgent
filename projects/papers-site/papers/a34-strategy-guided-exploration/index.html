@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Expanding LLM Agent Boundaries with Strategy-Guided Exploration | DAST Papers</title>
+    <meta name="description" content="问题与背景：大语言模型智能体在长程任务上的强化学习训练，往往被探索效率所限制。尤其在语言动作空间、复杂观察和稀疏回报下，单纯在低层动作空间试错既昂贵又容易陷入局部策略。论文要解决的是：如何让 LLM agent 在 RL 过程中学会更有结构的探索，而不是盲目增加 rollout 或温度。
+
+方法/新意：作者提出 Strategy-Guided Exploration（SGE），让模型先生成一段高层" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a34-strategy-guided-exploration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Expanding LLM Agent Boundaries with Strategy-Guided Exploration" />
+    <meta property="og:description" content="问题与背景：大语言模型智能体在长程任务上的强化学习训练，往往被探索效率所限制。尤其在语言动作空间、复杂观察和稀疏回报下，单纯在低层动作空间试错既昂贵又容易陷入局部策略。论文要解决的是：如何让 LLM agent 在 RL 过程中学会更有结构的探索，而不是盲目增加 rollout 或温度。
+
+方法/新意：作者提出 Strategy-Guided Exploration（SGE），让模型先生成一段高层" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a34-strategy-guided-exploration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Expanding LLM Agent Boundaries with Strategy-Guided Exploration" />
+    <meta name="twitter:description" content="问题与背景：大语言模型智能体在长程任务上的强化学习训练，往往被探索效率所限制。尤其在语言动作空间、复杂观察和稀疏回报下，单纯在低层动作空间试错既昂贵又容易陷入局部策略。论文要解决的是：如何让 LLM agent 在 RL 过程中学会更有结构的探索，而不是盲目增加 rollout 或温度。
+
+方法/新意：作者提出 Strategy-Guided Exploration（SGE），让模型先生成一段高层" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Expanding LLM Agent Boundaries with Strategy-Guided Exploration</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.02045" target="_blank" rel="noopener noreferrer">2603.02045</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：大语言模型智能体在长程任务上的强化学习训练，往往被探索效率所限制。尤其在语言动作空间、复杂观察和稀疏回报下，单纯在低层动作空间试错既昂贵又容易陷入局部策略。论文要解决的是：如何让 LLM agent 在 RL 过程中学会更有结构的探索，而不是盲目增加 rollout 或温度。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：作者提出 Strategy-Guided Exploration（SGE），让模型先生成一段高层自然语言策略，再基于该策略展开环境动作，从而把探索从低层动作空间提升到语言策略空间。为增强多样性，论文进一步引入 mixed-temperature sampling 和 strategy reflection，使智能体能并行探索不同策略，并依据前序结果反思更新策略生成。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇工作适合放在 agent / RL 主线，与 KARL、OpenClaw-RL、AutoHarness 等条目形成连续谱。它的意义在于表明 agent RL 的关键瓶颈不一定是更强奖励或更大 rollout，而可能是是否能把探索单位提升到可组合、可反思的策略层。对 UI、tool use、coding 和 embodied agent 都有明确外溢性。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：尽管方向很正、方法也有清晰独立性，但论文目前仍处于 arXiv 阶段，影响力主要集中在 agent RL 训练范式的一个子方向，还没有达到足以重排更大范围智能体训练路线的程度，因此定为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：大语言模型智能体在长程任务上的强化学习训练，往往被探索效率所限制。尤其在语言动作空间、复杂观察和稀疏回报下，单纯在低层动作空间试错既昂贵又容易陷入局部策略。论文要解决的是：如何让 LLM agent 在 RL 过程中学会更有结构的探索，而不是盲目增加 rollout 或温度。</p><p>方法/新意：作者提出 Strategy-Guided Exploration（SGE），让模型先生成一段高层自然语言策略，再基于该策略展开环境动作，从而把探索从低层动作空间提升到语言策略空间。为增强多样性，论文进一步引入 mixed-temperature sampling 和 strategy reflection，使智能体能并行探索不同策略，并依据前序结果反思更新策略生成。</p><p>意义/放在仓库中的位置：这篇工作适合放在 agent / RL 主线，与 KARL、OpenClaw-RL、AutoHarness 等条目形成连续谱。它的意义在于表明 agent RL 的关键瓶颈不一定是更强奖励或更大 rollout，而可能是是否能把探索单位提升到可组合、可反思的策略层。对 UI、tool use、coding 和 embodied agent 都有明确外溢性。</p><p>局限/为何不再升一级：尽管方向很正、方法也有清晰独立性，但论文目前仍处于 arXiv 阶段，影响力主要集中在 agent RL 训练范式的一个子方向，还没有达到足以重排更大范围智能体训练路线的程度，因此定为突破性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>苹果强化学习 (RL) 在将大型语言模型 (LLMs) 后训练为智能体，用于计算机使用、工具调用和编码等任务方面取得了显著成功。然而，探索仍然是LLM智能体RL的核心挑战，尤其是在它们在语言-动作空间中操作，伴随着复杂的观察和稀疏的结果奖励时。在这项工作中，我们通过利用LLMs在语言中对环境进行规划和推理的能力，将探索从低级动作转移到更高级的语言策略，从而解决了LLM智能体的探索问题。因此，我们提出了策略引导探索 (SGE)，它首先生成一个简洁的自然语言策略，描述了为实现目标需要做什么，然后根据该策略生成环境动作。通过在策略空间而非动作空间中进行探索，SGE诱导了结构化和多样化的探索，旨在实现不同的环境结果。为了在RL期间增加策略多样性，SGE引入了混合温度采样，它并行探索多样化的策略，以及一个策略反思过程，该过程将策略生成建立在环境中先前策略的结果之上。在UI交互、工具调用、编码和具身智能体环境等多个领域，SGE始终优于以探索为重点的RL基线，提高了学习效率和最终性能。我们表明SGE使智能体能够学习解决对于基础模型来说过于困难的任务。通讯作者: Andrew Szot: a_szot@apple.com; Alexander Toshev: toshev@apple.com 日期: 2026年3月3日</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Apple Reinforcement learning (RL) has demonstrated notable success in post-training large language models (LLMs) as agents for tasks such as computer use, tool calling, and coding. However, exploration remains a central challenge in RL for LLM agents, especially as they operate in language-action spaces with complex observations and sparse outcome rewards. In this work, we address exploration for LLM agents by leveraging the ability of LLMs to plan and reason in language about the environment to shift exploration from low-level actions to higher-level language strategies. We thus propose Strategy-Guided Exploration (SGE), which first generates a concise natural-language strategy that describes what to do to make progress toward the goal, and then generates environment actions conditioned on that strategy. By exploring in the space of strategies rather than the space of actions, SGE induces structured and diverse exploration that targets different environment outcomes. To increase strategy diversity during RL, SGE introduces mixed-temperature sampling, which explores diverse strategies in parallel, along with a strategy reflection process that grounds strategy generation on the outcomes of previous strategies in the environment. Across UI interaction, tool-calling, coding, and embodied agent environments, SGE consistently outperforms exploration-focused RL baselines, improving both learning efficiency and final performance. We show that SGE enables the agent to learn to solve tasks too difficult for the base model. Correspondence: Andrew Szot: a_szot@apple.com; Alexander Toshev: toshev@apple.com Date: March 3, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260302a34strateg,
+  title = {Expanding LLM Agent Boundaries with Strategy-Guided Exploration},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.02045.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a34-strategy-guided-exploration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Expanding LLM Agent Boundaries with Strategy-Guided Exploration. https://arxiv.org/pdf/2603.02045.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.02045.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

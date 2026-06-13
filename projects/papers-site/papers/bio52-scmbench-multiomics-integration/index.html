@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration | DAST Papers</title>
+    <meta name="description" content="single-cell multi-omics integration 这条线已经不缺模型，但一直缺一套能把 domain-specific models 和 foundation models 放到同一张可操作坐标系里的评测接口。SCMBench 的贡献就在这里：它不是只比 integration accuracy，而是把 biomarker detection、trajectory infer" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio52-scmbench-multiomics-integration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration" />
+    <meta property="og:description" content="single-cell multi-omics integration 这条线已经不缺模型，但一直缺一套能把 domain-specific models 和 foundation models 放到同一张可操作坐标系里的评测接口。SCMBench 的贡献就在这里：它不是只比 integration accuracy，而是把 biomarker detection、trajectory infer" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio52-scmbench-multiomics-integration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration" />
+    <meta name="twitter:description" content="single-cell multi-omics integration 这条线已经不缺模型，但一直缺一套能把 domain-specific models 和 foundation models 放到同一张可操作坐标系里的评测接口。SCMBench 的贡献就在这里：它不是只比 integration accuracy，而是把 biomarker detection、trajectory infer" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration</h1>
+          <p class="subtitle">生命科学基础模型 · 发表：2026-05-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生命科学基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-02</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72570-x" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72570-x</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>single-cell multi-omics integration 这条线已经不缺模型，但一直缺一套能把 domain-specific models 和 foundation models 放到同一张可操作坐标系里的评测接口。SCMBench 的贡献就在这里：它不是只比 integration accuracy，而是把 biomarker detection、trajectory inference 和 batch-effect correction 一起纳入。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的价值不只是 benchmark。它还明确揭示 foundation models 在该任务上相对专用模型的短板，并提出 lightweight adaptation strategy 去缩小差距。也就是说，它同时贡献了 evaluation interface 和一个可复用的 adaptation hook。</dd></div><div><dt>结果/证据</dt><dd>从仓库视角看，这类工作属于 AI-for-biology workflow infrastructure。它帮助研究者在单细胞多组学场景下更可靠地选择、比较和改造 foundation models，而不是停留在某一个下游分数。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前影响范围仍主要集中在 single-cell multi-omics integration 这条工作流。尽管方法和评测接口都很实用，但还没有证明会外溢成更广生命科学 foundation-model 评测的统一标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>single-cell multi-omics integration 这条线已经不缺模型，但一直缺一套能把 domain-specific models 和 foundation models 放到同一张可操作坐标系里的评测接口。SCMBench 的贡献就在这里：它不是只比 integration accuracy，而是把 biomarker detection、trajectory inference 和 batch-effect correction 一起纳入。</p><p>这篇工作的价值不只是 benchmark。它还明确揭示 foundation models 在该任务上相对专用模型的短板，并提出 lightweight adaptation strategy 去缩小差距。也就是说，它同时贡献了 evaluation interface 和一个可复用的 adaptation hook。</p><p>从仓库视角看，这类工作属于 AI-for-biology workflow infrastructure。它帮助研究者在单细胞多组学场景下更可靠地选择、比较和改造 foundation models，而不是停留在某一个下游分数。</p><p>它没有更高，是因为当前影响范围仍主要集中在 single-cell multi-omics integration 这条工作流。尽管方法和评测接口都很实用，但还没有证明会外溢成更广生命科学 foundation-model 评测的统一标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SCMBench: 单细胞多组学数据整合的领域特定模型和基础模型基准测试。单细胞测序技术的最新进展导致了大量多组学数据的生成，从而推动了众多整合工具的开发。尽管多组学整合已显著推动了细胞研究，但目前仍缺乏对这些工具的全面评估和指导。本研究对用于多组学数据整合的领域特定模型 (DMs) 和基础模型 (FMs) 进行了基准测试，评估了23种方法在整合准确性、生物标志物检测、轨迹推断和定量批次效应校正方面的优化超参数性能。我们解决了当前在多组学整合任务中评估FMs相对于DMs的功效和局限性方面的空白。重要的是，我们的全面分析超越了基本的整合准确性，侧重于细胞特征、转录组生物标志物、表观基因组调控元件和发育轨迹的保留。这种整体方法使研究人员能够从整合结果中提取有意义的见解，从而促进对单个细胞的更深入理解。总的来说，我们发现FMs在该领域未能达到最先进的DMs的水平。为了弥补这一性能差距，我们提出了一种轻量级适应策略，以提高它们在该任务中的有效性。我们的研究结果为研究人员选择适合特定单细胞分析目标的整合方法提供了指导，并为未来的模型设计提供了见解。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent advancements in single-cell sequencing technologies have led to the generation of vast amounts of multi-omics data, spurring the development of numerous integration tools. While multi-omics integration has significantly advanced cell research, there is still a lack of comprehensive evaluations and guidelines for these tools. This study benchmarks Domain-specific Models (DMs) and Foundation Models (FMs) for multi-omics data integration, assessing 23 methods with optimized hyperparameters on integration accuracy, biomarker detection, trajectory inference, and quantitative batch effect correction. We address current gaps in assessing the efficacy and limitations of FMs compared to DMs in the multi-omics integration task. Importantly, our comprehensive analysis goes beyond basic integration accuracy, focusing on the preservation of cellular characteristics, transcriptomic biomarkers, epigenomic regulatory elements, and development trajectories. This holistic approach enables researchers to extract meaningful insights from integration results, facilitating a deeper understanding of individual cells. Generally, we find FMs fall short of state-of-the-art DMs in this field. To bridge this performance gap, we propose a lightweight adaptation strategy that enhances their effectiveness in this task. Our findings serve as a guide for researchers in selecting suitable integration methods for specific single-cell analysis objectives and provide insights for future model design.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260502bio52scmbe,
+  title = {SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72570-x.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio52-scmbench-multiomics-integration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SCMBench: benchmarking domain-specific and foundation models for single-cell multi-omics data integration. https://www.nature.com/articles/s41467-026-72570-x.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/bio53-regformer-grn-foundation/">
+              <span>RegFormer: a single-cell foundation model powered by gene regulatory hierarchies</span>
+              <small>生命科学基础模型 · 2026-05-05</small>
+            </a>
+            <a class="related-item" href="../../papers/ls1-alphagenome/">
+              <span>Advancing regulatory variant effect prediction with AlphaGenome</span>
+              <small>生命科学基础模型 · 2026-01-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72570-x.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

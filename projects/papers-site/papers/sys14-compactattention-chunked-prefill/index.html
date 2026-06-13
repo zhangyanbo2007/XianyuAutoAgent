@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection | DAST Papers</title>
+    <meta name="description" content="CompactAttention 针对长上下文 LLM serving 里的真实瓶颈：chunked prefill 已经常用，但很多稀疏注意力方法仍假设 one-shot prefill，到了小 query chunk + 长 KV cache 的实际场景会失去 kernel 效率或反复承担 pattern search 成本。
+
+论文的关键机制是 Block-Union KV Selectio" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys14-compactattention-chunked-prefill/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection" />
+    <meta property="og:description" content="CompactAttention 针对长上下文 LLM serving 里的真实瓶颈：chunked prefill 已经常用，但很多稀疏注意力方法仍假设 one-shot prefill，到了小 query chunk + 长 KV cache 的实际场景会失去 kernel 效率或反复承担 pattern search 成本。
+
+论文的关键机制是 Block-Union KV Selectio" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys14-compactattention-chunked-prefill/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection" />
+    <meta name="twitter:description" content="CompactAttention 针对长上下文 LLM serving 里的真实瓶颈：chunked prefill 已经常用，但很多稀疏注意力方法仍假设 one-shot prefill，到了小 query chunk + 长 KV cache 的实际场景会失去 kernel 效率或反复承担 pattern search 成本。
+
+论文的关键机制是 Block-Union KV Selectio" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection</h1>
+          <p class="subtitle">系统、硬件与协同设计 · 发表：2026-05-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">系统、硬件与协同设计</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.16839" target="_blank" rel="noopener noreferrer">2605.16839</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>CompactAttention 针对长上下文 LLM serving 里的真实瓶颈：chunked prefill 已经常用，但很多稀疏注意力方法仍假设 one-shot prefill，到了小 query chunk + 长 KV cache 的实际场景会失去 kernel 效率或反复承担 pattern search 成本。</dd></div><div><dt>方法/机制</dt><dd>论文的关键机制是 Block-Union KV Selection：不把 2D block-sparse mask 直接当作 sparse kernel 的执行计划，而是把它转成 KV selection signal，再通过 Q-block union 和 intra-group union 构造 GQA-aware per-group KV block tables。</dd></div><div><dt>结果/证据</dt><dd>这个设计的系统价值在于适配 paged execution 约束，让被选中的 KV blocks 可以原地访问，避免 QUOKA 式显式 KV copy/compaction，同时用 dense FlashAttention 类 kernel 吃到更高吞吐。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它给长上下文推理系统提供了可复用 primitive：把稀疏注意力的选择模式和实际 kernel 执行解耦，在 chunked prefill serving 中用 block-table 接口桥接稀疏内存访问与 dense-kernel 计算效率。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>CompactAttention 针对长上下文 LLM serving 里的真实瓶颈：chunked prefill 已经常用，但很多稀疏注意力方法仍假设 one-shot prefill，到了小 query chunk + 长 KV cache 的实际场景会失去 kernel 效率或反复承担 pattern search 成本。</p><p>论文的关键机制是 Block-Union KV Selection：不把 2D block-sparse mask 直接当作 sparse kernel 的执行计划，而是把它转成 KV selection signal，再通过 Q-block union 和 intra-group union 构造 GQA-aware per-group KV block tables。</p><p>这个设计的系统价值在于适配 paged execution 约束，让被选中的 KV blocks 可以原地访问，避免 QUOKA 式显式 KV copy/compaction，同时用 dense FlashAttention 类 kernel 吃到更高吞吐。</p><p>它值得正式收录，因为它给长上下文推理系统提供了可复用 primitive：把稀疏注意力的选择模式和实际 kernel 执行解耦，在 chunked prefill serving 中用 block-table 接口桥接稀疏内存访问与 dense-kernel 计算效率。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>分块预填充已成为长上下文大型语言模型（LLMs）广泛采用的服务策略，但在此机制下高效的注意力计算仍然具有挑战性。现有的稀疏注意力方法主要为一次性预填充设计，无法高效地应用于分块预填充：当查询长度受限于块大小时，块稀疏核会失去效率；而当在每个块上对累积的KV缓存重复执行时，细粒度模式搜索变得成本高昂。QUOKA是一种直接针对分块预填充的最新方法，它避免了稀疏核开销，但依赖于查询子采样、令牌级KV选择，这可能会遗漏查询特定的KV条目并引入显式KV复制开销。为了解决这些限制，我们提出了CompactAttention，一种基于块联合KV选择的分块预填充注意力机制。CompactAttention将二维块稀疏掩码视为KV选择信号，而非直接的稀疏核执行计划，并通过Q块联合和组内联合将其转换为GQA感知的每组KV块表。这种构造生成了最小的块表，在分页执行约束下保留了输入掩码选择的所有KV块，从而使选定的KV块能够原位访问，无需显式KV压缩。在LLaMA-3.1-8B-Instruct上，CompactAttention在RULER基准测试中保持了接近密集注意力的准确性，同时在128K上下文长度的分块预填充下，注意力速度提升高达2.72倍。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Chunked prefill has become a widely adopted serving strategy for long-context large language models, but efficient attention computation in this regime remains challenging. Existing sparse attention methods are primarily designed for one-shot prefill and do not translate efficiently to chunked prefill: block-sparse kernels lose efficiency when the query length is limited by the chunk size, while fine-grained pattern search becomes costly when repeated over the accumulated KV cache at every chunk. QUOKA, a recent method that directly targets chunked prefill, avoids sparse-kernel overhead but relies on query-subsampled, token-level KV selection, which can miss query-specific KV entries and introduce explicit KV-copy overhead. To address these limitations, we propose CompactAttention, a chunked-prefill attention mechanism based on Block-Union KV Selection. CompactAttention treats 2D block-sparse masks as KV-selection signals rather than direct sparse-kernel execution plans, and converts them into GQA-aware per-group KV block tables through Q-block union and intra-group union. This construction produces the minimal block tables that preserve all KV blocks selected by the input masks under paged execution constraints, enabling selected KV blocks to be accessed in place without explicit KV compaction. On LLaMA-3.1-8B-Instruct, CompactAttention maintains accuracy close to dense attention on the RULER benchmark while delivering up to 2.72× attention speedup at 128K context length under chunked prefill.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260516sys14compa,
+  title = {CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.16839.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys14-compactattention-chunked-prefill/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection. https://arxiv.org/pdf/2605.16839.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw34-therm-fm-3dic-thermal/">
+              <span>Therm-FM: Foundation Model is ALL YOU NEED for 3D-ICs Thermal Simulation</span>
+              <small>系统、硬件与协同设计 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/sys13-agentstop-local-agents/">
+              <span>AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices</span>
+              <small>系统、硬件与协同设计 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys9-mint-lora-infrastructure/">
+              <span>MinT: Managed Infrastructure for Training and Serving Millions of LLMs</span>
+              <small>系统、硬件与协同设计 · 2026-05-13</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.16839.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/jiwonsong-dev/CompactAttention" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

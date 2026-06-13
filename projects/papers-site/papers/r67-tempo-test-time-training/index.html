@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TEMPO: Scaling Test-time Training for Large Reasoning Models | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 test-time training 在 reasoning model 上一个已经开始暴露但还没被解决的核心问题：算力继续加上去，现有方法却很快 plateau，而且多样性还会塌。作者把根因定位到 self-generated reward drift，也就是 policy 自己变了，但 critic / reward 估计没有同步校正。
+
+TEMPO 的关键做法是在无标签问题上的" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r67-tempo-test-time-training/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TEMPO: Scaling Test-time Training for Large Reasoning Models" />
+    <meta property="og:description" content="这篇论文针对 test-time training 在 reasoning model 上一个已经开始暴露但还没被解决的核心问题：算力继续加上去，现有方法却很快 plateau，而且多样性还会塌。作者把根因定位到 self-generated reward drift，也就是 policy 自己变了，但 critic / reward 估计没有同步校正。
+
+TEMPO 的关键做法是在无标签问题上的" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r67-tempo-test-time-training/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TEMPO: Scaling Test-time Training for Large Reasoning Models" />
+    <meta name="twitter:description" content="这篇论文针对 test-time training 在 reasoning model 上一个已经开始暴露但还没被解决的核心问题：算力继续加上去，现有方法却很快 plateau，而且多样性还会塌。作者把根因定位到 self-generated reward drift，也就是 policy 自己变了，但 critic / reward 估计没有同步校正。
+
+TEMPO 的关键做法是在无标签问题上的" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TEMPO: Scaling Test-time Training for Large Reasoning Models</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.19295" target="_blank" rel="noopener noreferrer">2604.19295</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 test-time training 在 reasoning model 上一个已经开始暴露但还没被解决的核心问题：算力继续加上去，现有方法却很快 plateau，而且多样性还会塌。作者把根因定位到 self-generated reward drift，也就是 policy 自己变了，但 critic / reward 估计没有同步校正。</dd></div><div><dt>方法/机制</dt><dd>TEMPO 的关键做法是在无标签问题上的 policy refinement 之间，周期性插入小规模有标签 critic recalibration。作者进一步把这个交替过程形式化成 EM，说明过去很多 TTT 方法其实是省掉关键校正步骤的不完整版本。这个解释把经验改进上升成了更清楚的理论结构。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是 test-time training 从“能不能涨一点分”走向“如何稳定扩展 test-time compute”的重要推进。特别是在 reasoning model 上，它给出了一种可复用的 deployment-time adaptation pattern：不是盲目 self-train，而是把 critic 校准作为一等公民。</dd></div><div><dt>收录价值</dt><dd>它没有升到 disruptive，是因为工作仍建立在现有 reasoning benchmarks 和带标签 critic 校准资源上，距离完全开放环境里的持续在线发现还有距离；但作为 TTT 主线的新强方法，已经足够进入正式库。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 test-time training 在 reasoning model 上一个已经开始暴露但还没被解决的核心问题：算力继续加上去，现有方法却很快 plateau，而且多样性还会塌。作者把根因定位到 self-generated reward drift，也就是 policy 自己变了，但 critic / reward 估计没有同步校正。</p><p>TEMPO 的关键做法是在无标签问题上的 policy refinement 之间，周期性插入小规模有标签 critic recalibration。作者进一步把这个交替过程形式化成 EM，说明过去很多 TTT 方法其实是省掉关键校正步骤的不完整版本。这个解释把经验改进上升成了更清楚的理论结构。</p><p>它值得正式收录，因为这是 test-time training 从“能不能涨一点分”走向“如何稳定扩展 test-time compute”的重要推进。特别是在 reasoning model 上，它给出了一种可复用的 deployment-time adaptation pattern：不是盲目 self-train，而是把 critic 校准作为一等公民。</p><p>它没有升到 disruptive，是因为工作仍建立在现有 reasoning benchmarks 和带标签 critic 校准资源上，距离完全开放环境里的持续在线发现还有距离；但作为 TTT 主线的新强方法，已经足够进入正式库。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>测试时训练（TTT）在推理时根据未标记的测试实例调整模型参数，从而持续扩展了离线训练无法达到的能力。尽管取得了初步进展，但现有针对大型推理模型（LRMs）的TTT方法很快就会停滞不前，并且无法从额外的测试时计算中获益。在没有外部校准的情况下，随着策略模型的演变，自生成的奖励信号会逐渐漂移，导致性能停滞和多样性崩溃。我们提出了TEMPO，一个TTT框架，它将未标记问题上的策略优化与标记数据集上的周期性评论家重新校准交织进行。通过期望最大化（EM）算法形式化这一交替过程，我们揭示了先前的方法可以被解释为省略了关键重新校准步骤的不完整变体。重新引入这一步骤可以收紧证据下界（ELBO）并实现持续改进。在不同的模型家族（Qwen3和OLMO3）和推理任务中，TEMPO将OLMO3-7B在AIME 2024上的性能从33.0%提高到51.1%，将Qwen3-14B的性能从42.3%提高到65.8%，同时保持了高多样性。代码可在此URL获取。图1：TEMPO在AIME基准测试上的可扩展性。TEMPO在E步（在标记数据上进行评论家重新校准）和M步（在未标记测试问题上进行策略优化）之间交替进行，由提供质量感知分数的评论家指导。代表性的自奖励TTT基线，如TTRL（灰色曲线），在初步收益后会停滞并崩溃。相比之下，TEMPO（蓝色曲线）通过定期将评论家基于外部监督进行校准，在350步内保持了持续的上升轨迹，表明额外的测试时计算可以转化为复杂开放问题上的可扩展性能增益。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Test-time training (TTT) adapts model parameters on unlabeled test instances during inference time, which continuously extends capabilities beyond the reach of offline training. Despite initial gains, existing TTT methods for LRMs plateau quickly and do not benefit from additional test-time compute. Without external calibration, the self-generated reward signal increasingly drifts as the policy model evolves, leading to both performance plateaus and diversity collapse. We propose TEMPO, a TTT framework that interleaves policy refinement on unlabeled questions with periodic critic recalibration on a labeled dataset. By formalizing this alternating procedure through the Expectation-Maximization (EM) algorithm, we reveal that prior methods can be interpreted as incomplete variants that omit the crucial recalibration step. Reintroducing this step tightens the evidence lower bound (ELBO) and enables sustained improvement. Across diverse model families (Qwen3 and OLMO3) and reasoning tasks, TEMPO improves OLMO3-7B on AIME 2024 from 33.0% to 51.1% and Qwen3-14B from 42.3% to 65.8%, while maintaining high diversity. Code is available at this url. Figure 1: Scalability of TEMPO on the AIME benchmark. TEMPO alternates between an E-Step (critic recalibration on labeled data) and an M-Step (policy refinement on unlabeled test questions), guided by a critic that provides qualityaware scores. Representative self-rewarding TTT baselines such as TTRL (grey curves) plateau and collapse after initial gains. In contrast, TEMPO (blue curve) sustains a consistent upward trajectory over 350 steps by periodically grounding the critic in external supervision, demonstrating that additional test-time compute translates into scalable performance gains on complex open problems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260421r67tempote,
+  title = {TEMPO: Scaling Test-time Training for Large Reasoning Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.19295.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r67-tempo-test-time-training/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TEMPO: Scaling Test-time Training for Large Reasoning Models. https://arxiv.org/pdf/2604.19295.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.19295.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

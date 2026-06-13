@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Certifiably Robust RAG against Retrieval Corruption | DAST Papers</title>
+    <meta name="description" content="RAG 系统的一个核心脆弱点是 retrieval corruption：攻击者只要向检索结果里注入恶意文段，就可能把最终回答拉偏。大多数现有防御依赖启发式过滤、重排序或 prompt-level 规避，缺少能够对攻击上界给出形式保证的机制，因此很难说系统在面对自适应攻击时究竟有多稳。
+
+RobustRAG 提出 isolate-then-aggregate 的防御框架：先把检索到的 passag" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r39-robustrag-retrieval-corruption/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Certifiably Robust RAG against Retrieval Corruption" />
+    <meta property="og:description" content="RAG 系统的一个核心脆弱点是 retrieval corruption：攻击者只要向检索结果里注入恶意文段，就可能把最终回答拉偏。大多数现有防御依赖启发式过滤、重排序或 prompt-level 规避，缺少能够对攻击上界给出形式保证的机制，因此很难说系统在面对自适应攻击时究竟有多稳。
+
+RobustRAG 提出 isolate-then-aggregate 的防御框架：先把检索到的 passag" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r39-robustrag-retrieval-corruption/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Certifiably Robust RAG against Retrieval Corruption" />
+    <meta name="twitter:description" content="RAG 系统的一个核心脆弱点是 retrieval corruption：攻击者只要向检索结果里注入恶意文段，就可能把最终回答拉偏。大多数现有防御依赖启发式过滤、重排序或 prompt-level 规避，缺少能够对攻击上界给出形式保证的机制，因此很难说系统在面对自适应攻击时究竟有多稳。
+
+RobustRAG 提出 isolate-then-aggregate 的防御框架：先把检索到的 passag" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Certifiably Robust RAG against Retrieval Corruption</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2024-05-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-05-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2405.15556" target="_blank" rel="noopener noreferrer">2405.15556</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>RAG 系统的一个核心脆弱点是 retrieval corruption：攻击者只要向检索结果里注入恶意文段，就可能把最终回答拉偏。大多数现有防御依赖启发式过滤、重排序或 prompt-level 规避，缺少能够对攻击上界给出形式保证的机制，因此很难说系统在面对自适应攻击时究竟有多稳。</dd></div><div><dt>方法/机制</dt><dd>RobustRAG 提出 isolate-then-aggregate 的防御框架：先把检索到的 passages 隔离成若干互不重叠的组，再分别基于每组 passages 生成回答，最后对这些回答做安全聚合，从而削弱少量恶意文段对整体输出的操控能力。作者进一步给出面向非结构化文本回答的 keyword-based 和 decoding-based aggregation 实例，并证明在攻击者至多注入有界数量恶意 passages 的前提下，系统可以对回答质量给出可认证的下界。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 RAG 安全从经验性 defense 推进到 certifiable robustness。对 retrieval-augmented systems、enterprise knowledge agents 和任何依赖外部知识拼装上下文的工作流来说，这种 isolate-then-aggregate 的防御思路都比单纯检测或重排更耐久，也更适合作为安全基线。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前方法仍聚焦 retrieval corruption 这一明确攻击面，尚未扩展成更广 RAG 安全统一框架。它是非常强的安全方法论文，但作用范围仍相对明确。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>RAG 系统的一个核心脆弱点是 retrieval corruption：攻击者只要向检索结果里注入恶意文段，就可能把最终回答拉偏。大多数现有防御依赖启发式过滤、重排序或 prompt-level 规避，缺少能够对攻击上界给出形式保证的机制，因此很难说系统在面对自适应攻击时究竟有多稳。</p><p>RobustRAG 提出 isolate-then-aggregate 的防御框架：先把检索到的 passages 隔离成若干互不重叠的组，再分别基于每组 passages 生成回答，最后对这些回答做安全聚合，从而削弱少量恶意文段对整体输出的操控能力。作者进一步给出面向非结构化文本回答的 keyword-based 和 decoding-based aggregation 实例，并证明在攻击者至多注入有界数量恶意 passages 的前提下，系统可以对回答质量给出可认证的下界。</p><p>这篇工作值得收录，因为它把 RAG 安全从经验性 defense 推进到 certifiable robustness。对 retrieval-augmented systems、enterprise knowledge agents 和任何依赖外部知识拼装上下文的工作流来说，这种 isolate-then-aggregate 的防御思路都比单纯检测或重排更耐久，也更适合作为安全基线。</p><p>它没有升到更高一级，是因为当前方法仍聚焦 retrieval corruption 这一明确攻击面，尚未扩展成更广 RAG 安全统一框架。它是非常强的安全方法论文，但作用范围仍相对明确。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240524r39robustr,
+  title = {Certifiably Robust RAG against Retrieval Corruption},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2405.15556.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r39-robustrag-retrieval-corruption/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). Certifiably Robust RAG against Retrieval Corruption. https://arxiv.org/pdf/2405.15556.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2405.15556.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

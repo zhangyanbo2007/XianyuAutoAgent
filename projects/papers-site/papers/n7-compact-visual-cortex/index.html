@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Compact deep neural network models of the visual cortex | DAST Papers</title>
+    <meta name="description" content="这篇论文关注一个直接关系到神经科学建模和类脑 AI 的问题：要想逼近灵长类视觉皮层反应，是否必须依赖越来越大、越来越黑箱的深度网络。作者先用闭环实验和猕猴视觉数据训练大模型，再系统压缩模型规模，检验哪些计算成分是真正必需的。
+
+论文的核心新意在于证明视觉皮层预测并不必然要求庞大网络。作者把一个约六千万参数的深层模型压缩到数量级小得多的紧凑模型，同时保持接近的神经预测精度，从而把“性能来自规模”与“" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n7-compact-visual-cortex/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Compact deep neural network models of the visual cortex" />
+    <meta property="og:description" content="这篇论文关注一个直接关系到神经科学建模和类脑 AI 的问题：要想逼近灵长类视觉皮层反应，是否必须依赖越来越大、越来越黑箱的深度网络。作者先用闭环实验和猕猴视觉数据训练大模型，再系统压缩模型规模，检验哪些计算成分是真正必需的。
+
+论文的核心新意在于证明视觉皮层预测并不必然要求庞大网络。作者把一个约六千万参数的深层模型压缩到数量级小得多的紧凑模型，同时保持接近的神经预测精度，从而把“性能来自规模”与“" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n7-compact-visual-cortex/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Compact deep neural network models of the visual cortex" />
+    <meta name="twitter:description" content="这篇论文关注一个直接关系到神经科学建模和类脑 AI 的问题：要想逼近灵长类视觉皮层反应，是否必须依赖越来越大、越来越黑箱的深度网络。作者先用闭环实验和猕猴视觉数据训练大模型，再系统压缩模型规模，检验哪些计算成分是真正必需的。
+
+论文的核心新意在于证明视觉皮层预测并不必然要求庞大网络。作者把一个约六千万参数的深层模型压缩到数量级小得多的紧凑模型，同时保持接近的神经预测精度，从而把“性能来自规模”与“" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Compact deep neural network models of the visual cortex</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-02-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-25</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10150-1" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10150-1</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注一个直接关系到神经科学建模和类脑 AI 的问题：要想逼近灵长类视觉皮层反应，是否必须依赖越来越大、越来越黑箱的深度网络。作者先用闭环实验和猕猴视觉数据训练大模型，再系统压缩模型规模，检验哪些计算成分是真正必需的。</dd></div><div><dt>方法/机制</dt><dd>论文的核心新意在于证明视觉皮层预测并不必然要求庞大网络。作者把一个约六千万参数的深层模型压缩到数量级小得多的紧凑模型，同时保持接近的神经预测精度，从而把“性能来自规模”与“性能来自合适计算结构”区分开了。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合放在仓库的认知科学 / 视觉神经科学主线上。它不是传统 AI 方法论文，但它对类脑建模、低功耗视觉模型以及“如何从脑数据中约束 AI 架构”都有直接外溢价值。</dd></div><div><dt>收录价值</dt><dd>它仍然不是范式级条目，因为主要贡献是对视觉皮层建模路线的强约束和压缩验证，而不是提出一个已广泛迁移到 AI 主流系统的新训练范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注一个直接关系到神经科学建模和类脑 AI 的问题：要想逼近灵长类视觉皮层反应，是否必须依赖越来越大、越来越黑箱的深度网络。作者先用闭环实验和猕猴视觉数据训练大模型，再系统压缩模型规模，检验哪些计算成分是真正必需的。</p><p>论文的核心新意在于证明视觉皮层预测并不必然要求庞大网络。作者把一个约六千万参数的深层模型压缩到数量级小得多的紧凑模型，同时保持接近的神经预测精度，从而把“性能来自规模”与“性能来自合适计算结构”区分开了。</p><p>这篇论文适合放在仓库的认知科学 / 视觉神经科学主线上。它不是传统 AI 方法论文，但它对类脑建模、低功耗视觉模型以及“如何从脑数据中约束 AI 架构”都有直接外溢价值。</p><p>它仍然不是范式级条目，因为主要贡献是对视觉皮层建模路线的强约束和压缩验证，而不是提出一个已广泛迁移到 AI 主流系统的新训练范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉皮层的紧凑型深度神经网络模型。理解视觉皮层所执行计算的一种强大方法是构建能够预测神经元对任意图像响应的模型。深度神经网络（DNN）已成为领先的预测模型1, 2，然而其底层计算仍隐藏在数百万个参数之下。在本文中，我们通过寻求灵长类视觉皮层的预测性且简约的DNN模型，来挑战对如此规模模型的必要性。我们首先通过在自适应闭环实验中交替进行数据收集和模型训练，构建了一个对猕猴视觉区域V4神经元响应具有高度预测性的DNN模型。随后，我们将这个包含6000万参数的大型黑盒DNN模型进行压缩，以识别出参数量减少5000倍但准确性相当的紧凑型模型。这种显著的压缩使我们能够探究紧凑型模型的内部工作机制。我们发现了一个显著的计算主题：紧凑型模型在早期处理中共享相似的滤波器，但随后各个模型通过以不同方式“整合”这种共享的高维表示来特化其特征选择性。我们在一个点检测模型神经元中检查了这一整合步骤，揭示了一种计算机制，该机制为点选择性V4神经元提供了一个可检验的电路假设。除了V4，我们还发现猕猴视觉区域V1和IT（下颞叶皮层）也存在强大的模型压缩，揭示了视觉皮层的一个普遍计算原理。总的来说，我们的工作挑战了大型DNN对于预测单个神经元是必要的这一观念，并建立了一个平衡预测和简约性的建模框架。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A powerful approach to understand the computations carried out by the visual cortex is to build models that predict neural responses to any arbitrary image. Deep neural networks (DNNs) have emerged as the leading predictive models 1 , 2 , yet their underlying computations remain buried beneath millions of parameters. Here we challenge the need for models at this scale by seeking predictive and parsimonious DNN models of the primate visual cortex. We first built a highly predictive DNN model of neural responses in macaque visual area V4 by alternating data collection and model training in adaptive closed-loop experiments. We then compressed this large, black-box DNN model, which comprised 60 million parameters, to identify compact models with 5,000 times fewer parameters yet comparable accuracy. This dramatic compression enabled us to investigate the inner workings of the compact models. We discovered a salient computational motif: compact models share similar filters in early processing, but individual models then specialize their feature selectivity by ‘consolidating’ this shared high-dimensional representation in distinct ways. We examined this consolidation step in a dot-detecting model neuron, revealing a computational mechanism that leads to a testable circuit hypothesis for dot-selective V4 neurons. Beyond V4, we found strong model compression for macaque visual areas V1 and IT (inferior temporal cortex), revealing a general computational principle of the visual cortex. Overall, our work challenges the notion that large DNNs are necessary to predict individual neurons and establishes a modelling framework that balances prediction and parsimony.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260225n7compactv,
+  title = {Compact deep neural network models of the visual cortex},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10150-1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n7-compact-visual-cortex/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Compact deep neural network models of the visual cortex. https://www.nature.com/articles/s41586-026-10150-1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10150-1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

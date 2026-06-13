@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-Refine: Iterative Refinement with Self-Feedback | DAST Papers</title>
+    <meta name="description" content="Self-Refine studies a broad pattern that later became ubiquitous in LLM systems: generate an answer, critique it in natural language, and then rewrite it using that critique. The paper is not limited " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a90-self-refine-self-feedback/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Self-Refine: Iterative Refinement with Self-Feedback" />
+    <meta property="og:description" content="Self-Refine studies a broad pattern that later became ubiquitous in LLM systems: generate an answer, critique it in natural language, and then rewrite it using that critique. The paper is not limited " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a90-self-refine-self-feedback/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Self-Refine: Iterative Refinement with Self-Feedback" />
+    <meta name="twitter:description" content="Self-Refine studies a broad pattern that later became ubiquitous in LLM systems: generate an answer, critique it in natural language, and then rewrite it using that critique. The paper is not limited " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Self-Refine: Iterative Refinement with Self-Feedback</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2023-03-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2023-03-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2303.17651" target="_blank" rel="noopener noreferrer">2303.17651</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Self-Refine studies a broad pattern that later became ubiquitous in LLM systems: generate an answer, critique it in natural language, and then rewrite it using that critique. The paper is not limited to one task or one agent benchmark; it instead tests the generality of iterative self-feedback as a reusable inference-time improvement mechanism.</dd></div><div><dt>方法/机制</dt><dd>Its main technical contribution is to show that a single LLM can alternate between generator, critic, and refiner roles without parameter updates or external training signals. That makes refinement a modular control loop rather than a task-specific recipe. The idea is simple, but it generalized unusually well and became part of the default toolkit for many later agent and reasoning systems.</dd></div><div><dt>结果/证据</dt><dd>For this repository, Self-Refine matters because it is one of the cleanest reusable formulations of language-space iterative improvement. It sits directly on the path from static prompting to self-correcting agents, and it remains a useful reference when evaluating newer systems that claim self-improvement via reflection, critique, or revision.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the paper is intentionally broad and lightweight rather than a field-redefining systems result. It does not solve memory, tool use, or long-horizon adaptation by itself. But as a durable primitive for self-improving inference, it clearly deserves formal collection.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Self-Refine studies a broad pattern that later became ubiquitous in LLM systems: generate an answer, critique it in natural language, and then rewrite it using that critique. The paper is not limited to one task or one agent benchmark; it instead tests the generality of iterative self-feedback as a reusable inference-time improvement mechanism.</p><p>Its main technical contribution is to show that a single LLM can alternate between generator, critic, and refiner roles without parameter updates or external training signals. That makes refinement a modular control loop rather than a task-specific recipe. The idea is simple, but it generalized unusually well and became part of the default toolkit for many later agent and reasoning systems.</p><p>For this repository, Self-Refine matters because it is one of the cleanest reusable formulations of language-space iterative improvement. It sits directly on the path from static prompting to self-correcting agents, and it remains a useful reference when evaluating newer systems that claim self-improvement via reflection, critique, or revision.</p><p>It is not ranked higher because the paper is intentionally broad and lightweight rather than a field-redefining systems result. It does not solve memory, tool use, or long-horizon adaptation by itself. But as a durable primitive for self-improving inference, it clearly deserves formal collection.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>S ELF -R EFINE：基于自我反馈的迭代式精炼像人类一样，大型语言模型（LLMs）并非总能在第一次尝试时就生成最佳输出。受人类如何精炼书面文本的启发，我们引入了 S ELF -R EFINE，这是一种通过迭代反馈和精炼来改进 LLMs 初始输出的方法。其主要思想是使用一个 LLM 生成初始输出；然后，同一个 LLM 为其输出提供反馈，并迭代地利用该反馈进行自我精炼。S ELF -R EFINE 不需要任何监督训练数据、额外训练或强化学习，而是使用单个 LLM 作为生成器、精炼器和反馈提供者。我们使用最先进的（GPT-3.5 和 GPT-4）LLMs，在 7 项不同任务上评估了 S ELF -R EFINE，这些任务涵盖了从对话响应生成到数学推理的范围。在所有评估任务中，与使用相同 LLM 通过传统一步式生成方法产生的输出相比，S ELF -R EFINE 生成的输出更受人类和自动指标的青睐，任务性能平均绝对提升约 20%。我们的工作表明，即使是像 GPT-4 这样的最先进 LLMs，也可以通过我们简单、独立的测试时方法得到进一步改进。1。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Like humans, large language models (LLMs) do not always generate the best output on their first try. Motivated by how humans refine their written text, we introduce S ELF -R EFINE, an approach for improving initial outputs from LLMs through iterative feedback and refinement. The main idea is to generate an initial output using an LLM; then, the same LLM provides feedback for its output and uses it to refine itself, iteratively. S ELF -R EFINE does not require any supervised training data, additional training, or reinforcement learning, and instead uses a single LLM as the generator, refiner and the feedback provider. We evaluate S ELF -R EFINE across 7 diverse tasks, ranging from dialog response generation to mathematical reasoning, using state-of-the-art (GPT-3.5 and GPT-4) LLMs. Across all evaluated tasks, outputs generated with S ELF -R EFINE are preferred by humans and automatic metrics over those generated with the same LLM using conventional one-step generation, improving by ∼20% absolute on average in task performance. Our work demonstrates that even state-of-the-art LLMs like GPT-4 can be further improved at test-time using our simple, standalone approach.1 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20230330a90selfref,
+  title = {Self-Refine: Iterative Refinement with Self-Feedback},
+  year = {2023},
+  url = {https://arxiv.org/pdf/2303.17651.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a90-self-refine-self-feedback/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2023). Self-Refine: Iterative Refinement with Self-Feedback. https://arxiv.org/pdf/2303.17651.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2303.17651.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

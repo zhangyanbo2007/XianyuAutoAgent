@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tool-Genesis: A Task-Driven Tool Creation Benchmark for Self-Evolving Language Agent | DAST Papers</title>
+    <meta name="description" content="自演化 agent 的一个关键能力，不只是会不会调用已有工具，而是能否从抽象任务需求中构造、修正并维护新的工具。现有评测大多仍把这件事压扁成最终任务分数，导致失败究竟来自接口设计、工具逻辑还是下游集成，经常无法拆解。
+
+Tool-Genesis 的核心贡献，是把 tool creation 评测改造成诊断型 benchmark。它要求 agent 在没有预设 specification 的前提下，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a157-tool-genesis-benchmark/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Tool-Genesis: A Task-Driven Tool Creation Benchmark for Self-Evolving Language Agent" />
+    <meta property="og:description" content="自演化 agent 的一个关键能力，不只是会不会调用已有工具，而是能否从抽象任务需求中构造、修正并维护新的工具。现有评测大多仍把这件事压扁成最终任务分数，导致失败究竟来自接口设计、工具逻辑还是下游集成，经常无法拆解。
+
+Tool-Genesis 的核心贡献，是把 tool creation 评测改造成诊断型 benchmark。它要求 agent 在没有预设 specification 的前提下，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a157-tool-genesis-benchmark/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Tool-Genesis: A Task-Driven Tool Creation Benchmark for Self-Evolving Language Agent" />
+    <meta name="twitter:description" content="自演化 agent 的一个关键能力，不只是会不会调用已有工具，而是能否从抽象任务需求中构造、修正并维护新的工具。现有评测大多仍把这件事压扁成最终任务分数，导致失败究竟来自接口设计、工具逻辑还是下游集成，经常无法拆解。
+
+Tool-Genesis 的核心贡献，是把 tool creation 评测改造成诊断型 benchmark。它要求 agent 在没有预设 specification 的前提下，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Tool-Genesis: A Task-Driven Tool Creation Benchmark for Self-Evolving Language Agent</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05578" target="_blank" rel="noopener noreferrer">2603.05578</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>自演化 agent 的一个关键能力，不只是会不会调用已有工具，而是能否从抽象任务需求中构造、修正并维护新的工具。现有评测大多仍把这件事压扁成最终任务分数，导致失败究竟来自接口设计、工具逻辑还是下游集成，经常无法拆解。</dd></div><div><dt>方法/机制</dt><dd>Tool-Genesis 的核心贡献，是把 tool creation 评测改造成诊断型 benchmark。它要求 agent 在没有预设 specification 的前提下，从任务需求自行构造工具，并把评估拆成 interface compliance、functional correctness 和 downstream utility 三个层次。这样一来，tool synthesis 就不再是黑盒 downstream 成败，而变成可以被精确定位和改进的能力结构。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类 benchmark 补的是 agent capability acquisition 的真实缺口。对 self-evolving agents、tool marketplaces、skill systems 来说，缺的不是又一个最终分数表，而是能告诉研究者‘工具创建到底卡在哪’的评测框架；这一点决定了它比普通 benchmark 更有耐久价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍属于早期 benchmark 建设，生态默认采用、外部复用和基于该 benchmark 的方法潮流还未形成。现阶段它更像一个很强的 capability-diagnosis benchmark，而不是已经改写领域默认评测接口的事实标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>自演化 agent 的一个关键能力，不只是会不会调用已有工具，而是能否从抽象任务需求中构造、修正并维护新的工具。现有评测大多仍把这件事压扁成最终任务分数，导致失败究竟来自接口设计、工具逻辑还是下游集成，经常无法拆解。</p><p>Tool-Genesis 的核心贡献，是把 tool creation 评测改造成诊断型 benchmark。它要求 agent 在没有预设 specification 的前提下，从任务需求自行构造工具，并把评估拆成 interface compliance、functional correctness 和 downstream utility 三个层次。这样一来，tool synthesis 就不再是黑盒 downstream 成败，而变成可以被精确定位和改进的能力结构。</p><p>它值得正式收录，因为这类 benchmark 补的是 agent capability acquisition 的真实缺口。对 self-evolving agents、tool marketplaces、skill systems 来说，缺的不是又一个最终分数表，而是能告诉研究者‘工具创建到底卡在哪’的评测框架；这一点决定了它比普通 benchmark 更有耐久价值。</p><p>它没有升到更高一级，是因为当前仍属于早期 benchmark 建设，生态默认采用、外部复用和基于该 benchmark 的方法潮流还未形成。现阶段它更像一个很强的 capability-diagnosis benchmark，而不是已经改写领域默认评测接口的事实标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Tool-Genesis：一个面向自进化语言智能体的任务驱动工具创建基准。随着自进化语言智能体研究的进展，人们越来越关注它们根据任务需求创建、适应和维护工具的能力。然而，现有基准主要依赖预定义规范，这限制了可扩展性并阻碍了真正的自主进化。尽管最近的研究试图动态生成工具，但它们主要关注下游性能，形成了“黑箱”评估，这使得准确归因失败原因变得困难。为解决此问题，我们提出了Tool-Genesis，这是一个诊断性基准，旨在从接口合规性、功能正确性到下游效用等多个维度量化智能体的能力。它评估智能体仅根据抽象需求（无需预设规范）构建与任务相关的工具并解决实际问题的能力。关键的是，我们发现即使是最先进的模型也难以在一次性设置中构建精确的工具接口或可执行逻辑。这些微小的初始缺陷在整个流程中被放大，导致下游指标急剧下降。我们希望该基准能指导未来的研究，促使模型合成能够应对更广泛现实挑战的持久性通用工具。项目页面：https://tool-genesis.github.io</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Research on self-evolving language agents progresses, increasing attention has focused on their ability to create, adapt, and maintain tools from task requirements.However, existing benchmarks predominantly rely on pre-defined specifications, which limits scalability and hinders true autonomous evolution. While recent studies attempt to dynamically generate tools, they primarily focus on downstream performance, creating a &quot;black box&quot; evaluation that makes it difficult to accurately attribute the causes of failure.To address this, we propose Tool-Genesis, a diagnostic benchmark designed to quantify agent capabilities across multiple dimensions—from interface compliance and functional correctness to downstream utility. It evaluates the ability of agents to construct task-relevant tools solely from abstract requirements (without pre-set specifications) and solve realistic problems.Crucially, we find that even state-of-the-art models struggle to construct precise tool interfaces or executable logic in a one-shot setting. These minor initial flaws are amplified through the pipeline, leading to a precipitous drop in downstream metrics. We hope this benchmark will guide future research toward steering models to synthesize persistent, general-purpose tools capable of addressing broader real-world challenges.Project page: https://tool-genesis.github.io</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305a157toolge,
+  title = {Tool-Genesis: A Task-Driven Tool Creation Benchmark for Self-Evolving Language Agent},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05578.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a157-tool-genesis-benchmark/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Tool-Genesis: A Task-Driven Tool Creation Benchmark for Self-Evolving Language Agent. https://arxiv.org/pdf/2603.05578.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05578.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

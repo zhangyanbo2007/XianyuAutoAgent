@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HINT-SD: Targeted Hindsight Self-Distillation for Long-Horizon Agents | DAST Papers</title>
+    <meta name="description" content="HINT-SD 解决 long-horizon LLM agents 的训练稀疏性问题：最终奖励只告诉任务是否成功，却不说明哪些中间动作导致失败，以及应如何修正。
+
+相比每一轮都生成反馈或固定位置蒸馏，HINT-SD 用完整轨迹 hindsight 选择 failure-relevant actions，只在相关 action spans 上进行 feedback-conditioned dist" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a319-hint-sd-long-horizon-agent-distillation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HINT-SD: Targeted Hindsight Self-Distillation for Long-Horizon Agents" />
+    <meta property="og:description" content="HINT-SD 解决 long-horizon LLM agents 的训练稀疏性问题：最终奖励只告诉任务是否成功，却不说明哪些中间动作导致失败，以及应如何修正。
+
+相比每一轮都生成反馈或固定位置蒸馏，HINT-SD 用完整轨迹 hindsight 选择 failure-relevant actions，只在相关 action spans 上进行 feedback-conditioned dist" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a319-hint-sd-long-horizon-agent-distillation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HINT-SD: Targeted Hindsight Self-Distillation for Long-Horizon Agents" />
+    <meta name="twitter:description" content="HINT-SD 解决 long-horizon LLM agents 的训练稀疏性问题：最终奖励只告诉任务是否成功，却不说明哪些中间动作导致失败，以及应如何修正。
+
+相比每一轮都生成反馈或固定位置蒸馏，HINT-SD 用完整轨迹 hindsight 选择 failure-relevant actions，只在相关 action spans 上进行 feedback-conditioned dist" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HINT-SD: Targeted Hindsight Self-Distillation for Long-Horizon Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.17873" target="_blank" rel="noopener noreferrer">2605.17873</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>HINT-SD 解决 long-horizon LLM agents 的训练稀疏性问题：最终奖励只告诉任务是否成功，却不说明哪些中间动作导致失败，以及应如何修正。</dd></div><div><dt>方法/机制</dt><dd>相比每一轮都生成反馈或固定位置蒸馏，HINT-SD 用完整轨迹 hindsight 选择 failure-relevant actions，只在相关 action spans 上进行 feedback-conditioned distillation。</dd></div><div><dt>结果/证据</dt><dd>在 BFCL v3 和 AppWorld 上，该方法比 dense per-turn feedback baseline 有更高收益，同时降低训练步骤时间，说明“选择在哪里蒸馏”对长程 agent 训练很关键。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提供了 long-horizon agent training 的 targeted credit/distillation primitive，可与 RL、工具使用和轨迹诊断系统结合。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>HINT-SD 解决 long-horizon LLM agents 的训练稀疏性问题：最终奖励只告诉任务是否成功，却不说明哪些中间动作导致失败，以及应如何修正。</p><p>相比每一轮都生成反馈或固定位置蒸馏，HINT-SD 用完整轨迹 hindsight 选择 failure-relevant actions，只在相关 action spans 上进行 feedback-conditioned distillation。</p><p>在 BFCL v3 和 AppWorld 上，该方法比 dense per-turn feedback baseline 有更高收益，同时降低训练步骤时间，说明“选择在哪里蒸馏”对长程 agent 训练很关键。</p><p>它值得正式收录，因为它提供了 long-horizon agent training 的 targeted credit/distillation primitive，可与 RL、工具使用和轨迹诊断系统结合。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>最近的工作通过提供更密集的学习信号来解决这种稀疏性。AgentEvolver (Zhai et al., 2025) 通过基于LLM的自归因增强了基于奖励的优化，为GRPO优化将过程级贡献奖励分配给中间动作。SDPO (Hübotter et al., 2026) 和 RLTF (Song et al., 2026) 使用丰富的反馈作为特权训练上下文，将来自文本评论、运行时错误或失败测试的反馈条件教师分布蒸馏到无反馈的学生中。OpenClawRL (Wang et al., 2026b) 将这一思想扩展到智能体交互，通过使用下一状态信号（如用户回复、工具输出和环境转换）生成回合级奖励和文本提示，用于在线策略蒸馏。使用强化学习训练长周期LLM智能体具有挑战性，因为稀疏的结果奖励只揭示任务是否成功，而不能揭示哪些中间动作导致了结果或应如何纠正。最近的方法通过从回合级动作输出信号生成奖励或文本提示，或通过使用反馈条件自蒸馏来缓解这个问题。然而，当许多中间回合已经成功或中性时，在每个回合生成反馈是低效的，并且在固定或错位的回合应用反馈通常无法监督导致失败的动作。为了弥补这一差距，我们提出了HINT-SD，一个有针对性的自蒸馏框架，它使用全轨迹事后分析来选择与失败相关的动作，并且仅在有针对性的动作跨度上应用反馈条件蒸馏。在BFCL v3和AppWorld上的实验表明，我们的方法比密集的每回合反馈基线提高了高达18.80%，同时每个训练步骤的时间降低了2.26倍，这表明选择在哪里进行蒸馏是有效和高效的长周期智能体训练的关键因素。这些更密集的信号很有用，但它们提出了一个进一步的问题：纠正性监督应该应用于何处？自归因可以识别导致失败的动作，但由于信号仍然是标量奖励，学习正确的替代动作仍然依赖于稀疏的成功试运行。反馈条件蒸馏提供了令牌级教师监督，但在第一个动作之前应用事后反馈或蒸馏整个轨迹可能会使教师和学生错位。在反馈识别出错误回合之后，学生的后续轨迹可能已经偏离了反馈条件教师支持的轨迹，使得后续的令牌目标不可靠，并被累积的不匹配所主导，而不是预期的局部纠正。OpenClaw-RL将反馈定位到每个动作，但它必须评估每个回合，并且仍然与即时动作输出转换相关联，使得延迟的失败难以归因。因此，剩下的瓶颈不仅是如何获得更丰富的反馈，还在于如何将其放置在相关的动作跨度上。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent work has addressed this sparsity by providing denser learning signals. AgentEvolver (Zhai et al., 2025) augments reward-based optimization with LLM-based self-attribution, assigning process-level contribution rewards to intermediate actions for GRPO optimization. SDPO (Hübotter et al., 2026) and RLTF (Song et al., 2026) use rich feedback as privileged training context, distilling feedback-conditioned teacher distributions from textual critiques, runtime errors, or failed tests into a feedback-free student. OpenClawRL (Wang et al., 2026b) extends this idea to agentic interactions by using next-state signals such as user replies, tool outputs, and environment transitions to generate turn-level rewards and textual hints for on-policy distillation. Training long-horizon LLM agents with reinforcement learning is challenging because sparse outcome rewards reveal whether a task succeeds, but not which intermediate actions caused the outcome or how they should be corrected. Recent methods alleviate this issue by generating rewards or textual hints from turn-level actionoutput signals, or by using feedback-conditioned self-distillation. However, generating feedback at every turn is inefficient when many intermediate turns are already successful or neutral, and applying feedback at a fixed or misaligned turn often fails to supervise the actions that contributed to the failure. To bridge this gap, we propose H IN T-SD, a targeted self-distillation framework that uses full-trajectory hindsight to select failurerelevant actions and applies feedback-conditioned distillation only on targeted action spans. Experiments on BFCL v3 and AppWorld show that our method improves over the dense per-turn feedback baseline by up to 18.80 percent while achieving 2.26× lower time per training step, suggesting that selecting where to distill is a key factor for both effective and efficient long-horizon agent training. These denser signals are useful, but they raise a further question: where should corrective supervision be applied? Self-attribution can identify failure-causing actions, but because the signal remains a scalar reward, learning the correct alternative action still depends on sparse successful rollouts. Feedback-conditioned distillation provides tokenlevel teacher supervision, but applying hindsight feedback before the first action or distilling the full trajectory can misalign the teacher and student. After the erroneous turn identified by feedback, the student’s subsequent trajectory may already diverge from the trajectory supported by the feedback-conditioned teacher, making later token targets unreliable and dominated by accumulated mismatch rather than the intended local correction. OpenClaw-RL localizes feedback to each action, but it must evaluate every turn and remains tied to immediate action-output transitions, making delayed failures difficult to attribute. The remaining bottleneck is therefore not only how to obtain richer feedback, but also how to place it on the action spans where it is relevant.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260518a319hintsd,
+  title = {HINT-SD: Targeted Hindsight Self-Distillation for Long-Horizon Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.17873.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a319-hint-sd-long-horizon-agent-distillation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HINT-SD: Targeted Hindsight Self-Distillation for Long-Horizon Agents. https://arxiv.org/pdf/2605.17873.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.17873.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.17873" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC | DAST Papers</title>
+    <meta name="description" content="问题与背景：AI for hardware design 不只应生成 RTL，还应能改进底层 EDA 工具本身。ABC 是经典逻辑综合系统，若 agent 能在完整代码库上自演化，会改变 EDA 工具开发模式。
+
+方法与新意：系统让多 LLM agents 在整个 ABC codebase 上迭代重写组件，每轮编译集成二进制、验证正确性，并在 ISCAS/VTR/EPFL/IWLS 等多 suit" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw30-self-evolved-abc/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC" />
+    <meta property="og:description" content="问题与背景：AI for hardware design 不只应生成 RTL，还应能改进底层 EDA 工具本身。ABC 是经典逻辑综合系统，若 agent 能在完整代码库上自演化，会改变 EDA 工具开发模式。
+
+方法与新意：系统让多 LLM agents 在整个 ABC codebase 上迭代重写组件，每轮编译集成二进制、验证正确性，并在 ISCAS/VTR/EPFL/IWLS 等多 suit" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw30-self-evolved-abc/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC" />
+    <meta name="twitter:description" content="问题与背景：AI for hardware design 不只应生成 RTL，还应能改进底层 EDA 工具本身。ABC 是经典逻辑综合系统，若 agent 能在完整代码库上自演化，会改变 EDA 工具开发模式。
+
+方法与新意：系统让多 LLM agents 在整个 ABC codebase 上迭代重写组件，每轮编译集成二进制、验证正确性，并在 ISCAS/VTR/EPFL/IWLS 等多 suit" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.15082" target="_blank" rel="noopener noreferrer">2604.15082</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：AI for hardware design 不只应生成 RTL，还应能改进底层 EDA 工具本身。ABC 是经典逻辑综合系统，若 agent 能在完整代码库上自演化，会改变 EDA 工具开发模式。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：系统让多 LLM agents 在整个 ABC codebase 上迭代重写组件，每轮编译集成二进制、验证正确性，并在 ISCAS/VTR/EPFL/IWLS 等多 suite 上评估 QoR，从反馈中发现新的 synthesis strategies。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇符合硬件/EDA 高优先级，因为它把 self-improving agents 应用于真实 million-line-scale EDA tool evolution，而不是小脚本优化。它对 AI-assisted tool evolution 和 hardware-software co-design 有强参考价值。</dd></div><div><dt>收录价值</dt><dd>局限：结果需要严格复现，agent 修改 EDA 工具的可维护性、安全性和长期语义正确性仍是风险。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：AI for hardware design 不只应生成 RTL，还应能改进底层 EDA 工具本身。ABC 是经典逻辑综合系统，若 agent 能在完整代码库上自演化，会改变 EDA 工具开发模式。</p><p>方法与新意：系统让多 LLM agents 在整个 ABC codebase 上迭代重写组件，每轮编译集成二进制、验证正确性，并在 ISCAS/VTR/EPFL/IWLS 等多 suite 上评估 QoR，从反馈中发现新的 synthesis strategies。</p><p>收录意义：这篇符合硬件/EDA 高优先级，因为它把 self-improving agents 应用于真实 million-line-scale EDA tool evolution，而不是小脚本优化。它对 AI-assisted tool evolution 和 hardware-software co-design 有强参考价值。</p><p>局限：结果需要严格复现，agent 修改 EDA 工具的可维护性、安全性和长期语义正确性仍是风险。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文介绍了首个自演化逻辑综合框架，该框架利用大型语言模型（LLM）智能体自主改进广泛采用的逻辑综合系统ABC的源代码。我们的框架在整个集成的ABC代码库上运行，并且输出存储库保留了其单一二进制执行模型和命令接口。在初始演化周期中，我们使用现有的开源综合组件引导系统，涵盖流程调优、逻辑最小化和技术映射，但没有手动注入新的启发式方法。在此基础上，一个基于LLM的智能体团队遵循我们的“编程指导”提示，在一个统一的正确性和QoR驱动的评估循环下，迭代地重写和演化ABC的特定子组件。每个演化周期都会提出代码修改，编译集成二进制文件，验证正确性，并在包括ISCAS 85/89/99、VTR、EPFL和IWLS 2005在内的多套基准测试上评估结果质量（QoR）。通过持续反馈，系统发现了超越人类设计的启发式方法的优化，有效地学习了增强QoR的新综合策略。我们详细介绍了这个自我改进系统的架构、它与ABC的集成，以及证明该框架能够自主并逐步改进百万行规模EDA工具的结果。ACM参考格式：Cunxi Yu和Haoxing Ren。2026。EDA工具的自主演化：多智能体自演化ABC。在第63届ACM/IEEE设计自动化会议（DAC ’26），2026年7月26-29日，美国加利福尼亚州长滩。ACM，美国纽约州纽约市，7页。https://doi.org/10.1145/3770743.3804221</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper introduces the first self-evolving logic synthesis framework, which leverages Large Language Model (LLM) agents to autonomously improve the source code of ABC, the widely adopted logic synthesis system. Our framework operates on the entire integrated ABC codebase, and the output repository preserves its single-binary execution model and command interface. In the initial evolution cycle, we bootstrap the system using existing prior open-source synthesis components, covering flow tuning, logic minimization, and technology mapping, but without manually injecting new heuristics. On top of this foundation, a team of LLM-based agents iteratively rewrites and evolves specific sub-components of ABC following our “programming guidance“ prompts under a unified correctness and QoR-driven evaluation loop. Each evolution cycle proposes code modifications, compiles the integrated binary, validates correctness, and evaluates quality-of-results (QoR) on multi-suite benchmarks including ISCAS 85/89/99, VTR, EPFL, and IWLS 2005. Through continuous feedback, the system discovers optimizations beyond human-designed heuristics, effectively learning new synthesis strategies that enhance QoR. We detail the architecture of this self-improving system, its integration with ABC, and results demonstrating that the framework can autonomously and progressively improve EDA tool at full million-line scale. ACM Reference Format: Cunxi Yu and Haoxing Ren. 2026. Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC. In 63rd ACM/IEEE Design Automation Conference (DAC ’26), July 26–29, 2026, Long Beach, CA, USA. ACM, New York, NY, USA, 7 pages. https://doi.org/10.1145/3770743.3804221</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416hw30selfev,
+  title = {Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.15082.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw30-self-evolved-abc/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Autonomous Evolution of EDA Tools: Multi-Agent Self-Evolved ABC. https://arxiv.org/pdf/2604.15082.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.15082.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

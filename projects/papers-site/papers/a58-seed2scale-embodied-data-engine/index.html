@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Seed2Scale: A Self-Evolving Data Engine for Embodied AI via Small to Large Model Synergy and Multimodal Evaluation | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了 embodied AI 一个非常实际的瓶颈：高质量交互数据难扩、纯大模型自举容易塌缩、而少量人工示范又远远不够支撑通用能力增长。作者把问题重写成“如何做一个能自我扩展的数据引擎”，而不是只讨论某个 VLA 模型结构本身。
+
+Seed2Scale 的核心是异构角色分工：小模型负责并行采集和探索，大模型负责评估和打分，目标模型则从筛过噪声的数据中学习。具体来说，它用轻量 VLA `Su" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a58-seed2scale-embodied-data-engine/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Seed2Scale: A Self-Evolving Data Engine for Embodied AI via Small to Large Model Synergy and Multimodal Evaluation" />
+    <meta property="og:description" content="这篇论文抓住了 embodied AI 一个非常实际的瓶颈：高质量交互数据难扩、纯大模型自举容易塌缩、而少量人工示范又远远不够支撑通用能力增长。作者把问题重写成“如何做一个能自我扩展的数据引擎”，而不是只讨论某个 VLA 模型结构本身。
+
+Seed2Scale 的核心是异构角色分工：小模型负责并行采集和探索，大模型负责评估和打分，目标模型则从筛过噪声的数据中学习。具体来说，它用轻量 VLA `Su" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a58-seed2scale-embodied-data-engine/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Seed2Scale: A Self-Evolving Data Engine for Embodied AI via Small to Large Model Synergy and Multimodal Evaluation" />
+    <meta name="twitter:description" content="这篇论文抓住了 embodied AI 一个非常实际的瓶颈：高质量交互数据难扩、纯大模型自举容易塌缩、而少量人工示范又远远不够支撑通用能力增长。作者把问题重写成“如何做一个能自我扩展的数据引擎”，而不是只讨论某个 VLA 模型结构本身。
+
+Seed2Scale 的核心是异构角色分工：小模型负责并行采集和探索，大模型负责评估和打分，目标模型则从筛过噪声的数据中学习。具体来说，它用轻量 VLA `Su" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Seed2Scale: A Self-Evolving Data Engine for Embodied AI via Small to Large Model Synergy and Multimodal Evaluation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.08260" target="_blank" rel="noopener noreferrer">2603.08260</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了 embodied AI 一个非常实际的瓶颈：高质量交互数据难扩、纯大模型自举容易塌缩、而少量人工示范又远远不够支撑通用能力增长。作者把问题重写成“如何做一个能自我扩展的数据引擎”，而不是只讨论某个 VLA 模型结构本身。</dd></div><div><dt>方法/机制</dt><dd>Seed2Scale 的核心是异构角色分工：小模型负责并行采集和探索，大模型负责评估和打分，目标模型则从筛过噪声的数据中学习。具体来说，它用轻量 VLA `SuperTiny` 作为 collector，以强 inductive bias 支撑广覆盖探索；同时用预训练 VLM 做 verifier，对海量轨迹做成败判断和质量排序，从而把少量 seed demonstrations 扩展成可持续增长的数据闭环。</dd></div><div><dt>结果/证据</dt><dd>这条路线对 embodied intelligence 很重要，因为它把“模型自提升”落在 data engine 上，而不是继续把改进全部压给参数规模或单次训练配方。作为 small-to-large synergy 与 multimodal evaluation 驱动的数据生产系统，它对机器人自举、自动数据采集、以及通用 embodied foundation policy 的后续训练都有明显工作流价值。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，主要因为目前的证据仍然集中在数据扩展闭环和 success-rate 提升，距离成为通用 embodied self-evolution 蓝图还差更多跨平台、跨任务、跨执行器验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了 embodied AI 一个非常实际的瓶颈：高质量交互数据难扩、纯大模型自举容易塌缩、而少量人工示范又远远不够支撑通用能力增长。作者把问题重写成“如何做一个能自我扩展的数据引擎”，而不是只讨论某个 VLA 模型结构本身。</p><p>Seed2Scale 的核心是异构角色分工：小模型负责并行采集和探索，大模型负责评估和打分，目标模型则从筛过噪声的数据中学习。具体来说，它用轻量 VLA `SuperTiny` 作为 collector，以强 inductive bias 支撑广覆盖探索；同时用预训练 VLM 做 verifier，对海量轨迹做成败判断和质量排序，从而把少量 seed demonstrations 扩展成可持续增长的数据闭环。</p><p>这条路线对 embodied intelligence 很重要，因为它把“模型自提升”落在 data engine 上，而不是继续把改进全部压给参数规模或单次训练配方。作为 small-to-large synergy 与 multimodal evaluation 驱动的数据生产系统，它对机器人自举、自动数据采集、以及通用 embodied foundation policy 的后续训练都有明显工作流价值。</p><p>它还不到更高一级，主要因为目前的证据仍然集中在数据扩展闭环和 success-rate 提升，距离成为通用 embodied self-evolution 蓝图还差更多跨平台、跨任务、跨执行器验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309a58seed2sc,
+  title = {Seed2Scale: A Self-Evolving Data Engine for Embodied AI via Small to Large Model Synergy and Multimodal Evaluation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.08260.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a58-seed2scale-embodied-data-engine/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Seed2Scale: A Self-Evolving Data Engine for Embodied AI via Small to Large Model Synergy and Multimodal Evaluation. https://arxiv.org/pdf/2603.08260.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.08260.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

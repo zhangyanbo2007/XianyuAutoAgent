@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI | DAST Papers</title>
+    <meta name="description" content="问题与背景：长期对话记忆不能只靠扩大上下文或 naive retrieval，因为历史信息会过时、冲突、演化，直接检索会引入噪声。
+
+方法与新意：APEX-MEM 用 domain-agnostic ontology 把对话组织成 temporally grounded events 和 entity-centric property graph，保留 append-only 历史，再由 mult" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a217-apex-mem-conversational-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI" />
+    <meta property="og:description" content="问题与背景：长期对话记忆不能只靠扩大上下文或 naive retrieval，因为历史信息会过时、冲突、演化，直接检索会引入噪声。
+
+方法与新意：APEX-MEM 用 domain-agnostic ontology 把对话组织成 temporally grounded events 和 entity-centric property graph，保留 append-only 历史，再由 mult" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a217-apex-mem-conversational-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI" />
+    <meta name="twitter:description" content="问题与背景：长期对话记忆不能只靠扩大上下文或 naive retrieval，因为历史信息会过时、冲突、演化，直接检索会引入噪声。
+
+方法与新意：APEX-MEM 用 domain-agnostic ontology 把对话组织成 temporally grounded events 和 entity-centric property graph，保留 append-only 历史，再由 mult" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14362" target="_blank" rel="noopener noreferrer">2604.14362</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：长期对话记忆不能只靠扩大上下文或 naive retrieval，因为历史信息会过时、冲突、演化，直接检索会引入噪声。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：APEX-MEM 用 domain-agnostic ontology 把对话组织成 temporally grounded events 和 entity-centric property graph，保留 append-only 历史，再由 multi-tool retrieval agent 在查询时解决冲突并生成 compact memory summary。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇进入 agent memory 主库，因为它把长期记忆问题明确建模为时间化、实体化、可冲突解析的半结构化记忆，而不是简单 embedding recall。</dd></div><div><dt>收录价值</dt><dd>局限：系统依赖 graph 构建质量和 retrieval agent 行为，benchmark 高分还需结合实际部署延迟、写入成本和错误累积来评估。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：长期对话记忆不能只靠扩大上下文或 naive retrieval，因为历史信息会过时、冲突、演化，直接检索会引入噪声。</p><p>方法与新意：APEX-MEM 用 domain-agnostic ontology 把对话组织成 temporally grounded events 和 entity-centric property graph，保留 append-only 历史，再由 multi-tool retrieval agent 在查询时解决冲突并生成 compact memory summary。</p><p>收录意义：这篇进入 agent memory 主库，因为它把长期记忆问题明确建模为时间化、实体化、可冲突解析的半结构化记忆，而不是简单 embedding recall。</p><p>局限：系统依赖 graph 构建质量和 retrieval agent 行为，benchmark 高分还需结合实际部署延迟、写入成本和错误累积来评估。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型在可靠的长期对话记忆方面仍然面临挑战：简单地扩大上下文窗口或应用朴素检索常常会引入噪声并使响应不稳定。我们提出了APEX-MEM，一个结合了三项关键创新的对话记忆系统：(1) 一个属性图，它使用领域无关的本体论将对话构建为以实体为中心框架中的时间性事件；(2) 只追加存储，它保留信息的完整时间演变；以及 (3) 一个多工具检索代理，它在查询时理解并解决冲突或演变的信息，生成紧凑且上下文相关的记忆摘要。这种检索时解析保留了完整的交互历史，同时抑制了不相关细节。APEX-MEM在LOCOMO的问答任务上取得了88.88%的准确率，在LongMemEval上达到了86.2%，优于最先进的会话感知方法，并证明了结构化属性图能够实现更具时间连贯性的长期对话推理。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models still struggle with reliable long-term conversational memory: simply enlarging context windows or applying naïve retrieval often introduces noise and destabilizes responses. We present APEX-MEM, a conversational memory system that combines three key innovations: (1) a property graph which uses domain-agnostic ontology to structure conversations as temporally grounded events in an entity-centric framework, (2) append-only storage that preserves the full temporal evolution of information, and (3) a multi-tool retrieval agent that understands and resolves conflicting or evolving information at query time, producing a compact and contextually relevant memory summary. This retrievaltime resolution preserves the full interaction history while suppressing irrelevant details. APEX-MEM achieves 88.88% accuracy on LOCOMO’s Question Answering task and 86.2% on LongMemEval, outperforming state-of-theart session-aware approaches and demonstrating that structured property graphs enable more temporally coherent long-term conversational reasoning.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415a217apexme,
+  title = {APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14362.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a217-apex-mem-conversational-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). APEX-MEM: Agentic Semi-Structured Memory with Temporal Reasoning for Long-Term Conversational AI. https://arxiv.org/pdf/2604.14362.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14362.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

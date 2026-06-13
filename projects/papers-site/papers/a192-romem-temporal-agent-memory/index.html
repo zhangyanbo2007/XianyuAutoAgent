@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Time is Not a Label: Continuous Phase Rotation for Temporal Knowledge Graphs and Agentic Memory | DAST Papers</title>
+    <meta name="description" content="RoMem 针对长期 agent memory 中的时间建模问题：多数系统把时间当离散标签、recency 排序或覆盖旧事实，无法区分永久事实、缓慢变化事实和快速过期事实。这个问题会直接影响长寿命 agent 的知识连续性。
+
+论文用 relation text embedding 预测关系 volatility，并通过 continuous phase rotation 在时序知识图中表达事实随" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a192-romem-temporal-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Time is Not a Label: Continuous Phase Rotation for Temporal Knowledge Graphs and Agentic Memory" />
+    <meta property="og:description" content="RoMem 针对长期 agent memory 中的时间建模问题：多数系统把时间当离散标签、recency 排序或覆盖旧事实，无法区分永久事实、缓慢变化事实和快速过期事实。这个问题会直接影响长寿命 agent 的知识连续性。
+
+论文用 relation text embedding 预测关系 volatility，并通过 continuous phase rotation 在时序知识图中表达事实随" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a192-romem-temporal-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Time is Not a Label: Continuous Phase Rotation for Temporal Knowledge Graphs and Agentic Memory" />
+    <meta name="twitter:description" content="RoMem 针对长期 agent memory 中的时间建模问题：多数系统把时间当离散标签、recency 排序或覆盖旧事实，无法区分永久事实、缓慢变化事实和快速过期事实。这个问题会直接影响长寿命 agent 的知识连续性。
+
+论文用 relation text embedding 预测关系 volatility，并通过 continuous phase rotation 在时序知识图中表达事实随" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Time is Not a Label: Continuous Phase Rotation for Temporal Knowledge Graphs and Agentic Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11544" target="_blank" rel="noopener noreferrer">2604.11544</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>RoMem 针对长期 agent memory 中的时间建模问题：多数系统把时间当离散标签、recency 排序或覆盖旧事实，无法区分永久事实、缓慢变化事实和快速过期事实。这个问题会直接影响长寿命 agent 的知识连续性。</dd></div><div><dt>方法/机制</dt><dd>论文用 relation text embedding 预测关系 volatility，并通过 continuous phase rotation 在时序知识图中表达事实随时间的几何漂移。持久关系旋转慢，易变关系旋转快，从而让旧事实不是简单删除，而是在表示空间中被 shadowing。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它把 agent structured memory 的时间维度变成可插拔的几何模块，提供了比时间戳排序和 LLM ingestion 更可控的记忆更新 primitive。对 agent memory、temporal KG、长期个人化系统都有工程迁移价值。</dd></div><div><dt>收录价值</dt><dd>局限在于它主要解决结构化关系记忆，对非结构化情节记忆、冲突事实归因和多源可信度还需要额外机制。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>RoMem 针对长期 agent memory 中的时间建模问题：多数系统把时间当离散标签、recency 排序或覆盖旧事实，无法区分永久事实、缓慢变化事实和快速过期事实。这个问题会直接影响长寿命 agent 的知识连续性。</p><p>论文用 relation text embedding 预测关系 volatility，并通过 continuous phase rotation 在时序知识图中表达事实随时间的几何漂移。持久关系旋转慢，易变关系旋转快，从而让旧事实不是简单删除，而是在表示空间中被 shadowing。</p><p>它值得收录，是因为它把 agent structured memory 的时间维度变成可插拔的几何模块，提供了比时间戳排序和 LLM ingestion 更可控的记忆更新 primitive。对 agent memory、temporal KG、长期个人化系统都有工程迁移价值。</p><p>局限在于它主要解决结构化关系记忆，对非结构化情节记忆、冲突事实归因和多源可信度还需要额外机制。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>结构化内存表示，如知识图谱，对于自主代理和其他长期系统至关重要。然而，大多数现有方法将时间建模为离散元数据，要么通过按时间排序（掩埋旧但持久的知识），要么简单地覆盖过时的事实，要么需要在每次信息摄取步骤中进行昂贵的 LLM 调用，从而使它们无法区分持久事实和不断演化的事实。为了解决这个问题，我们引入了 RoMem，一个专为结构化内存系统设计的，可用于代理记忆和其他领域的“即插即用”时间知识图谱模块。一个预训练的语义速度闸门将每个关系的文本嵌入映射到波动性得分，从数据中学习不断演化的关系（例如，“总统”）应该快速旋转，而持久的关系（例如，“出生于”）应该保持稳定。结合连续相移旋转，这使得几何阴影得以实现：过时的事实在复杂的向量空间中被移相旋转，从而在不进行删除的情况下，使 temporally 正确的事实自然地排在优先位置。在时间知识图谱补全任务上，RoMem 在 ICEWS05-15 数据集上取得了最先进的结果（72.6 MRR）。应用于代理记忆，它在时间推理（MultiTQ）中提供了 2-3 倍的 MRR 和答案准确率，在混合基准（LoCoMo）中占据主导地位，保持静态记忆无退化（DMR-MSC），并且零样本泛化到未见过的金融领域（FinTMMBench）。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Structured memory representations such as knowledge graphs are central to autonomous agents and other long-lived systems. However, most existing approaches model time as discrete metadata, either sorting by recency (burying old-yet-permanent knowledge), simply overwriting outdated facts, or requiring an expensive LLM call at every ingestion step, leaving them unable to distinguish persistent facts from evolving ones. To address this, we introduce RoMem, a drop-in temporal knowledge graph module for structured memory systems, applicable to agentic memory and beyond. A pretrained Semantic Speed Gate maps each relation&#x27;s text embedding to a volatility score, learning from data that evolving relations (e.g., &quot;president of&quot;) should rotate fast while persistent ones (e.g., &quot;born in&quot;) should remain stable. Combined with continuous phase rotation, this enables geometric shadowing: obsolete facts are rotated out of phase in complex vector space, so temporally correct facts naturally outrank contradictions without deletion. On temporal knowledge graph completion, RoMem achieves state-of-the-art results on ICEWS05-15 (72.6 MRR). Applied to agentic memory, it delivers 2-3x MRR and answer accuracy on temporal reasoning (MultiTQ), dominates hybrid benchmark (LoCoMo), preserves static memory with zero degradation (DMR-MSC), and generalises zero-shot to unseen financial domains (FinTMMBench).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413a192romemt,
+  title = {Time is Not a Label: Continuous Phase Rotation for Temporal Knowledge Graphs and Agentic Memory},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11544.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a192-romem-temporal-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Time is Not a Label: Continuous Phase Rotation for Temporal Knowledge Graphs and Agentic Memory. https://arxiv.org/pdf/2604.11544.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11544.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

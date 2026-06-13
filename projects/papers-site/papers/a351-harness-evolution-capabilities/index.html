@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents | DAST Papers</title>
+    <meta name="description" content="这篇提供了 self-evolving agents 的重要诊断框架：能写出 harness 更新，不等于能从 harness 更新中受益。
+
+它把能力拆成 harness-updating 和 harness-benefit，并发现二者与模型 base capability 的关系不同：更新能力不随模型强弱明显提升，而受益能力呈非单调。
+
+收录价值在于它给 agent skill/memory/" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a351-harness-evolution-capabilities/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents" />
+    <meta property="og:description" content="这篇提供了 self-evolving agents 的重要诊断框架：能写出 harness 更新，不等于能从 harness 更新中受益。
+
+它把能力拆成 harness-updating 和 harness-benefit，并发现二者与模型 base capability 的关系不同：更新能力不随模型强弱明显提升，而受益能力呈非单调。
+
+收录价值在于它给 agent skill/memory/" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a351-harness-evolution-capabilities/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents" />
+    <meta name="twitter:description" content="这篇提供了 self-evolving agents 的重要诊断框架：能写出 harness 更新，不等于能从 harness 更新中受益。
+
+它把能力拆成 harness-updating 和 harness-benefit，并发现二者与模型 base capability 的关系不同：更新能力不随模型强弱明显提升，而受益能力呈非单调。
+
+收录价值在于它给 agent skill/memory/" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30621" target="_blank" rel="noopener noreferrer">2605.30621</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇提供了 self-evolving agents 的重要诊断框架：能写出 harness 更新，不等于能从 harness 更新中受益。</dd></div><div><dt>方法/机制</dt><dd>它把能力拆成 harness-updating 和 harness-benefit，并发现二者与模型 base capability 的关系不同：更新能力不随模型强弱明显提升，而受益能力呈非单调。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它给 agent skill/memory/tool harness 训练提供了评估边界和资源分配原则：不要只训练 evolver，还要训练 artifact invocation 和 long-horizon instruction following。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇提供了 self-evolving agents 的重要诊断框架：能写出 harness 更新，不等于能从 harness 更新中受益。</p><p>它把能力拆成 harness-updating 和 harness-benefit，并发现二者与模型 base capability 的关系不同：更新能力不随模型强弱明显提升，而受益能力呈非单调。</p><p>收录价值在于它给 agent skill/memory/tool harness 训练提供了评估边界和资源分配原则：不要只训练 evolver，还要训练 artifact invocation 和 long-horizon instruction following。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM 智能体正越来越多地作为围绕可编辑外部“线束”（包括提示、技能、记忆和工具）构建的系统部署，这些线束在不改变模型参数的情况下塑造任务执行。线束自进化通过根据执行证据更新这些线束来适应此类智能体。然而，目前尚不清楚模型在任务解决方面的基本能力是否能预测其在线束自进化方面的能力：哪些模型能产生有用的线束更新，哪些模型又能从中实际受益？我们分析了两种线束自进化能力：(i) 线束更新能力，即根据执行证据产生有用且持久的线束更新的能力；(ii) 线束受益能力，即在任务解决过程中从更新后的线束中受益的能力。我们的分析揭示了两个发现。首先，线束更新能力在基本能力上是平坦的：来自不同能力层级的模型产生的线束更新带来了惊人相似的收益；即使 Qwen3.5-9B 的更新也产生了与 Claude Opus 4.6 相当的收益。其次，线束受益能力在基本能力上是非单调的：弱层级模型从更新后的线束中受益甚微，中层级模型受益最多，而强层级模型受益少于中层级。我们将弱层级收益低的原因追溯到两种故障模式：弱层级模型可能未能激活相关的线束构件，或者激活了但未能忠实地遵循它们。这些发现表明，应将能力预算投入到任务解决智能体而非进化器中，并在智能体训练中关注线束调用和长程指令遵循。我们的源代码可在此处公开获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLM agents are increasingly deployed as systems built around editable external harnesses, including prompts, skills, memories and tools, that shape task execution without changing model parameters. Harness self-evolution adapts such agents by updating these harnesses from execution evidence. Yet it remains unclear whether a model’s base capability in tasksolving predicts its capabilities in harness selfevolution: which models produce useful harness updates, and which actually benefit from them? We analyze two harness self-evolution capabilities: (i) harness-updating, the capability to produce useful persistent harness updates from execution evidence; (ii) harness-benefit, the capability to benefit from updated harnesses during task solving. Our analysis reveals two findings. First, harness-updating is flat in base capability: models from different capability tiers produce harness updates that lead to surprisingly similar gains; even Qwen3.5-9B’s updates yield gains comparable to those of Claude Opus 4.6. Second, harness-benefit is non-monotonic in base capability: weak-tier models benefit little from updated harnesses, mid-tier models benefit most, and strong-tier models benefit less than mid-tier. We trace low gains at the weak tier to two failure modes: weak-tier models may fail to activate relevant harness artifacts, or activate them but fail to follow them faithfully. These findings suggest investing capability budget in the task-solving agent rather than the evolver, and targeting harness invocation and long-horizon instruction following in agent training. Our source code is publicly available at here.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528a351harnes,
+  title = {Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30621.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a351-harness-evolution-capabilities/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Harness Updating Is Not Harness Benefit: Disentangling Evolution Capabilities in Self-Evolving LLM Agents. https://arxiv.org/pdf/2605.30621.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30621.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/A-EVO-Lab/a-evolve/tree/release/harness-evolution" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

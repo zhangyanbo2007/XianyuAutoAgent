@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A scalable reinforcement learning approach for screening large peptide libraries for bioactive peptide discovery | DAST Papers</title>
+    <meta name="description" content="肽药与功能肽发现的难点不在于候选不够多，而在于库太大、计算筛选太贵、实验预算太有限。传统 exhaustive screening 在库规模上很快失去可行性，因此真正有价值的问题是怎样在超大肽库上做可扩展的探索。
+
+这篇论文用 reinforcement learning 和 posterior sampling 构建了一个可扩展筛选策略，在不穷举的前提下平衡 exploration 和 expl" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio18-rl-peptide-screening/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A scalable reinforcement learning approach for screening large peptide libraries for bioactive peptide discovery" />
+    <meta property="og:description" content="肽药与功能肽发现的难点不在于候选不够多，而在于库太大、计算筛选太贵、实验预算太有限。传统 exhaustive screening 在库规模上很快失去可行性，因此真正有价值的问题是怎样在超大肽库上做可扩展的探索。
+
+这篇论文用 reinforcement learning 和 posterior sampling 构建了一个可扩展筛选策略，在不穷举的前提下平衡 exploration 和 expl" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio18-rl-peptide-screening/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A scalable reinforcement learning approach for screening large peptide libraries for bioactive peptide discovery" />
+    <meta name="twitter:description" content="肽药与功能肽发现的难点不在于候选不够多，而在于库太大、计算筛选太贵、实验预算太有限。传统 exhaustive screening 在库规模上很快失去可行性，因此真正有价值的问题是怎样在超大肽库上做可扩展的探索。
+
+这篇论文用 reinforcement learning 和 posterior sampling 构建了一个可扩展筛选策略，在不穷举的前提下平衡 exploration 和 expl" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A scalable reinforcement learning approach for screening large peptide libraries for bioactive peptide discovery</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-11-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-27</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-66748-y" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-66748-y</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>肽药与功能肽发现的难点不在于候选不够多，而在于库太大、计算筛选太贵、实验预算太有限。传统 exhaustive screening 在库规模上很快失去可行性，因此真正有价值的问题是怎样在超大肽库上做可扩展的探索。</dd></div><div><dt>方法/机制</dt><dd>这篇论文用 reinforcement learning 和 posterior sampling 构建了一个可扩展筛选策略，在不穷举的前提下平衡 exploration 和 exploitation，并把 3600 万规模的结构化螺旋肽库压缩到可实验验证的子空间。它的亮点不是单一模型指标，而是把大库探索问题明确改写成 sequential screening policy。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得正式收录，因为它展示了 RL 在生物分子发现中的一个非常实用的 workflow：不是直接设计最终分子，而是先把海量候选空间变成可实验化的少量高价值样本。对 peptide discovery、molecule triage、active screening 都有方法外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，因为当前验证仍集中在特定肽库和特定生物活性场景，方法虽然强但还没有覆盖更广的分子类型或完整药物开发流程。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>肽药与功能肽发现的难点不在于候选不够多，而在于库太大、计算筛选太贵、实验预算太有限。传统 exhaustive screening 在库规模上很快失去可行性，因此真正有价值的问题是怎样在超大肽库上做可扩展的探索。</p><p>这篇论文用 reinforcement learning 和 posterior sampling 构建了一个可扩展筛选策略，在不穷举的前提下平衡 exploration 和 exploitation，并把 3600 万规模的结构化螺旋肽库压缩到可实验验证的子空间。它的亮点不是单一模型指标，而是把大库探索问题明确改写成 sequential screening policy。</p><p>这篇论文值得正式收录，因为它展示了 RL 在生物分子发现中的一个非常实用的 workflow：不是直接设计最终分子，而是先把海量候选空间变成可实验化的少量高价值样本。对 peptide discovery、molecule triage、active screening 都有方法外溢。</p><p>它没有升到更高一级，因为当前验证仍集中在特定肽库和特定生物活性场景，方法虽然强但还没有覆盖更广的分子类型或完整药物开发流程。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>生物活性肽，如抗癌肽 (ACPs)，因其对肿瘤的有效性和选择性以及对健康人体细胞的最小毒性，为小分子药物提供了一种有前景的治疗替代方案。然而，它们的合理发现需要利用计算量大的计算机模拟工具在广阔的化学空间中进行探索。在本文中，我们提出了一种计算方法，利用强化学习和后验采样，能够经济高效地探索大型肽库。所开发方法的实际应用成功识别出具有治疗潜力的溶膜肽。所开发的计算方法与穷举式库筛选相比，将搜索空间减少了90%以上，并实现了数据集探索与利用之间的有效平衡。我们通过筛选一个包含3600万个从蛋白质数据库中整理得到的结构解析螺旋肽的聚焦库，证明了该方法的可扩展性。在体外试验中进行筛选时，选定的前100个候选物中有15个对乳腺癌细胞（包括耐药性三阴性乳腺癌）表现出细胞毒性活性，其中三种先导化合物进一步被证实对健康人体细胞无毒。这项研究强调了使用深度强化学习加速生物活性肽发现的潜力，为开发新型肽基癌症疗法提供了一条有前景的途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Bioactive peptides such as anticancer peptides (ACPs) offer a promising therapeutic alternative to small molecules due to their efficiency and selectivity against tumors and minimal toxicity towards healthy human cells. However, their rational discovery requires navigating a vast chemical space using computationally demanding in silico tools. Herein, we present a computational method enabling cost-efficient exploration of large peptide libraries using reinforcement learning and posterior sampling. Practical application of the developed approach results in identification of membranolytic peptides with therapeutic potential. The developed computational method reduces the search space by over 90% compared to exhaustive library screening and enables effective balancing between dataset’s exploration and exploitation. We demonstrate the scalability of this method by screening a focused library of 36 million structurally resolved helical peptides curated from the Protein Data Bank. When screened in in vitro assays, 15 of the top 100 selected candidates exhibit cytotoxic activity against breast cancer cells including drug resistant triple-negative breast cancer, with the three lead compounds further characterizing as non-toxic towards healthy human cells. This study highlights the potential of using deep reinforcement learning to expedite bioactive peptide discovery, offering a promising path for developing new peptide-based cancer therapies.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251127bio18rlpep,
+  title = {A scalable reinforcement learning approach for screening large peptide libraries for bioactive peptide discovery},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-66748-y},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio18-rl-peptide-screening/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). A scalable reinforcement learning approach for screening large peptide libraries for bioactive peptide discovery. https://www.nature.com/articles/s41467-025-66748-y</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-66748-y" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

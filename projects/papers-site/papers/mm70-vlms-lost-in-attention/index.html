@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Large Vision-Language Models Get Lost in Attention | DAST Papers</title>
+    <meta name="description" content="这篇论文关注大视觉语言模型的一个基础可靠性问题：模型表面上能处理图文输入，但注意力机制可能在复杂图像、干扰区域或语言提示下偏离真正相关证据。
+
+作者围绕 attention loss 设计系统化诊断，分析 LVLM 在视觉 grounding、跨模态对齐和推理时如何被无关区域、局部显著性或提示结构牵引。
+
+论文配套代码，有助于复现实验和扩展到不同 VLM；它提供的不是单一任务分数，而是面向多模态模" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm70-vlms-lost-in-attention/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Large Vision-Language Models Get Lost in Attention" />
+    <meta property="og:description" content="这篇论文关注大视觉语言模型的一个基础可靠性问题：模型表面上能处理图文输入，但注意力机制可能在复杂图像、干扰区域或语言提示下偏离真正相关证据。
+
+作者围绕 attention loss 设计系统化诊断，分析 LVLM 在视觉 grounding、跨模态对齐和推理时如何被无关区域、局部显著性或提示结构牵引。
+
+论文配套代码，有助于复现实验和扩展到不同 VLM；它提供的不是单一任务分数，而是面向多模态模" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm70-vlms-lost-in-attention/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Large Vision-Language Models Get Lost in Attention" />
+    <meta name="twitter:description" content="这篇论文关注大视觉语言模型的一个基础可靠性问题：模型表面上能处理图文输入，但注意力机制可能在复杂图像、干扰区域或语言提示下偏离真正相关证据。
+
+作者围绕 attention loss 设计系统化诊断，分析 LVLM 在视觉 grounding、跨模态对齐和推理时如何被无关区域、局部显著性或提示结构牵引。
+
+论文配套代码，有助于复现实验和扩展到不同 VLM；它提供的不是单一任务分数，而是面向多模态模" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Large Vision-Language Models Get Lost in Attention</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.05668" target="_blank" rel="noopener noreferrer">2605.05668</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注大视觉语言模型的一个基础可靠性问题：模型表面上能处理图文输入，但注意力机制可能在复杂图像、干扰区域或语言提示下偏离真正相关证据。</dd></div><div><dt>方法/机制</dt><dd>作者围绕 attention loss 设计系统化诊断，分析 LVLM 在视觉 grounding、跨模态对齐和推理时如何被无关区域、局部显著性或提示结构牵引。</dd></div><div><dt>结果/证据</dt><dd>论文配套代码，有助于复现实验和扩展到不同 VLM；它提供的不是单一任务分数，而是面向多模态模型内部注意力可靠性的诊断接口。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为 VLM attention/grounding 失配会直接影响多模态 reasoning、agent perception、GUI/robotics 输入理解和安全评测，是高溢出的 failure-analysis primitive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注大视觉语言模型的一个基础可靠性问题：模型表面上能处理图文输入，但注意力机制可能在复杂图像、干扰区域或语言提示下偏离真正相关证据。</p><p>作者围绕 attention loss 设计系统化诊断，分析 LVLM 在视觉 grounding、跨模态对齐和推理时如何被无关区域、局部显著性或提示结构牵引。</p><p>论文配套代码，有助于复现实验和扩展到不同 VLM；它提供的不是单一任务分数，而是面向多模态模型内部注意力可靠性的诊断接口。</p><p>它值得正式收录，因为 VLM attention/grounding 失配会直接影响多模态 reasoning、agent perception、GUI/robotics 输入理解和安全评测，是高溢出的 failure-analysis primitive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管训练范式迅速演变，大型视觉-语言模型（LVLMs）的解码器骨干模型仍然根本植根于残差连接Transformer架构。因此，解读内部模块的独特作用对于理解模型机制和指导架构优化至关重要。虽然先前的统计方法提供了有价值的基于归因的见解，但它们通常缺乏统一的理论基础。为了弥合这一差距，我们提出了一个基于信息论和几何学的统一框架，以量化残差更新的几何和熵性质。应用这个统一框架揭示了一个基本的功能解耦：注意力作为一种子空间保持算子，专注于重构，而FFN则作为子空间扩展算子，驱动语义创新。令人惊讶的是，进一步的实验表明，用预定义值（例如高斯噪声）替换学习到的注意力权重，在大多数数据集上相对于原始模型产生了可比甚至更优的性能。这些结果揭示了当前机制中严重的资源错配和冗余，表明最先进的LVLMs实际上“迷失在注意力中”，而不是有效地利用视觉上下文。我们的代码已在此链接公开。大型视觉-语言模型（LVLMs）通过将基于Transformer的序列建模扩展到联合处理自然语言和视觉信号（Vaswani et al., 2017），从大型语言模型（LLMs）迅速发展而来。早期的视觉-语言表征学习（例如对比预训练）建立了强大的图像-文本对齐，后来的LVLMs可以将其作为视觉基础接口（Radford et al., 2021）加以利用。随后的LVLMs越来越多地将预训练的视觉编码器与LLM骨干模型统一起来，从而实现了少样本多模态泛化和大规模指令遵循行为（Alayrac et al., 2022; Li et al., 2023a; Liu et al., 2023; Hao et al., 2025）。与此同时，面向推理的范式进一步赋予了这些模型改进的审议和问题解决行为（Wei et al., 2022; Jaech et al., 2024; Guo et al., 2025; Zhang et al., 2025b; Tan et al., 2025）。尽管架构和训练创新步伐很快，但主流的LVLM家族仍然根本植根于Transformer架构（Vaswani et al., 2017）。从可解释性的角度来看，标准的Transformer层由两个核心子模块组成，即多头自注意力和前馈网络（FFN），每个子模块都由残差连接包裹，因此每个子模块都会产生一个加性更新，该更新被写回到共享的残差流表征中（Vaswani et al., 2017; Elhage et al., 2021; Skean et al., 2025）。一个常见的工作假设是，注意力块是上下文推理的主要基质，实现上下文相关的算法，例如归纳/基于复制的机制（Olsson et al., 2022）。相比之下，FFN通常被描述为存储和检索分布关联，其行为类似于键值记忆，其激活模式可以诱导类似于浅层n-gram延续的下一个token分布（Geva et al., 2021; Edelman et al., 2024）。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Despite the rapid evolution of training paradigms, the decoder backbone of large vision–language models (LVLMs) remains fundamentally rooted in the residual-connection Transformer architecture. Therefore, deciphering the distinct roles of internal modules is critical for understanding model mechanics and guiding architectural optimization. While prior statistical approaches have provided valuable attribution-based insights, they often lack a unified theoretical basis. To bridge this gap, we propose a unified framework grounded in information theory and geometry to quantify the geometric and entropic nature of residual updates. Applying this unified framework reveals a fundamental functional decoupling: Attention acts as a subspace-preserving operator focused on reconfiguration, whereas FFNs serve as subspace-expanding operators driving semantic innovation. Strikingly, further experiments demonstrate that replacing learned attention weights with predefined values (e.g., Gaussian noise) yields comparable or even superior performance across a majority of datasets relative to vanilla models. These results expose severe misallocation and redundancy in current mechanisms, suggesting that state-of-the-art LVLMs effectively “get lost in attention” rather than efficiently leveraging visual context. Our code is publicly available at this link. Large vision–language models (LVLMs) have rapidly evolved from large language models (LLMs) by extending Transformer-based sequence modeling to jointly process natural language and visual signals (Vaswani et al., 2017). Early vision–language representation learning (e.g., contrastive pretraining) established strong image–text alignment that later LVLMs could leverage as a visual grounding interface (Radford et al., 2021). Subsequent LVLMs increasingly unify pretrained vision encoders with LLM backbones, enabling few-shot multimodal generalization and instruction-following behavior at scale (Alayrac et al., 2022; Li et al., 2023a; Liu et al., 2023; Hao et al., 2025). In parallel, reasoning-oriented paradigms have further endowed these models with improved deliberation and problem-solving behaviors (Wei et al., 2022; Jaech et al., 2024; Guo et al., 2025; Zhang et al., 2025b; Tan et al., 2025). Despite the fast pace of architectural and training innovations, the dominant LVLM family remains fundamentally grounded in the Transformer architecture (Vaswani et al., 2017). From an interpretability standpoint, the standard Transformer layer is composed of two core submodules, namely multi-head self-attention and feed-forward network (FFN), and each submodule is wrapped by residual connections, so that every submodule produces an additive update that is written back into a shared residual stream representation (Vaswani et al., 2017; Elhage et al., 2021; Skean et al., 2025). A common working hypothesis is that attention blocks are the primary substrate for in-context reasoning, implementing context-dependent algorithms such as induction/copy-based mechanisms (Olsson et al., 2022). In contrast, FFNs are often characterized as storing and retrieving distributional associations, behaving like key–value memories whose activated patterns can induce next-token distributions that resemble shallow n-gram continuations (Geva et al., 2021; Edelman et al., 2024).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260507mm70vlmslo,
+  title = {Large Vision-Language Models Get Lost in Attention},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.05668.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm70-vlms-lost-in-attention/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Large Vision-Language Models Get Lost in Attention. https://arxiv.org/pdf/2605.05668.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.05668.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/Lrbomchz/vlms_lost_in_attn" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

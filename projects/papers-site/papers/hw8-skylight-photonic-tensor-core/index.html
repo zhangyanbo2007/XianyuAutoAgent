@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 photonic AI accelerator 里最容易停留在器件层演示的问题：很多工作有单点器件亮点，但缺乏足够清晰的 AI compute architecture 设计。SKYLIGHT 的贡献在于把拓扑、波长路由、累加、编程方式和 3D stack 统一设计成面向实时 AI inference 的 tensor core，而不是做又一个局部 photonic primit" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw8-skylight-photonic-tensor-core/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference" />
+    <meta property="og:description" content="这篇论文处理的是 photonic AI accelerator 里最容易停留在器件层演示的问题：很多工作有单点器件亮点，但缺乏足够清晰的 AI compute architecture 设计。SKYLIGHT 的贡献在于把拓扑、波长路由、累加、编程方式和 3D stack 统一设计成面向实时 AI inference 的 tensor core，而不是做又一个局部 photonic primit" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw8-skylight-photonic-tensor-core/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference" />
+    <meta name="twitter:description" content="这篇论文处理的是 photonic AI accelerator 里最容易停留在器件层演示的问题：很多工作有单点器件亮点，但缺乏足够清晰的 AI compute architecture 设计。SKYLIGHT 的贡献在于把拓扑、波长路由、累加、编程方式和 3D stack 统一设计成面向实时 AI inference 的 tensor core，而不是做又一个局部 photonic primit" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-02-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.19031" target="_blank" rel="noopener noreferrer">2602.19031</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 photonic AI accelerator 里最容易停留在器件层演示的问题：很多工作有单点器件亮点，但缺乏足够清晰的 AI compute architecture 设计。SKYLIGHT 的贡献在于把拓扑、波长路由、累加、编程方式和 3D stack 统一设计成面向实时 AI inference 的 tensor core，而不是做又一个局部 photonic primitive。</dd></div><div><dt>方法/机制</dt><dd>它提出了 3D Si/SiN crossbar、非 MRR 的热稳健 WDM 组件、多端口 PD 的分层累加，以及可光编程的 PCM 权重，形成一个 hundred-channel 级的 3D photonic in-memory tensor core。更关键的是，论文没有只停留在算力数字上，而是把硬件非理想性、低比特量化、模拟噪声和局部学习都纳入系统级评估。</dd></div><div><dt>结果/证据</dt><dd>按本仓库标准，这篇论文清楚地跨过了“纯器件新奇性”门槛，因为它提供的是可复用的 AI-hardware co-design blueprint，尤其对 photonic accelerator、in-memory compute、以及未来大规模低功耗 AI inference 体系有明确结构性参考价值。</dd></div><div><dt>收录价值</dt><dd>它还不是更高一级，因为 photonic accelerator 路线整体仍在早期，很多结果来自系统建模与特定任务评估；它展示了很强方向性，但还没有把 AI 训练/推理主流设计空间真正改写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 photonic AI accelerator 里最容易停留在器件层演示的问题：很多工作有单点器件亮点，但缺乏足够清晰的 AI compute architecture 设计。SKYLIGHT 的贡献在于把拓扑、波长路由、累加、编程方式和 3D stack 统一设计成面向实时 AI inference 的 tensor core，而不是做又一个局部 photonic primitive。</p><p>它提出了 3D Si/SiN crossbar、非 MRR 的热稳健 WDM 组件、多端口 PD 的分层累加，以及可光编程的 PCM 权重，形成一个 hundred-channel 级的 3D photonic in-memory tensor core。更关键的是，论文没有只停留在算力数字上，而是把硬件非理想性、低比特量化、模拟噪声和局部学习都纳入系统级评估。</p><p>按本仓库标准，这篇论文清楚地跨过了“纯器件新奇性”门槛，因为它提供的是可复用的 AI-hardware co-design blueprint，尤其对 photonic accelerator、in-memory compute、以及未来大规模低功耗 AI inference 体系有明确结构性参考价值。</p><p>它还不是更高一级，因为 photonic accelerator 路线整体仍在早期，很多结果来自系统建模与特定任务评估；它展示了很强方向性，但还没有把 AI 训练/推理主流设计空间真正改写。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SKYLIGHT：一种可扩展的百通道3D光子存内张量核架构，用于实时AI推理 张萌∗，伦斯勒理工学院，美国；殷子昂∗，亚利桑那州立大学，美国；NICHOLAS GANGI，伦斯勒理工学院，美国；ALEXANDER CHEN，空军研究实验室，美国；BRETT BAMFO，伦斯勒理工学院，美国；TIANLE XU，伦斯勒理工学院，美国；顾家琦，亚利桑那州立大学，美国；黄昭然，伦斯勒理工学院，美国 人工智能（AI）日益增长的计算需求正在挑战传统电子技术，使得光子计算成为一个有前景的替代方案。然而，现有的光子架构面临着根本性的可扩展性和可靠性障碍。本文介绍了一种名为SKYLIGHT的可扩展3D光子存内张量核架构，专为实时AI推理而设计。通过在3D堆栈中协同设计其拓扑、波长路由、累积和编程，SKYLIGHT克服了关键限制。它的创新包括低损耗3D硅/氮化硅交叉开关拓扑、热鲁棒的非微环谐振器（MRR）基波分复用（WDM）组件、使用多端口光电探测器（PD）的分层信号累积，以及光学编程的非易失性相变材料（PCM）权重。重要的是，SKYLIGHT支持原位权重更新，除了推理之外，还支持无标签、层局部学习（例如，前向-前向局部更新）。使用SimPhony [90]进行系统级建模，我们表明单个144 × 256 SKYLIGHT核心可在单个掩模版内实现，并以23.7 TOPS/W的能效提供342.1 TOPS的性能，从而实现ResNet-50推理，速度达到1212 FPS，每图像消耗约27 mJ，并且在实时测量中，在相同工作负载下，端到端达到84.17 FPS/W（比NVIDIA RTX PRO 6000 Blackwell GPU高1.61倍）。对包括无监督局部自学习在内的四种代表性机器学习任务进行的系统级评估表明，SKYLIGHT对真实硬件非理想性（低位量化和捕获调制、PCM编程和读出变化的信号比例模拟噪声）具有鲁棒性。通过噪声感知训练，SKYLIGHT保持了高任务精度，验证了其作为节能、大规模光子AI加速器综合解决方案的潜力。ACM参考格式：Meng Zhang, Ziang Yin, Nicholas Gangi, Alexander Chen, Brett Bamfo, Tianle Xu, Jiaqi Gu, and Zhaoran Rena Huang. 2026. SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference. 1, 1 (March 2026), 30 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn ∗两位作者对这项工作做出了同等贡献。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference MENG ZHANG∗ , Rensselaer Polytechnic Institute, USA ZIANG YIN∗ , Arizona State University, USA NICHOLAS GANGI, Rensselaer Polytechnic Institute, USA ALEXANDER CHEN, Air Force Research Laboratory, USA BRETT BAMFO, Rensselaer Polytechnic Institute, USA TIANLE XU, Rensselaer Polytechnic Institute, USA JIAQI GU, Arizona State University, USA ZHAORAN RENA HUANG, Rensselaer Polytechnic Institute, USA The growing computational demands of artificial intelligence (AI) are challenging conventional electronics, making photonic computing a promising alternative. However, existing photonic architectures face fundamental scalability and reliability barriers. This paper introduces SKYLIGHT, a scalable 3D photonic in-memory tensor core architecture designed for real-time AI inference. By co-designing its topology, wavelength routing, accumulation, and programming in a 3D stack, SKYLIGHT overcomes key limitations. Its innovations include a low-loss 3D Si/SiN crossbar topology, a thermally robust non-micro-ring resonator (MRR)-based wavelength-division multiplexing (WDM) component, a hierarchical signal accumulation using a multi-port photodetector (PD), and optically programmed non-volatile phase-change material (PCM) weights. Importantly, SKYLIGHT enables in-situ weight updates that support label-free, layer-local learning (e.g., forward-forward local updates) in addition to inference. Using SimPhony [90] for system-level modeling, we show that a single 144 × 256 SKYLIGHT core is feasible within a single reticle and delivers 342.1 TOPS at 23.7 TOPS/W, enabling ResNet-50 inference at 1212 FPS with ∼27 mJ per image, and achieves 84.17 FPS/W end-to-end (1.61× higher than an NVIDIA RTX PRO 6000 Blackwell GPU) under the same workload in real-time measurements. System-level evaluations on four representative machine learning tasks, including unsupervised local self-learning, demonstrate SKYLIGHT ’s robustness to realistic hardware non-idealities (low-bit quantization and signal-proportional analog noise capturing modulation, PCM programming, and readout variations). With noise-aware training, SKYLIGHT maintains high task accuracy, validating its potential as a comprehensive solution for energy-efficient, large-scale photonic AI accelerators. ACM Reference Format: Meng Zhang, Ziang Yin, Nicholas Gangi, Alexander Chen, Brett Bamfo, Tianle Xu, Jiaqi Gu, and Zhaoran Rena Huang. 2026. SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference. 1, 1 (March 2026), 30 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn ∗ Both authors contributed equally to this work.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260222hw8skyligh,
+  title = {SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.19031.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw8-skylight-photonic-tensor-core/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SKYLIGHT: A Scalable Hundred-Channel 3D Photonic In-Memory Tensor Core Architecture for Real-time AI Inference. https://arxiv.org/pdf/2602.19031.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.19031.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

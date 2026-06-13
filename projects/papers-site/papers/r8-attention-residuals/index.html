@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Attention Residuals | DAST Papers</title>
+    <meta name="description" content="这份技术报告针对现代大模型里一个长期被默认接受但很少被单独重构的组件：残差连接。标准 PreNorm Transformer 会把所有前层输出用固定权重累加到当前层，随着深度增长，这会带来隐藏状态幅度膨胀、层贡献被稀释以及梯度分布不均的问题。Moonshot 团队把这个问题明确提出，并把它从训练稳定性的附属细节提升为一类值得独立设计的架构对象。
+
+报告提出 Attention Residuals（" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r8-attention-residuals/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Attention Residuals" />
+    <meta property="og:description" content="这份技术报告针对现代大模型里一个长期被默认接受但很少被单独重构的组件：残差连接。标准 PreNorm Transformer 会把所有前层输出用固定权重累加到当前层，随着深度增长，这会带来隐藏状态幅度膨胀、层贡献被稀释以及梯度分布不均的问题。Moonshot 团队把这个问题明确提出，并把它从训练稳定性的附属细节提升为一类值得独立设计的架构对象。
+
+报告提出 Attention Residuals（" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r8-attention-residuals/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Attention Residuals" />
+    <meta name="twitter:description" content="这份技术报告针对现代大模型里一个长期被默认接受但很少被单独重构的组件：残差连接。标准 PreNorm Transformer 会把所有前层输出用固定权重累加到当前层，随着深度增长，这会带来隐藏状态幅度膨胀、层贡献被稀释以及梯度分布不均的问题。Moonshot 团队把这个问题明确提出，并把它从训练稳定性的附属细节提升为一类值得独立设计的架构对象。
+
+报告提出 Attention Residuals（" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Attention Residuals</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这份技术报告针对现代大模型里一个长期被默认接受但很少被单独重构的组件：残差连接。标准 PreNorm Transformer 会把所有前层输出用固定权重累加到当前层，随着深度增长，这会带来隐藏状态幅度膨胀、层贡献被稀释以及梯度分布不均的问题。Moonshot 团队把这个问题明确提出，并把它从训练稳定性的附属细节提升为一类值得独立设计的架构对象。</dd></div><div><dt>方法/机制</dt><dd>报告提出 Attention Residuals（AttnRes），用对前序层表示的输入依赖注意力聚合，替代固定的逐层单位权重累加。为了让这一机制能在大模型预训练中落地，作者又提出 Block AttnRes，把层划分为块，仅在块级表示上做选择性聚合，并结合缓存式通信与两阶段计算策略，降低内存和通信负担，使其成为标准 residual 的可替换实现。</dd></div><div><dt>结果/证据</dt><dd>这项工作的价值在于，它不是又一个局部训练技巧，而是直接重构了 Transformer 中默认不被质疑的一段深度聚合逻辑。报告给出了 scaling-law 级别实验、Kimi Linear 48B/3B 激活模型上的 1.4T token 预训练结果，以及科学推理、数学和代码等下游提升，说明这种改动具有明确的可迁移性和系统外溢价值。对仓库来说，它属于模型内部结构与训练稳定性主线里的高价值架构条目。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，主要因为目前仍是官方技术报告而非经过更广泛社区复核的正式论文；同时，这项工作虽然有明显架构意义，但是否会成为跨家族 Transformer 的默认残差替代，还需要看后续复现、开源复训和外部采用速度。当前更稳妥的定位是高位 breakthrough，而不是更高层级的范式改写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这份技术报告针对现代大模型里一个长期被默认接受但很少被单独重构的组件：残差连接。标准 PreNorm Transformer 会把所有前层输出用固定权重累加到当前层，随着深度增长，这会带来隐藏状态幅度膨胀、层贡献被稀释以及梯度分布不均的问题。Moonshot 团队把这个问题明确提出，并把它从训练稳定性的附属细节提升为一类值得独立设计的架构对象。</p><p>报告提出 Attention Residuals（AttnRes），用对前序层表示的输入依赖注意力聚合，替代固定的逐层单位权重累加。为了让这一机制能在大模型预训练中落地，作者又提出 Block AttnRes，把层划分为块，仅在块级表示上做选择性聚合，并结合缓存式通信与两阶段计算策略，降低内存和通信负担，使其成为标准 residual 的可替换实现。</p><p>这项工作的价值在于，它不是又一个局部训练技巧，而是直接重构了 Transformer 中默认不被质疑的一段深度聚合逻辑。报告给出了 scaling-law 级别实验、Kimi Linear 48B/3B 激活模型上的 1.4T token 预训练结果，以及科学推理、数学和代码等下游提升，说明这种改动具有明确的可迁移性和系统外溢价值。对仓库来说，它属于模型内部结构与训练稳定性主线里的高价值架构条目。</p><p>它没有更高一级，主要因为目前仍是官方技术报告而非经过更广泛社区复核的正式论文；同时，这项工作虽然有明显架构意义，但是否会成为跨家族 Transformer 的默认残差替代，还需要看后续复现、开源复训和外部采用速度。当前更稳妥的定位是高位 breakthrough，而不是更高层级的范式改写。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316r8attentio,
+  title = {Attention Residuals},
+  year = {2026},
+  url = {https://raw.githubusercontent.com/MoonshotAI/Attention-Residuals/master/Attention_Residuals.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r8-attention-residuals/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Attention Residuals. https://raw.githubusercontent.com/MoonshotAI/Attention-Residuals/master/Attention_Residuals.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://raw.githubusercontent.com/MoonshotAI/Attention-Residuals/master/Attention_Residuals.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://raw.githubusercontent.com/MoonshotAI/Attention-Residuals/master/Attention_Residuals.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

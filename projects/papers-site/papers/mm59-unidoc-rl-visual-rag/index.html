@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UniDoc-RL: Coarse-to-Fine Visual RAG with Hierarchical Actions and Dense Rewards | DAST Papers</title>
+    <meta name="description" content="问题与背景：visual RAG 往往依赖粗糙检索信号，不能在复杂文档推理中逐步缩小到信息密集区域。
+
+方法与新意：UniDoc-RL 将视觉信息获取建模为层级动作序列，从文档检索到图像选择再到区域裁剪，并用 dense multi-reward 和 GRPO 训练 agent 同时优化 retrieval、reranking、active perception 和 reasoning。
+
+收录意" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm59-unidoc-rl-visual-rag/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="UniDoc-RL: Coarse-to-Fine Visual RAG with Hierarchical Actions and Dense Rewards" />
+    <meta property="og:description" content="问题与背景：visual RAG 往往依赖粗糙检索信号，不能在复杂文档推理中逐步缩小到信息密集区域。
+
+方法与新意：UniDoc-RL 将视觉信息获取建模为层级动作序列，从文档检索到图像选择再到区域裁剪，并用 dense multi-reward 和 GRPO 训练 agent 同时优化 retrieval、reranking、active perception 和 reasoning。
+
+收录意" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm59-unidoc-rl-visual-rag/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="UniDoc-RL: Coarse-to-Fine Visual RAG with Hierarchical Actions and Dense Rewards" />
+    <meta name="twitter:description" content="问题与背景：visual RAG 往往依赖粗糙检索信号，不能在复杂文档推理中逐步缩小到信息密集区域。
+
+方法与新意：UniDoc-RL 将视觉信息获取建模为层级动作序列，从文档检索到图像选择再到区域裁剪，并用 dense multi-reward 和 GRPO 训练 agent 同时优化 retrieval、reranking、active perception 和 reasoning。
+
+收录意" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>UniDoc-RL: Coarse-to-Fine Visual RAG with Hierarchical Actions and Dense Rewards</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14967" target="_blank" rel="noopener noreferrer">2604.14967</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：visual RAG 往往依赖粗糙检索信号，不能在复杂文档推理中逐步缩小到信息密集区域。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：UniDoc-RL 将视觉信息获取建模为层级动作序列，从文档检索到图像选择再到区域裁剪，并用 dense multi-reward 和 GRPO 训练 agent 同时优化 retrieval、reranking、active perception 和 reasoning。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇对 multimodal RAG/agent 很有复用价值，因为它把“看哪里、取哪页、裁哪里、如何推理”统一成可训练决策流程，而不是独立模块拼接。</dd></div><div><dt>收录价值</dt><dd>局限：数据集和 reward 设计可能影响泛化；真实企业文档、低质量扫描和跨格式文档上的鲁棒性仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：visual RAG 往往依赖粗糙检索信号，不能在复杂文档推理中逐步缩小到信息密集区域。</p><p>方法与新意：UniDoc-RL 将视觉信息获取建模为层级动作序列，从文档检索到图像选择再到区域裁剪，并用 dense multi-reward 和 GRPO 训练 agent 同时优化 retrieval、reranking、active perception 和 reasoning。</p><p>收录意义：这篇对 multimodal RAG/agent 很有复用价值，因为它把“看哪里、取哪页、裁哪里、如何推理”统一成可训练决策流程，而不是独立模块拼接。</p><p>局限：数据集和 reward 设计可能影响泛化；真实企业文档、低质量扫描和跨格式文档上的鲁棒性仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>检索增强生成（RAG）通过外部视觉知识扩展了大型视觉语言模型（LVLM）。然而，现有的视觉RAG系统通常依赖于通用检索信号，这些信号忽略了复杂推理所需的细粒度视觉语义。为了解决这一限制，我们提出了UniDoc-RL，一个统一的强化学习框架，其中LVLM智能体共同执行检索、重排序、主动视觉感知和推理。UniDoc-RL将视觉信息获取公式化为一个具有分层动作空间的顺序决策问题。具体来说，它逐步将视觉证据从粗粒度的文档检索细化到细粒度的图像选择和主动区域裁剪，从而使模型能够抑制不相关内容并关注信息密集区域。为了实现有效的端到端训练，我们引入了一种密集的多奖励方案，为每个动作提供任务感知监督。基于组相对策略优化（GRPO），UniDoc-RL使智能体行为与多个目标对齐，而无需依赖单独的价值网络。为了支持这种训练范式，我们策划了一个包含高质量推理轨迹和细粒度动作注释的综合数据集。在三个基准测试上的实验表明，UniDoc-RL始终超越了最先进的基线，比之前的基于RL的方法获得了高达17.7%的提升。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Retrieval-Augmented Generation (RAG) extends Large Vision-Language Models (LVLMs) with external visual knowledge. However, existing visual RAG systems typically rely on generic retrieval signals that overlook the fine-grained visual semantics essential for complex reasoning. To address this limitation, we propose UniDoc-RL, a unified reinforcement learning framework in which an LVLM agent jointly performs retrieval, reranking, active visual perception, and reasoning. UniDoc-RL formulates visual information acquisition as a sequential decision-making problem with a hierarchical action space. Specifically, it progressively refines visual evidence from coarse-grained document retrieval to fine-grained image selection and active region cropping, allowing the model to suppress irrelevant content and attend to information-dense regions. For effective end-to-end training, we introduce a dense multi-reward scheme that provides task-aware supervision for each action. Based on Group Relative Policy Optimization (GRPO), UniDoc-RL aligns agent behavior with multiple objectives without relying on a separate value network. To support this training paradigm, we curate a comprehensive dataset of high-quality reasoning trajectories with fine-grained action annotations. Experiments on three benchmarks demonstrate that UniDoc-RL consistently surpasses state-of-the-art baselines, yielding up to 17.7% gains over prior RL-based methods.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416mm59unidoc,
+  title = {UniDoc-RL: Coarse-to-Fine Visual RAG with Hierarchical Actions and Dense Rewards},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14967.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm59-unidoc-rl-visual-rag/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). UniDoc-RL: Coarse-to-Fine Visual RAG with Hierarchical Actions and Dense Rewards. https://arxiv.org/pdf/2604.14967.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14967.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

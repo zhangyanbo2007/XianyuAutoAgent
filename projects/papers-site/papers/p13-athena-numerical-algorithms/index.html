@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ATHENA: Agentic Team for Hierarchical Evolutionary Numerical Algorithms | DAST Papers</title>
+    <meta name="description" content="科学计算和科学机器学习里一个长期瓶颈，是理论想法到可执行数值算法之间仍然高度依赖专家手工设计。本文面向的不是单一 PDE 或单一神经网络，而是“如何让 AI 自主组织数值算法发现与实现流程”这一更上层的问题。
+
+作者提出 ATHENA，把数值算法构造过程写成一个 agentic framework。其核心 HENA loop 被表述为 contextual bandit：系统根据过去试验结果，在带" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p13-athena-numerical-algorithms/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ATHENA: Agentic Team for Hierarchical Evolutionary Numerical Algorithms" />
+    <meta property="og:description" content="科学计算和科学机器学习里一个长期瓶颈，是理论想法到可执行数值算法之间仍然高度依赖专家手工设计。本文面向的不是单一 PDE 或单一神经网络，而是“如何让 AI 自主组织数值算法发现与实现流程”这一更上层的问题。
+
+作者提出 ATHENA，把数值算法构造过程写成一个 agentic framework。其核心 HENA loop 被表述为 contextual bandit：系统根据过去试验结果，在带" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p13-athena-numerical-algorithms/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ATHENA: Agentic Team for Hierarchical Evolutionary Numerical Algorithms" />
+    <meta name="twitter:description" content="科学计算和科学机器学习里一个长期瓶颈，是理论想法到可执行数值算法之间仍然高度依赖专家手工设计。本文面向的不是单一 PDE 或单一神经网络，而是“如何让 AI 自主组织数值算法发现与实现流程”这一更上层的问题。
+
+作者提出 ATHENA，把数值算法构造过程写成一个 agentic framework。其核心 HENA loop 被表述为 contextual bandit：系统根据过去试验结果，在带" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ATHENA: Agentic Team for Hierarchical Evolutionary Numerical Algorithms</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2025-12-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-03</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.03476" target="_blank" rel="noopener noreferrer">2512.03476</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>科学计算和科学机器学习里一个长期瓶颈，是理论想法到可执行数值算法之间仍然高度依赖专家手工设计。本文面向的不是单一 PDE 或单一神经网络，而是“如何让 AI 自主组织数值算法发现与实现流程”这一更上层的问题。</dd></div><div><dt>方法/机制</dt><dd>作者提出 ATHENA，把数值算法构造过程写成一个 agentic framework。其核心 HENA loop 被表述为 contextual bandit：系统根据过去试验结果，在带有专家蓝图约束的组合动作空间中选择结构动作，再把这些动作转成代码与求解器，最后依据科学任务回报进行更新。论文强调它不仅做自动化搜索，还做诊断、修正和分层演化。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合仓库的 AI×科学计算主线。它和 AutoNumerics、QUASAR、BEACONS 同属“AI 作为科学工作流构造器”路线，但更偏向自治式算法发现和数值方法组织。对数值分析自动化、SciML agent 系统和 scientific computing automation 都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>它目前归为突破性而不是更高一级，原因是证据主要来自 arXiv 阶段和方法演示，尽管方向很强，但尚未像 AlphaEvolve 那样在多个强基准或真实基础设施里形成更明确的路线重排效应。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>科学计算和科学机器学习里一个长期瓶颈，是理论想法到可执行数值算法之间仍然高度依赖专家手工设计。本文面向的不是单一 PDE 或单一神经网络，而是“如何让 AI 自主组织数值算法发现与实现流程”这一更上层的问题。</p><p>作者提出 ATHENA，把数值算法构造过程写成一个 agentic framework。其核心 HENA loop 被表述为 contextual bandit：系统根据过去试验结果，在带有专家蓝图约束的组合动作空间中选择结构动作，再把这些动作转成代码与求解器，最后依据科学任务回报进行更新。论文强调它不仅做自动化搜索，还做诊断、修正和分层演化。</p><p>这篇论文适合仓库的 AI×科学计算主线。它和 AutoNumerics、QUASAR、BEACONS 同属“AI 作为科学工作流构造器”路线，但更偏向自治式算法发现和数值方法组织。对数值分析自动化、SciML agent 系统和 scientific computing automation 都有外溢价值。</p><p>它目前归为突破性而不是更高一级，原因是证据主要来自 arXiv 阶段和方法演示，尽管方向很强，但尚未像 AlphaEvolve 那样在多个强基准或真实基础设施里形成更明确的路线重排效应。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>弥合理论概念化与计算实现之间的鸿沟是科学计算 (SciC) 和科学机器学习 (SciML) 中的一个显著瓶颈。在本文中，我们介绍了 ATHENA（分层演化数值算法的智能体团队），这是一个智能体框架，被设计为一个自主实验室，用于管理完整的端到端计算研究生命周期。其核心是 HENA 循环，这是一个知识驱动的诊断过程，被设计为一个情境多臂老虎机问题。在此框架下，系统充当一个在线学习器：在每一步，它分析先前试验和可观测量的历史，从一个组合空间中选择一个结构性“动作”（An），该动作由专家推导的蓝图（例如，通用逼近、物理信息约束）指导。这个动作被转化为可执行代码（Sn），以生成一个复合科学奖励（Rn），从而驱动一个无悔策略。我们证明，这种结构化推理使 ATHENA 能够超越标准自动化：在 SciC 中，它自主识别深层数学对称性以发现精确解析解，或识别问题的物理性质以获得稳定准确的数值求解器，而基础模型在此方面会失败。在 SciML 中，它超越了超参数调优，进行深度物理诊断，自主检测和开发方法来解决病态公式，或结合混合符号-数值工作流（例如，将 PINNs 与 FEM 耦合用于 AI 测速）来解决复杂的多物理场问题。该框架实现了超人性能，对于经典基准测试，验证误差达到 10−14 的量级。此外，我们表明 ATHENA 作为一个共生伙伴运作；在“人机协作”模式下，协作干预使系统能够弥合稳定性方面的“死亡之谷”，将结果提高一个数量级。这种范式将研究人员的重点从实现机制转移到方法论创新，显著加速了算法和科学发现。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Bridging the gap between theoretical conceptualization and computational implementation presents a significant bottleneck in Scientific Computing (SciC) and Scientific Machine Learn- ing (SciML). Here, we introduce ATHENA (Agentic Team for Hierarchical Evolutionary Numerical Algorithms), an agentic framework designed as an Autonomous Lab to man- age the complete end-to-end computational research lifecycle. Its core is the HENA loop, a knowledge-driven diagnostic process designed as a Contextual Bandit problem. In this framing, the system acts as an online learner: at each step, it analyzes the history of prior trials and observables to select a structural ‘action’ (An ) from a combinatorial space guided by expert-derived blueprints (e.g., Universal Approximation, Physics-Informed constraints). This action is translated into executable code (Sn ) to generate a composite scientific re- ward (Rn ), driving a no-regret policy. We demonstrate that this structured reasoning allows ATHENA to transcend standard automation: in SciC, it autonomously identifies deep math- ematical symmetries to discover exact analytical solutions or identifies physical properties of the problem to obtain stable and accurate numerical solvers where foundation models fail. In SciML, it moves beyond hyperparameter tuning to perform deep physical diagnosis, au- tonomously detecting and developing methods to tackle ill-posed formulations or combining hybrid symbolic-numeric workflows (e.g., coupling PINNs with FEM for AI Velocimetry) to resolve complex multiphysics problems. The framework achieves super-human performance, reaching validation errors of the order of 10−14 for canonical benchmarks. Furthermore, we show that ATHENA operates as a symbiotic partner; in “human-in-the-loop” regimes, collaborative intervention allows the system to bridge the “Valley of Death” in stability, im- proving results by an order of magnitude. This paradigm shifts the researcher’s focus from implementation mechanics to methodological innovation, significantly accelerating algorith- mic and scientific discoveries.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251203p13athenan,
+  title = {ATHENA: Agentic Team for Hierarchical Evolutionary Numerical Algorithms},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.03476.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p13-athena-numerical-algorithms/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). ATHENA: Agentic Team for Hierarchical Evolutionary Numerical Algorithms. https://arxiv.org/pdf/2512.03476.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.03476.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

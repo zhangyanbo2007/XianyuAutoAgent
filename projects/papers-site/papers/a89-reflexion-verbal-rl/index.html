@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reflexion: Language Agents with Verbal Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="Reflexion addresses a simple but foundational weakness in early language agents: they can act, but they do not reliably turn failure into reusable internal improvement. Instead of treating each attemp" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a89-reflexion-verbal-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Reflexion: Language Agents with Verbal Reinforcement Learning" />
+    <meta property="og:description" content="Reflexion addresses a simple but foundational weakness in early language agents: they can act, but they do not reliably turn failure into reusable internal improvement. Instead of treating each attemp" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a89-reflexion-verbal-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Reflexion: Language Agents with Verbal Reinforcement Learning" />
+    <meta name="twitter:description" content="Reflexion addresses a simple but foundational weakness in early language agents: they can act, but they do not reliably turn failure into reusable internal improvement. Instead of treating each attemp" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Reflexion: Language Agents with Verbal Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2023-03-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2023-03-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noopener noreferrer">2303.11366</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Reflexion addresses a simple but foundational weakness in early language agents: they can act, but they do not reliably turn failure into reusable internal improvement. Instead of treating each attempt as stateless prompting, the paper frames agent behavior as an iterative loop in which the model performs a task, evaluates the outcome, and writes verbal reflections that condition the next attempt.</dd></div><div><dt>方法/机制</dt><dd>The paper’s core contribution is to externalize reinforcement into natural-language self-critique rather than gradient updates. This makes the adaptation mechanism cheap, inspectable, and broadly reusable across environments where scalar rewards or environment feedback exist but model weights are fixed. In practice, Reflexion made the self-feedback loop itself a first-class agent primitive.</dd></div><div><dt>结果/证据</dt><dd>This matters for the repository because a large share of later self-evolving, memory-augmented, and post-deployment agent work inherits this exact pattern: attempt, feedback, reflection, retry. Even when newer systems add memory routing, tool traces, or skill distillation, Reflexion remains one of the clearest early papers showing that language-space feedback can function like lightweight reinforcement for agents.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the paper is still an early framework paper rather than a fully mature long-horizon agent system. Its evaluation scope is narrower than later computer-use and open-ended agent settings, and many later papers improve stability, transfer, and memory structure. But as a durable conceptual template, it clears the bar comfortably.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Reflexion addresses a simple but foundational weakness in early language agents: they can act, but they do not reliably turn failure into reusable internal improvement. Instead of treating each attempt as stateless prompting, the paper frames agent behavior as an iterative loop in which the model performs a task, evaluates the outcome, and writes verbal reflections that condition the next attempt.</p><p>The paper’s core contribution is to externalize reinforcement into natural-language self-critique rather than gradient updates. This makes the adaptation mechanism cheap, inspectable, and broadly reusable across environments where scalar rewards or environment feedback exist but model weights are fixed. In practice, Reflexion made the self-feedback loop itself a first-class agent primitive.</p><p>This matters for the repository because a large share of later self-evolving, memory-augmented, and post-deployment agent work inherits this exact pattern: attempt, feedback, reflection, retry. Even when newer systems add memory routing, tool traces, or skill distillation, Reflexion remains one of the clearest early papers showing that language-space feedback can function like lightweight reinforcement for agents.</p><p>It is not ranked higher because the paper is still an early framework paper rather than a fully mature long-horizon agent system. Its evaluation scope is narrower than later computer-use and open-ended agent settings, and many later papers improve stability, transfer, and memory structure. But as a durable conceptual template, it clears the bar comfortably.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLM）越来越多地被用作目标驱动的智能体，与外部环境（例如，游戏、编译器、API）进行交互。然而，对于这些语言智能体来说，快速有效地从试错中学习仍然具有挑战性，因为传统的强化学习方法需要大量的训练样本和昂贵的模型微调。我们提出了Reflexion，这是一个新颖的框架，它不是通过更新权重，而是通过语言反馈来强化语言智能体。具体来说，Reflexion智能体口头反思任务反馈信号，然后将自己的反思文本保存在一个情景记忆缓冲区中，以促使在随后的尝试中做出更好的决策。Reflexion足够灵活，可以整合各种类型（标量值或自由形式的语言）和来源（外部或内部模拟）的反馈信号，并在各种不同的任务（序列决策、编码、语言推理）中，相较于基线智能体取得了显著改进。例如，Reflexion在HumanEval编码基准测试中达到了91%的pass@1准确率，超越了之前最先进的GPT-4（其准确率为80%）。我们还使用不同的反馈信号、反馈整合方法和智能体类型进行了消融和分析研究，并提供了关于它们如何影响性能的见解。我们在https://github.com/noahshinn024/reflexion发布了所有代码、演示和数据集。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) have been increasingly used to interact with external environments (e.g., games, compilers, APIs) as goal-driven agents. However, it remains challenging for these language agents to quickly and efficiently learn from trial-and-error as traditional reinforcement learning methods require extensive training samples and expensive model fine-tuning. We propose Reflexion, a novel framework to reinforce language agents not by updating weights, but instead through linguistic feedback. Concretely, Reflexion agents verbally reflect on task feedback signals, then maintain their own reflective text in an episodic memory buffer to induce better decision-making in subsequent trials. Reflexion is flexible enough to incorporate various types (scalar values or free-form language) and sources (external or internally simulated) of feedback signals, and obtains significant improvements over a baseline agent across diverse tasks (sequential decision-making, coding, language reasoning). For example, Reflexion achieves a 91% pass@1 accuracy on the HumanEval coding benchmark, surpassing the previous state-of-the-art GPT-4 that achieves 80%. We also conduct ablation and analysis studies using different feedback signals, feedback incorporation methods, and agent types, and provide insights into how they affect performance. We release all code, demos, and datasets at https://github.com/noahshinn024/reflexion.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20230320a89reflexi,
+  title = {Reflexion: Language Agents with Verbal Reinforcement Learning},
+  year = {2023},
+  url = {https://arxiv.org/pdf/2303.11366.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a89-reflexion-verbal-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2023). Reflexion: Language Agents with Verbal Reinforcement Learning. https://arxiv.org/pdf/2303.11366.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2303.11366.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

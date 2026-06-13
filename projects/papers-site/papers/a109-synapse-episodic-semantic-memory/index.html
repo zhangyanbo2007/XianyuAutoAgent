@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SYNAPSE: Empowering LLM Agents with Episodic-Semantic Memory via Spreading Activation | DAST Papers</title>
+    <meta name="description" content="长期 agent memory 的一个根本问题是，标准 retrieval-augmented 方案通常把记忆视为彼此独立的检索单元，再靠 embedding similarity 去召回。这样做很容易丢掉记忆之间的关联结构，导致复杂问题需要跨事件、多跳和隐式关系时，系统只能召回碎片而无法沿着关联自然扩散。
+
+SYNAPSE 的关键新意在于用 episodic-semantic memory gr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a109-synapse-episodic-semantic-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SYNAPSE: Empowering LLM Agents with Episodic-Semantic Memory via Spreading Activation" />
+    <meta property="og:description" content="长期 agent memory 的一个根本问题是，标准 retrieval-augmented 方案通常把记忆视为彼此独立的检索单元，再靠 embedding similarity 去召回。这样做很容易丢掉记忆之间的关联结构，导致复杂问题需要跨事件、多跳和隐式关系时，系统只能召回碎片而无法沿着关联自然扩散。
+
+SYNAPSE 的关键新意在于用 episodic-semantic memory gr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a109-synapse-episodic-semantic-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SYNAPSE: Empowering LLM Agents with Episodic-Semantic Memory via Spreading Activation" />
+    <meta name="twitter:description" content="长期 agent memory 的一个根本问题是，标准 retrieval-augmented 方案通常把记忆视为彼此独立的检索单元，再靠 embedding similarity 去召回。这样做很容易丢掉记忆之间的关联结构，导致复杂问题需要跨事件、多跳和隐式关系时，系统只能召回碎片而无法沿着关联自然扩散。
+
+SYNAPSE 的关键新意在于用 episodic-semantic memory gr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SYNAPSE: Empowering LLM Agents with Episodic-Semantic Memory via Spreading Activation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.02744" target="_blank" rel="noopener noreferrer">2601.02744</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长期 agent memory 的一个根本问题是，标准 retrieval-augmented 方案通常把记忆视为彼此独立的检索单元，再靠 embedding similarity 去召回。这样做很容易丢掉记忆之间的关联结构，导致复杂问题需要跨事件、多跳和隐式关系时，系统只能召回碎片而无法沿着关联自然扩散。</dd></div><div><dt>方法/机制</dt><dd>SYNAPSE 的关键新意在于用 episodic-semantic memory graph 重写 retrieval，把 relevance 定义成 spreading activation 过程，而不是预先固定的静态相似度。系统引入 lateral inhibition 与 temporal decay，使相关子图在激活传播中被突出、无关干扰被抑制，并通过 Triple Hybrid Retrieval 把几何 embedding 检索与 activation-based graph traversal 结合起来。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它对 agent memory 的推进不只是‘再加图结构’，而是明确把 memory retrieval 从静态相似度检索改成动态关联传播过程。这个接口对长期对话 agent、知识助手以及更一般的 graph-native memory retrieval 都有可复用价值。</dd></div><div><dt>收录价值</dt><dd>它现在定为 breakthrough 而不是更高一级，因为当前主要证据仍来自 arXiv 和 LoCoMo 上的改进，离更广泛的长期记忆默认范式还有距离；同时 cognitive science 借鉴是方法启发，不应被误读成已经证明的认知机制。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长期 agent memory 的一个根本问题是，标准 retrieval-augmented 方案通常把记忆视为彼此独立的检索单元，再靠 embedding similarity 去召回。这样做很容易丢掉记忆之间的关联结构，导致复杂问题需要跨事件、多跳和隐式关系时，系统只能召回碎片而无法沿着关联自然扩散。</p><p>SYNAPSE 的关键新意在于用 episodic-semantic memory graph 重写 retrieval，把 relevance 定义成 spreading activation 过程，而不是预先固定的静态相似度。系统引入 lateral inhibition 与 temporal decay，使相关子图在激活传播中被突出、无关干扰被抑制，并通过 Triple Hybrid Retrieval 把几何 embedding 检索与 activation-based graph traversal 结合起来。</p><p>这篇工作值得正式收录，因为它对 agent memory 的推进不只是‘再加图结构’，而是明确把 memory retrieval 从静态相似度检索改成动态关联传播过程。这个接口对长期对话 agent、知识助手以及更一般的 graph-native memory retrieval 都有可复用价值。</p><p>它现在定为 breakthrough 而不是更高一级，因为当前主要证据仍来自 arXiv 和 LoCoMo 上的改进，离更广泛的长期记忆默认范式还有距离；同时 cognitive science 借鉴是方法启发，不应被误读成已经证明的认知机制。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管大型语言模型（LLMs）擅长通用推理，但标准的检索增强方法未能解决长期智能体记忆的断裂性质。(et al., 2020; Asai et al., 2024)。尽管标准RAG在事实查找方面有效（Borgeaud et al., 2022），但它对推理智能体施加了一个关键限制：它将记忆视为一个静态的、待索引的库，而非一个可供推理的动态网络（Gutiérrez et al., 2024; Zhu et al., 2025）。我们认为现有系统存在上下文隔离问题，这是一种源于隐式搜索假设的故障模式：即过去记忆的相关性严格由其与当前查询的语义接近度决定（Zhu et al., 2025; Edge et al., 2025; Sarthi et al., 2024）。这一假设在需要因果或传递性推理的场景中失效。考虑一个用户提问：“我今天为什么感到焦虑？”。一个基于向量的系统可能会检索到最近提及“焦虑”的内容，但却无法浮现几周前记录的日程冲突。尽管这个冲突是根本原因，但它与查询没有词汇或嵌入重叠。尽管MemGPT（Packer et al., 2024）等分层框架改进了上下文管理，但它们仍受限于查询驱动的检索，无法自主浮现结构相关但语义不同的信息。为了弥合这一鸿沟，我们从认知科学的扩散激活理论（Collins and Loftus, 1975; Anderson, 1983）中汲取灵感，该理论认为人类记忆检索并非一个搜索过程，而是一种能量的传播。访问一个概念会自然地激活语义上、时间上或因果上相关的概念，而无需明确提示。我们引入了SYNAPSE（协同关联处理与语义编码），这是一种受大脑启发的统一记忆架构，它重新构想了智能体记忆并超越了静态向量相似性。与扁平的向量存储不同，SYNAPSE构建了一个统一的事件-语义图，其中原始交互日志（事件节点）被合成为抽象概念（语义节点）。SYNAPSE中的检索由激活动力学控制：输入信号向图中注入能量，能量随之传播。SYNAPSE将记忆建模为一个动态图，其中相关性源于扩散激活而非预计算链接。通过整合侧抑制和时间衰减，该系统动态地突出相关子图，同时过滤干扰。我们实现了一种三重混合检索策略，将几何嵌入与基于激活的图遍历融合。在LoCoMo基准测试上的综合评估表明，SYNAPSE在复杂的时序和多跳推理任务中显著优于现有最先进的方法，为“上下文隧道效应”问题提供了一个鲁棒的解决方案。我们的代码和数据将在论文接收后公开发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>et al., 2020; Asai et al., 2024). While effective for factual lookup (Borgeaud et al., 2022), standard RAG imposes a critical limitation on reasoning agents: it treats memory as a static library to be indexed, rather than a dynamic network to be reasoned over (Gutiérrez et al., 2024; Zhu et al., 2025). We argue that existing systems suffer from Contextual Isolation, a failure mode stemming from the implicit Search Assumption: that the relevance of a past memory is strictly determined by its semantic proximity to the current query (Zhu et al., 2025; Edge et al., 2025; Sarthi et al., 2024). This assumption collapses in scenarios requiring causal or transitive reasoning. Consider a user asking, “Why am I feeling anxious today?”. A vector-based system might retrieve recent mentions of “anxiety,” but fail to surface a schedule conflict logged weeks prior. Although this conflict is the root cause, it shares no lexical or embedding overlap with the query. While hierarchical frameworks such as MemGPT (Packer et al., 2024) improve context management, they remain bound by querydriven retrieval, unable to autonomously surface structurally related yet semantically distinct information. To bridge this gap, we draw inspiration from cognitive science theories of Spreading Activation (Collins and Loftus, 1975; Anderson, 1983), which posit that human memory retrieval is not a search process, but a propagation of energy. Accessing one concept naturally activates semantically, temporally, or causally linked concepts without explicit prompting. We introduce S YNAPSE, a brain-inspired architecture that reimagines agentic memory. Unlike flat vector stores, S YNAPSE constructs a Unified Episodic-Semantic Graph, where raw interaction logs (episodic nodes) are synthesized into abstract concepts (semantic nodes). Retrieval in S YNAPSE is governed by activation dynamics: input signals inject energy into the graph, which propagates While Large Language Models (LLMs) excel at generalized reasoning, standard retrievalaugmented approaches fail to address the disconnected nature of long-term agentic memory. To bridge this gap, we introduce S YNAPSE (Synergistic Associative Processing &amp; Semantic Encoding), a unified memory architecture that transcends static vector similarity. Drawing from cognitive science, S YNAPSE models memory as a dynamic graph where relevance emerges from spreading activation rather than pre-computed links. By integrating lateral inhibition and temporal decay, the system dynamically highlights relevant sub-graphs while filtering interference. We implement a Triple Hybrid Retrieval strategy that fuses geometric embeddings with activation-based graph traversal. Comprehensive evaluations on the LoCoMo benchmark show that S YNAPSE significantly outperforms state-of-the-art methods in complex temporal and multi-hop reasoning tasks, offering a robust solution to the &quot;Contextual Tunneling&quot; problem. Our code and data will be made publicly available upon acceptance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260106a109synaps,
+  title = {SYNAPSE: Empowering LLM Agents with Episodic-Semantic Memory via Spreading Activation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.02744.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a109-synapse-episodic-semantic-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SYNAPSE: Empowering LLM Agents with Episodic-Semantic Memory via Spreading Activation. https://arxiv.org/pdf/2601.02744.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.02744.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

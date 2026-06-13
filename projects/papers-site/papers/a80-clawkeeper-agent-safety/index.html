@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers | DAST Papers</title>
+    <meta name="description" content="随着 OpenClaw 这类本地自主 agent runtime 拿到文件系统、shell 和插件调用权限，agent safety 的问题已经不再是抽象对齐口号，而是会直接变成系统级风险：敏感信息泄露、权限滥用、恶意第三方 skill 执行都可能来自一次模型判断失误。ClawKeeper 处理的正是这种 runtime-level agent safety，而不是单轮提示防御。
+
+论文提出三层联" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a80-clawkeeper-agent-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers" />
+    <meta property="og:description" content="随着 OpenClaw 这类本地自主 agent runtime 拿到文件系统、shell 和插件调用权限，agent safety 的问题已经不再是抽象对齐口号，而是会直接变成系统级风险：敏感信息泄露、权限滥用、恶意第三方 skill 执行都可能来自一次模型判断失误。ClawKeeper 处理的正是这种 runtime-level agent safety，而不是单轮提示防御。
+
+论文提出三层联" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a80-clawkeeper-agent-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers" />
+    <meta name="twitter:description" content="随着 OpenClaw 这类本地自主 agent runtime 拿到文件系统、shell 和插件调用权限，agent safety 的问题已经不再是抽象对齐口号，而是会直接变成系统级风险：敏感信息泄露、权限滥用、恶意第三方 skill 执行都可能来自一次模型判断失误。ClawKeeper 处理的正是这种 runtime-level agent safety，而不是单轮提示防御。
+
+论文提出三层联" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24414" target="_blank" rel="noopener noreferrer">2603.24414</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 OpenClaw 这类本地自主 agent runtime 拿到文件系统、shell 和插件调用权限，agent safety 的问题已经不再是抽象对齐口号，而是会直接变成系统级风险：敏感信息泄露、权限滥用、恶意第三方 skill 执行都可能来自一次模型判断失误。ClawKeeper 处理的正是这种 runtime-level agent safety，而不是单轮提示防御。</dd></div><div><dt>方法/机制</dt><dd>论文提出三层联防架构。第一层是 skill-based protection，在 agent 指令与上下文层注入结构化安全策略；第二层是 plugin-based protection，在运行期做配置加固、威胁检测和行为监控；第三层是 watcher-based protection，把安全中间件从 agent 内部逻辑中解耦出来，持续校验 agent 状态演化并在高风险动作出现时执行阻断或人工确认。这里真正有新意的是 Watcher 这一 decoupled safety middleware 设计，它把干预点放到了 agent runtime 外围而不是模型内部。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它把 agent safety 从 prompt-level guardrails 推进到了更贴近真实系统部署的 runtime architecture。对 skills、plugins、local shell execution 这些高风险 agent interface 来说，这种分层保护和外置 watcher 机制具备直接复用价值，也和仓库已纳入的 agent safety / computer-use 主线高度一致。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为证据主要围绕 OpenClaw 生态和一组具体威胁场景，距离成为更广 agent runtime 的通用安全底座还有距离。它已经很有工程价值，但跨框架可迁移性、误报漏报代价和长期生产环境表现还需要更多公开验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 OpenClaw 这类本地自主 agent runtime 拿到文件系统、shell 和插件调用权限，agent safety 的问题已经不再是抽象对齐口号，而是会直接变成系统级风险：敏感信息泄露、权限滥用、恶意第三方 skill 执行都可能来自一次模型判断失误。ClawKeeper 处理的正是这种 runtime-level agent safety，而不是单轮提示防御。</p><p>论文提出三层联防架构。第一层是 skill-based protection，在 agent 指令与上下文层注入结构化安全策略；第二层是 plugin-based protection，在运行期做配置加固、威胁检测和行为监控；第三层是 watcher-based protection，把安全中间件从 agent 内部逻辑中解耦出来，持续校验 agent 状态演化并在高风险动作出现时执行阻断或人工确认。这里真正有新意的是 Watcher 这一 decoupled safety middleware 设计，它把干预点放到了 agent runtime 外围而不是模型内部。</p><p>这篇工作值得正式收录，因为它把 agent safety 从 prompt-level guardrails 推进到了更贴近真实系统部署的 runtime architecture。对 skills、plugins、local shell execution 这些高风险 agent interface 来说，这种分层保护和外置 watcher 机制具备直接复用价值，也和仓库已纳入的 agent safety / computer-use 主线高度一致。</p><p>它目前仍是 breakthrough，而不是更高一级，因为证据主要围绕 OpenClaw 生态和一组具体威胁场景，距离成为更广 agent runtime 的通用安全底座还有距离。它已经很有工程价值，但跨框架可迁移性、误报漏报代价和长期生产环境表现还需要更多公开验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ClawKeeper：通过技能、插件和观察器为OpenClaw智能体提供全面的安全保护 摘要 OpenClaw已迅速确立其作为领先的开源自主智能体运行时的地位，提供强大的功能，包括工具集成、本地文件访问和shell命令执行。然而，这些广泛的操作权限引入了关键的安全漏洞，将模型错误转化为切实的系统级威胁，例如敏感数据泄露、权限提升和恶意第三方技能执行。OpenClaw生态系统中现有的安全措施仍然高度碎片化，仅解决了智能体生命周期的孤立阶段，而未能提供整体保护。为了弥补这一差距，我们提出了ClawKeeper，一个实时安全框架，它在三个互补的架构层中集成了多维保护机制。(1) 基于技能的保护在指令层面运行，将结构化安全策略直接注入智能体上下文，以强制执行特定于环境的约束和跨平台边界。(2) 基于插件的保护作为内部运行时执行器，在整个执行管道中提供配置强化、主动威胁检测和持续行为监控。(3) 基于观察器的保护引入了一种新颖的、解耦的系统级安全中间件，它持续验证智能体状态演变。它能够在不与智能体内部逻辑耦合的情况下实现实时执行干预，支持诸如停止高风险操作或强制人工确认等操作。我们认为，这种观察器范式具有巨大的潜力，可以作为保护下一代自主智能体系统的基础构建块。广泛的定性和定量评估证明了ClawKeeper在各种威胁场景中的有效性和鲁棒性。我们的代码已发布在：https://github.com/SafeAI-Lab-X/ClawKeeper。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract OpenClaw has rapidly established itself as a leading open-source autonomous agent runtime, offering powerful capabilities including tool integration, local file access, and shell command execution. However, these broad operational privileges introduce critical security vulnerabilities, transforming model errors into tangible system-level threats such as sensitive data leakage, privilege escalation, and malicious third-party skill execution. Existing security measures for the OpenClaw ecosystem remain highly fragmented, addressing only isolated stages of the agent lifecycle rather than providing holistic protection. To bridge this gap, we present ClawKeeper, a real-time security framework that integrates multi-dimensional protection mechanisms across three complementary architectural layers. (1) Skill-based protection operates at the instruction level, injecting structured security policies directly into the agent context to enforce environment-specific constraints and cross-platform boundaries. (2) Plugin-based protection serves as an internal runtime enforcer, providing configuration hardening, proactive threat detection, and continuous behavioral monitoring throughout the execution pipeline. (3) Watcher-based protection introduces a novel, decoupled system-level security middleware that continuously verifies agent state evolution. It enables real-time execution intervention without coupling to the agent’s internal logic, supporting operations such as halting high-risk actions or enforcing human confirmation. We argue that this Watcher paradigm holds strong potential to serve as a foundational building block for securing next-generation autonomous agent systems. Extensive qualitative and quantitative evaluations demonstrate the effectiveness and robustness of ClawKeeper across diverse threat scenarios. We release our code at: https://github.com/SafeAI-Lab-X/ClawKeeper.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325a80clawkee,
+  title = {ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24414.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a80-clawkeeper-agent-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers. https://arxiv.org/pdf/2603.24414.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24414.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

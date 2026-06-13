@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discovering Multiagent Learning Algorithms with Large Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文关注的是一个比‘让 LLM 帮忙写策略代码’更进一步的问题：能不能让大模型直接发现新的多智能体学习算法，而不是只在既有算法框架里调参。作者将问题放在不完全信息博弈和多智能体学习场景中，目标不是生成单个策略，而是发明能系统性改进学习过程本身的算法。
+
+方法上，这篇工作沿用了大模型驱动的算法搜索思路，让 LLM 在程序空间里提出候选更新规则和求解器结构，再通过外部评测闭环筛选有效方案。论文报告" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a24-discovering-multiagent-learning-algorithms/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Discovering Multiagent Learning Algorithms with Large Language Models" />
+    <meta property="og:description" content="这篇论文关注的是一个比‘让 LLM 帮忙写策略代码’更进一步的问题：能不能让大模型直接发现新的多智能体学习算法，而不是只在既有算法框架里调参。作者将问题放在不完全信息博弈和多智能体学习场景中，目标不是生成单个策略，而是发明能系统性改进学习过程本身的算法。
+
+方法上，这篇工作沿用了大模型驱动的算法搜索思路，让 LLM 在程序空间里提出候选更新规则和求解器结构，再通过外部评测闭环筛选有效方案。论文报告" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a24-discovering-multiagent-learning-algorithms/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Discovering Multiagent Learning Algorithms with Large Language Models" />
+    <meta name="twitter:description" content="这篇论文关注的是一个比‘让 LLM 帮忙写策略代码’更进一步的问题：能不能让大模型直接发现新的多智能体学习算法，而不是只在既有算法框架里调参。作者将问题放在不完全信息博弈和多智能体学习场景中，目标不是生成单个策略，而是发明能系统性改进学习过程本身的算法。
+
+方法上，这篇工作沿用了大模型驱动的算法搜索思路，让 LLM 在程序空间里提出候选更新规则和求解器结构，再通过外部评测闭环筛选有效方案。论文报告" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Discovering Multiagent Learning Algorithms with Large Language Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.16928" target="_blank" rel="noopener noreferrer">2602.16928</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注的是一个比‘让 LLM 帮忙写策略代码’更进一步的问题：能不能让大模型直接发现新的多智能体学习算法，而不是只在既有算法框架里调参。作者将问题放在不完全信息博弈和多智能体学习场景中，目标不是生成单个策略，而是发明能系统性改进学习过程本身的算法。</dd></div><div><dt>方法/机制</dt><dd>方法上，这篇工作沿用了大模型驱动的算法搜索思路，让 LLM 在程序空间里提出候选更新规则和求解器结构，再通过外部评测闭环筛选有效方案。论文报告发现了新的算法变体，例如 VAD-CFR 和 SHOR-PSRO，并在相应基准上优于强基线，说明大模型已经不只是复述已有多智能体学习套路，而是能在受控搜索框架中发现有竞争力的新算法。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合放在 agentic algorithm discovery / multi-agent learning 主线。它和 AlphaEvolve 路线有明显亲缘关系，但场景更聚焦于博弈与多智能体学习。它的价值在于证明：大模型驱动的算法发现并不只适用于矩阵乘法或单一科学问题，也开始能进入复杂策略学习与博弈求解领域。</dd></div><div><dt>收录价值</dt><dd>它还没有升到更高一级，因为外溢范围目前仍主要集中在多智能体学习和博弈求解，尚未像 AlphaEvolve 本体那样形成更广泛的方法论标志。此外，结果虽强，但还需要更多社区复现和跨任务验证，才能确认这些新算法是否会成为长期主线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注的是一个比‘让 LLM 帮忙写策略代码’更进一步的问题：能不能让大模型直接发现新的多智能体学习算法，而不是只在既有算法框架里调参。作者将问题放在不完全信息博弈和多智能体学习场景中，目标不是生成单个策略，而是发明能系统性改进学习过程本身的算法。</p><p>方法上，这篇工作沿用了大模型驱动的算法搜索思路，让 LLM 在程序空间里提出候选更新规则和求解器结构，再通过外部评测闭环筛选有效方案。论文报告发现了新的算法变体，例如 VAD-CFR 和 SHOR-PSRO，并在相应基准上优于强基线，说明大模型已经不只是复述已有多智能体学习套路，而是能在受控搜索框架中发现有竞争力的新算法。</p><p>这篇论文适合放在 agentic algorithm discovery / multi-agent learning 主线。它和 AlphaEvolve 路线有明显亲缘关系，但场景更聚焦于博弈与多智能体学习。它的价值在于证明：大模型驱动的算法发现并不只适用于矩阵乘法或单一科学问题，也开始能进入复杂策略学习与博弈求解领域。</p><p>它还没有升到更高一级，因为外溢范围目前仍主要集中在多智能体学习和博弈求解，尚未像 AlphaEvolve 本体那样形成更广泛的方法论标志。此外，结果虽强，但还需要更多社区复现和跨任务验证，才能确认这些新算法是否会成为长期主线。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>不完全信息博弈中多智能体强化学习（MARL）的许多进展历来依赖于对基线的手动迭代优化。尽管反事实遗憾最小化（CFR）和策略空间响应预言机（PSRO）等基础族系建立在坚实的理论基础之上，但其最有效变体的设计往往依赖于人类直觉来探索广阔的算法设计空间。在这项工作中，我们提出使用AlphaEvolve，一个由大型语言模型驱动的进化编码智能体，来自动发现新的多智能体学习算法。我们通过为两种不同的博弈论学习范式演化出新颖的变体，展示了该框架的通用性。首先，在迭代遗憾最小化领域，我们演化了控制遗憾累积和策略推导的逻辑，发现了一种新算法，即波动性自适应折扣（VAD-）CFR。VAD-CFR采用了新颖的、非直观的机制——包括波动性敏感折扣、一致性强制乐观以及硬性热启动策略累积调度——以超越折扣预测CFR+等最先进的基线。其次，在基于种群的训练算法领域，我们演化了用于PSRO的训练时和评估时元策略求解器，发现了一种新变体，即平滑混合乐观遗憾（SHOR-）PSRO。SHOR-PSRO引入了一种混合元求解器，它将乐观遗憾匹配与在最佳纯策略上平滑的、温度控制的分布进行线性混合。通过在训练期间动态退火这种混合因子和多样性奖励，该算法自动化了从种群多样性到严格均衡寻找的转换，与标准静态元求解器相比，产生了卓越的经验收敛性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Much of the advancement of Multi-Agent Reinforcement Learning (MARL) in imperfect-information games has historically depended on manual iterative refinement of baselines. While foundational families like Counterfactual Regret Minimization (CFR) and Policy Space Response Oracles (PSRO) rest on solid theoretical ground, the design of their most effective variants often relies on human intuition to navigate a vast algorithmic design space. In this work, we propose the use of AlphaEvolve, an evolutionary coding agent powered by large language models, to automatically discover new multiagent learning algorithms. We demonstrate the generality of this framework by evolving novel variants for two distinct paradigms of game-theoretic learning. First, in the domain of iterative regret minimization, we evolve the logic governing regret accumulation and policy derivation, discovering a new algorithm, VolatilityAdaptive Discounted (VAD-)CFR. VAD-CFR employs novel, non-intuitive mechanisms—including volatilitysensitive discounting, consistency-enforced optimism, and a hard warm-start policy accumulation schedule—to outperform state-of-the-art baselines like Discounted Predictive CFR+. Second, in the regime of population based training algorithms, we evolve training-time and evaluation-time meta strategy solvers for PSRO, discovering a new variant, Smoothed Hybrid Optimistic Regret (SHOR-)PSRO. SHOR-PSRO introduces a hybrid meta-solver that linearly blends Optimistic Regret Matching with a smoothed, temperature-controlled distribution over best pure strategies. By dynamically annealing this blending factor and diversity bonuses during training, the algorithm automates the transition from population diversity to rigorous equilibrium finding, yielding superior empirical convergence compared to standard static meta-solvers.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260224a24discove,
+  title = {Discovering Multiagent Learning Algorithms with Large Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.16928.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a24-discovering-multiagent-learning-algorithms/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Discovering Multiagent Learning Algorithms with Large Language Models. https://arxiv.org/pdf/2602.16928.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.16928.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

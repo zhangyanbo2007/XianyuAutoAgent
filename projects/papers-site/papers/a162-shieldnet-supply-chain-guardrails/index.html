@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ShieldNet: Network-Level Guardrails against Emerging Supply-Chain Injections in Agentic Systems | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 agent safety 里一个近几个月快速抬头、但现有防线覆盖很差的问题：随着 agent 越来越依赖第三方工具和 MCP server，攻击者已经不必只在 prompt 或输入输出层做注入，而可以把恶意行为埋进看似正常的工具、插件或服务依赖里，形成 supply-chain injection。作者的切入点不是继续把安全边界限制在文本层，而是把威胁模型上移到工具网络交互与外部" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a162-shieldnet-supply-chain-guardrails/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ShieldNet: Network-Level Guardrails against Emerging Supply-Chain Injections in Agentic Systems" />
+    <meta property="og:description" content="这篇论文处理的是 agent safety 里一个近几个月快速抬头、但现有防线覆盖很差的问题：随着 agent 越来越依赖第三方工具和 MCP server，攻击者已经不必只在 prompt 或输入输出层做注入，而可以把恶意行为埋进看似正常的工具、插件或服务依赖里，形成 supply-chain injection。作者的切入点不是继续把安全边界限制在文本层，而是把威胁模型上移到工具网络交互与外部" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a162-shieldnet-supply-chain-guardrails/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ShieldNet: Network-Level Guardrails against Emerging Supply-Chain Injections in Agentic Systems" />
+    <meta name="twitter:description" content="这篇论文处理的是 agent safety 里一个近几个月快速抬头、但现有防线覆盖很差的问题：随着 agent 越来越依赖第三方工具和 MCP server，攻击者已经不必只在 prompt 或输入输出层做注入，而可以把恶意行为埋进看似正常的工具、插件或服务依赖里，形成 supply-chain injection。作者的切入点不是继续把安全边界限制在文本层，而是把威胁模型上移到工具网络交互与外部" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ShieldNet: Network-Level Guardrails against Emerging Supply-Chain Injections in Agentic Systems</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.04426" target="_blank" rel="noopener noreferrer">2604.04426</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 agent safety 里一个近几个月快速抬头、但现有防线覆盖很差的问题：随着 agent 越来越依赖第三方工具和 MCP server，攻击者已经不必只在 prompt 或输入输出层做注入，而可以把恶意行为埋进看似正常的工具、插件或服务依赖里，形成 supply-chain injection。作者的切入点不是继续把安全边界限制在文本层，而是把威胁模型上移到工具网络交互与外部依赖层。</dd></div><div><dt>方法/机制</dt><dd>论文先提出 SC-Inject-Bench，一个包含一万多个恶意 MCP 工具的大规模 benchmark，并用 25+ 种攻击类型系统化刻画 supply-chain threat taxonomy。随后提出 ShieldNet：它不依赖表面 tool trace 或语义扫描，而是在网络层通过 MITM proxy 和事件提取器观察真实交互，再用轻量分类器识别异常行为。结果显示，现有 MCP scanners 和 LLM guardrails 在这类攻击上明显失效，而 ShieldNet 在高 F1 和低误报下保持较小运行开销。</dd></div><div><dt>结果/证据</dt><dd>这篇值得正式收录，因为它同时补了仓库很重视的两层基础设施：一是新的、清晰的 supply-chain threat model 与 benchmark；二是独立于模型内部推理过程的 runtime/network-level guardrail。对 `governed execution` 主线来说，它把防线从 prompt safety 和 graph verification 进一步推进到真实依赖调用层，属于很实的系统边界补强。</dd></div><div><dt>收录价值</dt><dd>它目前还不适合更高一级，因为证据仍主要来自 arXiv 阶段，且影响首先会集中在 tool-using agents、MCP ecosystem 和安全工程社区。它显著推进了 agent supply-chain security 的工作流与评测，但还没有到足以全面改写更广 agent architecture 默认设计的程度，因此以 breakthrough 收录更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 agent safety 里一个近几个月快速抬头、但现有防线覆盖很差的问题：随着 agent 越来越依赖第三方工具和 MCP server，攻击者已经不必只在 prompt 或输入输出层做注入，而可以把恶意行为埋进看似正常的工具、插件或服务依赖里，形成 supply-chain injection。作者的切入点不是继续把安全边界限制在文本层，而是把威胁模型上移到工具网络交互与外部依赖层。</p><p>论文先提出 SC-Inject-Bench，一个包含一万多个恶意 MCP 工具的大规模 benchmark，并用 25+ 种攻击类型系统化刻画 supply-chain threat taxonomy。随后提出 ShieldNet：它不依赖表面 tool trace 或语义扫描，而是在网络层通过 MITM proxy 和事件提取器观察真实交互，再用轻量分类器识别异常行为。结果显示，现有 MCP scanners 和 LLM guardrails 在这类攻击上明显失效，而 ShieldNet 在高 F1 和低误报下保持较小运行开销。</p><p>这篇值得正式收录，因为它同时补了仓库很重视的两层基础设施：一是新的、清晰的 supply-chain threat model 与 benchmark；二是独立于模型内部推理过程的 runtime/network-level guardrail。对 `governed execution` 主线来说，它把防线从 prompt safety 和 graph verification 进一步推进到真实依赖调用层，属于很实的系统边界补强。</p><p>它目前还不适合更高一级，因为证据仍主要来自 arXiv 阶段，且影响首先会集中在 tool-using agents、MCP ecosystem 和安全工程社区。它显著推进了 agent supply-chain security 的工作流与评测，但还没有到足以全面改写更广 agent architecture 默认设计的程度，因此以 breakthrough 收录更稳。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要：当前关于LLM智能体安全的研究主要集中在提示注入和不安全的输入/输出行为上。然而，随着智能体越来越依赖第三方工具和MCP服务器，一类新的供应链威胁已经出现，其中恶意行为被嵌入到看似良性的工具中，同时劫持智能体执行，导致敏感数据泄露或触发未经授权的操作。尽管其影响日益增长，但目前还没有用于评估此类威胁的基准。为了弥补这一空白，我们引入了SC-Inject-Bench，一个大规模的供应链威胁基准，包含10,000多个恶意MCP工具，这些工具基于从MITRE ATT&amp;CK派生的25种以上攻击类型的分类法。我们观察到，由于其隐蔽性，现有的MCP扫描器和语义防护栏在该基准上表现不佳。然后，我们提出了ShieldNet，一个网络级防护栏框架，通过观察真实的网络交互而不是仅仅工具痕迹来检测供应链攻击。ShieldNet集成了中间人（MITM）代理和事件提取器来识别关键网络行为，然后由轻量级防护栏模型进行处理以进行检测。大量实验表明，ShieldNet实现了强大的检测性能（F-1分数高达0.995，假阳性率仅为0.8%），同时引入的运行时开销很小，显著优于现有的MCP扫描器和基于LLM的防护栏。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Existing research on LLM agent security mainly focuses on prompt injection and unsafe input/output behaviors. However, as agents increasingly rely on third-party tools and MCP servers, a new class of supply-chain threats has emerged, where malicious behaviors are embedded in seemingly benign tools, while hijack agent execution, leading to sensitive data leakage or triggering unauthorized actions. Despite their growing impact, currently there is no benchmark for evaluating such threats. To bridge this gap, we introduce SC-Inject-Bench, a large-scale supply-chain threat benchmark comprising over 10,000 malicious MCP tools grounded in a taxonomy of 25+ attack types derived from MITRE ATT&amp;CK. We observe that existing MCP scanners and semantic guardrails perform poorly on this benchmark due to its stealthiness. We then propose ShieldNet, a network-level guardrail framework that detects supply-chain attacks by observing real network interactions rather than only tool traces. ShieldNet integrates a man-in-the-middle (MITM) proxy and an event extractor to identify critical network behaviors, which are then processed by a lightweight guardrail model for detection. Extensive experiments show that ShieldNet achieves strong detection performance (up to 0.995 F-1 with only 0.8% false positives), while introducing little runtime overhead, substantially outperforming existing MCP scanners and LLM-based guardrails.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406a162shield,
+  title = {ShieldNet: Network-Level Guardrails against Emerging Supply-Chain Injections in Agentic Systems},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.04426.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a162-shieldnet-supply-chain-guardrails/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ShieldNet: Network-Level Guardrails against Emerging Supply-Chain Injections in Agentic Systems. https://arxiv.org/pdf/2604.04426.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.04426.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

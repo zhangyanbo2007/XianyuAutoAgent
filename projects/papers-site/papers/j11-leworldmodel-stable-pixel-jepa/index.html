@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 JEPA 系世界模型长期存在的一个核心问题：一旦直接从像素端到端训练 encoder 和 dynamics predictor，模型很容易发生 representation collapse，因此现有方法往往依赖多项损失、EMA、冻结预训练编码器或额外监督信号来维持稳定性。这样虽然能工作，但训练配方复杂、超参数多，也削弱了 JEPA 作为简洁统一世界模型框架的吸引力。
+
+LeWorl" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j11-leworldmodel-stable-pixel-jepa/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels" />
+    <meta property="og:description" content="这篇论文针对 JEPA 系世界模型长期存在的一个核心问题：一旦直接从像素端到端训练 encoder 和 dynamics predictor，模型很容易发生 representation collapse，因此现有方法往往依赖多项损失、EMA、冻结预训练编码器或额外监督信号来维持稳定性。这样虽然能工作，但训练配方复杂、超参数多，也削弱了 JEPA 作为简洁统一世界模型框架的吸引力。
+
+LeWorl" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j11-leworldmodel-stable-pixel-jepa/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels" />
+    <meta name="twitter:description" content="这篇论文针对 JEPA 系世界模型长期存在的一个核心问题：一旦直接从像素端到端训练 encoder 和 dynamics predictor，模型很容易发生 representation collapse，因此现有方法往往依赖多项损失、EMA、冻结预训练编码器或额外监督信号来维持稳定性。这样虽然能工作，但训练配方复杂、超参数多，也削弱了 JEPA 作为简洁统一世界模型框架的吸引力。
+
+LeWorl" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels</h1>
+          <p class="subtitle">JEPA 与预测式世界模型 · 发表：2026-03-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">JEPA 与预测式世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.19312" target="_blank" rel="noopener noreferrer">2603.19312</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 JEPA 系世界模型长期存在的一个核心问题：一旦直接从像素端到端训练 encoder 和 dynamics predictor，模型很容易发生 representation collapse，因此现有方法往往依赖多项损失、EMA、冻结预训练编码器或额外监督信号来维持稳定性。这样虽然能工作，但训练配方复杂、超参数多，也削弱了 JEPA 作为简洁统一世界模型框架的吸引力。</dd></div><div><dt>方法/机制</dt><dd>LeWorldModel（LeWM）的核心贡献是把端到端像素 JEPA 压缩成一个更干净的两项训练目标：下一时刻 embedding 预测损失，加上一个促使 latent 服从各向同性高斯分布的 SIGReg 正则项。作者强调它不需要 stop-gradient、EMA、预训练 encoder 或辅助 reconstruction/reward 信号，并把可调损失超参数从现有端到端替代方案的六个缩到一个；同时 15M 参数模型可以在单卡上训练，并直接用于 latent planning。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为它不是普通 control benchmark 提升，而是在 JEPA/world model 主线上给出了一条更稳定、更低门槛的端到端像素学习路线。论文在多种 2D/3D 控制任务上展示了与 foundation-based world models 竞争的结果，并声称在规划速度上最高可快 48 倍；此外还通过物理量 probing 和 surprise evaluation 说明 latent space 确实学到了有用的物理结构。对仓库而言，它更像是 JEPA 从表征学习向可规划世界模型延伸的一篇关键方法论文。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因也很明确：当前证据主要集中在模拟控制任务和与现有 JEPA/world model 方法的对比，离真正重排更广机器人或多模态世界模型路线还有距离。它证明了稳定端到端 JEPA 是可行的，但是否会成为更广泛采用的默认配方，还需要更多真实机器人、长时序和跨域验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 JEPA 系世界模型长期存在的一个核心问题：一旦直接从像素端到端训练 encoder 和 dynamics predictor，模型很容易发生 representation collapse，因此现有方法往往依赖多项损失、EMA、冻结预训练编码器或额外监督信号来维持稳定性。这样虽然能工作，但训练配方复杂、超参数多，也削弱了 JEPA 作为简洁统一世界模型框架的吸引力。</p><p>LeWorldModel（LeWM）的核心贡献是把端到端像素 JEPA 压缩成一个更干净的两项训练目标：下一时刻 embedding 预测损失，加上一个促使 latent 服从各向同性高斯分布的 SIGReg 正则项。作者强调它不需要 stop-gradient、EMA、预训练 encoder 或辅助 reconstruction/reward 信号，并把可调损失超参数从现有端到端替代方案的六个缩到一个；同时 15M 参数模型可以在单卡上训练，并直接用于 latent planning。</p><p>这项工作值得收录，因为它不是普通 control benchmark 提升，而是在 JEPA/world model 主线上给出了一条更稳定、更低门槛的端到端像素学习路线。论文在多种 2D/3D 控制任务上展示了与 foundation-based world models 竞争的结果，并声称在规划速度上最高可快 48 倍；此外还通过物理量 probing 和 surprise evaluation 说明 latent space 确实学到了有用的物理结构。对仓库而言，它更像是 JEPA 从表征学习向可规划世界模型延伸的一篇关键方法论文。</p><p>它暂时还不到更高一级，原因也很明确：当前证据主要集中在模拟控制任务和与现有 JEPA/world model 方法的对比，离真正重排更广机器人或多模态世界模型路线还有距离。它证明了稳定端到端 JEPA 是可行的，但是否会成为更广泛采用的默认配方，还需要更多真实机器人、长时序和跨域验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LeWorldModel：从像素端到端稳定联合嵌入预测架构联合嵌入预测架构（JEPAs）为在紧凑潜在空间中学习世界模型提供了一个引人注目的框架，然而现有方法仍然脆弱，依赖于复杂的多项损失、指数移动平均、预训练编码器或辅助监督来避免表示崩溃。在这项工作中，我们引入了LeWorldModel（LeWM），这是第一个仅使用两个损失项（一个下一嵌入预测损失和一个强制高斯分布潜在嵌入的正则化器）即可从原始像素端到端稳定训练的JEPA。与唯一现有的端到端替代方案相比，这使得可调损失超参数从六个减少到一个。LeWM拥有15M参数，可在单个GPU上在数小时内进行训练，其规划速度比基于基础模型的世界模型快48倍，同时在各种2D和3D控制任务中保持竞争力。除了控制之外，我们还通过探测物理量表明LeWM的潜在空间编码了有意义的物理结构。惊喜评估证实该模型能够可靠地检测到物理上不合理的事件。图1：LeWorldModel训练流程。给定帧观测o1:T和动作a1:T，编码器将帧映射到低维潜在表示z1:T。预测器通过从当前潜在状态zt和动作at自回归预测下一个潜在状态zt+1来模拟环境动态。编码器和预测器使用均方误差（MSE）预测损失联合优化。LeWM不依赖任何训练启发式方法，例如停止梯度、指数移动平均或预训练表示。为了防止平凡崩溃，SIGReg正则化项强制潜在嵌入呈高斯分布，从而促进特征多样性。更具体地说，潜在嵌入被投影到多个随机方向上，并对每个一维投影应用正态性检验。聚合这些统计数据鼓励完整的嵌入分布与各向同性高斯分布匹配。* 贡献相同。联系方式：lucas.maes@mila.quebec 预印本。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Joint Embedding Predictive Architectures (JEPAs) offer a compelling framework for learning world models in compact latent spaces, yet existing methods remain fragile, relying on complex multi-term losses, exponential moving averages, pretrained encoders, or auxiliary supervision to avoid representation collapse. In this work, we introduce LeWorldModel (LeWM), the first JEPA that trains stably end-to-end from raw pixels using only two loss terms: a next-embedding prediction loss and a regularizer enforcing Gaussian-distributed latent embeddings. This reduces tunable loss hyperparameters from six to one compared to the only existing end-to-end alternative. With 15M parameters trainable on a single GPU in a few hours, LeWM plans up to 48× faster than foundation-model-based world models while remaining competitive across diverse 2D and 3D control tasks. Beyond control, we show that LeWM’s latent space encodes meaningful physical structure through probing of physical quantities. Surprise evaluation confirms that the model reliably detects physically implausible events. Figure 1: LeWorldModel Training Pipeline. Given frame observations o1:T and actions a1:T , the encoder maps frames into low-dimensional latent representations z1:T . The predictor models the environment dynamics by autoregressively predicting the next latent state zt+1 from the current latent state zt and action at . The encoder and predictor are jointly optimized using a mean-squared error (MSE) prediction loss. LeWM does not rely on any training heuristics, such as stop-gradient, exponential moving averages, or pre-trained representations. To prevent trivial collapse, the SIGReg regularization term enforces Gaussian-distributed latent embeddings, promoting feature diversity. More specifically, latent embeddings are projected onto multiple random directions, and a normality test is applied to each one-dimensional projection. Aggregating these statistics encourages the full embedding distribution to match an isotropic Gaussian. * Equal contribution. Correspondence to lucas.maes@mila.quebec Preprint.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260313j11leworld,
+  title = {LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.19312v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j11-leworldmodel-stable-pixel-jepa/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels. https://arxiv.org/pdf/2603.19312v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/j9-worldmark-interactive-world-model-benchmark/">
+              <span>WorldMark: A Unified Benchmark Suite for Interactive Video World Models</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j14-deltaworld-delta-tokens/">
+              <span>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-06</small>
+            </a>
+            <a class="related-item" href="../../papers/j13-wildworld-action-state-dataset/">
+              <span>WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j10-seoul-world-model/">
+              <span>Grounding World Simulation Models in a Real-World Metropolis</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-16</small>
+            </a>
+            <a class="related-item" href="../../papers/j12-v-jepa-2-1-dense-features/">
+              <span>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-15</small>
+            </a>
+            <a class="related-item" href="../../papers/j9-temporal-straightening-latent-planning/">
+              <span>Temporal Straightening for Latent Planning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.19312v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

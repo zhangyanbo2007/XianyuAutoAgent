@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent-ValueBench: A Comprehensive Benchmark for Evaluating Agent Values | DAST Papers</title>
+    <meta name="description" content="Agent-ValueBench 指出 agent 的价值表现不能直接等同于底层 LLM 的价值表现，因为 harness、工具、环境和动作轨迹会改变行为。
+
+基准提供 394 个可执行环境、16 个领域、4335 个价值冲突任务和 28 个价值系统，并为任务提供 pole-aligned golden trajectories 与轨迹级 judge。
+
+它值得正式收录，因为 agent safe" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a287-agent-valuebench/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agent-ValueBench: A Comprehensive Benchmark for Evaluating Agent Values" />
+    <meta property="og:description" content="Agent-ValueBench 指出 agent 的价值表现不能直接等同于底层 LLM 的价值表现，因为 harness、工具、环境和动作轨迹会改变行为。
+
+基准提供 394 个可执行环境、16 个领域、4335 个价值冲突任务和 28 个价值系统，并为任务提供 pole-aligned golden trajectories 与轨迹级 judge。
+
+它值得正式收录，因为 agent safe" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a287-agent-valuebench/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agent-ValueBench: A Comprehensive Benchmark for Evaluating Agent Values" />
+    <meta name="twitter:description" content="Agent-ValueBench 指出 agent 的价值表现不能直接等同于底层 LLM 的价值表现，因为 harness、工具、环境和动作轨迹会改变行为。
+
+基准提供 394 个可执行环境、16 个领域、4335 个价值冲突任务和 28 个价值系统，并为任务提供 pole-aligned golden trajectories 与轨迹级 judge。
+
+它值得正式收录，因为 agent safe" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agent-ValueBench: A Comprehensive Benchmark for Evaluating Agent Values</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10365" target="_blank" rel="noopener noreferrer">2605.10365</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Agent-ValueBench 指出 agent 的价值表现不能直接等同于底层 LLM 的价值表现，因为 harness、工具、环境和动作轨迹会改变行为。</dd></div><div><dt>方法/机制</dt><dd>基准提供 394 个可执行环境、16 个领域、4335 个价值冲突任务和 28 个价值系统，并为任务提供 pole-aligned golden trajectories 与轨迹级 judge。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 agent safety 正在从文本偏好转向执行轨迹评估；这篇论文把 value evaluation 迁移到 agentic modality。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为价值体系覆盖、心理学标注一致性和 judge 可靠性仍然会影响结论。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Agent-ValueBench 指出 agent 的价值表现不能直接等同于底层 LLM 的价值表现，因为 harness、工具、环境和动作轨迹会改变行为。</p><p>基准提供 394 个可执行环境、16 个领域、4335 个价值冲突任务和 28 个价值系统，并为任务提供 pole-aligned golden trajectories 与轨迹级 judge。</p><p>它值得正式收录，因为 agent safety 正在从文本偏好转向执行轨迹评估；这篇论文把 value evaluation 迁移到 agentic modality。</p><p>它没有更高，是因为价值体系覆盖、心理学标注一致性和 judge 可靠性仍然会影响结论。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要 自动智能体作为任务执行者已迅速成熟，并通过OpenClaw等工具得到了广泛部署。安全问题理所当然地引起了越来越多的研究关注，而这些问题之下是默默引导智能体行为的价值观。然而，现有的价值观基准仍局限于LLMs，使得智能体价值观在很大程度上未被探索。从直观、经验和理论的角度，我们表明智能体的价值观与其底层LLM的价值观存在差异，并且智能体模态进一步引入了文本协议中不存在的数据集、评估和系统层面的挑战。我们通过Agent-ValueBench弥补了这一空白，这是第一个专门针对智能体价值观的基准。它包含16个领域中的394个可执行环境，提供了4,335个价值观冲突任务，涵盖28个价值观系统（332个维度）。每个实例都通过我们专门构建的端到端管道共同合成，并由人类心理学家逐实例进行策划。每个任务都附带两条极点对齐的黄金轨迹，其检查点作为基于轨迹级别评分标准的评判依据。通过对4个主流工具中的14个前沿专有模型和开源模型进行基准测试，我们发现了三个协同发现。智能体价值观首先表现为跨模型同质性的“价值观潮汐”，其下存在可解释的逆流。这种潮汐在工具拉动下非加性地弯曲，但在通过嵌入技能进行有意识引导下则更具决定性。这些结果共同表明，智能体对齐的杠杆正在从经典的模型对齐和提示引导转向工具对齐和技能引导。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract Autonomous agents have rapidly matured as task executors and seen widespread deployment via harnesses such as OpenClaw. Safety concerns have rightly drawn growing research attention, and beneath them lie the values silently steering agent behavior. Existing value benchmarks, however, remain confined to LLMs, leaving agent values largely uncharted. From intuitive, empirical, and theoretical vantage points, we show that an agent’s values diverge from those of its underlying LLM, and the agentic modality further introduces dataset-, evaluation-, and system-level challenges absent from text-only protocols. We close this gap with Agent-ValueBench, the first benchmark dedicated to agent values. It features 394 executable environments across 16 domains, offering 4,335 value-conflict tasks that cover 28 value systems (332 dimensions). Every instance is co-synthesized through our purpose-built end-to-end pipeline and curated per-instance by human psychologists. Each task ships with two pole-aligned golden trajectories whose checkpoints anchor a trajectory-level rubric-based judge. Benchmarking 14 frontier proprietary and open-weights models across 4 mainstream harnesses, we uncover three concerted findings. Agent values first manifest as a Value Tide of cross-model homogeneity beneath interpretable counter-currents. This tide bends non-additively under harness pull , and yet more decisively under deliberate steering via embedded skills. Together these results signal that the agent-alignment lever is shifting from classical model alignment and prompt steering toward harness alignment and skill steering.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511a287agentv,
+  title = {Agent-ValueBench: A Comprehensive Benchmark for Evaluating Agent Values},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10365.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a287-agent-valuebench/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Agent-ValueBench: A Comprehensive Benchmark for Evaluating Agent Values. https://arxiv.org/pdf/2605.10365.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10365.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.10365" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TMAS: Scaling Test-Time Compute via Multi-Agent Synergy | DAST Papers</title>
+    <meta name="description" content="这篇论文把 test-time scaling 和 multi-agent orchestration 连接起来。它不是简单多采样，而是通过多个专门 agent 的协同来扩大推理时计算。
+
+TMAS 的价值在于把测试时计算预算组织成 agent collaboration problem，包括分工、记忆共享和探索/利用平衡。这比单模型 self-consistency 更接近复杂任务执行系统。
+
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a265-tmas-test-time-multiagent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TMAS: Scaling Test-Time Compute via Multi-Agent Synergy" />
+    <meta property="og:description" content="这篇论文把 test-time scaling 和 multi-agent orchestration 连接起来。它不是简单多采样，而是通过多个专门 agent 的协同来扩大推理时计算。
+
+TMAS 的价值在于把测试时计算预算组织成 agent collaboration problem，包括分工、记忆共享和探索/利用平衡。这比单模型 self-consistency 更接近复杂任务执行系统。
+
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a265-tmas-test-time-multiagent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TMAS: Scaling Test-Time Compute via Multi-Agent Synergy" />
+    <meta name="twitter:description" content="这篇论文把 test-time scaling 和 multi-agent orchestration 连接起来。它不是简单多采样，而是通过多个专门 agent 的协同来扩大推理时计算。
+
+TMAS 的价值在于把测试时计算预算组织成 agent collaboration problem，包括分工、记忆共享和探索/利用平衡。这比单模型 self-consistency 更接近复杂任务执行系统。
+
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TMAS: Scaling Test-Time Compute via Multi-Agent Synergy</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10344" target="_blank" rel="noopener noreferrer">2605.10344</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 test-time scaling 和 multi-agent orchestration 连接起来。它不是简单多采样，而是通过多个专门 agent 的协同来扩大推理时计算。</dd></div><div><dt>方法/机制</dt><dd>TMAS 的价值在于把测试时计算预算组织成 agent collaboration problem，包括分工、记忆共享和探索/利用平衡。这比单模型 self-consistency 更接近复杂任务执行系统。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 inference-time scaling 正在成为大模型能力提升的核心路线，而 multi-agent synergy 提供了一个可复用系统模式。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为多 agent 系统容易增加成本和不稳定性，仍需更多真实任务、延迟约束和失败分析。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 test-time scaling 和 multi-agent orchestration 连接起来。它不是简单多采样，而是通过多个专门 agent 的协同来扩大推理时计算。</p><p>TMAS 的价值在于把测试时计算预算组织成 agent collaboration problem，包括分工、记忆共享和探索/利用平衡。这比单模型 self-consistency 更接近复杂任务执行系统。</p><p>它值得正式收录，因为 inference-time scaling 正在成为大模型能力提升的核心路线，而 multi-agent synergy 提供了一个可复用系统模式。</p><p>它没有更高，是因为多 agent 系统容易增加成本和不稳定性，仍需更多真实任务、延迟约束和失败分析。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>测试时缩放已成为一种有效范式，通过在推理过程中分配额外的计算来提高大型语言模型（LLM）的推理能力。最近的结构化方法通过在多个轨迹、精炼轮次和基于验证的反馈中组织推理，进一步推动了这一范式。然而，现有的结构化测试时缩放方法要么对并行推理轨迹的协调性较弱，要么依赖于嘈杂的历史信息，而没有明确决定哪些应该保留和重用，这限制了它们平衡探索和利用的能力。在这项工作中，我们提出了TMAS，一个通过多智能体协同作用来扩展测试时计算的框架。TMAS将推理组织为专业智能体之间的协作过程，从而实现跨智能体、轨迹和精炼迭代的结构化信息流。为了支持有效的跨轨迹协作，TMAS引入了分层记忆：经验库重用低级可靠的中间结论和局部反馈，而指导方针库记录先前探索过的高级策略，以引导后续推演避免冗余的推理模式。此外，我们设计了一种为TMAS量身定制的混合奖励强化学习方案，该方案共同保留了基本的推理能力，增强了经验利用，并鼓励探索超越先前尝试的解决方案策略。在具有挑战性的推理基准上进行的广泛实验表明，TMAS比现有的测试时缩放基线实现了更强的迭代缩放，而混合奖励训练进一步提高了跨迭代的缩放有效性和稳定性。代码和数据可在https://github.com/george-QF/TMAS-code获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Test-time scaling has become an effective paradigm for improving the reasoning ability of large language models by allocating additional computation during inference. Recent structured approaches have further advanced this paradigm by organizing inference across multiple trajectories, refinement rounds, and verification-based feedback. However, existing structured test-time scaling methods either weakly coordinate parallel reasoning trajectories or rely on noisy historical information without explicitly deciding what should be retained and reused, limiting their ability to balance exploration and exploitation. In this work, we propose TMAS, a framework for scaling test-time compute via multi-agent synergy. TMAS organizes inference as a collaborative process among specialized agents, enabling structured information flow across agents, trajectories, and refinement iterations. To support effective cross-trajectory collaboration, TMAS introduces hierarchical memories: the experience bank reuses low-level reliable intermediate conclusions and local feedback, while the guideline bank records previously explored high-level strategies to steer subsequent rollouts away from redundant reasoning patterns. Furthermore, we design a hybrid reward reinforcement learning scheme tailored to TMAS, which jointly preserves basic reasoning capability, enhances experience utilization, and encourages exploration beyond previously attempted solution strategies. Extensive experiments on challenging reasoning benchmarks demonstrate that TMAS achieves stronger iterative scaling than existing test-time scaling baselines, while hybrid reward training further improves scaling effectiveness and stability across iterations. Code and data are available at https://github.com/george-QF/TMAS-code.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513a265tmaste,
+  title = {TMAS: Scaling Test-Time Compute via Multi-Agent Synergy},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10344.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a265-tmas-test-time-multiagent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TMAS: Scaling Test-Time Compute via Multi-Agent Synergy. https://arxiv.org/pdf/2605.10344.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10344.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.10344" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

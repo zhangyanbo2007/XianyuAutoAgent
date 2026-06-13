@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FALCON: Fast-Weight Attention for Continual Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文关注的是长上下文建模里一个很核心但长期处理得不够清楚的问题：当线性注意力、fast-weight memory 和 state space model 用固定状态压缩历史时，内部到底应该在时间上学习什么配对关系。作者指出，很多现有写法沿用了 Transformer 风格的当前 key 与当前 value 绑定，但在自回归预测下，真正因果对齐的内部训练对应该是前一步可用的特征去预测当前新揭示" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r9-falcon-fast-weight-attention/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FALCON: Fast-Weight Attention for Continual Learning" />
+    <meta property="og:description" content="这篇论文关注的是长上下文建模里一个很核心但长期处理得不够清楚的问题：当线性注意力、fast-weight memory 和 state space model 用固定状态压缩历史时，内部到底应该在时间上学习什么配对关系。作者指出，很多现有写法沿用了 Transformer 风格的当前 key 与当前 value 绑定，但在自回归预测下，真正因果对齐的内部训练对应该是前一步可用的特征去预测当前新揭示" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r9-falcon-fast-weight-attention/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FALCON: Fast-Weight Attention for Continual Learning" />
+    <meta name="twitter:description" content="这篇论文关注的是长上下文建模里一个很核心但长期处理得不够清楚的问题：当线性注意力、fast-weight memory 和 state space model 用固定状态压缩历史时，内部到底应该在时间上学习什么配对关系。作者指出，很多现有写法沿用了 Transformer 风格的当前 key 与当前 value 绑定，但在自回归预测下，真正因果对齐的内部训练对应该是前一步可用的特征去预测当前新揭示" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FALCON: Fast-Weight Attention for Continual Learning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注的是长上下文建模里一个很核心但长期处理得不够清楚的问题：当线性注意力、fast-weight memory 和 state space model 用固定状态压缩历史时，内部到底应该在时间上学习什么配对关系。作者指出，很多现有写法沿用了 Transformer 风格的当前 key 与当前 value 绑定，但在自回归预测下，真正因果对齐的内部训练对应该是前一步可用的特征去预测当前新揭示的 latent/value。</dd></div><div><dt>方法/机制</dt><dd>论文的主要贡献不是再发明一种完全新的记忆模块，而是把这种 next-latent pairing 明确化，并据此把状态更新重写成在线学习问题。作者进一步给出 FALCON-2 和 FALCON-3 两类更新规则：前者基于归一化最小均方更新并加入按列自适应增益和衰减，后者把局部目标推广到滑动窗口上的小批量更新，同时保持与 SSD 风格 chunk-parallel 训练兼容。这样，fast-weight memory、linear attention 与部分 SSM 之间的联系被放到更统一、也更可分析的框架中。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，主要因为它属于仓库里比较看重的那类“强理论澄清”工作。它没有靠大规模工程堆料取胜，而是澄清了一个活跃方向中可能长期影响实现与解释的基础问题：内部快速记忆究竟在学习相似性关联，还是在学习因果上可用的下一步预测关系。对后续的线性注意力、Mamba/SSD 系模型、测试时训练型记忆模块以及长上下文 recurrent 架构，这个 framing 都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，原因也很明确。当前实证规模主要在约 124M–130M 参数、50B token 预算附近，语言建模结果是竞争力存在，但并不是全面压过最强基线；作者自己也把主结论定位为目标和更新规则的澄清，而不是已经证明一种新的通用最优主干架构。因此它更适合作为高价值的机制与训练目标论文收录，而不是范式级架构替代。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注的是长上下文建模里一个很核心但长期处理得不够清楚的问题：当线性注意力、fast-weight memory 和 state space model 用固定状态压缩历史时，内部到底应该在时间上学习什么配对关系。作者指出，很多现有写法沿用了 Transformer 风格的当前 key 与当前 value 绑定，但在自回归预测下，真正因果对齐的内部训练对应该是前一步可用的特征去预测当前新揭示的 latent/value。</p><p>论文的主要贡献不是再发明一种完全新的记忆模块，而是把这种 next-latent pairing 明确化，并据此把状态更新重写成在线学习问题。作者进一步给出 FALCON-2 和 FALCON-3 两类更新规则：前者基于归一化最小均方更新并加入按列自适应增益和衰减，后者把局部目标推广到滑动窗口上的小批量更新，同时保持与 SSD 风格 chunk-parallel 训练兼容。这样，fast-weight memory、linear attention 与部分 SSM 之间的联系被放到更统一、也更可分析的框架中。</p><p>这篇论文值得收录，主要因为它属于仓库里比较看重的那类“强理论澄清”工作。它没有靠大规模工程堆料取胜，而是澄清了一个活跃方向中可能长期影响实现与解释的基础问题：内部快速记忆究竟在学习相似性关联，还是在学习因果上可用的下一步预测关系。对后续的线性注意力、Mamba/SSD 系模型、测试时训练型记忆模块以及长上下文 recurrent 架构，这个 framing 都有明显外溢价值。</p><p>它没有升到更高一级，原因也很明确。当前实证规模主要在约 124M–130M 参数、50B token 预算附近，语言建模结果是竞争力存在，但并不是全面压过最强基线；作者自己也把主结论定位为目标和更新规则的澄清，而不是已经证明一种新的通用最优主干架构。因此它更适合作为高价值的机制与训练目标论文收录，而不是范式级架构替代。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>FALCON：用于持续学习的快权重注意力。状态空间模型（SSM）和快权重记忆通过将历史压缩成固定大小的循环状态来实现恒定成本解码，但局部写入/遗忘规则通常是启发式处理的。在此处采用的先写后读约定下，存在一个简单的索引陷阱：以标准Transformer约定编写的循环绑定(kt , vt )，而用于下一词元建模的因果对齐的内部快记忆训练对是(kt−1 , vt )，在标准索引下等效于(ki , vi+1 )。我们在全文中明确了这种下一潜在配对，并将状态更新视为在线学习：在观察到步骤t后，循环状态对因果对(kt−1 , vt )执行更新，然后被读取以支持在步骤t+1的预测。项目页面：https://github.com/yifanzhang-pro/FALCON</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>State-Space Models (SSMs) and fast-weight memories achieve constant-cost decoding by compressing history into a fixed-size recurrent state, but the local write/forget rule is often treated heuristically. Under the read-after-write convention adopted here, there is a simple indexing pitfall: a recurrence written in the standard Transformer convention binds (kt , vt ), whereas the causally aligned internal fast-memory training pair for next-token modeling is (kt−1 , vt ), equivalently (ki , vi+1 ) under standard indexing. We make this next-latent pairing explicit throughout and cast the state update as online learning: after observing step t, the recurrent state performs an update on the causal pair (kt−1 , vt ) and is then read to support prediction at step t+1. Project Page: https://github.com/yifanzhang-pro/FALCON</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309r9falconfa,
+  title = {FALCON: Fast-Weight Attention for Continual Learning},
+  year = {2026},
+  url = {https://yifanzhang-pro.github.io/FALCON/FALCON.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r9-falcon-fast-weight-attention/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FALCON: Fast-Weight Attention for Continual Learning. https://yifanzhang-pro.github.io/FALCON/FALCON.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://yifanzhang-pro.github.io/FALCON/FALCON.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://yifanzhang-pro.github.io/FALCON/FALCON.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

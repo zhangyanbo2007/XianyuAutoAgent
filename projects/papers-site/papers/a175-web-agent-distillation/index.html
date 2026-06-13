@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Structured Distillation of Web Agent Capabilities Enables Generalization | DAST Papers</title>
+    <meta name="description" content="这篇论文瞄准 web agent 的部署落差：前沿闭源模型可以操作复杂网站，但成本、隐私和第三方 API 依赖让本地部署困难；小型开源模型又缺少足够的 web interaction 能力。问题不只是生成更多轨迹，而是如何把 web agent 的任务设计、执行和监督过程结构化为可复用的蒸馏流水线。
+
+作者提出 Agent-as-Annotators，把人类创建 WebArena 任务时的 Tas" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a175-web-agent-distillation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Structured Distillation of Web Agent Capabilities Enables Generalization" />
+    <meta property="og:description" content="这篇论文瞄准 web agent 的部署落差：前沿闭源模型可以操作复杂网站，但成本、隐私和第三方 API 依赖让本地部署困难；小型开源模型又缺少足够的 web interaction 能力。问题不只是生成更多轨迹，而是如何把 web agent 的任务设计、执行和监督过程结构化为可复用的蒸馏流水线。
+
+作者提出 Agent-as-Annotators，把人类创建 WebArena 任务时的 Tas" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a175-web-agent-distillation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Structured Distillation of Web Agent Capabilities Enables Generalization" />
+    <meta name="twitter:description" content="这篇论文瞄准 web agent 的部署落差：前沿闭源模型可以操作复杂网站，但成本、隐私和第三方 API 依赖让本地部署困难；小型开源模型又缺少足够的 web interaction 能力。问题不只是生成更多轨迹，而是如何把 web agent 的任务设计、执行和监督过程结构化为可复用的蒸馏流水线。
+
+作者提出 Agent-as-Annotators，把人类创建 WebArena 任务时的 Tas" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Structured Distillation of Web Agent Capabilities Enables Generalization</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.07776" target="_blank" rel="noopener noreferrer">2604.07776</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文瞄准 web agent 的部署落差：前沿闭源模型可以操作复杂网站，但成本、隐私和第三方 API 依赖让本地部署困难；小型开源模型又缺少足够的 web interaction 能力。问题不只是生成更多轨迹，而是如何把 web agent 的任务设计、执行和监督过程结构化为可复用的蒸馏流水线。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Agent-as-Annotators，把人类创建 WebArena 任务时的 Task Designer、Annotator、Supervisor 三个角色替换为模块化 LLM 组件：persona/task generator 设计任务和 evaluation hints，teacher agent 执行轨迹，judge 过滤成功样本。用 Gemini 3 Pro 生成并过滤 2322 条成功轨迹后，对 9B student 做纯 SFT。</dd></div><div><dt>结果/证据</dt><dd>这篇值得收录，因为它把 web agent 能力蒸馏从经验性合成数据扩展成清晰角色分工的 annotation framework，并给出很强的跨环境证据：9B 学生在 WebArena 达到 41.5%，超过同协议下 GPT-4o 和 Claude 3.5 Sonnet，并在未见过的 WorkArena 等环境获得明显迁移提升。它对本地化 agent、隐私友好 web automation 和合成轨迹生成都有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为当前仍高度依赖单个 frontier teacher、WebArena 风格环境和自动 judge 过滤；是否能泛化到长尾真实网站、登录态任务、抗干扰 UI 和安全约束下，还需要更多独立验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文瞄准 web agent 的部署落差：前沿闭源模型可以操作复杂网站，但成本、隐私和第三方 API 依赖让本地部署困难；小型开源模型又缺少足够的 web interaction 能力。问题不只是生成更多轨迹，而是如何把 web agent 的任务设计、执行和监督过程结构化为可复用的蒸馏流水线。</p><p>作者提出 Agent-as-Annotators，把人类创建 WebArena 任务时的 Task Designer、Annotator、Supervisor 三个角色替换为模块化 LLM 组件：persona/task generator 设计任务和 evaluation hints，teacher agent 执行轨迹，judge 过滤成功样本。用 Gemini 3 Pro 生成并过滤 2322 条成功轨迹后，对 9B student 做纯 SFT。</p><p>这篇值得收录，因为它把 web agent 能力蒸馏从经验性合成数据扩展成清晰角色分工的 annotation framework，并给出很强的跨环境证据：9B 学生在 WebArena 达到 41.5%，超过同协议下 GPT-4o 和 Claude 3.5 Sonnet，并在未见过的 WorkArena 等环境获得明显迁移提升。它对本地化 agent、隐私友好 web automation 和合成轨迹生成都有直接参考价值。</p><p>它不是更高一级，因为当前仍高度依赖单个 frontier teacher、WebArena 风格环境和自动 judge 过滤；是否能泛化到长尾真实网站、登录态任务、抗干扰 UI 和安全约束下，还需要更多独立验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>前沿LLMs能够导航复杂的网站，但其成本和对第三方API的依赖使得本地部署不切实际。我们引入了AGENT-AS-ANNOTATORS，一个通过类比人类标注角色来构建网络代理合成轨迹生成的框架，用模块化的LLM组件取代了任务设计者、标注者和监督者。我们使用Gemini 3 Pro作为教师模型，在六个网络环境中生成了3,000条轨迹，并对通过质量过滤的2,322条轨迹使用纯监督学习微调了一个9B参数的学生模型。结果模型在WebArena上达到了41.5%，在相同的评估协议下超越了Claude 3.5 Sonnet (36.0%)和GPT-4o (31.5%)等闭源模型，并且几乎是之前最佳开放权重结果（Go-Browse, 21.7%）的两倍。能力转移到未见过的环境，在WorkArena L1（一个训练期间从未见过的企业平台）上获得了18.2个百分点的提升，并在另外三个基准测试中取得了持续改进。消融实验证实，每个管道组件都做出了有意义的贡献，其中法官过滤、评估提示和推理轨迹各自带来了可衡量的收益。这些结果表明，从单一前沿教师模型进行结构化轨迹合成足以产生具有竞争力、可本地部署的网络代理。项目页面：https://agent-as-annotators.github.io</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Frontier LLMs can navigate complex websites, but their cost and reliance on third-party APIs make local deployment impractical. We introduce A GENT- AS -A NNOTATORS, a framework that structures synthetic trajectory generation for web agents by analogy to human annotation roles, replacing the Task Designer, Annotator, and Supervisor with modular LLM components. Using Gemini 3 Pro as teacher, we generate 3,000 trajectories across six web environments and fine-tune a 9B-parameter student with pure supervised learning on the 2,322 that pass quality filtering. The resulting model achieves 41.5% on WebArena, surpassing closed-source models such as Claude 3.5 Sonnet (36.0%) and GPT-4o (31.5%) under the same evaluation protocol, and nearly doubling the previous best open-weight result (Go-Browse, 21.7%). Capabilities transfer to unseen environments, with an 18.2 percentage point gain on WorkArena L1 (an enterprise platform never seen during training) and consistent improvements across three additional benchmarks. Ablations confirm that each pipeline component contributes meaningfully, with Judge filtering, evaluation hints, and reasoning traces each accounting for measurable gains. These results demonstrate that structured trajectory synthesis from a single frontier teacher is sufficient to produce competitive, locally deployable web agents. Project page: https://agent-as-annotators.github.io</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409a175webage,
+  title = {Structured Distillation of Web Agent Capabilities Enables Generalization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.07776.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a175-web-agent-distillation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Structured Distillation of Web Agent Capabilities Enables Generalization. https://arxiv.org/pdf/2604.07776.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.07776.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond Protein Language Models: An Agentic LLM Framework for Mechanistic Enzyme Design | DAST Papers</title>
+    <meta name="description" content="蛋白和酶设计里，语言模型已经能提供序列层面的启发，但从结构、静电环境到机制层的可解释假设生成仍然高度依赖专家。本文针对的是这个缺口：如何让 LLM 不只是生成候选序列，而是生成带机制解释、可实验检验的设计假设。
+
+作者提出 Genie-CAT，一个带工具增强的 agentic LLM 框架，把文献检索、PDB 结构解析、电势计算和红氧性质预测整合进统一流程。以金属蛋白为例，系统能够在统一工作流里给" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c6-genie-cat-enzyme-design/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Beyond Protein Language Models: An Agentic LLM Framework for Mechanistic Enzyme Design" />
+    <meta property="og:description" content="蛋白和酶设计里，语言模型已经能提供序列层面的启发，但从结构、静电环境到机制层的可解释假设生成仍然高度依赖专家。本文针对的是这个缺口：如何让 LLM 不只是生成候选序列，而是生成带机制解释、可实验检验的设计假设。
+
+作者提出 Genie-CAT，一个带工具增强的 agentic LLM 框架，把文献检索、PDB 结构解析、电势计算和红氧性质预测整合进统一流程。以金属蛋白为例，系统能够在统一工作流里给" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c6-genie-cat-enzyme-design/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Beyond Protein Language Models: An Agentic LLM Framework for Mechanistic Enzyme Design" />
+    <meta name="twitter:description" content="蛋白和酶设计里，语言模型已经能提供序列层面的启发，但从结构、静电环境到机制层的可解释假设生成仍然高度依赖专家。本文针对的是这个缺口：如何让 LLM 不只是生成候选序列，而是生成带机制解释、可实验检验的设计假设。
+
+作者提出 Genie-CAT，一个带工具增强的 agentic LLM 框架，把文献检索、PDB 结构解析、电势计算和红氧性质预测整合进统一流程。以金属蛋白为例，系统能够在统一工作流里给" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Beyond Protein Language Models: An Agentic LLM Framework for Mechanistic Enzyme Design</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-11-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.19423" target="_blank" rel="noopener noreferrer">2511.19423</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>蛋白和酶设计里，语言模型已经能提供序列层面的启发，但从结构、静电环境到机制层的可解释假设生成仍然高度依赖专家。本文针对的是这个缺口：如何让 LLM 不只是生成候选序列，而是生成带机制解释、可实验检验的设计假设。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Genie-CAT，一个带工具增强的 agentic LLM 框架，把文献检索、PDB 结构解析、电势计算和红氧性质预测整合进统一流程。以金属蛋白为例，系统能够在统一工作流里给出接近专家推理的、残基级别的机制假设，连接序列、结构与功能。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合仓库的 AI×生物与 agentic science 主线。它不像通用蛋白语言模型那样追求单一 benchmark，而是代表一种“LLM + physics/biochem tools” 的机制设计范式，对 enzyme design、hypothesis generation 和 mechanistic protein design 都有参考价值。</dd></div><div><dt>收录价值</dt><dd>它暂时归为突破性，因为当前更像 proof-of-concept 与高质量框架论文，仍缺少更大规模实验闭环或真实 wet-lab 结果，暂不足以升到颠覆性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>蛋白和酶设计里，语言模型已经能提供序列层面的启发，但从结构、静电环境到机制层的可解释假设生成仍然高度依赖专家。本文针对的是这个缺口：如何让 LLM 不只是生成候选序列，而是生成带机制解释、可实验检验的设计假设。</p><p>作者提出 Genie-CAT，一个带工具增强的 agentic LLM 框架，把文献检索、PDB 结构解析、电势计算和红氧性质预测整合进统一流程。以金属蛋白为例，系统能够在统一工作流里给出接近专家推理的、残基级别的机制假设，连接序列、结构与功能。</p><p>这篇论文适合仓库的 AI×生物与 agentic science 主线。它不像通用蛋白语言模型那样追求单一 benchmark，而是代表一种“LLM + physics/biochem tools” 的机制设计范式，对 enzyme design、hypothesis generation 和 mechanistic protein design 都有参考价值。</p><p>它暂时归为突破性，因为当前更像 proof-of-concept 与高质量框架论文，仍缺少更大规模实验闭环或真实 wet-lab 结果，暂不足以升到颠覆性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：超越蛋白质语言模型：一种用于机制酶设计的智能体LLM框架 摘要 我们提出Genie-CAT，一个工具增强型大型语言模型（LLM）系统，旨在加速蛋白质设计中的科学假设生成。以金属蛋白（例如，铁氧还蛋白）作为案例研究，Genie-CAT将四种能力——通过检索增强生成（RAG）进行的文献基础推理、蛋白质数据库文件结构解析、静电势计算以及氧化还原特性的机器学习预测——整合到一个统一的智能体工作流中。通过将自然语言推理与数据驱动和基于物理的计算相结合，该系统生成了连接序列、结构和功能的机制可解释、可检验的假设。在概念验证演示中，Genie-CAT自主识别了[Fe–S]簇附近影响氧化还原调谐的残基水平修饰，在极短的时间内重现了专家推导的假设。该框架强调了结合语言模型与领域特定工具的AI智能体如何弥合符号推理和数值模拟之间的鸿沟，将LLM从对话助手转变为计算发现的合作伙伴。关键词 蛋白质设计 · 大型语言模型 · 智能体工作流 · 金属蛋白 · 酶设计</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT We present Genie-CAT, a tool-augmented large-language-model (LLM) system designed to accelerate scientific hypothesis generation in protein design. Using metalloproteins (e.g., ferredoxins) as a case study, Genie-CAT integrates four capabilities—literature-grounded reasoning through retrieval- augmented generation (RAG), structural parsing of Protein Data Bank files, electrostatic potential calculations, and machine-learning prediction of redox properties—into a unified agentic workflow. By coupling natural-language reasoning with data-driven and physics-based computation, the system generates mechanistically interpretable, testable hypotheses linking sequence, structure, and function. In proof-of-concept demonstrations, Genie-CAT autonomously identifies residue-level modifications near [Fe–S] clusters that affect redox tuning, reproducing expert-derived hypotheses in a fraction of the time. The framework highlights how AI agents combining language models with domain- specific tools can bridge symbolic reasoning and numerical simulation, transforming LLMs from conversational assistants into partners for computational discovery. Keywords Protein Design · Large Language Models · Agentic Workflow · Metalloproteins · Enzyme Design</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251124c6geniecat,
+  title = {Beyond Protein Language Models: An Agentic LLM Framework for Mechanistic Enzyme Design},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.19423.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c6-genie-cat-enzyme-design/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Beyond Protein Language Models: An Agentic LLM Framework for Mechanistic Enzyme Design. https://arxiv.org/pdf/2511.19423.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.19423.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

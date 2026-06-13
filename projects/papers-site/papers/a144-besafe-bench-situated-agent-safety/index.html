@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments | DAST Papers</title>
+    <meta name="description" content="随着多模态 agents 开始在网页、移动端和具身环境中执行真实任务，安全评测不能再停留在低保真 API sandbox 或单一攻击脚本上。当前一个核心缺口是：缺少能够跨环境、跨交互形态衡量 situated agents 行为风险的 benchmark。
+
+BeSafe-Bench 的主要贡献是把 situated-agent safety 做成了更接近真实部署的评测对象。它覆盖 Web、Mob" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a144-besafe-bench-situated-agent-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments" />
+    <meta property="og:description" content="随着多模态 agents 开始在网页、移动端和具身环境中执行真实任务，安全评测不能再停留在低保真 API sandbox 或单一攻击脚本上。当前一个核心缺口是：缺少能够跨环境、跨交互形态衡量 situated agents 行为风险的 benchmark。
+
+BeSafe-Bench 的主要贡献是把 situated-agent safety 做成了更接近真实部署的评测对象。它覆盖 Web、Mob" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a144-besafe-bench-situated-agent-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments" />
+    <meta name="twitter:description" content="随着多模态 agents 开始在网页、移动端和具身环境中执行真实任务，安全评测不能再停留在低保真 API sandbox 或单一攻击脚本上。当前一个核心缺口是：缺少能够跨环境、跨交互形态衡量 situated agents 行为风险的 benchmark。
+
+BeSafe-Bench 的主要贡献是把 situated-agent safety 做成了更接近真实部署的评测对象。它覆盖 Web、Mob" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.25747" target="_blank" rel="noopener noreferrer">2603.25747</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着多模态 agents 开始在网页、移动端和具身环境中执行真实任务，安全评测不能再停留在低保真 API sandbox 或单一攻击脚本上。当前一个核心缺口是：缺少能够跨环境、跨交互形态衡量 situated agents 行为风险的 benchmark。</dd></div><div><dt>方法/机制</dt><dd>BeSafe-Bench 的主要贡献是把 situated-agent safety 做成了更接近真实部署的评测对象。它覆盖 Web、Mobile、Embodied VLM 和 Embodied VLA 四类 functional environments，并把九类 safety-critical risk 注入任务指令空间，再结合规则检查和 LLM-as-a-judge 去评估真实环境后果。</dd></div><div><dt>结果/证据</dt><dd>这使它具备了比单栈 red-teaming 更强的外溢性。对本仓库来说，它不是普通 benchmark 叠加，而是 agent safety 从单轮内容安全转向跨环境行为安全的一块更耐久的评测基座，能够和 computer-use、robotics、mobile agents 以及多代理系统的后续工作形成稳定接口。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 benchmark 主导而非完整防御框架，而且生态影响还需要更多复用与复现来验证。因此给到 breakthrough 合理，但暂不升到更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着多模态 agents 开始在网页、移动端和具身环境中执行真实任务，安全评测不能再停留在低保真 API sandbox 或单一攻击脚本上。当前一个核心缺口是：缺少能够跨环境、跨交互形态衡量 situated agents 行为风险的 benchmark。</p><p>BeSafe-Bench 的主要贡献是把 situated-agent safety 做成了更接近真实部署的评测对象。它覆盖 Web、Mobile、Embodied VLM 和 Embodied VLA 四类 functional environments，并把九类 safety-critical risk 注入任务指令空间，再结合规则检查和 LLM-as-a-judge 去评估真实环境后果。</p><p>这使它具备了比单栈 red-teaming 更强的外溢性。对本仓库来说，它不是普通 benchmark 叠加，而是 agent safety 从单轮内容安全转向跨环境行为安全的一块更耐久的评测基座，能够和 computer-use、robotics、mobile agents 以及多代理系统的后续工作形成稳定接口。</p><p>它目前仍是 benchmark 主导而非完整防御框架，而且生态影响还需要更多复用与复现来验证。因此给到 breakthrough 合理，但暂不升到更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>BeSafe-Bench：揭示功能环境中具身智能体的行为安全风险。然而，这项技术进步的速度已显著超越了相应安全保障措施的发展。随着自主智能体日益被赋予复杂的工具来执行复杂的多步骤任务，许多系统在部署时并未对其潜在安全风险进行严格评估（Plaat et al., 2025）。智能体的任务完成熟练度与其行为安全保障之间存在着深刻的差异。这种差距不仅可能导致灾难性故障，还会引发微妙而普遍的危害——从公共平台上敏感个人或企业数据的未经授权泄露，到具身环境中机器人操纵器造成的物理碰撞（Zhang et al., 2023; Patil et al., 2024; Ruan et al., 2024）。与LLMs直接生成的有害文本输出（Zou et al., 2023; Wei et al., 2023; Xi et al., 2025）不同，智能体驱动的行为风险的后果更直接地体现在物理和数字世界中，但它们在分析和评估方面仍然更具挑战性。因此，建立一个评估AI智能体行为安全性的稳健基准既必要又紧迫。大多模态模型（LMMs）的快速发展使得智能体能够执行复杂的数字和物理任务，但它们作为自主决策者的部署引入了大量无意的行为安全风险。然而，缺乏全面的安全基准仍然是一个主要瓶颈，因为现有评估依赖于低保真环境、模拟API或范围狭窄的任务。为了解决这一差距，我们提出了BeSafe-Bench (BSB)，这是一个用于揭示功能环境中具身智能体行为安全风险的基准，涵盖了四个代表性领域：Web、Mobile、具身VLM和具身VLA。利用功能环境，我们通过将任务与九类安全关键风险相结合来构建多样化的指令空间，并采用混合评估框架，该框架结合了基于规则的检查和LLM-as-a-judge推理来评估真实环境影响。对13个流行智能体的评估揭示了一个令人担忧的趋势：即使是表现最好的智能体，在完全遵守安全限制的情况下也完成了不到40%的任务，而且强大的任务性能常常伴随着严重的安全违规。这些发现强调了在现实世界中部署智能体系统之前，迫切需要改进安全对齐。现有关于智能体安全评估的研究主要集中在基于文本的场景中生成内容的安全性（Xi et al., 2025; Bhardwaj &amp; Poria, 2023; Zhang et al., 2024b）。然而，随着智能体日益配备执行动作的工具，仅评估内容安全性已变得不足。为了应对这一挑战，多项研究提出了以智能体行动后果为中心的安全评估，这一概念被正式定义为行为安全（Yuan et al., 2024; Zhang et al., 2024a）。尽管它们做出了贡献，但这些现有框架通常存在适用范围有限的问题。大多数局限于单一领域，例如网页导航或具身AI，或者它们依赖LLMs来模拟环境交互（Ruan et al., 2024; Naihin et al., 2023）。尽管此类模拟可以扩大基准覆盖范围，但LLM建模的API往往过于简单和静态。这与现实世界中智能体与环境之间动态多样的交互模式形成鲜明对比，造成了显著的保真度差距。因此，这些基准通常产生的评估结果与现实世界的安全性能存在显著差异。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>However, the velocity of this technological advancement has significantly outpaced the development of corresponding safety safeguards. As autonomous agents are increasingly empowered with sophisticated tools to execute complex, multi-step tasks, many systems are being deployed without rigorous assessment of their potential safety risks (Plaat et al., 2025). There exists a profound discrepancy between an agent’s task-completion proficiency and its behavioral safety assurance. Such a gap not only risks catastrophic failures but also leads to subtle yet pervasive harms—ranging from the unauthorized leakage of sensitive personal or corporate data on public platforms to physical collisions caused by robotic manipulators in embodied settings (Zhang et al., 2023; Patil et al., 2024; Ruan et al., 2024). Unlike the harmful textual outputs directly generated by LLMs (Zou et al., 2023; Wei et al., 2023; Xi et al., 2025), the consequences of agent-driven behavioral risks manifest more directly in the physical and digital world, yet they remain significantly more challenging to analyze and evaluate. Consequently, establishing a robust benchmark for assessing the behavioral safety of AI agents is both essential and imperative. The rapid evolution of Large Multimodal Models (LMMs) has enabled agents to perform complex digital and physical tasks, yet their deployment as autonomous decision-makers introduces substantial unintentional behavioral safety risks. However, the absence of a comprehensive safety benchmark remains a major bottleneck, as existing evaluations rely on low-fidelity environments, simulated APIs, or narrowly scoped tasks. To address this gap, we present BeSafe-Bench (BSB), a benchmark for exposing behavioral safety risks of situated agents in functional environments, covering four representative domains: Web, Mobile, Embodied VLM, and Embodied VLA. Using functional environments, we construct a diverse instruction space by augmenting tasks with nine categories of safety-critical risks, and adopt a hybrid evaluation framework that combines rulebased checks with LLM-as-a-judge reasoning to assess real environmental impacts. Evaluating 13 popular agents reveals a concerning trend: even the best-performing agent completes fewer than 40% of tasks while fully adhering to safety constraints, and strong task performance frequently coincides with severe safety violations. These findings underscore the urgent need for improved safety alignment before deploying agentic systems in real-world settings. Existing research on agent safety evaluation primarily focuses on the safety of generated content within text-based scenarios (Xi et al., 2025; Bhardwaj &amp; Poria, 2023; Zhang et al., 2024b). However, as agents are increasingly equipped with tools to execute actions, evaluating content safety alone has become insufficient. To address this challenge, several studies have proposed safety assessments centered on the consequences of agent actions, a concept formally defined as behavioral safety (Yuan et al., 2024; Zhang et al., 2024a). Despite their contributions, these existing frameworks often suffer from a limited scope of applicability. Most are confined to a single domain, such as web navigation or embodied AI, or they rely on LLMs to simulate environmental interactions (Ruan et al., 2024; Naihin et al., 2023). While such simulations can broaden benchmark coverage, the LLM-modeled APIs tend to be overly simplistic and static. This stands in stark contrast to the dynamic and diverse interaction patterns between agents and environments in the real world, creating a significant fidelity gap. Consequently, these benchmarks often produce evaluation results that exhibit a substantial discrepancy from real-world safety performance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260130a144besafe,
+  title = {BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.25747v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a144-besafe-bench-situated-agent-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). BeSafe-Bench: Unveiling Behavioral Safety Risks of Situated Agents in Functional Environments. https://arxiv.org/pdf/2603.25747v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.25747v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

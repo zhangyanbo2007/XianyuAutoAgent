@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving | DAST Papers</title>
+    <meta name="description" content="问题与背景：把 LLM 里的 token-level MoE 直接搬到自动驾驶 VLA 上会导致不稳定和安全退化，因为驾驶决策更依赖场景级结构而不是 token 级局部差异。
+
+方法/新意：SAMoE-VLA 用 BEV 场景特征而非 token embedding 做 expert routing，并引入条件跨模态因果注意力，把 world state、语言意图和动作历史统一进 causal r" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a31-samoe-vla-autonomous-driving/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving" />
+    <meta property="og:description" content="问题与背景：把 LLM 里的 token-level MoE 直接搬到自动驾驶 VLA 上会导致不稳定和安全退化，因为驾驶决策更依赖场景级结构而不是 token 级局部差异。
+
+方法/新意：SAMoE-VLA 用 BEV 场景特征而非 token embedding 做 expert routing，并引入条件跨模态因果注意力，把 world state、语言意图和动作历史统一进 causal r" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a31-samoe-vla-autonomous-driving/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving" />
+    <meta name="twitter:description" content="问题与背景：把 LLM 里的 token-level MoE 直接搬到自动驾驶 VLA 上会导致不稳定和安全退化，因为驾驶决策更依赖场景级结构而不是 token 级局部差异。
+
+方法/新意：SAMoE-VLA 用 BEV 场景特征而非 token embedding 做 expert routing，并引入条件跨模态因果注意力，把 world state、语言意图和动作历史统一进 causal r" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.08113" target="_blank" rel="noopener noreferrer">2603.08113</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：把 LLM 里的 token-level MoE 直接搬到自动驾驶 VLA 上会导致不稳定和安全退化，因为驾驶决策更依赖场景级结构而不是 token 级局部差异。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：SAMoE-VLA 用 BEV 场景特征而非 token embedding 做 expert routing，并引入条件跨模态因果注意力，把 world state、语言意图和动作历史统一进 causal reasoning 流程。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇论文属于 autonomous driving / VLA / MoE 主线。它的核心价值是把 MoE 的组织单位从 token 重构为 scene-level routing，这个观点具有明确方法学意义。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：尽管对自动驾驶很强，但仍主要影响自动驾驶 VLA 子方向，不足以升到更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：把 LLM 里的 token-level MoE 直接搬到自动驾驶 VLA 上会导致不稳定和安全退化，因为驾驶决策更依赖场景级结构而不是 token 级局部差异。</p><p>方法/新意：SAMoE-VLA 用 BEV 场景特征而非 token embedding 做 expert routing，并引入条件跨模态因果注意力，把 world state、语言意图和动作历史统一进 causal reasoning 流程。</p><p>意义/放在仓库中的位置：这篇论文属于 autonomous driving / VLA / MoE 主线。它的核心价值是把 MoE 的组织单位从 token 重构为 scene-level routing，这个观点具有明确方法学意义。</p><p>局限/为何不再升一级：尽管对自动驾驶很强，但仍主要影响自动驾驶 VLA 子方向，不足以升到更高一级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SAMoE-VLA：一种用于自动驾驶的场景自适应专家混合视觉-语言-动作模型 摘要。视觉-语言-动作（VLA）模型在自动驾驶领域的最新进展，通过利用大型语言模型（LLMs）的理解和推理能力，展现出广阔的前景。然而，我们的实证分析表明，将现有源自LLM架构的令牌级MoE机制直接应用于VLA模型，会导致自动驾驶性能不稳定和安全性下降，这凸显了基于令牌的专家专业化与场景级决策之间的不匹配。为解决此问题，我们提出了SAMoE-VLA，这是一种场景自适应的视觉-语言-动作框架，它根据结构化的场景表示而非令牌嵌入来条件化专家选择。我们的核心思想是从封装交通场景上下文的鸟瞰图（BEV）特征中导出MoE路由信号，从而实现针对不同驾驶条件量身定制的场景依赖性专家加权和合并。此外，为了支持世界知识、感知、语言和动作之间的时间一致性推理，我们引入了一种条件跨模态因果注意力机制，将世界状态、语言意图和动作历史整合到一个统一的因果推理过程中。在nuScenes开环规划数据集和LangAuto闭环基准上的大量实验表明，SAMoE-VLA实现了最先进的性能，以更少的参数优于先前的基于VLA和基于世界模型的方法。我们的代码将很快发布。关键词：专家混合 · VLA · 自动驾驶</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Recent advances in Vision-Language-Action (VLA) models have shown promising capabilities in autonomous driving by leveraging the understanding and reasoning strengths of Large Language Models (LLMs). However, our empirical analysis reveals that directly applying existing token-level MoE mechanisms—which are inherited from LLM architectures—to VLA models results in unstable performance and safety degradation in autonomous driving, highlighting a misalignment between token-based expert specialization and scene-level decision-making. To address this, we propose SAMoE-VLA, a scene-adaptive Vision-LanguageAction framework that conditions expert selection on structured scene representations instead of token embeddings. Our key idea is to derive the MoE routing signal from bird’s-eye-view (BEV) features that encapsulates traffic scene context, enabling scenario-dependent expert weighting and merging tailored to distinct driving conditions. Furthermore, to support temporally consistent reasoning across world-knowledge, perception, language, and action, we introduce a Conditional Cross-Modal Causal Attention mechanism that integrates world state, linguistic intent, and action history into a unified causal reasoning process. Extensive experiments on the nuScenes open loop planning dataset and LangAuto closed-loop benchmark demonstrate that SAMoE-VLA achieves state-ofthe-art performance, outperforming prior VLA-based and world-modelbased approaches with fewer parameters. Our code will be released soon. Keywords: Mixture of Expert · VLA · Autonomous Driving</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309a31samoevl,
+  title = {SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.08113v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a31-samoe-vla-autonomous-driving/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SAMoE-VLA: A Scene Adaptive Mixture-of-Experts Vision-Language-Action Model for Autonomous Driving. https://arxiv.org/pdf/2603.08113v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.08113v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

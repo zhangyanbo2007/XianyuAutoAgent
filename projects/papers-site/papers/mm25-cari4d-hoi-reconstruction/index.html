@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CARI4D: Category Agnostic 4D Reconstruction of Human-Object Interaction | DAST Papers</title>
+    <meta name="description" content="该文处理的是一个对机器人感知、人机交互建模和 4D 场景理解都很关键的问题：如何仅从单目 RGB 视频中，在不知道物体模板、类别有限先验也不可靠的情况下，恢复人与物体在时间和空间上都一致的 4D 交互过程。过去的方法通常依赖真值模板，或者只能在少数封闭类别上工作，因此很难迁移到真实开放场景。
+
+CARI4D 的核心贡献是把这一问题首次推进到 category-agnostic 设定。方法先整合多个" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm25-cari4d-hoi-reconstruction/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CARI4D: Category Agnostic 4D Reconstruction of Human-Object Interaction" />
+    <meta property="og:description" content="该文处理的是一个对机器人感知、人机交互建模和 4D 场景理解都很关键的问题：如何仅从单目 RGB 视频中，在不知道物体模板、类别有限先验也不可靠的情况下，恢复人与物体在时间和空间上都一致的 4D 交互过程。过去的方法通常依赖真值模板，或者只能在少数封闭类别上工作，因此很难迁移到真实开放场景。
+
+CARI4D 的核心贡献是把这一问题首次推进到 category-agnostic 设定。方法先整合多个" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm25-cari4d-hoi-reconstruction/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CARI4D: Category Agnostic 4D Reconstruction of Human-Object Interaction" />
+    <meta name="twitter:description" content="该文处理的是一个对机器人感知、人机交互建模和 4D 场景理解都很关键的问题：如何仅从单目 RGB 视频中，在不知道物体模板、类别有限先验也不可靠的情况下，恢复人与物体在时间和空间上都一致的 4D 交互过程。过去的方法通常依赖真值模板，或者只能在少数封闭类别上工作，因此很难迁移到真实开放场景。
+
+CARI4D 的核心贡献是把这一问题首次推进到 category-agnostic 设定。方法先整合多个" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CARI4D: Category Agnostic 4D Reconstruction of Human-Object Interaction</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2025-12-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.11988" target="_blank" rel="noopener noreferrer">2512.11988</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>该文处理的是一个对机器人感知、人机交互建模和 4D 场景理解都很关键的问题：如何仅从单目 RGB 视频中，在不知道物体模板、类别有限先验也不可靠的情况下，恢复人与物体在时间和空间上都一致的 4D 交互过程。过去的方法通常依赖真值模板，或者只能在少数封闭类别上工作，因此很难迁移到真实开放场景。</dd></div><div><dt>方法/机制</dt><dd>CARI4D 的核心贡献是把这一问题首次推进到 category-agnostic 设定。方法先整合多个 foundation model 对人体、物体和场景的独立预测，通过 pose hypothesis selection 得到稳健初始化；然后用 learned render-and-compare 进行联合细化，强制空间、时间与像素层面的对齐；最后再显式推理复杂接触关系，使结果更符合物理约束。这样一来，系统不再依赖固定物体模板，也能在未见类别上做零样本泛化。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得正式收录，因为它对 human-object interaction 的 4D 重建给出了一个更通用的开放类目方案，而不是又一个封闭 benchmark 内的几何优化器。对仓库主线来说，它同时连接了 4D 感知、foundation-model integration、接触推理和机器人可用的交互建模，对 embodied perception 和 robot learning 都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它当前仍是 breakthrough 而不是更高一级，因为主要证据仍集中在单目 RGB 下的 HOI reconstruction 任务，本体上更偏感知层，离通用世界模型或大规模机器人数据引擎还有距离。它能否进一步上升，要看后续是否被广泛用作机器人操作、交互理解或 4D 数据构建的标准底座。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>该文处理的是一个对机器人感知、人机交互建模和 4D 场景理解都很关键的问题：如何仅从单目 RGB 视频中，在不知道物体模板、类别有限先验也不可靠的情况下，恢复人与物体在时间和空间上都一致的 4D 交互过程。过去的方法通常依赖真值模板，或者只能在少数封闭类别上工作，因此很难迁移到真实开放场景。</p><p>CARI4D 的核心贡献是把这一问题首次推进到 category-agnostic 设定。方法先整合多个 foundation model 对人体、物体和场景的独立预测，通过 pose hypothesis selection 得到稳健初始化；然后用 learned render-and-compare 进行联合细化，强制空间、时间与像素层面的对齐；最后再显式推理复杂接触关系，使结果更符合物理约束。这样一来，系统不再依赖固定物体模板，也能在未见类别上做零样本泛化。</p><p>这篇论文值得正式收录，因为它对 human-object interaction 的 4D 重建给出了一个更通用的开放类目方案，而不是又一个封闭 benchmark 内的几何优化器。对仓库主线来说，它同时连接了 4D 感知、foundation-model integration、接触推理和机器人可用的交互建模，对 embodied perception 和 robot learning 都有明显外溢价值。</p><p>它当前仍是 breakthrough 而不是更高一级，因为主要证据仍集中在单目 RGB 下的 HOI reconstruction 任务，本体上更偏感知层，离通用世界模型或大规模机器人数据引擎还有距离。它能否进一步上升，要看后续是否被广泛用作机器人操作、交互理解或 4D 数据构建的标准底座。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从RGB相机等无处不在的传感器准确捕捉人-物交互对于人类理解、游戏和机器人学习等应用至关重要。然而，由于未知的物体和人体信息、深度模糊性、遮挡和复杂运动，从单个RGB视图推断4D交互极具挑战性，这阻碍了连贯的3D和时间重建。以前的方法通过假设真实物体模板或限制于有限的物体类别来简化设置。我们提出了CARI4D，这是第一个类别无关的方法，能够从单目RGB视频中以度量尺度重建空间和时间上一致的4D人-物交互。为此，我们提出了一种姿态假设选择算法，该算法能够鲁棒地整合来自基础模型的个体预测，通过学习到的渲染-比较范式共同对其进行细化，以确保空间、时间和像素对齐，并最终推理复杂的接触以进行满足物理约束的进一步细化。1个接触，用于通过联合优化进一步细化交互姿态。具体而言，我们提出了一种用于度量物体形状重建的从粗到精的尺度估计策略。然后，使用一种新颖的姿态假设选择算法来在严重遮挡下鲁棒地跟踪物体姿态。我们还采用基础模型来获取与物体深度和尺度对齐的人体姿态估计。为了细化这些基础模型的初始化，我们引入了CoCoNet，这是一个类别无关接触推理模型，它渲染初始的人-物估计并与输入观测进行比较，以预测增量姿态更新以及接触。这些姿态和接触随后被送入一个接触感知联合优化框架，以获得连贯的交互。实验表明，在重建误差方面，我们的方法在同分布数据集上比现有技术高出38%，在未见数据集上高出36%。我们的模型泛化能力超越了训练猫- 从RGB相机等无处不在的传感器准确捕捉人-物交互对于人类理解、游戏和机器人学习等应用至关重要。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>agnostic method that reconstructs spatially and temporarily consistent 4D human-object interaction at metric scale from monocular RGB videos. To this end, we propose a pose hypothesis selection algorithm that robustly integrates the individual predictions from foundation models, jointly refine them through a learned render-and-compare paradigm to ensure spatial, temporal and pixel alignment, and finally reasoning about intricate contacts for further refinement satisfying physical constraints. Experiments show that our method outperforms prior art by 38% on in-distribution dataset and 36% on unseen dataset in terms of reconstruction error. Our model generalizes beyond the training cat- Accurate capture of human-object interaction from ubiquitous sensors like RGB cameras is important for applications in human understanding, gaming, and robot learning. However, inferring 4D interactions from a single RGB view is highly challenging due to the unknown object and human information, depth ambiguity, occlusion, and complex motion, which hinder consistent 3D and temporal reconstruction. Previous methods simplify the setup by assuming ground truth object template or constraining to a limited set of object categories. We present CARI4D, the first category1 contacts, which are used to further refine the interaction poses through joint optimization. Specifically, we propose a coarse-to-fine scale estimation strategy for metric object shape reconstruction. A novel pose hypothesis selection algorithm is then used to robustly track object pose under heavy occlusion. We also adopt foundation models to obtain human pose estimations that are aligned to the same depth and scale as the object. To refine these foundation model initializations, we introduce CoCoNet, a Category agnostic Contact reasoning model that renders the initial human-object estimations and compares with input observations to predict delta pose updates together with contacts. These poses and contacts are then sent into a contact-aware joint optimization framework to obtain coherent interactions.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251212mm25cari4d,
+  title = {CARI4D: Category Agnostic 4D Reconstruction of Human-Object Interaction},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.11988v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm25-cari4d-hoi-reconstruction/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). CARI4D: Category Agnostic 4D Reconstruction of Human-Object Interaction. https://arxiv.org/pdf/2512.11988v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.11988v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

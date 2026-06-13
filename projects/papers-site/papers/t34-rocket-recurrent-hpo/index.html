@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Automated deep learning by recurrent hyperparameter optimization | DAST Papers</title>
+    <meta name="description" content="很多 AutoML 或 HPO 论文的问题在于只是在固定 search space 上再堆一个搜索器。Rocket 更值得收，是因为它把超参数优化明确变成 recurrent decision process，用 self-play RL 学一个可迁移的优化策略，而不是依赖每次重新手工设计 priors。
+
+这篇工作的接口价值在于 mixed-type hyperparameters、reward" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t34-rocket-recurrent-hpo/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Automated deep learning by recurrent hyperparameter optimization" />
+    <meta property="og:description" content="很多 AutoML 或 HPO 论文的问题在于只是在固定 search space 上再堆一个搜索器。Rocket 更值得收，是因为它把超参数优化明确变成 recurrent decision process，用 self-play RL 学一个可迁移的优化策略，而不是依赖每次重新手工设计 priors。
+
+这篇工作的接口价值在于 mixed-type hyperparameters、reward" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t34-rocket-recurrent-hpo/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Automated deep learning by recurrent hyperparameter optimization" />
+    <meta name="twitter:description" content="很多 AutoML 或 HPO 论文的问题在于只是在固定 search space 上再堆一个搜索器。Rocket 更值得收，是因为它把超参数优化明确变成 recurrent decision process，用 self-play RL 学一个可迁移的优化策略，而不是依赖每次重新手工设计 priors。
+
+这篇工作的接口价值在于 mixed-type hyperparameters、reward" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Automated deep learning by recurrent hyperparameter optimization</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-05-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-04</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72413-9" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72413-9</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 AutoML 或 HPO 论文的问题在于只是在固定 search space 上再堆一个搜索器。Rocket 更值得收，是因为它把超参数优化明确变成 recurrent decision process，用 self-play RL 学一个可迁移的优化策略，而不是依赖每次重新手工设计 priors。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的接口价值在于 mixed-type hyperparameters、reward approximation、以及真实部署成本一起被纳入同一个自动化框架。它瞄准的不是 benchmark 上多赢几个点，而是减少现实训练和部署里的调参时间与算力浪费。</dd></div><div><dt>结果/证据</dt><dd>从本库视角看，它属于 core-ML workflow primitive：如果自动 HPO 真能以专家级质量覆盖更广模型与任务，这会直接改变实验室和工业训练栈里的默认操作方式。它不是简单的 tuning recipe，而是 training workflow automation。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前最强证据仍聚焦在超参数优化这一层，而不是更大范围的自动建模闭环。它是否会演化成更通用的 automated training controller，还需要后续工作验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 AutoML 或 HPO 论文的问题在于只是在固定 search space 上再堆一个搜索器。Rocket 更值得收，是因为它把超参数优化明确变成 recurrent decision process，用 self-play RL 学一个可迁移的优化策略，而不是依赖每次重新手工设计 priors。</p><p>这篇工作的接口价值在于 mixed-type hyperparameters、reward approximation、以及真实部署成本一起被纳入同一个自动化框架。它瞄准的不是 benchmark 上多赢几个点，而是减少现实训练和部署里的调参时间与算力浪费。</p><p>从本库视角看，它属于 core-ML workflow primitive：如果自动 HPO 真能以专家级质量覆盖更广模型与任务，这会直接改变实验室和工业训练栈里的默认操作方式。它不是简单的 tuning recipe，而是 training workflow automation。</p><p>它没有更高，是因为当前最强证据仍聚焦在超参数优化这一层，而不是更大范围的自动建模闭环。它是否会演化成更通用的 automated training controller，还需要后续工作验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>针对特定任务优化深度学习模型的超参数需要大量的领域专业知识和计算资源，这在自动化深度学习中仍然是一个挑战。现有的超参数优化（HPO）方法受限于有限的离散超参数类型，依赖于手动先验知识，并且无法扩展到大型数据集。本文提出了Rocket，一个循环HPO框架，它通过自博弈强化学习自动化混合类型超参数的调优，无需先验领域知识。开发了一个策略智能体，通过与目标模型的迭代交互，从历史经验中学习并逐步完善其策略。为了解决大规模数据集上严重的奖励延迟问题，设计了一种针对数据子集的奖励近似机制，将策略学习速度提高了80倍。在8个深度学习任务和32个基准测试中，Rocket使目标模型能够从零开始达到最先进的性能，与专家调优的结果相匹配。在实际工业部署中，Rocket将优化时间缩短了13.4倍，并将成本降低了73%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Optimizing hyperparameters of deep learning models for specific tasks requires substantial domain expertise and computational resources, remaining challenging in automated deep learning. Existing hyperparameter optimization (HPO) methods are restricted to limited discrete hyperparameter types, rely on manual priors, and fail to scale to large datasets. This paper presents Rocket, a recurrent HPO framework that automates the tuning of mixed-type hyperparameters by self-play reinforcement learning, requiring no prior domain knowledge. A policy agent is developed to learn from historical experience and progressively refine its strategy through iterative interactions with the target model. To address severe reward delay on large-scale datasets, a reward approximation mechanism is designed for data subsets, accelerating policy learning by up to 80X. Across 8 deep learning tasks and 32 benchmarks, Rocket enables target models to achieve state-of-the-art performance from scratch, matching expert-tuned results. In real industrial deployment, Rocket reduces optimization time by 13.4-fold and cost by 73%.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260504t34rocketr,
+  title = {Automated deep learning by recurrent hyperparameter optimization},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72413-9.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t34-rocket-recurrent-hpo/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Automated deep learning by recurrent hyperparameter optimization. https://www.nature.com/articles/s41467-026-72413-9.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t40-subliminal-steering/">
+              <span>Subliminal Steering: Stronger Encoding of Hidden Signals</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72413-9.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

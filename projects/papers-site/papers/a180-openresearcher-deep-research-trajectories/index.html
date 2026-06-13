@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 deep research agent 训练数据的可复现性瓶颈。高质量研究型 agent 需要长时程轨迹，轨迹里包含搜索、打开网页、定位证据、综合推理和多轮工具调用；但现有数据合成流程通常依赖商业搜索 API 和在线网页环境，成本高、状态不稳定，也难以复现和分析。
+
+OpenResearcher 的核心贡献是把深度研究轨迹合成改造成完全离线、可仪表化的数据流水线。它先构建 150" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a180-openresearcher-deep-research-trajectories/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis" />
+    <meta property="og:description" content="这篇论文处理的是 deep research agent 训练数据的可复现性瓶颈。高质量研究型 agent 需要长时程轨迹，轨迹里包含搜索、打开网页、定位证据、综合推理和多轮工具调用；但现有数据合成流程通常依赖商业搜索 API 和在线网页环境，成本高、状态不稳定，也难以复现和分析。
+
+OpenResearcher 的核心贡献是把深度研究轨迹合成改造成完全离线、可仪表化的数据流水线。它先构建 150" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a180-openresearcher-deep-research-trajectories/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis" />
+    <meta name="twitter:description" content="这篇论文处理的是 deep research agent 训练数据的可复现性瓶颈。高质量研究型 agent 需要长时程轨迹，轨迹里包含搜索、打开网页、定位证据、综合推理和多轮工具调用；但现有数据合成流程通常依赖商业搜索 API 和在线网页环境，成本高、状态不稳定，也难以复现和分析。
+
+OpenResearcher 的核心贡献是把深度研究轨迹合成改造成完全离线、可仪表化的数据流水线。它先构建 150" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.20278" target="_blank" rel="noopener noreferrer">2603.20278</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 deep research agent 训练数据的可复现性瓶颈。高质量研究型 agent 需要长时程轨迹，轨迹里包含搜索、打开网页、定位证据、综合推理和多轮工具调用；但现有数据合成流程通常依赖商业搜索 API 和在线网页环境，成本高、状态不稳定，也难以复现和分析。</dd></div><div><dt>方法/机制</dt><dd>OpenResearcher 的核心贡献是把深度研究轨迹合成改造成完全离线、可仪表化的数据流水线。它先构建 1500 万文档语料库，再用 search/open/find 三个显式浏览器原语执行搜索-浏览闭环，并使用 GPT-OSS-120B 作为 teacher 合成 9.7 万条以上长时程轨迹，其中包含大量 100+ tool calls 的长尾样本。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它为 research agent 提供了一个从数据生成到受控分析的开放基础设施，而不是只报告一个 agent 分数。用这些轨迹 SFT 30B-A3B backbone 后，在 BrowseComp-Plus 上达到 54.8%，相对 base 模型提升 34.0 个点，同时在 BrowseComp、GAIA 和 xbench-DeepSearch 上保持竞争力；这对 agentic research workflow、离线评测环境和可复现轨迹合成都有直接复用价值。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为当前能力仍主要来自 teacher 轨迹蒸馏和离线语料环境，离真实开放网页、动态网页状态、登录权限、反爬、跨源可信度校验还有距离；长时程轨迹质量也会受 teacher 模型和 corpus bootstrapping 的系统性偏差影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 deep research agent 训练数据的可复现性瓶颈。高质量研究型 agent 需要长时程轨迹，轨迹里包含搜索、打开网页、定位证据、综合推理和多轮工具调用；但现有数据合成流程通常依赖商业搜索 API 和在线网页环境，成本高、状态不稳定，也难以复现和分析。</p><p>OpenResearcher 的核心贡献是把深度研究轨迹合成改造成完全离线、可仪表化的数据流水线。它先构建 1500 万文档语料库，再用 search/open/find 三个显式浏览器原语执行搜索-浏览闭环，并使用 GPT-OSS-120B 作为 teacher 合成 9.7 万条以上长时程轨迹，其中包含大量 100+ tool calls 的长尾样本。</p><p>它值得收录，因为它为 research agent 提供了一个从数据生成到受控分析的开放基础设施，而不是只报告一个 agent 分数。用这些轨迹 SFT 30B-A3B backbone 后，在 BrowseComp-Plus 上达到 54.8%，相对 base 模型提升 34.0 个点，同时在 BrowseComp、GAIA 和 xbench-DeepSearch 上保持竞争力；这对 agentic research workflow、离线评测环境和可复现轨迹合成都有直接复用价值。</p><p>它不是更高一级，因为当前能力仍主要来自 teacher 轨迹蒸馏和离线语料环境，离真实开放网页、动态网页状态、登录权限、反爬、跨源可信度校验还有距离；长时程轨迹质量也会受 teacher 模型和 corpus bootstrapping 的系统性偏差影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>OpenResearcher：一个用于长周期深度研究轨迹合成的完全开放式流水线 训练深度研究智能体需要长周期的轨迹，这些轨迹交织着搜索、证据聚合和多步推理。然而，现有数据收集流水线通常依赖专有网络API，这使得大规模轨迹合成成本高昂、不稳定且难以复现。我们提出了OpenResearcher，这是一个可复现的流水线，它将一次性语料库引导与多轮轨迹合成解耦，并使用三个明确的浏览器原语：搜索、打开和查找，在一个包含1500万文档的语料库上完全离线执行搜索和浏览循环。使用GPT-OSS-120B作为教师模型，我们合成了超过9.7万条轨迹，其中包括一个包含100多次工具调用的显著长周期尾部。在这些轨迹上对30B-A3B骨干模型进行监督微调，在BrowseComp-Plus上实现了54.8%的准确率，比基础模型提高了34.0个百分点，同时在BrowseComp、GAIA和xbenchDeepSearch上保持了竞争力。由于环境是离线且完全可控的，它还支持受控分析，我们的研究揭示了深度研究流水线设计的实用见解，包括数据过滤策略、智能体配置选择以及检索成功率与最终答案准确性之间的关系。我们在https://github.com/TIGER-AI-Lab/OpenResearcher发布了该流水线、合成轨迹、模型检查点和离线搜索环境。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Training deep research agents requires long-horizon trajectories that interleave search, evidence aggregation, and multi-step reasoning. However, existing data collection pipelines typically rely on proprietary web APIs, making large-scale trajectory synthesis costly, unstable, and difficult to reproduce. We present O PEN R ESEARCHER, a reproducible pipeline that decouples one-time corpus bootstrapping from multi-turn trajectory synthesis and executes the search-and-browse loop entirely offline using three explicit browser primitives: search, open, and find, over a 15M-document corpus. Using GPT-OSS-120B as the teacher model, we synthesize over 97K trajectories, including a substantial long-horizon tail with 100+ tool calls. Supervised fine-tuning a 30B-A3B backbone on these trajectories achieves 54.8% accuracy on BrowseComp-Plus, a +34.0 point improvement over the base model, while remaining competitive on BrowseComp, GAIA, and xbenchDeepSearch. Because the environment is offline and fully instrumented, it also enables controlled analysis, where our study reveals practical insights into deep research pipeline design, including data filtering strategies, agent configuration choices, and how retrieval success relates to final answer accuracy. We release the pipeline, synthesized trajectories, model checkpoints, and the offline search environment at https://github.com/TIGER-AI-Lab/OpenResearcher.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317a180openre,
+  title = {OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.20278.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a180-openresearcher-deep-research-trajectories/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OpenResearcher: A Fully Open Pipeline for Long-Horizon Deep Research Trajectory Synthesis. https://arxiv.org/pdf/2603.20278.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.20278.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

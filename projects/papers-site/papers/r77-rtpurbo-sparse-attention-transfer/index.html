@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Full Attention Strikes Back: Transferring Full Attention into Sparse within Hundred Training Steps | DAST Papers</title>
+    <meta name="description" content="这篇论文重新审视长上下文推理的 sparse attention 路径：不从头训练原生稀疏模型，也不只做启发式 token eviction，而是利用 full-attention 模型已经存在的内在稀疏性。
+
+方法识别少量真正需要完整长上下文处理的 retrieval heads，并用低维 token indexer 做相关 token 检索，同时采用 query-dependent dynam" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r77-rtpurbo-sparse-attention-transfer/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Full Attention Strikes Back: Transferring Full Attention into Sparse within Hundred Training Steps" />
+    <meta property="og:description" content="这篇论文重新审视长上下文推理的 sparse attention 路径：不从头训练原生稀疏模型，也不只做启发式 token eviction，而是利用 full-attention 模型已经存在的内在稀疏性。
+
+方法识别少量真正需要完整长上下文处理的 retrieval heads，并用低维 token indexer 做相关 token 检索，同时采用 query-dependent dynam" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r77-rtpurbo-sparse-attention-transfer/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Full Attention Strikes Back: Transferring Full Attention into Sparse within Hundred Training Steps" />
+    <meta name="twitter:description" content="这篇论文重新审视长上下文推理的 sparse attention 路径：不从头训练原生稀疏模型，也不只做启发式 token eviction，而是利用 full-attention 模型已经存在的内在稀疏性。
+
+方法识别少量真正需要完整长上下文处理的 retrieval heads，并用低维 token indexer 做相关 token 检索，同时采用 query-dependent dynam" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Full Attention Strikes Back: Transferring Full Attention into Sparse within Hundred Training Steps</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.16928" target="_blank" rel="noopener noreferrer">2605.16928</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文重新审视长上下文推理的 sparse attention 路径：不从头训练原生稀疏模型，也不只做启发式 token eviction，而是利用 full-attention 模型已经存在的内在稀疏性。</dd></div><div><dt>方法/机制</dt><dd>方法识别少量真正需要完整长上下文处理的 retrieval heads，并用低维 token indexer 做相关 token 检索，同时采用 query-dependent dynamic top-p token budget。</dd></div><div><dt>结果/证据</dt><dd>RTPurbo 只需数百步适配即可把 full attention 转成高稀疏推理，在长上下文 benchmark 和 reasoning tasks 上保持近似无损，同时报告 1M context 下显著 prefill/decode 加速。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提供了从已训练 full-attention 模型迁移到 sparse long-context inference 的低成本路径，影响长上下文 agent、RAG 和推理系统部署成本。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文重新审视长上下文推理的 sparse attention 路径：不从头训练原生稀疏模型，也不只做启发式 token eviction，而是利用 full-attention 模型已经存在的内在稀疏性。</p><p>方法识别少量真正需要完整长上下文处理的 retrieval heads，并用低维 token indexer 做相关 token 检索，同时采用 query-dependent dynamic top-p token budget。</p><p>RTPurbo 只需数百步适配即可把 full attention 转成高稀疏推理，在长上下文 benchmark 和 reasoning tasks 上保持近似无损，同时报告 1M context 下显著 prefill/decode 加速。</p><p>它值得正式收录，因为它提供了从已训练 full-attention 模型迁移到 sparse long-context inference 的低成本路径，影响长上下文 agent、RAG 和推理系统部署成本。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）中的长上下文推理受限于全注意力的二次方成本。现有的高效替代方案通常依赖于原生稀疏训练或启发式令牌逐出，在效率、训练成本和准确性之间造成了不理想的权衡。在这项工作中，我们表明全注意力LLMs本身就是稀疏的，并且只需少量适应即可转换为高度稀疏模型。我们的方法基于三个观察结果：（1）只有一小部分注意力头真正需要完整的长上下文处理；（2）长距离检索主要由低维子空间控制，允许使用16维索引器高效检索相关令牌；（3）有用令牌预算强烈依赖于查询，使得动态top-p选择比固定top-k稀疏化更合适。基于这些见解，我们提出了RTPurbo，它仅为检索头保留完整的KV缓存，并引入了一个轻量级令牌索引器用于稀疏注意力。通过利用模型的内在稀疏性，RTPurbo仅用数百个训练步骤就实现了稀疏化。在长上下文基准测试和推理任务上的实验表明，RTPurbo保持了近乎无损的准确性，同时提供了显著的效率提升，包括在1M上下文下预填充速度提升高达9.36倍，解码速度提升约2.01倍。这些结果表明，强大的稀疏推理可以从标准的全注意力训练中获得，而无需昂贵的原生稀疏预训练。E-mail: yankezhou@smail.nju.edu.cn wanghaisheng.whs@alibaba-inc.com y.yao@nju.edu.cn</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-context inference in large language models is bottlenecked by the quadratic cost of full attention. Existing efficient alternatives often rely either on native sparse training or on heuristic token eviction, creating an undesirable trade-off among efficiency, training cost, and accuracy. In this work, we show that full-attention LLMs are already intrinsically sparse and can be transformed into highly sparse models with only minimal adaptation. Our approach is built on three observations: (1) only a small subset of attention heads truly requires full long-context processing; (2) long-range retrieval is governed primarily by a low-dimensional subspace, allowing relevant tokens to be retrieved efficiently with a 16-dimensional indexer; and (3) the useful token budget is strongly query-dependent, making dynamic top-p selection more suitable than fixed top-k sparsification. Based on these insights, we propose RTPurbo, which retains the full KV cache only for retrieval heads and introduces a lightweight token indexer for sparse attention. By exploiting the model’s intrinsic sparsity, RTPurbo achieves sparsification with only a few hundred training steps. Experiments on long-context benchmarks and reasoning tasks show that RTPurbo preserves near-lossless accuracy while delivering substantial efficiency gains, including up to a 9.36× prefill speedup at 1M context and about a 2.01× decode speedup. These results suggest that strong sparse inference can be obtained from standard full-attention training without expensive native sparse pretraining. E-mail: yankezhou@smail.nju.edu.cn wanghaisheng.whs@alibaba-inc.com y.yao@nju.edu.cn</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260516r77rtpurbo,
+  title = {Full Attention Strikes Back: Transferring Full Attention into Sparse within Hundred Training Steps},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.16928.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r77-rtpurbo-sparse-attention-transfer/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Full Attention Strikes Back: Transferring Full Attention into Sparse within Hundred Training Steps. https://arxiv.org/pdf/2605.16928.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.16928.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.16928" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

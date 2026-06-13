@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AnyBimanual: Transferring Unimanual Policy for General Bimanual Manipulation | DAST Papers</title>
+    <meta name="description" content="通用双臂机器人操作一直受制于数据成本：双臂动作空间更高、采集更贵、泛化更难，而这与单臂策略近年依靠更大模型和更大数据实现快速扩展形成了鲜明对比。如果双臂系统每次都要从头收集和训练，就很难跟上机器人基础模型的扩张速度。
+
+AnyBimanual 的核心思路是把预训练单臂 policy 直接当作双臂策略的知识底座，再用少量双臂示范完成桥接。具体上，它用 skill manager 调度单臂模型中已经学" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl36-anybimanual-transfer/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AnyBimanual: Transferring Unimanual Policy for General Bimanual Manipulation" />
+    <meta property="og:description" content="通用双臂机器人操作一直受制于数据成本：双臂动作空间更高、采集更贵、泛化更难，而这与单臂策略近年依靠更大模型和更大数据实现快速扩展形成了鲜明对比。如果双臂系统每次都要从头收集和训练，就很难跟上机器人基础模型的扩张速度。
+
+AnyBimanual 的核心思路是把预训练单臂 policy 直接当作双臂策略的知识底座，再用少量双臂示范完成桥接。具体上，它用 skill manager 调度单臂模型中已经学" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl36-anybimanual-transfer/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AnyBimanual: Transferring Unimanual Policy for General Bimanual Manipulation" />
+    <meta name="twitter:description" content="通用双臂机器人操作一直受制于数据成本：双臂动作空间更高、采集更贵、泛化更难，而这与单臂策略近年依靠更大模型和更大数据实现快速扩展形成了鲜明对比。如果双臂系统每次都要从头收集和训练，就很难跟上机器人基础模型的扩张速度。
+
+AnyBimanual 的核心思路是把预训练单臂 policy 直接当作双臂策略的知识底座，再用少量双臂示范完成桥接。具体上，它用 skill manager 调度单臂模型中已经学" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AnyBimanual: Transferring Unimanual Policy for General Bimanual Manipulation</h1>
+          <p class="subtitle">强化学习 · 发表：2024-12-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-12-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2412.06779" target="_blank" rel="noopener noreferrer">2412.06779</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>通用双臂机器人操作一直受制于数据成本：双臂动作空间更高、采集更贵、泛化更难，而这与单臂策略近年依靠更大模型和更大数据实现快速扩展形成了鲜明对比。如果双臂系统每次都要从头收集和训练，就很难跟上机器人基础模型的扩张速度。</dd></div><div><dt>方法/机制</dt><dd>AnyBimanual 的核心思路是把预训练单臂 policy 直接当作双臂策略的知识底座，再用少量双臂示范完成桥接。具体上，它用 skill manager 调度单臂模型中已经学到的技能表示，再用 visual aligner 去缓解单臂与双臂观测分布差异，从而实现 plug-and-play 式迁移，而不是重新训练一个完全新的双臂大模型。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它提出了一个很清楚的扩展路径：先在更便宜、更易扩张的单臂数据上积累通用操作知识，再把这些能力迁移到双臂操作。这对机器人数据扩展、技能复用和通用 manipulation policy 的训练工作流都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前仍主要证明了单臂到双臂这一条迁移链的有效性。虽然方向很强，也非常实用，但是否会成为更广义多臂/多体系统的标准桥接接口，还要看后续跨平台验证和社区采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>通用双臂机器人操作一直受制于数据成本：双臂动作空间更高、采集更贵、泛化更难，而这与单臂策略近年依靠更大模型和更大数据实现快速扩展形成了鲜明对比。如果双臂系统每次都要从头收集和训练，就很难跟上机器人基础模型的扩张速度。</p><p>AnyBimanual 的核心思路是把预训练单臂 policy 直接当作双臂策略的知识底座，再用少量双臂示范完成桥接。具体上，它用 skill manager 调度单臂模型中已经学到的技能表示，再用 visual aligner 去缓解单臂与双臂观测分布差异，从而实现 plug-and-play 式迁移，而不是重新训练一个完全新的双臂大模型。</p><p>它值得正式收录，因为它提出了一个很清楚的扩展路径：先在更便宜、更易扩张的单臂数据上积累通用操作知识，再把这些能力迁移到双臂操作。这对机器人数据扩展、技能复用和通用 manipulation policy 的训练工作流都有明显外溢价值。</p><p>它暂时不升到更高一级，原因在于当前仍主要证明了单臂到双臂这一条迁移链的有效性。虽然方向很强，也非常实用，但是否会成为更广义多臂/多体系统的标准桥接接口，还要看后续跨平台验证和社区采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>执行通用的语言条件下的双臂操作任务对于从家庭服务到工业装配的许多应用都至关重要。然而，由于高维动作空间，收集双臂操作数据成本高昂，这给传统方法处理通用双臂操作任务带来了挑战。相比之下，单臂策略最近由于模型参数和训练数据的扩展，在广泛的任务中展现出令人印象深刻的泛化能力，这可以为双臂系统提供可共享的操作知识。为此，我们提出了一种名为AnyBimanual的即插即用方法，它通过少量双臂演示将预训练的单臂策略迁移到通用双臂操作策略。具体来说，我们首先引入一个技能管理器，用于动态调度从预训练单臂策略中发现的技能表征，以用于双臂操作任务，该管理器将技能基元与任务导向补偿线性组合，以表示双臂操作指令。为了缓解单臂和双臂系统之间的观测差异，我们提出了一种视觉对齐器，为工作空间的视觉嵌入生成软掩码，旨在将每个机械臂的单臂策略模型的视觉输入与预训练阶段的视觉输入对齐。AnyBimanual在RLBench2的12个模拟任务上表现出优越性，成功率比现有方法提高了显著的17.33%。在9个真实世界任务上的实验进一步验证了其实用性，平均成功率为84.62%。在家庭服务[72]、机器人手术[33]和工厂组件装配[9]中。与单臂系统相比，双臂系统扩大了工作空间，能够通过一个机械臂稳定目标并用另一个机械臂进行交互来处理更复杂的操纵任务[30, 45]。即使对于单臂策略可以处理的任务，双臂系统通常也更高效，因为可以同时完成多个动作步骤[31]。由于现代机器人应用要求机器人与不同的任务和物体进行交互，因此设计一个用于双臂操作的通用策略模型是可取的。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Performing general language-conditioned bimanual manipulation tasks is of great importance for many applications ranging from household service to industrial assembly. However, collecting bimanual manipulation data is expensive due to the high-dimensional action space, which poses challenges for conventional methods to handle general bimanual manipulation tasks. In contrast, unimanual policy has recently demonstrated impressive generalizability across a wide range of tasks because of scaled model parameters and training data, which can provide sharable manipulation knowledge for bimanual systems. To this end, we propose a plug-and-play method named AnyBimanual, which transfers pretrained unimanual policy to general bimanual manipulation policy with few bimanual demonstrations. Specifically, we first introduce a skill manager to dynamically schedule the skill representations discovered from pretrained unimanual policy for bimanual manipulation tasks, which linearly combines skill primitives with task-oriented compensation to represent the bimanual manipulation instruction. To mitigate the observation discrepancy between unimanual and bimanual systems, we present a visual aligner to generate soft masks for visual embedding of the workspace, which aims to align visual input of unimanual policy model for each arm with those during pretraining stage. AnyBimanual shows superiority on 12 simulated tasks from RLBench2 with a sizable 17.33% improvement in success rate over previous methods. Experiments on 9 real-world tasks further verify its practicality with an average success rate of 84.62%. in household service [72], robotic surgery [33], and component assembly in factories [9]. Compared to unimanual systems, bimanual systems enlarge the workspace and are able to handle more complex manipulation tasks by stabilizing the target with one arm and interacting with that using another arm [30, 45]. Even for the tasks that unimanual policies can handle, bimanual systems are often more efficient because multiple action steps can be simultaneously accomplished [31]. Since modern robotic applications require the robot to interact with different tasks and objects, it is desirable to design a generalizable policy model for bimanual manipulation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20241209rl36anybim,
+  title = {AnyBimanual: Transferring Unimanual Policy for General Bimanual Manipulation},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2412.06779.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl36-anybimanual-transfer/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). AnyBimanual: Transferring Unimanual Policy for General Bimanual Manipulation. https://arxiv.org/pdf/2412.06779.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2412.06779.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sharp Capacity Scaling of Spectral Optimizers in Learning Associative Memory | DAST Papers</title>
+    <meta name="description" content="Muon 等谱优化器在大规模语言模型训练中的强表现已经引发很多关注，但社区对它们到底为什么有效、优势来自哪里，仍缺少足够干净的理论解释。单看经验结果，很难区分它到底是在更快收敛、放大长尾信号，还是仅仅在某些工程设置下占优。
+
+这篇工作把问题放进线性联想记忆框架中分析，在高斯嵌入和幂律频率分布下推导了 Muon 与 SGD 的容量和批次缩放规律。核心结论是：Muon 在单步更新中就能获得远高于 SG" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t24-muon-associative-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Sharp Capacity Scaling of Spectral Optimizers in Learning Associative Memory" />
+    <meta property="og:description" content="Muon 等谱优化器在大规模语言模型训练中的强表现已经引发很多关注，但社区对它们到底为什么有效、优势来自哪里，仍缺少足够干净的理论解释。单看经验结果，很难区分它到底是在更快收敛、放大长尾信号，还是仅仅在某些工程设置下占优。
+
+这篇工作把问题放进线性联想记忆框架中分析，在高斯嵌入和幂律频率分布下推导了 Muon 与 SGD 的容量和批次缩放规律。核心结论是：Muon 在单步更新中就能获得远高于 SG" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t24-muon-associative-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sharp Capacity Scaling of Spectral Optimizers in Learning Associative Memory" />
+    <meta name="twitter:description" content="Muon 等谱优化器在大规模语言模型训练中的强表现已经引发很多关注，但社区对它们到底为什么有效、优势来自哪里，仍缺少足够干净的理论解释。单看经验结果，很难区分它到底是在更快收敛、放大长尾信号，还是仅仅在某些工程设置下占优。
+
+这篇工作把问题放进线性联想记忆框架中分析，在高斯嵌入和幂律频率分布下推导了 Muon 与 SGD 的容量和批次缩放规律。核心结论是：Muon 在单步更新中就能获得远高于 SG" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Sharp Capacity Scaling of Spectral Optimizers in Learning Associative Memory</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.26554" target="_blank" rel="noopener noreferrer">2603.26554</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Muon 等谱优化器在大规模语言模型训练中的强表现已经引发很多关注，但社区对它们到底为什么有效、优势来自哪里，仍缺少足够干净的理论解释。单看经验结果，很难区分它到底是在更快收敛、放大长尾信号，还是仅仅在某些工程设置下占优。</dd></div><div><dt>方法/机制</dt><dd>这篇工作把问题放进线性联想记忆框架中分析，在高斯嵌入和幂律频率分布下推导了 Muon 与 SGD 的容量和批次缩放规律。核心结论是：Muon 在单步更新中就能获得远高于 SGD 的存储容量，并且在更大的临界 batch size 下才饱和；多步动力学分析则说明它的主要优势集中在训练早期对各向异性梯度的快速放大与整形。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是一篇对活跃核心方向给出强理论澄清的论文。它把谱优化器的优势和事实记忆、长尾数据、batch scaling 明确联系起来，对理解大模型训练动态和优化器设计都有持久参考价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前理论仍建立在简化的联想记忆任务和近似动力学之上，距离完整解释真实 LLM 训练还有明显距离。它是高质量理论推进，但还不是最终定论。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Muon 等谱优化器在大规模语言模型训练中的强表现已经引发很多关注，但社区对它们到底为什么有效、优势来自哪里，仍缺少足够干净的理论解释。单看经验结果，很难区分它到底是在更快收敛、放大长尾信号，还是仅仅在某些工程设置下占优。</p><p>这篇工作把问题放进线性联想记忆框架中分析，在高斯嵌入和幂律频率分布下推导了 Muon 与 SGD 的容量和批次缩放规律。核心结论是：Muon 在单步更新中就能获得远高于 SGD 的存储容量，并且在更大的临界 batch size 下才饱和；多步动力学分析则说明它的主要优势集中在训练早期对各向异性梯度的快速放大与整形。</p><p>它值得正式收录，因为这是一篇对活跃核心方向给出强理论澄清的论文。它把谱优化器的优势和事实记忆、长尾数据、batch scaling 明确联系起来，对理解大模型训练动态和优化器设计都有持久参考价值。</p><p>它暂时不升到更高一级，原因在于当前理论仍建立在简化的联想记忆任务和近似动力学之上，距离完整解释真实 LLM 训练还有明显距离。它是高质量理论推进，但还不是最终定论。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Muon等谱优化器最近在大型语言模型训练中表现出强大的经验性能，但其优势的来源和程度仍知之甚少。我们通过线性联想记忆问题来研究这个问题，这是一个用于基于Transformer模型中事实回忆的可处理模型。特别是，我们超越了正交嵌入，考虑了高斯输入和输出，这使得存储关联的数量可以大大超过嵌入维度。我们的主要结果精确地描述了在幂律频率分布下，Muon和SGD在逻辑回归损失上一步恢复率的特征。我们表明，Muon的存储容量显著超过SGD，并且Muon在更大的临界批次大小下达到饱和。我们进一步分析了阈值梯度近似下的多步动态，并表明Muon比SGD实现了更快的初始恢复率，而两种方法最终以可比的速度收敛到信息理论极限。合成任务上的实验验证了预测的缩放定律。我们的分析提供了对Muon信号放大作用的定量理解，并为在更实际的语言建模任务和优化器中建立缩放定律奠定了基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Spectral optimizers such as Muon have recently shown strong empirical performance in large-scale language model training, but the source and extent of their advantage remain poorly understood. We study this question through the linear associative memory problem, a tractable model for factual recall in transformer-based models. In particular, we go beyond orthogonal embeddings and consider Gaussian inputs and outputs, which allows the number of stored associations to greatly exceed the embedding dimension. Our main result sharply characterizes the recovery rates of one step of Muon and SGD on the logistic regression loss under a power law frequency distribution. We show that the storage capacity of Muon significantly exceeds that of SGD, and moreover Muon saturates at a larger critical batch size. We further analyze the multi-step dynamics under a thresholded gradient approximation and show that Muon achieves a substantially faster initial recovery rate than SGD, while both methods eventually converge to the information-theoretic limit at comparable speeds. Experiments on synthetic tasks validate the predicted scaling laws. Our analysis provides a quantitative understanding of the signal amplification of Muon and lays the groundwork for establishing scaling laws across more practical language modeling tasks and optimizers.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260327t24muonass,
+  title = {Sharp Capacity Scaling of Spectral Optimizers in Learning Associative Memory},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.26554.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t24-muon-associative-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Sharp Capacity Scaling of Spectral Optimizers in Learning Associative Memory. https://arxiv.org/pdf/2603.26554.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.26554.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

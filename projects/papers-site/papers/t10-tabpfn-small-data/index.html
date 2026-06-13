@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accurate predictions on small data with a tabular foundation model | DAST Papers</title>
+    <meta name="description" content="这篇论文针对的是机器学习里一个长期稳定却又相对保守的领域：小样本表格数据预测。传统上，这类任务通常由梯度提升树和随机森林主导，而大模型路线往往被认为样本效率不足。
+
+论文的新意在于把 foundation model / in-context learning 思路真正带进了 tabular 预测。作者通过大规模合成任务分布预训练一个通用表格模型，使其在面对一个新数据集时能在一次前向过程中完成类似" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t10-tabpfn-small-data/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Accurate predictions on small data with a tabular foundation model" />
+    <meta property="og:description" content="这篇论文针对的是机器学习里一个长期稳定却又相对保守的领域：小样本表格数据预测。传统上，这类任务通常由梯度提升树和随机森林主导，而大模型路线往往被认为样本效率不足。
+
+论文的新意在于把 foundation model / in-context learning 思路真正带进了 tabular 预测。作者通过大规模合成任务分布预训练一个通用表格模型，使其在面对一个新数据集时能在一次前向过程中完成类似" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t10-tabpfn-small-data/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Accurate predictions on small data with a tabular foundation model" />
+    <meta name="twitter:description" content="这篇论文针对的是机器学习里一个长期稳定却又相对保守的领域：小样本表格数据预测。传统上，这类任务通常由梯度提升树和随机森林主导，而大模型路线往往被认为样本效率不足。
+
+论文的新意在于把 foundation model / in-context learning 思路真正带进了 tabular 预测。作者通过大规模合成任务分布预训练一个通用表格模型，使其在面对一个新数据集时能在一次前向过程中完成类似" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Accurate predictions on small data with a tabular foundation model</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2025-01-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-01-08</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-024-08328-6" target="_blank" rel="noopener noreferrer">10.1038/s41586-024-08328-6</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对的是机器学习里一个长期稳定却又相对保守的领域：小样本表格数据预测。传统上，这类任务通常由梯度提升树和随机森林主导，而大模型路线往往被认为样本效率不足。</dd></div><div><dt>方法/机制</dt><dd>论文的新意在于把 foundation model / in-context learning 思路真正带进了 tabular 预测。作者通过大规模合成任务分布预训练一个通用表格模型，使其在面对一个新数据集时能在一次前向过程中完成类似“训练加预测”的推断，并在小到中等规模表格任务上达到很强表现。</dd></div><div><dt>结果/证据</dt><dd>这篇论文应放在 AI 主线里，主题是 tabular foundation model、small-data learning 和 in-context prediction。它的重要性在于，它不只是一个表格任务新模型，而是在验证“foundation model 方法能否进入传统 tabular ML 核心地带”这个问题。</dd></div><div><dt>收录价值</dt><dd>它没有被升到更高等级，是因为影响范围目前仍主要集中在 tabular 模态和特定样本规模区间，尚未达到改写更大范围机器学习主线的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对的是机器学习里一个长期稳定却又相对保守的领域：小样本表格数据预测。传统上，这类任务通常由梯度提升树和随机森林主导，而大模型路线往往被认为样本效率不足。</p><p>论文的新意在于把 foundation model / in-context learning 思路真正带进了 tabular 预测。作者通过大规模合成任务分布预训练一个通用表格模型，使其在面对一个新数据集时能在一次前向过程中完成类似“训练加预测”的推断，并在小到中等规模表格任务上达到很强表现。</p><p>这篇论文应放在 AI 主线里，主题是 tabular foundation model、small-data learning 和 in-context prediction。它的重要性在于，它不只是一个表格任务新模型，而是在验证“foundation model 方法能否进入传统 tabular ML 核心地带”这个问题。</p><p>它没有被升到更高等级，是因为影响范围目前仍主要集中在 tabular 模态和特定样本规模区间，尚未达到改写更大范围机器学习主线的程度。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250108t10tabpfns,
+  title = {Accurate predictions on small data with a tabular foundation model},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41586-024-08328-6},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t10-tabpfn-small-data/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Accurate predictions on small data with a tabular foundation model. https://www.nature.com/articles/s41586-024-08328-6</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-024-08328-6" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

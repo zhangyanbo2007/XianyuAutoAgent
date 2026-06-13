@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CORTEG: Foundation Models Enable Cross-Modality Representation Transfer from Scalp to Intracranial Brain Recordings | DAST Papers</title>
+    <meta name="description" content="CORTEG investigates whether pretrained scalp-EEG foundation models can be adapted to intracranial ECoG decoding, reducing the need for extensive per-patient calibration.
+
+The method combines a pretrai" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n87-corteg-cross-modality-bci/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CORTEG: Foundation Models Enable Cross-Modality Representation Transfer from Scalp to Intracranial Brain Recordings" />
+    <meta property="og:description" content="CORTEG investigates whether pretrained scalp-EEG foundation models can be adapted to intracranial ECoG decoding, reducing the need for extensive per-patient calibration.
+
+The method combines a pretrai" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n87-corteg-cross-modality-bci/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CORTEG: Foundation Models Enable Cross-Modality Representation Transfer from Scalp to Intracranial Brain Recordings" />
+    <meta name="twitter:description" content="CORTEG investigates whether pretrained scalp-EEG foundation models can be adapted to intracranial ECoG decoding, reducing the need for extensive per-patient calibration.
+
+The method combines a pretrai" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CORTEG: Foundation Models Enable Cross-Modality Representation Transfer from Scalp to Intracranial Brain Recordings</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10337" target="_blank" rel="noopener noreferrer">2605.10337</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>CORTEG investigates whether pretrained scalp-EEG foundation models can be adapted to intracranial ECoG decoding, reducing the need for extensive per-patient calibration.</dd></div><div><dt>方法/机制</dt><dd>The method combines a pretrained EEG backbone, electrode-aware spatial adaptation, dual-stream tokenization for low-frequency and high-gamma activity, and leave-one-subject-out fine-tuning.</dd></div><div><dt>结果/证据</dt><dd>The reported results show competitive or improved decoding on finger trajectory and audio envelope tasks, especially in low-data calibration settings.</dd></div><div><dt>收录价值</dt><dd>For BCI and NeuroAI, the paper is useful because it treats cross-modality transfer as a deployment problem for patient adaptation, not merely as another representation-learning benchmark.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>CORTEG investigates whether pretrained scalp-EEG foundation models can be adapted to intracranial ECoG decoding, reducing the need for extensive per-patient calibration.</p><p>The method combines a pretrained EEG backbone, electrode-aware spatial adaptation, dual-stream tokenization for low-frequency and high-gamma activity, and leave-one-subject-out fine-tuning.</p><p>The reported results show competitive or improved decoding on finger trajectory and audio envelope tasks, especially in low-data calibration settings.</p><p>For BCI and NeuroAI, the paper is useful because it treats cross-modality transfer as a deployment problem for patient adaptation, not merely as another representation-learning benchmark.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>颅内皮层电图（ECoG）为脑机接口提供了高信噪比的皮层活动访问，但有限的每位患者数据导致大多数先前工作依赖于小型、针对特定受试者的解码器，这些解码器忽略了患者之间共享的信息。我们研究了大型预训练头皮脑电图基础模型（EEG FMs）是否可以适应ECoG，从而实现跨患者学习和具有竞争力的解码性能，同时在单个GPU上在10-30分钟内对一个留置患者进行校准。我们引入了CORTEG，这是一个跨模态迁移框架，它结合了预训练的EEG FM骨干模型、一个电极感知的KNNSoftFourier空间适配器、一个用于低频和高伽马活动的双流分词器，以及一种留一受试者微调策略。我们在两个具有挑战性的回归任务上评估了CORTEG：公共手指轨迹回归（n=9）和私人音频包络回归（n=16）。CORTEG在两项任务上都达到或超过了最强的任务特定基线：它在公共手指基准测试中达到了所有比较方法中的最高平均相关性（在n=9受试者上增益无统计学意义），并在音频任务和低数据量每位患者校准中取得了更大且具有统计学意义的增益。特征分析与神经生理学一致，潜在流形捕获了低维手指运动结构。CORTEG提供了系统性证据，表明头皮脑电图预训练可以重新用于ECoG解码，从而实现数据高效的颅内BCI，能够适应新患者。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Intracranial electrocorticography (ECoG) offers high–signal-to-noise access to cortical activity for brain–computer interfaces, yet limited per-patient data has led most prior work to rely on small, subject-specific decoders that neglect information shared across patients. We investigate whether large pretrained scalp-EEG foundation models (EEG FMs) can be adapted to ECoG, enabling cross-patient learning and competitive decoding performance while calibrating to a held-out patient in 10–30 minutes on a single GPU. We introduce CORTEG, a cross-modality transfer framework that combines a pretrained EEG FM backbone, an electrode-aware KNNSoftFourier spatial adapter, a dual-stream tokenizer for low-frequency and high-gamma activity, and a leave-one-subject-out fine-tuning strategy. We evaluate CORTEG on two challenging regression tasks: public finger trajectory regression (n=9) and private audio envelope regression (n=16). CORTEG matches or exceeds the strongest task-specific baselines on both tasks: it reaches the highest mean correlation among compared methods on the public finger benchmark (gain not statistically significant on n=9 subjects), with larger and statistically significant gains on the audio task and in low-data per-patient calibration. Feature analyses align with neurophysiology, and latent manifolds capture low-dimensional finger-movement structure. CORTEG provides systematic evidence that scalpEEG pretraining can be repurposed for ECoG decoding, enabling data-efficient intracranial BCIs that can adapt to new patients.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511n87cortegc,
+  title = {CORTEG: Foundation Models Enable Cross-Modality Representation Transfer from Scalp to Intracranial Brain Recordings},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10337.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n87-corteg-cross-modality-bci/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CORTEG: Foundation Models Enable Cross-Modality Representation Transfer from Scalp to Intracranial Brain Recordings. https://arxiv.org/pdf/2605.10337.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10337.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

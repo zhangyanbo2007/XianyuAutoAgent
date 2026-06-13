@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA | DAST Papers</title>
+    <meta name="description" content="当前很多 end-to-end VLA 仍把预训练视觉语言模型当作通用 encoder，再直接映射到低层动作。这种做法虽然简单，但往往把高层语义决策和低层 motor control 混在一起，既浪费了 VLM 的高层推理潜力，也容易在端到端优化时破坏原本的语义表示。DIAL 针对的正是这个结构性问题。
+
+论文提出一个 differentiable latent intent bottleneck" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl22-dial-latent-world-vla/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA" />
+    <meta property="og:description" content="当前很多 end-to-end VLA 仍把预训练视觉语言模型当作通用 encoder，再直接映射到低层动作。这种做法虽然简单，但往往把高层语义决策和低层 motor control 混在一起，既浪费了 VLM 的高层推理潜力，也容易在端到端优化时破坏原本的语义表示。DIAL 针对的正是这个结构性问题。
+
+论文提出一个 differentiable latent intent bottleneck" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl22-dial-latent-world-vla/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA" />
+    <meta name="twitter:description" content="当前很多 end-to-end VLA 仍把预训练视觉语言模型当作通用 encoder，再直接映射到低层动作。这种做法虽然简单，但往往把高层语义决策和低层 motor control 混在一起，既浪费了 VLM 的高层推理潜力，也容易在端到端优化时破坏原本的语义表示。DIAL 针对的正是这个结构性问题。
+
+论文提出一个 differentiable latent intent bottleneck" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.29844" target="_blank" rel="noopener noreferrer">2603.29844</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前很多 end-to-end VLA 仍把预训练视觉语言模型当作通用 encoder，再直接映射到低层动作。这种做法虽然简单，但往往把高层语义决策和低层 motor control 混在一起，既浪费了 VLM 的高层推理潜力，也容易在端到端优化时破坏原本的语义表示。DIAL 针对的正是这个结构性问题。</dd></div><div><dt>方法/机制</dt><dd>论文提出一个 differentiable latent intent bottleneck，把高层意图和低层动作解耦。具体来说，VLM-based System-2 在原生特征空间里做 latent world modeling，预测 latent visual foresight 来显式编码 intent；随后一个更轻量的 System-1 policy 结合当前观测和 latent intent，通过 latent inverse dynamics 解码出具体动作。再加上先 decoupled warmup、后 joint optimization 的两阶段训练，整体优化稳定性比直接端到端映射更好。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它给 end-to-end VLA 引入了更清晰的系统分层：高层 latent intent 作为结构化瓶颈，既保留预训练语义，又让动作学习有明确接口。这种 intent/action decoupling 不只是提分技巧，而是对机器人控制中 world modeling 和 motor execution 如何耦合给出了更可复用的模式。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前验证仍主要集中在 RoboCasa 等具身操作基准上，外部 adoption 和跨平台泛化还需要时间证明。它已经是强方法推进，但是否会成为更广 VLA 默认结构，还要看后续复现与扩散。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前很多 end-to-end VLA 仍把预训练视觉语言模型当作通用 encoder，再直接映射到低层动作。这种做法虽然简单，但往往把高层语义决策和低层 motor control 混在一起，既浪费了 VLM 的高层推理潜力，也容易在端到端优化时破坏原本的语义表示。DIAL 针对的正是这个结构性问题。</p><p>论文提出一个 differentiable latent intent bottleneck，把高层意图和低层动作解耦。具体来说，VLM-based System-2 在原生特征空间里做 latent world modeling，预测 latent visual foresight 来显式编码 intent；随后一个更轻量的 System-1 policy 结合当前观测和 latent intent，通过 latent inverse dynamics 解码出具体动作。再加上先 decoupled warmup、后 joint optimization 的两阶段训练，整体优化稳定性比直接端到端映射更好。</p><p>这篇工作值得收录，因为它给 end-to-end VLA 引入了更清晰的系统分层：高层 latent intent 作为结构化瓶颈，既保留预训练语义，又让动作学习有明确接口。这种 intent/action decoupling 不只是提分技巧，而是对机器人控制中 world modeling 和 motor execution 如何耦合给出了更可复用的模式。</p><p>它没有升到更高一级，是因为当前验证仍主要集中在 RoboCasa 等具身操作基准上，外部 adoption 和跨平台泛化还需要时间证明。它已经是强方法推进，但是否会成为更广 VLA 默认结构，还要看后续复现与扩散。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260331rl22dialla,
+  title = {DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.29844.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl22-dial-latent-world-vla/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DIAL: Decoupling Intent and Action via Latent World Modeling for End-to-End VLA. https://arxiv.org/pdf/2603.29844.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.29844.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

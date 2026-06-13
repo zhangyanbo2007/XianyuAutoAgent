@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WorldAct: Activating Monolithic 3D Worlds into Interactive-Ready Object-Centric Scenes | DAST Papers</title>
+    <meta name="description" content="WorldAct 针对当前 3D world generation 的重要缺口：生成世界往往是静态 monolithic asset，难以编辑、碰撞、操作或用于 embodied simulation。
+
+它用 multimodal agent 指导场景分解、识别可行动对象、重建几何对齐的 object-level meshes，并用 3D inpainting 恢复背景。
+
+它值得正式收录，因为" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g18-worldact-interactive-3d-worlds/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WorldAct: Activating Monolithic 3D Worlds into Interactive-Ready Object-Centric Scenes" />
+    <meta property="og:description" content="WorldAct 针对当前 3D world generation 的重要缺口：生成世界往往是静态 monolithic asset，难以编辑、碰撞、操作或用于 embodied simulation。
+
+它用 multimodal agent 指导场景分解、识别可行动对象、重建几何对齐的 object-level meshes，并用 3D inpainting 恢复背景。
+
+它值得正式收录，因为" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g18-worldact-interactive-3d-worlds/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WorldAct: Activating Monolithic 3D Worlds into Interactive-Ready Object-Centric Scenes" />
+    <meta name="twitter:description" content="WorldAct 针对当前 3D world generation 的重要缺口：生成世界往往是静态 monolithic asset，难以编辑、碰撞、操作或用于 embodied simulation。
+
+它用 multimodal agent 指导场景分解、识别可行动对象、重建几何对齐的 object-level meshes，并用 3D inpainting 恢复背景。
+
+它值得正式收录，因为" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WorldAct: Activating Monolithic 3D Worlds into Interactive-Ready Object-Centric Scenes</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15843" target="_blank" rel="noopener noreferrer">2605.15843</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>WorldAct 针对当前 3D world generation 的重要缺口：生成世界往往是静态 monolithic asset，难以编辑、碰撞、操作或用于 embodied simulation。</dd></div><div><dt>方法/机制</dt><dd>它用 multimodal agent 指导场景分解、识别可行动对象、重建几何对齐的 object-level meshes，并用 3D inpainting 恢复背景。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 world generation 要服务机器人和交互式内容，必须从可观看场景转向可编辑、可操作、可执行的 object-centric worlds。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为交互物理真实性、复杂任务执行和与真实机器人策略的结合还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>WorldAct 针对当前 3D world generation 的重要缺口：生成世界往往是静态 monolithic asset，难以编辑、碰撞、操作或用于 embodied simulation。</p><p>它用 multimodal agent 指导场景分解、识别可行动对象、重建几何对齐的 object-level meshes，并用 3D inpainting 恢复背景。</p><p>它值得正式收录，因为 world generation 要服务机器人和交互式内容，必须从可观看场景转向可编辑、可操作、可执行的 object-centric worlds。</p><p>它没有更高，是因为交互物理真实性、复杂任务执行和与真实机器人策略的结合还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于生成式场景合成的最新3D世界建模系统，例如Marble，可以创建连贯且可探索的3D环境，但其输出通常是静态的整体资产，编辑性和物理交互性有限。这限制了它们在沉浸式内容创作和具身模拟中的应用，在这些应用中，生成的3D世界必须被主动修改和操作。为了应对这一挑战，我们提出了WorldAct，一个将静态生成的3D世界转换为可编辑和可交互场景的框架。WorldAct利用多模态智能体指导场景分解，识别可操作对象，重建几何对齐的对象级网格以进行交互，并通过3D修复恢复剩余背景。生成的场景支持对象级编辑、碰撞感知操作和具身任务执行，同时保持全局场景的连贯性。实验表明，WorldAct比原始生成的场景实现了更丰富的交互场景，为可编辑和可交互的3D世界模型提供了一条实用路径。项目页面：https://sjtudeepvisionlab.github.io/WorldAct/</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent 3D world modeling systems based on generative scene synthesis, such as Marble, can create coherent and explorable 3D environments, yet their outputs are typically static monolithic assets with limited editability and physical interaction. This restricts their use in immersive content creation and embodied simulation, where generated worlds must be actively modified and manipulated. To tackle this challenge, we present WorldAct, a framework that converts static generated 3D worlds into editable and interaction-ready scenes. WorldAct uses a multimodal agent to guide scene decomposition, identify actionable objects, reconstruct geometrically aligned object-level meshes for interaction, and restore the residual background via 3D inpainting. The resulting scenes support object-level editing, collision-aware manipulation, and embodied task execution while preserving global scene coherence. Experiments show that WorldAct enables richer interaction scenarios than the original generated scenes, suggesting a practical path toward editable and interactive 3D world models. Project page: https://sjtudeepvisionlab.github.io/WorldAct/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260515g18worldac,
+  title = {WorldAct: Activating Monolithic 3D Worlds into Interactive-Ready Object-Centric Scenes},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15843.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g18-worldact-interactive-3d-worlds/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WorldAct: Activating Monolithic 3D Worlds into Interactive-Ready Object-Centric Scenes. https://arxiv.org/pdf/2605.15843.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15843.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.15843" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

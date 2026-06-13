@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Photonic edge intelligence chip for multi-modal sensing, inference and learning | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是边缘智能的一个硬问题：如何在高吞吐模拟信号进入系统时，把感知、推理甚至学习尽量压到片上完成，而不是先把原始信号数字化后再交给传统电子处理链。这个问题对多模态 edge hardware 很关键。
+
+作者提出 photonic edge intelligence chip，把图像、光谱和射频等多模态模拟输入映射到光谱表示，再通过片上的 AWG、非线性激活和全连接层完成 optical" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw4-photonic-edge-intelligence/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Photonic edge intelligence chip for multi-modal sensing, inference and learning" />
+    <meta property="og:description" content="这篇论文处理的是边缘智能的一个硬问题：如何在高吞吐模拟信号进入系统时，把感知、推理甚至学习尽量压到片上完成，而不是先把原始信号数字化后再交给传统电子处理链。这个问题对多模态 edge hardware 很关键。
+
+作者提出 photonic edge intelligence chip，把图像、光谱和射频等多模态模拟输入映射到光谱表示，再通过片上的 AWG、非线性激活和全连接层完成 optical" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw4-photonic-edge-intelligence/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Photonic edge intelligence chip for multi-modal sensing, inference and learning" />
+    <meta name="twitter:description" content="这篇论文处理的是边缘智能的一个硬问题：如何在高吞吐模拟信号进入系统时，把感知、推理甚至学习尽量压到片上完成，而不是先把原始信号数字化后再交给传统电子处理链。这个问题对多模态 edge hardware 很关键。
+
+作者提出 photonic edge intelligence chip，把图像、光谱和射频等多模态模拟输入映射到光谱表示，再通过片上的 AWG、非线性激活和全连接层完成 optical" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Photonic edge intelligence chip for multi-modal sensing, inference and learning</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2025-11-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-19</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-65151-x" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-65151-x</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是边缘智能的一个硬问题：如何在高吞吐模拟信号进入系统时，把感知、推理甚至学习尽量压到片上完成，而不是先把原始信号数字化后再交给传统电子处理链。这个问题对多模态 edge hardware 很关键。</dd></div><div><dt>方法/机制</dt><dd>作者提出 photonic edge intelligence chip，把图像、光谱和射频等多模态模拟输入映射到光谱表示，再通过片上的 AWG、非线性激活和全连接层完成 optical neural network 形式的 sensing + inference + learning。重点在于它把模态采集和 AI 计算做成了单一硬件栈。</dd></div><div><dt>结果/证据</dt><dd>对仓库而言，这篇论文有价值，因为它不是单纯的 photonic compute 演示，而是一个更接近产品级 edge-intelligence 结构的原型：AI 计算路径与传感输入被共同设计，展示了多模态边缘硬件如何围绕 AI 任务重新组织。</dd></div><div><dt>收录价值</dt><dd>之所以没有上调更高等级，是因为该方案仍属于 photonic edge computing 的前沿路线，距离成为主流 AI 硬件设计基准还有距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是边缘智能的一个硬问题：如何在高吞吐模拟信号进入系统时，把感知、推理甚至学习尽量压到片上完成，而不是先把原始信号数字化后再交给传统电子处理链。这个问题对多模态 edge hardware 很关键。</p><p>作者提出 photonic edge intelligence chip，把图像、光谱和射频等多模态模拟输入映射到光谱表示，再通过片上的 AWG、非线性激活和全连接层完成 optical neural network 形式的 sensing + inference + learning。重点在于它把模态采集和 AI 计算做成了单一硬件栈。</p><p>对仓库而言，这篇论文有价值，因为它不是单纯的 photonic compute 演示，而是一个更接近产品级 edge-intelligence 结构的原型：AI 计算路径与传感输入被共同设计，展示了多模态边缘硬件如何围绕 AI 任务重新组织。</p><p>之所以没有上调更高等级，是因为该方案仍属于 photonic edge computing 的前沿路线，距离成为主流 AI 硬件设计基准还有距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：用于多模态感知、推理和学习的光子边缘智能芯片 摘要：边缘计算需要对高吞吐量模拟信号进行实时处理，这对传统电子器件构成了重大挑战。尽管集成光子学提供了低延迟处理，但它难以直接处理原始模拟数据。在本文中，我们提出了一种光子边缘智能芯片 (PEIC)，它将多种模拟模态——图像、光谱和射频信号——融合到宽带光谱中，以实现单光纤输入。传输到芯片上后，这些光谱输入由阵列波导光栅 (AWG) 处理，该光栅同时执行光谱感知和高能效卷积 (29 fJ/OP)。随后的非线性激活层和全连接层构成了一个端到端光学神经网络，实现了片上推理，测得响应时间为1.33纳秒。我们在三项任务上展示了监督学习和无监督学习：药物光谱识别、图像分类和雷达目标分类。我们的工作为统一模拟信号采集和光学计算以实现边缘智能的片上解决方案铺平了道路。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Edge computing requires real-time processing of high-throughput analog signals, posing a major challenge to conventional electronics. Although integrated photonics offers low-latency processing, it struggles to directly handle raw analog data. Here, we present a photonic edge intelligence chip (PEIC) that fuses multiple analog modalities—images, spectra, and radio-frequency signals—into broad optical spectra for single-fiber input. After transmission onto the chip, these spectral inputs are processed by an arrayed waveguide grating (AWG) that performs both spectral sensing and energy-efficient convolution (29 fJ/OP). A subsequent nonlinear activation layer and a fully connected layer form an end-to-end optical neural network, achieving on-chip inference with a measured response time of 1.33 ns. We demonstrate both supervised and unsupervised learning on three tasks: drug spectral recognition, image classification, and radar target classification. Our work paves the way for on-chip solutions that unify analog signal acquisition and optical computation for edge intelligence.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251119hw4photoni,
+  title = {Photonic edge intelligence chip for multi-modal sensing, inference and learning},
+  year = {2025},
+  url = {https://doi.org/10.1038/s41467-025-65151-x},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw4-photonic-edge-intelligence/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Photonic edge intelligence chip for multi-modal sensing, inference and learning. https://doi.org/10.1038/s41467-025-65151-x</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41467-025-65151-x" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

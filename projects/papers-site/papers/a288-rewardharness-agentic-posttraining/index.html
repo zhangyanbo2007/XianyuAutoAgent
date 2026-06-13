@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RewardHarness: Self-Evolving Agentic Post-Training | DAST Papers</title>
+    <meta name="description" content="RewardHarness 的关键思想是把 reward modeling 从训练新权重转成 agentic context evolution：系统维护并迭代一组工具和技能，用它们构造偏好判断链。
+
+它用少量偏好 demonstrations 让 Orchestrator 选择工具、分析成功失败并改进工具/技能库，从而让 frozen Sub-Agent 更接近人类偏好。
+
+它值得正式收录，因为" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a288-rewardharness-agentic-posttraining/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RewardHarness: Self-Evolving Agentic Post-Training" />
+    <meta property="og:description" content="RewardHarness 的关键思想是把 reward modeling 从训练新权重转成 agentic context evolution：系统维护并迭代一组工具和技能，用它们构造偏好判断链。
+
+它用少量偏好 demonstrations 让 Orchestrator 选择工具、分析成功失败并改进工具/技能库，从而让 frozen Sub-Agent 更接近人类偏好。
+
+它值得正式收录，因为" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a288-rewardharness-agentic-posttraining/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RewardHarness: Self-Evolving Agentic Post-Training" />
+    <meta name="twitter:description" content="RewardHarness 的关键思想是把 reward modeling 从训练新权重转成 agentic context evolution：系统维护并迭代一组工具和技能，用它们构造偏好判断链。
+
+它用少量偏好 demonstrations 让 Orchestrator 选择工具、分析成功失败并改进工具/技能库，从而让 frozen Sub-Agent 更接近人类偏好。
+
+它值得正式收录，因为" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RewardHarness: Self-Evolving Agentic Post-Training</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.08703" target="_blank" rel="noopener noreferrer">2605.08703</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>RewardHarness 的关键思想是把 reward modeling 从训练新权重转成 agentic context evolution：系统维护并迭代一组工具和技能，用它们构造偏好判断链。</dd></div><div><dt>方法/机制</dt><dd>它用少量偏好 demonstrations 让 Orchestrator 选择工具、分析成功失败并改进工具/技能库，从而让 frozen Sub-Agent 更接近人类偏好。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这提供了一种 self-evolving post-training pattern：能力提升不一定来自参数更新，也可以来自可审计的工具与技能库演化。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前场景集中在图像编辑 reward；能否扩展到更广泛 agent 任务、复杂偏好和长期稳定库管理仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>RewardHarness 的关键思想是把 reward modeling 从训练新权重转成 agentic context evolution：系统维护并迭代一组工具和技能，用它们构造偏好判断链。</p><p>它用少量偏好 demonstrations 让 Orchestrator 选择工具、分析成功失败并改进工具/技能库，从而让 frozen Sub-Agent 更接近人类偏好。</p><p>它值得正式收录，因为这提供了一种 self-evolving post-training pattern：能力提升不一定来自参数更新，也可以来自可审计的工具与技能库演化。</p><p>它没有更高，是因为当前场景集中在图像编辑 reward；能否扩展到更广泛 agent 任务、复杂偏好和长期稳定库管理仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>评估指令引导的图像编辑需要反映人类细微偏好的奖励，然而当前的奖励模型通常依赖于大规模偏好标注和额外的模型训练。这造成了数据效率差距：人类通常只需少量示例即可推断出目标评估标准，而模型通常需要数十万次比较才能进行训练。我们提出了R EWARD H ARNESS，一个自我进化的智能体奖励框架，它将奖励建模重新定义为上下文演化而非权重优化。R EWARD H ARNESS不从大规模标注中学习，而是通过从最少100个偏好示例中迭代演化工具和技能库来与人类偏好对齐。给定源图像、候选编辑图像和编辑指令，一个协调器（Orchestrator）从维护的库中选择最相关的工具和技能子集，然后一个冻结的子智能体（Sub-Agent）使用它们构建推理链以产生偏好判断。通过比较预测判断与真实偏好，并分析推理过程中的成功和失败，协调器无需额外的人工标注即可自动完善其工具和技能库。R EWARD H ARNESS仅使用EditReward偏好数据的0.05%，就在图像编辑评估基准上实现了47.4%的平均准确率，超过GPT-5 5.3个百分点。当用作GRPO微调的奖励信号时，经过RL调优的模型在ImgEdit-Bench上达到了3.52。项目页面：https://rewardharness.com。(a) 现有范式：使用大量人工标注的RLHF训练奖励模型。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Evaluating instruction-guided image edits requires rewards that reflect subtle human preferences, yet current reward models typically depend on large-scale preference annotation and additional model training. This creates a data-efficiency gap: humans can often infer the target evaluation criteria from only a few examples, while models are usually trained on hundreds of thousands of comparisons. We present R EWARD H ARNESS, a self-evolving agentic reward framework that reframes reward modeling as context evolution rather than weight optimization. Instead of learning from large-scale annotations, R EWARD H ARNESS aligns with human preferences by iteratively evolving a library of tools and skills from as few as 100 preference demonstrations. Given a source image, candidate edited images, and an editing instruction, an Orchestrator selects the most relevant subset of tools and skills from the maintained library, and a frozen Sub-Agent uses them to construct a reasoning chain that produces a preference judgment. By comparing predicted judgments with ground-truth preferences and analyzing successes and failures in the reasoning process, the Orchestrator automatically refines its library of tools and skills without additional human annotation. Using only 0.05% of the EditReward preference data, R EWARD H ARNESS achieves 47.4% average accuracy on image-editing evaluation benchmarks, surpassing GPT-5 by 5.3 points. When used as a reward signal for GRPO fine-tuning, RL-tuned models achieve 3.52 on ImgEdit-Bench. Project page: https://rewardharness.com. (a) Previous Paradigm: RLHF with Massive Human Annotations Train Reward Model</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260509a288reward,
+  title = {RewardHarness: Self-Evolving Agentic Post-Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.08703.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a288-rewardharness-agentic-posttraining/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RewardHarness: Self-Evolving Agentic Post-Training. https://arxiv.org/pdf/2605.08703.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.08703.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.08703" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

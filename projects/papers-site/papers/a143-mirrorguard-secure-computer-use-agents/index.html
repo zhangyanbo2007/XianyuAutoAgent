@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction | DAST Papers</title>
+    <meta name="description" content="Computer-use agents 把视觉理解、界面操作和系统权限直接连在一起，风险比普通聊天模型高得多。单纯依赖检测后拒绝的防御虽然能阻断部分攻击，但会明显牺牲任务完成率，也无法真正提升 agent 在高风险 GUI 场景中的决策能力。
+
+MirrorGuard 提出的关键思路是用 simulation-to-real 的方式训练安全修正能力。它构建神经符号的文本化 GUI 模拟流水线，合成" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a143-mirrorguard-secure-computer-use-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction" />
+    <meta property="og:description" content="Computer-use agents 把视觉理解、界面操作和系统权限直接连在一起，风险比普通聊天模型高得多。单纯依赖检测后拒绝的防御虽然能阻断部分攻击，但会明显牺牲任务完成率，也无法真正提升 agent 在高风险 GUI 场景中的决策能力。
+
+MirrorGuard 提出的关键思路是用 simulation-to-real 的方式训练安全修正能力。它构建神经符号的文本化 GUI 模拟流水线，合成" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a143-mirrorguard-secure-computer-use-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction" />
+    <meta name="twitter:description" content="Computer-use agents 把视觉理解、界面操作和系统权限直接连在一起，风险比普通聊天模型高得多。单纯依赖检测后拒绝的防御虽然能阻断部分攻击，但会明显牺牲任务完成率，也无法真正提升 agent 在高风险 GUI 场景中的决策能力。
+
+MirrorGuard 提出的关键思路是用 simulation-to-real 的方式训练安全修正能力。它构建神经符号的文本化 GUI 模拟流水线，合成" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.12822" target="_blank" rel="noopener noreferrer">2601.12822</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Computer-use agents 把视觉理解、界面操作和系统权限直接连在一起，风险比普通聊天模型高得多。单纯依赖检测后拒绝的防御虽然能阻断部分攻击，但会明显牺牲任务完成率，也无法真正提升 agent 在高风险 GUI 场景中的决策能力。</dd></div><div><dt>方法/机制</dt><dd>MirrorGuard 提出的关键思路是用 simulation-to-real 的方式训练安全修正能力。它构建神经符号的文本化 GUI 模拟流水线，合成高风险交互轨迹，再用这些轨迹去纠正真实环境中的不安全 reasoning，从而把安全改进从“检测并终止”推进到“学习如何在危险界面里继续正确完成任务”。</dd></div><div><dt>结果/证据</dt><dd>这条路线对仓库很有价值，因为它给 computer-use safety 提供了一个比 detector patch 更耐久的训练模式。它可以和我们已经收录的 prompt injection、role confusion、misaligned action detection、permissioning 等工作形成互补，代表了一条更接近系统训练与部署的安全方法。</dd></div><div><dt>收录价值</dt><dd>它的边界在于，目前证据仍主要集中在 computer-use / GUI agent 这一子线，还没有证明能广泛外推到所有 agent 系统；同时它更像强方法而不是完整安全蓝图。所以正式收录为 breakthrough 合理，但暂不升更高。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Computer-use agents 把视觉理解、界面操作和系统权限直接连在一起，风险比普通聊天模型高得多。单纯依赖检测后拒绝的防御虽然能阻断部分攻击，但会明显牺牲任务完成率，也无法真正提升 agent 在高风险 GUI 场景中的决策能力。</p><p>MirrorGuard 提出的关键思路是用 simulation-to-real 的方式训练安全修正能力。它构建神经符号的文本化 GUI 模拟流水线，合成高风险交互轨迹，再用这些轨迹去纠正真实环境中的不安全 reasoning，从而把安全改进从“检测并终止”推进到“学习如何在危险界面里继续正确完成任务”。</p><p>这条路线对仓库很有价值，因为它给 computer-use safety 提供了一个比 detector patch 更耐久的训练模式。它可以和我们已经收录的 prompt injection、role confusion、misaligned action detection、permissioning 等工作形成互补，代表了一条更接近系统训练与部署的安全方法。</p><p>它的边界在于，目前证据仍主要集中在 computer-use / GUI agent 这一子线，还没有证明能广泛外推到所有 agent 系统；同时它更像强方法而不是完整安全蓝图。所以正式收录为 breakthrough 合理，但暂不升更高。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MirrorGuard：通过模拟到真实推理纠正实现安全的计算机使用代理。大型基础模型被集成到计算机使用代理（CUA）中，使其能够通过图形用户界面（GUI）与操作系统自主交互以执行复杂任务。这种自主性带来了严重的安全风险：恶意指令或视觉提示注入可能触发不安全的推理并导致有害的系统级操作。现有的防御措施，例如基于检测的阻断，可以防止损害，但通常会过早地中止任务，从而降低代理的实用性。在本文中，我们提出了MirrorGuard，一个即插即用的防御框架，它利用基于模拟的训练来提高CUA在现实世界中的安全性。为了降低在操作系统中进行大规模训练的成本，我们提出了一种新颖的神经符号模拟管道，它在完全基于文本的模拟环境中生成逼真的高风险GUI交互轨迹，捕获不安全的推理模式和潜在的系统危害，而无需执行实际操作。在模拟环境中，MirrorGuard学习在CUA产生并执行不安全操作之前拦截并纠正其不安全的推理链。在真实世界测试中，对各种基准和CUA架构的广泛评估表明，MirrorGuard显著降低了安全风险。例如，在字节跳动UI-TARS系统上，它将不安全率从66.5%降低到13.0%，同时保持了较低的错误拒绝率（FRR）。相比之下，最先进的GuardAgent仅将不安全率降低到53.9%，并且错误拒绝率高出15.4%。我们的工作证明，源自模拟的防御措施可以在保持代理基本实用性的同时提供强大的现实世界保护。我们的代码和模型可在https://bmz-q-q.github.io/MirrorGuard/公开获取。*通讯作者。允许免费制作本作品的数字或硬拷贝的全部或部分用于个人或课堂使用，前提是这些拷贝不是为营利或商业利益而制作或分发的，并且这些拷贝在首页上带有此通知和完整引用。本作品中由作者以外的其他人拥有的组件的版权必须得到尊重。允许带信用地摘录。若要以其他方式复制、再版、发布到服务器或重新分发到列表，需要事先获得特定许可和/或支付费用。请向permissions@acm.org请求许可。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large foundation models are integrated into Computer Use Agents (CUAs), enabling autonomous interaction with operating systems through graphical user interfaces (GUIs) to perform complex tasks. This autonomy introduces serious security risks: malicious instructions or visual prompt injections can trigger unsafe reasoning and cause harmful system-level actions. Existing defenses, such as detection-based blocking, prevent damage but often abort tasks prematurely, reducing agent utility. In this paper, we present MirrorGuard, a plug-and-play defense framework that uses simulationbased training to improve CUA security in the real world. To reduce the cost of large-scale training in operating systems, we propose a novel neural-symbolic simulation pipeline, which generates realistic, high-risk GUI interaction trajectories entirely in a text-based simulated environment, which captures unsafe reasoning patterns and potential system hazards without executing real operations. In the simulation environment, MirrorGuard learns to intercept and rectify insecure reasoning chains of CUAs before they produce and execute unsafe actions. In real-world testing, extensive evaluations across diverse benchmarks and CUA architectures show that MirrorGuard significantly mitigates security risks. For instance, on the ByteDance UI-TARS system, it reduces the unsafe rate from 66.5% to 13.0% while maintaining a marginal false refusal rate (FRR). In contrast, the state-of-the-art GuardAgent only achieves a reduction to 53.9% and suffers from a 15.4% higher FRR. Our work proves that simulation-derived defenses can provide robust, real-world protection while maintaining the fundamental utility of the agent. Our code and model are publicly available at https://bmz-q-q.github.io/MirrorGuard/. *Corresponding author. Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than the author(s) must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260119a143mirror,
+  title = {MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.12822v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a143-mirrorguard-secure-computer-use-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MirrorGuard: Toward Secure Computer-Use Agents via Simulation-to-Real Reasoning Correction. https://arxiv.org/pdf/2601.12822v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.12822v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

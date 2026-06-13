@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Absorber LLM: Harnessing Causal Synchronization for Test-Time Training | DAST Papers</title>
+    <meta name="description" content="这篇论文延续的是 test-time training / parameter-as-memory 这条线里最难的那个问题：如何在不保留全部上下文缓存的情况下，把历史真正“吸收”进参数，同时不破坏原模型的因果行为。过去很多方法的失败点在于只在 token projection 层面做拟合，结果既容易过拟合，也学不到上下文的真实因果作用。
+
+Absorber LLM 的关键改动是把目标从表面 tok" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r69-absorber-llm-causal-synchronization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Absorber LLM: Harnessing Causal Synchronization for Test-Time Training" />
+    <meta property="og:description" content="这篇论文延续的是 test-time training / parameter-as-memory 这条线里最难的那个问题：如何在不保留全部上下文缓存的情况下，把历史真正“吸收”进参数，同时不破坏原模型的因果行为。过去很多方法的失败点在于只在 token projection 层面做拟合，结果既容易过拟合，也学不到上下文的真实因果作用。
+
+Absorber LLM 的关键改动是把目标从表面 tok" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r69-absorber-llm-causal-synchronization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Absorber LLM: Harnessing Causal Synchronization for Test-Time Training" />
+    <meta name="twitter:description" content="这篇论文延续的是 test-time training / parameter-as-memory 这条线里最难的那个问题：如何在不保留全部上下文缓存的情况下，把历史真正“吸收”进参数，同时不破坏原模型的因果行为。过去很多方法的失败点在于只在 token projection 层面做拟合，结果既容易过拟合，也学不到上下文的真实因果作用。
+
+Absorber LLM 的关键改动是把目标从表面 tok" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Absorber LLM: Harnessing Causal Synchronization for Test-Time Training</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.20915" target="_blank" rel="noopener noreferrer">2604.20915</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文延续的是 test-time training / parameter-as-memory 这条线里最难的那个问题：如何在不保留全部上下文缓存的情况下，把历史真正“吸收”进参数，同时不破坏原模型的因果行为。过去很多方法的失败点在于只在 token projection 层面做拟合，结果既容易过拟合，也学不到上下文的真实因果作用。</dd></div><div><dt>方法/机制</dt><dd>Absorber LLM 的关键改动是把目标从表面 token 对齐，改成 causal synchronization。也就是让吸收过历史的无上下文模型，在未来生成时尽量与原始有上下文模型的内部行为保持同步。这个 framing 很重要，因为它把 long-context retention 变成了更接近机制层的一致性问题，而不是简单蒸馏。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作直接关系到 long-context、streaming inference 和 deployment-time adaptation 的交叉地带。相比一般的 context compression trick，它提供了一个更可复用的 test-time training 视角，对 parameter-as-memory 路线有明确推进。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为目前仍主要是在特定 benchmark 上证明其优于 prior baselines，距离成为长上下文部署的默认范式还有较长 adoption 路要走。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文延续的是 test-time training / parameter-as-memory 这条线里最难的那个问题：如何在不保留全部上下文缓存的情况下，把历史真正“吸收”进参数，同时不破坏原模型的因果行为。过去很多方法的失败点在于只在 token projection 层面做拟合，结果既容易过拟合，也学不到上下文的真实因果作用。</p><p>Absorber LLM 的关键改动是把目标从表面 token 对齐，改成 causal synchronization。也就是让吸收过历史的无上下文模型，在未来生成时尽量与原始有上下文模型的内部行为保持同步。这个 framing 很重要，因为它把 long-context retention 变成了更接近机制层的一致性问题，而不是简单蒸馏。</p><p>它值得正式收录，因为这类工作直接关系到 long-context、streaming inference 和 deployment-time adaptation 的交叉地带。相比一般的 context compression trick，它提供了一个更可复用的 test-time training 视角，对 parameter-as-memory 路线有明确推进。</p><p>它没有升到更高等级，是因为目前仍主要是在特定 benchmark 上证明其优于 prior baselines，距离成为长上下文部署的默认范式还有较长 adoption 路要走。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>生成文本。尽管稀疏注意力 (Beltagy et al., 2020) 和线性化注意力 (Katharopoulos et al., 2020) 等变体减轻了这种开销，但它们仅仅是延迟了在长流场景中缓存和计算资源不可避免的耗尽。Transformer模型在自注意力机制方面存在计算成本高的问题，其成本随序列长度增长，使得长流推理因内存消耗而受限。RNNs和SSMs等恒定内存替代方案将历史压缩成固定大小的状态，因此失去了长尾依赖性，而将上下文记忆到参数中的方法，例如测试时训练 (TTT)，则容易过拟合令牌级投影，未能保留预训练LLMs中上下文的因果效应。我们提出了Absorber LLM，它将长上下文保留表述为一种自监督的因果同步：在将历史上下文吸收到参数中后，一个无上下文模型在未来的生成中应与具有完整上下文的原始模型相匹配。我们通过同步更新模型与原始模型的内部行为来优化这一目标，确保上下文吸收和泛化。在长上下文和流式基准测试上的实验表明，Absorber LLM 相较于之前的参数即内存基线，减少了推理内存并提高了准确性。为了解决这些内存限制，先前的工作提出了线性时间模型，包括循环神经网络 (RNNs) (Peng et al., 2023) 和状态空间模型 (SSMs) (Gu et al., 2021; Gu &amp; Dao, 2024)。这些模型通过将历史压缩成固定大小的隐藏状态来实现效率。然而，最近的理论和实证分析表明，这种效率是以牺牲模型表达能力为代价的，与全注意力Transformer相比，导致了显著的信息损失 (Merrill et al., 2024; Hsieh et al., 2024)。另一种方法是，测试时训练 (TTT) (Sun et al., 2025; Feng et al., 2026) 方法利用模型参数进行上下文存储，以克服状态容量限制。具体来说，给定一个要存储在模型参数中的序列X，TTT方法训练模型将X投影到一个专门构建的目标V中。这些方法通过将X直接写入模型参数来优化模型在X上的性能。然而，在学习X时，它们忽略了模型在后续序列上的性能，未能帮助模型以一种有助于未来推理的方式吸收X。至关重要的是，这些重建方法忽略了历史上下文与后续推理之间的因果机制，而这对于有效的模型推断至关重要 (Geiger et al., 2024)。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>erate texts. Although variants like sparse (Beltagy et al., 2020) and linearized attention (Katharopoulos et al., 2020) mitigate this overhead, they merely delay the inevitable exhaustion of cache and computing resources in long-stream scenarios. Transformers suffer from a high computational cost that grows with sequence length for selfattention, making inference in long streams prohibited by memory consumption. Constantmemory alternatives such as RNNs and SSMs compress history into states with fixed size and thus lose long-tail dependencies, while methods that memorize contexts into parameters, such as Test-Time Training (TTT), are prone to overfitting token-level projection and fail to preserve the causal effect of context in pretrained LLMs. We propose Absorber LLM, which formulates longcontext retention as a self-supervised causal synchronization: after absorbing historical contexts into parameters, a contextless model should match the original model with full context on future generations. We optimize this objective by synchronizing internal behaviors of the updated model with the original one, ensuring context absorption and generalization. Experiments on long-context and streaming benchmarks show that Absorber LLM reduces inference memory and improves accuracy over prior parameter-as-memory baselines. To resolve these memory constraints, prior works have proposed linear-time models, including Recurrent Neural Networks (RNNs) (Peng et al., 2023) and State Space Models (SSMs) (Gu et al., 2021; Gu &amp; Dao, 2024). These models achieve efficiency by compressing history into fixed-size hidden states. However, recent theoretical and empirical analyses reveal that this efficiency comes at the cost of model expressive power, leading to significant information loss compared to full-attention transformers (Merrill et al., 2024; Hsieh et al., 2024). Alternatively, Test-Time Training (TTT) (Sun et al., 2025; Feng et al., 2026) methods utilize model parameters for context storage to overcome state capacity limits. Specifically, given a sequence X to be stored in the parameters of a model, TTT methods train the model to project X into a specifically constructed target V . Such methods optimize the model’s performance on X by writing it directly into the model parameters. Yet, when learning X, they ignore the model’s performance on subsequent sequences, failing to help the model absorb X in a way that contributes to future inferences. Crucially, such reconstruction methods overlook the causal mechanisms between historical contexts and subsequent inferences, which are essential for effective model deduction (Geiger et al., 2024).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260422r69absorbe,
+  title = {Absorber LLM: Harnessing Causal Synchronization for Test-Time Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.20915.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r69-absorber-llm-causal-synchronization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Absorber LLM: Harnessing Causal Synchronization for Test-Time Training. https://arxiv.org/pdf/2604.20915.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.20915.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

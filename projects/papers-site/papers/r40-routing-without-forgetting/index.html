@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Routing without Forgetting | DAST Papers</title>
+    <meta name="description" content="Continual learning 在 transformer 里通常通过 prompts、adapters 或 LoRA 这类参数高效适配来做，但这些方法往往默认可以多轮重复训练，在严格 online setting 下就会遇到明显限制。真正困难的地方，是样本流非平稳、可能只看一次，而且模型无法依赖显式 task id 来判断该激活哪一块表征子空间。
+
+Routing without Forg" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r40-routing-without-forgetting/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Routing without Forgetting" />
+    <meta property="og:description" content="Continual learning 在 transformer 里通常通过 prompts、adapters 或 LoRA 这类参数高效适配来做，但这些方法往往默认可以多轮重复训练，在严格 online setting 下就会遇到明显限制。真正困难的地方，是样本流非平稳、可能只看一次，而且模型无法依赖显式 task id 来判断该激活哪一块表征子空间。
+
+Routing without Forg" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r40-routing-without-forgetting/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Routing without Forgetting" />
+    <meta name="twitter:description" content="Continual learning 在 transformer 里通常通过 prompts、adapters 或 LoRA 这类参数高效适配来做，但这些方法往往默认可以多轮重复训练，在严格 online setting 下就会遇到明显限制。真正困难的地方，是样本流非平稳、可能只看一次，而且模型无法依赖显式 task id 来判断该激活哪一块表征子空间。
+
+Routing without Forg" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Routing without Forgetting</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.09576" target="_blank" rel="noopener noreferrer">2603.09576</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Continual learning 在 transformer 里通常通过 prompts、adapters 或 LoRA 这类参数高效适配来做，但这些方法往往默认可以多轮重复训练，在严格 online setting 下就会遇到明显限制。真正困难的地方，是样本流非平稳、可能只看一次，而且模型无法依赖显式 task id 来判断该激活哪一块表征子空间。</dd></div><div><dt>方法/机制</dt><dd>Routing without Forgetting 的核心贡献，是把 continual learning 重新表述成 routing 问题。它不再主要依赖持续梯度更新来慢慢形成 task specialization，而是在 transformer 层内加入受 Modern Hopfield Networks 启发的 associative retrieval layers，通过 free-energy 最小化在单次前向过程中生成 input-conditioned dynamic prompts。结果是 continual adaptation 从训练策略问题，变成了推理时的表征选择问题。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作真正改变的是 continual adaptation 的接口：不是再加一种 PEFT recipe，而是把 memory-like retrieval 和 routing 直接嵌入 backbone，给 online continual learning 提供了更耐久的 architecture primitive。对本仓库而言，这条线和 routing、memory、online adaptation 都有明确交叉价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前验证仍主要集中在 class-incremental benchmark，外溢到更广语言、多模态和真实流式系统的证据还不够。现阶段它更像一条很强的 continual-learning architecture 路线，而不是已经统一替代现有适配范式的事实标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Continual learning 在 transformer 里通常通过 prompts、adapters 或 LoRA 这类参数高效适配来做，但这些方法往往默认可以多轮重复训练，在严格 online setting 下就会遇到明显限制。真正困难的地方，是样本流非平稳、可能只看一次，而且模型无法依赖显式 task id 来判断该激活哪一块表征子空间。</p><p>Routing without Forgetting 的核心贡献，是把 continual learning 重新表述成 routing 问题。它不再主要依赖持续梯度更新来慢慢形成 task specialization，而是在 transformer 层内加入受 Modern Hopfield Networks 启发的 associative retrieval layers，通过 free-energy 最小化在单次前向过程中生成 input-conditioned dynamic prompts。结果是 continual adaptation 从训练策略问题，变成了推理时的表征选择问题。</p><p>它值得正式收录，因为这类工作真正改变的是 continual adaptation 的接口：不是再加一种 PEFT recipe，而是把 memory-like retrieval 和 routing 直接嵌入 backbone，给 online continual learning 提供了更耐久的 architecture primitive。对本仓库而言，这条线和 routing、memory、online adaptation 都有明确交叉价值。</p><p>它没有升到更高一级，是因为当前验证仍主要集中在 class-incremental benchmark，外溢到更广语言、多模态和真实流式系统的证据还不够。现阶段它更像一条很强的 continual-learning architecture 路线，而不是已经统一替代现有适配范式的事实标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要 变换器中的持续学习通常通过参数高效适应来解决：提示、适配器或LoRA模块针对每个任务进行专门化，而骨干模型保持冻结。尽管在受控的多周期设置中有效，但这些方法依赖于渐进的基于梯度的专门化，并且在在线持续学习（OCL）中表现不佳，因为数据以非平稳流的形式到达，并且每个样本可能只被观察一次。我们将变换器中的持续学习重新定义为一个路由问题：在严格的在线约束下，模型必须为每个输入动态选择合适的表示子空间，而无需明确的任务标识符或重复优化。因此，我们引入了路由不遗忘（RwF），这是一种变换器架构，它通过受现代霍普菲尔德网络启发的基于能量的关联检索层进行增强。RwF不是存储或合并任务特定的提示，而是通过在每个层的变换器token嵌入上进行单步关联检索来生成动态提示。检索对应于严格凸自由能泛函的闭式最小化，从而在每次前向传播中实现输入条件路由，独立于迭代梯度细化。在具有挑战性的类别增量基准测试中，RwF优于现有的基于提示的方法。在Split-ImageNet-R和Split-ImageNet-S上，RwF以显著优势超越了之前的基于提示的方法，即使在少样本学习场景中也是如此。这些结果表明，将基于能量的关联路由直接嵌入到变换器骨干中，为OCL提供了一个原则性且有效的S基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Continual learning in transformers is commonly addressed through parameter-efficient adaptation: prompts, adapters, or LoRA modules are specialized per task while the backbone remains frozen. Although effective in controlled multi-epoch settings, these approaches rely on gradual gradient-based specialization and struggle in Online Continual Learning (OCL), where data arrive as a non-stationary stream and each sample may be observed only once. We recast continual learning in transformers as a routing problem: under strict online constraints, the model must dynamically select the appropriate representational subspace for each input without explicit task identifiers or repeated optimization. We thus introduce Routing without Forgetting (RwF), a transformer architecture augmented with energy-based associative retrieval layers inspired by Modern Hopfield Networks. Instead of storing or merging task-specific prompts, RwF generates dynamic prompts through single-step associative retrieval over the transformer token embeddings at each layer. Retrieval corresponds to the closed-form minimization of a strictly convex free-energy functional, enabling input-conditioned routing within each forward pass, independently of iterative gradient refinement. Across challenging class-incremental benchmarks, RwF improves over existing prompt-based methods. On Split-ImageNet-R and Split-ImageNet-S, RwF outperforms prior prompt-based approaches by a large margin, even in few-shot learning regimes. These results indicate that embedding energybased associative routing directly within the transformer backbone provides a principled and effective foundation for OCL.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260310r40routing,
+  title = {Routing without Forgetting},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.09576.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r40-routing-without-forgetting/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Routing without Forgetting. https://arxiv.org/pdf/2603.09576.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.09576.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

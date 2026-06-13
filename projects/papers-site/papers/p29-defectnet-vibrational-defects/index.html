@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Foundation Model for Non-Destructive Defect Identification from Vibrational Spectra | DAST Papers</title>
+    <meta name="description" content="问题与背景：材料缺陷会决定半导体、量子材料、电池和能源材料性能，但传统表征方法往往破坏样品、化学选择性不足，或无法同时定量多个共存点缺陷。
+
+方法与新意：DefectNet 从 phonon density-of-states 等振动谱直接预测缺陷元素和浓度，在 2000 种半导体、16000 多条模拟谱上训练，并通过 tailored attention 和物理启发表示处理多缺陷混合信号。
+
+收" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p29-defectnet-vibrational-defects/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A Foundation Model for Non-Destructive Defect Identification from Vibrational Spectra" />
+    <meta property="og:description" content="问题与背景：材料缺陷会决定半导体、量子材料、电池和能源材料性能，但传统表征方法往往破坏样品、化学选择性不足，或无法同时定量多个共存点缺陷。
+
+方法与新意：DefectNet 从 phonon density-of-states 等振动谱直接预测缺陷元素和浓度，在 2000 种半导体、16000 多条模拟谱上训练，并通过 tailored attention 和物理启发表示处理多缺陷混合信号。
+
+收" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p29-defectnet-vibrational-defects/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A Foundation Model for Non-Destructive Defect Identification from Vibrational Spectra" />
+    <meta name="twitter:description" content="问题与背景：材料缺陷会决定半导体、量子材料、电池和能源材料性能，但传统表征方法往往破坏样品、化学选择性不足，或无法同时定量多个共存点缺陷。
+
+方法与新意：DefectNet 从 phonon density-of-states 等振动谱直接预测缺陷元素和浓度，在 2000 种半导体、16000 多条模拟谱上训练，并通过 tailored attention 和物理启发表示处理多缺陷混合信号。
+
+收" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A Foundation Model for Non-Destructive Defect Identification from Vibrational Spectra</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-03-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2506.00725" target="_blank" rel="noopener noreferrer">2506.00725</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：材料缺陷会决定半导体、量子材料、电池和能源材料性能，但传统表征方法往往破坏样品、化学选择性不足，或无法同时定量多个共存点缺陷。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：DefectNet 从 phonon density-of-states 等振动谱直接预测缺陷元素和浓度，在 2000 种半导体、16000 多条模拟谱上训练，并通过 tailored attention 和物理启发表示处理多缺陷混合信号。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇适合进入 AI for physics/materials 主线，因为它把 AI foundation model 用作非破坏性材料表征工具，建立了从高通量模拟谱到实验 neutron-scattering 数据迁移的工作流。它对 defect engineering、材料筛选和实验设计都有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限：当前主要覆盖 substitutional point defects 和特定振动谱/中子散射设置，向 Raman、grain boundary、dislocation 等更复杂缺陷扩展仍是后续工作；因此按 breakthrough 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：材料缺陷会决定半导体、量子材料、电池和能源材料性能，但传统表征方法往往破坏样品、化学选择性不足，或无法同时定量多个共存点缺陷。</p><p>方法与新意：DefectNet 从 phonon density-of-states 等振动谱直接预测缺陷元素和浓度，在 2000 种半导体、16000 多条模拟谱上训练，并通过 tailored attention 和物理启发表示处理多缺陷混合信号。</p><p>收录意义：这篇适合进入 AI for physics/materials 主线，因为它把 AI foundation model 用作非破坏性材料表征工具，建立了从高通量模拟谱到实验 neutron-scattering 数据迁移的工作流。它对 defect engineering、材料筛选和实验设计都有复用价值。</p><p>局限：当前主要覆盖 substitutional point defects 和特定振动谱/中子散射设置，向 Raman、grain boundary、dislocation 等更复杂缺陷扩展仍是后续工作；因此按 breakthrough 收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>缺陷在固体中普遍存在，并强烈影响材料的机械和功能特性。然而，缺陷的无损表征和量化，尤其是在多种类型共存时，仍然是一个长期存在的挑战。在此，我们引入DefectNet，这是一个基础机器学习模型，能够直接从振动光谱，特别是声子态密度 (PDoS) 中，预测具有多种共存元素的替代点缺陷的化学特性和浓度。DefectNet 在来自2,000种半导体的16,000多个模拟光谱上进行训练，采用定制的注意力机制来识别多达六种不同的缺陷元素，其浓度范围从0.2%到25%。该模型对56种元素中未见过的晶体具有良好的泛化能力，并且可以在实验数据上进行微调。通过对SiGe合金和MgB2超导体的非弹性散射测量进行的验证，证明了其准确性和可迁移性。我们的工作确立了振动光谱作为一种可行、无损的体材料点缺陷量化探针，并突出了基础模型在数据驱动缺陷工程中的前景。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Defects are ubiquitous in solids and strongly influence materials’ mechanical and functional properties. However, non-destructive characterization and quantification of defects, especially when multiple types coexist, remain a long-standing challenge. Here we introduce DefectNet, a foundation machine learning model that predicts the chemical identity and concentration of substitutional point defects with multiple coexisting elements directly from vibrational spectra, specifically phonon density-of-states (PDoS). Trained on over 16,000 simulated spectra from 2,000 semiconductors, DefectNet employs a tailored attention mechanism to identify up to six distinct defect elements at concentrations ranging from 0.2% to 25%. The model generalizes well to unseen crystals across 56 elements and can be fine-tuned on experimental data. Validation using inelastic scattering measurements of SiGe alloys and MgB2 superconductor demonstrates its accuracy and transferability. Our work establishes vibrational spectroscopy as a viable, non-destructive probe for point defect quantification in bulk materials, and highlights the promise of foundation models in data-driven defect engineering.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260301p29defectn,
+  title = {A Foundation Model for Non-Destructive Defect Identification from Vibrational Spectra},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2506.00725.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p29-defectnet-vibrational-defects/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A Foundation Model for Non-Destructive Defect Identification from Vibrational Spectra. https://arxiv.org/pdf/2506.00725.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2506.00725.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://www.sciencedirect.com/science/article/abs/pii/S2590238526000913" target="_blank" rel="noopener noreferrer">项目</a><a href="https://news.mit.edu/2026/mit-researchers-use-ai-uncover-atomic-defects-materials-0330" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

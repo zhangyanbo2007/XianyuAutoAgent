@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="continual RL for VLA 直觉上应该很难，因为传统 continual learning 经验会预期 sequential fine-tuning 带来明显灾难性遗忘。这篇论文的价值就在于它系统性地检验了这个假设，并给出一个反直觉结果：对大型预训练 VLA 来说，简单的 sequential fine-tuning 加 LoRA 和 on-policy RL 可能已经足够强。
+
+作" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl17-continual-vla-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning" />
+    <meta property="og:description" content="continual RL for VLA 直觉上应该很难，因为传统 continual learning 经验会预期 sequential fine-tuning 带来明显灾难性遗忘。这篇论文的价值就在于它系统性地检验了这个假设，并给出一个反直觉结果：对大型预训练 VLA 来说，简单的 sequential fine-tuning 加 LoRA 和 on-policy RL 可能已经足够强。
+
+作" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl17-continual-vla-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning" />
+    <meta name="twitter:description" content="continual RL for VLA 直觉上应该很难，因为传统 continual learning 经验会预期 sequential fine-tuning 带来明显灾难性遗忘。这篇论文的价值就在于它系统性地检验了这个假设，并给出一个反直觉结果：对大型预训练 VLA 来说，简单的 sequential fine-tuning 加 LoRA 和 on-policy RL 可能已经足够强。
+
+作" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.11653" target="_blank" rel="noopener noreferrer">2603.11653</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>continual RL for VLA 直觉上应该很难，因为传统 continual learning 经验会预期 sequential fine-tuning 带来明显灾难性遗忘。这篇论文的价值就在于它系统性地检验了这个假设，并给出一个反直觉结果：对大型预训练 VLA 来说，简单的 sequential fine-tuning 加 LoRA 和 on-policy RL 可能已经足够强。</dd></div><div><dt>方法/机制</dt><dd>作者在三个 VLA 模型和五个 lifelong RL benchmark 上比较 continual RL 策略，发现 Seq. FT 在高 plasticity、低 forgetting 和 zero-shot generalization 上都表现异常稳健，常常优于更复杂的方法。论文进一步把原因归纳为大预训练模型、参数高效适配和 on-policy RL 三者的协同，实际上重塑了 stability-plasticity trade-off。</dd></div><div><dt>结果/证据</dt><dd>这篇工作符合本仓库对 deployment-time / continual adaptation 和 robotics / VLA 的扩展重点，因为它不是单纯涨点，而是在重写“continual VLA learning 需要多复杂”的研究 framing。对于 embodied agents 的持续学习，这个结论比再发一个复杂算法更有长期价值。</dd></div><div><dt>收录价值</dt><dd>它不更高一级，是因为这条结论目前仍建立在特定 benchmark 组合和现有 VLA family 上。它是很强的 empirical clarification，但还没有完全变成跨平台、跨任务的定律。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>continual RL for VLA 直觉上应该很难，因为传统 continual learning 经验会预期 sequential fine-tuning 带来明显灾难性遗忘。这篇论文的价值就在于它系统性地检验了这个假设，并给出一个反直觉结果：对大型预训练 VLA 来说，简单的 sequential fine-tuning 加 LoRA 和 on-policy RL 可能已经足够强。</p><p>作者在三个 VLA 模型和五个 lifelong RL benchmark 上比较 continual RL 策略，发现 Seq. FT 在高 plasticity、低 forgetting 和 zero-shot generalization 上都表现异常稳健，常常优于更复杂的方法。论文进一步把原因归纳为大预训练模型、参数高效适配和 on-policy RL 三者的协同，实际上重塑了 stability-plasticity trade-off。</p><p>这篇工作符合本仓库对 deployment-time / continual adaptation 和 robotics / VLA 的扩展重点，因为它不是单纯涨点，而是在重写“continual VLA learning 需要多复杂”的研究 framing。对于 embodied agents 的持续学习，这个结论比再发一个复杂算法更有长期价值。</p><p>它不更高一级，是因为这条结论目前仍建立在特定 benchmark 组合和现有 VLA family 上。它是很强的 empirical clarification，但还没有完全变成跨平台、跨任务的定律。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作 (VLA) 模型的持续强化学习 (CRL) 是实现能在开放式、不断演变的环境中适应的自我改进具身智能体的一个有前景的方向。然而，持续学习的传统观点认为，朴素的顺序微调 (Seq. FT) 会导致灾难性遗忘，因此需要复杂的 CRL 策略。在这项工作中，我们退后一步，对大型预训练 VLA 的 CRL 进行了系统研究，涉及三种模型和五个具有挑战性的终身 RL 基准。我们发现，与既定观念相反，结合低秩适应 (LoRA) 的简单 Seq. FT 表现出惊人的强大：它实现了高可塑性，几乎没有遗忘，并保持了强大的零样本泛化能力，经常优于更复杂的 CRL 方法。通过详细分析，我们表明这种鲁棒性源于大型预训练模型、参数高效适应和在线策略 RL 之间的协同作用。这些组件共同重塑了稳定性-可塑性权衡，使得持续适应既稳定又可扩展。我们的结果将顺序微调定位为 VLA 持续 RL 的强大方法，并为大模型时代的终身学习提供了新见解。1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Continual Reinforcement Learning (CRL) for Vision-Language-Action (VLA) models is a promising direction toward self-improving embodied agents that can adapt in openended, evolving environments. However, conventional wisdom from continual learning suggests that naive Sequential Fine-Tuning (Seq. FT) leads to catastrophic forgetting, necessitating complex CRL strategies. In this work, we take a step back and conduct a systematic study of CRL for large pretrained VLAs across three models and five challenging lifelong RL benchmarks. We find that, contrary to established belief, simple Seq. FT with low-rank adaptation (LoRA) is remarkably strong: it achieves high plasticity, exhibits little to no forgetting, and retains strong zero-shot generalization, frequently outperforming more sophisticated CRL methods. Through detailed analysis, we show that this robustness arises from a synergy between the large pretrained model, parameter-efficient adaptation, and on-policy RL. Together, these components reshape the stability–plasticity trade-off, making continual adaptation both stable and scalable. Our results position Sequential Fine-Tuning as a powerful method for continual RL with VLAs and provide new insights into lifelong learning in the large model era.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260312rl17contin,
+  title = {Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.11653.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl17-continual-vla-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Simple Recipe Works: Vision-Language-Action Models are Natural Continual Learners with Reinforcement Learning. https://arxiv.org/pdf/2603.11653.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.11653.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

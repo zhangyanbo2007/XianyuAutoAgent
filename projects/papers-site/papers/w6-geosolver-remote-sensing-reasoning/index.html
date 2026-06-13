@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision | DAST Papers</title>
+    <meta name="description" content="遥感 VLM 已经能处理越来越多感知任务，但一旦进入 step-by-step reasoning，问题就变成：中间推理过程到底有没有持续对齐视觉证据。远程感知场景里，这种 visual faithfulness 的缺失会比普通 VQA 更严重，因为几何、尺度和局部纹理都更容易误导中间步骤。
+
+GeoSolver 的核心是把 remote-sensing reasoning 推向可验证的 proc" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/w6-geosolver-remote-sensing-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision" />
+    <meta property="og:description" content="遥感 VLM 已经能处理越来越多感知任务，但一旦进入 step-by-step reasoning，问题就变成：中间推理过程到底有没有持续对齐视觉证据。远程感知场景里，这种 visual faithfulness 的缺失会比普通 VQA 更严重，因为几何、尺度和局部纹理都更容易误导中间步骤。
+
+GeoSolver 的核心是把 remote-sensing reasoning 推向可验证的 proc" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/w6-geosolver-remote-sensing-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision" />
+    <meta name="twitter:description" content="遥感 VLM 已经能处理越来越多感知任务，但一旦进入 step-by-step reasoning，问题就变成：中间推理过程到底有没有持续对齐视觉证据。远程感知场景里，这种 visual faithfulness 的缺失会比普通 VQA 更严重，因为几何、尺度和局部纹理都更容易误导中间步骤。
+
+GeoSolver 的核心是把 remote-sensing reasoning 推向可验证的 proc" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision</h1>
+          <p class="subtitle">天气、气候与地球系统 · 发表：2026-03-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">天气、气候与地球系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.09551" target="_blank" rel="noopener noreferrer">2603.09551</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>遥感 VLM 已经能处理越来越多感知任务，但一旦进入 step-by-step reasoning，问题就变成：中间推理过程到底有没有持续对齐视觉证据。远程感知场景里，这种 visual faithfulness 的缺失会比普通 VQA 更严重，因为几何、尺度和局部纹理都更容易误导中间步骤。</dd></div><div><dt>方法/机制</dt><dd>GeoSolver 的核心是把 remote-sensing reasoning 推向可验证的 process-supervised RL。论文先构造 Geo-PRM-2M 这一大规模 token-level process supervision 数据集，再训练 GeoPRM 作为细粒度 process reward model，用它去支撑 Process-Aware Tree-GRPO 的 credit assignment，并把 verifier 进一步用于 test-time scaling。结果不只提升一个自家模型，也能直接增强 general-purpose VLM。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为真正可复用的部分不是某个遥感 benchmark 分数，而是‘domain-specific verifier + process supervision + tree-structured RL/TTS’ 这一整套 reasoning workflow。对 geospatial AI 来说这是强方法，对更广的 verifiable multimodal reasoning 也有清晰外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要证据仍集中在 remote sensing 这一特定高价值场景，跨领域 generalization 还需要更多验证。现阶段更像一条在地理空间推理里非常强的 method stack，而不是全局通用默认方案。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>遥感 VLM 已经能处理越来越多感知任务，但一旦进入 step-by-step reasoning，问题就变成：中间推理过程到底有没有持续对齐视觉证据。远程感知场景里，这种 visual faithfulness 的缺失会比普通 VQA 更严重，因为几何、尺度和局部纹理都更容易误导中间步骤。</p><p>GeoSolver 的核心是把 remote-sensing reasoning 推向可验证的 process-supervised RL。论文先构造 Geo-PRM-2M 这一大规模 token-level process supervision 数据集，再训练 GeoPRM 作为细粒度 process reward model，用它去支撑 Process-Aware Tree-GRPO 的 credit assignment，并把 verifier 进一步用于 test-time scaling。结果不只提升一个自家模型，也能直接增强 general-purpose VLM。</p><p>它值得正式收录，因为真正可复用的部分不是某个遥感 benchmark 分数，而是‘domain-specific verifier + process supervision + tree-structured RL/TTS’ 这一整套 reasoning workflow。对 geospatial AI 来说这是强方法，对更广的 verifiable multimodal reasoning 也有清晰外溢。</p><p>它没有升到更高一级，是因为当前主要证据仍集中在 remote sensing 这一特定高价值场景，跨领域 generalization 还需要更多验证。现阶段更像一条在地理空间推理里非常强的 method stack，而不是全局通用默认方案。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>GeoSolver：通过细粒度过程监督扩展遥感中的测试时推理 摘要. 尽管视觉语言模型 (VLMs) 显著推动了遥感解译的进展，但使其能够执行复杂、分步的推理仍然极具挑战性。最近将思维链 (CoT) 推理引入该领域的工作已显示出前景，但确保这些中间步骤的视觉忠实性仍然是一个关键瓶颈。为解决此问题，我们引入了GeoSolver，这是一个新颖的框架，将遥感推理转向可验证的、过程监督的强化学习。我们首先构建了GeoPRM-2M，这是一个大规模的、令牌级过程监督数据集，通过熵引导的蒙特卡洛树搜索 (MCTS) 和有针对性的视觉幻觉注入合成。基于此数据集，我们训练了GeoPRM，这是一个令牌级过程奖励模型 (PRM)，提供细粒度忠实性反馈。为了有效利用这些验证信号，我们提出了过程感知树-GRPO，这是一种强化学习算法，它将树状探索与忠实性加权奖励机制相结合，以精确分配中间步骤的贡献。大量实验表明，我们得到的模型GeoSolver9B在多样化的遥感基准上实现了最先进的性能。至关重要的是，GeoPRM解锁了鲁棒的测试时缩放 (TTS)。作为一种通用地理空间验证器，它无缝扩展了GeoSolver-9B的性能，并直接增强了通用VLMs，突显了其卓越的跨模型泛化能力。关键词: VLMs · 过程奖励模型 · 遥感</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. While Vision-Language Models (VLMs) have significantly advanced remote sensing interpretation, enabling them to perform complex, step-by-step reasoning remains highly challenging. Recent efforts to introduce Chain-of-Thought (CoT) reasoning to this domain have shown promise, yet ensuring the visual faithfulness of these intermediate steps remains a critical bottleneck. To address this, we introduce GeoSolver, a novel framework that transitions remote sensing reasoning toward verifiable, process-supervised reinforcement learning. We first construct GeoPRM-2M, a large-scale, token-level process supervision dataset synthesized via entropy-guided Monte Carlo Tree Search (MCTS) and targeted visual hallucination injection. Building upon this dataset, we train GeoPRM, a token-level process reward model (PRM) that provides granular faithfulness feedback. To effectively leverage these verification signals, we propose Process-Aware Tree-GRPO, a reinforcement learning algorithm that integrates tree-structured exploration with a faithfulness-weighted reward mechanism to precisely assign credit to intermediate steps. Extensive experiments demonstrate that our resulting model, GeoSolver9B, achieves state-of-the-art performance across diverse remote sensing benchmarks. Crucially, GeoPRM unlocks robust Test-Time Scaling (TTS). Serving as a universal geospatial verifier, it seamlessly scales the performance of GeoSolver-9B and directly enhances general-purpose VLMs, highlighting its remarkable cross-model generalization. Keywords: VLMs · Process Reward Model · Remote Sensing</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260310w6geosolve,
+  title = {GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.09551.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/w6-geosolver-remote-sensing-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision. https://arxiv.org/pdf/2603.09551.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/w3-archesweathergen-probabilistic-forecasting/">
+              <span>ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning</span>
+              <small>天气、气候与地球系统 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/w4-ai-weather-pipeline-theory/">
+              <span>The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline</span>
+              <small>天气、气候与地球系统 · 2026-04-01</small>
+            </a>
+            <a class="related-item" href="../../papers/w1-ivsr-wildfire-digital-twin/">
+              <span>Digital Twin and Agentic AI for Wild Fire Disaster Management: Intelligent Virtual Situation Room</span>
+              <small>天气、气候与地球系统 · 2026-02-09</small>
+            </a>
+            <a class="related-item" href="../../papers/w5-geo-bench-2-geospatial-ai/">
+              <span>GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI</span>
+              <small>天气、气候与地球系统 · 2025-11-19</small>
+            </a>
+            <a class="related-item" href="../../papers/w3-zephyrus-weather-science/">
+              <span>Zephyrus: An Agentic Framework for Weather Science</span>
+              <small>天气、气候与地球系统 · 2025-10-05</small>
+            </a>
+            <a class="related-item" href="../../papers/w2-weathernext2-fgn/">
+              <span>Skillful joint probabilistic weather forecasting from marginals</span>
+              <small>天气、气候与地球系统 · 2025-06-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.09551.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

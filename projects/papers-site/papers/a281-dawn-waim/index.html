@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The DAWN of World-Action Interactive Models | DAST Papers</title>
+    <meta name="description" content="DAWN 提出 World-Action Interactive Models，认为现有 WAM 往往把 world prediction 和 action generation 并行或串行分离，忽略动作与未来世界之间的 reciprocity。
+
+它在自动驾驶中实现一个 latent generative baseline：World Predictor 预测未来 latent world，Wo" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a281-dawn-waim/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The DAWN of World-Action Interactive Models" />
+    <meta property="og:description" content="DAWN 提出 World-Action Interactive Models，认为现有 WAM 往往把 world prediction 和 action generation 并行或串行分离，忽略动作与未来世界之间的 reciprocity。
+
+它在自动驾驶中实现一个 latent generative baseline：World Predictor 预测未来 latent world，Wo" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a281-dawn-waim/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The DAWN of World-Action Interactive Models" />
+    <meta name="twitter:description" content="DAWN 提出 World-Action Interactive Models，认为现有 WAM 往往把 world prediction 和 action generation 并行或串行分离，忽略动作与未来世界之间的 reciprocity。
+
+它在自动驾驶中实现一个 latent generative baseline：World Predictor 预测未来 latent world，Wo" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The DAWN of World-Action Interactive Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.11550" target="_blank" rel="noopener noreferrer">2605.11550</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>DAWN 提出 World-Action Interactive Models，认为现有 WAM 往往把 world prediction 和 action generation 并行或串行分离，忽略动作与未来世界之间的 reciprocity。</dd></div><div><dt>方法/机制</dt><dd>它在自动驾驶中实现一个 latent generative baseline：World Predictor 预测未来 latent world，World-Conditioned Action Denoiser 生成动作，再把动作反馈给世界预测器，在推理时递归更新。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它给 action-contingent world modeling 提供了清晰问题定义和短 rollout latent architecture，是 embodied world/action model 的重要 framing。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为实证主要集中于 autonomous driving planning；是否能迁移到通用机器人操作和更开放环境还有待验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>DAWN 提出 World-Action Interactive Models，认为现有 WAM 往往把 world prediction 和 action generation 并行或串行分离，忽略动作与未来世界之间的 reciprocity。</p><p>它在自动驾驶中实现一个 latent generative baseline：World Predictor 预测未来 latent world，World-Conditioned Action Denoiser 生成动作，再把动作反馈给世界预测器，在推理时递归更新。</p><p>它值得正式收录，因为它给 action-contingent world modeling 提供了清晰问题定义和短 rollout latent architecture，是 embodied world/action model 的重要 framing。</p><p>它没有更高，是因为实证主要集中于 autonomous driving planning；是否能迁移到通用机器人操作和更开放环境还有待验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>一个合理的场景演变取决于所考虑的机动，而一个好的机动又取决于场景可能如何演变。现有的世界行动模型（WAMs）在很大程度上忽略了这种互惠性，将世界预测和行动生成视为孤立的并行分支或僵化的预测-然后-规划管道。我们将这种观点形式化为世界-行动交互模型（WAIMs），并在自动驾驶中通过DAWN（Denoising Actions and World iNteractive model）实例化它，DAWN是一个简单而强大的潜在生成基线。DAWN在一个紧凑的语义潜在空间中运行，并耦合了一个世界预测器和一个世界条件行动去噪器：预测的世界假设条件化行动去噪，而去噪的行动假设被反馈以更新世界预测，从而在推理过程中递归地细化两者。DAWN不是完全消除测试时的世界演变或在像素空间中展开完整的未来，而是执行一个简短的显式潜在展开，这足以支持复杂交互场景中的长程轨迹生成。实验表明，DAWN在多个自动驾驶基准测试中实现了强大的规划性能和有利的安全相关结果。更广泛地说，我们的结果表明，交互式世界-行动生成是通向真正可操作的世界模型的原则性路径。日期：2026年5月13日 项目页面：https://cowarobot-ai.github.io/ 通讯地址：volans.liao@cowarobot.com, pengpai@cowarobot.com</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A plausible scene evolution depends on the maneuver being considered, while a good maneuver depends on how the scene may evolve. Existing World Action Models (WAMs) largely miss this reciprocity, treating world prediction and action generation as either isolated parallel branches or rigid predict-then-plan pipelines. We formalize this perspective as World-Action Interactive Models (WAIMs), and instantiate it in autonomous driving with DAWN (Denoising Actions and World iNteractive model), a simple yet strong latent generative baseline. DAWN operates in a compact semantic latent space and couples a World Predictor with a World-Conditioned Action Denoiser: the predicted world hypothesis conditions action denoising, while the denoised action hypothesis is fed back to update the world prediction, so that both are recursively refined during inference. Rather than eliminating test-time world evolution altogether or rolling out the full future in pixel space, DAWN performs a short explicit latent rollout that is sufficient to support long-horizon trajectory generation in complex interactive scenes. Experiments show that DAWN achieves strong planning performance and favorable safety-related results across multiple autonomous driving benchmarks. More broadly, our results suggest that interactive world-action generation is a principled path toward truly actionable world models. Date: May 13, 2026 Project Page: https://cowarobot-ai.github.io/ Correspondence: volans.liao@cowarobot.com, pengpai@cowarobot.com</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513a281dawnwa,
+  title = {The DAWN of World-Action Interactive Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.11550.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a281-dawn-waim/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The DAWN of World-Action Interactive Models. https://arxiv.org/pdf/2605.11550.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.11550.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.11550" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

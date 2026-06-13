@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EvoSkill: Automated Skill Discovery for Multi-Agent Systems | DAST Papers</title>
+    <meta name="description" content="EvoSkill addresses a real limitation in coding and tool-using agents: general-purpose LLM flexibility does not automatically produce durable domain expertise. Prior work often relied on hand-written s" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a103-evoskill-multi-agent-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EvoSkill: Automated Skill Discovery for Multi-Agent Systems" />
+    <meta property="og:description" content="EvoSkill addresses a real limitation in coding and tool-using agents: general-purpose LLM flexibility does not automatically produce durable domain expertise. Prior work often relied on hand-written s" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a103-evoskill-multi-agent-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EvoSkill: Automated Skill Discovery for Multi-Agent Systems" />
+    <meta name="twitter:description" content="EvoSkill addresses a real limitation in coding and tool-using agents: general-purpose LLM flexibility does not automatically produce durable domain expertise. Prior work often relied on hand-written s" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EvoSkill: Automated Skill Discovery for Multi-Agent Systems</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-03</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.02766" target="_blank" rel="noopener noreferrer">2603.02766</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>EvoSkill addresses a real limitation in coding and tool-using agents: general-purpose LLM flexibility does not automatically produce durable domain expertise. Prior work often relied on hand-written skills or on evolutionary optimization of low-level prompts and code fragments that remained tightly coupled to a particular model or benchmark.</dd></div><div><dt>方法/机制</dt><dd>The paper’s core contribution is to move optimization up to the skill level. EvoSkill analyzes failure trajectories, proposes new skills or edits to existing ones, and materializes them into structured reusable skill folders while keeping the underlying model frozen. A Pareto frontier over agent programs governs retention, so only skills that improve held-out validation performance survive. This makes skill discovery a persistent external capability-building loop rather than a one-off prompt rewrite.</dd></div><div><dt>结果/证据</dt><dd>This belongs in the repository because it sits directly on the capability-extension line that already includes MetaClaw, Trace2Skill, SkillRouter, and the practical memory/skill tracks. What makes EvoSkill worth collecting is that it does not just distill local traces; it explicitly discovers, edits, and selects reusable skills with cross-task transfer evidence, including zero-shot transfer from SealQA-evolved skills to BrowseComp.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the evidence is still limited to a small set of benchmarks and an arXiv-stage system, and the skill-evolution line remains crowded with nearby variants. The gains are meaningful and the abstraction is strong, but it is not yet clear that EvoSkill is the dominant reference for long-term agent skill evolution rather than one strong entry in that cluster.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>EvoSkill addresses a real limitation in coding and tool-using agents: general-purpose LLM flexibility does not automatically produce durable domain expertise. Prior work often relied on hand-written skills or on evolutionary optimization of low-level prompts and code fragments that remained tightly coupled to a particular model or benchmark.</p><p>The paper’s core contribution is to move optimization up to the skill level. EvoSkill analyzes failure trajectories, proposes new skills or edits to existing ones, and materializes them into structured reusable skill folders while keeping the underlying model frozen. A Pareto frontier over agent programs governs retention, so only skills that improve held-out validation performance survive. This makes skill discovery a persistent external capability-building loop rather than a one-off prompt rewrite.</p><p>This belongs in the repository because it sits directly on the capability-extension line that already includes MetaClaw, Trace2Skill, SkillRouter, and the practical memory/skill tracks. What makes EvoSkill worth collecting is that it does not just distill local traces; it explicitly discovers, edits, and selects reusable skills with cross-task transfer evidence, including zero-shot transfer from SealQA-evolved skills to BrowseComp.</p><p>It is not ranked higher because the evidence is still limited to a small set of benchmarks and an arXiv-stage system, and the skill-evolution line remains crowded with nearby variants. The gains are meaningful and the abstraction is strong, but it is not yet clear that EvoSkill is the dominant reference for long-term agent skill evolution rather than one strong entry in that cluster.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>EvoSkill: 多智能体系统的自动化技能发现。编码智能体正越来越多地被用作通用问题解决器，但其灵活性本身并不能赋予其执行专业任务所需的领域专业知识。最近的研究通过智能体技能解决了这个问题：可重用的工作流程和代码，它们增强了智能体的领域特定能力。目前大多数技能都是手工制作的，现有的进化方法优化的是与特定模型和任务紧密耦合的低级工件（例如提示和代码）。我们引入了EvoSkill，这是一个自进化的框架，它通过迭代失败分析自动发现和完善智能体技能。EvoSkill分析执行失败，提出新技能或对现有技能进行编辑，并将其具体化为结构化的、可重用的技能文件夹。智能体程序的帕累托前沿控制着选择，仅保留那些在底层模型保持不变的情况下能提高保留验证性能的技能。我们在两个基准测试上评估了EvoSkill：OfficeQA，一个基于美国财政部数据的基础推理基准，EvoSkill将其精确匹配准确率提高了7.3%（60.6% → 67.9%）；以及SealQA，一个带有噪声检索的搜索增强型问答基准，EvoSkill在此基准上实现了12.1%的提升（26.6% → 38.7%）。我们还研究了在某个任务上进化的技能向另一个任务的零样本迁移能力；特别是：从SealQA进化的技能零样本迁移到BrowseComp，在不进行修改的情况下将准确率提高了5.3%，这表明技能层面的优化产生了超越训练任务的可迁移能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Coding agents are increasingly used as general-purpose problem solvers, but their flexibility does not by itself confer the domain expertise needed for specialized tasks. Recent work addresses this through agent skills: reusable workflows, and code, that augment agents with domain-specific capabilities. Most skills today are hand-crafted, and existing evolutionary approaches optimize low-level artifacts (e.g. prompts &amp; code) that are tightly coupled to specific models and tasks. We introduce EvoSkill, a self-evolving framework that automatically discovers and refines agent skills through iterative failure analysis. EvoSkill analyzes execution failures, proposes new skills or edits to existing ones, and materializes them into structured, reusable skill folders. A Pareto frontier of agent programs governs selection, retaining only skills that improve held-out validation performance while the underlying model remains frozen. We evaluate EvoSkill on two benchmarks: OfficeQA, a grounded reasoning benchmark over U.S. Treasury data, where it improves exact-match accuracy by 7.3% (60.6% → 67.9%); and SealQA, a search-augmented QA benchmark with noisy retrieval, where it yields a 12.1% gain (26.6% → 38.7%). We also investigate the zero-shot transfer capabilties of skills evolved on one task to the other; in particular: skills evolved from SealQA transfers zero-shot to BrowseComp, improving accuracy by 5.3% without modification demonstrating that skill-level optimization produces transferable capabilities beyond the training task.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260303a103evoski,
+  title = {EvoSkill: Automated Skill Discovery for Multi-Agent Systems},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.02766.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a103-evoskill-multi-agent-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EvoSkill: Automated Skill Discovery for Multi-Agent Systems. https://arxiv.org/pdf/2603.02766.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.02766.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

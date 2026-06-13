@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI | DAST Papers</title>
+    <meta name="description" content="GeoFMs 发展很快，但评测长期缺少统一协议，结果通常停留在单数据集分数对比，难以回答模型究竟具备哪些稳定能力。对下游用户来说，这比单次 leaderboard 排名更关键。
+
+GEO-Bench-2 提供了覆盖分类、分割、回归、检测和实例分割的 19 个许可友好数据集，并引入 capability groups，把共享分辨率、波段、时序等特征的数据集归到同一能力维度。论文同时给出 prescr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/w5-geo-bench-2-geospatial-ai/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI" />
+    <meta property="og:description" content="GeoFMs 发展很快，但评测长期缺少统一协议，结果通常停留在单数据集分数对比，难以回答模型究竟具备哪些稳定能力。对下游用户来说，这比单次 leaderboard 排名更关键。
+
+GEO-Bench-2 提供了覆盖分类、分割、回归、检测和实例分割的 19 个许可友好数据集，并引入 capability groups，把共享分辨率、波段、时序等特征的数据集归到同一能力维度。论文同时给出 prescr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/w5-geo-bench-2-geospatial-ai/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI" />
+    <meta name="twitter:description" content="GeoFMs 发展很快，但评测长期缺少统一协议，结果通常停留在单数据集分数对比，难以回答模型究竟具备哪些稳定能力。对下游用户来说，这比单次 leaderboard 排名更关键。
+
+GEO-Bench-2 提供了覆盖分类、分割、回归、检测和实例分割的 19 个许可友好数据集，并引入 capability groups，把共享分辨率、波段、时序等特征的数据集归到同一能力维度。论文同时给出 prescr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI</h1>
+          <p class="subtitle">天气、气候与地球系统 · 发表：2025-11-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">天气、气候与地球系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.15658" target="_blank" rel="noopener noreferrer">2511.15658</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>GeoFMs 发展很快，但评测长期缺少统一协议，结果通常停留在单数据集分数对比，难以回答模型究竟具备哪些稳定能力。对下游用户来说，这比单次 leaderboard 排名更关键。</dd></div><div><dt>方法/机制</dt><dd>GEO-Bench-2 提供了覆盖分类、分割、回归、检测和实例分割的 19 个许可友好数据集，并引入 capability groups，把共享分辨率、波段、时序等特征的数据集归到同一能力维度。论文同时给出 prescriptive yet flexible 的评测协议，使公平比较与 adaptation 研究可以在同一基线上展开。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是又一个 geospatial benchmark 拼盘，而是在重写 geospatial AI 的评价语言：从单任务 performance 转向 capability-oriented evaluation。对地理空间基础模型、遥感多模态模型和场景化下游部署，这都是更耐久的参考框架。</dd></div><div><dt>收录价值</dt><dd>它仍然主要服务于 geospatial AI 这一垂直方向，尚未达到会重塑更广多模态或 foundation-model 评测范式的程度。因此我把它定为 breakthrough，而不是更高。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>GeoFMs 发展很快，但评测长期缺少统一协议，结果通常停留在单数据集分数对比，难以回答模型究竟具备哪些稳定能力。对下游用户来说，这比单次 leaderboard 排名更关键。</p><p>GEO-Bench-2 提供了覆盖分类、分割、回归、检测和实例分割的 19 个许可友好数据集，并引入 capability groups，把共享分辨率、波段、时序等特征的数据集归到同一能力维度。论文同时给出 prescriptive yet flexible 的评测协议，使公平比较与 adaptation 研究可以在同一基线上展开。</p><p>这篇工作值得收录，因为它不是又一个 geospatial benchmark 拼盘，而是在重写 geospatial AI 的评价语言：从单任务 performance 转向 capability-oriented evaluation。对地理空间基础模型、遥感多模态模型和场景化下游部署，这都是更耐久的参考框架。</p><p>它仍然主要服务于 geospatial AI 这一垂直方向，尚未达到会重塑更广多模态或 foundation-model 评测范式的程度。因此我把它定为 breakthrough，而不是更高。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>GEO-Bench-2：从性能到能力，重新思考地理空间AI中的评估。地理空间基础模型（GeoFMs）正在改变地球观测（EO），但评估缺乏标准化协议。GEO-Bench-2通过一个涵盖分类、分割、回归、目标检测和实例分割的综合框架来解决这一问题，该框架涉及19个许可数据集。我们引入了“能力”组，用于根据共享共同特征（例如，分辨率、波段、时间性）的数据集对模型进行排名。这使用户能够识别哪些模型在每种能力上表现出色，并确定未来工作中哪些领域需要改进。为了支持公平比较和方法创新，我们定义了一个规范而灵活的评估协议。这不仅确保了基准测试的一致性，还促进了对模型适应策略的研究，这是推动GeoFMs用于下游任务的一个关键且开放的挑战。我们的实验表明，没有单一模型在所有任务中占据主导地位，这证实了架构设计和预训练期间所做选择的特异性。虽然在自然图像上预训练的模型（ConvNext ImageNet, DINO V3）在高分辨率任务上表现出色，但地球观测专用模型（TerraMind, Prithvi和Clay）在农业和灾害响应等多光谱应用中超越了它们。这些发现表明，最佳模型选择取决于任务要求。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Geospatial Foundation Models (GeoFMs) are transforming Earth Observation (EO), but evaluation lacks standardized protocols. GEO-Bench-2 addresses this with a comprehensive framework spanning classification, segmentation, regression, object detection, and instance segmentation across 19 permissively-licensed datasets. We introduce ”capability” groups to rank models on datasets that share common characteristics (e.g., resolution, bands, temporality). This enables users to identify which models excel in each capability and determine which areas need improvement in future work. To support both fair comparison and methodological innovation, we define a prescriptive yet flexible evaluation protocol. This not only ensures consistency in benchmarking but also facilitates research into model adaptation strategies, a key and open challenge in advancing GeoFMs for downstream tasks. Our experiments show that no single model dominates across all tasks, confirming the specificity of the choices made during architecture design and pretraining. While models pretrained on natural images (ConvNext ImageNet, DINO V3) excel on high-resolution tasks, EO-specific models (TerraMind, Prithvi, and Clay) outperform them on multispectral applications such as agriculture and disaster response. These findings demonstrate that optimal model choice depends on task requirements,</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251119w5geobench,
+  title = {GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.15658v2.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/w5-geo-bench-2-geospatial-ai/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI. https://arxiv.org/pdf/2511.15658v2.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/w3-archesweathergen-probabilistic-forecasting/">
+              <span>ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning</span>
+              <small>天气、气候与地球系统 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/w4-ai-weather-pipeline-theory/">
+              <span>The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline</span>
+              <small>天气、气候与地球系统 · 2026-04-01</small>
+            </a>
+            <a class="related-item" href="../../papers/w6-geosolver-remote-sensing-reasoning/">
+              <span>GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision</span>
+              <small>天气、气候与地球系统 · 2026-03-10</small>
+            </a>
+            <a class="related-item" href="../../papers/w1-ivsr-wildfire-digital-twin/">
+              <span>Digital Twin and Agentic AI for Wild Fire Disaster Management: Intelligent Virtual Situation Room</span>
+              <small>天气、气候与地球系统 · 2026-02-09</small>
+            </a>
+            <a class="related-item" href="../../papers/w3-zephyrus-weather-science/">
+              <span>Zephyrus: An Agentic Framework for Weather Science</span>
+              <small>天气、气候与地球系统 · 2025-10-05</small>
+            </a>
+            <a class="related-item" href="../../papers/w2-weathernext2-fgn/">
+              <span>Skillful joint probabilistic weather forecasting from marginals</span>
+              <small>天气、气候与地球系统 · 2025-06-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.15658v2.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

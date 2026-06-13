@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文面向长视距 Web agent 的上下文容量瓶颈。现有 context management 往往在整个轨迹中固定使用某一种压缩、裁剪或保留策略，但信息检索任务的状态会动态变化：早期更需要探索效率，后期更需要终局精度，单一静态策略很难同时满足。
+
+AgentSwing 先用概率框架把长视距成功拆成 search efficiency 和 terminal precision 两个维度，再提" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a186-agentswing-context-routing/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents" />
+    <meta property="og:description" content="这篇论文面向长视距 Web agent 的上下文容量瓶颈。现有 context management 往往在整个轨迹中固定使用某一种压缩、裁剪或保留策略，但信息检索任务的状态会动态变化：早期更需要探索效率，后期更需要终局精度，单一静态策略很难同时满足。
+
+AgentSwing 先用概率框架把长视距成功拆成 search efficiency 和 terminal precision 两个维度，再提" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a186-agentswing-context-routing/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents" />
+    <meta name="twitter:description" content="这篇论文面向长视距 Web agent 的上下文容量瓶颈。现有 context management 往往在整个轨迹中固定使用某一种压缩、裁剪或保留策略，但信息检索任务的状态会动态变化：早期更需要探索效率，后期更需要终局精度，单一静态策略很难同时满足。
+
+AgentSwing 先用概率框架把长视距成功拆成 search efficiency 和 terminal precision 两个维度，再提" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.27490" target="_blank" rel="noopener noreferrer">2603.27490</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文面向长视距 Web agent 的上下文容量瓶颈。现有 context management 往往在整个轨迹中固定使用某一种压缩、裁剪或保留策略，但信息检索任务的状态会动态变化：早期更需要探索效率，后期更需要终局精度，单一静态策略很难同时满足。</dd></div><div><dt>方法/机制</dt><dd>AgentSwing 先用概率框架把长视距成功拆成 search efficiency 和 terminal precision 两个维度，再提出 state-aware adaptive parallel context management routing。系统在触发点并行展开多个 context-managed 分支，用 lookahead routing 选择最有前景的后续轨迹，从而让 agent 在不同阶段自适应切换上下文处理策略。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它把 agent context engineering 从静态压缩技巧提升为可分析、可路由的决策问题，直接服务于 deep research、长网页搜索和多轮信息搜集 agent。论文显示它能在不同基准和 agent backbone 上超过强静态策略，并以更少交互轮数达到相近或更高上限。</dd></div><div><dt>收录价值</dt><dd>局限在于它需要并行分支和 lookahead，推理成本与实现复杂度高于单一路径 agent；此外结果仍集中在 Web 信息搜索任务。它因此是长视距 agent context routing 的突破性框架，而不是完整的通用 agent memory 系统。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文面向长视距 Web agent 的上下文容量瓶颈。现有 context management 往往在整个轨迹中固定使用某一种压缩、裁剪或保留策略，但信息检索任务的状态会动态变化：早期更需要探索效率，后期更需要终局精度，单一静态策略很难同时满足。</p><p>AgentSwing 先用概率框架把长视距成功拆成 search efficiency 和 terminal precision 两个维度，再提出 state-aware adaptive parallel context management routing。系统在触发点并行展开多个 context-managed 分支，用 lookahead routing 选择最有前景的后续轨迹，从而让 agent 在不同阶段自适应切换上下文处理策略。</p><p>它值得收录，是因为它把 agent context engineering 从静态压缩技巧提升为可分析、可路由的决策问题，直接服务于 deep research、长网页搜索和多轮信息搜集 agent。论文显示它能在不同基准和 agent backbone 上超过强静态策略，并以更少交互轮数达到相近或更高上限。</p><p>局限在于它需要并行分支和 lookahead，推理成本与实现复杂度高于单一路径 agent；此外结果仍集中在 Web 信息搜索任务。它因此是长视距 agent context routing 的突破性框架，而不是完整的通用 agent memory 系统。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AgentSwing：面向长周期网络代理的自适应并行上下文管理路由。随着大型语言模型（LLMs）演变为用于长周期信息检索的自主代理，管理有限的上下文容量已成为一个关键瓶颈。现有的上下文管理方法通常在整个轨迹中采用单一的固定策略。这种静态设计在某些状态下可能表现良好，但它们无法适应在长周期搜索过程中累积上下文的有用性和可靠性演变。为了形式化这一挑战，我们引入了一个概率框架，通过两个互补的维度来表征长周期成功：搜索效率和终端精度。基于这一视角，我们提出了AgentSwing，一个状态感知的自适应并行上下文管理路由框架。在每个触发点，AgentSwing并行扩展多个上下文管理的 branches，并使用前瞻路由来选择最有希望的延续。跨越不同基准和代理骨干模型的实验表明，AgentSwing始终优于强大的静态上下文管理方法，通常在交互轮次减少多达3倍的情况下达到或超越它们的性能，同时还提高了长周期网络代理的最终性能上限。除了经验上的增益，所提出的概率框架为分析和设计未来长周期代理的上下文管理策略提供了一个原则性的视角。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>As large language models (LLMs) evolve into autonomous agents for longhorizon information-seeking, managing finite context capacity has become a critical bottleneck. Existing context management methods typically commit to a single fixed strategy throughout the entire trajectory. Such static designs may work well in some states, but they cannot adapt as the usefulness and reliability of the accumulated context evolve during long-horizon search. To formalize this challenge, we introduce a probabilistic framework that characterizes longhorizon success through two complementary dimensions: search efficiency and terminal precision. Building on this perspective, we propose AgentSwing, a state-aware adaptive parallel context management routing framework. At each trigger point, AgentSwing expands multiple context-managed branches in parallel and uses lookahead routing to select the most promising continuation. Experiments across diverse benchmarks and agent backbones show that AgentSwing consistently outperforms strong static context management methods, often matching or exceeding their performance with up to 3× fewer interaction turns while also improving the ultimate performance ceiling of long-horizon web agents. Beyond the empirical gains, the proposed probabilistic framework provides a principled lens for analyzing and designing future context management strategies for long-horizon agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260329a186agents,
+  title = {AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.27490.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a186-agentswing-context-routing/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentSwing: Adaptive Parallel Context Management Routing for Long-Horizon Web Agents. https://arxiv.org/pdf/2603.27490.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.27490.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

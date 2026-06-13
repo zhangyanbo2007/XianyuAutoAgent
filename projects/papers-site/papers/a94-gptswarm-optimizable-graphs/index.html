@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GPTSwarm: Language Agents as Optimizable Graphs | DAST Papers</title>
+    <meta name="description" content="GPTSwarm proposes a clean abstraction for language-agent systems: treat them as computational graphs whose nodes are LM calls or multimodal operations and whose edges define information flow. This mov" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a94-gptswarm-optimizable-graphs/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GPTSwarm: Language Agents as Optimizable Graphs" />
+    <meta property="og:description" content="GPTSwarm proposes a clean abstraction for language-agent systems: treat them as computational graphs whose nodes are LM calls or multimodal operations and whose edges define information flow. This mov" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a94-gptswarm-optimizable-graphs/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GPTSwarm: Language Agents as Optimizable Graphs" />
+    <meta name="twitter:description" content="GPTSwarm proposes a clean abstraction for language-agent systems: treat them as computational graphs whose nodes are LM calls or multimodal operations and whose edges define information flow. This mov" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GPTSwarm: Language Agents as Optimizable Graphs</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2024-07-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-07-08</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>GPTSwarm proposes a clean abstraction for language-agent systems: treat them as computational graphs whose nodes are LM calls or multimodal operations and whose edges define information flow. This moves agent design away from a bag of prompt tricks toward an explicit, compositional systems interface.</dd></div><div><dt>方法/机制</dt><dd>The key contribution is not only the graph view itself, but the idea that these graphs can be optimized automatically at two levels: node optimization for prompts and edge optimization for orchestration. That makes prompt refinement and agent-topology search part of the same programmable object.</dd></div><div><dt>结果/证据</dt><dd>This belongs in the repository because it provides one of the most durable conceptual bridges between prompt engineering, multi-agent coordination, and workflow optimization. Many later automatic agent-design and workflow-search papers are easier to interpret as descendants or extensions of this graph-based view.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the paper is still an early foundation for the workflow-optimization line rather than the final dominant formulation. But as a reusable abstraction for agent design and automatic improvement, it clearly rises above a routine method paper.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>GPTSwarm proposes a clean abstraction for language-agent systems: treat them as computational graphs whose nodes are LM calls or multimodal operations and whose edges define information flow. This moves agent design away from a bag of prompt tricks toward an explicit, compositional systems interface.</p><p>The key contribution is not only the graph view itself, but the idea that these graphs can be optimized automatically at two levels: node optimization for prompts and edge optimization for orchestration. That makes prompt refinement and agent-topology search part of the same programmable object.</p><p>This belongs in the repository because it provides one of the most durable conceptual bridges between prompt engineering, multi-agent coordination, and workflow optimization. Many later automatic agent-design and workflow-search papers are easier to interpret as descendants or extensions of this graph-based view.</p><p>It is not ranked higher because the paper is still an early foundation for the workflow-optimization line rather than the final dominant formulation. But as a reusable abstraction for agent design and automatic improvement, it clearly rises above a routine method paper.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过少量示例（Kojima et al., 2022; Brown et al., 2020）来提示它们。最近的方法以结构化的方式提示LLM，例如思维链（COT）（Wei et al., 2022）、ReAct（Yao et al., 2022）、思维树（TOT）（Yao et al., 2023）、Reflexion（Shinn et al., 2023）和思维图（GOT）（Besta et al., 2023），以改进基于文本的推理。AutoGPT（Torantulino et al., 2023）、BabyAGI（Nakajima, 2023）、LangChain（Chase, 2022）和Llama-index（Liu, 2022）等单智能体应用利用LLM实现各种功能，包括工具使用、函数调用和具身动作。在多智能体框架中（Zeng et al., 2022; Zhuge et al., 2023），多个LLM扮演不同的角色（Li et al., 2023; Park et al., 2023; Qian et al., 2023; Wu et al., 2023），通过自然语言进行交流并共同解决给定任务。这种方法通常优于单智能体，因为它利用了各种LLM智能体的专业化（Hong et al., 2023）。不幸的是，这也导致了日益不同和分散的代码库，需要大量的人工工程来定义提示方案和智能体的工作流程。已经提出了各种人工设计的提示工程技术来改进基于大型语言模型（LLM）的问题解决器，产生了许多分散的代码库。我们通过将基于LLM的智能体描述为计算图来统一这些方法。节点实现处理多模态数据或查询LLM的功能，边描述操作之间的信息流。图可以递归地组合成更大的复合图，代表智能体间协作的层次结构（其中边连接不同智能体的操作）。我们新颖的自动图优化器（1）优化节点级LLM提示（节点优化）和（2）通过改变图连接性来改进智能体编排（边优化）。实验表明，我们的框架可以用于高效地开发、集成和自动改进各种LLM智能体。代码可在此处找到。在“心智社会”（SOM）（Minsky, 1988; Zhuge et al., 2023）中，更高层次的智能源于更简单和模块化认知组件的组合。受SOM的启发，我们通过图表示来描述语言智能体系统。查询LLM并利用外部工具的语言智能体被建模为计算图，其中每个节点专用于特定功能，而边定义了输入如何在节点之间处理的拓扑结构，这反映了先前研究中的提示方案。群体被定义为一个复合图，其中每个子图代表一个协作智能体。这创建了更深层次的智能层次结构。智能体图结合了基本的LLM操作（Kennedy, 2006; Nepusz &amp; Vicsek, 2013），而群体图包含代表智能体的子图。COT（Wei et al., 2022）、TOT（Yao et al., 2023）和Self-Consistency（Wang et al., 2022）等方法都可以通过我们的图来表示。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>them with few-shot examples (Kojima et al., 2022; Brown et al., 2020). Recent methods prompt LLMs in a structured way, such as chain of thought (COT) (Wei et al., 2022), ReAct (Yao et al., 2022), tree of thought (TOT) (Yao et al., 2023), Reflexion (Shinn et al., 2023), and Graph of Thought (GOT) (Besta et al., 2023), to improve textbased reasoning. Single agent applications such as AutoGPT (Torantulino et al., 2023), BabyAGI (Nakajima, 2023), LangChain (Chase, 2022), and Llama-index (Liu, 2022) utilize LLMs for various functionalities, including tool usage, function calling, and embodied actions. In multi-agent frameworks (Zeng et al., 2022; Zhuge et al., 2023) several LLMs take on different roles (Li et al., 2023; Park et al., 2023; Qian et al., 2023; Wu et al., 2023) to communicate in natural language and collectively solve a given task. This approach often outperforms single agents, exploiting the specialization (Hong et al., 2023) of various LLM agents. Unfortunately, it also leads to increasingly different and disparate code bases that require a lot of human engineering to define prompting schemes and the workflow of agents. Various human-designed prompt engineering techniques have been proposed to improve problem solvers based on Large Language Models (LLMs), yielding many disparate code bases. We unify these approaches by describing LLM-based agents as computational graphs. The nodes implement functions to process multimodal data or query LLMs, and the edges describe the information flow between operations. Graphs can be recursively combined into larger composite graphs representing hierarchies of inter-agent collaboration (where edges connect operations of different agents). Our novel automatic graph optimizers (1) refine node-level LLM prompts (node optimization) and (2) improve agent orchestration by changing graph connectivity (edge optimization). Experiments demonstrate that our framework can be used to efficiently develop, integrate, and automatically improve various LLM agents. The code can be found here. In a “society of mind” (SOM) (Minsky, 1988; Zhuge et al., 2023), higher-level intelligence emerges from the combination of simpler and modular cognitive components. Inspired by SOMs, we describe language agent systems through graph representations. Language agents querying LLMs and utilizing external tools are modeled as computational graphs where each node is dedicated to a specific function, while the edges define a topology of how inputs are processed across nodes, mirroring the prompting schemes in prior studies. A swarm is defined as a composite graph, where each subgraph represents a collaborative agent. This creates a deeper hierarchy of intelligence. Agent graphs combine basic LLM operations (Kennedy, 2006; Nepusz &amp; Vicsek, 2013), and swarm graphs contain subgraphs representing agents. Approaches such as COT (Wei et al., 2022), TOT (Yao et al., 2023), and Self-Consistency (Wang et al., 2022) can be represented by our graphs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240708a94gptswar,
+  title = {GPTSwarm: Language Agents as Optimizable Graphs},
+  year = {2024},
+  url = {https://raw.githubusercontent.com/mlresearch/v235/main/assets/zhuge24a/zhuge24a.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a94-gptswarm-optimizable-graphs/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). GPTSwarm: Language Agents as Optimizable Graphs. https://raw.githubusercontent.com/mlresearch/v235/main/assets/zhuge24a/zhuge24a.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://raw.githubusercontent.com/mlresearch/v235/main/assets/zhuge24a/zhuge24a.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://raw.githubusercontent.com/mlresearch/v235/main/assets/zhuge24a/zhuge24a.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

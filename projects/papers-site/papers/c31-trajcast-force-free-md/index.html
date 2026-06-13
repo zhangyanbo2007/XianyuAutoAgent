@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Force-free molecular dynamics through autoregressive equivariant networks | DAST Papers</title>
+    <meta name="description" content="大多数 machine-learning molecular dynamics 仍然受制于一个老瓶颈：哪怕势能面学得很好，数值积分还是把时间步长卡得很小。TrajCast 的关键改写是直接预测位置和速度更新，从而把‘先算力、再积分’这条传统链路绕开。
+
+它的价值不只是快，而是给出了 force-free、autoregressive、equivariant 的统一接口，并在小分子、晶体和液体上都保" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c31-trajcast-force-free-md/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Force-free molecular dynamics through autoregressive equivariant networks" />
+    <meta property="og:description" content="大多数 machine-learning molecular dynamics 仍然受制于一个老瓶颈：哪怕势能面学得很好，数值积分还是把时间步长卡得很小。TrajCast 的关键改写是直接预测位置和速度更新，从而把‘先算力、再积分’这条传统链路绕开。
+
+它的价值不只是快，而是给出了 force-free、autoregressive、equivariant 的统一接口，并在小分子、晶体和液体上都保" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c31-trajcast-force-free-md/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Force-free molecular dynamics through autoregressive equivariant networks" />
+    <meta name="twitter:description" content="大多数 machine-learning molecular dynamics 仍然受制于一个老瓶颈：哪怕势能面学得很好，数值积分还是把时间步长卡得很小。TrajCast 的关键改写是直接预测位置和速度更新，从而把‘先算力、再积分’这条传统链路绕开。
+
+它的价值不只是快，而是给出了 force-free、autoregressive、equivariant 的统一接口，并在小分子、晶体和液体上都保" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Force-free molecular dynamics through autoregressive equivariant networks</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-05-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-05</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01227-7" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01227-7</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>大多数 machine-learning molecular dynamics 仍然受制于一个老瓶颈：哪怕势能面学得很好，数值积分还是把时间步长卡得很小。TrajCast 的关键改写是直接预测位置和速度更新，从而把‘先算力、再积分’这条传统链路绕开。</dd></div><div><dt>方法/机制</dt><dd>它的价值不只是快，而是给出了 force-free、autoregressive、equivariant 的统一接口，并在小分子、晶体和液体上都保持了结构、动力学和能量性质的一致性。对 AI-for-science 来说，这是明显的 simulation workflow primitive。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它触及的是分子模拟的基本 operating pattern：如果能在更大步长上保持物理有效性，探索尺度和实验设计速度都会被直接改写。它对材料发现和物理现象探索都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前最强证据仍集中在分子与材料模拟范围内。force-free autoregressive dynamics 是否能成为更广模拟科学的默认范式，还需要更多体系证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>大多数 machine-learning molecular dynamics 仍然受制于一个老瓶颈：哪怕势能面学得很好，数值积分还是把时间步长卡得很小。TrajCast 的关键改写是直接预测位置和速度更新，从而把‘先算力、再积分’这条传统链路绕开。</p><p>它的价值不只是快，而是给出了 force-free、autoregressive、equivariant 的统一接口，并在小分子、晶体和液体上都保持了结构、动力学和能量性质的一致性。对 AI-for-science 来说，这是明显的 simulation workflow primitive。</p><p>这篇工作值得正式收录，因为它触及的是分子模拟的基本 operating pattern：如果能在更大步长上保持物理有效性，探索尺度和实验设计速度都会被直接改写。它对材料发现和物理现象探索都有直接外溢。</p><p>它没有更高，是因为当前最强证据仍集中在分子与材料模拟范围内。force-free autoregressive dynamics 是否能成为更广模拟科学的默认范式，还需要更多体系证明。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>分子动力学模拟在科学研究中发挥着至关重要的作用。然而，其计算成本常常限制了可探索的时间尺度和系统大小。大多数数据驱动的努力都集中在降低求解运动方程所需的精确原子间作用力的计算成本上。然而，尽管取得了成功，这些机器学习原子间势仍然受限于小的时间步长。在这项工作中，我们引入了TrajCast，一个基于自回归等变消息传递网络的可迁移且数据高效的框架，它直接更新原子位置和速度，从而解除了传统数值积分所施加的限制。我们在各种系统（包括小分子、晶体材料和本体液体）上对我们的框架进行了基准测试，结果表明其在结构、动力学和能量特性方面与参考分子动力学模拟表现出极好的一致性。此外，我们展示了TrajCast能够以零样本方式泛化到相空间的未见区域，在训练数据之外的亚稳态平衡和非平衡态区域生成具有物理意义的系综，且不影响准确性。根据系统不同，TrajCast允许的预测间隔比传统MD时间步长大30倍，为拥有4,000多个原子的固体每天生成超过15纳秒的轨迹数据。通过实现高效、大规模和长时间尺度的模拟，TrajCast可以加速材料发现，并探索传统模拟和实验无法触及的物理现象。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Molecular dynamics simulations play a crucial role in scientific research. Yet their computational cost often limits the timescales and system sizes that can be explored. Most data-driven efforts have focused on reducing the computational cost of the accurate interatomic forces required to solve the equations of motion. However, despite their success, these machine-learning interatomic potentials are still bound to small time steps. In this work, we introduce TrajCast, a transferable and data-efficient framework based on autoregressive equivariant message-passing networks, that directly updates the atomic positions and velocities, lifting the constraints imposed by traditional numerical integration. We benchmark our framework across various systems, including a small molecule, crystalline material and bulk liquid, demonstrating excellent agreement with reference molecular dynamics simulations for structural, dynamical and energetic properties. Moreover, we show that TrajCast can generalize in a zero-shot manner to unseen regions of phase space, producing physically meaningful ensembles in metastable equilibrium and out-of-equilibrium regimes beyond the training data, without compromising accuracy. Depending on the system, TrajCast allows for forecast intervals up to 30× larger than traditional MD time steps, generating over 15 ns of trajectory data per day for a solid with more than 4,000 atoms. By enabling efficient, large-scale simulations over extended timescales, TrajCast can accelerate materials discovery and explore physical phenomena beyond the reach of traditional simulations and experiments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260505c31trajcas,
+  title = {Force-free molecular dynamics through autoregressive equivariant networks},
+  year = {2026},
+  url = {https://www.nature.com/articles/s42256-026-01227-7.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c31-trajcast-force-free-md/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Force-free molecular dynamics through autoregressive equivariant networks. https://www.nature.com/articles/s42256-026-01227-7.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-026-01227-7.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning | DAST Papers</title>
+    <meta name="description" content="agentic multimodal LLM 的核心瓶颈不是单轮模型前向，而是 perception、reasoning、tool-calling 反复串行导致的 agentic depth。只要还依赖昂贵视觉工具链逐步展开，多模态 agent 的延迟和并发吞吐都会被顺序依赖拖死。SpecEyes 针对的是这个系统级瓶颈。
+
+它提出一种 speculative acceleration 框架：用轻" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm28-speceyes-agentic-mllm-acceleration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning" />
+    <meta property="og:description" content="agentic multimodal LLM 的核心瓶颈不是单轮模型前向，而是 perception、reasoning、tool-calling 反复串行导致的 agentic depth。只要还依赖昂贵视觉工具链逐步展开，多模态 agent 的延迟和并发吞吐都会被顺序依赖拖死。SpecEyes 针对的是这个系统级瓶颈。
+
+它提出一种 speculative acceleration 框架：用轻" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm28-speceyes-agentic-mllm-acceleration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning" />
+    <meta name="twitter:description" content="agentic multimodal LLM 的核心瓶颈不是单轮模型前向，而是 perception、reasoning、tool-calling 反复串行导致的 agentic depth。只要还依赖昂贵视觉工具链逐步展开，多模态 agent 的延迟和并发吞吐都会被顺序依赖拖死。SpecEyes 针对的是这个系统级瓶颈。
+
+它提出一种 speculative acceleration 框架：用轻" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23483" target="_blank" rel="noopener noreferrer">2603.23483</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>agentic multimodal LLM 的核心瓶颈不是单轮模型前向，而是 perception、reasoning、tool-calling 反复串行导致的 agentic depth。只要还依赖昂贵视觉工具链逐步展开，多模态 agent 的延迟和并发吞吐都会被顺序依赖拖死。SpecEyes 针对的是这个系统级瓶颈。</dd></div><div><dt>方法/机制</dt><dd>它提出一种 speculative acceleration 框架：用轻量、tool-free MLLM 作为 speculative planner 预测执行轨迹，提前判断哪些昂贵视觉工具链可以被终止；同时用 answer separability 做 cognitive gating，在没有 oracle label 的情况下调节 speculative planning；再通过 heterogeneous parallel funnel 用小模型的无状态并发去掩蔽大模型的串行执行。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于它把 speculative execution 从 token-level decoding 推进到了 agentic multimodal workflow 级别。对于 computer-use、视觉问答代理、以及多模态 tool-using systems，它提供的是一条可复用的系统优化接口，而不只是某个 benchmark 上的特化 trick。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，因为验证主要集中在 V* Bench、HR-Bench 和 POPE 一类评测，离更复杂真实 GUI / robotics / embodied tool-use 环境还有距离。它能否成为通用 agentic MLLM serving blueprint，还要看更广部署验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>agentic multimodal LLM 的核心瓶颈不是单轮模型前向，而是 perception、reasoning、tool-calling 反复串行导致的 agentic depth。只要还依赖昂贵视觉工具链逐步展开，多模态 agent 的延迟和并发吞吐都会被顺序依赖拖死。SpecEyes 针对的是这个系统级瓶颈。</p><p>它提出一种 speculative acceleration 框架：用轻量、tool-free MLLM 作为 speculative planner 预测执行轨迹，提前判断哪些昂贵视觉工具链可以被终止；同时用 answer separability 做 cognitive gating，在没有 oracle label 的情况下调节 speculative planning；再通过 heterogeneous parallel funnel 用小模型的无状态并发去掩蔽大模型的串行执行。</p><p>这篇工作的价值在于它把 speculative execution 从 token-level decoding 推进到了 agentic multimodal workflow 级别。对于 computer-use、视觉问答代理、以及多模态 tool-using systems，它提供的是一条可复用的系统优化接口，而不只是某个 benchmark 上的特化 trick。</p><p>它目前仍是 breakthrough，因为验证主要集中在 V* Bench、HR-Bench 和 POPE 一类评测，离更复杂真实 GUI / robotics / embodied tool-use 环境还有距离。它能否成为通用 agentic MLLM serving blueprint，还要看更广部署验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>代理式多模态大语言模型（MLLMs）（例如，OpenAI o3 [36] 和 Gemini Agentic Vision [9]）通过迭代的视觉工具调用实现了卓越的推理能力。然而，级联的感知、推理和工具调用循环引入了显著的顺序开销。这种开销，被称为代理深度（agentic depth），导致了过高的延迟并严重限制了系统级并发性。为此，我们提出了 SpecEyes，一个代理级推测加速框架，它打破了这一顺序瓶颈。我们的关键见解是，一个轻量级、无工具的 MLLM 可以作为推测规划器来预测执行轨迹，从而在不牺牲准确性的情况下实现昂贵工具链的提前终止。为了规范这种推测规划，我们引入了一种基于答案可分离性的认知门控机制，它量化了模型进行自我验证的置信度，而无需预言机标签。此外，我们设计了一种异构并行漏斗，它利用小型模型的无状态并发性来掩盖大型模型的有状态串行执行，从而最大化系统吞吐量。在 V* Bench、HR-Bench 和 POPE 上的大量实验表明，SpecEyes 相较于代理基线实现了 1.1 − 3.35 倍的加速，同时保持甚至提高了准确性（最高达 +6.7%），从而在并发工作负载下提升了服务吞吐量。电子邮件：Jinfa Huang jhuang90@ur.rochester.edu，Haoyu Huang huanghaoyu@stu.xmu.edu.cn 代码：github.com/MAC-AutoML/SpecEyes</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic multimodal large language models (MLLMs) (e.g., OpenAI o3 [36] and Gemini Agentic Vision [9]) achieve remarkable reasoning capabilities through iterative visual tool invocation. However, the cascaded perception, reasoning, and tool-calling loops introduce significant sequential overhead. This overhead, termed agentic depth, incurs prohibitive latency and seriously limits system-level concurrency. To this end, we propose SpecEyes, an agentic-level speculative acceleration framework that breaks this sequential bottleneck. Our key insight is that a lightweight, tool-free MLLM can serve as a speculative planner to predict the execution trajectory, enabling early termination of expensive tool chains without sacrificing accuracy. To regulate this speculative planning, we introduce a cognitive gating mechanism based on answer separability, which quantifies the model’s confidence for self-verification without requiring oracle labels. Furthermore, we design a heterogeneous parallel funnel that exploits the stateless concurrency of the small model to mask the stateful serial execution of the large model, maximizing system throughput. Extensive experiments on V* Bench, HR-Bench, and POPE demonstrate that SpecEyes achieves 1.1 − 3.35× speedup over the agentic baseline while preserving or even improving accuracy (up to +6.7%), boosting serving throughput under concurrent workloads. Email: Jinfa Huang jhuang90@ur.rochester.edu, Haoyu Huang huanghaoyu@stu.xmu.edu.cn Code: github.com/MAC-AutoML/SpecEyes</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260324mm28specey,
+  title = {SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23483.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm28-speceyes-agentic-mllm-acceleration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning. https://arxiv.org/pdf/2603.23483.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23483.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

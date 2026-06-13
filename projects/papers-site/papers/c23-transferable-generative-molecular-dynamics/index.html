@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transferable generative models bridge femtosecond to nanosecond time-step molecular dynamics | DAST Papers</title>
+    <meta name="description" content="这篇工作针对分子动力学里最核心也最顽固的瓶颈之一：传统 MD 以飞秒级步长推进，原子级细节足够好，但很难触达真正决定化学与生物功能的慢构象变化和弛豫过程。问题不是单纯把模拟再跑久一点，而是如何在不丢失物理可信度和原子分辨率的前提下，把可访问时间尺度有效拉到纳秒级甚至更高。
+
+论文提出一个可迁移的深度生成建模框架，把分子动力学的采样效率提升四个数量级，同时仍能定量恢复平衡系综和动力学弛豫过程。关键价" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c23-transferable-generative-molecular-dynamics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Transferable generative models bridge femtosecond to nanosecond time-step molecular dynamics" />
+    <meta property="og:description" content="这篇工作针对分子动力学里最核心也最顽固的瓶颈之一：传统 MD 以飞秒级步长推进，原子级细节足够好，但很难触达真正决定化学与生物功能的慢构象变化和弛豫过程。问题不是单纯把模拟再跑久一点，而是如何在不丢失物理可信度和原子分辨率的前提下，把可访问时间尺度有效拉到纳秒级甚至更高。
+
+论文提出一个可迁移的深度生成建模框架，把分子动力学的采样效率提升四个数量级，同时仍能定量恢复平衡系综和动力学弛豫过程。关键价" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c23-transferable-generative-molecular-dynamics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Transferable generative models bridge femtosecond to nanosecond time-step molecular dynamics" />
+    <meta name="twitter:description" content="这篇工作针对分子动力学里最核心也最顽固的瓶颈之一：传统 MD 以飞秒级步长推进，原子级细节足够好，但很难触达真正决定化学与生物功能的慢构象变化和弛豫过程。问题不是单纯把模拟再跑久一点，而是如何在不丢失物理可信度和原子分辨率的前提下，把可访问时间尺度有效拉到纳秒级甚至更高。
+
+论文提出一个可迁移的深度生成建模框架，把分子动力学的采样效率提升四个数量级，同时仍能定量恢复平衡系综和动力学弛豫过程。关键价" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Transferable generative models bridge femtosecond to nanosecond time-step molecular dynamics</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.07589" target="_blank" rel="noopener noreferrer">2510.07589</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作针对分子动力学里最核心也最顽固的瓶颈之一：传统 MD 以飞秒级步长推进，原子级细节足够好，但很难触达真正决定化学与生物功能的慢构象变化和弛豫过程。问题不是单纯把模拟再跑久一点，而是如何在不丢失物理可信度和原子分辨率的前提下，把可访问时间尺度有效拉到纳秒级甚至更高。</dd></div><div><dt>方法/机制</dt><dd>论文提出一个可迁移的深度生成建模框架，把分子动力学的采样效率提升四个数量级，同时仍能定量恢复平衡系综和动力学弛豫过程。关键价值不只是更快，而是它表现出对化学组成和系统规模的泛化能力，能够外推到训练中未见过、更大的肽链系统，把 generative modeling 直接接入科学模拟工作流，而不是停留在静态结构生成。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类方法明确改变了 AI for science 的工作模式：不再只是用 AI 做下游性质预测，而是让生成模型成为连接不同时间尺度模拟的核心加速层。对化学、分子建模、生物物理和更广的 scientific simulation workflow 都有明显外溢，符合仓库对 AI materially advancing scientific modeling and discovery workflow 的收录标准。</dd></div><div><dt>收录价值</dt><dd>它目前还不到更高一级，主要因为证据仍集中在分子动力学加速这一条线，虽然结果很强，但是否会成为更广泛科学模拟领域的长期标准接口还需要后续采用和跨体系验证。当前更合适的定位是一篇高质量、方法外溢明确的 breakthrough。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作针对分子动力学里最核心也最顽固的瓶颈之一：传统 MD 以飞秒级步长推进，原子级细节足够好，但很难触达真正决定化学与生物功能的慢构象变化和弛豫过程。问题不是单纯把模拟再跑久一点，而是如何在不丢失物理可信度和原子分辨率的前提下，把可访问时间尺度有效拉到纳秒级甚至更高。</p><p>论文提出一个可迁移的深度生成建模框架，把分子动力学的采样效率提升四个数量级，同时仍能定量恢复平衡系综和动力学弛豫过程。关键价值不只是更快，而是它表现出对化学组成和系统规模的泛化能力，能够外推到训练中未见过、更大的肽链系统，把 generative modeling 直接接入科学模拟工作流，而不是停留在静态结构生成。</p><p>它值得正式收录，因为这类方法明确改变了 AI for science 的工作模式：不再只是用 AI 做下游性质预测，而是让生成模型成为连接不同时间尺度模拟的核心加速层。对化学、分子建模、生物物理和更广的 scientific simulation workflow 都有明显外溢，符合仓库对 AI materially advancing scientific modeling and discovery workflow 的收录标准。</p><p>它目前还不到更高一级，主要因为证据仍集中在分子动力学加速这一条线，虽然结果很强，但是否会成为更广泛科学模拟领域的长期标准接口还需要后续采用和跨体系验证。当前更合适的定位是一篇高质量、方法外溢明确的 breakthrough。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>理解分子结构、动力学和反应性需要弥合发生在广泛分离时间尺度上的过程。传统的分子动力学模拟提供了原子级分辨率，但其飞秒级的时间步长限制了对控制化学功能的缓慢构象变化和弛豫过程的访问。在此，我们引入了一个深度生成建模框架，该框架将分子动力学采样加速了四个数量级，同时保留了物理真实性。该方法应用于小型有机分子和肽，能够对以前只能通过昂贵的暴力模拟才能获得的平衡系综和动态弛豫过程进行定量表征。重要的是，该方法在化学组成和系统尺寸上具有泛化性，可以外推到比训练中使用的肽更大的肽，并捕获化学上1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Understanding molecular structure, dynamics, and reactivity requires bridging processes that occur across widely separated time scales. Conventional molecular dynamics simulations provide atomistic resolution, but their femtosecond time steps limit access to the slow conformational changes and relaxation processes that govern chemical function. Here, we introduce a deep generative modelling framework that accelerates sampling of molecular dynamics by four orders of magnitude while retaining physical realism. Applied to small organic molecules and peptides, the approach enables quantitative characterization of equilibrium ensembles and dynamical relaxation processes that were previously only accessible by costly brute-force simulation. Importantly, the method generalizes across chemical composition and system size, extrapolating to peptides larger than those used for training, and captures chemically 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260410c23transfe,
+  title = {Transferable generative models bridge femtosecond to nanosecond time-step molecular dynamics},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2510.07589.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c23-transferable-generative-molecular-dynamics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Transferable generative models bridge femtosecond to nanosecond time-step molecular dynamics. https://arxiv.org/pdf/2510.07589.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.07589.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

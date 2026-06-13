@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exponential quantum advantage in processing massive classical data | DAST Papers</title>
+    <meta name="description" content="这篇论文针对量子机器学习长期存在的两个根本瓶颈：经典大数据如何装入量子态，以及量子态结果如何读出成有用模型。传统 QML 往往需要 QRAM 或强复杂性假设，导致对实际经典数据处理的量子优势一直缺乏坚实依据。
+
+作者提出 quantum oracle sketching，让量子计算机在流式经典样本到达时即时构造相干查询，而不是先把完整数据存入 QRAM；再结合 classical shadows " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t26-quantum-oracle-sketching/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Exponential quantum advantage in processing massive classical data" />
+    <meta property="og:description" content="这篇论文针对量子机器学习长期存在的两个根本瓶颈：经典大数据如何装入量子态，以及量子态结果如何读出成有用模型。传统 QML 往往需要 QRAM 或强复杂性假设，导致对实际经典数据处理的量子优势一直缺乏坚实依据。
+
+作者提出 quantum oracle sketching，让量子计算机在流式经典样本到达时即时构造相干查询，而不是先把完整数据存入 QRAM；再结合 classical shadows " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t26-quantum-oracle-sketching/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Exponential quantum advantage in processing massive classical data" />
+    <meta name="twitter:description" content="这篇论文针对量子机器学习长期存在的两个根本瓶颈：经典大数据如何装入量子态，以及量子态结果如何读出成有用模型。传统 QML 往往需要 QRAM 或强复杂性假设，导致对实际经典数据处理的量子优势一直缺乏坚实依据。
+
+作者提出 quantum oracle sketching，让量子计算机在流式经典样本到达时即时构造相干查询，而不是先把完整数据存入 QRAM；再结合 classical shadows " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Exponential quantum advantage in processing massive classical data</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.07639" target="_blank" rel="noopener noreferrer">2604.07639</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对量子机器学习长期存在的两个根本瓶颈：经典大数据如何装入量子态，以及量子态结果如何读出成有用模型。传统 QML 往往需要 QRAM 或强复杂性假设，导致对实际经典数据处理的量子优势一直缺乏坚实依据。</dd></div><div><dt>方法/机制</dt><dd>作者提出 quantum oracle sketching，让量子计算机在流式经典样本到达时即时构造相干查询，而不是先把完整数据存入 QRAM；再结合 classical shadows / interferometric readout，从量子态中提取可用于 SVM、PCA 等任务的紧凑经典模型。理论上，该方法给出小型量子计算机处理海量经典数据的指数级空间优势。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它为 AI/ML 数据处理中的量子优势提供了罕见的无条件理论结果：优势不依赖 BPP/BQP 分离等未证明复杂性猜想，而主要依赖量子力学本身。论文还在单细胞 RNA 和 IMDb 情感数据上做数值验证，显示少于 60 个逻辑量子比特可带来 4-6 个数量级的内存缩减。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为这仍是容错量子时代的理论/模拟结果，实际硬件端到端验证尚未出现；时间复杂度、逻辑量子比特实现成本、误差校正和真实机器学习流水线集成仍是主要落地障碍。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对量子机器学习长期存在的两个根本瓶颈：经典大数据如何装入量子态，以及量子态结果如何读出成有用模型。传统 QML 往往需要 QRAM 或强复杂性假设，导致对实际经典数据处理的量子优势一直缺乏坚实依据。</p><p>作者提出 quantum oracle sketching，让量子计算机在流式经典样本到达时即时构造相干查询，而不是先把完整数据存入 QRAM；再结合 classical shadows / interferometric readout，从量子态中提取可用于 SVM、PCA 等任务的紧凑经典模型。理论上，该方法给出小型量子计算机处理海量经典数据的指数级空间优势。</p><p>它值得收录，因为它为 AI/ML 数据处理中的量子优势提供了罕见的无条件理论结果：优势不依赖 BPP/BQP 分离等未证明复杂性猜想，而主要依赖量子力学本身。论文还在单细胞 RNA 和 IMDb 情感数据上做数值验证，显示少于 60 个逻辑量子比特可带来 4-6 个数量级的内存缩减。</p><p>它不是更高一级，因为这仍是容错量子时代的理论/模拟结果，实际硬件端到端验证尚未出现；时间复杂度、逻辑量子比特实现成本、误差校正和真实机器学习流水线集成仍是主要落地障碍。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>加州理工学院，帕萨迪纳，加利福尼亚州 91125，美国 2 谷歌量子人工智能，威尼斯，加利福尼亚州 90291，美国 3 麻省理工学院，剑桥，马萨诸塞州 02139，美国 4 Oratomic，帕萨迪纳，加利福尼亚州 91125，美国 广泛适用的量子优势，特别是在经典数据处理和机器学习领域，一直是一个基本的开放问题。在这项工作中，我们证明了一个多对数大小的小型量子计算机可以通过即时处理样本，对海量经典数据执行大规模分类和降维，而任何实现相同预测性能的经典机器都需要指数级更大的尺寸。此外，指数级更大但仍低于所需尺寸的经典机器需要超多项式更多的样本和时间。我们在真实世界应用中验证了这些量子优势，包括单细胞RNA测序和电影评论情感分析，展示了在少于60个逻辑量子比特的情况下，尺寸减少了四到六个数量级。这些量子优势是通过量子预言机速写（quantum oracle sketching）实现的，这是一种仅使用随机经典数据样本，以量子叠加态访问经典世界的算法。结合经典阴影，我们的算法规避了数据加载和读出瓶颈，从海量经典数据中构建简洁的经典模型，这项任务对于任何非指数级大于量子机器的经典机器来说，都是被证明不可能完成的。即使经典机器被赋予无限时间或BPP = BQP，这些量子优势依然存在，并且仅依赖于量子力学的正确性。总而言之，我们的结果将经典数据上的机器学习确立为量子优势的一个广泛而自然的领域，以及在复杂性前沿对量子力学的一个基本测试。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>California Institute of Technology, Pasadena, California 91125, USA 2 Google Quantum AI, Venice, California 90291, USA 3 Massachusetts Institute of Technology, Cambridge, Massachusetts 02139, USA 4 Oratomic, Pasadena, California 91125, USA Broadly applicable quantum advantage, particularly in classical data processing and machine learning, has been a fundamental open problem. In this work, we prove that a small quantum computer of polylogarithmic size can perform large-scale classification and dimension reduction on massive classical data by processing samples on the fly, whereas any classical machine achieving the same prediction performance requires exponentially larger size. Furthermore, classical machines that are exponentially larger yet below the required size need superpolynomially more samples and time. We validate these quantum advantages in real-world applications, including single-cell RNA sequencing and movie review sentiment analysis, demonstrating four to six orders of magnitude reduction in size with fewer than 60 logical qubits. These quantum advantages are enabled by quantum oracle sketching, an algorithm for accessing the classical world in quantum superposition using only random classical data samples. Combined with classical shadows, our algorithm circumvents the data loading and readout bottleneck to construct succinct classical models from massive classical data, a task provably impossible for any classical machine that is not exponentially larger than the quantum machine. These quantum advantages persist even when classical machines are granted unlimited time or if BPP = BQP, and rely only on the correctness of quantum mechanics. Together, our results establish machine learning on classical data as a broad and natural domain of quantum advantage and a fundamental test of quantum mechanics at the complexity frontier.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260408t26quantum,
+  title = {Exponential quantum advantage in processing massive classical data},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.07639.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t26-quantum-oracle-sketching/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Exponential quantum advantage in processing massive classical data. https://arxiv.org/pdf/2604.07639.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.07639.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

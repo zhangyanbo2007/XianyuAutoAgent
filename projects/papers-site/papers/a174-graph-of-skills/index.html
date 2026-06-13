@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graph of Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 agent skill 生态扩张后的检索瓶颈：当本地 skill library 从几十个增长到数百、数千个时，把所有 skill 塞进上下文会造成 token 成本、幻觉和延迟，而普通向量检索又容易只找语义相似项，漏掉真正执行所需的解析器、前置转换器、认证步骤或底层工具 skill。
+
+Graph of Skills 的新意在于把 skill retrieval 从平面 top" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a174-graph-of-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Graph of Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills" />
+    <meta property="og:description" content="这篇论文处理的是 agent skill 生态扩张后的检索瓶颈：当本地 skill library 从几十个增长到数百、数千个时，把所有 skill 塞进上下文会造成 token 成本、幻觉和延迟，而普通向量检索又容易只找语义相似项，漏掉真正执行所需的解析器、前置转换器、认证步骤或底层工具 skill。
+
+Graph of Skills 的新意在于把 skill retrieval 从平面 top" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a174-graph-of-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Graph of Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills" />
+    <meta name="twitter:description" content="这篇论文处理的是 agent skill 生态扩张后的检索瓶颈：当本地 skill library 从几十个增长到数百、数千个时，把所有 skill 塞进上下文会造成 token 成本、幻觉和延迟，而普通向量检索又容易只找语义相似项，漏掉真正执行所需的解析器、前置转换器、认证步骤或底层工具 skill。
+
+Graph of Skills 的新意在于把 skill retrieval 从平面 top" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Graph of Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05333" target="_blank" rel="noopener noreferrer">2604.05333</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 agent skill 生态扩张后的检索瓶颈：当本地 skill library 从几十个增长到数百、数千个时，把所有 skill 塞进上下文会造成 token 成本、幻觉和延迟，而普通向量检索又容易只找语义相似项，漏掉真正执行所需的解析器、前置转换器、认证步骤或底层工具 skill。</dd></div><div><dt>方法/机制</dt><dd>Graph of Skills 的新意在于把 skill retrieval 从平面 top-k 检索改成结构化、依赖感知的执行 bundle 检索。它离线解析 skill package 的 I/O schema、工具入口、路径和依赖关系，构建 typed executable skill graph；推理时先做语义-词法混合 seeding，再用反向加权 Personalized PageRank 召回前置依赖，最后按上下文预算 hydration 出紧凑 skill bundle。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这正好补上 SkillClaw、EvoSkill、SkillRouter 等路线里的一个关键系统层：skill 可以被创造和演化，但大规模使用时必须有可靠的依赖完整检索接口。论文在 SkillsBench、ALFWorld、200 到 2000 skill library 和 Claude Sonnet、GPT-5.2 Codex、MiniMax 等模型上验证了 reward、token 和 runtime 的平衡收益，方法具有明确工程可迁移性。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，原因是它仍属于 skill-system 中的检索层改进，依赖 skill package 元数据质量和图构建假设；真实开放 skill marketplace 中的脏元数据、版本冲突、安全约束和动态依赖还没有被充分检验。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 agent skill 生态扩张后的检索瓶颈：当本地 skill library 从几十个增长到数百、数千个时，把所有 skill 塞进上下文会造成 token 成本、幻觉和延迟，而普通向量检索又容易只找语义相似项，漏掉真正执行所需的解析器、前置转换器、认证步骤或底层工具 skill。</p><p>Graph of Skills 的新意在于把 skill retrieval 从平面 top-k 检索改成结构化、依赖感知的执行 bundle 检索。它离线解析 skill package 的 I/O schema、工具入口、路径和依赖关系，构建 typed executable skill graph；推理时先做语义-词法混合 seeding，再用反向加权 Personalized PageRank 召回前置依赖，最后按上下文预算 hydration 出紧凑 skill bundle。</p><p>它值得收录，因为这正好补上 SkillClaw、EvoSkill、SkillRouter 等路线里的一个关键系统层：skill 可以被创造和演化，但大规模使用时必须有可靠的依赖完整检索接口。论文在 SkillsBench、ALFWorld、200 到 2000 skill library 和 Claude Sonnet、GPT-5.2 Codex、MiniMax 等模型上验证了 reward、token 和 runtime 的平衡收益，方法具有明确工程可迁移性。</p><p>它不是更高一级，原因是它仍属于 skill-system 中的检索层改进，依赖 skill package 元数据质量和图构建假设；真实开放 skill marketplace 中的脏元数据、版本冲突、安全约束和动态依赖还没有被充分检验。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>技能使用已成为现代智能体系统的核心组成部分，可以显著提高智能体完成复杂任务的能力。在现实世界环境中，智能体必须监控并与众多个人应用程序、网络浏览器和其他环境接口交互，技能库可以扩展到数千个可重用技能。扩展到更大的技能集带来了两个关键挑战。首先，加载完整的技能集会使上下文窗口饱和，从而增加词元成本、幻觉和延迟。在本文中，我们提出了技能图（Graph of Skills, GoS），一个用于大型技能库的推理时结构化检索层。GoS离线从技能包构建一个可执行的技能图，然后在推理时通过混合语义-词汇种子、反向加权个性化PageRank和上下文预算水合作用检索一个有界、依赖感知的技能束。在SkillsBench和ALFWorld上，GoS将平均奖励比香草全技能加载基线提高了43.6%，同时将输入词元减少了37.8%，并且在三个模型家族中具有泛化性：Claude Sonnet、GPT-5.2 Codex和MiniMax。对不同技能库进行的额外消融研究，范围从</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Skill usage has become a core component of modern agent systems and can substantially improve agents’ ability to complete complex tasks. In real-world settings, where agents must monitor and interact with numerous personal applications, web browsers, and other environment interfaces, skill libraries can scale to thousands of reusable skills. Scaling to larger skill sets introduces two key challenges. First, loading the full skill set saturates the context window, driving up token costs, hallucination, and latency. In this paper, we present Graph of Skills (GoS), an inference-time structural retrieval layer for large skill libraries. GoS constructs an executable skill graph offline from skill packages, then at inference time retrieves a bounded, dependency-aware skill bundle through hybrid semantic–lexical seeding, reverse-weighted Personalized PageRank, and context-budgeted hydration. On SkillsBench and ALFWorld, GoS improves average reward by 43.6% over the vanilla full skill-loading baseline while reducing input tokens by 37.8%, and generalizes across three model families: Claude Sonnet, GPT-5.2 Codex, and MiniMax. Additional ablation studies across skill libraries ranging from</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407a174grapho,
+  title = {Graph of Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05333.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a174-graph-of-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Graph of Skills: Dependency-Aware Structural Retrieval for Massive Agent Skills. https://arxiv.org/pdf/2604.05333.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05333.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

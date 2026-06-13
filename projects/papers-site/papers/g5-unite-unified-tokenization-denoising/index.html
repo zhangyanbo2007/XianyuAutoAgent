@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>End-to-End Training for Unified Tokenization and Latent Denoising | DAST Papers</title>
+    <meta name="description" content="现代 latent diffusion pipeline 通常把 tokenizer 和 generator 分成两阶段：先学一个可重建的 latent space，再冻结它去训练 diffusion 或 flow model。这个流程已经变成默认配方，但它也把 latent space 的两种目标人为拆开了：一边追求重建与判别友好，一边追求生成分布的可建模性。UNITE 直接针对这个结构性问题下" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g5-unite-unified-tokenization-denoising/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="End-to-End Training for Unified Tokenization and Latent Denoising" />
+    <meta property="og:description" content="现代 latent diffusion pipeline 通常把 tokenizer 和 generator 分成两阶段：先学一个可重建的 latent space，再冻结它去训练 diffusion 或 flow model。这个流程已经变成默认配方，但它也把 latent space 的两种目标人为拆开了：一边追求重建与判别友好，一边追求生成分布的可建模性。UNITE 直接针对这个结构性问题下" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g5-unite-unified-tokenization-denoising/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="End-to-End Training for Unified Tokenization and Latent Denoising" />
+    <meta name="twitter:description" content="现代 latent diffusion pipeline 通常把 tokenizer 和 generator 分成两阶段：先学一个可重建的 latent space，再冻结它去训练 diffusion 或 flow model。这个流程已经变成默认配方，但它也把 latent space 的两种目标人为拆开了：一边追求重建与判别友好，一边追求生成分布的可建模性。UNITE 直接针对这个结构性问题下" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>End-to-End Training for Unified Tokenization and Latent Denoising</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-03-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.22283" target="_blank" rel="noopener noreferrer">2603.22283</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现代 latent diffusion pipeline 通常把 tokenizer 和 generator 分成两阶段：先学一个可重建的 latent space，再冻结它去训练 diffusion 或 flow model。这个流程已经变成默认配方，但它也把 latent space 的两种目标人为拆开了：一边追求重建与判别友好，一边追求生成分布的可建模性。UNITE 直接针对这个结构性问题下手，问的是 tokenization 和 generation 是否本来就该作为同一个 end-to-end latent inference 问题来联合训练。</dd></div><div><dt>方法/机制</dt><dd>论文提出的 UNITE 把 tokenizer 与 latent denoiser 统一到同一个共享参数的 Generative Encoder 里：在 tokenization 模式下，它从完整观测推断 clean latent；在 generation 模式下，它从噪声和条件出发恢复相同 latent。训练时只保留 reconstruction objective 和 latent-space flow-matching objective，通过两次前向传播端到端联合优化，不依赖 adversarial losses、预训练 DINO encoder 或额外教师信号。这个设计给出的不是单一 trick，而是对 latent pipeline 边界的一次明确重写。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它把“先学 tokenizer、再学 generator”这条长期默认工序改写成一个更统一、也更干净的训练范式。对 generative modeling 主线而言，真正有价值的不是单次 FID，而是它给出了一个共享 latent language 的可复用接口：同一表示同时承担重建、推断和生成职责，并且已经展示到图像与分子两类模态上。这类统一 latent interface 对后续多模态生成、科学生成和世界模型都有外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为证据主要集中在 ImageNet 256 和分子模态的端到端可行性与近 SOTA 结果，距离成为 latent generation 默认范式还有一步。社区还需要验证它在更大规模视频、音频、3D 或强条件生成任务上的稳定性，以及这种 joint shaping 是否会在更复杂设定下持续优于 staged training。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现代 latent diffusion pipeline 通常把 tokenizer 和 generator 分成两阶段：先学一个可重建的 latent space，再冻结它去训练 diffusion 或 flow model。这个流程已经变成默认配方，但它也把 latent space 的两种目标人为拆开了：一边追求重建与判别友好，一边追求生成分布的可建模性。UNITE 直接针对这个结构性问题下手，问的是 tokenization 和 generation 是否本来就该作为同一个 end-to-end latent inference 问题来联合训练。</p><p>论文提出的 UNITE 把 tokenizer 与 latent denoiser 统一到同一个共享参数的 Generative Encoder 里：在 tokenization 模式下，它从完整观测推断 clean latent；在 generation 模式下，它从噪声和条件出发恢复相同 latent。训练时只保留 reconstruction objective 和 latent-space flow-matching objective，通过两次前向传播端到端联合优化，不依赖 adversarial losses、预训练 DINO encoder 或额外教师信号。这个设计给出的不是单一 trick，而是对 latent pipeline 边界的一次明确重写。</p><p>这篇工作值得正式收录，因为它把“先学 tokenizer、再学 generator”这条长期默认工序改写成一个更统一、也更干净的训练范式。对 generative modeling 主线而言，真正有价值的不是单次 FID，而是它给出了一个共享 latent language 的可复用接口：同一表示同时承担重建、推断和生成职责，并且已经展示到图像与分子两类模态上。这类统一 latent interface 对后续多模态生成、科学生成和世界模型都有外溢。</p><p>它目前仍是 breakthrough，而不是更高一级，因为证据主要集中在 ImageNet 256 和分子模态的端到端可行性与近 SOTA 结果，距离成为 latent generation 默认范式还有一步。社区还需要验证它在更大规模视频、音频、3D 或强条件生成任务上的稳定性，以及这种 joint shaping 是否会在更复杂设定下持续优于 staged training。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260323g5uniteuni,
+  title = {End-to-End Training for Unified Tokenization and Latent Denoising},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.22283},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g5-unite-unified-tokenization-denoising/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). End-to-End Training for Unified Tokenization and Latent Denoising. https://arxiv.org/pdf/2603.22283</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.22283" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

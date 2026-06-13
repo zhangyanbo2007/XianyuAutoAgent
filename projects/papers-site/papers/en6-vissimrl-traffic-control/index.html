@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim | DAST Papers</title>
+    <meta name="description" content="城市交通信号控制一直是强化学习的重要应用方向，但真实工程侧常用的高保真仿真器 Vissim 因接口复杂、训练环境不统一，长期没有形成可复用的 RL 工作流。这导致学术侧大量结果停留在 SUMO 或 CityFlow，而很难往更接近实际部署的环境迁移。
+
+VissimRL 的核心贡献是把 Vissim 的 COM 接口封装成一个高层 Python API，并提供标准化的单智能体与多智能体训练环境。这" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/en6-vissimrl-traffic-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim" />
+    <meta property="og:description" content="城市交通信号控制一直是强化学习的重要应用方向，但真实工程侧常用的高保真仿真器 Vissim 因接口复杂、训练环境不统一，长期没有形成可复用的 RL 工作流。这导致学术侧大量结果停留在 SUMO 或 CityFlow，而很难往更接近实际部署的环境迁移。
+
+VissimRL 的核心贡献是把 Vissim 的 COM 接口封装成一个高层 Python API，并提供标准化的单智能体与多智能体训练环境。这" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/en6-vissimrl-traffic-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim" />
+    <meta name="twitter:description" content="城市交通信号控制一直是强化学习的重要应用方向，但真实工程侧常用的高保真仿真器 Vissim 因接口复杂、训练环境不统一，长期没有形成可复用的 RL 工作流。这导致学术侧大量结果停留在 SUMO 或 CityFlow，而很难往更接近实际部署的环境迁移。
+
+VissimRL 的核心贡献是把 Vissim 的 COM 接口封装成一个高层 Python API，并提供标准化的单智能体与多智能体训练环境。这" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim</h1>
+          <p class="subtitle">能源、水与基础设施 · 发表：2026-01-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">能源、水与基础设施</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.18284" target="_blank" rel="noopener noreferrer">2601.18284</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>城市交通信号控制一直是强化学习的重要应用方向，但真实工程侧常用的高保真仿真器 Vissim 因接口复杂、训练环境不统一，长期没有形成可复用的 RL 工作流。这导致学术侧大量结果停留在 SUMO 或 CityFlow，而很难往更接近实际部署的环境迁移。</dd></div><div><dt>方法/机制</dt><dd>VissimRL 的核心贡献是把 Vissim 的 COM 接口封装成一个高层 Python API，并提供标准化的单智能体与多智能体训练环境。这样做并不是简单写一层适配器，而是把 agent training、环境定义、实验复现和多交叉口协同控制放进统一框架，显著降低了在工业级仿真器上开展 RL 研究的门槛。</dd></div><div><dt>结果/证据</dt><dd>对这个仓库来说，这篇论文的价值在于 workflow pattern。它把高保真交通仿真和多智能体 RL 之间的断层补上，使交通控制从 benchmark-driven 研究更容易进入 operational study。即便它局限在交通信号控制，这种 simulator-to-RL bridge 仍然是值得正式收录的系统型贡献。</dd></div><div><dt>收录价值</dt><dd>它没有再往上升一级，因为问题域仍然比较专门，且证据主要来自仿真环境而不是大规模真实部署。它更像一个耐用的研究与工程基础设施条目，而不是重排整个城市运营 AI 路线的作品。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>城市交通信号控制一直是强化学习的重要应用方向，但真实工程侧常用的高保真仿真器 Vissim 因接口复杂、训练环境不统一，长期没有形成可复用的 RL 工作流。这导致学术侧大量结果停留在 SUMO 或 CityFlow，而很难往更接近实际部署的环境迁移。</p><p>VissimRL 的核心贡献是把 Vissim 的 COM 接口封装成一个高层 Python API，并提供标准化的单智能体与多智能体训练环境。这样做并不是简单写一层适配器，而是把 agent training、环境定义、实验复现和多交叉口协同控制放进统一框架，显著降低了在工业级仿真器上开展 RL 研究的门槛。</p><p>对这个仓库来说，这篇论文的价值在于 workflow pattern。它把高保真交通仿真和多智能体 RL 之间的断层补上，使交通控制从 benchmark-driven 研究更容易进入 operational study。即便它局限在交通信号控制，这种 simulator-to-RL bridge 仍然是值得正式收录的系统型贡献。</p><p>它没有再往上升一级，因为问题域仍然比较专门，且证据主要来自仿真环境而不是大规模真实部署。它更像一个耐用的研究与工程基础设施条目，而不是重排整个城市运营 AI 路线的作品。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260126en6vissimr,
+  title = {VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.18284.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/en6-vissimrl-traffic-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim. https://arxiv.org/pdf/2601.18284.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/en7-llm-utp-traffic-foundation/">
+              <span>A scalable and generic framework for city-wide traffic prediction with large language model</span>
+              <small>能源、水与基础设施 · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/en9-tegnet-thermoelectric-emulator/">
+              <span>Composable neural emulators accelerate thermoelectric generator design</span>
+              <small>能源、水与基础设施 · 2026-04-15</small>
+            </a>
+            <a class="related-item" href="../../papers/en8-autonomous-perovskite-cells/">
+              <span>Autonomous closed-loop framework for reproducible perovskite solar cells</span>
+              <small>能源、水与基础设施 · 2026-04-14</small>
+            </a>
+            <a class="related-item" href="../../papers/en4-sage-grid-battery-aging/">
+              <span>SAGE: Synthetic Aging for a Grid Environment</span>
+              <small>能源、水与基础设施 · 2026-03-14</small>
+            </a>
+            <a class="related-item" href="../../papers/en3-twinai-water-distribution/">
+              <span>TwinAI: A digital twin and graph reinforcement learning framework for real-time management of water distribution networks</span>
+              <small>能源、水与基础设施 · 2026-03-04</small>
+            </a>
+            <a class="related-item" href="../../papers/en1-optagent-building-operations/">
+              <span>OptAgent: an Agentic AI framework for Intelligent Building Operations</span>
+              <small>能源、水与基础设施 · 2026-01-27</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.18284.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

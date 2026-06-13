@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ImplicitMemBench: Measuring Unconscious Behavioral Adaptation in Large Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文指出当前 agent memory 评测过度聚焦显式事实回忆，例如多轮问答、状态跟踪或检索命中，而忽略了更接近长期助理需求的隐式记忆：经验是否会自动转化为程序化行为、偏好性反应或条件化规避，而不是在测试时被明确要求回忆。
+
+ImplicitMemBench 将隐式记忆拆成三类认知构件：procedural memory、priming 和 classical conditioning，并统" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a183-implicitmembench-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ImplicitMemBench: Measuring Unconscious Behavioral Adaptation in Large Language Models" />
+    <meta property="og:description" content="这篇论文指出当前 agent memory 评测过度聚焦显式事实回忆，例如多轮问答、状态跟踪或检索命中，而忽略了更接近长期助理需求的隐式记忆：经验是否会自动转化为程序化行为、偏好性反应或条件化规避，而不是在测试时被明确要求回忆。
+
+ImplicitMemBench 将隐式记忆拆成三类认知构件：procedural memory、priming 和 classical conditioning，并统" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a183-implicitmembench-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ImplicitMemBench: Measuring Unconscious Behavioral Adaptation in Large Language Models" />
+    <meta name="twitter:description" content="这篇论文指出当前 agent memory 评测过度聚焦显式事实回忆，例如多轮问答、状态跟踪或检索命中，而忽略了更接近长期助理需求的隐式记忆：经验是否会自动转化为程序化行为、偏好性反应或条件化规避，而不是在测试时被明确要求回忆。
+
+ImplicitMemBench 将隐式记忆拆成三类认知构件：procedural memory、priming 和 classical conditioning，并统" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ImplicitMemBench: Measuring Unconscious Behavioral Adaptation in Large Language Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08064" target="_blank" rel="noopener noreferrer">2604.08064</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文指出当前 agent memory 评测过度聚焦显式事实回忆，例如多轮问答、状态跟踪或检索命中，而忽略了更接近长期助理需求的隐式记忆：经验是否会自动转化为程序化行为、偏好性反应或条件化规避，而不是在测试时被明确要求回忆。</dd></div><div><dt>方法/机制</dt><dd>ImplicitMemBench 将隐式记忆拆成三类认知构件：procedural memory、priming 和 classical conditioning，并统一成 Learning / Priming - Interfere - Test 协议。评测采用 first-attempt scoring，以避免模型通过显式推理、自我修正或提示回看掩盖自动化行为是否真正形成。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它为 agent memory 提供了一个新的评测维度：不是记住了什么事实，而是经验是否改变了后续默认行为。论文评测 17 个模型后显示没有模型超过 66% 总体表现，并揭示抑制式学习远弱于偏好式学习，这对后续设计 agent 记忆、技能固化和安全规避机制都有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>主要限制是 benchmark 规模只有 300 条，部分 priming 评测依赖 LLM judge，且它主要是诊断框架而非新的记忆架构。它能清晰指出当前模型的隐式记忆缺口，但还没有给出可部署的解决方案，因此定为突破而不是更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文指出当前 agent memory 评测过度聚焦显式事实回忆，例如多轮问答、状态跟踪或检索命中，而忽略了更接近长期助理需求的隐式记忆：经验是否会自动转化为程序化行为、偏好性反应或条件化规避，而不是在测试时被明确要求回忆。</p><p>ImplicitMemBench 将隐式记忆拆成三类认知构件：procedural memory、priming 和 classical conditioning，并统一成 Learning / Priming - Interfere - Test 协议。评测采用 first-attempt scoring，以避免模型通过显式推理、自我修正或提示回看掩盖自动化行为是否真正形成。</p><p>它值得收录，因为它为 agent memory 提供了一个新的评测维度：不是记住了什么事实，而是经验是否改变了后续默认行为。论文评测 17 个模型后显示没有模型超过 66% 总体表现，并揭示抑制式学习远弱于偏好式学习，这对后续设计 agent 记忆、技能固化和安全规避机制都有直接参考价值。</p><p>主要限制是 benchmark 规模只有 300 条，部分 priming 评测依赖 LLM judge，且它主要是诊断框架而非新的记忆架构。它能清晰指出当前模型的隐式记忆缺口，但还没有给出可部署的解决方案，因此定为突破而不是更高一级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现有针对LLM智能体的记忆基准评估的是事实的显式回忆，却忽视了内隐记忆，即经验在没有意识检索的情况下成为自动化行为。这一空白至关重要：高效的助手必须自动应用所学程序或避免失败动作，而无需明确提醒。我们引入了I MPLIC IT M EM B ENCH，这是第一个系统性基准，通过从非陈述性记忆的标准认知科学描述中提取的三个认知基础构念来评估内隐记忆：程序记忆（干扰后的一次性技能习得）、启动（通过配对的实验/对照实例产生的主题驱动偏见）和经典条件反射（条件刺激-非条件刺激（CS–US）关联塑造首次决策）。我们的300项测试套件采用统一的学习/启动-干扰-测试协议，并进行首次尝试评分。对17个模型的评估揭示了严重的局限性：没有模型总体得分超过66%，其中表现最佳的DeepSeekR1（65.3%）、Qwen3-32B（64.1%）和GPT-5（63.0%）远低于人类基线。分析揭示了显著的不对称性（抑制17.6% vs. 偏好75.0%）以及需要超越参数扩展的架构创新的普遍瓶颈。I MPLICIT M EM B ENCH将评估从“智能体回忆什么”重新定义为“智能体自动执行什么”1。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Existing memory benchmarks for LLM agents evaluate explicit recall of facts, yet overlook implicit memory where experience becomes automated behavior without conscious retrieval. This gap is critical: effective assistants must automatically apply learned procedures or avoid failed actions without explicit reminders. We introduce I MPLIC IT M EM B ENCH , the first systematic benchmark evaluating implicit memory through three cognitively grounded constructs drawn from standard cognitive-science accounts of nondeclarative memory: Procedural Memory (oneshot skill acquisition after interference), Priming (theme-driven bias via paired experimental/control instances), and Classical Conditioning (Conditioned Stimulus–Unconditioned Stimulus (CS–US) associations shaping first decisions). Our 300-item suite employs a unified Learning/Priming–Interfere–Test protocol with first-attempt scoring. Evaluation of 17 models reveals severe limitations: no model exceeds 66% overall, with top performers DeepSeekR1 (65.3%), Qwen3-32B (64.1%), and GPT-5 (63.0%) far below human baselines. Analysis uncovers dramatic asymmetries (inhibition 17.6% vs. preference 75.0%) and universal bottlenecks requiring architectural innovations beyond parameter scaling. I MPLICIT M EM B ENCH reframes evaluation from “what agents recall” to “what they automatically enact” 1 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409a183implic,
+  title = {ImplicitMemBench: Measuring Unconscious Behavioral Adaptation in Large Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08064.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a183-implicitmembench-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ImplicitMemBench: Measuring Unconscious Behavioral Adaptation in Large Language Models. https://arxiv.org/pdf/2604.08064.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08064.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

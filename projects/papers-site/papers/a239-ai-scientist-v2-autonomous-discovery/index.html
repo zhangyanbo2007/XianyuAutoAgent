@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search | DAST Papers</title>
+    <meta name="description" content="这篇工作真正重要的地方，不是单纯证明 LLM 能写论文，而是把 scientific workflow 的核心环节串成了一个可运行的端到端系统：提出假设、设计实验、写代码、运行实验、分析结果、作图和撰写论文都放进同一条 agentic loop。与早期依赖手工模板的系统相比，v2 的关键提升是 progressive agentic tree search 和专门的 experiment mana" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a239-ai-scientist-v2-autonomous-discovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search" />
+    <meta property="og:description" content="这篇工作真正重要的地方，不是单纯证明 LLM 能写论文，而是把 scientific workflow 的核心环节串成了一个可运行的端到端系统：提出假设、设计实验、写代码、运行实验、分析结果、作图和撰写论文都放进同一条 agentic loop。与早期依赖手工模板的系统相比，v2 的关键提升是 progressive agentic tree search 和专门的 experiment mana" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a239-ai-scientist-v2-autonomous-discovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search" />
+    <meta name="twitter:description" content="这篇工作真正重要的地方，不是单纯证明 LLM 能写论文，而是把 scientific workflow 的核心环节串成了一个可运行的端到端系统：提出假设、设计实验、写代码、运行实验、分析结果、作图和撰写论文都放进同一条 agentic loop。与早期依赖手工模板的系统相比，v2 的关键提升是 progressive agentic tree search 和专门的 experiment mana" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2504.08066" target="_blank" rel="noopener noreferrer">2504.08066</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作真正重要的地方，不是单纯证明 LLM 能写论文，而是把 scientific workflow 的核心环节串成了一个可运行的端到端系统：提出假设、设计实验、写代码、运行实验、分析结果、作图和撰写论文都放进同一条 agentic loop。与早期依赖手工模板的系统相比，v2 的关键提升是 progressive agentic tree search 和专门的 experiment manager。</dd></div><div><dt>方法/机制</dt><dd>它之所以值得正式收录，是因为它把‘AI scientist’从概念演示推进到了可核验的 peer-review experiment。按 Sakana 的实验协议，3 篇完全 AI 生成稿件中有 1 篇拿到了高于 workshop 平均接收阈值的评分，虽然按预设伦理协议在最终发表前撤回，但这已经足够说明系统开始进入真实科研制度的外圈。</dd></div><div><dt>结果/证据</dt><dd>它对本库的意义不只是自动写作，而是 agent-driven scientific workflow 的系统边界：什么程度的自主实验、审稿反馈循环、图表 refinement 和 manager-agent orchestration 才能让一个研究代理跨过最初的可用门槛。后续无论药物发现、材料设计还是算法自动发现，都可以把它当作一个上位参考。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证明点仍停留在 workshop 级别、少量样本、且需要实验性合作协议；同时作者自己也明确承认距离主会/顶刊标准仍有差距。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作真正重要的地方，不是单纯证明 LLM 能写论文，而是把 scientific workflow 的核心环节串成了一个可运行的端到端系统：提出假设、设计实验、写代码、运行实验、分析结果、作图和撰写论文都放进同一条 agentic loop。与早期依赖手工模板的系统相比，v2 的关键提升是 progressive agentic tree search 和专门的 experiment manager。</p><p>它之所以值得正式收录，是因为它把‘AI scientist’从概念演示推进到了可核验的 peer-review experiment。按 Sakana 的实验协议，3 篇完全 AI 生成稿件中有 1 篇拿到了高于 workshop 平均接收阈值的评分，虽然按预设伦理协议在最终发表前撤回，但这已经足够说明系统开始进入真实科研制度的外圈。</p><p>它对本库的意义不只是自动写作，而是 agent-driven scientific workflow 的系统边界：什么程度的自主实验、审稿反馈循环、图表 refinement 和 manager-agent orchestration 才能让一个研究代理跨过最初的可用门槛。后续无论药物发现、材料设计还是算法自动发现，都可以把它当作一个上位参考。</p><p>它没有更高，是因为当前证明点仍停留在 workshop 级别、少量样本、且需要实验性合作协议；同时作者自己也明确承认距离主会/顶刊标准仍有差距。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI在科学发现方式的变革中正发挥着越来越关键的作用。我们介绍了The AI Scientist-v2，这是一个端到端的智能体系统，能够生成首个完全由AI创作并被同行评审接受的研讨会论文。该系统迭代地提出科学假设，设计并执行实验，分析和可视化数据，并自主撰写科学手稿。与前身（v1, Lu et al., 2024）相比，The AI Scientist-v2消除了对人类编写的代码模板的依赖，能够有效地泛化到不同的机器学习领域，并利用一种由专门的实验管理器智能体管理的新型渐进式智能体树搜索方法。此外，我们通过整合一个视觉-语言模型（VLM）反馈循环来增强AI审稿人组件，以迭代地改进图表的内容和美观性。我们通过向一个经过同行评审的ICLR研讨会提交三份完全自主生成的手稿来评估The AI Scientist-v2。值得注意的是，其中一份手稿获得了足够高的分数，超过了人类平均接受阈值，标志着首个完全由AI生成的论文成功通过同行评审。这一成就突显了AI在进行科学研究各个方面的日益增长的能力。我们预计，自主科学发现技术的进一步发展将深刻影响人类知识的产生，实现研究生产力的前所未有的可扩展性，并显著加速科学突破，从而极大地造福整个社会。我们已在https://github.com/SakanaAI/AI-Scientist-v2开源了代码，以促进这项变革性技术的未来发展。我们还讨论了AI在科学中的作用，包括AI安全。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI is increasingly playing a pivotal role in transforming how scientific discoveries are made. We introduce Th e A I Sc i e n t i s t - v 2, an end-to-end agentic system capable of producing the first entirely AIgenerated peer-review-accepted workshop paper. This system iteratively formulates scientific hypotheses, designs and executes experiments, analyzes and visualizes data, and autonomously authors scientific manuscripts. Compared to its predecessor (v1, Lu et al., 2024), The AI Scientist-v2 eliminates the reliance on human-authored code templates, generalizes effectively across diverse machine learning domains, and leverages a novel progressive agentic tree-search methodology managed by a dedicated experiment manager agent. Additionally, we enhance the AI reviewer component by integrating a Vision-Language Model (VLM) feedback loop for iterative refinement of content and aesthetics of the figures. We evaluated Th e A I Sc i e n t i s t - v 2 by submitting three fully autonomous manuscripts to a peer-reviewed ICLR workshop. Notably, one manuscript achieved high enough scores to exceed the average human acceptance threshold, marking the first instance of a fully AI-generated paper successfully navigating a peer review. This accomplishment highlights the growing capability of AI in conducting all aspects of scientific research. We anticipate that further advancements in autonomous scientific discovery technologies will profoundly impact human knowledge generation, enabling unprecedented scalability in research productivity and significantly accelerating scientific breakthroughs, greatly benefiting society at large. We have open-sourced the code at https://github.com/SakanaAI/AI-Scientist-v2 to foster the future development of this transformative technology. We also discuss the role of AI in science, including AI safety.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250410a239aiscie,
+  title = {The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2504.08066.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a239-ai-scientist-v2-autonomous-discovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search. https://arxiv.org/pdf/2504.08066.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2504.08066.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://sakana.ai/ai-scientist-first-publication/" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

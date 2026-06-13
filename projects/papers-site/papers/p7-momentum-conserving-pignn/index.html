@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A physics-informed graph neural network conserving linear and angular momentum for dynamical systems | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论如何让图神经网络在学习多体动力系统时不仅预测得准，而且在物理上自洽。很多 learned simulator 在短期误差上能做得不错，但一旦长时间 rollout 或遇到分布外情况，常常会违反守恒律，导致轨迹漂移。作者针对这个问题提出了一个同时守恒线动量和角动量的 physics-informed GNN。
+
+方法上，论文提出 `Dynami-CAL GraphNet`。核心思想是在边" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p7-momentum-conserving-pignn/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A physics-informed graph neural network conserving linear and angular momentum for dynamical systems" />
+    <meta property="og:description" content="这篇论文讨论如何让图神经网络在学习多体动力系统时不仅预测得准，而且在物理上自洽。很多 learned simulator 在短期误差上能做得不错，但一旦长时间 rollout 或遇到分布外情况，常常会违反守恒律，导致轨迹漂移。作者针对这个问题提出了一个同时守恒线动量和角动量的 physics-informed GNN。
+
+方法上，论文提出 `Dynami-CAL GraphNet`。核心思想是在边" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p7-momentum-conserving-pignn/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A physics-informed graph neural network conserving linear and angular momentum for dynamical systems" />
+    <meta name="twitter:description" content="这篇论文讨论如何让图神经网络在学习多体动力系统时不仅预测得准，而且在物理上自洽。很多 learned simulator 在短期误差上能做得不错，但一旦长时间 rollout 或遇到分布外情况，常常会违反守恒律，导致轨迹漂移。作者针对这个问题提出了一个同时守恒线动量和角动量的 physics-informed GNN。
+
+方法上，论文提出 `Dynami-CAL GraphNet`。核心思想是在边" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A physics-informed graph neural network conserving linear and angular momentum for dynamical systems</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-01-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-15</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-67802-5" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-67802-5</a></dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2501.07373" target="_blank" rel="noopener noreferrer">2501.07373</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论如何让图神经网络在学习多体动力系统时不仅预测得准，而且在物理上自洽。很多 learned simulator 在短期误差上能做得不错，但一旦长时间 rollout 或遇到分布外情况，常常会违反守恒律，导致轨迹漂移。作者针对这个问题提出了一个同时守恒线动量和角动量的 physics-informed GNN。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出 `Dynami-CAL GraphNet`。核心思想是在边局部参考系下对相互作用进行建模，使每一对节点之间的作用都满足成对的动量守恒约束，同时保持旋转等变、平移不变和节点置换等变。这样网络输出不只是下一步状态，还能给出具有物理意义的边级线性和角动量冲量，因此比常规黑箱 GNN 更可解释。</dd></div><div><dt>结果/证据</dt><dd>实验集中在 3D 颗粒系统和非弹性碰撞场景。论文报告该方法在长 rollout 中误差累积更稳定，对未见配置、异质交互和外力条件的外推更强。它的意义不只是精度提升，而是把“守恒律”从后验校正变成网络结构本身的一部分。对于机器人、航空、材料和多体物理模拟，这类设计比单纯追求局部预测误差更有长期价值。</dd></div><div><dt>收录价值</dt><dd>在仓库分级里，这篇属于 AI×物理方向的强论文，适合放在突破性层级。它还不到范式级，但已经明显超过普通的 physics-informed GNN 应用工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论如何让图神经网络在学习多体动力系统时不仅预测得准，而且在物理上自洽。很多 learned simulator 在短期误差上能做得不错，但一旦长时间 rollout 或遇到分布外情况，常常会违反守恒律，导致轨迹漂移。作者针对这个问题提出了一个同时守恒线动量和角动量的 physics-informed GNN。</p><p>方法上，论文提出 `Dynami-CAL GraphNet`。核心思想是在边局部参考系下对相互作用进行建模，使每一对节点之间的作用都满足成对的动量守恒约束，同时保持旋转等变、平移不变和节点置换等变。这样网络输出不只是下一步状态，还能给出具有物理意义的边级线性和角动量冲量，因此比常规黑箱 GNN 更可解释。</p><p>实验集中在 3D 颗粒系统和非弹性碰撞场景。论文报告该方法在长 rollout 中误差累积更稳定，对未见配置、异质交互和外力条件的外推更强。它的意义不只是精度提升，而是把“守恒律”从后验校正变成网络结构本身的一部分。对于机器人、航空、材料和多体物理模拟，这类设计比单纯追求局部预测误差更有长期价值。</p><p>在仓库分级里，这篇属于 AI×物理方向的强论文，适合放在突破性层级。它还不到范式级，但已经明显超过普通的 physics-informed GNN 应用工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多体动力系统的精确、可解释和实时建模对于预测自然和工程环境中的行为以及推断物理特性至关重要。传统的基于物理的模型面临可扩展性挑战且计算成本高昂，而图神经网络（GNNs）等数据驱动方法通常缺乏物理一致性、可解释性和泛化能力。在本文中，我们提出Dynami-CAL GraphNet，这是一种物理信息图神经网络，它将GNNs的学习能力与基于物理的归纳偏置相结合，以解决这些局限性。Dynami-CAL GraphNet利用对旋转对称性具有等变性、对平移具有不变性以及对节点置换具有等变性的边局部参考系，强制实现相互作用节点之间线动量和角动量的成对守恒。这种设计确保了节点动力学的物理一致性预测，同时提供了由成对相互作用产生的可解释的边级线动量和角动量冲量。在具有非弹性碰撞的3D颗粒系统上进行评估，Dynami-CAL GraphNet在长时间推演中表现出稳定的误差累积、对未见配置的有效外推以及对异构相互作用和外力的鲁棒处理能力。Dynami-CAL GraphNet在需要对复杂多体动力系统进行精确、可解释和实时建模的领域（如机器人学、航空航天工程和材料科学）中具有显著优势。通过提供遵循基本守恒定律的物理一致且可扩展的预测，它能够推断力和力矩，同时有效处理异构相互作用和外力。这使得它在设计控制系统、优化机械过程以及分析自然和工程系统中的动态行为方面具有不可估量的价值。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Accurate, interpretable, and real-time modeling of multi-body dynamical systems is essential for predicting behaviors and inferring physical properties in natural and engineered environments. Traditional physics-based models face scalability challenges and are computationally demanding, while data-driven approaches like Graph Neural Networks (GNNs) often lack physical consistency, interpretability, and generalization. In this paper, we propose Dynami-CAL GraphNet, a Physics-Informed Graph Neural Network that integrates the learning capabilities of GNNs with physics-based inductive biases to address these limitations. Dynami-CAL GraphNet enforces pairwise conservation of linear and angular momentum for interacting nodes using edge-local reference frames that are equivariant to rotational symmetries, invariant to translations, and equivariant to node permutations. This design ensures physically consistent predictions of node dynamics while offering interpretable, edge-wise linear and angular impulses resulting from pairwise interactions. Evaluated on a 3D granular system with inelastic collisions, Dynami-CAL GraphNet demonstrates stable error accumulation over extended rollouts, effective extrapolations to unseen configurations, and robust handling of heterogeneous interactions and external forces. Dynami-CAL GraphNet offers significant advantages in fields requiring accurate, interpretable, and real-time modeling of complex multi-body dynamical systems, such as robotics, aerospace engineering, and materials science. By providing physically consistent and scalable predictions that adhere to fundamental conservation laws, it enables the inference of forces and moments while efficiently handling heterogeneous interactions and external forces. This makes it invaluable for designing control systems, optimizing mechanical processes, and analyzing dynamic behaviors in both natural and engineered systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260115p7momentum,
+  title = {A physics-informed graph neural network conserving linear and angular momentum for dynamical systems},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-025-67802-5},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p7-momentum-conserving-pignn/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A physics-informed graph neural network conserving linear and angular momentum for dynamical systems. https://www.nature.com/articles/s41467-025-67802-5</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-67802-5" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

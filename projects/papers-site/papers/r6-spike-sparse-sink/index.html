@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks | DAST Papers</title>
+    <meta name="description" content="这篇论文研究 Transformer 中两个经常一起出现、但此前缺少统一解释的现象：`massive activations` 和 `attention sinks`。前者指少数 token 在某些通道上出现极端异常激活，后者指某些 token 会在许多注意力头中持续吸走注意力质量。作者的重点不是再次报告现象，而是解释它们为什么会共现，以及它们在模型里各自承担什么功能。
+
+论文的核心结论是，这两种" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r6-spike-sparse-sink/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks" />
+    <meta property="og:description" content="这篇论文研究 Transformer 中两个经常一起出现、但此前缺少统一解释的现象：`massive activations` 和 `attention sinks`。前者指少数 token 在某些通道上出现极端异常激活，后者指某些 token 会在许多注意力头中持续吸走注意力质量。作者的重点不是再次报告现象，而是解释它们为什么会共现，以及它们在模型里各自承担什么功能。
+
+论文的核心结论是，这两种" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r6-spike-sparse-sink/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks" />
+    <meta name="twitter:description" content="这篇论文研究 Transformer 中两个经常一起出现、但此前缺少统一解释的现象：`massive activations` 和 `attention sinks`。前者指少数 token 在某些通道上出现极端异常激活，后者指某些 token 会在许多注意力头中持续吸走注意力质量。作者的重点不是再次报告现象，而是解释它们为什么会共现，以及它们在模型里各自承担什么功能。
+
+论文的核心结论是，这两种" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05498" target="_blank" rel="noopener noreferrer">2603.05498</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文研究 Transformer 中两个经常一起出现、但此前缺少统一解释的现象：`massive activations` 和 `attention sinks`。前者指少数 token 在某些通道上出现极端异常激活，后者指某些 token 会在许多注意力头中持续吸走注意力质量。作者的重点不是再次报告现象，而是解释它们为什么会共现，以及它们在模型里各自承担什么功能。</dd></div><div><dt>方法/机制</dt><dd>论文的核心结论是，这两种现象的共现很大程度上是现代 Transformer 架构的产物，尤其与 `pre-norm` 配置密切相关，但它们并不是同一个机制的两个名字。作者认为 massive activations 的作用是全局性的：它们会形成跨层持续存在的近常量隐藏表示，相当于模型里的隐式参数。attention sinks 的作用更局部：它们影响特定注意力头的输出，并把部分头偏向更短程的依赖模式。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于，它把原本分散在量化、剪枝、KV-cache、长上下文推理等不同子领域里的观察，用一个更统一的机制视角串起来。对于理解为什么某些 token 在推理中异常重要、为什么 pre-norm 模型会出现特定病理行为，以及如何设计更健康的架构与缓存策略，这篇都有直接启发。</dd></div><div><dt>收录价值</dt><dd>在分级上，我会把它放在机制澄清型的突破性论文里。它不是范式级路线重写，但对 Transformer 内部工作机制的解释质量很高，值得长期跟踪。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文研究 Transformer 中两个经常一起出现、但此前缺少统一解释的现象：`massive activations` 和 `attention sinks`。前者指少数 token 在某些通道上出现极端异常激活，后者指某些 token 会在许多注意力头中持续吸走注意力质量。作者的重点不是再次报告现象，而是解释它们为什么会共现，以及它们在模型里各自承担什么功能。</p><p>论文的核心结论是，这两种现象的共现很大程度上是现代 Transformer 架构的产物，尤其与 `pre-norm` 配置密切相关，但它们并不是同一个机制的两个名字。作者认为 massive activations 的作用是全局性的：它们会形成跨层持续存在的近常量隐藏表示，相当于模型里的隐式参数。attention sinks 的作用更局部：它们影响特定注意力头的输出，并把部分头偏向更短程的依赖模式。</p><p>这篇工作的价值在于，它把原本分散在量化、剪枝、KV-cache、长上下文推理等不同子领域里的观察，用一个更统一的机制视角串起来。对于理解为什么某些 token 在推理中异常重要、为什么 pre-norm 模型会出现特定病理行为，以及如何设计更健康的架构与缓存策略，这篇都有直接启发。</p><p>在分级上，我会把它放在机制澄清型的突破性论文里。它不是范式级路线重写，但对 Transformer 内部工作机制的解释质量很高，值得长期跟踪。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Yu et al., 2024a)，以及注意力汇聚，其中少量token在多个头和层中吸引了不成比例的注意力质量（Xiao et al., 2024b）。这两种现象对量化（Xiao et al., 2023; Yu et al., 2024a; Son et al., 2024）、剪枝（Ma et al., 2023; Sandoval-Segura et al., 2026; Shin et al., 2025）、KV缓存管理（Ge et al., 2024; Su &amp; Yuan, 2025; Wu &amp; Tu, 2024）以及长上下文推理（Huang et al., 2023; Fu et al., 2025; Xiao et al., 2024a）等方面都具有重要的实际意义。因此，理解这两种现象如何关联在理论和实践上都非常重要。我们研究Transformer语言模型中两种反复出现的现象：大规模激活，其中少量token在少数通道中表现出极端异常值；以及注意力汇聚，其中某些token无论语义相关性如何都吸引不成比例的注意力质量。先前工作观察到这些现象频繁共现，并且通常涉及相同的token，但它们的功能作用和因果关系仍不清楚。通过系统实验，我们表明这种共现很大程度上是现代Transformer设计的架构产物，并且这两种现象具有相关但不同的功能。大规模激活全局运作：它们诱导跨层持续存在的近乎恒定的隐藏表示，有效地充当模型的隐式参数。注意力汇聚局部运作：它们调节跨头的注意力输出，并使单个头偏向短程依赖。我们将pre-norm配置确定为实现共现的关键选择，并表明消融它会导致这两种现象解耦。先前工作（Sun et al., 2024; Kaul et al., 2024; Queipo-de Llano et al., 2025）表明这种共现是由所涉token的重叠驱动的，但现有解释在很大程度上仍是描述性的。在本文中，我们超越了描述，提供了一种关于这种重叠如何在预训练LLM中出现以及为何出现的机制解释。我们的核心发现是，这种共现并非Transformer的固有属性，而是特定架构和训练选择的可预测结果。我们提出了三个核心主张：首先，归一化是连接大规模激活和注意力汇聚之间关系的关键架构组件。改变归一化配置可以抑制大规模激活，同时保留注意力汇聚。从机制上讲，大规模激活与归一化相互作用，在前向传播中产生近乎恒定的隐藏表示，有效地充当可以被利用来生成注意力汇聚的隐式参数。其次，注意力汇聚主要由注意力空间的维度以及训练上下文长度分布驱动。我们进一步表明，汇聚提供了一种机制，可以动态调节跨头的注意力输出，使某些头偏向捕获局部句子结构的短程依赖。第三，每种现象都可以独立抑制而不降低语言建模性能，这表明它们的重叠反映了偶然的架构交互，而非功能上的必要性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Yu et al., 2024a), and attention sinks, in which a small number of tokens attract disproportionate attention mass across many heads and layers (Xiao et al., 2024b). Both phenomena have significant practical implications for quantization (Xiao et al., 2023; Yu et al., 2024a; Son et al., 2024), pruning (Ma et al., 2023; Sandoval-Segura et al., 2026; Shin et al., 2025), KV-cache management (Ge et al., 2024; Su &amp; Yuan, 2025; Wu &amp; Tu, 2024), and long-context inference (Huang et al., 2023; Fu et al., 2025; Xiao et al., 2024a), among others. Understanding how these two phenomena relate is therefore both theoretically and practically important. We study two recurring phenomena in Transformer language models: massive activations, in which a small number of tokens exhibit extreme outliers in a few channels, and attention sinks, in which certain tokens attract disproportionate attention mass regardless of semantic relevance. Prior work observes that these phenomena frequently co-occur and often involve the same tokens, but their functional roles and causal relationship remain unclear. Through systematic experiments, we show that the co-occurrence is largely an architectural artifact of modern Transformer design, and that the two phenomena serve related but distinct functions. Massive activations operate globally: they induce near-constant hidden representations that persist across layers, effectively functioning as implicit parameters of the model. Attention sinks operate locally: they modulate attention outputs across heads and bias individual heads toward short-range dependencies. We identify the pre-norm configuration as the key choice that enables the co-occurrence, and show that ablating it causes the two phenomena to decouple. Prior work (Sun et al., 2024; Kaul et al., 2024; Queipo-de Llano et al., 2025) has suggested that the co-occurrence is driven by the overlap of involved tokens, but existing explanations remain largely descriptive. Here, we move beyond description to provide a mechanistic account of how and why this overlap emerges in pretrained LLMs. Our core finding is that the co-occurrence is not an inherent property of Transformers, but a predictable consequence of specific architectural and training choices. We advance three central claims: First, normalization is a key architectural component bridging the relationship between massive activations and attention sinks. Changing the normalization configuration can suppress massive activations while preserving attention sinks. Mechanistically, massive activations interact with normalization to produce near-constant hidden representations within a forward pass, effectively serving as implicit parameters that can be exploited to generate attention sinks. Second, attention sinks are primarily driven by the dimensionality of the attention space and by the training context-length distribution. We further show that sinks provide a mechanism to dynamically modulate attention output across heads, biasing certain heads toward short-range dependencies that capture local sentence structure. Third, each phenomenon can be independently suppressed without degrading language-modeling performance, suggesting that their overlap reflects incidental architectural interactions rather than a functional necessity.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305r6spikespa,
+  title = {The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05498.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r6-spike-sparse-sink/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Spike, the Sparse and the Sink: Anatomy of Massive Activations and Attention Sinks. https://arxiv.org/pdf/2603.05498.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05498.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

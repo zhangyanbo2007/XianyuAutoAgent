@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文抓的是具身操作里一个经常被软件论文掩盖的现实瓶颈：很多 dexterous manipulation 研究并不是卡在算法想法，而是卡在手本体太贵、太脆、太难维护，导致长期 teleoperation、模仿学习和 sim-to-real 强化学习实验根本跑不起来。作者把问题直接收敛到研究基础设施层面，目标不是做一只单项指标最强的机械手，而是给社区一个足够拟人、足够稳定、足够便宜、可以当天装好" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a67-orca-dexterous-hand/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning" />
+    <meta property="og:description" content="这篇论文抓的是具身操作里一个经常被软件论文掩盖的现实瓶颈：很多 dexterous manipulation 研究并不是卡在算法想法，而是卡在手本体太贵、太脆、太难维护，导致长期 teleoperation、模仿学习和 sim-to-real 强化学习实验根本跑不起来。作者把问题直接收敛到研究基础设施层面，目标不是做一只单项指标最强的机械手，而是给社区一个足够拟人、足够稳定、足够便宜、可以当天装好" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a67-orca-dexterous-hand/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning" />
+    <meta name="twitter:description" content="这篇论文抓的是具身操作里一个经常被软件论文掩盖的现实瓶颈：很多 dexterous manipulation 研究并不是卡在算法想法，而是卡在手本体太贵、太脆、太难维护，导致长期 teleoperation、模仿学习和 sim-to-real 强化学习实验根本跑不起来。作者把问题直接收敛到研究基础设施层面，目标不是做一只单项指标最强的机械手，而是给社区一个足够拟人、足够稳定、足够便宜、可以当天装好" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-04-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-04-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2504.04259" target="_blank" rel="noopener noreferrer">2504.04259</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓的是具身操作里一个经常被软件论文掩盖的现实瓶颈：很多 dexterous manipulation 研究并不是卡在算法想法，而是卡在手本体太贵、太脆、太难维护，导致长期 teleoperation、模仿学习和 sim-to-real 强化学习实验根本跑不起来。作者把问题直接收敛到研究基础设施层面，目标不是做一只单项指标最强的机械手，而是给社区一个足够拟人、足够稳定、足够便宜、可以当天装好当天开跑的学习平台。</dd></div><div><dt>方法/机制</dt><dd>论文提出 ORCA，一只开源的 17-DoF tendon-driven anthropomorphic robotic hand，带集成触觉传感，材料成本低于 2,000 CHF，完整装配时间少于 8 小时。设计上的重点在于减少连续实验中的中断和维护成本，包括 popping joints、auto-calibration、张力调节等机制，用系统级可靠性去支撑 teleoperation、imitation learning 和 zero-shot sim-to-real RL。作者还专门做了持续 10,000+ operation cycles 的耐久测试，而不是只给几个演示视频。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它不只是一个“开源硬件项目”，而是对 dexterous task learning 工作流的可达性做了实质性重构。拟人外形让它更容易复用人手交互数据，低成本和快速装配降低了复制门槛，耐久性和自校准又直接影响长期数据采集和 uninterrupted policy learning。对机器人操作、具身数据引擎、sim-to-real 和手部平台基准化，这都是有持续外溢价值的系统基础设施。</dd></div><div><dt>收录价值</dt><dd>它暂时不到更高一级，原因在于论文的核心贡献仍然主要落在平台与工程系统设计，而不是一个更通用的 manipulation 算法或训练范式突破。它对社区很有价值，但影响范围目前仍更偏向 dexterous robotics 基础设施层，是否会成为长期默认平台还要看后续采用度和生态跟进。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓的是具身操作里一个经常被软件论文掩盖的现实瓶颈：很多 dexterous manipulation 研究并不是卡在算法想法，而是卡在手本体太贵、太脆、太难维护，导致长期 teleoperation、模仿学习和 sim-to-real 强化学习实验根本跑不起来。作者把问题直接收敛到研究基础设施层面，目标不是做一只单项指标最强的机械手，而是给社区一个足够拟人、足够稳定、足够便宜、可以当天装好当天开跑的学习平台。</p><p>论文提出 ORCA，一只开源的 17-DoF tendon-driven anthropomorphic robotic hand，带集成触觉传感，材料成本低于 2,000 CHF，完整装配时间少于 8 小时。设计上的重点在于减少连续实验中的中断和维护成本，包括 popping joints、auto-calibration、张力调节等机制，用系统级可靠性去支撑 teleoperation、imitation learning 和 zero-shot sim-to-real RL。作者还专门做了持续 10,000+ operation cycles 的耐久测试，而不是只给几个演示视频。</p><p>它值得正式收录，因为它不只是一个“开源硬件项目”，而是对 dexterous task learning 工作流的可达性做了实质性重构。拟人外形让它更容易复用人手交互数据，低成本和快速装配降低了复制门槛，耐久性和自校准又直接影响长期数据采集和 uninterrupted policy learning。对机器人操作、具身数据引擎、sim-to-real 和手部平台基准化，这都是有持续外溢价值的系统基础设施。</p><p>它暂时不到更高一级，原因在于论文的核心贡献仍然主要落在平台与工程系统设计，而不是一个更通用的 manipulation 算法或训练范式突破。它对社区很有价值，但影响范围目前仍更偏向 dexterous robotics 基础设施层，是否会成为长期默认平台还要看后续采用度和生态跟进。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250405a67orcadex,
+  title = {ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2504.04259v2.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a67-orca-dexterous-hand/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). ORCA: An Open-Source, Reliable, Cost-Effective, Anthropomorphic Robotic Hand for Uninterrupted Dexterous Task Learning. https://arxiv.org/pdf/2504.04259v2.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2504.04259v2.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

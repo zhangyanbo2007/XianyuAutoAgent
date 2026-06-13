@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens | DAST Papers</title>
+    <meta name="description" content="这篇论文针对生成式视频世界模型的计算瓶颈：现有方法通常在密集空间-时间 latent 上建模，未来每个 frame 仍对应大量空间 token，导致多未来采样和长时序预测开销很高。作者把问题重新表述为预测相邻视觉基础模型特征的变化，而不是重建完整未来帧。
+
+方法上，DeltaTok 将相邻帧 VFM feature 的差分压缩成单个连续 delta token，DeltaWorld 则在这些 to" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j14-deltaworld-delta-tokens/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens" />
+    <meta property="og:description" content="这篇论文针对生成式视频世界模型的计算瓶颈：现有方法通常在密集空间-时间 latent 上建模，未来每个 frame 仍对应大量空间 token，导致多未来采样和长时序预测开销很高。作者把问题重新表述为预测相邻视觉基础模型特征的变化，而不是重建完整未来帧。
+
+方法上，DeltaTok 将相邻帧 VFM feature 的差分压缩成单个连续 delta token，DeltaWorld 则在这些 to" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j14-deltaworld-delta-tokens/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens" />
+    <meta name="twitter:description" content="这篇论文针对生成式视频世界模型的计算瓶颈：现有方法通常在密集空间-时间 latent 上建模，未来每个 frame 仍对应大量空间 token，导致多未来采样和长时序预测开销很高。作者把问题重新表述为预测相邻视觉基础模型特征的变化，而不是重建完整未来帧。
+
+方法上，DeltaTok 将相邻帧 VFM feature 的差分压缩成单个连续 delta token，DeltaWorld 则在这些 to" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens</h1>
+          <p class="subtitle">JEPA 与预测式世界模型 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">JEPA 与预测式世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.04913" target="_blank" rel="noopener noreferrer">2604.04913</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对生成式视频世界模型的计算瓶颈：现有方法通常在密集空间-时间 latent 上建模，未来每个 frame 仍对应大量空间 token，导致多未来采样和长时序预测开销很高。作者把问题重新表述为预测相邻视觉基础模型特征的变化，而不是重建完整未来帧。</dd></div><div><dt>方法/机制</dt><dd>方法上，DeltaTok 将相邻帧 VFM feature 的差分压缩成单个连续 delta token，DeltaWorld 则在这些 token 序列上做生成式建模。这样视频从空间-时间网格被压缩成纯时间序列，模型不需要对大量静态背景 token 重复建模，并能在一次前向中产生多个可能未来。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它提供了一个很清晰的世界模型接口转变：将未来生成放在冻结 VFM 的特征差分空间，并用单 token 表达帧间变化。论文报告相对现有生成式世界模型可少 35 倍参数、约 2000 倍 FLOPs，同时在多个指标上保持竞争力，这对高效生成世界模型和机器人/视频预测系统都有溢出价值。</dd></div><div><dt>收录价值</dt><dd>主要限制是它仍主要评估视觉特征预测和短期未来生成，尚未证明在 action-conditioned planning、闭环控制或真实决策任务中能替代更完整的世界模型。delta token 对大位移、视角剧变和交互式物理状态的表达边界也仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对生成式视频世界模型的计算瓶颈：现有方法通常在密集空间-时间 latent 上建模，未来每个 frame 仍对应大量空间 token，导致多未来采样和长时序预测开销很高。作者把问题重新表述为预测相邻视觉基础模型特征的变化，而不是重建完整未来帧。</p><p>方法上，DeltaTok 将相邻帧 VFM feature 的差分压缩成单个连续 delta token，DeltaWorld 则在这些 token 序列上做生成式建模。这样视频从空间-时间网格被压缩成纯时间序列，模型不需要对大量静态背景 token 重复建模，并能在一次前向中产生多个可能未来。</p><p>它值得收录，因为它提供了一个很清晰的世界模型接口转变：将未来生成放在冻结 VFM 的特征差分空间，并用单 token 表达帧间变化。论文报告相对现有生成式世界模型可少 35 倍参数、约 2000 倍 FLOPs，同时在多个指标上保持竞争力，这对高效生成世界模型和机器人/视频预测系统都有溢出价值。</p><p>主要限制是它仍主要评估视觉特征预测和短期未来生成，尚未证明在 action-conditioned planning、闭环控制或真实决策任务中能替代更完整的世界模型。delta token 对大位移、视角剧变和交互式物理状态的表达边界也仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>预测多样化的未来状态是视频世界建模中的一个核心挑战。判别式世界模型产生一个确定性预测，隐式地对可能的未来进行平均，而现有的生成式世界模型仍然计算成本高昂。最近的工作表明，在视觉基础模型（VFM）的特征空间中预测未来，而不是在为像素重建优化的潜在空间中预测，需要显著更少的模型参数。然而，大多数此类方法仍然是判别式的。在这项工作中，我们引入了DeltaTok，一个将连续帧之间的VFM特征差异编码成单个连续“delta”token的分词器，以及DeltaWorld，一个在此类token上运行的生成式世界模型，以高效生成多样化且合理的未来。Delta token将视频从三维时空表示简化为一维时间序列，例如，对于512 × 512帧，可实现1,024倍的token减少。这种紧凑的表示使得可行的多假设训练成为可能，其中许多未来并行生成，并且只有最好的一个受到监督。在推理时，这导致在单次前向传播中产生多样化的预测。在密集预测任务上的实验表明，DeltaWorld预测的未来与真实世界结果更紧密对齐，同时比现有生成式世界模型少超过35倍的参数，并使用少2,000倍的FLOPs。代码和权重：deltatok.github.io。图1. DeltaWorld概述。与需要多次前向传播并用许多空间token表示每一帧的大型现有生成式世界模型不同，我们的小型DeltaWorld通过使用单个delta token编码连续帧之间的差异，在单次前向传播中生成多个未来。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Anticipating diverse future states is a central challenge in video world modeling. Discriminative world models produce a deterministic prediction that implicitly averages over possible futures, while existing generative world models remain computationally expensive. Recent work demonstrates that predicting the future in the feature space of a vision foundation model (VFM), rather than a latent space optimized for pixel reconstruction, requires significantly fewer world model parameters. However, most such approaches remain discriminative. In this work, we introduce DeltaTok, a tokenizer that encodes the VFM feature difference between consecutive frames into a single continuous “delta” token, and DeltaWorld, a generative world model operating on these tokens to efficiently generate diverse plausible futures. Delta tokens reduce video from a three-dimensional spatio-temporal representation to a one-dimensional temporal sequence, for example yielding a 1,024× token reduction with 512 × 512 frames. This compact representation enables tractable multi-hypothesis training, where many futures are generated in parallel and only the best is supervised. At inference, this leads to diverse predictions in a single forward pass. Experiments on dense forecasting tasks demonstrate that DeltaWorld forecasts futures that more closely align with real-world outcomes, while having over 35× fewer parameters and using 2,000× fewer FLOPs than existing generative world models. Code &amp; weights: deltatok.github.io. Figure 1. Outline of DeltaWorld. Unlike large existing generative world models that require many forward passes and represent each frame with many spatial tokens, our small DeltaWorld generates multiple futures in a single forward pass by using a single delta token to encode the difference between consecutive frames.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406j14deltawo,
+  title = {A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.04913.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j14-deltaworld-delta-tokens/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens. https://arxiv.org/pdf/2604.04913.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/j9-worldmark-interactive-world-model-benchmark/">
+              <span>WorldMark: A Unified Benchmark Suite for Interactive Video World Models</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j13-wildworld-action-state-dataset/">
+              <span>WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j10-seoul-world-model/">
+              <span>Grounding World Simulation Models in a Real-World Metropolis</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-16</small>
+            </a>
+            <a class="related-item" href="../../papers/j12-v-jepa-2-1-dense-features/">
+              <span>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-15</small>
+            </a>
+            <a class="related-item" href="../../papers/j11-leworldmodel-stable-pixel-jepa/">
+              <span>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-13</small>
+            </a>
+            <a class="related-item" href="../../papers/j9-temporal-straightening-latent-planning/">
+              <span>Temporal Straightening for Latent Planning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.04913.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Context to Skills: Can Language Models Learn from Context Skillfully? | DAST Papers</title>
+    <meta name="description" content="这篇论文把长上下文使用重新表述为 context-to-skill：模型不只是检索上下文片段，而是从上下文中抽取规则、程序和可复用技能。
+
+它对 agent 能力扩展很相关。很多真实任务的关键不是参数知识，而是能否临时学习文档、流程、API 或业务规则，并把这些信息转化成后续执行策略。
+
+它值得正式收录，因为它把 context learning 与 skill augmentation 连接起来" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a269-context-to-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="From Context to Skills: Can Language Models Learn from Context Skillfully?" />
+    <meta property="og:description" content="这篇论文把长上下文使用重新表述为 context-to-skill：模型不只是检索上下文片段，而是从上下文中抽取规则、程序和可复用技能。
+
+它对 agent 能力扩展很相关。很多真实任务的关键不是参数知识，而是能否临时学习文档、流程、API 或业务规则，并把这些信息转化成后续执行策略。
+
+它值得正式收录，因为它把 context learning 与 skill augmentation 连接起来" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a269-context-to-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From Context to Skills: Can Language Models Learn from Context Skillfully?" />
+    <meta name="twitter:description" content="这篇论文把长上下文使用重新表述为 context-to-skill：模型不只是检索上下文片段，而是从上下文中抽取规则、程序和可复用技能。
+
+它对 agent 能力扩展很相关。很多真实任务的关键不是参数知识，而是能否临时学习文档、流程、API 或业务规则，并把这些信息转化成后续执行策略。
+
+它值得正式收录，因为它把 context learning 与 skill augmentation 连接起来" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>From Context to Skills: Can Language Models Learn from Context Skillfully?</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.27660" target="_blank" rel="noopener noreferrer">2604.27660</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把长上下文使用重新表述为 context-to-skill：模型不只是检索上下文片段，而是从上下文中抽取规则、程序和可复用技能。</dd></div><div><dt>方法/机制</dt><dd>它对 agent 能力扩展很相关。很多真实任务的关键不是参数知识，而是能否临时学习文档、流程、API 或业务规则，并把这些信息转化成后续执行策略。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 context learning 与 skill augmentation 连接起来，符合本库对 agent memory、capability acquisition 和 skill systems 的扩展重点。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为方法仍需在更开放、更长程、更工具化的真实任务中验证，尤其是技能抽取错误如何传播到执行阶段。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把长上下文使用重新表述为 context-to-skill：模型不只是检索上下文片段，而是从上下文中抽取规则、程序和可复用技能。</p><p>它对 agent 能力扩展很相关。很多真实任务的关键不是参数知识，而是能否临时学习文档、流程、API 或业务规则，并把这些信息转化成后续执行策略。</p><p>它值得正式收录，因为它把 context learning 与 skill augmentation 连接起来，符合本库对 agent memory、capability acquisition 和 skill systems 的扩展重点。</p><p>它没有更高，是因为方法仍需在更开放、更长程、更工具化的真实任务中验证，尤其是技能抽取错误如何传播到执行阶段。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>许多现实世界的任务要求语言模型（LMs）对超出其参数知识的复杂上下文进行推理。这需要上下文学习，即LMs直接从给定上下文中学习相关知识。一个直观的解决方案是推理时技能增强：从上下文中提取相应的规则和程序，形成明确的自然语言技能。然而，为上下文学习场景构建此类技能面临两个基本挑战：为冗长、技术密集的上下文进行手动技能标注的成本过高，以及自动化技能构建缺乏外部反馈。在本文中，我们提出了Ctx2Skill，一个自演化框架，它无需人工监督或外部反馈即可自主发现、完善和选择特定于上下文的技能。其核心是一个多智能体自博弈循环，其中包含一个生成探测任务和评分标准的挑战者（Challenger），一个在不断演化的技能集指导下尝试解决任务的推理者（Reasoner），以及一个提供二元反馈的中立评判者（Judge）。至关重要的是，挑战者和推理者都通过积累的自然语言技能进行演化：专门的提议者（Proposer）和生成者（Generator）智能体分析失败案例，并将其综合为针对双方的技能更新，从而实现自动化技能发现和完善。为了防止由日益极端的任务生成和过度专业化的技能积累引起的对抗性崩溃，我们进一步引入了跨时重放（Crosstime Replay）机制，该机制为推理者方识别出在代表性案例中实现最佳平衡的技能集，从而确保稳健和可泛化的技能演化。由此产生的技能可以插入任何语言模型中，以获得更好的上下文学习能力。在CL-bench的四个上下文学习任务上进行评估，Ctx2Skill持续提高了骨干模型（backbone models）的解决率，例如将GPT-4.1从11.1%提升到16.5%，将GPT-5.1从21.2%提升到25.8%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Many real-world tasks require language models (LMs) to reason over complex contexts that exceed their parametric knowledge. This calls for context learning, where LMs directly learn relevant knowledge from the given context. An intuitive solution is inference-time skill augmentation: extracting the corresponding rules and procedures from context into explicit, natural-language skills. However, constructing such skills for context learning scenarios faces two fundamental challenges: the prohibitive cost of manual skill annotation for long, technically dense contexts, and the lack of external feedback for automated skill construction. In this paper, we propose Ctx2Skill, a self-evolving framework that autonomously discovers, refines, and selects context-specific skills without human supervision or external feedback. At its core, a multi-agent self-play loop has a Challenger that generates probing tasks and rubrics, a Reasoner that attempts to solve them guided by an evolving skill set, and a neutral Judge that provides binary feedback. Crucially, both the Challenger and the Reasoner evolve through accumulated natural-language skills: dedicated Proposer and Generator agents analyze failure cases and synthesize them into targeted skill updates for both sides, enabling automated skill discovery and refinement. To prevent adversarial collapse caused by increasingly extreme task generation and over-specialized skill accumulation, we further introduce a Crosstime Replay mechanism that identifies the skill set achieving the best balance across representative cases for the Reasoner side, ensuring robust and generalizable skill evolution. The resulting skills can be plugged into any language model to obtain better context learning capability. Evaluated on four context learning tasks from CL-bench, Ctx2Skill consistently improves solving rates across backbone models, e.g., lifting GPT-4.1 from 11.1% to 16.5%, GPT-5.1 from 21.2% to 25.8%.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260505a269contex,
+  title = {From Context to Skills: Can Language Models Learn from Context Skillfully?},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.27660.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a269-context-to-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). From Context to Skills: Can Language Models Learn from Context Skillfully?. https://arxiv.org/pdf/2604.27660.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.27660.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2604.27660" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/S1s-Z/Ctx2Skill" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

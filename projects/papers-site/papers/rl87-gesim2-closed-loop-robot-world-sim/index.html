@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation | DAST Papers</title>
+    <meta name="description" content="机器人视频 world simulator 的关键问题是能否从 action-conditioned video demo 走向闭环 policy interaction。
+
+GE-Sim 2.0 在真实机器人数据上重训，并围绕 action-following fidelity、trajectory coverage 和闭环反馈增加模块，目标是让视频生成模型成为 manipulation sim" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl87-gesim2-closed-loop-robot-world-sim/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation" />
+    <meta property="og:description" content="机器人视频 world simulator 的关键问题是能否从 action-conditioned video demo 走向闭环 policy interaction。
+
+GE-Sim 2.0 在真实机器人数据上重训，并围绕 action-following fidelity、trajectory coverage 和闭环反馈增加模块，目标是让视频生成模型成为 manipulation sim" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl87-gesim2-closed-loop-robot-world-sim/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation" />
+    <meta name="twitter:description" content="机器人视频 world simulator 的关键问题是能否从 action-conditioned video demo 走向闭环 policy interaction。
+
+GE-Sim 2.0 在真实机器人数据上重训，并围绕 action-following fidelity、trajectory coverage 和闭环反馈增加模块，目标是让视频生成模型成为 manipulation sim" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.27491" target="_blank" rel="noopener noreferrer">2605.27491</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>机器人视频 world simulator 的关键问题是能否从 action-conditioned video demo 走向闭环 policy interaction。</dd></div><div><dt>方法/机制</dt><dd>GE-Sim 2.0 在真实机器人数据上重训，并围绕 action-following fidelity、trajectory coverage 和闭环反馈增加模块，目标是让视频生成模型成为 manipulation simulator。</dd></div><div><dt>结果/证据</dt><dd>它的价值在于把 video world model 用到 robotic manipulation 的闭环仿真，而不是只生成离线视频。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为 closed-loop world simulator 是机器人训练、规划和评估的重要方向，对 sim2real 和 embodied world models 都有外溢。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>机器人视频 world simulator 的关键问题是能否从 action-conditioned video demo 走向闭环 policy interaction。</p><p>GE-Sim 2.0 在真实机器人数据上重训，并围绕 action-following fidelity、trajectory coverage 和闭环反馈增加模块，目标是让视频生成模型成为 manipulation simulator。</p><p>它的价值在于把 video world model 用到 robotic manipulation 的闭环仿真，而不是只生成离线视频。</p><p>它值得收录，因为 closed-loop world simulator 是机器人训练、规划和评估的重要方向，对 sim2real 和 embodied world models 都有外溢。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们介绍了 GE-Sim 2.0 (Genie Envisioner 世界模拟器 2.0)，一个用于机器人操作的闭环视频世界模拟器。GE-Sim 2.0 基于 Genie Envisioner 的动作条件视频生成框架，在数千小时的真实世界机器人数据上重新训练，这些数据涵盖了远程操作、富接触交互和机器人策略部署，大幅提高了动作跟随的保真度和轨迹覆盖范围。在此基础上，三个新模块将视频模拟到策略学习的循环闭合：一个状态专家，从视频潜在空间解码本体感受状态，以支持下游策略模型的下一块预测；一个世界评判器，根据任务指令对生成的展开进行评分，产生机器可验证的成功信号和奖励，取代了人工检查；以及一个加速框架，在单个 H100 上以 2.3 秒的速度生成 25 帧的展开，并在推理时支持高达 4 倍的帧跳过，用于长周期评估。GE-Sim 2.0 以仅 20 亿参数位居公共 WorldArena 排行榜榜首，优于专用机器人世界模型和闭源通用视频生成器，并且针对其展开和奖励训练的策略转化为可衡量的真实世界收益，将 GE-Sim 2.0 确立为可扩展评估和操作策略闭环学习的实用平台。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce GE-Sim 2.0 (Genie Envisioner World Simulator 2.0), a closed-loop video world simulator for robotic manipulation. Building on the action-conditioned video generation framework of Genie Envisioner, GE-Sim 2.0 is re-trained on thousands of hours of real-world robot data spanning teleoperation, contact-rich interaction, and on-robot policy deployment, substantially improving action-following fidelity and trajectory coverage. On top of this foundation, three new modules close the loop from video simulation to policy learning: a state expert that decodes proprioceptive state from video latents to support next-chunk prediction by downstream policy models; a world judge that scores generated rollouts against task instructions, yielding machine-verifiable success signals and rewards in place of manual inspection; and an acceleration framework that delivers a 25-frame rollout in 2.3 seconds on a single H100, with up to 4× frame skipping at inference for long-horizon evaluation. GE-Sim 2.0 tops the public WorldArena leaderboard at only 2B parameters, outperforming both dedicated robotic world models and closed-source general video generators, and policies trained against its rollouts and rewards translate into measurable real-world gains, establishing GE-Sim 2.0 as a practical platform for scalable evaluation and closed-loop learning of manipulation policies.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527rl87gesim2,
+  title = {GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.27491.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl87-gesim2-closed-loop-robot-world-sim/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation. https://arxiv.org/pdf/2605.27491.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.27491.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.27491" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

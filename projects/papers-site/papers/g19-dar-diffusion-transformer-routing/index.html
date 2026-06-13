@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rethinking Cross-Layer Information Routing in Diffusion Transformers | DAST Papers</title>
+    <meta name="description" content="这篇论文聚焦 Diffusion Transformers 中长期被默认继承的 residual stream，指出跨层信息流在深度和 denoising timestep 上存在幅值膨胀、梯度衰减和 block redundancy。
+
+作者提出 Diffusion-Adaptive Routing (DAR)，用 learnable、timestep-adaptive、non-incremen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g19-dar-diffusion-transformer-routing/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Rethinking Cross-Layer Information Routing in Diffusion Transformers" />
+    <meta property="og:description" content="这篇论文聚焦 Diffusion Transformers 中长期被默认继承的 residual stream，指出跨层信息流在深度和 denoising timestep 上存在幅值膨胀、梯度衰减和 block redundancy。
+
+作者提出 Diffusion-Adaptive Routing (DAR)，用 learnable、timestep-adaptive、non-incremen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g19-dar-diffusion-transformer-routing/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rethinking Cross-Layer Information Routing in Diffusion Transformers" />
+    <meta name="twitter:description" content="这篇论文聚焦 Diffusion Transformers 中长期被默认继承的 residual stream，指出跨层信息流在深度和 denoising timestep 上存在幅值膨胀、梯度衰减和 block redundancy。
+
+作者提出 Diffusion-Adaptive Routing (DAR)，用 learnable、timestep-adaptive、non-incremen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Rethinking Cross-Layer Information Routing in Diffusion Transformers</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.20708" target="_blank" rel="noopener noreferrer">2605.20708</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文聚焦 Diffusion Transformers 中长期被默认继承的 residual stream，指出跨层信息流在深度和 denoising timestep 上存在幅值膨胀、梯度衰减和 block redundancy。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Diffusion-Adaptive Routing (DAR)，用 learnable、timestep-adaptive、non-incremental 的历史子层输出聚合替换传统 residual addition。</dd></div><div><dt>结果/证据</dt><dd>在 ImageNet 256x256 上，DAR 改善 SiT-XL/2 的 FID，并用更少训练迭代达到基线收敛质量；叠加 REPA 后还带来早期训练加速。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 DiT 的 cross-layer routing 提升为一个独立可调的设计轴，对视觉生成 backbone、蒸馏和大规模 T2I fine-tuning 都有方法外溢价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文聚焦 Diffusion Transformers 中长期被默认继承的 residual stream，指出跨层信息流在深度和 denoising timestep 上存在幅值膨胀、梯度衰减和 block redundancy。</p><p>作者提出 Diffusion-Adaptive Routing (DAR)，用 learnable、timestep-adaptive、non-incremental 的历史子层输出聚合替换传统 residual addition。</p><p>在 ImageNet 256x256 上，DAR 改善 SiT-XL/2 的 FID，并用更少训练迭代达到基线收敛质量；叠加 REPA 后还带来早期训练加速。</p><p>它值得正式收录，因为它把 DiT 的 cross-layer routing 提升为一个独立可调的设计轴，对视觉生成 backbone、蒸馏和大规模 T2I fine-tuning 都有方法外溢价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>扩散Transformer（DiT）已成为现代视觉生成事实上的骨干模型，其设计的几乎每个主要方面——分词、注意力、条件化、目标和潜在自编码器——都得到了广泛的重新审视。然而，控制信息如何在层间累积的残差流直接继承自原始Transformer。在本文中，我们对DiT中跨层信息流进行了系统的实证分析，联合沿着深度和去噪时间步，并识别了传统残差加法的三个具体症状，即单调前向幅度膨胀、急剧的反向梯度衰减和显著的块级冗余。受此诊断启发，我们提出了扩散自适应路由（DAR），这是一种即插即用的残差替换，它对子层输出历史进行可学习、时间步自适应和非增量聚合。此外，所提出的DAR与许多现代Transformer增强方法兼容，例如REPA。在ImageNet 256 × 256上，DAR将SiT-XL/2的FID提高了2.11（7.56 vs. 9.67），并以8.75倍更少的训练迭代次数匹配了基线的收敛质量。在REPA之上，它在早期阶段实现了2倍的训练加速，表明跨层信息路由是扩散建模中一个未充分探索的设计轴，它与现有表示对齐目标正交。除了预训练，DAR还可以在大规模T2I模型的微调阶段应用，并在分布匹配蒸馏过程中保留高频细节。E-mail: wanghaisheng.whs@alibaba-inc.com, zhangsq@lamda.nju.edu.cn 60.0 50.0</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Diffusion Transformers (DiTs) have become a de facto backbone of modern visual generation, and nearly every major axis of their design — tokenization, attention, conditioning, objectives, and latent autoencoders — has been extensively revisited. The residual stream that governs how information accumulates across layers, however, has been directly inherited from the original Transformer. In this paper, we present a systematic empirical analysis of cross-layer information flow in DiTs, jointly along depth and denoising timestep, and identify three concrete symptoms of traditional residual addition, namely monotonic forward magnitude inflation, sharp backward gradient decay, and pronounced block-wise redundancy. Motivated by this diagnosis, we propose Diffusion-Adaptive Routing (DAR), a drop-in residual replacement that performs learnable, timestep-adaptive, and non-incremental aggregation over the history of sublayer outputs. Moreover, the proposed DAR is compatible with many modern Transformer enhancement methods, such as REPA. On ImageNet 256 × 256, DAR improves SiT-XL/2 by 2.11 FID (7.56 vs. 9.67) and matches the baseline’s converged quality with 8.75× fewer training iterations. Stacked on top of REPA, it yields a 2× training acceleration in the early stage, suggesting cross-layer information routing as an underexplored design axis in diffusion modeling, one that operates orthogonally to existing representation-alignment objectives. Beyond pretraining, DAR can also be applied during the fine-tuning stage of large-scale T2I models and preserves high-frequency details during Distribution Matching Distillation. E-mail: wanghaisheng.whs@alibaba-inc.com, zhangsq@lamda.nju.edu.cn 60.0 50.0</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521g19dardiff,
+  title = {Rethinking Cross-Layer Information Routing in Diffusion Transformers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.20708.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g19-dar-diffusion-transformer-routing/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Rethinking Cross-Layer Information Routing in Diffusion Transformers. https://arxiv.org/pdf/2605.20708.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.20708.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

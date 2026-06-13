@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Matter of TASTE: Improving Coverage and Difficulty of Agent Benchmarks | DAST Papers</title>
+    <meta name="description" content="现有 agent benchmark 容易饱和，而且从自然语言场景手写任务再映射到工具序列，会覆盖很窄的工具组合。
+
+TASTE 从工具序列演化反向生成任务，使用 LLM validity signals 训练 Adaptive Contrastive n-gram model，再通过聚类和难度演化生成更高覆盖的 agent tasks。
+
+它值得收录，因为 agent 评测正在从静态题库走向可扩" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a352-taste-agent-benchmark-synthesis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A Matter of TASTE: Improving Coverage and Difficulty of Agent Benchmarks" />
+    <meta property="og:description" content="现有 agent benchmark 容易饱和，而且从自然语言场景手写任务再映射到工具序列，会覆盖很窄的工具组合。
+
+TASTE 从工具序列演化反向生成任务，使用 LLM validity signals 训练 Adaptive Contrastive n-gram model，再通过聚类和难度演化生成更高覆盖的 agent tasks。
+
+它值得收录，因为 agent 评测正在从静态题库走向可扩" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a352-taste-agent-benchmark-synthesis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A Matter of TASTE: Improving Coverage and Difficulty of Agent Benchmarks" />
+    <meta name="twitter:description" content="现有 agent benchmark 容易饱和，而且从自然语言场景手写任务再映射到工具序列，会覆盖很窄的工具组合。
+
+TASTE 从工具序列演化反向生成任务，使用 LLM validity signals 训练 Adaptive Contrastive n-gram model，再通过聚类和难度演化生成更高覆盖的 agent tasks。
+
+它值得收录，因为 agent 评测正在从静态题库走向可扩" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A Matter of TASTE: Improving Coverage and Difficulty of Agent Benchmarks</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28556" target="_blank" rel="noopener noreferrer">2605.28556</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有 agent benchmark 容易饱和，而且从自然语言场景手写任务再映射到工具序列，会覆盖很窄的工具组合。</dd></div><div><dt>方法/机制</dt><dd>TASTE 从工具序列演化反向生成任务，使用 LLM validity signals 训练 Adaptive Contrastive n-gram model，再通过聚类和难度演化生成更高覆盖的 agent tasks。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为 agent 评测正在从静态题库走向可扩展任务合成，TASTE 提供了一个可复用 benchmark-construction primitive。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有 agent benchmark 容易饱和，而且从自然语言场景手写任务再映射到工具序列，会覆盖很窄的工具组合。</p><p>TASTE 从工具序列演化反向生成任务，使用 LLM validity signals 训练 Adaptive Contrastive n-gram model，再通过聚类和难度演化生成更高覆盖的 agent tasks。</p><p>它值得收录，因为 agent 评测正在从静态题库走向可扩展任务合成，TASTE 提供了一个可复用 benchmark-construction primitive。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>随着智能体能力的提升，现有基准，如τ 2 -Bench，正变得日益饱和。然而，构建新的基准任务仍然复杂、昂贵且耗时。此外，标准方法（即首先用自然语言编写场景，然后映射到工具序列）仅捕获了智能体所使用的工具使用模式的一小部分。在本文中，我们通过逆转任务构建过程来解决这些问题。我们提出了TASTE：从工具序列演化中合成任务，这是一种自动生成具有更广泛工具使用覆盖范围的挑战性任务的方法。TASTE利用一个在LLM判断的有效性信号上训练的自适应对比n-gram模型。这使得能够采样覆盖大量工具组合的有效工具序列。TASTE随后通过聚类从池中选择代表性序列，将其实例化为完整的基准任务，并通过迭代难度演化进行完善。使用TASTE，我们构建了τ c -Bench，这是τ 2 -Bench三个领域的挑战性扩展。我们评估了11对智能体/用户LLM，发现几乎使τ 2 -Bench饱和的模型在我们的任务上性能严重下降（例如，Gemini-3-Flash从0.82-0.94下降到0.28-0.61）。除了增加难度，我们生成的任务使智能体必须执行的独特工具组合数量增加了一倍以上。我们的结果表明，现有基准上的高分往往反映的是饱和而非强大的任务解决能力。通过自动化生成困难、高覆盖率的基准，TASTE能够对未来的智能体进行持续、可扩展的评估。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>As agent capabilities advance, existing benchmarks, such as τ 2 -Bench, are becoming increasingly saturated. Yet constructing new benchmark tasks remains complex, costly, and labor-intensive. Moreover, the standard approach, in which scenarios are first written in natural language and then mapped to tool sequences, captures only a narrow subset of the tool-use patterns agents exercise. In this paper, we address these problems by reversing the task construction process. We propose TASTE: Task Synthesis from Tool Sequence Evolution, an automatic method that generates challenging tasks with broader tool-use coverage. TASTE utilizes an Adaptive Contrastive n-gram model trained on LLM-judged validity signals. This enables sampling valid tool sequences that cover a vast range of tool combinations. TASTE then selects representative sequences from the pool via clustering, instantiates them into complete benchmark tasks, and refines them through iterative difficulty evolution. Using TASTE, we construct τ c -Bench, a challenging extension of the three domains of τ 2 -Bench. We evaluate 11 agent/user LLM pairs and find that models nearly saturating τ 2 -Bench suffer severe performance drops on our tasks (e.g., Gemini-3-Flash falls from 0.82−0.94 to 0.28−0.61). Beyond increasing difficulty, our generated tasks more than double the number of unique tool combinations agents must execute. Our results suggest high scores on existing benchmarks often reflect saturation rather than robust task-solving ability. By automating the generation of difficult, high-coverage benchmarks, TASTE enables continuous, scalable evaluation of future agents.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527a352tastea,
+  title = {A Matter of TASTE: Improving Coverage and Difficulty of Agent Benchmarks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28556.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a352-taste-agent-benchmark-synthesis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A Matter of TASTE: Improving Coverage and Difficulty of Agent Benchmarks. https://arxiv.org/pdf/2605.28556.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28556.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28556" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

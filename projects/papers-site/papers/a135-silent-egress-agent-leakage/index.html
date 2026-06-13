@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak Without a Trace | DAST Papers</title>
+    <meta name="description" content="随着 agent 系统越来越多地自动打开 URL、读取网页预览、调用外部工具，安全风险不再只发生在最终可见回答里。系统可能在用户看不到的中间步骤里发出外联请求，把敏感上下文悄悄带出运行环境，而现有输出级 safety checks 往往根本察觉不到。
+
+Silent Egress 针对这一点提出 implicit prompt injection 的系统级风险图景：恶意网页可以把攻击藏在自动生成的" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a135-silent-egress-agent-leakage/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak Without a Trace" />
+    <meta property="og:description" content="随着 agent 系统越来越多地自动打开 URL、读取网页预览、调用外部工具，安全风险不再只发生在最终可见回答里。系统可能在用户看不到的中间步骤里发出外联请求，把敏感上下文悄悄带出运行环境，而现有输出级 safety checks 往往根本察觉不到。
+
+Silent Egress 针对这一点提出 implicit prompt injection 的系统级风险图景：恶意网页可以把攻击藏在自动生成的" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a135-silent-egress-agent-leakage/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak Without a Trace" />
+    <meta name="twitter:description" content="随着 agent 系统越来越多地自动打开 URL、读取网页预览、调用外部工具，安全风险不再只发生在最终可见回答里。系统可能在用户看不到的中间步骤里发出外联请求，把敏感上下文悄悄带出运行环境，而现有输出级 safety checks 往往根本察觉不到。
+
+Silent Egress 针对这一点提出 implicit prompt injection 的系统级风险图景：恶意网页可以把攻击藏在自动生成的" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak Without a Trace</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.22450" target="_blank" rel="noopener noreferrer">2602.22450</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 agent 系统越来越多地自动打开 URL、读取网页预览、调用外部工具，安全风险不再只发生在最终可见回答里。系统可能在用户看不到的中间步骤里发出外联请求，把敏感上下文悄悄带出运行环境，而现有输出级 safety checks 往往根本察觉不到。</dd></div><div><dt>方法/机制</dt><dd>Silent Egress 针对这一点提出 implicit prompt injection 的系统级风险图景：恶意网页可以把攻击藏在自动生成的标题、metadata 和 snippets 里，诱导 agent 触发 outbound requests 并外泄敏感信息。论文进一步提出 sharded exfiltration，把泄露内容拆成多次请求以绕过简单 DLP，并用实验表明 prompt-layer 防御保护有限，而 domain allowlisting、redirect-chain analysis 等 system/network controls 更有效。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把网络外联本身提升为 agent security 的 first-class outcome。与很多只盯回答文本的安全论文不同，这篇工作把关注点推到 runtime 和 network boundary，对真实部署的 agent sandbox、egress control 和 provenance tracking 都有直接启发。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要是单条风险线上的强系统安全论文，虽然问题切得很准，但还没有像更高阶工作那样给出统一的 agent runtime security architecture。它非常值得收，但暂时仍属于强突破级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 agent 系统越来越多地自动打开 URL、读取网页预览、调用外部工具，安全风险不再只发生在最终可见回答里。系统可能在用户看不到的中间步骤里发出外联请求，把敏感上下文悄悄带出运行环境，而现有输出级 safety checks 往往根本察觉不到。</p><p>Silent Egress 针对这一点提出 implicit prompt injection 的系统级风险图景：恶意网页可以把攻击藏在自动生成的标题、metadata 和 snippets 里，诱导 agent 触发 outbound requests 并外泄敏感信息。论文进一步提出 sharded exfiltration，把泄露内容拆成多次请求以绕过简单 DLP，并用实验表明 prompt-layer 防御保护有限，而 domain allowlisting、redirect-chain analysis 等 system/network controls 更有效。</p><p>这篇工作值得收录，因为它把网络外联本身提升为 agent security 的 first-class outcome。与很多只盯回答文本的安全论文不同，这篇工作把关注点推到 runtime 和 network boundary，对真实部署的 agent sandbox、egress control 和 provenance tracking 都有直接启发。</p><p>它没有升到更高一级，是因为当前主要是单条风险线上的强系统安全论文，虽然问题切得很准，但还没有像更高阶工作那样给出统一的 agent runtime security architecture。它非常值得收，但暂时仍属于强突破级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>静默泄露：当隐式提示注入使LLM代理无痕泄露时 摘要 代理式大型语言模型系统越来越多地通过检索URL和调用外部工具来自动化任务。我们发现这种工作流程会产生隐式提示注入：嵌入在自动生成的URL预览（包括标题、元数据和摘要）中的对抗性指令，可能引入我们称之为静默泄露的系统级风险。利用一个完全本地化且可复现的测试平台，我们证明恶意网页可以诱导代理发出窃取敏感运行时上下文的出站请求，即使最终向用户显示的响应看起来无害。在使用基于qwen2.5:7b的代理进行的480次实验运行中，攻击以高概率成功（P (泄露) ≈ 0.89），并且95%的成功攻击未被基于输出的安全检查检测到。我们还引入了分片窃取，其中敏感信息被拆分到多个请求中以避免检测。这种策略将单请求泄露指标降低了73% (Leak@1)，并绕过了简单的数据丢失防护机制。我们的消融结果表明，应用于提示层的防御提供有限的保护，而系统和网络层的控制，例如域名白名单和重定向链分析，则显著更有效。这些发现表明，在代理式LLM系统中，网络出站应被视为一级安全结果。我们概述了超越提示层加固的架构方向，包括溯源跟踪和能力隔离。关键词 LLM安全 · 代理系统 · 提示注入 · 数据窃取 · 网络出站</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Agentic large language model systems increasingly automate tasks by retrieving URLs and calling external tools. We show that this workflow gives rise to implicit prompt injection: adversarial instructions embedded in automatically generated URL previews, including titles, metadata, and snippets, can introduce a system-level risk that we refer to as silent egress. Using a fully local and reproducible testbed, we demonstrate that a malicious web page can induce an agent to issue outbound requests that exfiltrate sensitive runtime context, even when the final response shown to the user appears harmless. In 480 experimental runs with a qwen2.5:7b-based agent, the attack succeeds with high probability (P (egress) ≈ 0.89), and 95% of successful attacks are not detected by output-based safety checks. We also introduce sharded exfiltration, where sensitive information is split across multiple requests to avoid detection. This strategy reduces single-request leakage metrics by 73% (Leak@1) and bypasses simple data loss prevention mechanisms. Our ablation results indicate that defenses applied at the prompt layer offer limited protection, while controls at the system and network layers, such as domain allowlisting and redirect-chain analysis, are considerably more effective. These findings suggest that network egress should be treated as a first-class security outcome in agentic LLM systems. We outline architectural directions, including provenance tracking and capability isolation, that go beyond prompt-level hardening. Keywords LLM security · Agentic Systems · Prompt Injection · Data Exfiltration · Network Egress</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260225a135silent,
+  title = {Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak Without a Trace},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.22450.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a135-silent-egress-agent-leakage/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Silent Egress: When Implicit Prompt Injection Makes LLM Agents Leak Without a Trace. https://arxiv.org/pdf/2602.22450.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.22450.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

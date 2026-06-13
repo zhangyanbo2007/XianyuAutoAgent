@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FireBridge: Cycle-Accurate Hardware + Firmware Co-Verification for Modern Accelerators | DAST Papers</title>
+    <meta name="description" content="现代 AI accelerator 的复杂度越来越依赖 firmware 与多层 memory hierarchy 的协同，结果是开发瓶颈逐渐从单个 RTL 模块验证，转移到硬件与生产 firmware 的系统级联合调试。传统上很多团队仍依赖 FPGA emulation 来做 integration debug，迭代非常慢。
+
+FireBridge 的关键贡献是给出一个 cycle-accura" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw23-firebridge-accelerator-coverification/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FireBridge: Cycle-Accurate Hardware + Firmware Co-Verification for Modern Accelerators" />
+    <meta property="og:description" content="现代 AI accelerator 的复杂度越来越依赖 firmware 与多层 memory hierarchy 的协同，结果是开发瓶颈逐渐从单个 RTL 模块验证，转移到硬件与生产 firmware 的系统级联合调试。传统上很多团队仍依赖 FPGA emulation 来做 integration debug，迭代非常慢。
+
+FireBridge 的关键贡献是给出一个 cycle-accura" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw23-firebridge-accelerator-coverification/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FireBridge: Cycle-Accurate Hardware + Firmware Co-Verification for Modern Accelerators" />
+    <meta name="twitter:description" content="现代 AI accelerator 的复杂度越来越依赖 firmware 与多层 memory hierarchy 的协同，结果是开发瓶颈逐渐从单个 RTL 模块验证，转移到硬件与生产 firmware 的系统级联合调试。传统上很多团队仍依赖 FPGA emulation 来做 integration debug，迭代非常慢。
+
+FireBridge 的关键贡献是给出一个 cycle-accura" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FireBridge: Cycle-Accurate Hardware + Firmware Co-Verification for Modern Accelerators</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.25969" target="_blank" rel="noopener noreferrer">2603.25969</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现代 AI accelerator 的复杂度越来越依赖 firmware 与多层 memory hierarchy 的协同，结果是开发瓶颈逐渐从单个 RTL 模块验证，转移到硬件与生产 firmware 的系统级联合调试。传统上很多团队仍依赖 FPGA emulation 来做 integration debug，迭代非常慢。</dd></div><div><dt>方法/机制</dt><dd>FireBridge 的关键贡献是给出一个 cycle-accurate 的 hardware + firmware co-verification workflow：把 production firmware 编译到 x86 侧，再通过 randomized memory bridge 与标准 simulator 中的 RTL/gate-level 子系统对接，从而在 VCS、Xsim、Xcelium 这类环境里直接做 firmware debugging、register protocol testing、memory congestion emulation 和 profiling。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它改变的是 accelerator 开发工作流，而不是某个局部性能点。对 AI hardware / systems 而言，这类 co-verification pattern 会直接影响 heterogeneous accelerator 团队怎样并行推进 firmware、HLS/RTL 与系统集成，具备明显的 reusable workflow value。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前贡献仍主要聚焦在 verification/integration 这一个环节，而不是更全面地重构 AI accelerator 设计范式。它是很强的工程基础设施模式，但距离更高一级的设计蓝图还差更广泛的行业采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现代 AI accelerator 的复杂度越来越依赖 firmware 与多层 memory hierarchy 的协同，结果是开发瓶颈逐渐从单个 RTL 模块验证，转移到硬件与生产 firmware 的系统级联合调试。传统上很多团队仍依赖 FPGA emulation 来做 integration debug，迭代非常慢。</p><p>FireBridge 的关键贡献是给出一个 cycle-accurate 的 hardware + firmware co-verification workflow：把 production firmware 编译到 x86 侧，再通过 randomized memory bridge 与标准 simulator 中的 RTL/gate-level 子系统对接，从而在 VCS、Xsim、Xcelium 这类环境里直接做 firmware debugging、register protocol testing、memory congestion emulation 和 profiling。</p><p>它值得正式收录，因为它改变的是 accelerator 开发工作流，而不是某个局部性能点。对 AI hardware / systems 而言，这类 co-verification pattern 会直接影响 heterogeneous accelerator 团队怎样并行推进 firmware、HLS/RTL 与系统集成，具备明显的 reusable workflow value。</p><p>它没有升到更高一级，是因为当前贡献仍主要聚焦在 verification/integration 这一个环节，而不是更全面地重构 AI accelerator 设计范式。它是很强的工程基础设施模式，但距离更高一级的设计蓝图还差更广泛的行业采用。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260326hw23firebr,
+  title = {FireBridge: Cycle-Accurate Hardware + Firmware Co-Verification for Modern Accelerators},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.25969.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw23-firebridge-accelerator-coverification/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FireBridge: Cycle-Accurate Hardware + Firmware Co-Verification for Modern Accelerators. https://arxiv.org/pdf/2603.25969.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.25969.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

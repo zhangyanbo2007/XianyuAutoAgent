@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meta-Harness: End-to-End Optimization of Model Harnesses | DAST Papers</title>
+    <meta name="description" content="大语言模型系统的表现不仅由模型权重决定，也深受 harness 影响，也就是决定哪些信息被存储、检索和呈现给模型的那层代码逻辑。现实里这部分仍主要靠人工设计，而现有文本优化器又往往把反馈压缩得过度，难以真正搜索代码级 harness 设计空间。
+
+Meta-Harness 的核心贡献是把 harness optimization 做成 outer-loop code search。系统中的 pro" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a110-meta-harness-model-harnesses/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Meta-Harness: End-to-End Optimization of Model Harnesses" />
+    <meta property="og:description" content="大语言模型系统的表现不仅由模型权重决定，也深受 harness 影响，也就是决定哪些信息被存储、检索和呈现给模型的那层代码逻辑。现实里这部分仍主要靠人工设计，而现有文本优化器又往往把反馈压缩得过度，难以真正搜索代码级 harness 设计空间。
+
+Meta-Harness 的核心贡献是把 harness optimization 做成 outer-loop code search。系统中的 pro" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a110-meta-harness-model-harnesses/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Meta-Harness: End-to-End Optimization of Model Harnesses" />
+    <meta name="twitter:description" content="大语言模型系统的表现不仅由模型权重决定，也深受 harness 影响，也就是决定哪些信息被存储、检索和呈现给模型的那层代码逻辑。现实里这部分仍主要靠人工设计，而现有文本优化器又往往把反馈压缩得过度，难以真正搜索代码级 harness 设计空间。
+
+Meta-Harness 的核心贡献是把 harness optimization 做成 outer-loop code search。系统中的 pro" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Meta-Harness: End-to-End Optimization of Model Harnesses</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.28052" target="_blank" rel="noopener noreferrer">2603.28052</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>大语言模型系统的表现不仅由模型权重决定，也深受 harness 影响，也就是决定哪些信息被存储、检索和呈现给模型的那层代码逻辑。现实里这部分仍主要靠人工设计，而现有文本优化器又往往把反馈压缩得过度，难以真正搜索代码级 harness 设计空间。</dd></div><div><dt>方法/机制</dt><dd>Meta-Harness 的核心贡献是把 harness optimization 做成 outer-loop code search。系统中的 proposer agent 能读取源代码、历史候选的分数以及执行轨迹，并在文件系统层面访问完整经验，而不是只拿到高度压缩的文本反馈。它因此能对上下文管理、检索逻辑和呈现策略进行端到端搜索，并在在线分类、检索增强数学推理和 agentic coding 三类设置中稳定优于手工或既有 context-management baseline。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这篇工作推进的不只是 prompt 优化，而是把 harness 本身提升成可自动设计的第一类对象。仓库里已经有 AutoHarness 和 Natural-Language Agent Harnesses，这篇则更进一步，把 harness engineering 从单条技巧推进到可搜索的 outer-loop workflow，对 agent system design 和 model orchestration 都有明显耐久外溢。</dd></div><div><dt>收录价值</dt><dd>它目前定为 disruptive 而不是更高一级，因为证据仍主要来自 arXiv 阶段和有限任务组合，离成为广泛默认的 harness engineering 范式还有距离；同时其搜索成本、跨应用泛化和工程落地复杂度仍需要更多后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>大语言模型系统的表现不仅由模型权重决定，也深受 harness 影响，也就是决定哪些信息被存储、检索和呈现给模型的那层代码逻辑。现实里这部分仍主要靠人工设计，而现有文本优化器又往往把反馈压缩得过度，难以真正搜索代码级 harness 设计空间。</p><p>Meta-Harness 的核心贡献是把 harness optimization 做成 outer-loop code search。系统中的 proposer agent 能读取源代码、历史候选的分数以及执行轨迹，并在文件系统层面访问完整经验，而不是只拿到高度压缩的文本反馈。它因此能对上下文管理、检索逻辑和呈现策略进行端到端搜索，并在在线分类、检索增强数学推理和 agentic coding 三类设置中稳定优于手工或既有 context-management baseline。</p><p>它值得正式收录，因为这篇工作推进的不只是 prompt 优化，而是把 harness 本身提升成可自动设计的第一类对象。仓库里已经有 AutoHarness 和 Natural-Language Agent Harnesses，这篇则更进一步，把 harness engineering 从单条技巧推进到可搜索的 outer-loop workflow，对 agent system design 和 model orchestration 都有明显耐久外溢。</p><p>它目前定为 disruptive 而不是更高一级，因为证据仍主要来自 arXiv 阶段和有限任务组合，离成为广泛默认的 harness engineering 范式还有距离；同时其搜索成本、跨应用泛化和工程落地复杂度仍需要更多后续验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260330a110metaha,
+  title = {Meta-Harness: End-to-End Optimization of Model Harnesses},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.28052.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a110-meta-harness-model-harnesses/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Meta-Harness: End-to-End Optimization of Model Harnesses. https://arxiv.org/pdf/2603.28052.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.28052.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

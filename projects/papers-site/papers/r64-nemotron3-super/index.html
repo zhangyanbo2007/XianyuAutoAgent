@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning | DAST Papers</title>
+    <meta name="description" content="问题与背景：agentic reasoning 的瓶颈不只是模型能力，还包括长上下文、多步工具调用和长输出场景下的吞吐成本。Nemotron 3 Super 把这个问题落在开放模型架构层面：120B 总参数、12B 激活参数、最长 1M context，并以 agentic 软件工程、terminal use、tool use 等长程任务作为后训练重点。
+
+方法与新意：论文把 hybrid Mam" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r64-nemotron3-super/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning" />
+    <meta property="og:description" content="问题与背景：agentic reasoning 的瓶颈不只是模型能力，还包括长上下文、多步工具调用和长输出场景下的吞吐成本。Nemotron 3 Super 把这个问题落在开放模型架构层面：120B 总参数、12B 激活参数、最长 1M context，并以 agentic 软件工程、terminal use、tool use 等长程任务作为后训练重点。
+
+方法与新意：论文把 hybrid Mam" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r64-nemotron3-super/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning" />
+    <meta name="twitter:description" content="问题与背景：agentic reasoning 的瓶颈不只是模型能力，还包括长上下文、多步工具调用和长输出场景下的吞吐成本。Nemotron 3 Super 把这个问题落在开放模型架构层面：120B 总参数、12B 激活参数、最长 1M context，并以 agentic 软件工程、terminal use、tool use 等长程任务作为后训练重点。
+
+方法与新意：论文把 hybrid Mam" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12374" target="_blank" rel="noopener noreferrer">2604.12374</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：agentic reasoning 的瓶颈不只是模型能力，还包括长上下文、多步工具调用和长输出场景下的吞吐成本。Nemotron 3 Super 把这个问题落在开放模型架构层面：120B 总参数、12B 激活参数、最长 1M context，并以 agentic 软件工程、terminal use、tool use 等长程任务作为后训练重点。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：论文把 hybrid Mamba-Attention、LatentMoE、NVFP4 预训练和 MTP native speculative decoding 组合成一个面向高吞吐长上下文推理的系统方案。LatentMoE 追求 accuracy per FLOP 与 accuracy per parameter，Mamba/Attention 混合用于降低长序列推理成本，MTP 层把 speculative decoding 变成模型原生能力，而不是纯外部推理技巧。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇的价值不在于又发布一个大模型，而在于给出了开放 agent 模型层的系统蓝图：稀疏激活、状态空间长上下文、低精度预训练、RL 后训练和推理加速共同设计。它对后续构建本地/企业级 agent 模型、长上下文工具使用模型、以及训练-推理协同优化都有复用参考价值。</dd></div><div><dt>收录价值</dt><dd>局限：论文仍是单家模型报告，许多结论依赖 NVIDIA 自有训练基础设施、数据配方、GPU 栈和评测设置；LatentMoE、NVFP4 预训练和 MTP 的独立因果贡献还需要更多第三方复现与消融。因此当前定位为 breakthrough，而不是 disruptive 或 paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：agentic reasoning 的瓶颈不只是模型能力，还包括长上下文、多步工具调用和长输出场景下的吞吐成本。Nemotron 3 Super 把这个问题落在开放模型架构层面：120B 总参数、12B 激活参数、最长 1M context，并以 agentic 软件工程、terminal use、tool use 等长程任务作为后训练重点。</p><p>方法与新意：论文把 hybrid Mamba-Attention、LatentMoE、NVFP4 预训练和 MTP native speculative decoding 组合成一个面向高吞吐长上下文推理的系统方案。LatentMoE 追求 accuracy per FLOP 与 accuracy per parameter，Mamba/Attention 混合用于降低长序列推理成本，MTP 层把 speculative decoding 变成模型原生能力，而不是纯外部推理技巧。</p><p>收录意义：这篇的价值不在于又发布一个大模型，而在于给出了开放 agent 模型层的系统蓝图：稀疏激活、状态空间长上下文、低精度预训练、RL 后训练和推理加速共同设计。它对后续构建本地/企业级 agent 模型、长上下文工具使用模型、以及训练-推理协同优化都有复用参考价值。</p><p>局限：论文仍是单家模型报告，许多结论依赖 NVIDIA 自有训练基础设施、数据配方、GPU 栈和评测设置；LatentMoE、NVFP4 预训练和 MTP 的独立因果贡献还需要更多第三方复现与消融。因此当前定位为 breakthrough，而不是 disruptive 或 paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。我们描述了Nemotron 3 Super的预训练、后训练和量化，这是一个拥有1200亿（活跃120亿）参数的混合Mamba-Attention专家混合模型。Nemotron 3 Super是Nemotron 3系列中第一个（1）在NVFP4中进行预训练，（2）利用LatentMoE（一种新的专家混合架构，可同时优化每FLOP的准确性和每参数的准确性），以及（3）包含MTP层以通过原生推测解码加速推理的模型。我们使用25万亿个token对Nemotron 3 Super进行了预训练，随后使用监督微调（SFT）和强化学习（RL）进行后训练。最终模型支持高达1M的上下文长度，并在常见基准测试上实现了可比的准确性，同时与GPT-OSS-120B和Qwen3.5-122B相比，推理吞吐量分别提高了2.2倍和7.5倍。Nemotron 3 Super数据集以及基础、后训练和量化检查点已在HuggingFace上开源。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. We describe the pre-training, post-training, and quantization of Nemotron 3 Super, a 120 billion (active 12 billion) parameter hybrid Mamba-Attention Mixture-of-Experts model. Nemotron 3 Super is the first model in the Nemotron 3 family to 1) be pre-trained in NVFP4, 2) leverage LatentMoE, a new Mixture-of-Experts architecture that optimizes for both accuracy per FLOP and accuracy per parameter, and 3) include MTP layers for inference acceleration through native speculative decoding. We pre-trained Nemotron 3 Super on 25 trillion tokens followed by post-training using supervised fine tuning (SFT) and reinforcement learning (RL). The final model supports up to 1M context length and achieves comparable accuracy on common benchmarks, while also achieving up to 2.2× and 7.5× higher inference throughput compared to GPT-OSS-120B and Qwen3.5-122B, respectively. Nemotron 3 Super datasets, along with the base, post-trained, and quantized checkpoints, are open-sourced on HuggingFace.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414r64nemotro,
+  title = {Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12374.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r64-nemotron3-super/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Nemotron 3 Super: Open, Efficient Mixture-of-Experts Hybrid Mamba-Transformer Model for Agentic Reasoning. https://arxiv.org/pdf/2604.12374.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12374.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/NVIDIA-NeMo/Nemotron" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

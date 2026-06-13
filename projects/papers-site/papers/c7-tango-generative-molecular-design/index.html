@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TANGO: direct optimization of constrained synthesizability for generative molecular design | DAST Papers</title>
+    <meta name="description" content="这篇论文针对生成式分子设计里一个长期存在的落地问题：模型可以生成看起来新颖、目标性质优异的分子，但往往在可合成性上出问题，导致候选很难真正走到实验端。作者把问题从‘先生成再筛选’推进到‘在生成过程中直接优化受约束的可合成性’，试图把可合成性从后处理指标变成生成目标的一部分。
+
+方法上的关键是 TANGO 把 constrained synthesizability 做成了可直接优化的目标，而不是简" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c7-tango-generative-molecular-design/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TANGO: direct optimization of constrained synthesizability for generative molecular design" />
+    <meta property="og:description" content="这篇论文针对生成式分子设计里一个长期存在的落地问题：模型可以生成看起来新颖、目标性质优异的分子，但往往在可合成性上出问题，导致候选很难真正走到实验端。作者把问题从‘先生成再筛选’推进到‘在生成过程中直接优化受约束的可合成性’，试图把可合成性从后处理指标变成生成目标的一部分。
+
+方法上的关键是 TANGO 把 constrained synthesizability 做成了可直接优化的目标，而不是简" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c7-tango-generative-molecular-design/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TANGO: direct optimization of constrained synthesizability for generative molecular design" />
+    <meta name="twitter:description" content="这篇论文针对生成式分子设计里一个长期存在的落地问题：模型可以生成看起来新颖、目标性质优异的分子，但往往在可合成性上出问题，导致候选很难真正走到实验端。作者把问题从‘先生成再筛选’推进到‘在生成过程中直接优化受约束的可合成性’，试图把可合成性从后处理指标变成生成目标的一部分。
+
+方法上的关键是 TANGO 把 constrained synthesizability 做成了可直接优化的目标，而不是简" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TANGO: direct optimization of constrained synthesizability for generative molecular design</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-03</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-026-00959-1" target="_blank" rel="noopener noreferrer">10.1038/s43588-026-00959-1</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对生成式分子设计里一个长期存在的落地问题：模型可以生成看起来新颖、目标性质优异的分子，但往往在可合成性上出问题，导致候选很难真正走到实验端。作者把问题从‘先生成再筛选’推进到‘在生成过程中直接优化受约束的可合成性’，试图把可合成性从后处理指标变成生成目标的一部分。</dd></div><div><dt>方法/机制</dt><dd>方法上的关键是 TANGO 把 constrained synthesizability 做成了可直接优化的目标，而不是简单加一个启发式 penalty。它面向的是生成式 molecular design 的内环优化问题：如何在不牺牲性质探索空间的前提下，把生成器引向更可能实际合成的分子区域。这个 framing 本身就比大量仅做 post-hoc filtering 的工作更强。</dd></div><div><dt>结果/证据</dt><dd>它适合进入仓库，因为这是 AI for chemistry/分子生成工作流里很典型的高价值条目。真正可用的生成式分子设计，必须把 novelty、property 和 synthesizability 同时纳入，而 TANGO 正是在强化这条 workflow。对后续药物发现、反应路线规划前置筛查和分子生成评价标准都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为目前更像一篇把分子生成工作流补齐关键约束的强方法论文，而不是完全重写 generative chemistry 整体范式。更准确地说，TANGO 是一篇很实用、方法上也有独立性的 chemistry AI 条目，足够正式收录，但还没有到更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对生成式分子设计里一个长期存在的落地问题：模型可以生成看起来新颖、目标性质优异的分子，但往往在可合成性上出问题，导致候选很难真正走到实验端。作者把问题从‘先生成再筛选’推进到‘在生成过程中直接优化受约束的可合成性’，试图把可合成性从后处理指标变成生成目标的一部分。</p><p>方法上的关键是 TANGO 把 constrained synthesizability 做成了可直接优化的目标，而不是简单加一个启发式 penalty。它面向的是生成式 molecular design 的内环优化问题：如何在不牺牲性质探索空间的前提下，把生成器引向更可能实际合成的分子区域。这个 framing 本身就比大量仅做 post-hoc filtering 的工作更强。</p><p>它适合进入仓库，因为这是 AI for chemistry/分子生成工作流里很典型的高价值条目。真正可用的生成式分子设计，必须把 novelty、property 和 synthesizability 同时纳入，而 TANGO 正是在强化这条 workflow。对后续药物发现、反应路线规划前置筛查和分子生成评价标准都有直接外溢。</p><p>它没有更高一级，因为目前更像一篇把分子生成工作流补齐关键约束的强方法论文，而不是完全重写 generative chemistry 整体范式。更准确地说，TANGO 是一篇很实用、方法上也有独立性的 chemistry AI 条目，足够正式收录，但还没有到更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>TANGO：生成式分子设计中受限可合成性的直接优化。受限可合成性是生成式分子设计中一个尚未解决的挑战：特别是，设计满足多参数优化目标，同时又可合成并在合成中强制存在特定构建块的分子。这对于分子再利用、可持续性和效率具有实际重要性。在本文中，我们提出了Tanimoto群组重叠（TANGO）奖励函数，它利用化学原理将二元奖励函数转换为连续奖励函数。TANGO可以增强分子生成模型，利用强化学习（RL）直接优化受限可合成性。我们的框架具有通用性，解决了起始材料、中间体和发散合成的约束。与该领域许多现有工作相反，我们表明，通过强化学习激励通用模型是应对挑战性可合成性优化场景的一种有效方法。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Constrained synthesizability is an unaddressed challenge in generative molecular design: in particular, designing molecules satisfying multi-parameter optimization objectives, while simultaneously being synthesizable and enforcing the presence of specific building blocks in the synthesis. This is practically important for molecule re-purposing, sustainability and efficiency. Here we propose the Tanimoto Group Overlap (TANGO) reward function, which uses chemistry principles to transform a binary reward function into a continuous reward function. TANGO can augment molecular generative models to directly optimize for constrained synthesizability using reinforcement learning (RL). Our framework is general and addresses starting-material, intermediate and divergent-synthesis constraints. Contrary to many existing works in the field, we show that incentivizing a general-purpose model with RL is a productive approach to navigating challenging synthesizability optimization scenarios.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260303c7tangogen,
+  title = {TANGO: direct optimization of constrained synthesizability for generative molecular design},
+  year = {2026},
+  url = {https://www.nature.com/articles/s43588-026-00959-1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c7-tango-generative-molecular-design/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TANGO: direct optimization of constrained synthesizability for generative molecular design. https://www.nature.com/articles/s43588-026-00959-1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s43588-026-00959-1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

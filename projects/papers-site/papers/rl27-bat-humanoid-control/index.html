@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BAT: Balancing Agility and Stability via Online Policy Switching for Long-Horizon Whole-Body Humanoid Control | DAST Papers</title>
+    <meta name="description" content="长时程 humanoid whole-body control 的难点不只是在单个 controller 上再堆一点性能，而是在 agility、stability 与 precision 三者之间始终存在结构性冲突。现有方法通常要么走 coupled whole-body policy，强调全局协调；要么走 decoupled modular policy，强调局部精度，但缺乏稳定的在线整合机制" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl27-bat-humanoid-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="BAT: Balancing Agility and Stability via Online Policy Switching for Long-Horizon Whole-Body Humanoid Control" />
+    <meta property="og:description" content="长时程 humanoid whole-body control 的难点不只是在单个 controller 上再堆一点性能，而是在 agility、stability 与 precision 三者之间始终存在结构性冲突。现有方法通常要么走 coupled whole-body policy，强调全局协调；要么走 decoupled modular policy，强调局部精度，但缺乏稳定的在线整合机制" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl27-bat-humanoid-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BAT: Balancing Agility and Stability via Online Policy Switching for Long-Horizon Whole-Body Humanoid Control" />
+    <meta name="twitter:description" content="长时程 humanoid whole-body control 的难点不只是在单个 controller 上再堆一点性能，而是在 agility、stability 与 precision 三者之间始终存在结构性冲突。现有方法通常要么走 coupled whole-body policy，强调全局协调；要么走 decoupled modular policy，强调局部精度，但缺乏稳定的在线整合机制" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>BAT: Balancing Agility and Stability via Online Policy Switching for Long-Horizon Whole-Body Humanoid Control</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01064" target="_blank" rel="noopener noreferrer">2604.01064</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长时程 humanoid whole-body control 的难点不只是在单个 controller 上再堆一点性能，而是在 agility、stability 与 precision 三者之间始终存在结构性冲突。现有方法通常要么走 coupled whole-body policy，强调全局协调；要么走 decoupled modular policy，强调局部精度，但缺乏稳定的在线整合机制。</dd></div><div><dt>方法/机制</dt><dd>BAT 提出在线 policy switching 框架，在两类互补的 whole-body RL controllers 之间动态切换。它由两个核心模块组成：一是用 hierarchical RL 学到的 switching policy，并结合 sliding-horizon policy pre-evaluation 的 expert guidance；二是 option-aware VQ-VAE，根据离散 motion token 序列预测 option preference。最终系统通过 confidence-weighted fusion 做在线决策，在不同 motion context 下平衡 agility 与 stability。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它抓住了 humanoid control 中一个很耐久的问题：不是哪种单一路线绝对更强，而是如何把互补 controller 变成真正可在线组合的长时控制机制。它对 whole-body loco-manipulation、online control arbitration 和长时程机器人行为组织都有清晰的复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前方法仍主要服务于 humanoid whole-body control 这条子线，虽然工程和方法价值都很强，但还没有达到重写更广泛 embodied control 训练范式的程度。它是强机器人方法论文，但外溢范围仍相对聚焦。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长时程 humanoid whole-body control 的难点不只是在单个 controller 上再堆一点性能，而是在 agility、stability 与 precision 三者之间始终存在结构性冲突。现有方法通常要么走 coupled whole-body policy，强调全局协调；要么走 decoupled modular policy，强调局部精度，但缺乏稳定的在线整合机制。</p><p>BAT 提出在线 policy switching 框架，在两类互补的 whole-body RL controllers 之间动态切换。它由两个核心模块组成：一是用 hierarchical RL 学到的 switching policy，并结合 sliding-horizon policy pre-evaluation 的 expert guidance；二是 option-aware VQ-VAE，根据离散 motion token 序列预测 option preference。最终系统通过 confidence-weighted fusion 做在线决策，在不同 motion context 下平衡 agility 与 stability。</p><p>这篇工作值得收录，因为它抓住了 humanoid control 中一个很耐久的问题：不是哪种单一路线绝对更强，而是如何把互补 controller 变成真正可在线组合的长时控制机制。它对 whole-body loco-manipulation、online control arbitration 和长时程机器人行为组织都有清晰的复用价值。</p><p>它没有升到更高一级，是因为当前方法仍主要服务于 humanoid whole-body control 这条子线，虽然工程和方法价值都很强，但还没有达到重写更广泛 embodied control 训练范式的程度。它是强机器人方法论文，但外溢范围仍相对聚焦。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401rl27bathum,
+  title = {BAT: Balancing Agility and Stability via Online Policy Switching for Long-Horizon Whole-Body Humanoid Control},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01064.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl27-bat-humanoid-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). BAT: Balancing Agility and Stability via Online Policy Switching for Long-Horizon Whole-Body Humanoid Control. https://arxiv.org/pdf/2604.01064.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01064.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

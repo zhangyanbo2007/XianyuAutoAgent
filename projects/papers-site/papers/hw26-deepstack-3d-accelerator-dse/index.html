@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators | DAST Papers</title>
+    <meta name="description" content="这篇论文瞄准的是 AI hardware 里一个越来越关键的结构性问题：随着大模型推理走向跨 chiplet、跨 stack 的 3D memory-rich 系统，设计瓶颈不再只是单个 accelerator kernel，而是 3D memory semantics、interconnect、parallelism strategy 和 serving schedule 的联动搜索。传统模拟器" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw26-deepstack-3d-accelerator-dse/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators" />
+    <meta property="og:description" content="这篇论文瞄准的是 AI hardware 里一个越来越关键的结构性问题：随着大模型推理走向跨 chiplet、跨 stack 的 3D memory-rich 系统，设计瓶颈不再只是单个 accelerator kernel，而是 3D memory semantics、interconnect、parallelism strategy 和 serving schedule 的联动搜索。传统模拟器" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw26-deepstack-3d-accelerator-dse/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators" />
+    <meta name="twitter:description" content="这篇论文瞄准的是 AI hardware 里一个越来越关键的结构性问题：随着大模型推理走向跨 chiplet、跨 stack 的 3D memory-rich 系统，设计瓶颈不再只是单个 accelerator kernel，而是 3D memory semantics、interconnect、parallelism strategy 和 serving schedule 的联动搜索。传统模拟器" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.04750" target="_blank" rel="noopener noreferrer">2604.04750</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文瞄准的是 AI hardware 里一个越来越关键的结构性问题：随着大模型推理走向跨 chiplet、跨 stack 的 3D memory-rich 系统，设计瓶颈不再只是单个 accelerator kernel，而是 3D memory semantics、interconnect、parallelism strategy 和 serving schedule 的联动搜索。传统模拟器很难在足够准确的同时支撑这种规模的 design space exploration，结果是很多所谓 co-design 实际上只能在非常局部的空间里试探。</dd></div><div><dt>方法/机制</dt><dd>作者提出 DeepStack，一个面向 distributed 3D-stacked AI systems 的性能建模和设计探索工具。它在硬件层捕捉 transaction-aware bandwidth、bank activation、buffering 和 thermal-power 行为，在系统层建模 distributed LLM inference 的 parallelization 与 scheduling，并通过 dual-stage network abstraction 与 tile-level compute-communication overlap 等技术把模拟速度做到了比现有模拟器快几个数量级，同时保持与内部 3D 设计、NS-3 和 vLLM serving 的交叉验证精度。</dd></div><div><dt>结果/证据</dt><dd>这篇值得正式收录，因为它不只是多一个 accelerator simulator，而是在给 `3D memory + distributed serving + schedule search` 这条 AI compute 主线建立可操作的 co-design interface。论文最有价值的地方在于它暴露出一些 durable design insight，比如 batch size 比 prefill/decode 区分更能主导架构分化，以及并行策略与硬件结构之间存在强耦合，软件后调无法弥补前期不完整的设计搜索。</dd></div><div><dt>收录价值</dt><dd>它目前仍然不是更高一级，因为这是强工具与强 insight 的结合，但证据主要还在 arXiv 与作者自有验证链上，且影响会首先集中在特定一类 3D-stacked/distributed accelerator 设计场景。它已经足够成为 AI hardware 主线里的高质量正式条目，但还没到更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文瞄准的是 AI hardware 里一个越来越关键的结构性问题：随着大模型推理走向跨 chiplet、跨 stack 的 3D memory-rich 系统，设计瓶颈不再只是单个 accelerator kernel，而是 3D memory semantics、interconnect、parallelism strategy 和 serving schedule 的联动搜索。传统模拟器很难在足够准确的同时支撑这种规模的 design space exploration，结果是很多所谓 co-design 实际上只能在非常局部的空间里试探。</p><p>作者提出 DeepStack，一个面向 distributed 3D-stacked AI systems 的性能建模和设计探索工具。它在硬件层捕捉 transaction-aware bandwidth、bank activation、buffering 和 thermal-power 行为，在系统层建模 distributed LLM inference 的 parallelization 与 scheduling，并通过 dual-stage network abstraction 与 tile-level compute-communication overlap 等技术把模拟速度做到了比现有模拟器快几个数量级，同时保持与内部 3D 设计、NS-3 和 vLLM serving 的交叉验证精度。</p><p>这篇值得正式收录，因为它不只是多一个 accelerator simulator，而是在给 `3D memory + distributed serving + schedule search` 这条 AI compute 主线建立可操作的 co-design interface。论文最有价值的地方在于它暴露出一些 durable design insight，比如 batch size 比 prefill/decode 区分更能主导架构分化，以及并行策略与硬件结构之间存在强耦合，软件后调无法弥补前期不完整的设计搜索。</p><p>它目前仍然不是更高一级，因为这是强工具与强 insight 的结合，但证据主要还在 arXiv 与作者自有验证链上，且影响会首先集中在特定一类 3D-stacked/distributed accelerator 设计场景。它已经足够成为 AI hardware 主线里的高质量正式条目，但还没到更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>混合键合和封装技术的进步推动了人们对具有更高内存带宽和容量的3D DRAM堆叠加速器的日益增长的兴趣。随着LLMs扩展到数千亿或数万亿参数，跨多个3D芯片的分布式推理对于未来的AI服务变得至关重要。由于跨堆栈协同设计在提升AI效率方面变得越来越关键，我们提出了DeepStack，一个准确高效的性能模型和工具，旨在为分布式3D堆叠AI系统实现早期系统-硬件协同设计空间探索（DSE）。在硬件层面，DeepStack捕获细粒度的3D内存语义，例如事务感知带宽、存储体激活约束、缓冲限制以及热-功耗建模。在系统层面，DeepStack整合了用于分布式LLM推理的全面并行化策略和执行调度。凭借双阶段网络抽象和瓦片级计算-通信重叠等新颖建模技术，我们实现了比最先进模拟器快100,000倍的运行时间，同时保持了可比的精度，并通过我们内部的3D设计、NS-3后端（2.12%）和在8块B200 GPU上运行的vLLM服务（12.18%）交叉验证了建模精度。结合分层设计空间搜索，DeepStack能够对跨越3D堆叠DRAM层、DRAM垂直连接、互连、计算-内存分配和分布式调度的约2.5 × 1014个设计点进行高效探索。与基线设计空间相比，DeepStack通过协同优化的并行性和3D架构搜索实现了高达9.5倍的吞吐量提升。我们的DSE进一步揭示，批处理大小比预填充/解码的区别更能驱动根本性的架构划分，并且并行策略和硬件架构紧密耦合——不完整的调度搜索会导致永久性的次优硅片，无法通过软件调优恢复。我们打算开源DeepStack以支持未来的研究。DeepStack的特点包括：芯片级精确建模，能够捕捉3D堆叠硬件的独特特性。3D堆叠DRAM提供了显著更高的带宽，但要充分利用它，需要按比例更大的片上缓冲（Little定律[20]）（第2.3.1节）以及对存储体级访问语义（如大事务大小和高并发要求）的仔细处理（第2.3.1节）。垂直堆叠也加剧了散热挑战，引入了必须与性能协同建模的功耗受限机制。此外，DeepStack还具备系统级复杂的多维并行和通信建模能力。分布式LLM推理集成了多种并行策略，包括张量并行（TP）、流水线并行（PP）、数据并行（DP）、专家并行（EP）、序列并行（SP）、上下文并行（CP）和完全分片数据并行（FSDP）。每种策略都对计算、内存和通信提出不同的要求（第2.3.2节）。现有框架依赖简化的线性模型[38, 98]或仅限于TP/PP/DP [68, 88]，未能探索全面的搜索空间。最后，DeepStack能够探索巨大的系统-硬件协同设计空间。3D硬件特性、热约束和分布式执行策略之间的相互作用创建了一个巨大的协同设计空间，涵盖了单芯片架构、互连拓扑、并行策略和执行调度（第2.3.3节）。在此空间中进行优化——而不是孤立地处理芯片级和系统级决策——对于做出明智的架构选择至关重要。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Advances in hybrid bonding and packaging have driven growing interest in 3D DRAM-stacked accelerators with higher memory bandwidth and capacity. As LLMs scale to hundreds of billions or trillions of parameters, distributed inference across multiple 3D chips has become essential for future AI serving. With cross-stack co-design being increasingly critical in pushing AI efficiency, we propose DeepStack, an accurate and efficient performance model and tool to enable early-stage system–hardware co-design space exploration (DSE) for distributed 3D-stacked AI systems. At the hardware level, DeepStack captures fine-grained 3D memory semantics, such as transaction-aware bandwidth, bank activation constraints, buffering limitations, and thermal–power modeling. At the system level, DeepStack incorporates comprehensive parallelization strategies and execution scheduling for distributed LLM inference. With novel modeling techniques such as dual-stage network abstraction and tile-level compute–communication overlap, we achieve up to 100,000× faster runtime over state-of-the-art simulators at comparable accuracy, cross-validated the modeling accuracy against our in-house 3D designs, NS-3 backend (2.12%), and vLLM serving on 8×B200 GPUs (12.18%). Together with hierarchical design space search, DeepStack enables efficient exploration over ∼2.5 × 1014 design points spanning 3D-stacked DRAM layers, DRAM vertical connectivity, interconnect, compute-memory allocation, and distributed scheduling. Compared with baseline design spaces, DeepStack achieves up to 9.5× higher throughput through co-optimized parallelism and 3D architecture search. Our DSE further reveals that batch size drives a more fundamental architectural divide than the prefill/decode distinction, and that parallelism strategy and hardware architecture are tightly coupled—incomplete schedule search leads to permanently suboptimal silicon irrecoverable by software tuning. We intend to open source DeepStack to support future research. • Chip-level accurate modeling with unique characteristics of 3D-stacked hardware. 3D-stacked DRAM provides significantly higher bandwidth, but fully utilizing it demands proportionally larger on-chip buffering (Little’s Law [20]) (Sec. 2.3.1) and careful handling of bank-level access semantics such as large transaction sizes and high concurrency requirements (Sec. 2.3.1). Vertical stacking also exacerbates thermal dissipation challenges, introducing power-constrained regimes that must be co-modeled with performance. • System-level complicated multi-dimensional parallelism and communication modeling. Distributed LLM inference integrates multiple parallelism strategies, including tensor (TP), pipeline (PP), data (DP), expert (EP), sequence (SP), context (CP), and fully sharded data parallelism (FSDP). Each strategy imposes different compute, memory, and communication demands (Sec. 2.3.2). Existing frameworks rely on simplified linear models [38, 98] or restrict to TP/PP/DP [68, 88], failing to explore the comprehensive search space. • Vast system–hardware co-design space. The interaction between 3D hardware characteristics, thermal constraints, and distributed execution strategies creates a large co-design space spanning per-chip architecture, interconnect topology, parallelism strategy, and execution scheduling (Sec. 2.3.3). Optimizing across this space—rather than treating chip- and system-level decisions in isolation—is essential for informed architectural choices.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406hw26deepst,
+  title = {DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.04750.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw26-deepstack-3d-accelerator-dse/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DeepStack: Scalable and Accurate Design Space Exploration for Distributed 3D-Stacked AI Accelerators. https://arxiv.org/pdf/2604.04750.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.04750.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

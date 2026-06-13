@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detecting Safety Violations Across Many Agent Traces | DAST Papers</title>
+    <meta name="description" content="这篇论文关注一个实际但被低估的 agent 安全问题：违规行为往往不是单条 trace 就能看出来，而是隐藏在大量 agent 轨迹的群体模式、跨任务关联或稀有异常中。传统逐条 judge、固定 monitor 或人工 spot check 都容易漏掉这种跨 trace 的风险。
+
+作者提出 Meerkat，把聚类与 agentic search 组合起来，让审计器先把大量轨迹组织成可搜索区域，再" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a190-meerkat-agent-trace-audit/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Detecting Safety Violations Across Many Agent Traces" />
+    <meta property="og:description" content="这篇论文关注一个实际但被低估的 agent 安全问题：违规行为往往不是单条 trace 就能看出来，而是隐藏在大量 agent 轨迹的群体模式、跨任务关联或稀有异常中。传统逐条 judge、固定 monitor 或人工 spot check 都容易漏掉这种跨 trace 的风险。
+
+作者提出 Meerkat，把聚类与 agentic search 组合起来，让审计器先把大量轨迹组织成可搜索区域，再" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a190-meerkat-agent-trace-audit/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Detecting Safety Violations Across Many Agent Traces" />
+    <meta name="twitter:description" content="这篇论文关注一个实际但被低估的 agent 安全问题：违规行为往往不是单条 trace 就能看出来，而是隐藏在大量 agent 轨迹的群体模式、跨任务关联或稀有异常中。传统逐条 judge、固定 monitor 或人工 spot check 都容易漏掉这种跨 trace 的风险。
+
+作者提出 Meerkat，把聚类与 agentic search 组合起来，让审计器先把大量轨迹组织成可搜索区域，再" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Detecting Safety Violations Across Many Agent Traces</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11806" target="_blank" rel="noopener noreferrer">2604.11806</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注一个实际但被低估的 agent 安全问题：违规行为往往不是单条 trace 就能看出来，而是隐藏在大量 agent 轨迹的群体模式、跨任务关联或稀有异常中。传统逐条 judge、固定 monitor 或人工 spot check 都容易漏掉这种跨 trace 的风险。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Meerkat，把聚类与 agentic search 组合起来，让审计器先把大量轨迹组织成可搜索区域，再对高风险区域做自适应调查。它支持用自然语言指定违规类型，目标不是训练一个固定分类器，而是形成可迭代的稀有风险发现流程。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它给 agent safety 提供了一个可复用的审计 primitive：从单轨迹判定转向 trace 集合级别的搜索、聚类和调查。这对于 misuse campaign、reward hacking、prompt injection、covert sabotage 等场景都有直接方法迁移价值。</dd></div><div><dt>收录价值</dt><dd>局限在于效果仍取决于轨迹表示、聚类质量和审计 agent 的调查能力；它是安全审计工作流的强接口，而不是完整的形式化保证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注一个实际但被低估的 agent 安全问题：违规行为往往不是单条 trace 就能看出来，而是隐藏在大量 agent 轨迹的群体模式、跨任务关联或稀有异常中。传统逐条 judge、固定 monitor 或人工 spot check 都容易漏掉这种跨 trace 的风险。</p><p>作者提出 Meerkat，把聚类与 agentic search 组合起来，让审计器先把大量轨迹组织成可搜索区域，再对高风险区域做自适应调查。它支持用自然语言指定违规类型，目标不是训练一个固定分类器，而是形成可迭代的稀有风险发现流程。</p><p>它值得正式收录，是因为它给 agent safety 提供了一个可复用的审计 primitive：从单轨迹判定转向 trace 集合级别的搜索、聚类和调查。这对于 misuse campaign、reward hacking、prompt injection、covert sabotage 等场景都有直接方法迁移价值。</p><p>局限在于效果仍取决于轨迹表示、聚类质量和审计 agent 的调查能力；它是安全审计工作流的强接口，而不是完整的形式化保证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>为了识别安全违规，审计员经常在大量的代理轨迹中搜索。由于失败通常罕见、复杂，有时甚至被恶意隐藏，只有在分析多个轨迹时才能检测到，因此这种搜索非常困难。这些挑战在滥用活动、秘密破坏、奖励黑客和提示注入等多种设置中出现。现有的方法在这里面临多重困难。基于轨迹的裁判会错过只有在轨迹间才能显现的失败，幼稚的代理式审计无法扩展到大型轨迹集合，并且固定的监控器对意外行为非常脆弱。我们引入了Meerkat，它将聚类与代理式搜索相结合，以发现用自然语言指定的违规行为。通过结构化搜索和对有希望区域的自适应调查，Meerkat在不依赖种子场景、固定的工作流程或穷尽枚举的情况下，发现了稀疏的失败。在滥用、不一致和任务游戏设置中，Meerkat显著提高了检测安全违规行为的能力，发现了在顶尖代理基准上广泛的开发者欺骗，并且在CyBench上发现了以往审计的近4倍的奖励黑客示例。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>To identify safety violations, auditors often search over large sets of agent traces. This search is difficult because failures are often rare, complex, and sometimes even adversarially hidden and only detectable when multiple traces are analyzed together. These challenges arise in diverse settings such as misuse campaigns, covert sabotage, reward hacking, and prompt injection. Existing approaches struggle here for several reasons. Per-trace judges miss failures that only become visible across traces, naive agentic auditing does not scale to large trace collections, and fixed monitors are brittle to unanticipated behaviors. We introduce Meerkat, which combines clustering with agentic search to uncover violations specified in natural language. Through structured search and adaptive investigation of promising regions, Meerkat finds sparse failures without relying on seed scenarios, fixed workflows, or exhaustive enumeration. Across misuse, misalignment, and task gaming settings, Meerkat significantly improves detection of safety violations over baseline monitors, discovers widespread developer cheating on a top agent benchmark, and finds nearly 4x more examples of reward hacking on CyBench than previous audits.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413a190meerka,
+  title = {Detecting Safety Violations Across Many Agent Traces},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11806.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a190-meerkat-agent-trace-audit/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Detecting Safety Violations Across Many Agent Traces. https://arxiv.org/pdf/2604.11806.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11806.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

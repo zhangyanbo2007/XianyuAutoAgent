@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM Router: Rethinking Routing with Prefill Activations | DAST Papers</title>
+    <meta name="description" content="multi-model routing 的经典做法通常依赖 query 语义特征，但这类信号往往并不能真正捕捉模型各自的 failure modes，也很难判断某条 query 对某个目标模型究竟是容易还是困难。问题不是 router 有没有语义理解，而是缺少更贴近模型内部可解性与正确率的 routing signal。
+
+论文提出用 prefill activations 做 routing s" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r35-llm-router-prefill-activations/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LLM Router: Rethinking Routing with Prefill Activations" />
+    <meta property="og:description" content="multi-model routing 的经典做法通常依赖 query 语义特征，但这类信号往往并不能真正捕捉模型各自的 failure modes，也很难判断某条 query 对某个目标模型究竟是容易还是困难。问题不是 router 有没有语义理解，而是缺少更贴近模型内部可解性与正确率的 routing signal。
+
+论文提出用 prefill activations 做 routing s" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r35-llm-router-prefill-activations/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LLM Router: Rethinking Routing with Prefill Activations" />
+    <meta name="twitter:description" content="multi-model routing 的经典做法通常依赖 query 语义特征，但这类信号往往并不能真正捕捉模型各自的 failure modes，也很难判断某条 query 对某个目标模型究竟是容易还是困难。问题不是 router 有没有语义理解，而是缺少更贴近模型内部可解性与正确率的 routing signal。
+
+论文提出用 prefill activations 做 routing s" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LLM Router: Rethinking Routing with Prefill Activations</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.20895" target="_blank" rel="noopener noreferrer">2603.20895</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>multi-model routing 的经典做法通常依赖 query 语义特征，但这类信号往往并不能真正捕捉模型各自的 failure modes，也很难判断某条 query 对某个目标模型究竟是容易还是困难。问题不是 router 有没有语义理解，而是缺少更贴近模型内部可解性与正确率的 routing signal。</dd></div><div><dt>方法/机制</dt><dd>论文提出用 prefill activations 做 routing signal，并通过 Encoder-Target Decoupling 将产生信号的 encoder 与被估计正确率的 target model 解耦。这样即便 target 是 closed-source model，也可以用 open-weight encoder 的 prefill activations 来做预测。作者进一步比较 layerwise geometric probes，并引入 SharedTrunkNet，同时预测多个候选模型的 correctness probability。实验显示，这种 mechanistic routing 明显优于纯语义基线，并在成本上显著节省。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 routing 从 prompt/semantic heuristics 推进到 activation-based mechanistic signal。对 cost-aware serving、model selection、multi-model orchestration 和 inference control，这是一种有明显长期价值的 routing 视角，而不是单纯再调一个 bandit 参数。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要价值仍体现在 routing 层优化，尚未证明这种 prefill-activation routing 会成为更广 LLM serving 栈的默认标准接口。它很强，但仍是具体系统层中的重要推进。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>multi-model routing 的经典做法通常依赖 query 语义特征，但这类信号往往并不能真正捕捉模型各自的 failure modes，也很难判断某条 query 对某个目标模型究竟是容易还是困难。问题不是 router 有没有语义理解，而是缺少更贴近模型内部可解性与正确率的 routing signal。</p><p>论文提出用 prefill activations 做 routing signal，并通过 Encoder-Target Decoupling 将产生信号的 encoder 与被估计正确率的 target model 解耦。这样即便 target 是 closed-source model，也可以用 open-weight encoder 的 prefill activations 来做预测。作者进一步比较 layerwise geometric probes，并引入 SharedTrunkNet，同时预测多个候选模型的 correctness probability。实验显示，这种 mechanistic routing 明显优于纯语义基线，并在成本上显著节省。</p><p>这篇工作值得收录，因为它把 routing 从 prompt/semantic heuristics 推进到 activation-based mechanistic signal。对 cost-aware serving、model selection、multi-model orchestration 和 inference control，这是一种有明显长期价值的 routing 视角，而不是单纯再调一个 bandit 参数。</p><p>它没有升到更高一级，是因为当前主要价值仍体现在 routing 层优化，尚未证明这种 prefill-activation routing 会成为更广 LLM serving 栈的默认标准接口。它很强，但仍是具体系统层中的重要推进。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLMs通常在不同的查询子集上表现出互补的优势，同时在平均基准准确性方面取得相似的结果，这表明具有查询特定模型选择的路由器可以超越任何单一模型。虽然现有路由器依赖于语义查询特征，但它们通常无法捕捉模型特定的故障或固有的任务难度。我们转而研究通过内部预填充激活进行路由。我们的核心思想是编码器-目标解耦（Encoder-Target Decoupling），它将产生预测信号的模型（编码器）与正在估计其正确性的模型（目标）分离，从而允许开源编码器预测闭源目标模型的性能。我们评估了逐层几何探针，发现Fisher可分离性 (J) 在有效维度 (deff ) 诊断的支持下，能够有效地识别信息层。然后，我们利用SharedTrunkNet，这是一个联合多输出MLP，它使用连接的预填充特征预测候选模型的同时正确性概率。在我们的实验中，SharedTrunkNet始终优于语义基线。在最佳情况下，SharedTrunkNet弥补了最强独立模型与预言机之间45.58%的差距，同时相对于最昂贵的模型实现了74.31%的成本节省。这些结果表明，预填充激活提供了强大的路由信号，确立了机制路由作为纯语义选择的高性能替代方案。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLMs often achieve similar average benchmark accuracies while exhibiting complementary strengths on different subsets of queries, suggesting that a router with query-specific model selection can outperform any single model. While existing routers rely on semantic query features, they often fail to capture model-specific failures or intrinsic task difficulty. We instead study routing via internal prefill activations. Our key idea, Encoder-Target Decoupling, separates the model that produces the predictive signal (the Encoder) from the model whose correctness is being estimated (the Target), allowing open-weight encoders to predict the performance of closed-source target models. We evaluate layerwise geometric probes, finding that Fisher Separability (J) effectively identifies informative layers, supported by Effective Dimensionality (deff ) diagnostics. We then utilize a SharedTrunkNet, a joint multi-output MLP that predicts simultaneous correctness probabilities across candidate models using concatenated prefill features. In our experiments, SharedTrunkNet consistently outperforms semantic baselines. At its best, SharedTrunkNet closes 45.58% of the gap between the strongest standalone model and the oracle while achieving 74.31% cost savings relative to the most expensive model. These results demonstrate that prefill activations provide a robust routing signal, establishing mechanistic routing as a high-performance alternative to purely semantic selection.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260321r35llmrout,
+  title = {LLM Router: Rethinking Routing with Prefill Activations},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.20895.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r35-llm-router-prefill-activations/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LLM Router: Rethinking Routing with Prefill Activations. https://arxiv.org/pdf/2603.20895.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.20895.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

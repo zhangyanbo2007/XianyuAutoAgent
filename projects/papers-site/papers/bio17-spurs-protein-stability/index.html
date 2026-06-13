@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generalizable and scalable protein stability prediction with rewired protein generative models | DAST Papers</title>
+    <meta name="description" content="蛋白稳定性预测是蛋白工程里最基础也最难泛化的能力之一。很多模型在特定数据集上可以做得不错，但一旦换蛋白家族、换突变分布或换实验条件，性能就很容易掉下来。这篇论文切的是“能不能做一个真正可泛化、可扩展的稳定性建模基础设施”。
+
+方法上，论文把 protein generative models 做了 rewiring，让生成式表征不再只服务于序列生成，而是转化成更适合 stability predi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio17-spurs-protein-stability/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Generalizable and scalable protein stability prediction with rewired protein generative models" />
+    <meta property="og:description" content="蛋白稳定性预测是蛋白工程里最基础也最难泛化的能力之一。很多模型在特定数据集上可以做得不错，但一旦换蛋白家族、换突变分布或换实验条件，性能就很容易掉下来。这篇论文切的是“能不能做一个真正可泛化、可扩展的稳定性建模基础设施”。
+
+方法上，论文把 protein generative models 做了 rewiring，让生成式表征不再只服务于序列生成，而是转化成更适合 stability predi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio17-spurs-protein-stability/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Generalizable and scalable protein stability prediction with rewired protein generative models" />
+    <meta name="twitter:description" content="蛋白稳定性预测是蛋白工程里最基础也最难泛化的能力之一。很多模型在特定数据集上可以做得不错，但一旦换蛋白家族、换突变分布或换实验条件，性能就很容易掉下来。这篇论文切的是“能不能做一个真正可泛化、可扩展的稳定性建模基础设施”。
+
+方法上，论文把 protein generative models 做了 rewiring，让生成式表征不再只服务于序列生成，而是转化成更适合 stability predi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Generalizable and scalable protein stability prediction with rewired protein generative models</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-12-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-20</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-67609-4" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-67609-4</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>蛋白稳定性预测是蛋白工程里最基础也最难泛化的能力之一。很多模型在特定数据集上可以做得不错，但一旦换蛋白家族、换突变分布或换实验条件，性能就很容易掉下来。这篇论文切的是“能不能做一个真正可泛化、可扩展的稳定性建模基础设施”。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文把 protein generative models 做了 rewiring，让生成式表征不再只服务于序列生成，而是转化成更适合 stability prediction 的统一表征接口。重点不只是精度提升，而是把大规模生成模型改造成一个可迁移的稳定性预测 backbone。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它为 protein engineering 提供了更像基础设施的稳定性建模工具。相比窄任务 predictor，这类工作更接近可复用的 representation layer，会外溢到 mutational scanning、protein design、developability 评估等多个环节。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为当前贡献仍主要集中在 stability 这一关键但单一属性上，还没有直接形成端到端实验闭环或多目标设计框架。它很强，但还属于重要基础层而不是完整 workflow 重构。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>蛋白稳定性预测是蛋白工程里最基础也最难泛化的能力之一。很多模型在特定数据集上可以做得不错，但一旦换蛋白家族、换突变分布或换实验条件，性能就很容易掉下来。这篇论文切的是“能不能做一个真正可泛化、可扩展的稳定性建模基础设施”。</p><p>方法上，论文把 protein generative models 做了 rewiring，让生成式表征不再只服务于序列生成，而是转化成更适合 stability prediction 的统一表征接口。重点不只是精度提升，而是把大规模生成模型改造成一个可迁移的稳定性预测 backbone。</p><p>这篇论文值得收录，因为它为 protein engineering 提供了更像基础设施的稳定性建模工具。相比窄任务 predictor，这类工作更接近可复用的 representation layer，会外溢到 mutational scanning、protein design、developability 评估等多个环节。</p><p>它不是更高一级，因为当前贡献仍主要集中在 stability 这一关键但单一属性上，还没有直接形成端到端实验闭环或多目标设计框架。它很强，但还属于重要基础层而不是完整 workflow 重构。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>预测氨基酸取代引起的蛋白质热稳定性变化对于理解人类疾病和工程化蛋白质以用于实际应用至关重要。尽管最近的蛋白质生成模型在无需任务特定训练的情况下，在预测各种蛋白质特性方面表现出令人印象深刻的零样本性能，但其强大的无监督预测能力在改进蛋白质稳定性预测方面仍未得到充分利用。我们提出了SPURS，这是一个深度学习框架，它重构并整合了两个互补的蛋白质生成模型——一个蛋白质语言模型和一个逆折叠模型——并通过在超大规模热稳定性数据上进行有监督微调，重新编程这个统一框架以进行稳定性预测。SPURS提供准确、高效、可扩展的稳定性预测，并能泛化到未见过的蛋白质和突变。除了稳定性预测，SPURS还在蛋白质信息学中实现了广泛应用，包括功能残基的零样本识别、改进的低N蛋白质适应性预测，以及对人类疾病中稳定性-致病性的系统性剖析。综上所述，这些能力使SPURS成为大规模推进蛋白质稳定性预测和蛋白质工程的多功能工具。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Predicting changes in protein thermostability caused by amino acid substitutions is essential for understanding human diseases and engineering proteins for practical applications. While recent protein generative models demonstrate impressive zero-shot performance in predicting various protein properties without task-specific training, their strong unsupervised prediction ability remains underexploited to improve protein stability prediction. We present SPURS, a deep learning framework that rewires and integrates two complementary protein generative models–a protein language model and an inverse folding model–and reprograms this unified framework for stability prediction through supervised fine-tuning on mega-scale thermostability data. SPURS delivers accurate, efficient, and scalable stability predictions and generalizes to unseen proteins and mutations. Beyond stability prediction, SPURS enables broad applications in protein informatics, including zero-shot identification of functional residues, improved low- N protein fitness prediction, and systematic dissection of stability-pathogenicity for human diseases. Together, these capabilities establish SPURS as a versatile tool for advancing protein stability prediction and protein engineering at scale.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251220bio17spurs,
+  title = {Generalizable and scalable protein stability prediction with rewired protein generative models},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-67609-4},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio17-spurs-protein-stability/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Generalizable and scalable protein stability prediction with rewired protein generative models. https://www.nature.com/articles/s41467-025-67609-4</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-67609-4" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards generalizable AI in medicine via Generalist-Specialist Collaboration | DAST Papers</title>
+    <meta name="description" content="这篇论文的价值不在于又训练了一个更大的医疗模型，而在于给出了一个更耐用的部署接口：让 generalist foundation model 和 lightweight specialists 协同工作，而不是强迫单一模型同时兼顾全部泛化与全部精度。
+
+从本库角度看，真正重要的是它把‘generalize broadly’和‘be precise locally’之间的张力转成了一个可复用的系统模" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/med5-gsco-generalist-specialist-collaboration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards generalizable AI in medicine via Generalist-Specialist Collaboration" />
+    <meta property="og:description" content="这篇论文的价值不在于又训练了一个更大的医疗模型，而在于给出了一个更耐用的部署接口：让 generalist foundation model 和 lightweight specialists 协同工作，而不是强迫单一模型同时兼顾全部泛化与全部精度。
+
+从本库角度看，真正重要的是它把‘generalize broadly’和‘be precise locally’之间的张力转成了一个可复用的系统模" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/med5-gsco-generalist-specialist-collaboration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards generalizable AI in medicine via Generalist-Specialist Collaboration" />
+    <meta name="twitter:description" content="这篇论文的价值不在于又训练了一个更大的医疗模型，而在于给出了一个更耐用的部署接口：让 generalist foundation model 和 lightweight specialists 协同工作，而不是强迫单一模型同时兼顾全部泛化与全部精度。
+
+从本库角度看，真正重要的是它把‘generalize broadly’和‘be precise locally’之间的张力转成了一个可复用的系统模" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2026-05-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-01</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41551-026-01653-3" target="_blank" rel="noopener noreferrer">10.1038/s41551-026-01653-3</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的价值不在于又训练了一个更大的医疗模型，而在于给出了一个更耐用的部署接口：让 generalist foundation model 和 lightweight specialists 协同工作，而不是强迫单一模型同时兼顾全部泛化与全部精度。</dd></div><div><dt>方法/机制</dt><dd>从本库角度看，真正重要的是它把‘generalize broadly’和‘be precise locally’之间的张力转成了一个可复用的系统模式。specialists 负责提供诊断建议、相似病例等 expert context，generalist 负责统一推理和最终输出，这比单纯的 ensemble 更像工作流层协作架构。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类 generalist-specialist cooperation 不只适用于医学。只要一个高覆盖基础模型和若干高精度窄专家之间存在协同空间，这种协作式接口就可能成为多模态、高风险应用里的通用部署模式。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前最强证据仍主要集中在医疗图像诊断与报告生成场景；其跨更广临床流程或其他高风险领域的外溢虽然合理，但还需要进一步外部验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的价值不在于又训练了一个更大的医疗模型，而在于给出了一个更耐用的部署接口：让 generalist foundation model 和 lightweight specialists 协同工作，而不是强迫单一模型同时兼顾全部泛化与全部精度。</p><p>从本库角度看，真正重要的是它把‘generalize broadly’和‘be precise locally’之间的张力转成了一个可复用的系统模式。specialists 负责提供诊断建议、相似病例等 expert context，generalist 负责统一推理和最终输出，这比单纯的 ensemble 更像工作流层协作架构。</p><p>它值得正式收录，因为这类 generalist-specialist cooperation 不只适用于医学。只要一个高覆盖基础模型和若干高精度窄专家之间存在协同空间，这种协作式接口就可能成为多模态、高风险应用里的通用部署模式。</p><p>它没有更高，是因为当前最强证据仍主要集中在医疗图像诊断与报告生成场景；其跨更广临床流程或其他高风险领域的外溢虽然合理，但还需要进一步外部验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通用基础模型 (GFMs) 以其在各种任务中卓越的能力和灵活性而闻名。在医学领域，虽然GFMs展现出卓越的泛化能力，但专科模型因其领域特定知识而在精确性方面表现出色。在本文中，我们展示了一种协作框架，即通用-专科协作 (GSCo)，它协同结合了一个强大的通用模型和轻量级专科模型。在此框架中，专科模型向通用模型提供专家指导，例如诊断预测和视觉上相似的临床病例，作为上下文信息，通用模型随后做出最终诊断。我们开发了MedDr，一个为医学量身定制的开源GFM，以及一套为特定下游任务精心设计的轻量级专科模型。对32个跨越不同医学模态的数据集进行的全面评估表明，MedDr在下游数据集上优于最先进的GFMs。此外，GSCo在医学图像诊断和报告生成方面超越了GFMs和专科模型。这种方法为在临床环境中部署GFMs提供了一种有效且计算高效的范式，增强了可扩展性，并能在广泛的场景中实现精确分析。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Generalist foundation models (GFMs) are renowned for their exceptional capability and flexibility in diverse tasks. In the field of medicine, while GFMs exhibit superior generalizability, specialist models excel in precision because of their domain-specific knowledge. Here we show a cooperative framework, Generalist–Specialist Collaboration (GSCo), that synergistically combines a powerful generalist model with lightweight specialists. In this framework, specialists provide expert guidance, such as diagnostic predictions and visually similar clinical cases, as contextual information to the generalist, which then makes a final diagnosis. We developed MedDr, an open-source GFM tailored for medicine, as well as a suite of lightweight specialist models crafted for specific downstream tasks. A comprehensive evaluation on 32 datasets across diverse medical modalities shows that MedDr outperforms state-of-the-art GFMs on downstream datasets. Furthermore, GSCo exceeds GFMs and specialists in medical image diagnosis and report generation. This approach offers an effective and computationally efficient paradigm for deploying GFMs in clinical settings, enhancing scalability and enabling precise analysis across a wide range of scenarios.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260501med5gscoge,
+  title = {Towards generalizable AI in medicine via Generalist-Specialist Collaboration},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41551-026-01653-3.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/med5-gsco-generalist-specialist-collaboration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Towards generalizable AI in medicine via Generalist-Specialist Collaboration. https://www.nature.com/articles/s41551-026-01653-3.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med7-physicianbench-ehr-agents/">
+              <span>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med6-fair-unlearning-clinical-ai/">
+              <span>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph4-fm-hct-head-ct/">
+              <span>3D foundation model for generalizable disease detection in head computed tomography</span>
+              <small>公共卫生与医疗运营 · 2026-04-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41551-026-01653-3.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

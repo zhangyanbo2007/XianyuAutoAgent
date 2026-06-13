@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VQKV: High-Fidelity and High-Ratio Cache Compression via Vector-Quantization | DAST Papers</title>
+    <meta name="description" content="这篇论文针对长上下文 LLM 的核心部署瓶颈：KV cache 随上下文长度线性增长，直接限制显存、吞吐和可生成长度。与 token eviction、低秩投影或 scalar quantization 相比，作者把问题转成 vector-level quantization，希望同时获得高压缩率和高重构保真度。
+
+VQKV 是 training-free 方法，不修改模型参数。它用 SimVQ " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r82-vqkv-vector-quantized-kv-cache/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VQKV: High-Fidelity and High-Ratio Cache Compression via Vector-Quantization" />
+    <meta property="og:description" content="这篇论文针对长上下文 LLM 的核心部署瓶颈：KV cache 随上下文长度线性增长，直接限制显存、吞吐和可生成长度。与 token eviction、低秩投影或 scalar quantization 相比，作者把问题转成 vector-level quantization，希望同时获得高压缩率和高重构保真度。
+
+VQKV 是 training-free 方法，不修改模型参数。它用 SimVQ " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r82-vqkv-vector-quantized-kv-cache/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VQKV: High-Fidelity and High-Ratio Cache Compression via Vector-Quantization" />
+    <meta name="twitter:description" content="这篇论文针对长上下文 LLM 的核心部署瓶颈：KV cache 随上下文长度线性增长，直接限制显存、吞吐和可生成长度。与 token eviction、低秩投影或 scalar quantization 相比，作者把问题转成 vector-level quantization，希望同时获得高压缩率和高重构保真度。
+
+VQKV 是 training-free 方法，不修改模型参数。它用 SimVQ " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VQKV: High-Fidelity and High-Ratio Cache Compression via Vector-Quantization</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.16435" target="_blank" rel="noopener noreferrer">2603.16435</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对长上下文 LLM 的核心部署瓶颈：KV cache 随上下文长度线性增长，直接限制显存、吞吐和可生成长度。与 token eviction、低秩投影或 scalar quantization 相比，作者把问题转成 vector-level quantization，希望同时获得高压缩率和高重构保真度。</dd></div><div><dt>方法/机制</dt><dd>VQKV 是 training-free 方法，不修改模型参数。它用 SimVQ 把高维 KV cache 向量映射到紧凑 codebooks，用少量整数索引替代大量浮点 cache 值；同时通过 residual codebook design 分散 RoPE 带来的异质频率变化，使 RoPE-rotated key cache 也能保持较高重构质量。</dd></div><div><dt>结果/证据</dt><dd>实验在 LLaMA3.1-8B 和 LongBench 上显示，VQKV 达到 82.8% KV cache 压缩，同时保留 98.6% baseline 表现，并在相同显存 footprint 下支持 4.3 倍更长 generation length。论文还提供 GitHub 和 Hugging Face checkpoint，工程复现路径相对清晰。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提供了一个可复用的推理时内存压缩 primitive：无需训练、模型参数无侵入、面向长上下文和资源受限部署，直接影响 LLM serving、agent 长程记忆窗口和边缘推理的成本曲线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对长上下文 LLM 的核心部署瓶颈：KV cache 随上下文长度线性增长，直接限制显存、吞吐和可生成长度。与 token eviction、低秩投影或 scalar quantization 相比，作者把问题转成 vector-level quantization，希望同时获得高压缩率和高重构保真度。</p><p>VQKV 是 training-free 方法，不修改模型参数。它用 SimVQ 把高维 KV cache 向量映射到紧凑 codebooks，用少量整数索引替代大量浮点 cache 值；同时通过 residual codebook design 分散 RoPE 带来的异质频率变化，使 RoPE-rotated key cache 也能保持较高重构质量。</p><p>实验在 LLaMA3.1-8B 和 LongBench 上显示，VQKV 达到 82.8% KV cache 压缩，同时保留 98.6% baseline 表现，并在相同显存 footprint 下支持 4.3 倍更长 generation length。论文还提供 GitHub 和 Hugging Face checkpoint，工程复现路径相对清晰。</p><p>它值得正式收录，因为它提供了一个可复用的推理时内存压缩 primitive：无需训练、模型参数无侵入、面向长上下文和资源受限部署，直接影响 LLM serving、agent 长程记忆窗口和边缘推理的成本曲线。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>抽象 大型语言模型 (LLMs) 不断增长的上下文长度增大了键值 (KV) 缓存，限制了其在资源受限环境中的部署。先前的无训练 KV 缓存压缩方法通常依赖于低秩近似或标量量化，这些方法未能同时实现高压缩比和高重建保真度。我们提出了 VQKV，这是一种新颖的、无训练的方法，引入了向量量化 (VQ) 来获得高度压缩的 KV 表示，同时保持高模型保真度，从而能够用少量整数索引表示数千个浮点值。因此，VQKV 在 LLaMA3.1-8B 上实现了 82.8% 的压缩比，同时在 LongBench 上保留了 98.6% 的基线性能，并在相同的内存占用下实现了 4.3 倍的更长生成长度。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract The growing context length of Large Language Models (LLMs) enlarges the Key-Value (KV) cache, limiting deployment in resource-limited environments. Prior training-free approaches for KV cache compression typically rely on low-rank approximation or scalar quantization, which fail to simultaneously achieve high compression ratios and high reconstruction fidelity. We propose VQKV, a novel, training-free method introducing vector quantization (VQ) to obtain highly compressed KV representations while preserving high model fidelity, allowing for the representation of thousands of floating-point values with just a few integer indices. As a result, VQKV achieves an 82.8% compression ratio on LLaMA3.1-8B while retaining 98.6% of the baseline performance on LongBench and enabling 4.3× longer generation length on the same memory footprint.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317r82vqkvvec,
+  title = {VQKV: High-Fidelity and High-Ratio Cache Compression via Vector-Quantization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.16435},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r82-vqkv-vector-quantized-kv-cache/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VQKV: High-Fidelity and High-Ratio Cache Compression via Vector-Quantization. https://arxiv.org/pdf/2603.16435</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.16435" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/LUMIA-Group/VQKV" target="_blank" rel="noopener noreferrer">代码</a><a href="https://huggingface.co/LuckyOrz/vqkv_llama3.1-8B" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

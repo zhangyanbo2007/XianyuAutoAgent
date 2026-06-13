@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ACC: Compiling Agent Trajectories for Long-Context Training | DAST Papers</title>
+    <meta name="description" content="ACC 把 agent 执行过程中天然产生的长轨迹转成 long-context 训练数据，核心观察是工具调用、环境反馈和中间状态本身包含大量跨轮证据，但传统 agent SFT 通常遮蔽工具响应，浪费了这些监督信号。
+
+方法将搜索、软件工程、数据库查询等 agent 轨迹编译为 QA pairs，把原始问题、工具响应和环境观察合并成需要远距离整合的上下文，从而不依赖额外人工标注就获得长上下文推理" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a306-acc-agent-context-compilation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ACC: Compiling Agent Trajectories for Long-Context Training" />
+    <meta property="og:description" content="ACC 把 agent 执行过程中天然产生的长轨迹转成 long-context 训练数据，核心观察是工具调用、环境反馈和中间状态本身包含大量跨轮证据，但传统 agent SFT 通常遮蔽工具响应，浪费了这些监督信号。
+
+方法将搜索、软件工程、数据库查询等 agent 轨迹编译为 QA pairs，把原始问题、工具响应和环境观察合并成需要远距离整合的上下文，从而不依赖额外人工标注就获得长上下文推理" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a306-acc-agent-context-compilation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ACC: Compiling Agent Trajectories for Long-Context Training" />
+    <meta name="twitter:description" content="ACC 把 agent 执行过程中天然产生的长轨迹转成 long-context 训练数据，核心观察是工具调用、环境反馈和中间状态本身包含大量跨轮证据，但传统 agent SFT 通常遮蔽工具响应，浪费了这些监督信号。
+
+方法将搜索、软件工程、数据库查询等 agent 轨迹编译为 QA pairs，把原始问题、工具响应和环境观察合并成需要远距离整合的上下文，从而不依赖额外人工标注就获得长上下文推理" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ACC: Compiling Agent Trajectories for Long-Context Training</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21850" target="_blank" rel="noopener noreferrer">2605.21850</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ACC 把 agent 执行过程中天然产生的长轨迹转成 long-context 训练数据，核心观察是工具调用、环境反馈和中间状态本身包含大量跨轮证据，但传统 agent SFT 通常遮蔽工具响应，浪费了这些监督信号。</dd></div><div><dt>方法/机制</dt><dd>方法将搜索、软件工程、数据库查询等 agent 轨迹编译为 QA pairs，把原始问题、工具响应和环境观察合并成需要远距离整合的上下文，从而不依赖额外人工标注就获得长上下文推理训练样本。</dd></div><div><dt>结果/证据</dt><dd>在 MRCR 和 GraphWalks 等长程依赖任务上，ACC 训练 Qwen3-30B-A3B 带来显著提升，并接近更大模型表现，同时保留 GPQA、MMLU-Pro、AIME、IFEval 等一般能力。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提出了一个可复用的数据生成/训练接口：把 agent execution trace 变成 long-context reasoning supervision，直接连接 agent 数据飞轮和长上下文能力训练。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ACC 把 agent 执行过程中天然产生的长轨迹转成 long-context 训练数据，核心观察是工具调用、环境反馈和中间状态本身包含大量跨轮证据，但传统 agent SFT 通常遮蔽工具响应，浪费了这些监督信号。</p><p>方法将搜索、软件工程、数据库查询等 agent 轨迹编译为 QA pairs，把原始问题、工具响应和环境观察合并成需要远距离整合的上下文，从而不依赖额外人工标注就获得长上下文推理训练样本。</p><p>在 MRCR 和 GraphWalks 等长程依赖任务上，ACC 训练 Qwen3-30B-A3B 带来显著提升，并接近更大模型表现，同时保留 GPQA、MMLU-Pro、AIME、IFEval 等一般能力。</p><p>它值得正式收录，因为它提出了一个可复用的数据生成/训练接口：把 agent execution trace 变成 long-context reasoning supervision，直接连接 agent 数据飞轮和长上下文能力训练。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>智能体（agents）的最新发展重新激发了对LLMs长上下文推理能力的需求。然而，训练LLMs具备这种能力需要耗费成本的长文档整理或启发式上下文合成。我们观察到，智能体在解决问题时会产生大量的轨迹，在多个回合中调用工具并接收环境观察。因此，回答原始问题所需的证据分散在这些回合中，需要整合远距离的上下文片段。然而，标准的智能体SFT会屏蔽工具响应，并且只训练回合级的工具选择，从而产生一个监督盲点，使得这些分散的信号未被利用。我们提出了智能体上下文编译（ACC），它将来自搜索、软件工程和数据库查询智能体的轨迹转换为长上下文问答对，这些问答对将原始问题与在多个回合中收集的工具响应和环境观察相结合，训练模型直接回答问题而无需使用工具。这使得问题与证据之间的依赖关系变得明确，从而能够在没有额外标注的情况下直接监督对远距离片段的长上下文推理。ACC是一种简单但有效的方法，可以与任何现有的长上下文扩展或训练方法结合，提供可扩展的监督微调数据。我们通过MRCR和GraphWalks验证了ACC在长距离依赖建模任务上的有效性，这些是需要跨回合共指消解和在扩展上下文中进行图遍历的挑战性基准。使用ACC训练Qwen3-30B-A3B在MRCR上达到68.3（+18.1），在GraphWalks上达到77.5（+7.6），结果与Qwen3-235B-A22B相当，同时在GPQA、MMLU-Pro、AIME和IFEval上保持了通用能力。进一步的机制分析表明，经过ACC训练的模型表现出任务自适应的注意力重构和专家专业化。数据集和检查点已公开发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent development of agents has renewed demand for long-context reasoning capacity of LLMs. However, training LLMs for this capacity requires costly longdocument curation or heuristic context synthesis. We observe that agents produce massive trajectories when solving problems, invoking tools and receiving environment observations across many turns. The evidence needed to answer the original question is thus scattered throughout these turns, requiring integration of distant context segments. Nevertheless, standard agent SFT masks tool responses and only trains turn-level tool selection, creating a supervision blind spot where these scattered signals go unused. We propose Agent Context Compilation (ACC), which converts trajectories from search, software engineering, and database querying agents into long-context QA pairs that combine the original question with tool responses and environment observations gathered across multiple turns, training the model to answer directly without tool use. This makes the dependencies between the question and the evidence explicit, enabling direct supervision of long-context reasoning over distant segments without additional annotation. ACC is a simple but effective approach that can be combined with any existing long-context extension or training method, providing scalable supervised fine-tuning data. We validate ACC on long-range dependency modeling tasks through MRCR and GraphWalks, challenging benchmarks requiring cross-turn coreference resolution and graph traversal over extended contexts. Training Qwen3-30B-A3B with ACC achieves 68.3 on MRCR (+18.1) and 77.5 on GraphWalks (+7.6), results comparable to Qwen3-235B-A22B, while preserving general capabilities on GPQA, MMLU-Pro, AIME, and IFEval. Further mechanism analysis reveals that the ACC-trained model exhibits task-adaptive attention restructuring and expert specialization. Dataset and checkpoints are released publicly.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521a306accage,
+  title = {ACC: Compiling Agent Trajectories for Long-Context Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21850.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a306-acc-agent-context-compilation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ACC: Compiling Agent Trajectories for Long-Context Training. https://arxiv.org/pdf/2605.21850.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21850.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.21850" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

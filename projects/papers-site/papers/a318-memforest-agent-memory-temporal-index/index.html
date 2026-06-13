@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing | DAST Papers</title>
+    <meta name="description" content="MemForest 关注 agent memory 的工程瓶颈：长程 agent 需要持续 serve-and-update memory，但许多系统把更新和 LLM 推理紧耦合，并依赖全局摘要重写，导致延迟和维护成本随记忆增长恶化。
+
+论文把 agent memory 重写为 write-efficient temporal data management 问题，用 parallel chunk" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a318-memforest-agent-memory-temporal-index/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing" />
+    <meta property="og:description" content="MemForest 关注 agent memory 的工程瓶颈：长程 agent 需要持续 serve-and-update memory，但许多系统把更新和 LLM 推理紧耦合，并依赖全局摘要重写，导致延迟和维护成本随记忆增长恶化。
+
+论文把 agent memory 重写为 write-efficient temporal data management 问题，用 parallel chunk" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a318-memforest-agent-memory-temporal-index/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing" />
+    <meta name="twitter:description" content="MemForest 关注 agent memory 的工程瓶颈：长程 agent 需要持续 serve-and-update memory，但许多系统把更新和 LLM 推理紧耦合，并依赖全局摘要重写，导致延迟和维护成本随记忆增长恶化。
+
+论文把 agent memory 重写为 write-efficient temporal data management 问题，用 parallel chunk" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.23986" target="_blank" rel="noopener noreferrer">2605.23986</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>MemForest 关注 agent memory 的工程瓶颈：长程 agent 需要持续 serve-and-update memory，但许多系统把更新和 LLM 推理紧耦合，并依赖全局摘要重写，导致延迟和维护成本随记忆增长恶化。</dd></div><div><dt>方法/机制</dt><dd>论文把 agent memory 重写为 write-efficient temporal data management 问题，用 parallel chunk extraction 打破顺序更新瓶颈。</dd></div><div><dt>结果/证据</dt><dd>MemTree 以 hierarchical temporal index 组织记忆，把 flat global summaries 变成 time-ordered trees，并将更新限制在受影响的路径上，自然保留时间演化状态。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它为长期 agent memory 提供了数据结构和并行更新 primitive，比单纯语义检索或经验摘要更接近可部署 memory runtime。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>MemForest 关注 agent memory 的工程瓶颈：长程 agent 需要持续 serve-and-update memory，但许多系统把更新和 LLM 推理紧耦合，并依赖全局摘要重写，导致延迟和维护成本随记忆增长恶化。</p><p>论文把 agent memory 重写为 write-efficient temporal data management 问题，用 parallel chunk extraction 打破顺序更新瓶颈。</p><p>MemTree 以 hierarchical temporal index 组织记忆，把 flat global summaries 变成 time-ordered trees，并将更新限制在受影响的路径上，自然保留时间演化状态。</p><p>它值得正式收录，因为它为长期 agent memory 提供了数据结构和并行更新 primitive，比单纯语义检索或经验摘要更接近可部署 memory runtime。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>记忆是实现长上下文LLM代理的基本组成部分，通过持续的服务与更新生命周期支持跨交互的持久状态。尽管有大量前期工作，现有系统由于两个关键限制而存在显著的维护开销：粗粒度状态管理和本质上是顺序的更新管道。特别是，更新通常与LLM推理紧密耦合，并需要全状态重写，导致可扩展性差，并且随着记忆积累延迟增加。为了解决这些挑战，我们提出了MemForest，一个记忆框架，它将代理记忆重新定义为写高效的时间数据管理问题。MemForest通过并行块提取打破了顺序瓶颈，将记忆构建解耦为并发、独立的操作。为了进一步消除粗粒度维护，我们引入了MemTree，一个分层时间索引，它将记忆组织成时间有序的树，而非平坦的全局摘要。这种设计用局部化的每节点更新取代了全状态重写，将维护成本降低到受影响的树路径，同时自然地保留了随时间演变的状态。我们在两个长上下文记忆基准测试LongMemEval-S和LoCoMo上评估了MemForest。在LongMemEval-S上，MemForest在有状态基线中实现了最佳整体性能，达到了79.8%的pass@1准确率，同时记忆构建吞吐量比包括EverMemOS在内的最先进方法高出约6倍。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Memory is a fundamental component for enabling long-context LLM agents, supporting persistent state across interactions through a continuous serve-and-update lifecycle. Despite substantial prior work, existing systems suffer from significant maintenance overhead due to two key limitations: coarse-grained state management and inherently sequential update pipelines. In particular, updates are often tightly coupled with LLM inference and require full-state rewrites, leading to poor scalability and growing latency as memory accumulates. To address these challenges, we present MemForest, a memory framework that reformulates agent memory as a writeefficient temporal data management problem. MemForest breaks the sequential bottleneck via parallel chunk extraction, decoupling memory construction into concurrent, independent operations. To further eliminate coarse-grained maintenance, we introduce MemTree, a hierarchical temporal index that organizes memory as time-ordered trees rather than flat global summaries. This design replaces full-state rewrites with localized per-node updates, reducing maintenance cost to the affected tree paths while naturally preserving temporally evolving states. We evaluate MemForest on two long-context memory benchmarks, LongMemEval-S and LoCoMo. On LongMemEval-S, MemForest achieves the best overall performance among stateful baselines, reaching 79.8% pass@1 accuracy while sustaining a memory construction throughput approximately 6× higher than state-of-the-art approaches including EverMemOS.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260516a318memfor,
+  title = {MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.23986.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a318-memforest-agent-memory-temporal-index/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing. https://arxiv.org/pdf/2605.23986.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.23986.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.23986" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

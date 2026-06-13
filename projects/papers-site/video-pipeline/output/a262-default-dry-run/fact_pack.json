@@ -1,0 +1,103 @@
+{
+  "slug": "a262-agentic-search-direct-corpus",
+  "title": "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+  "summary": "这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。\n\n这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。\n\n它值得正式收录，因为它把 retrieval 从 ranking primitive 推向 interaction primitive，和近期 web/research agent 的长期任务需求高度一致。\n\n它没有更高，是因为当前仍需要更多真实复杂任务和系统级复现来证明 direct corpus interaction 能成为主流检索范式。",
+  "abstract": "Modern retrieval systems, whether lexical or semantic, expose a corpus through a fixed similarity interface that compresses access into a single top-k retrieval step before reasoning. This abstraction is efficient, but for agentic search, it becomes a bottleneck: exact lexical constraints, sparse clue conjunctions, local context checks, and multi-step hypothesis refinement are difficult to implement by calling a conventional off-the-shelf retriever, and evidence filtered out early cannot be recovered by stronger downstream reasoning. Agentic tasks further exacerbate this limitation because they require agents to orchestrate multiple steps, including discovering intermediate entities, combining weak clues, and revising the plan after observing partial evidence. To tackle the limitation, we study direct corpus interaction (DCI), where an agent searches the raw corpus directly with generalpurpose terminal tools (e.g., grep, file reads, shell commands, lightweight scripts), without any embedding model, vector index, or retrieval API. This approach requires no offline indexing and adapts naturally to evolving local corpora. Across IR benchmarks and end-to-end agentic search tasks, this simple setup substantially outperforms strong sparse, dense, and reranking baselines on several BRIGHT and BEIR datasets, and attains strong accuracy on BrowseComp-Plus and multi-hop QA without relying on any conventional semantic retriever. Our results indicate that as language agents become stronger, retrieval quality depends not only on reasoning ability but also on the resolution of the interface through which the model interacts with the corpus, with which DCI opens a broader interface-design space for agentic search. Figure 1: Pareto frontier of performance vs. cost on BrowseComp-Plus, comparing two paradigms: retrieval (Qwen3-Embed-8B retriever) and our proposed direct corpus interaction (two DCI-Agents ⋆ and ⋆) . The x-axis shows the estimated API cost over the entire evaluation set. †: Project Leads. *: Core Contributors. B: Corresponding Authors. Preprint.",
+  "urls": [
+    "https://arxiv.org/pdf/2605.05242.pdf",
+    "https://arxiv.org/abs/2605.05242"
+  ],
+  "problem": "这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。",
+  "method": "现代检索系统，无论是词汇型还是语义型，都通过一个固定的相似性接口来暴露语料库，该接口在推理之前将访问压缩为单个top-k检索步骤。这种抽象是高效的，但对于智能体搜索而言，它成为了一个瓶颈：精确的词汇约束、稀疏线索的结合、局部上下文检查以及多步假设细化很难通过调用传统的现成检索器来实现，并且早期被过滤掉的证据无法通过更强的下游推理来恢复。智能体任务进一步加剧了这一限制，因为它们要求智能体协调多个步骤，包括发现中间实体、组合弱线索以及在观察到部分证据后修改计划。为了解决这一限制，我们研究了直接语料库交互（DCI），其中智能体使用通用终端工具（例如grep、文件读取、shell命令、轻量级脚本）直接搜索原始语料库，无需任何嵌入模型、向量索引或检索API。这种方法不需要离线索引，并且自然地适应不断演变的本地语料库。在IR基准测试和端到端智能体搜索任务中，这种简单的设置在多个BRIGHT和BEIR数据集上显著优于强大的稀疏、密集和重排序基线，并在BrowseComp-Plus和多跳QA上获得了很高的准确性，而无需依赖任何传统的语义检索器。我们的结果表明，随着语言智能体变得更强大，检索质量不仅取决于推理能力，还取决于模型与语料库交互的接口的分辨率，DCI为智能体搜索开辟了更广阔的接口设计空间。图1：BrowseComp-Plus上性能与成本的帕累托前沿，比较了两种范式：检索（Qwen3-Embed-8B检索器）和我们提出的直接语料库交互（两个DCI-Agents ⋆ 和 ⋆）。x轴显示了整个评估集上的估计API成本。†：项目负责人。*：核心贡献者。B：通讯作者。预印本。",
+  "findings": [
+    "这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。",
+    "而不是被动消费 top-k 相似结果"
+  ],
+  "limitations": [
+    "视频解读需要区分论文实证结论和面向未来的设计推断。"
+  ],
+  "key_terms": [
+    "retrieval",
+    "corpus",
+    "agentic",
+    "interaction",
+    "search",
+    "direct",
+    "api",
+    "browsecomp-plus",
+    "检索",
+    "证据"
+  ],
+  "anchors": [
+    {
+      "kind": "method",
+      "text": "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+      "evidence": "title/summary/abstract"
+    },
+    {
+      "kind": "task",
+      "text": "这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段，而是要主动和语料互动，逐步验证、排除和重构问题。",
+      "evidence": "title/summary/abstract"
+    },
+    {
+      "kind": "task",
+      "text": "这篇论文的价值在于挑战 agentic search 里默认的 dense retrieval 习惯：复杂搜索任务不只是找语义相似片段",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "task",
+      "text": "而是要主动和语料互动",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "finding",
+      "text": "这个 framing 对搜索 agent 很关键。长期研究、审计、法律、代码和科学文献任务都要求 agent 直接操作证据集合，而不是被动消费 top-k 相似结果。",
+      "evidence": "title/summary/abstract"
+    },
+    {
+      "kind": "task",
+      "text": "这个 framing 对搜索 agent 很关键。长期研究",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "task",
+      "text": "代码和科学文献任务都要求 agent 直接操作证据集合",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "finding",
+      "text": "而不是被动消费 top-k 相似结果",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "method",
+      "text": "它值得正式收录，因为它把 retrieval 从 ranking primitive 推向 interaction primitive，和近期 web/research agent 的长期任务需求高度一致。",
+      "evidence": "title/summary/abstract"
+    },
+    {
+      "kind": "method",
+      "text": "因为它把 retrieval 从 ranking primitive 推向 interaction primitive",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "task",
+      "text": "和近期 web/research agent 的长期任务需求高度一致",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "method",
+      "text": "它没有更高，是因为当前仍需要更多真实复杂任务和系统级复现来证明 direct corpus interaction 能成为主流检索范式。",
+      "evidence": "title/summary/abstract"
+    },
+    {
+      "kind": "method",
+      "text": "是因为当前仍需要更多真实复杂任务和系统级复现来证明 direct corpus interaction 能成为主流检索范式",
+      "evidence": "paper sentence fragment"
+    },
+    {
+      "kind": "task",
+      "text": "paper-specific concept: retrieval",
+      "evidence": "extracted key term"
+    }
+  ]
+}

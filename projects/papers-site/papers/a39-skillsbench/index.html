@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 agent 系统里一个长期被忽视但实际很关键的问题：技能被抽取、封装和复用之后，究竟能否稳定泛化到不同任务，而不是只在演示案例里看起来可用。作者没有再做一个 agent，而是把问题显式转成 benchmark：如何系统评估 agent skills 在多域、多任务、多环境中的可靠性、迁移性和组合效果。
+
+论文提出 SkillsBench，包含较大规模的任务与技能集合，并用可验证任" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a39-skillsbench/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks" />
+    <meta property="og:description" content="这篇论文处理的是 agent 系统里一个长期被忽视但实际很关键的问题：技能被抽取、封装和复用之后，究竟能否稳定泛化到不同任务，而不是只在演示案例里看起来可用。作者没有再做一个 agent，而是把问题显式转成 benchmark：如何系统评估 agent skills 在多域、多任务、多环境中的可靠性、迁移性和组合效果。
+
+论文提出 SkillsBench，包含较大规模的任务与技能集合，并用可验证任" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a39-skillsbench/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks" />
+    <meta name="twitter:description" content="这篇论文处理的是 agent 系统里一个长期被忽视但实际很关键的问题：技能被抽取、封装和复用之后，究竟能否稳定泛化到不同任务，而不是只在演示案例里看起来可用。作者没有再做一个 agent，而是把问题显式转成 benchmark：如何系统评估 agent skills 在多域、多任务、多环境中的可靠性、迁移性和组合效果。
+
+论文提出 SkillsBench，包含较大规模的任务与技能集合，并用可验证任" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.12670" target="_blank" rel="noopener noreferrer">2602.12670</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 agent 系统里一个长期被忽视但实际很关键的问题：技能被抽取、封装和复用之后，究竟能否稳定泛化到不同任务，而不是只在演示案例里看起来可用。作者没有再做一个 agent，而是把问题显式转成 benchmark：如何系统评估 agent skills 在多域、多任务、多环境中的可靠性、迁移性和组合效果。</dd></div><div><dt>方法/机制</dt><dd>论文提出 SkillsBench，包含较大规模的任务与技能集合，并用可验证任务和明确的技能执行设定去隔离“技能本身是否有效”这一问题。它的价值不只是提供更多题目，而是把 agent 研究从端到端成功率，进一步拆成技能层的可测量对象，从而让技能抽取、技能选择和技能组合可以被更细粒度比较。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为 agent skills 很可能会成为长期 agent 架构的核心中间层，而 benchmark 的缺失一直让这一层难以科学比较。SkillsBench 对 agent tool-use、skill libraries、skill composition 和训练后能力诊断都有直接外溢价值，因此不是普通 benchmark 扩张，而是一个有结构意义的评测条目。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因是 benchmark 的长期价值取决于后续社区采用与扩展程度。目前它更像一个高质量、问题定义清楚的 benchmark breakthrough，而不是已经成为该方向默认标准的 disruptive 条目。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 agent 系统里一个长期被忽视但实际很关键的问题：技能被抽取、封装和复用之后，究竟能否稳定泛化到不同任务，而不是只在演示案例里看起来可用。作者没有再做一个 agent，而是把问题显式转成 benchmark：如何系统评估 agent skills 在多域、多任务、多环境中的可靠性、迁移性和组合效果。</p><p>论文提出 SkillsBench，包含较大规模的任务与技能集合，并用可验证任务和明确的技能执行设定去隔离“技能本身是否有效”这一问题。它的价值不只是提供更多题目，而是把 agent 研究从端到端成功率，进一步拆成技能层的可测量对象，从而让技能抽取、技能选择和技能组合可以被更细粒度比较。</p><p>这项工作值得收录，因为 agent skills 很可能会成为长期 agent 架构的核心中间层，而 benchmark 的缺失一直让这一层难以科学比较。SkillsBench 对 agent tool-use、skill libraries、skill composition 和训练后能力诊断都有直接外溢价值，因此不是普通 benchmark 扩张，而是一个有结构意义的评测条目。</p><p>它还不到更高一级，原因是 benchmark 的长期价值取决于后续社区采用与扩展程度。目前它更像一个高质量、问题定义清楚的 benchmark breakthrough，而不是已经成为该方向默认标准的 disruptive 条目。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SkillsBench：评估智能体技能在多样化任务中的表现 智能体技能是程序性知识的结构化包，用于在推理时增强LLM智能体。尽管被迅速采用，但目前还没有标准方法来衡量它们是否真正有效。我们提出了S KILLS B ENCH，这是一个包含11个领域86项任务的基准，每项任务都配有精选技能和确定性验证器。每项任务在三种条件下进行评估：无技能、精选技能和自生成技能。我们测试了7种智能体模型配置，共计7,308条轨迹。精选技能将平均通过率提高了16.2个百分点（pp），但效果在不同领域之间差异很大（软件工程领域为+4.5pp，医疗保健领域为+51.9pp），并且84项任务中有16项显示出负增益。自生成技能平均而言没有带来任何益处，这表明模型无法可靠地编写它们从中受益的程序性知识。包含2-3个模块的聚焦技能优于全面的文档，并且带有技能的小型模型可以与不带技能的大型模型相媲美。我们发布了数据集和评估工具，以帮助开发人员和研究人员在skillsbench.ai上进行未来的工作。Xiangyi Li∗ 1 Yimin Liu∗ 2 Wenbo Chen∗ 3 † Shenghan Zheng∗ 4 Xiaokun Chen‡ 5 Yifeng He‡ 6 Yubo Li‡ 7 Bingran You‡ 8 Haotian Shen‡ 9 Jiankai Sun‡ 9 Shuyi Wang‡ 9 Binxu Li 10 Qunhong Zeng 9 Di Wang 11 Xuandong Zhao 8 Yuanli Wang 12 Roey Ben Chaim 13 Zonglin Di 14 Yipeng Gao 15 Junwei He 16 Yizhuo He 7 Liqiang Jing 17 Luyang Kong 9 Xin Lan 18 Jiachen Li 19 Songlin Li 5 Yijiang Li 20 Yueqian Lin 21 Xinyi Liu 9 Xuanqing Liu 9 Haoran Lyu 9 Ze Ma 22 Kaixin Li 9 Runhui Wang 9 Tianyu Wang 9 Wengao Ye 23 Yue Zhang 17 Hanwen Xing 9 Kaixin Li 9 Yiqi Xue 15 Steven Dillmann 5 Han-chung Lee 9</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agent Skills are structured packages of procedural knowledge that augment LLM agents at inference time. Despite rapid adoption, there is no standard way to measure whether they actually help. We present S KILLS B ENCH, a benchmark of 86 tasks across 11 domains paired with curated Skills and deterministic verifiers. Each task is evaluated under three conditions: no Skills, curated Skills, and self-generated Skills. We test 7 agent-model configurations over 7,308 trajectories. Curated Skills raise average pass rate by 16.2 percentage points (pp), but effects vary widely by domain (+4.5pp for Software Engineering to +51.9pp for Healthcare) and 16 of 84 tasks show negative deltas. Self-generated Skills provide no benefit on average, showing that models cannot reliably author the procedural knowledge they benefit from consuming. Focused Skills with 2–3 modules outperform comprehensive documentation, and smaller models with Skills can match larger models without them. We publish the dataset and evaluation harness to assist developers and researchers in future work at skillsbench.ai. Xiangyi Li∗ 1 Yimin Liu∗ 2 Wenbo Chen∗ 3 † Shenghan Zheng∗ 4 Xiaokun Chen‡ 5 Yifeng He‡ 6 Yubo Li‡ 7 Bingran You‡ 8 Haotian Shen‡ 9 Jiankai Sun‡ 9 Shuyi Wang‡ 9 Binxu Li 10 Qunhong Zeng 9 Di Wang 11 Xuandong Zhao 8 Yuanli Wang 12 Roey Ben Chaim 13 Zonglin Di 14 Yipeng Gao 15 Junwei He 16 Yizhuo He 7 Liqiang Jing 17 Luyang Kong 9 Xin Lan 18 Jiachen Li 19 Songlin Li 5 Yijiang Li 20 Yueqian Lin 21 Xinyi Liu 9 Xuanqing Liu 9 Haoran Lyu 9 Ze Ma 22 Kaixin Li 9 Runhui Wang 9 Tianyu Wang 9 Wengao Ye 23 Yue Zhang 17 Hanwen Xing 9 Kaixin Li 9 Yiqi Xue 15 Steven Dillmann 5 Han-chung Lee 9</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260218a39skillsb,
+  title = {SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.12670.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a39-skillsbench/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SkillsBench: Benchmarking How Well Agent Skills Work Across Diverse Tasks. https://arxiv.org/pdf/2602.12670.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.12670.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

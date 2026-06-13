@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dynamic Skill Lifecycle Management for Agentic Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文延续 self-evolving agents 的关键问题：技能不是一次性 prompt，也不是静态工具库，而是需要生命周期管理的能力对象。
+
+Dynamic Skill Lifecycle Management 的价值在于把 skill acquisition 从“学会一个技能”推进到“管理一组会变化的技能”。这对长期 agent 更关键，因为技能会过时、冲突、冗余或需要替换。
+
+它值得" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a264-dynamic-skill-lifecycle/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Dynamic Skill Lifecycle Management for Agentic Reinforcement Learning" />
+    <meta property="og:description" content="这篇论文延续 self-evolving agents 的关键问题：技能不是一次性 prompt，也不是静态工具库，而是需要生命周期管理的能力对象。
+
+Dynamic Skill Lifecycle Management 的价值在于把 skill acquisition 从“学会一个技能”推进到“管理一组会变化的技能”。这对长期 agent 更关键，因为技能会过时、冲突、冗余或需要替换。
+
+它值得" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a264-dynamic-skill-lifecycle/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Dynamic Skill Lifecycle Management for Agentic Reinforcement Learning" />
+    <meta name="twitter:description" content="这篇论文延续 self-evolving agents 的关键问题：技能不是一次性 prompt，也不是静态工具库，而是需要生命周期管理的能力对象。
+
+Dynamic Skill Lifecycle Management 的价值在于把 skill acquisition 从“学会一个技能”推进到“管理一组会变化的技能”。这对长期 agent 更关键，因为技能会过时、冲突、冗余或需要替换。
+
+它值得" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Dynamic Skill Lifecycle Management for Agentic Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10923" target="_blank" rel="noopener noreferrer">2605.10923</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文延续 self-evolving agents 的关键问题：技能不是一次性 prompt，也不是静态工具库，而是需要生命周期管理的能力对象。</dd></div><div><dt>方法/机制</dt><dd>Dynamic Skill Lifecycle Management 的价值在于把 skill acquisition 从“学会一个技能”推进到“管理一组会变化的技能”。这对长期 agent 更关键，因为技能会过时、冲突、冗余或需要替换。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为本库已经收 Skill1 并 watchlist SkillOS；这篇补的是 lifecycle 视角，能和 skill curation、memory validity、agent self-improvement 形成体系。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前仍需要证明生命周期策略能在真实开放环境中长期提升，而不是只在受控 RL 任务中有效。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文延续 self-evolving agents 的关键问题：技能不是一次性 prompt，也不是静态工具库，而是需要生命周期管理的能力对象。</p><p>Dynamic Skill Lifecycle Management 的价值在于把 skill acquisition 从“学会一个技能”推进到“管理一组会变化的技能”。这对长期 agent 更关键，因为技能会过时、冲突、冗余或需要替换。</p><p>它值得正式收录，因为本库已经收 Skill1 并 watchlist SkillOS；这篇补的是 lifecycle 视角，能和 skill curation、memory validity、agent self-improvement 形成体系。</p><p>它没有更高，是因为当前仍需要证明生命周期策略能在真实开放环境中长期提升，而不是只在受控 RL 任务中有效。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型智能体越来越依赖外部技能来解决复杂任务，其中技能作为模块化单元，将其能力扩展到仅凭参数记忆所能支持的范围之外。现有方法假设外部技能要么作为持久指导积累，要么内化到策略中，最终导致零技能推理。我们认为这种假设过于严格，因为在有限的参数容量和技能之间不均匀的边际贡献下，最优的活跃技能集是非单调的，并且依赖于任务和阶段。在这项工作中，我们提出了SLIM，一个用于智能体强化学习（RL）的动态技能生命周期管理框架，它将活跃的外部技能集视为一个与策略学习共同更新的动态优化变量。具体来说，SLIM通过留一技能验证来估计每个活跃技能的边际外部贡献，然后应用三个生命周期操作：保留高价值技能，淘汰在充分暴露后贡献变得微不足道的技能，以及在持续失败揭示能力覆盖不足时扩展技能库。实验表明，SLIM在ALFWorld和SearchQA上平均优于最佳基线7.1个百分点。结果进一步表明，策略学习和外部技能保留并非相互排斥：一些技能被策略吸收，而另一些则继续提供外部价值，支持SLIM作为基于技能的智能体RL的更通用范式。代码可在https://github.com/ejhshen/SLIM获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model agents increasingly rely on external skills to solve complex tasks, where skills act as modular units that extend their capabilities beyond what parametric memory alone supports. Existing methods assume external skills either accumulate as persistent guidance or internalized into the policy, eventually leading to zero-skill inference. We argue this assumption is overly restrictive, since with limited parametric capacity and uneven marginal contribution across skills, the optimal active skill set is non-monotonic, task- and stage-dependent. In this work, we propose SLIM, a framework of dynamic Skill LIfecycle Management for agentic reinforcement learning (RL), which treats the active external skill set as a dynamic optimization variable jointly updated with policy learning. Specifically, SLIM estimates each active skill’s marginal external contribution through leaveone-skill-out validation, then applies three lifecycle operations: retaining highvalue skills, retiring skills whose contribution becomes negligible after sufficient exposure, and expanding the skill bank when persistent failures reveal missing capability coverage. Experiments show that SLIM outperforms the best baselines by an average of 7.1% points across ALFWorld and SearchQA. Results further indicate that policy learning and external skill retention are not mutually exclusive: some skills are absorbed into the policy, while others continue to provide external value, supporting SLIM as a more general paradigm for skill-based agentic RL. Code is available at https://github.com/ejhshen/SLIM.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512a264dynami,
+  title = {Dynamic Skill Lifecycle Management for Agentic Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10923.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a264-dynamic-skill-lifecycle/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Dynamic Skill Lifecycle Management for Agentic Reinforcement Learning. https://arxiv.org/pdf/2605.10923.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10923.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.10923" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

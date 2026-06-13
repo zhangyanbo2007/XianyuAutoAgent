@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AdaState: Self-Evolving Anchors for Streaming Video Generation | DAST Papers</title>
+    <meta name="description" content="AdaState 处理 streaming/autoregressive video diffusion 的一个结构性问题：first-frame KV cache 被模型过度当作静态 scene anchor，导致身份一致但动态被压制，长视频容易变成视角和场景都被锁住。
+
+方法上，论文用 adaptive state 替代固定 first-frame anchor。这个 hidden laten" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g30-adastate-streaming-video/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AdaState: Self-Evolving Anchors for Streaming Video Generation" />
+    <meta property="og:description" content="AdaState 处理 streaming/autoregressive video diffusion 的一个结构性问题：first-frame KV cache 被模型过度当作静态 scene anchor，导致身份一致但动态被压制，长视频容易变成视角和场景都被锁住。
+
+方法上，论文用 adaptive state 替代固定 first-frame anchor。这个 hidden laten" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g30-adastate-streaming-video/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AdaState: Self-Evolving Anchors for Streaming Video Generation" />
+    <meta name="twitter:description" content="AdaState 处理 streaming/autoregressive video diffusion 的一个结构性问题：first-frame KV cache 被模型过度当作静态 scene anchor，导致身份一致但动态被压制，长视频容易变成视角和场景都被锁住。
+
+方法上，论文用 adaptive state 替代固定 first-frame anchor。这个 hidden laten" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AdaState: Self-Evolving Anchors for Streaming Video Generation</h1>
+          <p class="subtitle">多模态生成与世界模型 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态生成与世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30349" target="_blank" rel="noopener noreferrer">2605.30349</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AdaState 处理 streaming/autoregressive video diffusion 的一个结构性问题：first-frame KV cache 被模型过度当作静态 scene anchor，导致身份一致但动态被压制，长视频容易变成视角和场景都被锁住。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文用 adaptive state 替代固定 first-frame anchor。这个 hidden latent 和视频内容一起 denoise，但不被渲染；每个 chunk 结束后，它的 clean KV 被写回 anchor position，成为下一步可演化的 scene reference。</dd></div><div><dt>结果/证据</dt><dd>这个设计把 denoising 变成 recurrence：状态转移由扩散模型自身的 iterative refinement 执行，KV cache 负责携带状态，不需要额外 RNN/SSM/gating module。作者还引入 horizon-weighted DMD，让训练更重视依赖长期状态的后续帧。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提出了一个可复用的长视频生成状态管理 primitive：从 static anchor 到 self-evolving hidden anchor，对 streaming video generation、world-consistent video 和 latent-state generation 都有直接方法价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AdaState 处理 streaming/autoregressive video diffusion 的一个结构性问题：first-frame KV cache 被模型过度当作静态 scene anchor，导致身份一致但动态被压制，长视频容易变成视角和场景都被锁住。</p><p>方法上，论文用 adaptive state 替代固定 first-frame anchor。这个 hidden latent 和视频内容一起 denoise，但不被渲染；每个 chunk 结束后，它的 clean KV 被写回 anchor position，成为下一步可演化的 scene reference。</p><p>这个设计把 denoising 变成 recurrence：状态转移由扩散模型自身的 iterative refinement 执行，KV cache 负责携带状态，不需要额外 RNN/SSM/gating module。作者还引入 horizon-weighted DMD，让训练更重视依赖长期状态的后续帧。</p><p>收录价值在于它提出了一个可复用的长视频生成状态管理 primitive：从 static anchor 到 self-evolving hidden anchor，对 streaming video generation、world-consistent video 和 latent-state generation 都有直接方法价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自回归视频扩散模型通过逐帧生成流式视频，每块内容都根据先前生成的片段进行条件生成。这些模型在结构上锚定于第一帧：其键值表示形式占据了注意力缓存的特权位置，并在生成过程中作为主要的场景参考。作为缓存中最干净、最无错误的位置，这个锚点吸引了 disproportionate 的注意力，从而抑制了视频动态，即使场景自然演变，也锁定在初始视角。结果是具有时间浅薄性的视频，其中运动、相机移动和场景进展受到静态一致性的 favor，被压制。为了解决这个问题，我们用一个自适应状态取代了静态锚点，这是一个模型在每个片段中与内容一起去噪但从未渲染的隐藏潜在变量。而不是参考一个冻结的第一帧，模型在每个步骤通过关注先前状态和当前内容来生成自己的场景锚点，从而产生一个随着生成的 内容演变的参考。与标准视频生成不同，我们的方法将时间视为相对概念：每个生成步骤都看到相同的空间结构，无论生成进度如何，并且在每个片段中状态转换都是相同的。总而言之，这些特性引入了生成过程中的递归性，其中去噪作为过渡函数，KV缓存作为载体，不需要外部模块。实验表明，自适应状态显著改善了视频动态，使生成的视频中能够实现更丰富的运动和自然的场景进展。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autoregressive video diffusion models generate streaming video by producing frames sequentially, conditioning each chunk on previously generated content. These models are structurally anchored to the first frame: its key-value representation occupies a privileged position in the attention cache and serves as the primary scene reference throughout generation. As the cleanest and most error-free position in the cache, this anchor draws disproportionate attention, suppressing video dynamics, and locking scene composition to the initial viewpoint even as the scene naturally evolves. The result is a temporally shallow video in which motion, camera movement, and scene progression are dampened in favor of static consistency. To address this, we replace the static anchor with an adaptive state, a hidden latent that the model denoises alongside content at every chunk but never renders. Rather than referencing a frozen first frame, the model generates its own scene anchor at each step by attending to both the previous state and the current content, producing Preprint. a reference that evolves with the generated content. Unlike standard video generation, which encodes an absolute notion of time, our formulation treats time as relative: every generation step sees the same positional structure regardless of how far generation has progressed, and the state transition is identical at every chunk. Together, these properties introduce a recurrence into the generation process, where denoising serves as the transition function, and the KV cache serves as the carrier, requiring no external module. Experiments demonstrate that the adaptive state substantially improves video dynamics, enabling richer motion and natural scene progression within generated videos.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528g30adastat,
+  title = {AdaState: Self-Evolving Anchors for Streaming Video Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30349.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g30-adastate-streaming-video/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AdaState: Self-Evolving Anchors for Streaming Video Generation. https://arxiv.org/pdf/2605.30349.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g29-yocausal-video-world-causality/">
+              <span>YoCausal: How Far is Video Generation from World Model? A Causality Perspective</span>
+              <small>多模态生成与世界模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g28-minwm-interactive-video-world-models/">
+              <span>minWM: A Full-Stack Open-Source Framework for Real-Time Interactive Video World Models</span>
+              <small>多模态生成与世界模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm52-iworld-bench-interactive-wm/">
+              <span>A Benchmark for Interactive World Models with a Unified Action Generation Framework</span>
+              <small>多模态生成与世界模型 · 2026-05-05</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30349.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.30349" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

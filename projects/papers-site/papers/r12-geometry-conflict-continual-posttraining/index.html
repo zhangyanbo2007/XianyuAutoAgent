@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Geometry Conflict: Explaining and Controlling Forgetting in LLM Continual Post-Training | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是持续后训练里的核心风险：模型学习新能力时会破坏旧能力，而这个问题不是简单调小学习率就能解决。它把 forgetting 解释为几何冲突。
+
+几何视角有复用价值，因为它给 LoRA、continual post-training、domain adaptation 和 capability injection 提供了统一诊断语言。真正重要的不是单个任务分数，而是能力之间怎样发生干扰。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r12-geometry-conflict-continual-posttraining/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Geometry Conflict: Explaining and Controlling Forgetting in LLM Continual Post-Training" />
+    <meta property="og:description" content="这篇论文处理的是持续后训练里的核心风险：模型学习新能力时会破坏旧能力，而这个问题不是简单调小学习率就能解决。它把 forgetting 解释为几何冲突。
+
+几何视角有复用价值，因为它给 LoRA、continual post-training、domain adaptation 和 capability injection 提供了统一诊断语言。真正重要的不是单个任务分数，而是能力之间怎样发生干扰。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r12-geometry-conflict-continual-posttraining/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Geometry Conflict: Explaining and Controlling Forgetting in LLM Continual Post-Training" />
+    <meta name="twitter:description" content="这篇论文处理的是持续后训练里的核心风险：模型学习新能力时会破坏旧能力，而这个问题不是简单调小学习率就能解决。它把 forgetting 解释为几何冲突。
+
+几何视角有复用价值，因为它给 LoRA、continual post-training、domain adaptation 和 capability injection 提供了统一诊断语言。真正重要的不是单个任务分数，而是能力之间怎样发生干扰。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Geometry Conflict: Explaining and Controlling Forgetting in LLM Continual Post-Training</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.09608" target="_blank" rel="noopener noreferrer">2605.09608</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是持续后训练里的核心风险：模型学习新能力时会破坏旧能力，而这个问题不是简单调小学习率就能解决。它把 forgetting 解释为几何冲突。</dd></div><div><dt>方法/机制</dt><dd>几何视角有复用价值，因为它给 LoRA、continual post-training、domain adaptation 和 capability injection 提供了统一诊断语言。真正重要的不是单个任务分数，而是能力之间怎样发生干扰。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为本库关注长期能力扩展、PEFT 和部署后适应；forgetting control 是这些路线能否工程化的基础问题。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为它仍需要在更多训练范式、模型规模和实际能力组合中验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是持续后训练里的核心风险：模型学习新能力时会破坏旧能力，而这个问题不是简单调小学习率就能解决。它把 forgetting 解释为几何冲突。</p><p>几何视角有复用价值，因为它给 LoRA、continual post-training、domain adaptation 和 capability injection 提供了统一诊断语言。真正重要的不是单个任务分数，而是能力之间怎样发生干扰。</p><p>它值得正式收录，因为本库关注长期能力扩展、PEFT 和部署后适应；forgetting control 是这些路线能否工程化的基础问题。</p><p>它没有更高，是因为它仍需要在更多训练范式、模型规模和实际能力组合中验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>持续后训练旨在用新知识、技能和行为扩展大型语言模型（LLMs），但目前尚不清楚顺序更新何时能实现能力迁移，何时会导致灾难性遗忘。现有方法通过顺序微调、重放、正则化或模型合并来缓解遗忘，但对于何时整合新更新是有益还是有害，提供的标准有限。在这项工作中，我们通过三个问题研究LLM持续后训练：是什么导致遗忘？顺序获得的能力何时会迁移或干扰？如何利用兼容性来控制更新集成？我们通过任务几何学来解决这些问题：我们用其参数更新来表示每个后训练任务，并研究由更新引起的协方差几何学。我们的核心发现是：遗忘可以被视为一种状态相关的更新集成失败，它发生在任务引起的协方差几何学与演化模型状态的几何学不一致时。当顺序更新与先前更新塑造的模型状态保持兼容时，它们会发生迁移；当状态相关的几何冲突变得很高时，它们会发生干扰。受此发现的启发，我们提出了几何冲突Wasserstein合并（GCWM），这是一种无数据更新集成方法，它通过高斯Wasserstein重心构建共享的Wasserstein度量，并使用几何冲突来门控几何感知校正。在Qwen3 0.6B–14B的领域持续和能力持续设置中，GCWM始终优于无数据基线，在没有重放数据的情况下提高了保留率和最终性能。这些结果表明，几何冲突既是遗忘的解释信号，也是LLM持续后训练的实用控制信号。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Continual post-training aims to extend large language models (LLMs) with new knowledge, skills, and behaviors, yet it remains unclear when sequential updates enable capability transfer and when they cause catastrophic forgetting. Existing methods mitigate forgetting through sequential fine-tuning, replay, regularization, or model merging, but offer limited criteria for determining when incorporating new updates is beneficial or harmful. In this work, we study LLM continual posttraining through three questions: What drives forgetting? When do sequentially acquired capabilities transfer or interfere? How can compatibility be used to control update integration? We address these questions through task geometry: we represent each post-training task by its parameter update and study the covariance geometry induced by the update. Our central finding is that: forgetting can be considered as a state-relative update-integration failure, it arises when the covariance geometries induced by tasks misalign with the geometry of the evolving model state. Sequential updates transfer when they remain compatible with the model state shaped by previous updates, and interfere when state-relative geometry conflict becomes high. Motivated by this finding, we propose GeometryConflict Wasserstein Merging (GCWM), a data-free update-integration method that constructs a shared Wasserstein metric via Gaussian Wasserstein barycenters and uses geometry conflict to gate geometry-aware correction. Across Qwen3 0.6B– 14B on domain-continual and capability-continual settings, GCWM consistently outperforms data-free baselines, improving retention and final performance without replay data. These results identify geometry conflict as both an explanatory signal for forgetting and a practical control signal for LLM continual post-training.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512r12geometr,
+  title = {Geometry Conflict: Explaining and Controlling Forgetting in LLM Continual Post-Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.09608.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r12-geometry-conflict-continual-posttraining/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Geometry Conflict: Explaining and Controlling Forgetting in LLM Continual Post-Training. https://arxiv.org/pdf/2605.09608.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.09608.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.09608" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Compressed Sensing for Capability Localization in Large Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文研究大语言模型中的高级能力是否局域在少量注意力头上。作者提出基于压缩感知的定位方法，通过对随机头子集做敲除实验并求解稀疏回归，能用远少于贪心搜索的评估次数识别出数学、代码等能力相关的关键头。实验表明敲除少量已识别头就能让目标任务性能大幅下降，而对无关任务影响较小。它的价值在于提供了高效定位功能模块的方法，也强化了“能力在 Transformer 内部具有模块化组织”的证据。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i3-capability-localization-cs/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Compressed Sensing for Capability Localization in Large Language Models" />
+    <meta property="og:description" content="这篇论文研究大语言模型中的高级能力是否局域在少量注意力头上。作者提出基于压缩感知的定位方法，通过对随机头子集做敲除实验并求解稀疏回归，能用远少于贪心搜索的评估次数识别出数学、代码等能力相关的关键头。实验表明敲除少量已识别头就能让目标任务性能大幅下降，而对无关任务影响较小。它的价值在于提供了高效定位功能模块的方法，也强化了“能力在 Transformer 内部具有模块化组织”的证据。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i3-capability-localization-cs/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Compressed Sensing for Capability Localization in Large Language Models" />
+    <meta name="twitter:description" content="这篇论文研究大语言模型中的高级能力是否局域在少量注意力头上。作者提出基于压缩感知的定位方法，通过对随机头子集做敲除实验并求解稀疏回归，能用远少于贪心搜索的评估次数识别出数学、代码等能力相关的关键头。实验表明敲除少量已识别头就能让目标任务性能大幅下降，而对无关任务影响较小。它的价值在于提供了高效定位功能模块的方法，也强化了“能力在 Transformer 内部具有模块化组织”的证据。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Compressed Sensing for Capability Localization in Large Language Models</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-02-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.03335" target="_blank" rel="noopener noreferrer">2603.03335</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文研究大语言模型中的高级能力是否局域在少量注意力头上。作者提出基于压缩感知的定位方法，通过对随机头子集做敲除实验并求解稀疏回归，能用远少于贪心搜索的评估次数识别出数学、代码等能力相关的关键头。实验表明敲除少量已识别头就能让目标任务性能大幅下降，而对无关任务影响较小。它的价值在于提供了高效定位功能模块的方法，也强化了“能力在 Transformer 内部具有模块化组织”的证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文研究大语言模型中的高级能力是否局域在少量注意力头上。作者提出基于压缩感知的定位方法，通过对随机头子集做敲除实验并求解稀疏回归，能用远少于贪心搜索的评估次数识别出数学、代码等能力相关的关键头。实验表明敲除少量已识别头就能让目标任务性能大幅下降，而对无关任务影响较小。它的价值在于提供了高效定位功能模块的方法，也强化了“能力在 Transformer 内部具有模块化组织”的证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型能力定位的压缩感知。大型语言模型（LLMs）展现出广泛的能力，包括数学推理、代码生成和语言行为。我们发现许多能力高度局限于Transformer架构中注意力头的小子集。仅将五个任务特定的注意力头归零，就能使衡量相关能力的标准基准测试性能下降高达65%，同时在不相关任务上的性能基本保持不变。我们引入了一种基于压缩感知的方法，该方法利用这些注意力头的稀疏性，通过策略性剔除和少量模型评估来识别它们。我们在参数量从1B到8B的Llama和Qwen模型以及包括数学能力和代码生成在内的多样化能力集上验证了这些发现，揭示了一种模块化组织，其中专业化能力由稀疏、功能独特的组件实现。总的来说，我们的结果表明能力定位是Transformer语言模型的一个通用组织原则，对可解释性、模型编辑和AI 2023）具有重要意义，并提出了相同安全原则的问题。代码已在https://github.com/locuslab/llm-components发布。我们的核心发现是，许多能力确实高度局限于稀疏的注意力头集合，而非单个神经元。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) exhibit a wide Original LLM Knock out math heads range of capabilities, including mathematical rea- GSM8K soning, code generation, and linguistic behaviors. Rhyme Arithmetic arXiv:2603.03335v1 [cs.CL] 11 Feb 2026 We show that many capabilities are highly local- ized to small subsets of attention heads within Transformer architectures. Zeroing out as few Swear MBPP as five task-specific heads can degrade perfor- mance by up to 65% on standard benchmarks 0 20 40 60 80 100 measuring the capability of interest, while largely preserving performance on unrelated tasks. We introduce a compressed sensing based method MMLU HumanEval that exploits the sparsity of these heads to iden- tify them via strategic knockouts and a small number of model evaluations. We validate these Arc C HellaSwag findings across Llama and Qwen models ranging BoolQ from 1B to 8B parameters and a diverse set of Figure 1. Knocking out the top five math heads identified by capabilities including mathematical abilities and our compressed sensing method greatly reduces performance on code generation, revealing a modular organiza- math datasets (GSM8K and Arithmetic) while leaving other tasks tion in which specialized capabilities are imple- relatively unaffected. mented by sparse, functionally distinct compo- nents. Overall, our results suggest that capability localization is a general organizational principle of Transformer language models, with implica- tions for interpretability, model editing, and AI 2023), raising the question of whether the same principle of safety. Code is released at https://github. localization extends to complex behavioral capabilities. Our com/locuslab/llm-components. central finding is that many capabilities are indeed highly localized, but to sparse sets of attention heads rather than individual neurons.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260211i3capabili,
+  title = {Compressed Sensing for Capability Localization in Large Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.03335.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i3-capability-localization-cs/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Compressed Sensing for Capability Localization in Large Language Models. https://arxiv.org/pdf/2603.03335.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.03335.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System | DAST Papers</title>
+    <meta name="description" content="问题与背景：端到端 VLA 微调常牺牲底座 VLM 的语义推理能力，而低层控制又需要高分辨率对象细节和技能条件。
+
+方法与新意：HiVLA 显式分离高层 VLM planner 和低层 DiT action expert。高层生成子任务和目标框，低层用 cascaded cross-attention 融合全局上下文、对象 crop 与技能语义执行动作。
+
+收录意义：这篇对机器人/VLA 主线有价" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl54-hivla-embodied-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System" />
+    <meta property="og:description" content="问题与背景：端到端 VLA 微调常牺牲底座 VLM 的语义推理能力，而低层控制又需要高分辨率对象细节和技能条件。
+
+方法与新意：HiVLA 显式分离高层 VLM planner 和低层 DiT action expert。高层生成子任务和目标框，低层用 cascaded cross-attention 融合全局上下文、对象 crop 与技能语义执行动作。
+
+收录意义：这篇对机器人/VLA 主线有价" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl54-hivla-embodied-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System" />
+    <meta name="twitter:description" content="问题与背景：端到端 VLA 微调常牺牲底座 VLM 的语义推理能力，而低层控制又需要高分辨率对象细节和技能条件。
+
+方法与新意：HiVLA 显式分离高层 VLM planner 和低层 DiT action expert。高层生成子任务和目标框，低层用 cascaded cross-attention 融合全局上下文、对象 crop 与技能语义执行动作。
+
+收录意义：这篇对机器人/VLA 主线有价" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14125" target="_blank" rel="noopener noreferrer">2604.14125</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：端到端 VLA 微调常牺牲底座 VLM 的语义推理能力，而低层控制又需要高分辨率对象细节和技能条件。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：HiVLA 显式分离高层 VLM planner 和低层 DiT action expert。高层生成子任务和目标框，低层用 cascaded cross-attention 融合全局上下文、对象 crop 与技能语义执行动作。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇对机器人/VLA 主线有价值，因为它把 VLA 设计从单一端到端策略推进到语义规划、视觉 grounding 和动作生成可独立优化的层级结构。</dd></div><div><dt>收录价值</dt><dd>局限：虽然含真实实验，但框架的通用性还需要更多任务、更多机器人形态和更长 horizon 验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：端到端 VLA 微调常牺牲底座 VLM 的语义推理能力，而低层控制又需要高分辨率对象细节和技能条件。</p><p>方法与新意：HiVLA 显式分离高层 VLM planner 和低层 DiT action expert。高层生成子任务和目标框，低层用 cascaded cross-attention 融合全局上下文、对象 crop 与技能语义执行动作。</p><p>收录意义：这篇对机器人/VLA 主线有价值，因为它把 VLA 设计从单一端到端策略推进到语义规划、视觉 grounding 和动作生成可独立优化的层级结构。</p><p>局限：虽然含真实实验，但框架的通用性还需要更多任务、更多机器人形态和更长 horizon 验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>HiVLA：一个以视觉-接地为中心的层次化具身操作系统 摘要。尽管端到端视觉-语言-动作 (VLA) 模型为机器人操作提供了一个有前景的范式，但在狭窄的控制数据上对其进行微调通常会损害其从基础视觉-语言模型 (VLM) 继承的深刻推理能力。为了解决这一根本性权衡，我们提出了HiVLA，一个以视觉-接地为中心的层次化框架，它明确地将高级语义规划与低级运动控制解耦。在高级部分，VLM规划器首先执行任务分解和视觉接地，以生成结构化计划，该计划包含一个子任务指令和一个精确的目标边界框。接着，为了将此计划转化为物理动作，我们在低级部分引入了一个流匹配扩散Transformer (DiT) 动作专家，该专家配备了一种新颖的级联交叉注意力机制。这种设计顺序融合了全局上下文、高分辨率以对象为中心的裁剪和技能语义，使DiT能够纯粹专注于鲁棒执行。我们的解耦架构保留了VLM的零样本推理能力，同时允许两个组件独立改进。在模拟和真实世界中进行的广泛实验表明，HiVLA显著优于最先进的端到端基线，尤其在长周期技能组合和在杂乱场景中对小物体进行精细操作方面表现出色。项目网站是：https://tianshuoy.github.io/HiVLA-page/ 关键词：视觉-语言-动作模型 · VLM智能体系统</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. While end-to-end Vision-Language-Action (VLA) models offer a promising paradigm for robotic manipulation, fine-tuning them on narrow control data often compromises the profound reasoning capabilities inherited from their base Vision-Language Models (VLMs). To resolve this fundamental trade-off, we propose HiVLA, a visual-groundedcentric hierarchical framework that explicitly decouples high-level semantic planning from low-level motor control. In high-level part, a VLM planner first performs task decomposition and visual grounding to generate structured plans, comprising a subtask instruction and a precise target bounding box. Then, to translate this plan into physical actions, we introduce a flow-matching Diffusion Transformer (DiT) action expert in low-level part equipped with a novel cascaded cross-attention mechanism. This design sequentially fuses global context, high-resolution object-centric crops and skill semantics, enabling the DiT to focus purely on robust execution. Our decoupled architecture preserves the VLM’s zero-shot reasoning while allowing independent improvement of both components. Extensive experiments in simulation and the real world demonstrate that HiVLA significantly outperforms state-of-the-art endto-end baselines, particularly excelling in long-horizon skill composition and the fine-grained manipulation of small objects in cluttered scenes. The project website is: https://tianshuoy.github.io/HiVLA-page/ Keywords: Vision-Language-Action Models · VLM Agent Systems</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415rl54hivlae,
+  title = {HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14125.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl54-hivla-embodied-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HiVLA: A Visual-Grounded-Centric Hierarchical Embodied Manipulation System. https://arxiv.org/pdf/2604.14125.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14125.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

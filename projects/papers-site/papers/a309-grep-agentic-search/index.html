@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Is Grep All You Need? How Agent Harnesses Reshape Agentic Search | DAST Papers</title>
+    <meta name="description" content="This paper studies retrieval inside agent loops rather than retrieval as an isolated offline component, comparing grep and vector retrieval across different agent harnesses and result-delivery modes.
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a309-grep-agentic-search/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Is Grep All You Need? How Agent Harnesses Reshape Agentic Search" />
+    <meta property="og:description" content="This paper studies retrieval inside agent loops rather than retrieval as an isolated offline component, comparing grep and vector retrieval across different agent harnesses and result-delivery modes.
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a309-grep-agentic-search/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Is Grep All You Need? How Agent Harnesses Reshape Agentic Search" />
+    <meta name="twitter:description" content="This paper studies retrieval inside agent loops rather than retrieval as an isolated offline component, comparing grep and vector retrieval across different agent harnesses and result-delivery modes.
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Is Grep All You Need? How Agent Harnesses Reshape Agentic Search</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15184" target="_blank" rel="noopener noreferrer">2605.15184</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>This paper studies retrieval inside agent loops rather than retrieval as an isolated offline component, comparing grep and vector retrieval across different agent harnesses and result-delivery modes.</dd></div><div><dt>方法/机制</dt><dd>The key finding is that retrieval performance depends strongly on orchestration: whether results are inline, file-based, or mediated by a specific CLI/harness can change which retrieval strategy wins.</dd></div><div><dt>结果/证据</dt><dd>The work is valuable because it turns a common engineering assumption into an empirical systems question: agentic search quality is a joint property of retriever, harness, tool interface, and context consumption path.</dd></div><div><dt>收录价值</dt><dd>For agent engineering, it provides a useful evaluation caution and a strong baseline argument: simple lexical search can dominate when the harness exposes evidence in a form the model can actually use.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>This paper studies retrieval inside agent loops rather than retrieval as an isolated offline component, comparing grep and vector retrieval across different agent harnesses and result-delivery modes.</p><p>The key finding is that retrieval performance depends strongly on orchestration: whether results are inline, file-based, or mediated by a specific CLI/harness can change which retrieval strategy wins.</p><p>The work is valuable because it turns a common engineering assumption into an empirical systems question: agentic search quality is a joint property of retriever, harness, tool interface, and context consumption path.</p><p>For agent engineering, it provides a useful evaluation caution and a strong baseline argument: simple lexical search can dominate when the harness exposes evidence in a form the model can actually use.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>在端到端智能体工作流中，智能体架构和工具调用范式之间的相互作用仍知之甚少。尽管智能体搜索 [1, 7, 24] 的应用日益广泛，但现有研究在很大程度上将检索策略与智能体架构隔离开来评估。信息检索社区已广泛地对词法和密集检索方法 [4, 13, 23] 进行了基准测试，并研究了独立管道中的检索质量、分块和重排序 [5, 26]。然而，这些评估通常假设一个固定的管道，其中检索到的文档被连接到提示中，忽略了现代智能体系统 [17, 19] 所特有的迭代的、工具介导的检索循环。在实践中，智能体接收排序列表，但并不将其视为最终结果：它们决定搜索什么、发出多少查询以及检索结果是否足够或需要进一步细化，所有这些都由智能体线束及其工具调用接口 [22, 25] 介导。此外，工具结果如何呈现给模型，无论是内联注入到上下文窗口中，还是写入智能体必须显式读取的文件中，都引入了先前工作未曾研究的额外架构考量。与此同时，Claude Code (Anthropic)、Codex (OpenAI) 和 Gemini CLI (Google) 等提供商原生 CLI 智能体的出现，创造了一类与定制线束 [28] 根本不同的新型智能体系统。这些提供商线束将工具调用嵌入到基于 shell 的接口中，模型可以直接访问 grep 等命令行执行工具，而定制线束和智能体 SDK 则提供对工具调用循环、上下文构建和结果格式化的细粒度控制。检索策略有效性在这些架构上不同的线束类别之间如何变化尚未得到研究。此外，检索质量的一个较少被研究的维度是对语料库噪声的鲁棒性：随着不相关文档与相关文档之比的增加，检索策略可能会以不同的速率退化 [12]，理解这种缩放行为对于将 RAG 系统部署到大型、嘈杂的语料库中至关重要。本文旨在通过对配备工具的 LLM 智能体的检索策略进行实证研究（按实验组织，第 4 节）来弥补这些空白。我们评估了定制线束 (Chronos [21]) 和提供商原生 CLI 线束 (Claude Code, Codex, Gemini CLI) 下的词法搜索和语义向量搜索，包括标准内联上下文传递和程序化文件式结果传递。我们评估了多个 LLM 在 LongMemEval 基准 [27] 的 116 个问题子集上的表现，该子集涵盖了六类信息检索任务。本文通过以下三个方面做出贡献：大型语言模型 (LLM) 智能体的最新进展使得复杂的智能体工作流成为可能，其中模型自主检索信息、调用工具并对大型语料库进行推理，以代表用户完成任务。尽管检索增强生成 (RAG) 在智能体系统中的应用日益广泛，但现有文献缺乏对检索策略选择如何与智能体架构和工具调用范式相互作用的系统比较。重要的实际维度，包括工具输出如何呈现给模型以及当搜索必须处理更多不相关的周围文本时性能如何变化，在智能体循环中仍未得到充分探索。本文报告了一项分为两个实验的实证研究。实验 1 比较了 grep 和向量检索在 LongMemEval 的 116 个问题样本上的表现，使用了定制智能体线束 (Chronos) 和提供商原生 CLI 线束 (Claude Code, Codex 和 Gemini CLI)，分别针对内联工具结果和模型单独读取的文件式工具结果。实验 2 比较了仅 grep 和仅向量检索，同时逐步混入额外的无关对话历史，使得每个查询都嵌入在更多分散注意力的材料中，以及重要的段落旁边。在 Chronos 和提供商 CLI 中，grep 通常比向量检索产生更高的准确性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>with agent architecture and tool-calling paradigm in end-to-end agentic workflows remains poorly understood. Despite growing adoption of agentic search [1, 7, 24], existing research evaluates retrieval strategies largely in isolation from agent architecture. The information retrieval community has extensively benchmarked lexical and dense retrieval methods [4, 13, 23], and has studied retrieval quality, chunking, and reranking in standalone pipelines [5, 26]. Yet, these evaluations typically assume a fixed pipeline where retrieved documents are concatenated into a prompt, ignoring the iterative, tool-mediated retrieval loops that characterize modern agentic systems [17, 19]. In practice, agents receive ranked lists but do not treat them as terminal: they decide what to search, how many queries to issue, and whether the retrieved results are sufficient or require further refinement, all mediated by the agent harness and its tool-calling interface [22, 25]. Furthermore, how tool results are presented to the model, whether injected inline into the context window or written to files that the agent must explicitly read, introduces an additional architectural consideration that prior work has not examined. At the same time, the emergence of provider-native CLI agents such as Claude Code (Anthropic), Codex (OpenAI), and Gemini CLI (Google) has created a new class of agentic systems that differ fundamentally from custom-built harnesses [28]. These provider harnesses embed tool calling into a shell-based interface where the model has direct access to command-line execution tools such as grep, while custom harnesses and agent SDKs offer finegrained control over the tool-calling loop, context construction, and result formatting. How retrieval strategy effectiveness varies across these architecturally distinct harness classes has not been studied. Additionally, a less-examined dimension of retrieval quality is robustness to corpus noise: as the ratio of irrelevant to relevant documents increases, retrieval strategies may degrade at different rates [12], and understanding this scaling behavior is critical for deploying RAG systems against large, noisy corpora. This paper aims to close these gaps with an empirical study of retrieval strategies for tool-equipped LLM agents, organized by experiment (Section 4). We evaluate lexical search and semantic vector search across a custom harness (Chronos [21]) and provider-native CLI harnesses (Claude Code, Codex, Gemini CLI), under both standard inline context delivery and programmatic file-based result delivery. We evaluate multiple LLMs on a 116-question subset of the LongMemEval benchmark [27] spanning six categories of information retrieval tasks. The paper contributes in three ways: Recent advances in Large Language Model (LLM) agents have enabled complex agentic workflows where models autonomously retrieve information, call tools, and reason over large corpora to complete tasks on behalf of users. Despite the growing adoption of retrieval-augmented generation (RAG) in agentic systems, existing literature lacks a systematic comparison of how retrieval strategy choice interacts with agent architecture and tool-calling paradigm. Important practical dimensions, including how tool outputs are presented to the model and how performance changes when searches must cope with more irrelevant surrounding text, remain under-explored in agent loops. This paper reports an empirical study organized into two experiments. Experiment 1 compares grep and vector retrieval on a 116-question sample from LongMemEval, using a custom agent harness (Chronos) and provider-native CLI harnesses (Claude Code, Codex, and Gemini CLI), for both inline tool results and file-based tool results that the model reads separately. Experiment 2 compares grep-only and vector-only retrieval while progressively mixing in additional unrelated conversation history, so that each query is embedded in more distracting material alongside the passages that matter. Across Chronos and the provider CLIs, grep generally yields higher accuracy than vector</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260514a309grepag,
+  title = {Is Grep All You Need? How Agent Harnesses Reshape Agentic Search},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15184.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a309-grep-agentic-search/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Is Grep All You Need? How Agent Harnesses Reshape Agentic Search. https://arxiv.org/pdf/2605.15184.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15184.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

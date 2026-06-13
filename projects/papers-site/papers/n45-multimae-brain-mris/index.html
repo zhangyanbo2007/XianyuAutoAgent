@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MultiMAE for Brain MRIs: Robustness to Missing Inputs Using Multi-Modal Masked Autoencoder | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是脑 MRI 中最实际也最顽固的问题之一：不同中心、不同病人、不同临床流程下，输入序列经常缺失，导致依赖完整多序列输入的模型在真实环境中迅速退化。作者把问题从“给定完整输入如何做得更好”转成“在缺失输入是常态时如何预训练出稳健表征”。
+
+方法上，论文把 MultiMAE 思路改造成 3D 脑 MRI 场景下的多模态 masked autoencoder：把不同 MRI 序列当作独立模" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n45-multimae-brain-mris/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MultiMAE for Brain MRIs: Robustness to Missing Inputs Using Multi-Modal Masked Autoencoder" />
+    <meta property="og:description" content="这篇论文处理的是脑 MRI 中最实际也最顽固的问题之一：不同中心、不同病人、不同临床流程下，输入序列经常缺失，导致依赖完整多序列输入的模型在真实环境中迅速退化。作者把问题从“给定完整输入如何做得更好”转成“在缺失输入是常态时如何预训练出稳健表征”。
+
+方法上，论文把 MultiMAE 思路改造成 3D 脑 MRI 场景下的多模态 masked autoencoder：把不同 MRI 序列当作独立模" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n45-multimae-brain-mris/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MultiMAE for Brain MRIs: Robustness to Missing Inputs Using Multi-Modal Masked Autoencoder" />
+    <meta name="twitter:description" content="这篇论文处理的是脑 MRI 中最实际也最顽固的问题之一：不同中心、不同病人、不同临床流程下，输入序列经常缺失，导致依赖完整多序列输入的模型在真实环境中迅速退化。作者把问题从“给定完整输入如何做得更好”转成“在缺失输入是常态时如何预训练出稳健表征”。
+
+方法上，论文把 MultiMAE 思路改造成 3D 脑 MRI 场景下的多模态 masked autoencoder：把不同 MRI 序列当作独立模" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MultiMAE for Brain MRIs: Robustness to Missing Inputs Using Multi-Modal Masked Autoencoder</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-09-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2509.11442" target="_blank" rel="noopener noreferrer">2509.11442</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是脑 MRI 中最实际也最顽固的问题之一：不同中心、不同病人、不同临床流程下，输入序列经常缺失，导致依赖完整多序列输入的模型在真实环境中迅速退化。作者把问题从“给定完整输入如何做得更好”转成“在缺失输入是常态时如何预训练出稳健表征”。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文把 MultiMAE 思路改造成 3D 脑 MRI 场景下的多模态 masked autoencoder：把不同 MRI 序列当作独立模态输入，用 late-fusion Transformer 编码，再用分流解码器对各模态做重建。核心新意不是简单多序列融合，而是把“跨序列推断缺失信息”的能力直接写进预训练目标，让编码器学会在序列不齐时仍维持有用表征。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里的价值主要是脑影像 foundation model 路线的补强项。和 BrainIAC、Prima 这类更大、更临床的平台型系统相比，这篇更聚焦在“缺模态鲁棒性”这一现实瓶颈，但方法可迁移到其他多模态医学影像任务，因此仍值得正式收录。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它在脑 MRI 子方向上很实用，也有清晰方法贡献，但影响范围仍偏向特定模态鲁棒性问题，还不足以上升到会重排脑影像基础模型路线的更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是脑 MRI 中最实际也最顽固的问题之一：不同中心、不同病人、不同临床流程下，输入序列经常缺失，导致依赖完整多序列输入的模型在真实环境中迅速退化。作者把问题从“给定完整输入如何做得更好”转成“在缺失输入是常态时如何预训练出稳健表征”。</p><p>方法上，论文把 MultiMAE 思路改造成 3D 脑 MRI 场景下的多模态 masked autoencoder：把不同 MRI 序列当作独立模态输入，用 late-fusion Transformer 编码，再用分流解码器对各模态做重建。核心新意不是简单多序列融合，而是把“跨序列推断缺失信息”的能力直接写进预训练目标，让编码器学会在序列不齐时仍维持有用表征。</p><p>它在仓库里的价值主要是脑影像 foundation model 路线的补强项。和 BrainIAC、Prima 这类更大、更临床的平台型系统相比，这篇更聚焦在“缺模态鲁棒性”这一现实瓶颈，但方法可迁移到其他多模态医学影像任务，因此仍值得正式收录。</p><p>我把它放在“突破性”。原因是它在脑 MRI 子方向上很实用，也有清晰方法贡献，但影响范围仍偏向特定模态鲁棒性问题，还不足以上升到会重排脑影像基础模型路线的更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。医学影像数据中缺失输入序列很常见，这对依赖完整输入数据的深度学习模型构成了挑战。在这项工作中，受MultiMAE [2]的启发，我们为脑部MRI的3D医学影像中的多模态、多任务学习开发了一种掩码自编码器（MAE）范式。我们的方法将每个MRI序列视为一个独立的输入模态，利用晚期融合式Transformer编码器来整合多序列信息（“多模态”），并为每个模态使用独立的解码器流进行“多任务”重建。这种预训练策略引导模型学习每个模态的丰富表征，同时通过跨序列推理使其能够处理缺失输入。结果是为脑部MRI提供了一个灵活且泛化能力强的编码器，该编码器可以从可用输入中推断缺失序列，并可适应各种下游应用。我们在下游分割和分类任务中，展示了我们的方法相对于MAE-ViT基线的性能和鲁棒性，在缺失输入序列的情况下，相对于基线，整体Dice score绝对提高了10.1，MCC绝对提高了0.46。我们的实验证明了这种预训练策略的强大之处。实现代码已公开8。关键词：掩码自编码器预训练 · 脑部MRI · 缺失模态 8</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Missing input sequences are common in medical imaging data, posing a challenge for deep learning models reliant on complete input data. In this work, inspired by MultiMAE [2], we develop a masked autoencoder (MAE) paradigm for multi-modal, multi-task learning in 3D medical imaging with brain MRIs. Our method treats each MRI sequence as a separate input modality, leveraging a late-fusion-style transformer encoder to integrate multi-sequence information (“multi-modal”) and individual decoder streams for each modality for “multi-task” reconstruction. This pretraining strategy guides the model to learn rich representations per modality while also equipping it to handle missing inputs through cross-sequence reasoning. The result is a flexible and generalizable encoder for brain MRIs that infers missing sequences from available inputs and can be adapted to various downstream applications. We demonstrate the performance and robustness of our method against an MAE-ViT baseline in downstream segmentation and classification tasks, showing absolute improvement of 10.1 overall Dice score and 0.46 MCC over the baselines with missing input sequences. Our experiments demonstrate the strength of this pretraining strategy. The implementation is made available 8 . Keywords: Masked Autoencoder Pretraining · Brain MRI · Missing Modalities 8</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250914n45multima,
+  title = {MultiMAE for Brain MRIs: Robustness to Missing Inputs Using Multi-Modal Masked Autoencoder},
+  year = {2025},
+  url = {https://arxiv.org/abs/2509.11442},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n45-multimae-brain-mris/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). MultiMAE for Brain MRIs: Robustness to Missing Inputs Using Multi-Modal Masked Autoencoder. https://arxiv.org/abs/2509.11442</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2509.11442" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

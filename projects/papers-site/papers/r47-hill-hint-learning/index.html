@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Hint for Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="基于可验证奖励的 LLM 强化学习已经成为推理后训练的主线之一，但它有一个非常实际的失败模式：当题目太难、一个 rollout group 全错时，相对优势就是零，训练完全没有更新信号。给模型加 hints 看起来是自然补救，但固定 hints 往往会让模型学会依赖提示，而不是把能力迁移回无提示场景。
+
+HiLL 的关键贡献是把 hinter 和 reasoner 一起放进在线 RL 中共同训练。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r47-hill-hint-learning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Hint for Reinforcement Learning" />
+    <meta property="og:description" content="基于可验证奖励的 LLM 强化学习已经成为推理后训练的主线之一，但它有一个非常实际的失败模式：当题目太难、一个 rollout group 全错时，相对优势就是零，训练完全没有更新信号。给模型加 hints 看起来是自然补救，但固定 hints 往往会让模型学会依赖提示，而不是把能力迁移回无提示场景。
+
+HiLL 的关键贡献是把 hinter 和 reasoner 一起放进在线 RL 中共同训练。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r47-hill-hint-learning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Hint for Reinforcement Learning" />
+    <meta name="twitter:description" content="基于可验证奖励的 LLM 强化学习已经成为推理后训练的主线之一，但它有一个非常实际的失败模式：当题目太难、一个 rollout group 全错时，相对优势就是零，训练完全没有更新信号。给模型加 hints 看起来是自然补救，但固定 hints 往往会让模型学会依赖提示，而不是把能力迁移回无提示场景。
+
+HiLL 的关键贡献是把 hinter 和 reasoner 一起放进在线 RL 中共同训练。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Hint for Reinforcement Learning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00698" target="_blank" rel="noopener noreferrer">2604.00698</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>基于可验证奖励的 LLM 强化学习已经成为推理后训练的主线之一，但它有一个非常实际的失败模式：当题目太难、一个 rollout group 全错时，相对优势就是零，训练完全没有更新信号。给模型加 hints 看起来是自然补救，但固定 hints 往往会让模型学会依赖提示，而不是把能力迁移回无提示场景。</dd></div><div><dt>方法/机制</dt><dd>HiLL 的关键贡献是把 hinter 和 reasoner 一起放进在线 RL 中共同训练。它不仅让 hinter 根据当前 reasoner 的失败轨迹动态生成提示，还进一步提出 hint reliance 和 transfer-weighted reward：只有那些既能恢复非零学习信号、又不会让正确轨迹过度依赖提示的 hints，才会得到高奖励。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 hinting 从 ad-hoc scaffold 变成了一个有理论约束的 RL 接口。对于 GRPO、RLVR、课程学习以及 reasoning policy 的能力引出，这种“创造信号但不过度喂答案”的框架具有明显可复用性。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于训练成本显著增加，而且当前方法仍依赖参考答案和较结构化的评测场景。它是很强的 reasoning RL 推进，但尚未证明会成为通用后训练默认范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>基于可验证奖励的 LLM 强化学习已经成为推理后训练的主线之一，但它有一个非常实际的失败模式：当题目太难、一个 rollout group 全错时，相对优势就是零，训练完全没有更新信号。给模型加 hints 看起来是自然补救，但固定 hints 往往会让模型学会依赖提示，而不是把能力迁移回无提示场景。</p><p>HiLL 的关键贡献是把 hinter 和 reasoner 一起放进在线 RL 中共同训练。它不仅让 hinter 根据当前 reasoner 的失败轨迹动态生成提示，还进一步提出 hint reliance 和 transfer-weighted reward：只有那些既能恢复非零学习信号、又不会让正确轨迹过度依赖提示的 hints，才会得到高奖励。</p><p>它值得正式收录，因为它把 hinting 从 ad-hoc scaffold 变成了一个有理论约束的 RL 接口。对于 GRPO、RLVR、课程学习以及 reasoning policy 的能力引出，这种“创造信号但不过度喂答案”的框架具有明显可复用性。</p><p>它暂时不升到更高一级，原因在于训练成本显著增加，而且当前方法仍依赖参考答案和较结构化的评测场景。它是很强的 reasoning RL 推进，但尚未证明会成为通用后训练默认范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>群组相对策略优化（GRPO）广泛应用于具有可验证奖励的强化学习，但它常遭受优势崩溃问题：当一个群组中的所有rollout都获得相同奖励时，该群组产生零相对优势，从而没有学习信号。例如，如果一个问题对推理器来说太难，所有采样的rollout都可能不正确并获得零奖励。最近的工作通过为此类难题添加提示或辅助支架来解决此问题，以便推理器产生混合结果并恢复非零更新。然而，现有提示通常是固定的，而非适应当前推理器，并且在有提示输入下产生学习信号的提示不一定能改进测试时使用的无提示策略。为此，我们提出了强化学习中的提示学习（HiLL），这是一个在RL过程中联合训练提示器策略和推理器策略的框架。对于每个难题，提示器根据当前推理器的错误rollout在线生成提示，从而使提示生成能够适应推理器不断演变的错误。我们进一步引入了提示依赖性，它衡量正确提示轨迹对提示的依赖程度。我们推导出一个可迁移性结果，表明较低的提示依赖性意味着从有提示成功到无提示成功的更强迁移，我们利用此结果定义了一个用于训练提示器的迁移加权奖励。因此，HiLL偏爱那些不仅能恢复信息丰富的GRPO群组，而且能产生更有可能改进原始无提示策略的信号的提示。在多个基准上的实验表明，HiLL始终优于GRPO和先前的基于提示的基线，证明了RL中自适应和迁移感知提示学习的价值。代码可在https://github.com/Andree-9/HiLL获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Group Relative Policy Optimization (GRPO) is widely used for reinforcement learning with verifiable rewards, but it often suffers from advantage collapse: when all rollouts in a group receive the same reward, the group yields zero relative advantage and thus no learning signal. For example, if a question is too hard for the reasoner, all sampled rollouts can be incorrect and receive zero reward. Recent work addresses this issue by adding hints or auxiliary scaffolds to such hard questions so that the reasoner produces mixed outcomes and recovers a non-zero update. However, existing hints are usually fixed rather than adapted to the current reasoner, and a hint that creates learning signal under the hinted input does not necessarily improve the no-hint policy used at test time. To this end, we propose Hint Learning for Reinforcement Learning (HiLL), a framework that jointly trains a hinter policy and a reasoner policy during RL. For each hard question, the hinter generates hints online conditioned on the current reasoner’s incorrect rollout, allowing hint generation to adapt to the reasoner’s evolving errors. We further introduce hint reliance, which measures how strongly correct hinted trajectories depend on the hint. We derive a transferability result showing that lower hint reliance implies stronger transfer from hinted success to no-hint success, and we use this result to define a transfer-weighted reward for training the hinter. Therefore, HiLL favors hints that not only recover informative GRPO groups, but also produce signals that are more likely to improve the original no-hint policy. Experiments across multiple benchmarks show that HiLL consistently outperforms GRPO and prior hint-based baselines, demonstrating the value of adaptive and transfer-aware hint learning for RL. The code is available at https://github.com/Andree-9/HiLL.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r47hillhin,
+  title = {Learning to Hint for Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00698.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r47-hill-hint-learning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Hint for Reinforcement Learning. https://arxiv.org/pdf/2604.00698.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00698.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

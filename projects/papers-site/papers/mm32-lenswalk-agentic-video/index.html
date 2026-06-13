@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LensWalk: Agentic Video Understanding by Planning How You See in Videos | DAST Papers</title>
+    <meta name="description" content="长视频理解真正困难的地方，不只是 token 太长，而是 perception 和 reasoning 长期脱节：模型通常先被动接收预处理后的视频表示，再在固定输入上推理，无法随着思考过程主动改变观察策略。LensWalk 的目标，就是把视频理解从一次性看完，改成“边推理边决定下一步怎么看”的 agentic perception loop。
+
+论文提出一个 reason-plan-observe" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm32-lenswalk-agentic-video/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LensWalk: Agentic Video Understanding by Planning How You See in Videos" />
+    <meta property="og:description" content="长视频理解真正困难的地方，不只是 token 太长，而是 perception 和 reasoning 长期脱节：模型通常先被动接收预处理后的视频表示，再在固定输入上推理，无法随着思考过程主动改变观察策略。LensWalk 的目标，就是把视频理解从一次性看完，改成“边推理边决定下一步怎么看”的 agentic perception loop。
+
+论文提出一个 reason-plan-observe" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm32-lenswalk-agentic-video/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LensWalk: Agentic Video Understanding by Planning How You See in Videos" />
+    <meta name="twitter:description" content="长视频理解真正困难的地方，不只是 token 太长，而是 perception 和 reasoning 长期脱节：模型通常先被动接收预处理后的视频表示，再在固定输入上推理，无法随着思考过程主动改变观察策略。LensWalk 的目标，就是把视频理解从一次性看完，改成“边推理边决定下一步怎么看”的 agentic perception loop。
+
+论文提出一个 reason-plan-observe" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LensWalk: Agentic Video Understanding by Planning How You See in Videos</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24558" target="_blank" rel="noopener noreferrer">2603.24558</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长视频理解真正困难的地方，不只是 token 太长，而是 perception 和 reasoning 长期脱节：模型通常先被动接收预处理后的视频表示，再在固定输入上推理，无法随着思考过程主动改变观察策略。LensWalk 的目标，就是把视频理解从一次性看完，改成“边推理边决定下一步怎么看”的 agentic perception loop。</dd></div><div><dt>方法/机制</dt><dd>论文提出一个 reason-plan-observe 框架，让 LLM reasoner 在每一步主动指定视频的时间范围和采样密度，再调用参数化的视频工具去做粗扫、局部核查或跨时段拼接验证。重点不是训练新模型，而是在不微调的前提下，把控制“如何看视频”这件事显式变成推理过程的一部分，从而实现按需证据收集。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把视频理解里的主动感知接口正式化了：不是简单 video QA，不是静态 feature pooling，而是 agent 根据 evolving chain of thought 动态控制观察带宽。对 long-video reasoning、multimodal agents 和 world-aware video analysis 都有直接方法外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为它更像一种强框架模式和推理接口，而不是已经成为社区标准的新 benchmark 或 foundation model。它证明了方向有效，但长期地位还要看后续模型和评测是否围绕这种 active perception 范式收敛。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长视频理解真正困难的地方，不只是 token 太长，而是 perception 和 reasoning 长期脱节：模型通常先被动接收预处理后的视频表示，再在固定输入上推理，无法随着思考过程主动改变观察策略。LensWalk 的目标，就是把视频理解从一次性看完，改成“边推理边决定下一步怎么看”的 agentic perception loop。</p><p>论文提出一个 reason-plan-observe 框架，让 LLM reasoner 在每一步主动指定视频的时间范围和采样密度，再调用参数化的视频工具去做粗扫、局部核查或跨时段拼接验证。重点不是训练新模型，而是在不微调的前提下，把控制“如何看视频”这件事显式变成推理过程的一部分，从而实现按需证据收集。</p><p>它值得正式收录，因为它把视频理解里的主动感知接口正式化了：不是简单 video QA，不是静态 feature pooling，而是 agent 根据 evolving chain of thought 动态控制观察带宽。对 long-video reasoning、multimodal agents 和 world-aware video analysis 都有直接方法外溢。</p><p>它目前仍是 breakthrough，而不是更高一级，因为它更像一种强框架模式和推理接口，而不是已经成为社区标准的新 benchmark 或 foundation model。它证明了方向有效，但长期地位还要看后续模型和评测是否围绕这种 active perception 范式收敛。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LensWalk：通过规划视频中的观察方式实现智能体视频理解。视频的密集时间特性对自动化分析提出了严峻挑战。尽管使用了强大的视觉-语言模型，但当前视频理解的主流方法受限于推理与感知之间固有的脱节：它们依赖静态的、预处理过的信息，并且无法随着理解的演进而主动从视频中寻求原始证据。为解决此问题，我们引入了LensWalk，这是一个灵活的智能体框架，它使大型语言模型推理器能够主动控制自身的视觉观察。LensWalk建立了一个紧密的“推理-规划-观察”循环，其中智能体在每一步动态地指定其观察视频的时间范围和采样密度。智能体利用一套基于视觉-语言模型的通用工具（这些工具由上述规范参数化），可以进行广泛扫描以寻找线索，聚焦特定片段以提取事实，并整合来自多个时刻的证据以进行整体验证。这种设计允许渐进式的、按需的证据收集，直接服务于智能体不断演进的思维链。LensWalk无需任何模型微调，即可在多种模型方案上实现显著的即插即用性能提升，在LVBench和Video-MME等具有挑战性的长视频基准测试中，将其准确率提高了5%以上。我们的分析表明，使智能体能够控制其观察方式是实现更准确、鲁棒和可解释的视频推理的关键。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The dense, temporal nature of video presents a profound challenge for automated analysis. Despite the use of powerful Vision-Language Models, prevailing methods for video understanding are limited by the inherent disconnect between reasoning and perception: they rely on static, preprocessed information and cannot actively seek raw evidence from video as their understanding evolves. To address this, we introduce LensWalk, a flexible agentic framework that empowers a Large Language Model reasoner to control its own visual observation actively. LensWalk establishes a tight reason-plan-observe loop where the agent dynamically specifies, at each step, the temporal scope and sampling density of the video it observes. Using a suite of versatile, Vision-Language Model based tools parameterized by these specifications, the agent can perform broad scans for cues, focus on specific segments for fact extraction, and stitch evidence from multiple moments for holistic verification. This design allows for progressive, on-demand evidence gathering that directly serves the agent’s evolving chain of thought. Without requiring any model fine-tuning, LensWalk delivers substantial, plug-and-play performance gains on multiple model recipes, boosting their accuracy by over 5% on challenging long-video benchmarks like LVBench and Video-MME. Our analysis reveals that enabling an agent to control how it sees is key to unlocking more accurate, robust, and interpretable video reasoning.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325mm32lenswa,
+  title = {LensWalk: Agentic Video Understanding by Planning How You See in Videos},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24558.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm32-lenswalk-agentic-video/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LensWalk: Agentic Video Understanding by Planning How You See in Videos. https://arxiv.org/pdf/2603.24558.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24558.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

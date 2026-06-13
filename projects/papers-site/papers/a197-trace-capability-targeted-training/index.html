@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRACE: Capability-Targeted Agentic Training | DAST Papers</title>
+    <meta name="description" content="TRACE 关注 agent 训练中的一个核心低效：失败并不直接告诉我们缺什么能力，而普通 synthetic data 也不一定针对目标环境的真实缺口。论文把 recurrent failures 转换为 capability-targeted training environments。
+
+系统对比成功与失败轨迹，自动识别缺失能力，再合成针对该能力的训练环境，并奖励模型是否学会相应动作模式。它" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a197-trace-capability-targeted-training/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TRACE: Capability-Targeted Agentic Training" />
+    <meta property="og:description" content="TRACE 关注 agent 训练中的一个核心低效：失败并不直接告诉我们缺什么能力，而普通 synthetic data 也不一定针对目标环境的真实缺口。论文把 recurrent failures 转换为 capability-targeted training environments。
+
+系统对比成功与失败轨迹，自动识别缺失能力，再合成针对该能力的训练环境，并奖励模型是否学会相应动作模式。它" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a197-trace-capability-targeted-training/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TRACE: Capability-Targeted Agentic Training" />
+    <meta name="twitter:description" content="TRACE 关注 agent 训练中的一个核心低效：失败并不直接告诉我们缺什么能力，而普通 synthetic data 也不一定针对目标环境的真实缺口。论文把 recurrent failures 转换为 capability-targeted training environments。
+
+系统对比成功与失败轨迹，自动识别缺失能力，再合成针对该能力的训练环境，并奖励模型是否学会相应动作模式。它" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TRACE: Capability-Targeted Agentic Training</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05336" target="_blank" rel="noopener noreferrer">2604.05336</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>TRACE 关注 agent 训练中的一个核心低效：失败并不直接告诉我们缺什么能力，而普通 synthetic data 也不一定针对目标环境的真实缺口。论文把 recurrent failures 转换为 capability-targeted training environments。</dd></div><div><dt>方法/机制</dt><dd>系统对比成功与失败轨迹，自动识别缺失能力，再合成针对该能力的训练环境，并奖励模型是否学会相应动作模式。它把“agent 自我改进”拆成缺陷定位、环境生成和定向训练三步。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它给 self-improving agents 提供了能力级闭环，而不是简单微调失败样本。这个范式对网页 agent、工具 agent、代码 agent 和具身 agent 的 targeted curriculum 都有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限在于能力识别和合成环境质量决定上限；复杂开放任务中的 capability 分解可能仍会漂移或过拟合。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>TRACE 关注 agent 训练中的一个核心低效：失败并不直接告诉我们缺什么能力，而普通 synthetic data 也不一定针对目标环境的真实缺口。论文把 recurrent failures 转换为 capability-targeted training environments。</p><p>系统对比成功与失败轨迹，自动识别缺失能力，再合成针对该能力的训练环境，并奖励模型是否学会相应动作模式。它把“agent 自我改进”拆成缺陷定位、环境生成和定向训练三步。</p><p>它值得收录，是因为它给 self-improving agents 提供了能力级闭环，而不是简单微调失败样本。这个范式对网页 agent、工具 agent、代码 agent 和具身 agent 的 targeted curriculum 都有复用价值。</p><p>局限在于能力识别和合成环境质量决定上限；复杂开放任务中的 capability 分解可能仍会漂移或过拟合。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）在代理环境中部署时，必须在不同任务实例中发挥多种能力，其中一个能力是指在轨迹中执行一个或多个必要的行动，以成功解决环境中的一部分任务。许多现有方法要么依赖于未针对模型在目标环境中的实际能力缺陷的合成训练数据，要么直接在目标环境中训练，在这种情况下，模型需要隐式地在任务之间学习能力。我们介绍 TRACE（将递归代理失败转化为能力导向的训练环境），这是一个针对特定环境的代理自主改进的端到端系统。TRACE 通过对比成功的和失败的轨迹来自动识别缺乏的能力，为每个能力生成一个针对性的训练环境，该环境奖励是否执行了该能力，并通过强化学习在每个合成环境中训练 LoRA 适配器，并在推理时路由到相关的适配器。实验结果表明，TRACE 在不同环境中具有良好的泛化性，在 $τ^2$-bench（客户服务）任务中比基线模型提高了 +14.1 分，在 ToolSandbox（工具使用）任务中获得了 +7 个完美分数，分别比最强基线模型提高了 +7.4 分和 +4 个完美分数。在相同的 rollout 数量下，TRACE 比基线模型更高效地扩展，在 $τ^2$-bench 上分别比 GRPO 和 GEPA 提高了 +9.2 分和 +7.4 分。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Models (LLMs) deployed in agentic environments must exercise multiple capabilities across different task instances, where a capability is performing one or more actions in a trajectory that are necessary for successfully solving a subset of tasks in the environment. Many existing approaches either rely on synthetic training data that is not targeted to the model&#x27;s actual capability deficits in the target environment or train directly on the target environment, where the model needs to implicitly learn the capabilities across tasks. We introduce TRACE (Turning Recurrent Agent failures into Capability-targeted training Environments), an end-to-end system for environment-specific agent self-improvement. TRACE contrasts successful and failed trajectories to automatically identify lacking capabilities, synthesizes a targeted training environment for each that rewards whether the capability was exercised, and trains a LoRA adapter via RL on each synthetic environment, routing to the relevant adapter at inference. Empirically, TRACE generalizes across different environments, improving over the base agent by +14.1 points on $τ^2$-bench (customer service) and +7 perfect scores on ToolSandbox (tool use), outperforming the strongest baseline by +7.4 points and +4 perfect scores, respectively. Given the same number of rollouts, TRACE scales more efficiently than baselines, outperforming GRPO and GEPA by +9.2 and +7.4 points on $τ^2$-bench.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407a197tracec,
+  title = {TRACE: Capability-Targeted Agentic Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05336.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a197-trace-capability-targeted-training/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TRACE: Capability-Targeted Agentic Training. https://arxiv.org/pdf/2604.05336.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05336.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

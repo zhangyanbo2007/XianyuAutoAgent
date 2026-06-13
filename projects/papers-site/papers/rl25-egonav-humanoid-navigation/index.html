@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning Humanoid Navigation from Human Data | DAST Papers</title>
+    <meta name="description" content="humanoid navigation 通常依赖大量机器人自身数据、任务特定训练和后续 finetuning，因此跨环境泛化成本很高。EgoNav 提出的核心问题是：能不能直接从人类行走数据里学到足够强的 navigation prior，再零样本迁移到 humanoid 机器人。
+
+论文给出一套完整系统：用 5 小时 human walking data 训练 diffusion traject" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl25-egonav-humanoid-navigation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning Humanoid Navigation from Human Data" />
+    <meta property="og:description" content="humanoid navigation 通常依赖大量机器人自身数据、任务特定训练和后续 finetuning，因此跨环境泛化成本很高。EgoNav 提出的核心问题是：能不能直接从人类行走数据里学到足够强的 navigation prior，再零样本迁移到 humanoid 机器人。
+
+论文给出一套完整系统：用 5 小时 human walking data 训练 diffusion traject" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl25-egonav-humanoid-navigation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning Humanoid Navigation from Human Data" />
+    <meta name="twitter:description" content="humanoid navigation 通常依赖大量机器人自身数据、任务特定训练和后续 finetuning，因此跨环境泛化成本很高。EgoNav 提出的核心问题是：能不能直接从人类行走数据里学到足够强的 navigation prior，再零样本迁移到 humanoid 机器人。
+
+论文给出一套完整系统：用 5 小时 human walking data 训练 diffusion traject" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning Humanoid Navigation from Human Data</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00416" target="_blank" rel="noopener noreferrer">2604.00416</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>humanoid navigation 通常依赖大量机器人自身数据、任务特定训练和后续 finetuning，因此跨环境泛化成本很高。EgoNav 提出的核心问题是：能不能直接从人类行走数据里学到足够强的 navigation prior，再零样本迁移到 humanoid 机器人。</dd></div><div><dt>方法/机制</dt><dd>论文给出一套完整系统：用 5 小时 human walking data 训练 diffusion trajectory predictor，以过去轨迹、融合 color/depth/semantics 的 360 度 visual memory，以及来自冻结 DINOv3 的视频特征为条件，预测 plausible future trajectories；再用 hybrid sampling 和 receding-horizon controller 做实时路径选择。作者在离线 collision avoidance、多模态覆盖评估以及 Unitree G1 零样本真实部署中验证，显示等待开门、绕开人群和避开玻璃墙等行为可以自然涌现。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它展示了一个很强的 robotics pattern：先从 human data 学 navigation prior，再把它投到 humanoid control 上，而不是从机器人数据集里硬堆。对 embodied learning、human-to-robot transfer 和 real-world humanoid generalization，这种路线有明显复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前任务仍聚焦 humanoid navigation，且实证规模还不足以证明这一人类数据优先路线能全面改写更广的 embodied learning 栈。它很强，但还是具体子线中的强推进。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>humanoid navigation 通常依赖大量机器人自身数据、任务特定训练和后续 finetuning，因此跨环境泛化成本很高。EgoNav 提出的核心问题是：能不能直接从人类行走数据里学到足够强的 navigation prior，再零样本迁移到 humanoid 机器人。</p><p>论文给出一套完整系统：用 5 小时 human walking data 训练 diffusion trajectory predictor，以过去轨迹、融合 color/depth/semantics 的 360 度 visual memory，以及来自冻结 DINOv3 的视频特征为条件，预测 plausible future trajectories；再用 hybrid sampling 和 receding-horizon controller 做实时路径选择。作者在离线 collision avoidance、多模态覆盖评估以及 Unitree G1 零样本真实部署中验证，显示等待开门、绕开人群和避开玻璃墙等行为可以自然涌现。</p><p>这篇工作值得收录，因为它展示了一个很强的 robotics pattern：先从 human data 学 navigation prior，再把它投到 humanoid control 上，而不是从机器人数据集里硬堆。对 embodied learning、human-to-robot transfer 和 real-world humanoid generalization，这种路线有明显复用价值。</p><p>它没有升到更高一级，是因为当前任务仍聚焦 humanoid navigation，且实证规模还不足以证明这一人类数据优先路线能全面改写更广的 embodied learning 栈。它很强，但还是具体子线中的强推进。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401rl25egonav,
+  title = {Learning Humanoid Navigation from Human Data},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00416.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl25-egonav-humanoid-navigation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning Humanoid Navigation from Human Data. https://arxiv.org/pdf/2604.00416.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00416.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

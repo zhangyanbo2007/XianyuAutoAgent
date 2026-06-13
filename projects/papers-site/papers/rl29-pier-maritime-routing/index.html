@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Physics-informed offline reinforcement learning eliminates catastrophic fuel waste in maritime routing | DAST Papers</title>
+    <meta name="description" content="航运路径优化长期依赖启发式方法或高度依赖天气预报的路径搜索，这会在极端条件下带来巨大的燃料浪费和运营风险。真正难的不是把平均指标再抬一点，而是把 catastrophic failures 压下去。
+
+PIER 提出一套 physics-informed offline RL 流程：用历史 AIS 航迹和海洋再分析数据构建校准环境，用 demonstration-augmented offline" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl29-pier-maritime-routing/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Physics-informed offline reinforcement learning eliminates catastrophic fuel waste in maritime routing" />
+    <meta property="og:description" content="航运路径优化长期依赖启发式方法或高度依赖天气预报的路径搜索，这会在极端条件下带来巨大的燃料浪费和运营风险。真正难的不是把平均指标再抬一点，而是把 catastrophic failures 压下去。
+
+PIER 提出一套 physics-informed offline RL 流程：用历史 AIS 航迹和海洋再分析数据构建校准环境，用 demonstration-augmented offline" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl29-pier-maritime-routing/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Physics-informed offline reinforcement learning eliminates catastrophic fuel waste in maritime routing" />
+    <meta name="twitter:description" content="航运路径优化长期依赖启发式方法或高度依赖天气预报的路径搜索，这会在极端条件下带来巨大的燃料浪费和运营风险。真正难的不是把平均指标再抬一点，而是把 catastrophic failures 压下去。
+
+PIER 提出一套 physics-informed offline RL 流程：用历史 AIS 航迹和海洋再分析数据构建校准环境，用 demonstration-augmented offline" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Physics-informed offline reinforcement learning eliminates catastrophic fuel waste in maritime routing</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.17319" target="_blank" rel="noopener noreferrer">2603.17319</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>航运路径优化长期依赖启发式方法或高度依赖天气预报的路径搜索，这会在极端条件下带来巨大的燃料浪费和运营风险。真正难的不是把平均指标再抬一点，而是把 catastrophic failures 压下去。</dd></div><div><dt>方法/机制</dt><dd>PIER 提出一套 physics-informed offline RL 流程：用历史 AIS 航迹和海洋再分析数据构建校准环境，用 demonstration-augmented offline data 训练策略，再用 decoupled post-hoc safety shield 做约束。关键点在于它不依赖在线模拟器，也不依赖脆弱的全局预报条件，而是把物理先验、离线学习和安全后处理组合成了一条完整工作流。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它展示了一个可复用的范式：在高代价、强物理约束、不能随便在线试错的运营系统里，如何做 physics-informed offline control。作者也明确指出其结构可迁移到 wildfire evacuation、aircraft trajectory optimization 和未建图地形导航，这种外溢价值明显超过单一航运任务。</dd></div><div><dt>收录价值</dt><dd>现阶段验证仍集中在 Gulf of Mexico 七条航线和一年的 AIS 数据上，跨区域与跨系统泛化还需要更广证据。它已经是很强的方法论文，但还不足以升到 disruptive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>航运路径优化长期依赖启发式方法或高度依赖天气预报的路径搜索，这会在极端条件下带来巨大的燃料浪费和运营风险。真正难的不是把平均指标再抬一点，而是把 catastrophic failures 压下去。</p><p>PIER 提出一套 physics-informed offline RL 流程：用历史 AIS 航迹和海洋再分析数据构建校准环境，用 demonstration-augmented offline data 训练策略，再用 decoupled post-hoc safety shield 做约束。关键点在于它不依赖在线模拟器，也不依赖脆弱的全局预报条件，而是把物理先验、离线学习和安全后处理组合成了一条完整工作流。</p><p>这篇论文值得收录，因为它展示了一个可复用的范式：在高代价、强物理约束、不能随便在线试错的运营系统里，如何做 physics-informed offline control。作者也明确指出其结构可迁移到 wildfire evacuation、aircraft trajectory optimization 和未建图地形导航，这种外溢价值明显超过单一航运任务。</p><p>现阶段验证仍集中在 Gulf of Mexico 七条航线和一年的 AIS 数据上，跨区域与跨系统泛化还需要更广证据。它已经是很强的方法论文，但还不足以升到 disruptive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>国际航运产生全球约3%的温室气体排放，然而航线规划仍以启发式方法为主，这些方法无法适应时空变化的海洋条件。在本文中，我们提出了PIER（物理信息、能源效率、风险感知路由），这是一个离线强化学习框架，它从基于历史船舶跟踪数据和海洋再分析产品的物理校准环境中学习燃油效率高、安全意识强的路由策略，无需在线模拟器或交互。经对墨西哥湾七条航线（每种方法包含840个模拟评估回合）的2023年全年自动识别系统数据进行验证，PIER在模拟中将估计的平均二氧化碳排放量相对于大圆航线减少了10%。然而，平均值掩盖了该框架的主要贡献：消除灾难性燃料浪费。在典型条件下，中位数节省为1%，但PIER将95百分位二氧化碳排放量减少了6%，并将单次航行最大排放量减少了70%。大圆航线在4.8%的航行中产生极端燃料消耗（&gt;中位数的1.5倍）；PIER将其降至0.5%——最坏情况频率降低了9倍。PIER的单次航行燃料消耗方差比大圆航线低3.5倍（p &lt; 0.001）。对于船队运营商而言，这种可预测性意味着在墨西哥湾航线上可靠的排放预算（平均节省的自助法95%置信区间：[2.9%, 15.7%]）。针对跨墨西哥湾走廊上观测到的AIS船舶行为进行的局部验证证实，PIER的预测与最快的实际航行一致，同时方差降低了23.1倍。至关重要的是，PIER的性能与预测无关：与在现实预测不确定性下波浪保护性能下降4.5倍的经典路径优化不同，PIER仅使用局部观测即可保持恒定性能。更广泛地说，PIER表明物理信息离线强化学习可以在模拟器不可用的安全关键型交通领域提供操作上可靠的决策制定。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>International shipping produces approximately 3% of global greenhouse gas emissions, yet voyage routing remains dominated by heuristic methods that cannot adapt to spatiotemporally varying ocean conditions. Here we present P IER (Physics-Informed, Energy-efficient, Risk-aware routing), an offline reinforcement learning framework that learns fuel-efficient, safety-aware routing policies from physics-calibrated environments grounded in historical vessel tracking data and ocean reanalysis products, requiring no online simulator or interaction. Validated on one full year (2023) of Automatic Identification System data across seven Gulf of Mexico routes comprising 840 simulated evaluation episodes per method, P IER reduces estimated mean CO2 emissions by 10% relative to great-circle routing in simulation. However, the mean masks the framework’s primary contribution: eliminating catastrophic fuel waste. Under typical conditions, median savings are 1%, but P IER reduces 95th-percentile CO2 by 6% and maximum single-voyage emissions by 70%. Great-circle routing incurs extreme fuel consumption (&gt;1.5× median) in 4.8% of voyages; P IER reduces this to 0.5%- a 9-fold reduction in worst-case frequency. Per-voyage fuel consumption variance is 3.5× lower with P IER than great-circle routing (p &lt; 0.001). For fleet operators, this predictability translates to reliable emission budgeting across Gulf routes (bootstrap 95% CI for mean savings: [2.9%, 15.7%]). Partial validation against observed AIS vessel behavior on a cross-Gulf corridor confirms that P IER’s predictions are consistent with the fastest real transits while exhibiting 23.1× lower variance. Crucially, P IER’s performance is forecast-independent: unlike classical path optimization whose wave protection degrades 4.5× under realistic forecast uncertainty, P IER maintains constant performance using only local observations. More broadly, P IER demonstrates that physics-informed offline reinforcement learning can provide operationally reliable decision-making in safety-critical transportation domains where simulators are unavailable.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260318rl29pierma,
+  title = {Physics-informed offline reinforcement learning eliminates catastrophic fuel waste in maritime routing},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.17319v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl29-pier-maritime-routing/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Physics-informed offline reinforcement learning eliminates catastrophic fuel waste in maritime routing. https://arxiv.org/pdf/2603.17319v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.17319v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

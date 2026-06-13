@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy | DAST Papers</title>
+    <meta name="description" content="这篇 ICCV 2025 论文把 Diffusion Transformer 扩展到通用 VLA policy，关注视觉、语言和动作之间的统一策略生成。它不是局部控制技巧，而是面向 generalist robot policy 的架构扩展。
+
+方法价值在于把扩散式动作生成和 transformer scaling 结合起来，用于处理多任务、多模态条件下的动作序列。对 VLA pipeline、机" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl46-dita-generalist-vla/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy" />
+    <meta property="og:description" content="这篇 ICCV 2025 论文把 Diffusion Transformer 扩展到通用 VLA policy，关注视觉、语言和动作之间的统一策略生成。它不是局部控制技巧，而是面向 generalist robot policy 的架构扩展。
+
+方法价值在于把扩散式动作生成和 transformer scaling 结合起来，用于处理多任务、多模态条件下的动作序列。对 VLA pipeline、机" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl46-dita-generalist-vla/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy" />
+    <meta name="twitter:description" content="这篇 ICCV 2025 论文把 Diffusion Transformer 扩展到通用 VLA policy，关注视觉、语言和动作之间的统一策略生成。它不是局部控制技巧，而是面向 generalist robot policy 的架构扩展。
+
+方法价值在于把扩散式动作生成和 transformer scaling 结合起来，用于处理多任务、多模态条件下的动作序列。对 VLA pipeline、机" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy</h1>
+          <p class="subtitle">强化学习 · 发表：2025-10-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-01</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 ICCV 2025 论文把 Diffusion Transformer 扩展到通用 VLA policy，关注视觉、语言和动作之间的统一策略生成。它不是局部控制技巧，而是面向 generalist robot policy 的架构扩展。</dd></div><div><dt>方法/机制</dt><dd>方法价值在于把扩散式动作生成和 transformer scaling 结合起来，用于处理多任务、多模态条件下的动作序列。对 VLA pipeline、机器人策略预训练和泛化操作都有直接参考意义。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它属于机器人基础模型方向的正式收录项，因为贡献形态是可复用 policy architecture，而不是单个机器人任务胜率。</dd></div><div><dt>收录价值</dt><dd>局限是 diffusion policy 在实时控制、长程规划和真实世界鲁棒性上仍有成本与稳定性问题；generalist 规模化效果也需继续观察。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 ICCV 2025 论文把 Diffusion Transformer 扩展到通用 VLA policy，关注视觉、语言和动作之间的统一策略生成。它不是局部控制技巧，而是面向 generalist robot policy 的架构扩展。</p><p>方法价值在于把扩散式动作生成和 transformer scaling 结合起来，用于处理多任务、多模态条件下的动作序列。对 VLA pipeline、机器人策略预训练和泛化操作都有直接参考意义。</p><p>按本库标准，它属于机器人基础模型方向的正式收录项，因为贡献形态是可复用 policy architecture，而不是单个机器人任务胜率。</p><p>局限是 diffusion policy 在实时控制、长程规划和真实世界鲁棒性上仍有成本与稳定性问题；generalist 规模化效果也需继续观察。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>动作空间。我们提出了Dita，一个可扩展的框架，它利用Transformer架构通过统一的多模态扩散过程直接去噪连续动作序列。与以往通过浅层网络在融合嵌入上进行去噪条件化的方法不同，Dita采用上下文条件化，从而实现了去噪动作与历史观测中的原始视觉token之间的细粒度对齐。这种设计明确地建模了动作增量和环境细微差别。尽管最近在多样化机器人数据集上训练的视觉-语言-动作模型在有限的域内数据下表现出有前景的泛化能力，但它们依赖紧凑的动作头来预测离散或连续动作，这限制了对异构ac的适应性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>tion spaces. We present Dita, a scalable framework that leverages Transformer architectures to directly denoise continuous action sequences through a unified multimodal diffusion process. Departing from prior methods that condition denoising on fused embeddings via shallow networks, Dita employs in-context conditioning—enabling fine-grained alignment between denoised actions and raw visual tokens from historical observations. This design explicitly models action deltas and environmental nuances. While recent vision-language-action models trained on diverse robot datasets exhibit promising generalization capabilities with limited in-domain data, their reliance on compact action heads to predict discretized or continuous actions constrains adaptability to heterogeneous ac* Equal Contribution † Corresponding Author</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251001rl46ditage,
+  title = {Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy},
+  year = {2025},
+  url = {https://openaccess.thecvf.com/content/ICCV2025/papers/Hou_Dita_Scaling_Diffusion_Transformer_for_Generalist_Vision-Language-Action_Policy_ICCV_2025_paper.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl46-dita-generalist-vla/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Dita: Scaling Diffusion Transformer for Generalist Vision-Language-Action Policy. https://openaccess.thecvf.com/content/ICCV2025/papers/Hou_Dita_Scaling_Diffusion_Transformer_for_Generalist_Vision-Language-Action_Policy_ICCV_2025_paper.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openaccess.thecvf.com/content/ICCV2025/papers/Hou_Dita_Scaling_Diffusion_Transformer_for_Generalist_Vision-Language-Action_Policy_ICCV_2025_paper.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

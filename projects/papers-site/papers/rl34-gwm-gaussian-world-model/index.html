@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GWM: Towards Scalable Gaussian World Models for Robotic Manipulation | DAST Papers</title>
+    <meta name="description" content="机器人政策训练越来越依赖 learned world model 来降低真实交互成本，但传统 image-based world model 缺少稳定的三维几何表示，很难在机器人操作场景里同时保持空间一致性、物理合理性和可扩展的数据利用效率。这限制了它们作为训练基础设施的上限。
+
+GWM 的核心思路是把机器人未来状态建模为受动作驱动的 Gaussian primitive 演化，并用 latent" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl34-gwm-gaussian-world-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GWM: Towards Scalable Gaussian World Models for Robotic Manipulation" />
+    <meta property="og:description" content="机器人政策训练越来越依赖 learned world model 来降低真实交互成本，但传统 image-based world model 缺少稳定的三维几何表示，很难在机器人操作场景里同时保持空间一致性、物理合理性和可扩展的数据利用效率。这限制了它们作为训练基础设施的上限。
+
+GWM 的核心思路是把机器人未来状态建模为受动作驱动的 Gaussian primitive 演化，并用 latent" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl34-gwm-gaussian-world-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GWM: Towards Scalable Gaussian World Models for Robotic Manipulation" />
+    <meta name="twitter:description" content="机器人政策训练越来越依赖 learned world model 来降低真实交互成本，但传统 image-based world model 缺少稳定的三维几何表示，很难在机器人操作场景里同时保持空间一致性、物理合理性和可扩展的数据利用效率。这限制了它们作为训练基础设施的上限。
+
+GWM 的核心思路是把机器人未来状态建模为受动作驱动的 Gaussian primitive 演化，并用 latent" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GWM: Towards Scalable Gaussian World Models for Robotic Manipulation</h1>
+          <p class="subtitle">强化学习 · 发表：2025-08-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-08-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2508.17600" target="_blank" rel="noopener noreferrer">2508.17600</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>机器人政策训练越来越依赖 learned world model 来降低真实交互成本，但传统 image-based world model 缺少稳定的三维几何表示，很难在机器人操作场景里同时保持空间一致性、物理合理性和可扩展的数据利用效率。这限制了它们作为训练基础设施的上限。</dd></div><div><dt>方法/机制</dt><dd>GWM 的核心思路是把机器人未来状态建模为受动作驱动的 Gaussian primitive 演化，并用 latent diffusion transformer 加 3D VAE 来做 scene-level future reconstruction。这样得到的 Gaussian World Model 既可以通过自监督未来预测增强 imitation learning agent 的视觉表征，也可以直接作为 neural simulator 支持 model-based reinforcement learning。论文报告其在模拟和真实环境中都能较准确预测动作条件下的未来场景，并训练出优于先前方法的策略。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它不是把 3D 表示机械地塞进 world model，而是明确提出一条可扩展的 Gaussian world-model 分支，把 3D scene representation、future prediction 和 robot policy learning 接到了一起。这对 embodied world model 和 robot data scaling 都有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于这仍是机器人 world model 子方向内的强方法工作；虽然方向很对，但还需要更多跨任务、跨机器人和更长期的 adopted evidence 来确认它是否会成为默认技术路线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>机器人政策训练越来越依赖 learned world model 来降低真实交互成本，但传统 image-based world model 缺少稳定的三维几何表示，很难在机器人操作场景里同时保持空间一致性、物理合理性和可扩展的数据利用效率。这限制了它们作为训练基础设施的上限。</p><p>GWM 的核心思路是把机器人未来状态建模为受动作驱动的 Gaussian primitive 演化，并用 latent diffusion transformer 加 3D VAE 来做 scene-level future reconstruction。这样得到的 Gaussian World Model 既可以通过自监督未来预测增强 imitation learning agent 的视觉表征，也可以直接作为 neural simulator 支持 model-based reinforcement learning。论文报告其在模拟和真实环境中都能较准确预测动作条件下的未来场景，并训练出优于先前方法的策略。</p><p>它值得正式收录，因为它不是把 3D 表示机械地塞进 world model，而是明确提出一条可扩展的 Gaussian world-model 分支，把 3D scene representation、future prediction 和 robot policy learning 接到了一起。这对 embodied world model 和 robot data scaling 都有明显方法外溢。</p><p>它暂时不升到更高一级，原因在于这仍是机器人 world model 子方向内的强方法工作；虽然方向很对，但还需要更多跨任务、跨机器人和更长期的 adopted evidence 来确认它是否会成为默认技术路线。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250825rl34gwmgau,
+  title = {GWM: Towards Scalable Gaussian World Models for Robotic Manipulation},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2508.17600.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl34-gwm-gaussian-world-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). GWM: Towards Scalable Gaussian World Models for Robotic Manipulation. https://arxiv.org/pdf/2508.17600.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2508.17600.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

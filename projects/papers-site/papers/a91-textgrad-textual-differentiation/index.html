@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TextGrad: Automatic &quot;Differentiation&quot; via Text | DAST Papers</title>
+    <meta name="description" content="TextGrad takes a useful systems idea and makes it explicit: if many LLM pipelines are made of textual intermediate states, then optimization can also happen in text rather than weights. The paper prop" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a91-textgrad-textual-differentiation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TextGrad: Automatic &quot;Differentiation&quot; via Text" />
+    <meta property="og:description" content="TextGrad takes a useful systems idea and makes it explicit: if many LLM pipelines are made of textual intermediate states, then optimization can also happen in text rather than weights. The paper prop" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a91-textgrad-textual-differentiation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TextGrad: Automatic &quot;Differentiation&quot; via Text" />
+    <meta name="twitter:description" content="TextGrad takes a useful systems idea and makes it explicit: if many LLM pipelines are made of textual intermediate states, then optimization can also happen in text rather than weights. The paper prop" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TextGrad: Automatic &quot;Differentiation&quot; via Text</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2024-06-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-06-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2406.07496" target="_blank" rel="noopener noreferrer">2406.07496</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>TextGrad takes a useful systems idea and makes it explicit: if many LLM pipelines are made of textual intermediate states, then optimization can also happen in text rather than weights. The paper proposes an automatic differentiation analogue where textual feedback acts as the optimization signal for prompts, completions, and intermediate artifacts.</dd></div><div><dt>方法/机制</dt><dd>What is novel is not just using critiques, but organizing them under a clean optimization abstraction. TextGrad turns prompt and pipeline improvement into a programmable interface, which helps connect language-based optimization with modular agent workflows, synthetic supervision, and structured program improvement.</dd></div><div><dt>结果/证据</dt><dd>This is relevant to the repository because many self-evolving-agent systems eventually need a way to optimize external artifacts without touching base-model parameters. TextGrad provides one of the clearest abstractions for that regime. It is especially useful as a bridge between prompt optimization, agent workflow search, and deployment-time self-improvement.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the paper’s empirical scope and downstream systems impact are still more limited than the strongest paradigm-setting optimization frameworks. But the abstraction is durable, and later work on textual optimization and workflow improvement is easier to interpret with TextGrad as a reference point.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>TextGrad takes a useful systems idea and makes it explicit: if many LLM pipelines are made of textual intermediate states, then optimization can also happen in text rather than weights. The paper proposes an automatic differentiation analogue where textual feedback acts as the optimization signal for prompts, completions, and intermediate artifacts.</p><p>What is novel is not just using critiques, but organizing them under a clean optimization abstraction. TextGrad turns prompt and pipeline improvement into a programmable interface, which helps connect language-based optimization with modular agent workflows, synthetic supervision, and structured program improvement.</p><p>This is relevant to the repository because many self-evolving-agent systems eventually need a way to optimize external artifacts without touching base-model parameters. TextGrad provides one of the clearest abstractions for that regime. It is especially useful as a bridge between prompt optimization, agent workflow search, and deployment-time self-improvement.</p><p>It is not ranked higher because the paper’s empirical scope and downstream systems impact are still more limited than the strongest paradigm-setting optimization frameworks. But the abstraction is durable, and later work on textual optimization and workflow improvement is easier to interpret with TextGrad as a reference point.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>人工智能正在经历一场范式转变，其突破性进展由协调多个大型语言模型（LLMs）及其他复杂组件的系统实现。因此，为复合人工智能系统开发有原则的自动化优化方法是当前最重要的全新挑战之一。神经网络在其早期也面临过类似的挑战，直到反向传播和自动微分使优化变得即插即用，从而彻底改变了该领域。受此启发，我们引入了 T EXT G RAD，一个通过文本执行自动“微分”的强大框架。T EXT G RAD 反向传播 LLMs 提供的文本反馈，以改进复合人工智能系统中的各个组件。在我们的框架中，LLMs 提供丰富、通用、自然语言的建议，以优化计算图中的变量，范围从代码片段到分子结构。T EXT G RAD 遵循 PyTorch 的语法和抽象，灵活且易于使用。它开箱即用，适用于各种任务，用户只需提供目标函数，而无需调整框架的组件或提示。我们展示了 T EXT G RAD 在从问答和分子优化到放射治疗计划等多种应用中的有效性和通用性。在不修改框架的情况下，T EXT G RAD 将 GPT-4o 在 Google-Proof Question Answering 中的零样本准确率从 51% 提高到 55%，在优化 LeetCode-Hard 编码问题解决方案方面实现了 20% 的相对性能提升，改进了推理提示，设计了具有理想计算机模拟结合能力的新型类药物小分子，并设计了具有高特异性的放射肿瘤治疗计划。T EXT G RAD 为加速下一代人工智能系统的发展奠定了基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI is undergoing a paradigm shift, with breakthroughs achieved by systems orchestrating multiple large language models (LLMs) and other complex components. As a result, developing principled and automated optimization methods for compound AI systems is one of the most important new challenges. Neural networks faced a similar challenge in its early days until backpropagation and automatic differentiation transformed the field by making optimization turn-key. Inspired by this, we introduce T EXT G RAD, a powerful framework performing automatic “differentiation” via text. T EXT G RAD backpropagates textual feedback provided by LLMs to improve individual components of a compound AI system. In our framework, LLMs provide rich, general, natural language suggestions to optimize variables in computation graphs, ranging from code snippets to molecular structures. T EXT G RAD follows PyTorch’s syntax and abstraction and is flexible and easy-to-use. It works out-of-the-box for a variety of tasks, where the users only provide the objective function without tuning components or prompts of the framework. We showcase T EXT G RAD’s effectiveness and generality across a diverse range of applications, from question answering and molecule optimization to radiotherapy treatment planning. Without modifying the framework, T EXT G RAD improves the zero-shot accuracy of GPT-4o in Google-Proof Question Answering from 51% to 55%, yields 20% relative performance gain in optimizing LeetCode-Hard coding problem solutions, improves prompts for reasoning, designs new druglike small molecules with desirable in silico binding, and designs radiation oncology treatment plans with high specificity. T EXT G RAD lays a foundation to accelerate the development of the next-generation of AI systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240611a91textgra,
+  title = {TextGrad: Automatic &quot;Differentiation&quot; via Text},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2406.07496.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a91-textgrad-textual-differentiation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). TextGrad: Automatic &quot;Differentiation&quot; via Text. https://arxiv.org/pdf/2406.07496.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2406.07496.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

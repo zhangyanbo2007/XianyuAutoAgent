@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The AetherFloat Family: Block-Scale-Free Quad-Radix Floating-Point Architectures for AI Accelerators | DAST Papers</title>
+    <meta name="description" content="AI 加速器设计里，数值格式往往被当作局部实现细节，但它实际上直接决定 MAC 面积、功耗、时序和 block scaling 复杂度。AetherFloat 的切入点就在这里：它不是再做一个小变体，而是从 AI accelerator co-design 角度重新设计 floating-point family。
+
+论文提出 block-scale-free 的 quad-radix 浮点架构，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw9-aetherfloat-ai-accelerator-format/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The AetherFloat Family: Block-Scale-Free Quad-Radix Floating-Point Architectures for AI Accelerators" />
+    <meta property="og:description" content="AI 加速器设计里，数值格式往往被当作局部实现细节，但它实际上直接决定 MAC 面积、功耗、时序和 block scaling 复杂度。AetherFloat 的切入点就在这里：它不是再做一个小变体，而是从 AI accelerator co-design 角度重新设计 floating-point family。
+
+论文提出 block-scale-free 的 quad-radix 浮点架构，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw9-aetherfloat-ai-accelerator-format/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The AetherFloat Family: Block-Scale-Free Quad-Radix Floating-Point Architectures for AI Accelerators" />
+    <meta name="twitter:description" content="AI 加速器设计里，数值格式往往被当作局部实现细节，但它实际上直接决定 MAC 面积、功耗、时序和 block scaling 复杂度。AetherFloat 的切入点就在这里：它不是再做一个小变体，而是从 AI accelerator co-design 角度重新设计 floating-point family。
+
+论文提出 block-scale-free 的 quad-radix 浮点架构，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The AetherFloat Family: Block-Scale-Free Quad-Radix Floating-Point Architectures for AI Accelerators</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-02-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.08741" target="_blank" rel="noopener noreferrer">2603.08741</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AI 加速器设计里，数值格式往往被当作局部实现细节，但它实际上直接决定 MAC 面积、功耗、时序和 block scaling 复杂度。AetherFloat 的切入点就在这里：它不是再做一个小变体，而是从 AI accelerator co-design 角度重新设计 floating-point family。</dd></div><div><dt>方法/机制</dt><dd>论文提出 block-scale-free 的 quad-radix 浮点架构，用 lexicographic one&#x27;s complement unpacking、base-4 scaling 和 explicit mantissa 替代 IEEE 754 的一组结构假设，目标是减少 NPU 中数值格式带来的面积、电源和 block-scaling 逻辑负担。结果上，它给出了 MAC 单元面积、功耗、时序和动态范围上的系统级收益，而不是停留在格式定义本身。</dd></div><div><dt>结果/证据</dt><dd>这满足本仓库对 AI hardware 的收录标准，因为它影响的是 accelerator architecture design space，而不是单一 kernel 或常规电路优化。数值格式如果能稳定减少 block-scaling 依赖，对大规模 AI inference/training pipeline 的芯片实现会有持续外溢。</dd></div><div><dt>收录价值</dt><dd>之所以不升到更高一级，是因为新的数值格式家族要真正改变行业实现，还需要软件栈、编译器、训练配方和芯片生态一起跟上。目前它更像很强的 architecture proposal，而不是已经被广泛验证的标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AI 加速器设计里，数值格式往往被当作局部实现细节，但它实际上直接决定 MAC 面积、功耗、时序和 block scaling 复杂度。AetherFloat 的切入点就在这里：它不是再做一个小变体，而是从 AI accelerator co-design 角度重新设计 floating-point family。</p><p>论文提出 block-scale-free 的 quad-radix 浮点架构，用 lexicographic one&#x27;s complement unpacking、base-4 scaling 和 explicit mantissa 替代 IEEE 754 的一组结构假设，目标是减少 NPU 中数值格式带来的面积、电源和 block-scaling 逻辑负担。结果上，它给出了 MAC 单元面积、功耗、时序和动态范围上的系统级收益，而不是停留在格式定义本身。</p><p>这满足本仓库对 AI hardware 的收录标准，因为它影响的是 accelerator architecture design space，而不是单一 kernel 或常规电路优化。数值格式如果能稳定减少 block-scaling 依赖，对大规模 AI inference/training pipeline 的芯片实现会有持续外溢。</p><p>之所以不升到更高一级，是因为新的数值格式家族要真正改变行业实现，还需要软件栈、编译器、训练配方和芯片生态一起跟上。目前它更像很强的 architecture proposal，而不是已经被广泛验证的标准。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260226hw9aetherf,
+  title = {The AetherFloat Family: Block-Scale-Free Quad-Radix Floating-Point Architectures for AI Accelerators},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.08741.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw9-aetherfloat-ai-accelerator-format/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The AetherFloat Family: Block-Scale-Free Quad-Radix Floating-Point Architectures for AI Accelerators. https://arxiv.org/pdf/2603.08741.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.08741.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

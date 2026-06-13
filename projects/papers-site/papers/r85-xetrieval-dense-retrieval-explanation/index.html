@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Xetrieval: Mechanistically Explaining Dense Retrieval | DAST Papers</title>
+    <meta name="description" content="dense retriever 是 RAG 和 agent memory 的核心组件，但为什么某个 query-document pair 得到高分通常很难解释。
+
+Xetrieval 从 embedding-level 机制解释 dense retrieval，试图找出塑造检索行为的 latent factors，而不是只给关键词匹配或 post-hoc 文本理由。
+
+这对 RAG、memory" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r85-xetrieval-dense-retrieval-explanation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Xetrieval: Mechanistically Explaining Dense Retrieval" />
+    <meta property="og:description" content="dense retriever 是 RAG 和 agent memory 的核心组件，但为什么某个 query-document pair 得到高分通常很难解释。
+
+Xetrieval 从 embedding-level 机制解释 dense retrieval，试图找出塑造检索行为的 latent factors，而不是只给关键词匹配或 post-hoc 文本理由。
+
+这对 RAG、memory" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r85-xetrieval-dense-retrieval-explanation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Xetrieval: Mechanistically Explaining Dense Retrieval" />
+    <meta name="twitter:description" content="dense retriever 是 RAG 和 agent memory 的核心组件，但为什么某个 query-document pair 得到高分通常很难解释。
+
+Xetrieval 从 embedding-level 机制解释 dense retrieval，试图找出塑造检索行为的 latent factors，而不是只给关键词匹配或 post-hoc 文本理由。
+
+这对 RAG、memory" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Xetrieval: Mechanistically Explaining Dense Retrieval</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.29507" target="_blank" rel="noopener noreferrer">2605.29507</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>dense retriever 是 RAG 和 agent memory 的核心组件，但为什么某个 query-document pair 得到高分通常很难解释。</dd></div><div><dt>方法/机制</dt><dd>Xetrieval 从 embedding-level 机制解释 dense retrieval，试图找出塑造检索行为的 latent factors，而不是只给关键词匹配或 post-hoc 文本理由。</dd></div><div><dt>结果/证据</dt><dd>这对 RAG、memory retrieval 和可信 document intelligence 都重要，因为检索错误常是下游 hallucination 或任务失败的源头。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它提供了检索系统的可解释性/诊断原语，可服务 agent memory、RAG audit 和 retrieval debugging。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>dense retriever 是 RAG 和 agent memory 的核心组件，但为什么某个 query-document pair 得到高分通常很难解释。</p><p>Xetrieval 从 embedding-level 机制解释 dense retrieval，试图找出塑造检索行为的 latent factors，而不是只给关键词匹配或 post-hoc 文本理由。</p><p>这对 RAG、memory retrieval 和可信 document intelligence 都重要，因为检索错误常是下游 hallucination 或任务失败的源头。</p><p>它值得收录，因为它提供了检索系统的可解释性/诊断原语，可服务 agent memory、RAG audit 和 retrieval debugging。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>解释为什么密集检索器会分配高相关性评分仍然具有挑战性，因为检索决策是通过不透明的高维嵌入进行的。现有的解释通常侧重于表面信号，例如词汇匹配、标记对齐或事后文本理由，因此对塑造密集检索行为在嵌入级别上的潜在因素提供了有限的见解。我们提出了一种嵌入级别的机制框架Xetrieval，用于解释密集检索。Xetrieval首先引入一个轻量级的推理内化器，该内化器直接在嵌入空间中近似Chain-ofThought推理，只需一个前向传递，同时为句子嵌入丰富了推理导向的信息，避免了昂贵的自回归生成。然后，它将这些增强推理的嵌入分解为稀疏、可解释的特征，每个特征都与连贯的自然语言描述相关联。通过聚合多个文档侧视图上的稀疏特征重叠，Xetrieval为单个检索决策提供了特征级别的解释。在各种检索器和基准上进行的实验表明，Xetrieval揭示了连贯可解释的特征，产生了更强的对齐级别干预效应，并支持了任务级别的特征引导1。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Explaining why dense retrievers assign high relevance scores remains challenging because retrieval decisions are made through opaque high-dimensional embeddings. Existing explanations often focus on surface signals, such as lexical matches, token alignments, or post-hoc textual rationales, and thus provide limited insight into the latent factors that shape dense retrieval behavior at the embedding level. We propose Xetrieval, an embedding-level mechanistic framework for explaining dense retrieval. Xetrieval first introduces a lightweight reasoning internalizer that approximates Chain-ofThought reasoning directly in the embedding space with a single forward pass, enriching sentence embeddings with reasoning-oriented information while avoiding expensive autoregressive generation. It then decomposes these reasoning-enhanced embeddings into sparse, human-interpretable features, each associated with a coherent natural language description. By aggregating sparse feature overlaps across multiple document-side views, Xetrieval provides feature-level explanations of individual retrieval decisions. Experiments on diverse retrievers and benchmarks show that Xetrieval uncovers coherent interpretable features, yields stronger pair-level intervention effects, and supports task-level feature steering1 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260529r85xetriev,
+  title = {Xetrieval: Mechanistically Explaining Dense Retrieval},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.29507.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r85-xetrieval-dense-retrieval-explanation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Xetrieval: Mechanistically Explaining Dense Retrieval. https://arxiv.org/pdf/2605.29507.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/r84-omniretrieval-heterogeneous-sources/">
+              <span>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.29507.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.29507" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

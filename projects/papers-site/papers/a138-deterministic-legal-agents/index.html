@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deterministic Legal Agents: A Canonical Primitive API for Auditable Reasoning over Temporal Knowledge Graphs | DAST Papers</title>
+    <meta name="description" content="高风险法律场景要求智能体的推理过程具备可审计性、可复现性和严格的时间一致性，而常规 RAG 在版本切换、因果追踪和层级法条关系上通常过于黑箱。论文把问题定义为：在持续演化的法律知识图谱上，如何让 autonomous legal agents 的检索与推理过程变成可验证执行，而不是不可追责的语义近似。
+
+这篇工作的核心不是再做一个法律问答系统，而是提出一个 formal Primitive API" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a138-deterministic-legal-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Deterministic Legal Agents: A Canonical Primitive API for Auditable Reasoning over Temporal Knowledge Graphs" />
+    <meta property="og:description" content="高风险法律场景要求智能体的推理过程具备可审计性、可复现性和严格的时间一致性，而常规 RAG 在版本切换、因果追踪和层级法条关系上通常过于黑箱。论文把问题定义为：在持续演化的法律知识图谱上，如何让 autonomous legal agents 的检索与推理过程变成可验证执行，而不是不可追责的语义近似。
+
+这篇工作的核心不是再做一个法律问答系统，而是提出一个 formal Primitive API" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a138-deterministic-legal-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Deterministic Legal Agents: A Canonical Primitive API for Auditable Reasoning over Temporal Knowledge Graphs" />
+    <meta name="twitter:description" content="高风险法律场景要求智能体的推理过程具备可审计性、可复现性和严格的时间一致性，而常规 RAG 在版本切换、因果追踪和层级法条关系上通常过于黑箱。论文把问题定义为：在持续演化的法律知识图谱上，如何让 autonomous legal agents 的检索与推理过程变成可验证执行，而不是不可追责的语义近似。
+
+这篇工作的核心不是再做一个法律问答系统，而是提出一个 formal Primitive API" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Deterministic Legal Agents: A Canonical Primitive API for Auditable Reasoning over Temporal Knowledge Graphs</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-10-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.06002" target="_blank" rel="noopener noreferrer">2510.06002</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>高风险法律场景要求智能体的推理过程具备可审计性、可复现性和严格的时间一致性，而常规 RAG 在版本切换、因果追踪和层级法条关系上通常过于黑箱。论文把问题定义为：在持续演化的法律知识图谱上，如何让 autonomous legal agents 的检索与推理过程变成可验证执行，而不是不可追责的语义近似。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心不是再做一个法律问答系统，而是提出一个 formal Primitive API 作为安全执行层。它把点时版本检索、因果谱系追踪、上下文混合搜索等操作拆成原子、可组合、可记录的 primitives，由 planner-guided agents 显式生成执行计划，再在 temporal knowledge graph 上逐步运行，从而把内部 reasoning 从黑箱回答改成可检查的 primitive log。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为真正可复用的部分是 execution-layer pattern：把 evolving structured knowledge 上的 agent reasoning 变成 deterministic、auditable、composable 的 primitive pipeline。虽然论文以法律为主要场景，但这种设计对合规、审计、政策和其他受监管领域的 agent workflow 都有直接外溢价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要来自架构论证和法律场景本身，跨领域验证和更大规模真实部署还不够。现阶段更像一条很强的 regulated-agent blueprint，而不是已经被广泛采用的通用基础设施。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>高风险法律场景要求智能体的推理过程具备可审计性、可复现性和严格的时间一致性，而常规 RAG 在版本切换、因果追踪和层级法条关系上通常过于黑箱。论文把问题定义为：在持续演化的法律知识图谱上，如何让 autonomous legal agents 的检索与推理过程变成可验证执行，而不是不可追责的语义近似。</p><p>这篇工作的核心不是再做一个法律问答系统，而是提出一个 formal Primitive API 作为安全执行层。它把点时版本检索、因果谱系追踪、上下文混合搜索等操作拆成原子、可组合、可记录的 primitives，由 planner-guided agents 显式生成执行计划，再在 temporal knowledge graph 上逐步运行，从而把内部 reasoning 从黑箱回答改成可检查的 primitive log。</p><p>它值得正式收录，因为真正可复用的部分是 execution-layer pattern：把 evolving structured knowledge 上的 agent reasoning 变成 deterministic、auditable、composable 的 primitive pipeline。虽然论文以法律为主要场景，但这种设计对合规、审计、政策和其他受监管领域的 agent workflow 都有直接外溢价值。</p><p>它没有升到更高一级，是因为当前证据仍主要来自架构论证和法律场景本身，跨领域验证和更大规模真实部署还不够。现阶段更像一条很强的 regulated-agent blueprint，而不是已经被广泛采用的通用基础设施。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>为了使自主法律智能体在高风险领域安全运行，它们需要绝对确定性和可审计性的基础——这是标准检索增强生成（RAG）框架无法提供的保证。当与建模法律规范复杂演变的时间知识图谱交互时，智能体必须精确地处理版本控制、因果关系和层级结构，而黑盒向量搜索不适合这项任务。本文引入了一种新的架构模式来解决这个问题：一个正式的原语API，设计作为在此类图谱上进行推理的安全执行层。我们的框架没有采用单一的查询引擎，而是提供了一个规范原语库——这些原语是原子性的、可组合的且可审计的。这种设计使规划器引导的智能体能够将复杂的法律问题分解为透明的执行计划，从而能够以完全可验证的方式执行关键任务，包括：(i) 精确的时间点版本检索，(ii) 鲁棒的因果溯源，以及 (iii) 上下文感知的混合搜索。最终，这种架构将不透明的检索转化为可审计的推理，将智能体的内部过程从黑盒转变为可验证的确定性原语日志，并为构建下一代值得信赖的法律AI提供了蓝图。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>For autonomous legal agents to operate safely in high-stakes domains, they require a foundation of absolute determinism and auditability—guarantees that standard Retrieval-Augmented Generation (RAG) frameworks cannot provide. When interacting with temporal knowledge graphs that model the complex evolution of legal norms, agents must navigate versioning, causality, and hierarchical structures with precision, a task for which black-box vector search is ill-suited. This paper introduces a new architectural pattern to solve this: a formal Primitive API designed as a secure execution layer for reasoning over such graphs. Instead of a monolithic query engine, our framework provides a library of canonical primitives—atomic, composable, and auditable primitives. This design empowers planner-guided agents to decompose complex legal questions into transparent execution plans, enabling critical tasks with full verifiability, including: (i) precise point-in-time version retrieval, (ii) robust causal lineage tracing, and (iii) context-aware hybrid search. Ultimately, this architecture transforms opaque retrieval into auditable reasoning, turning the agent’s internal process from a black box into a verifiable log of deterministic primitives and providing a blueprint for building the next generation of trustworthy legal AI.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251007a138determ,
+  title = {Deterministic Legal Agents: A Canonical Primitive API for Auditable Reasoning over Temporal Knowledge Graphs},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.06002v2.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a138-deterministic-legal-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Deterministic Legal Agents: A Canonical Primitive API for Auditable Reasoning over Temporal Knowledge Graphs. https://arxiv.org/pdf/2510.06002v2.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.06002v2.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

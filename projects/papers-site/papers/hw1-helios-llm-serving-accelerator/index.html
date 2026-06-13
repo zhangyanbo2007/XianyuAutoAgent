@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hardware-Software Co-design for 3D-DRAM-based LLM Serving Accelerator | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是 LLM 在线服务里一个非常现实的硬件问题：现有近存计算/NMP 方案通常假设比较规整的执行流，但真实 serving 工作负载会不断变化，KV cache 管理和 attention 执行流都高度动态。对本仓库来说，它属于 AI accelerator 设计里最值得收的一类，即直接面向 LLM serving 这一主战场的硬件软件协同设计。
+
+作者提出 Helios，一套基于 3" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw1-helios-llm-serving-accelerator/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Hardware-Software Co-design for 3D-DRAM-based LLM Serving Accelerator" />
+    <meta property="og:description" content="这篇论文解决的是 LLM 在线服务里一个非常现实的硬件问题：现有近存计算/NMP 方案通常假设比较规整的执行流，但真实 serving 工作负载会不断变化，KV cache 管理和 attention 执行流都高度动态。对本仓库来说，它属于 AI accelerator 设计里最值得收的一类，即直接面向 LLM serving 这一主战场的硬件软件协同设计。
+
+作者提出 Helios，一套基于 3" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw1-helios-llm-serving-accelerator/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hardware-Software Co-design for 3D-DRAM-based LLM Serving Accelerator" />
+    <meta name="twitter:description" content="这篇论文解决的是 LLM 在线服务里一个非常现实的硬件问题：现有近存计算/NMP 方案通常假设比较规整的执行流，但真实 serving 工作负载会不断变化，KV cache 管理和 attention 执行流都高度动态。对本仓库来说，它属于 AI accelerator 设计里最值得收的一类，即直接面向 LLM serving 这一主战场的硬件软件协同设计。
+
+作者提出 Helios，一套基于 3" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Hardware-Software Co-design for 3D-DRAM-based LLM Serving Accelerator</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.04797" target="_blank" rel="noopener noreferrer">2603.04797</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是 LLM 在线服务里一个非常现实的硬件问题：现有近存计算/NMP 方案通常假设比较规整的执行流，但真实 serving 工作负载会不断变化，KV cache 管理和 attention 执行流都高度动态。对本仓库来说，它属于 AI accelerator 设计里最值得收的一类，即直接面向 LLM serving 这一主战场的硬件软件协同设计。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Helios，一套基于 3D-DRAM/NMP 的 LLM serving accelerator，不只改了算子实现，还同时设计了 PE 内执行流、PE 间通信原语以及面向动态 workload 的空间感知 KV cache 分配机制。它的贡献不是单点提速，而是把 serving workload 的动态性纳入硬件抽象与资源分配本身。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为这代表了硬件扩展范围里最有价值的类型：不是普通器件或电路结果，而是会改变 AI 系统该如何组织内存、通信和执行流的架构论文。对 LLM serving、near-memory acceleration 和实际在线推理系统都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为虽然系统价值很强，但还主要是一条具体的 serving accelerator 路线，尚未证明会成为更广泛 AI 硬件设计的通用蓝图。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是 LLM 在线服务里一个非常现实的硬件问题：现有近存计算/NMP 方案通常假设比较规整的执行流，但真实 serving 工作负载会不断变化，KV cache 管理和 attention 执行流都高度动态。对本仓库来说，它属于 AI accelerator 设计里最值得收的一类，即直接面向 LLM serving 这一主战场的硬件软件协同设计。</p><p>作者提出 Helios，一套基于 3D-DRAM/NMP 的 LLM serving accelerator，不只改了算子实现，还同时设计了 PE 内执行流、PE 间通信原语以及面向动态 workload 的空间感知 KV cache 分配机制。它的贡献不是单点提速，而是把 serving workload 的动态性纳入硬件抽象与资源分配本身。</p><p>它值得正式收录，是因为这代表了硬件扩展范围里最有价值的类型：不是普通器件或电路结果，而是会改变 AI 系统该如何组织内存、通信和执行流的架构论文。对 LLM serving、near-memory acceleration 和实际在线推理系统都有明显外溢。</p><p>它没有升到更高等级，是因为虽然系统价值很强，但还主要是一条具体的 serving accelerator 路线，尚未证明会成为更广泛 AI 硬件设计的通用蓝图。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305hw1heliosl,
+  title = {Hardware-Software Co-design for 3D-DRAM-based LLM Serving Accelerator},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.04797.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw1-helios-llm-serving-accelerator/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Hardware-Software Co-design for 3D-DRAM-based LLM Serving Accelerator. https://arxiv.org/pdf/2603.04797.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.04797.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

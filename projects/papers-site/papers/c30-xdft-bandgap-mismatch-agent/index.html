@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch | DAST Papers</title>
+    <meta name="description" content="这篇工作的强点在于，它不是把 AI 用作又一个 property predictor，而是把材料科学里一个很常见但长期依赖专家手工分析的 diagnosis loop 自动化了：为什么 DFT 预测金属而实验看到半导体。
+
+XDFT 通过显式假设目录、对应 first-principles tests 和全局 Bayesian posterior 更新，把单个 case 的排错过程变成了一个会随经" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c30-xdft-bandgap-mismatch-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch" />
+    <meta property="og:description" content="这篇工作的强点在于，它不是把 AI 用作又一个 property predictor，而是把材料科学里一个很常见但长期依赖专家手工分析的 diagnosis loop 自动化了：为什么 DFT 预测金属而实验看到半导体。
+
+XDFT 通过显式假设目录、对应 first-principles tests 和全局 Bayesian posterior 更新，把单个 case 的排错过程变成了一个会随经" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c30-xdft-bandgap-mismatch-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch" />
+    <meta name="twitter:description" content="这篇工作的强点在于，它不是把 AI 用作又一个 property predictor，而是把材料科学里一个很常见但长期依赖专家手工分析的 diagnosis loop 自动化了：为什么 DFT 预测金属而实验看到半导体。
+
+XDFT 通过显式假设目录、对应 first-principles tests 和全局 Bayesian posterior 更新，把单个 case 的排错过程变成了一个会随经" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-04-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.26703" target="_blank" rel="noopener noreferrer">2604.26703</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的强点在于，它不是把 AI 用作又一个 property predictor，而是把材料科学里一个很常见但长期依赖专家手工分析的 diagnosis loop 自动化了：为什么 DFT 预测金属而实验看到半导体。</dd></div><div><dt>方法/机制</dt><dd>XDFT 通过显式假设目录、对应 first-principles tests 和全局 Bayesian posterior 更新，把单个 case 的排错过程变成了一个会随经验累积而进化的 agentic workflow。这样输出的不只是答案，还有 corrected protocol 和 mechanistic attribution。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这代表一种很有价值的 AI-for-science pattern：围绕 mechanistic mismatch diagnosis 的 closed-loop hypothesis-test-update system。对材料、计算物理、以及更广的 simulation-versus-experiment discrepancy analysis 都有外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前问题定义仍聚焦在 band-gap mismatch 这一具体科学任务，虽然 workflow 形状耐用，但跨更多物理诊断问题的通用性还需要后续工作证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的强点在于，它不是把 AI 用作又一个 property predictor，而是把材料科学里一个很常见但长期依赖专家手工分析的 diagnosis loop 自动化了：为什么 DFT 预测金属而实验看到半导体。</p><p>XDFT 通过显式假设目录、对应 first-principles tests 和全局 Bayesian posterior 更新，把单个 case 的排错过程变成了一个会随经验累积而进化的 agentic workflow。这样输出的不只是答案，还有 corrected protocol 和 mechanistic attribution。</p><p>它值得正式收录，因为这代表一种很有价值的 AI-for-science pattern：围绕 mechanistic mismatch diagnosis 的 closed-loop hypothesis-test-update system。对材料、计算物理、以及更广的 simulation-versus-experiment discrepancy analysis 都有外溢。</p><p>它没有更高，是因为当前问题定义仍聚焦在 band-gap mismatch 这一具体科学任务，虽然 workflow 形状耐用，但跨更多物理诊断问题的通用性还需要后续工作证明。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标准密度泛函理论（DFT）通常会错误地分类关联和结构复杂化合物的电子基态，预测实验报告为半导体的材料具有金属性行为。每一个这样的不匹配都编码了一个特定的非理想性——磁有序、电子关联、替代多晶型、缺陷——这些都被计算排除在外，但大规模提取这种信号仍然是一项手动工作。在此，我们引入XDFT，一个闭环代理，它能自动诊断不匹配：它从一个精心策划的目录中提取候选假设，执行相应的第一性原理测试，并根据每个判断更新关于假设有用性的全局贝叶斯后验。在一个包含124种材料的已验证基准测试中，XDFT在90个不匹配案例中识别出70个（78%）的解决机制，比均匀随机基线（19%）和静态LLM排序（20%）高出一个数量级。内部后验与基准测试时间线上的经验性能一致，已解决的案例归结为一个三方元素类别分类法，我们将其提炼成一个四行静态规则。每个诊断出的材料都会返回一个修正的协议和机械归因；失败的案例则被标记为有证据支持的实验重新检查目标。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Standard density functional theory (DFT) routinely misclassifies the electronic ground state of correlated and structurally complex compounds, predicting metallic behaviour for materials that experiments report as semiconductors. Each such mismatch encodes a specific non-ideality — magnetic ordering, electron correlation, an alternative polymorph, a defect — that the calculation excluded, but extracting that signal at scale has remained a manual exercise. Here we introduce XDFT, a closed-loop agent that diagnoses the mismatch automatically: it draws candidate hypotheses from a curated catalogue, executes the corresponding first-principles tests, and updates a global Bayesian posterior over hypothesis usefulness from each verdict. On a verified benchmark of 124 materials, XDFT identifies a resolving mechanism for 70 of 90 mismatch cases (78%), an order of magnitude above a uniform-random baseline (19%) and a static LLM ordering (20%). The internal posterior aligns with empirical performance over the benchmark timeline, and resolved cases collapse into a tri-partite element-class taxonomy that we distil into a four-line static rule. Each diagnosed material is returned with a corrected protocol and a mechanistic attribution; failed cases are flagged as evidence-backed targets for experimental re-examination.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260429c30xdftban,
+  title = {A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.26703.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c30-xdft-bandgap-mismatch-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch. https://arxiv.org/pdf/2604.26703.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+            <a class="related-item" href="../../papers/p27-sign-ultra-large-dynamics/">
+              <span>Predicting Dynamics of Ultra-Large Complex Systems by Inferring Governing Equations</span>
+              <small>物理与 AI for Science · 2026-04-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.26703.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

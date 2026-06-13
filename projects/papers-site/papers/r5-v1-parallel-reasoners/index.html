@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners | DAST Papers</title>
+    <meta name="description" content="这篇论文关注 test-time scaling 中一个核心问题：生成很多候选答案之后，模型应该如何更可靠地挑出最好的答案。作者认为传统的 pointwise 打分方式能力有限，因此提出把“生成”和“自验证”统一到一个 pairwise 框架中。
+
+方法上，论文提出 `V1-Infer` 和 `V1-PairRL`。前者在推理时利用不确定性做 tournament ranking，动态分配验证算力" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r5-v1-parallel-reasoners/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners" />
+    <meta property="og:description" content="这篇论文关注 test-time scaling 中一个核心问题：生成很多候选答案之后，模型应该如何更可靠地挑出最好的答案。作者认为传统的 pointwise 打分方式能力有限，因此提出把“生成”和“自验证”统一到一个 pairwise 框架中。
+
+方法上，论文提出 `V1-Infer` 和 `V1-PairRL`。前者在推理时利用不确定性做 tournament ranking，动态分配验证算力" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r5-v1-parallel-reasoners/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners" />
+    <meta name="twitter:description" content="这篇论文关注 test-time scaling 中一个核心问题：生成很多候选答案之后，模型应该如何更可靠地挑出最好的答案。作者认为传统的 pointwise 打分方式能力有限，因此提出把“生成”和“自验证”统一到一个 pairwise 框架中。
+
+方法上，论文提出 `V1-Infer` 和 `V1-PairRL`。前者在推理时利用不确定性做 tournament ranking，动态分配验证算力" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.04304" target="_blank" rel="noopener noreferrer">2603.04304</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注 test-time scaling 中一个核心问题：生成很多候选答案之后，模型应该如何更可靠地挑出最好的答案。作者认为传统的 pointwise 打分方式能力有限，因此提出把“生成”和“自验证”统一到一个 pairwise 框架中。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出 `V1-Infer` 和 `V1-PairRL`。前者在推理时利用不确定性做 tournament ranking，动态分配验证算力；后者在训练时让模型同时学习候选生成和成对比较式的自验证。这样做的核心好处是，验证器不再只给每个答案一个孤立分数，而是直接学习两个候选之间谁更好。</dd></div><div><dt>结果/证据</dt><dd>价值在于它把推理增强里的“后验筛选”问题做成了更完整的方法体系，并给出了不错的数学与代码基准结果。它适合放在推理 / self-verification / test-time scaling 子方向中，属于值得收录的强方法论文，但还不到范式级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注 test-time scaling 中一个核心问题：生成很多候选答案之后，模型应该如何更可靠地挑出最好的答案。作者认为传统的 pointwise 打分方式能力有限，因此提出把“生成”和“自验证”统一到一个 pairwise 框架中。</p><p>方法上，论文提出 `V1-Infer` 和 `V1-PairRL`。前者在推理时利用不确定性做 tournament ranking，动态分配验证算力；后者在训练时让模型同时学习候选生成和成对比较式的自验证。这样做的核心好处是，验证器不再只给每个答案一个孤立分数，而是直接学习两个候选之间谁更好。</p><p>价值在于它把推理增强里的“后验筛选”问题做成了更完整的方法体系，并给出了不错的数学与代码基准结果。它适合放在推理 / self-verification / test-time scaling 子方向中，属于值得收录的强方法论文，但还不到范式级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>$V_1$: 统一生成与自验证以实现并行推理器。针对复杂推理任务的测试时扩展表明，通过独立采样和聚合多个解决方案等方法利用推理时计算，可以显著改善任务结果。然而，一个关键瓶颈是验证：只有当能够从候选方案中可靠地识别出正确解决方案时，采样才有效。尽管现有方法通常通过标量评分独立评估候选方案，但我们证明模型在成对自验证方面表现出显著更强的能力。借鉴这一洞察，我们引入了V1，这是一个通过高效成对排序统一生成和验证的框架。V1包含两个组件：V1-Infer，一种不确定性引导算法，它使用基于锦标赛的排序，动态地将自验证计算分配给相对正确性最不确定的候选对；以及V1-PairRL，一个RL框架，它将单个模型联合训练为生成器和成对自验证器，确保验证器适应生成器不断演变的分布。在代码生成（LiveCodeBench, CodeContests, SWE-Bench）和数学推理（AIME, HMMT）基准测试中，V1-Infer将Pass@1比逐点验证提高了高达10%，并且优于最近的测试时扩展方法，同时效率显著更高。此外，V1-PairRL在标准RL和逐点联合训练的基础上实现了7-9%的测试时扩展增益，并在代码生成设置中将基础Pass@1比标准RL提高了高达8.7%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Test-time scaling for complex reasoning tasks shows that leveraging inference-time compute, by methods such as independently sampling and aggregating multiple solutions, results in significantly better task outcomes. However, a critical bottleneck is verification: sampling is only effective if correct solutions can be reliably identified among candidates. While existing approaches typically evaluate candidates independently via scalar scoring, we demonstrate that models are substantially stronger at pairwise self-verification. Leveraging this insight, we introduce V1 , a framework that unifies generation and verification through efficient pairwise ranking. V1 comprises two components: V1 -Infer, an uncertainty-guided algorithm using a tournament-based ranking that dynamically allocates self-verification compute to candidate pairs whose relative correctness is most uncertain; and V1 -PairRL, an RL framework that jointly trains a single model as both generator and pairwise self-verifier, ensuring the verifier adapts to the generator’s evolving distribution. On code generation (LiveCodeBench, CodeContests, SWE-Bench) and math reasoning (AIME, HMMT) benchmarks, V1 -Infer improves Pass@1 by up to 10% over pointwise verification and outperforms recent test-time scaling methods while being significantly more efficient. Furthermore, V1 -PairRL achieves 7–9% test-time scaling gains over standard RL and pointwise joint training, and improves base Pass@1 by up to 8.7% over standard RL in a code-generation setting.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260304r5v1parall,
+  title = {$V_1$: Unifying Generation and Self-Verification for Parallel Reasoners},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.04304.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r5-v1-parallel-reasoners/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). $V_1$: Unifying Generation and Self-Verification for Parallel Reasoners. https://arxiv.org/pdf/2603.04304.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.04304.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

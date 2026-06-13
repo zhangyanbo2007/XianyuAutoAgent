@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文处理长运行 agent 的系统边界问题：chat loop + tool registry 不足以表达身份、权限、暂停恢复、子进程、人类审批和审计。
+
+Agent libOS 把 agent 建模为 AgentProcess，提供 process identity、parent-child lineage、typed Object Memory、capabilities、tool tabl" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a363-agent-libos-runtime/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents" />
+    <meta property="og:description" content="这篇论文处理长运行 agent 的系统边界问题：chat loop + tool registry 不足以表达身份、权限、暂停恢复、子进程、人类审批和审计。
+
+Agent libOS 把 agent 建模为 AgentProcess，提供 process identity、parent-child lineage、typed Object Memory、capabilities、tool tabl" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a363-agent-libos-runtime/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents" />
+    <meta name="twitter:description" content="这篇论文处理长运行 agent 的系统边界问题：chat loop + tool registry 不足以表达身份、权限、暂停恢复、子进程、人类审批和审计。
+
+Agent libOS 把 agent 建模为 AgentProcess，提供 process identity、parent-child lineage、typed Object Memory、capabilities、tool tabl" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents</h1>
+          <p class="subtitle">Agent Systems And Execution · 发表：2026-06-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">Agent Systems And Execution</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.03895" target="_blank" rel="noopener noreferrer">2606.03895</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理长运行 agent 的系统边界问题：chat loop + tool registry 不足以表达身份、权限、暂停恢复、子进程、人类审批和审计。</dd></div><div><dt>方法/机制</dt><dd>Agent libOS 把 agent 建模为 AgentProcess，提供 process identity、parent-child lineage、typed Object Memory、capabilities、tool tables、human queues、checkpoints、events 和 audit records。</dd></div><div><dt>结果/证据</dt><dd>它的核心设计规则是 tools are libc-like wrappers; runtime primitives are the authority boundary，即模型可见工具不等于资源权限，文件、对象、人类审批、shell 和 JIT tool registration 都在 runtime primitive 层做 capability check。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它不是普通 agent benchmark，而是给 computer-use / coding / long-running agents 提供可复用运行时、权限和审计原语；局限是当前评估偏系统属性和原型测试，缺少真实任务吞吐、成本和红队部署评测。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理长运行 agent 的系统边界问题：chat loop + tool registry 不足以表达身份、权限、暂停恢复、子进程、人类审批和审计。</p><p>Agent libOS 把 agent 建模为 AgentProcess，提供 process identity、parent-child lineage、typed Object Memory、capabilities、tool tables、human queues、checkpoints、events 和 audit records。</p><p>它的核心设计规则是 tools are libc-like wrappers; runtime primitives are the authority boundary，即模型可见工具不等于资源权限，文件、对象、人类审批、shell 和 JIT tool registration 都在 runtime primitive 层做 capability check。</p><p>它值得收录，因为它不是普通 agent benchmark，而是给 computer-use / coding / long-running agents 提供可复用运行时、权限和审计原语；局限是当前评估偏系统属性和原型测试，缺少真实任务吞吐、成本和红队部署评测。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Agent libOS：一种受库操作系统启发的运行时，用于长时间运行、能力受控的LLM智能体。大型语言模型（LLM）智能体正在从请求-响应助手演变为长时间运行的软件执行者：它们在模型调用之间维护状态，分叉子任务，等待外部事件，请求人工授权，生成工具，并执行必须恢复和审计的副作用。现有框架通常将这些行为实现为聊天循环加上面向模型的工具注册表。这种抽象很方便，但它常常将行动可见性与资源权限混为一谈：模型可见的工具模式可能由直接接触主机文件系统、终端、网络、shell或凭据的封装器支持。本文提出了Agent libOS，一种受库操作系统启发的LLM智能体运行时基底。Agent libOS运行在传统主机操作系统之上；它不实现硬件驱动程序、内核模式隔离或POSIX兼容操作系统。相反，它将智能体视为一个AgentProcess：一个可调度的执行主体，具有进程身份、父子血缘、生命周期状态、从AgentImage派生的工具表、类型化的Object Memory、显式能力、人工队列、检查点、事件和审计记录。其核心设计原则是工具是类libc封装器；运行时原语是权限边界。文件系统访问、对象访问、休眠、人工批准、JIT工具注册和外部副作用在原语边界处根据显式能力和策略进行检查。我们描述了其设计、威胁模型、Python原型和面向安全的评估。当前原型实现了异步调度、命名空间本地的Object Memory、运行时集成的人工批准、一次性权限授予、每个进程的工作目录、shell和镜像注册原语、通过libOS系统调用代理的Deno/TypeScript JIT工具、文件系统/对象桥接工具、可注入的Resource Provider Substrate、确定性演示、真实模型冒烟脚本，以及截至撰写时的123个回归测试。Agent libOS并非旨在提高规划器准确性，而是展示了一种运行时基底，其中长时间运行的LLM智能体可以在不将工具分派视为信任边界的情况下进行调度、授权、恢复和审计。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM) agents are evolving from request-response assistants into long-running software actors: they maintain state across model calls, fork subtasks, wait for external events, request human authority, generate tools, and perform side effects that must be resumed and audited. Existing frameworks typically implement these behaviors as a chat loop plus a model-facing tool registry. This abstraction is convenient, but it often conflates action visibility with resource authority: a tool schema visible to the model may be backed by a wrapper that directly touches the host filesystem, terminal, network, shell, or credentials. This paper presents Agent libOS, a library-OS-inspired runtime substrate for LLM agents. Agent libOS runs above a conventional host operating system; it does not implement hardware drivers, kernel-mode isolation, or a POSIX-compatible operating system. Instead, it treats an agent as an AgentProcess: a schedulable execution subject with process identity, parent-child lineage, lifecycle state, a tool table derived from an AgentImage, typed Object Memory, explicit capabilities, human queues, checkpoints, events, and audit records. Its central design rule is tools are libc-like wrappers; runtime primitives are the authority boundary. Filesystem access, object access, sleeps, human approval, JIT tool registration, and external side effects are checked at primitive boundaries under explicit capabilities and policy. We describe the design, threat model, Python prototype, and safety-oriented evaluation. The current prototype implements async scheduling, namespace-local Object Memory, runtime-integrated human approval, one-shot permission grants, per-process working directories, shell and image-registration primitives, Deno/TypeScript JIT tools over a libOS syscall broker, filesystem/object bridge tools, an injectable Resource Provider Substrate, deterministic demos, real-model smoke scripts, and 123 regression tests at the time of writing. Rather than improving planner accuracy, Agent libOS demonstrates a runtime substrate in which long-running LLM agents can be scheduled, authorized, resumed, and audited without treating tool dispatch as the trust boundary.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260602a363agentl,
+  title = {Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.03895.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a363-agent-libos-runtime/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents. https://arxiv.org/pdf/2606.03895.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a362-mmg2skill-guide-to-skill/">
+              <span>MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?</span>
+              <small>Agent Systems And Execution · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a361-deepresearch-error-localization/">
+              <span>Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories</span>
+              <small>Agent Systems And Execution · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.03895.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.03895" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

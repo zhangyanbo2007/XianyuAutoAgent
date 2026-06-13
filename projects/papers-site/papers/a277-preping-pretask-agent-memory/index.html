@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Preping: Building Agent Memory without Tasks | DAST Papers</title>
+    <meta name="description" content="Preping 研究 pre-task memory construction：agent 在看到目标任务之前，仅凭环境文档和可执行工具，通过自生成练习构建 procedural memory。
+
+系统引入 proposer memory 作为控制状态，由 Proposer 生成 synthetic tasks，Solver 执行，Validator 决定哪些轨迹可写入 memory 并反馈下一轮" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a277-preping-pretask-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Preping: Building Agent Memory without Tasks" />
+    <meta property="og:description" content="Preping 研究 pre-task memory construction：agent 在看到目标任务之前，仅凭环境文档和可执行工具，通过自生成练习构建 procedural memory。
+
+系统引入 proposer memory 作为控制状态，由 Proposer 生成 synthetic tasks，Solver 执行，Validator 决定哪些轨迹可写入 memory 并反馈下一轮" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a277-preping-pretask-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Preping: Building Agent Memory without Tasks" />
+    <meta name="twitter:description" content="Preping 研究 pre-task memory construction：agent 在看到目标任务之前，仅凭环境文档和可执行工具，通过自生成练习构建 procedural memory。
+
+系统引入 proposer memory 作为控制状态，由 Proposer 生成 synthetic tasks，Solver 执行，Validator 决定哪些轨迹可写入 memory 并反馈下一轮" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Preping: Building Agent Memory without Tasks</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.13880" target="_blank" rel="noopener noreferrer">2605.13880</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Preping 研究 pre-task memory construction：agent 在看到目标任务之前，仅凭环境文档和可执行工具，通过自生成练习构建 procedural memory。</dd></div><div><dt>方法/机制</dt><dd>系统引入 proposer memory 作为控制状态，由 Proposer 生成 synthetic tasks，Solver 执行，Validator 决定哪些轨迹可写入 memory 并反馈下一轮 proposal，避免练习冗余、不可行和低信息量。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 agent memory 从事后日志总结推进到部署前自练习和选择性记忆构建，对 MCP/tool agents 的冷启动有直接工程价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为生成练习的覆盖性和 Validator 可靠性仍依赖环境类型；复杂真实任务分布下的负迁移需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Preping 研究 pre-task memory construction：agent 在看到目标任务之前，仅凭环境文档和可执行工具，通过自生成练习构建 procedural memory。</p><p>系统引入 proposer memory 作为控制状态，由 Proposer 生成 synthetic tasks，Solver 执行，Validator 决定哪些轨迹可写入 memory 并反馈下一轮 proposal，避免练习冗余、不可行和低信息量。</p><p>它值得正式收录，因为它把 agent memory 从事后日志总结推进到部署前自练习和选择性记忆构建，对 MCP/tool agents 的冷启动有直接工程价值。</p><p>它没有更高，是因为生成练习的覆盖性和 Validator 可靠性仍依赖环境类型；复杂真实任务分布下的负迁移需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>代理记忆通常通过离线从精选演示或在线从部署后交互构建。然而，无论如何构建，当代理首次被引入一个没有任何任务特定经验的新环境时，都会面临冷启动差距。在本文中，我们研究了任务前记忆构建：代理是否可以在观察任何目标环境任务之前，仅使用自生成的合成练习来构建程序性记忆。然而，仅凭合成交互是不够的，因为如果不控制练习什么和存储什么，合成任务会变得冗余、不可行，最终信息量不足，记忆也会因未过滤的轨迹而迅速退化。为了克服这一点，我们提出了Preping，一个由提议者引导的记忆构建框架。其核心是提议者记忆，一种结构化的控制状态，用于塑造未来的练习。提议者（Proposer）根据此状态生成合成任务，求解器（Solver）执行这些任务，验证器（Validator）确定哪些轨迹有资格插入记忆，同时提供反馈以指导未来的提议。在AppWorld、BFCL v3和MCP-Universe上的实验表明，Preping显著优于无记忆基线，并达到了与基于剧本的强大方法（通过离线或在线经验构建）相当的性能，其部署成本在AppWorld上比在线记忆构建低2.99倍，在BFCL v3上低2.23倍。进一步的分析表明，主要益处并非来自合成数据量本身，而是来自提议者方面对可行性、冗余性和覆盖范围的控制，以及选择性记忆更新的结合。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agent memory is typically constructed either offline from curated demonstrations or online from post-deployment interactions. However, regardless of how it is built, an agent faces a cold-start gap when first introduced to a new environment without any task-specific experience available. In this paper, we study pre-task memory construction: whether an agent can build procedural memory before observing any target-environment tasks, using only self-generated synthetic practice. Yet, synthetic interaction alone is insufficient, as without controlling what to practice and what to store, synthetic tasks become redundant, infeasible, and ultimately uninformative, and memory further degrades quickly due to unfiltered trajectories. To overcome this, we present P REPING, a proposer-guided memory construction framework. At its core is proposer memory, a structured control state that shapes future practice. A Proposer generates synthetic tasks conditioned on this state, a Solver executes them, and a Validator determines which trajectories are eligible for memory insertion while also providing feedback to guide future proposals. Experiments on AppWorld, BFCL v3, and MCP-Universe show that P REPING substantially improves over a no-memory baseline and achieves performance competitive with strong playbook-based methods built from offline or online experience, with deployment cost 2.99× lower on AppWorld and 2.23× lower on BFCL v3 than online memory construction. Further analyses reveal that the main benefit does not come from synthetic volume alone, but from proposer-side control over feasibility, redundancy, and coverage, combined with selective memory updates.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513a277prepin,
+  title = {Preping: Building Agent Memory without Tasks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.13880.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a277-preping-pretask-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Preping: Building Agent Memory without Tasks. https://arxiv.org/pdf/2605.13880.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.13880.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://dozi01.github.io/preping-project-page/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.13880" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

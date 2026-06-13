@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MemPO: Self-Memory Policy Optimization for Long-Horizon Agents | DAST Papers</title>
+    <meta name="description" content="长时程 agent 的一个核心瓶颈，是上下文会随着交互持续膨胀，令性能、稳定性和成本一起恶化。许多方法通过外挂 memory module 来检索历史信息，但这会把“记忆管理”放在外部组件里，模型自身并没有学会如何根据任务目标主动保留、压缩和遗忘信息。
+
+MemPO 把这件事改成 agent 自身的策略优化问题。它提出 self-memory policy optimization，让策略模型在与" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a133-mempo-self-memory-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MemPO: Self-Memory Policy Optimization for Long-Horizon Agents" />
+    <meta property="og:description" content="长时程 agent 的一个核心瓶颈，是上下文会随着交互持续膨胀，令性能、稳定性和成本一起恶化。许多方法通过外挂 memory module 来检索历史信息，但这会把“记忆管理”放在外部组件里，模型自身并没有学会如何根据任务目标主动保留、压缩和遗忘信息。
+
+MemPO 把这件事改成 agent 自身的策略优化问题。它提出 self-memory policy optimization，让策略模型在与" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a133-mempo-self-memory-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MemPO: Self-Memory Policy Optimization for Long-Horizon Agents" />
+    <meta name="twitter:description" content="长时程 agent 的一个核心瓶颈，是上下文会随着交互持续膨胀，令性能、稳定性和成本一起恶化。许多方法通过外挂 memory module 来检索历史信息，但这会把“记忆管理”放在外部组件里，模型自身并没有学会如何根据任务目标主动保留、压缩和遗忘信息。
+
+MemPO 把这件事改成 agent 自身的策略优化问题。它提出 self-memory policy optimization，让策略模型在与" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MemPO: Self-Memory Policy Optimization for Long-Horizon Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.00680" target="_blank" rel="noopener noreferrer">2603.00680</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长时程 agent 的一个核心瓶颈，是上下文会随着交互持续膨胀，令性能、稳定性和成本一起恶化。许多方法通过外挂 memory module 来检索历史信息，但这会把“记忆管理”放在外部组件里，模型自身并没有学会如何根据任务目标主动保留、压缩和遗忘信息。</dd></div><div><dt>方法/机制</dt><dd>MemPO 把这件事改成 agent 自身的策略优化问题。它提出 self-memory policy optimization，让策略模型在与环境交互时自主总结和管理记忆，并通过基于 memory effectiveness 的 credit assignment 机制，学习哪些内容值得保留、哪些内容应当压缩或放弃。结果是在显著降低 token 消耗的同时，仍然保持甚至提升任务表现。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 long-horizon agent memory 从外部检索附属件推进到 policy-level memory control。对 self-improving agents、deployment-time efficiency 和长期交互系统来说，这是一种可复用的 memory-control pattern，和单纯做更强检索器不是一回事。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要聚焦 agent memory efficiency 与 performance trade-off 这条子线，还没有像某些更强架构论文那样改写整个长期记忆范式。它是非常扎实的推进，但暂时还属于强方法级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长时程 agent 的一个核心瓶颈，是上下文会随着交互持续膨胀，令性能、稳定性和成本一起恶化。许多方法通过外挂 memory module 来检索历史信息，但这会把“记忆管理”放在外部组件里，模型自身并没有学会如何根据任务目标主动保留、压缩和遗忘信息。</p><p>MemPO 把这件事改成 agent 自身的策略优化问题。它提出 self-memory policy optimization，让策略模型在与环境交互时自主总结和管理记忆，并通过基于 memory effectiveness 的 credit assignment 机制，学习哪些内容值得保留、哪些内容应当压缩或放弃。结果是在显著降低 token 消耗的同时，仍然保持甚至提升任务表现。</p><p>这篇工作值得收录，因为它把 long-horizon agent memory 从外部检索附属件推进到 policy-level memory control。对 self-improving agents、deployment-time efficiency 和长期交互系统来说，这是一种可复用的 memory-control pattern，和单纯做更强检索器不是一回事。</p><p>它没有升到更高一级，是因为当前仍主要聚焦 agent memory efficiency 与 performance trade-off 这条子线，还没有像某些更强架构论文那样改写整个长期记忆范式。它是非常扎实的推进，但暂时还属于强方法级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>作为提示使用，然后决定下一步行动。然而，这种方法导致上下文随着每一轮交互线性增长，在处理更复杂的问题时产生更长的上下文，并带来若干挑战。首先，当前的LLMs具有相对有限的上下文窗口大小，这对外交互次数施加了明确的上限。其次，长上下文导致过高的token成本，这阻碍了代理系统在实际场景中的广泛应用。此外，过长的上下文可能导致“中间遗失”现象（Liu et al., 2023），这会降低模型的能力，从而削弱代理的整体性能。为了应对这一挑战，越来越多的研究正聚焦于代理记忆，旨在为LLMs提供历史交互记录，以减少对整个上下文的需求。目前，主流解决方案是设计一个记忆模块作为外部知识库，以维护代理的交互历史。当访问记忆模块时，基于检索增强生成技术（RAG），相关的历史信息会被检索并整合到提示中（Borgeaud et al., 2022; Gao et al., 2024; Lewis et al., 2020）。然而，离线记忆上下文压缩方法缺乏面向代理任务执行的联合优化能力，使其难以有效地与代理的总体任务目标对齐。因此，模型的记忆检索仍然是被动的，未能利用其自身能力主动选择和组织信息，而后者将有助于更有效的任务完成。为此，我们将代理交互范式形式化为自主提炼和组织历史信息，同时通过三种动作、和进行推理和工具调用。在此，长周期代理在与环境交互过程中面临上下文大小不断增长的挑战，这会降低性能和稳定性。现有方法通常引入外部记忆模块并从存储的记忆中查找相关信息，这阻碍了模型本身主动管理其记忆内容并与代理的总体任务目标对齐。为了解决这些局限性，我们提出了自记忆策略优化算法（MemPO），它使代理（策略模型）能够在与环境交互过程中自主地总结和管理其记忆。通过改进基于记忆有效性的信用分配机制，策略模型可以有选择地保留关键信息，显著减少token消耗，同时保持任务性能。广泛的实验和分析证实，MemPO相对于基础模型实现了25.98的绝对F1分数提升，相对于之前的SOTA基线实现了7.1的提升，同时将token使用量分别减少了67.58%和73.12%。代码已发布于 https://github.com/ TheNewBeeKing/MemPO</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>used as a prompt, which then determines the next course of action. However, this approach causes the context to grow linearly with each round of interaction, resulting in longer contexts when tackling more complex problems, and presenting several challenges. Firstly, current LLMs have relatively limited context window sizes, which impose an explicit upper bound on the number of interactions. Secondly, long contexts lead to excessively high token costs, which impedes the widespread adoption of agent systems in practical scenarios. Furthermore, excessively long contexts can lead to the “lost in the middle” phenomenon (Liu et al., 2023), which degrades the model’s ability, thereby reducing the overall performance of the agent. To address this challenge, a growing body of research is focusing on agent memory, with the aim of providing LLMs with historical interaction records to reduce the need for the entire context. Currently, the mainstream solution involves designing a memory module as an external knowledge database to maintain the agent’s interaction history. When the memory module is accessed, relevant historical information is retrieved and integrated into the prompt (Borgeaud et al., 2022; Gao et al., 2024; Lewis et al., 2020) based on the retrievalaugmented generation technique (RAG). However, the offline memory context compression method lacks the capacity for joint optimization oriented toward the agent task execution, making it difficult to effectively align with the agent’s overarching task objectives. As a result, the model’s memory retrieval remains passive, rather than leveraging its own capabilities to proactively select and organize information, and the latter would facilitate more effective task completion. To this end, we formalize the agent interaction paradigm as autonomously refining and organizing historical information, while simultaneously reasoning and invoking tools with three actions , , and . In this Long-horizon agents face the challenge of growing context size during interaction with environment, which degrades the performance and stability. Existing methods typically introduce the external memory module and look up the relevant information from the stored memory, which prevents the model itself from proactively managing its memory content and aligning with the agent’s overarching task objectives. To address these limitations, we propose the self-memory policy optimization algorithm (MemPO), which enables the agent (policy model) to autonomously summarize and manage their memory during interaction with environment. By improving the credit assignment mechanism based on memory effectiveness, the policy model can selectively retain crucial information, significantly reducing token consumption while preserving task performance. Extensive experiments and analyses confirm that MemPO achieves absolute F1 score gains of 25.98 over the base model and 7.1 over the previous SOTA baseline, while reducing token usage by 67.58% and 73.12%. The code is released at https://github.com/ TheNewBeeKing/MemPO</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260228a133mempos,
+  title = {MemPO: Self-Memory Policy Optimization for Long-Horizon Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.00680.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a133-mempo-self-memory-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MemPO: Self-Memory Policy Optimization for Long-Horizon Agents. https://arxiv.org/pdf/2603.00680.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.00680.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

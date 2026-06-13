@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connecting chemical and protein sequence space to predict biocatalytic reactions | DAST Papers</title>
+    <meta name="description" content="生物催化要真正进入合成路线设计，难点并不只是找到“会做这类反应的酶”，而是化学底物空间和蛋白序列空间之间长期缺乏高质量连接。这导致很多 biocatalysis 项目要靠漫长的筛酶和蛋白工程试错。
+
+这篇论文通过高通量实验先大规模补全底物-酶配对数据，再构建 CATNIP 这样能够在 chemical space 与 protein sequence space 之间双向检索与排序的模型。它不是普" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio20-catnip-biocatalysis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Connecting chemical and protein sequence space to predict biocatalytic reactions" />
+    <meta property="og:description" content="生物催化要真正进入合成路线设计，难点并不只是找到“会做这类反应的酶”，而是化学底物空间和蛋白序列空间之间长期缺乏高质量连接。这导致很多 biocatalysis 项目要靠漫长的筛酶和蛋白工程试错。
+
+这篇论文通过高通量实验先大规模补全底物-酶配对数据，再构建 CATNIP 这样能够在 chemical space 与 protein sequence space 之间双向检索与排序的模型。它不是普" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio20-catnip-biocatalysis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Connecting chemical and protein sequence space to predict biocatalytic reactions" />
+    <meta name="twitter:description" content="生物催化要真正进入合成路线设计，难点并不只是找到“会做这类反应的酶”，而是化学底物空间和蛋白序列空间之间长期缺乏高质量连接。这导致很多 biocatalysis 项目要靠漫长的筛酶和蛋白工程试错。
+
+这篇论文通过高通量实验先大规模补全底物-酶配对数据，再构建 CATNIP 这样能够在 chemical space 与 protein sequence space 之间双向检索与排序的模型。它不是普" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Connecting chemical and protein sequence space to predict biocatalytic reactions</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-10-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-02</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-025-09519-5" target="_blank" rel="noopener noreferrer">10.1038/s41586-025-09519-5</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>生物催化要真正进入合成路线设计，难点并不只是找到“会做这类反应的酶”，而是化学底物空间和蛋白序列空间之间长期缺乏高质量连接。这导致很多 biocatalysis 项目要靠漫长的筛酶和蛋白工程试错。</dd></div><div><dt>方法/机制</dt><dd>这篇论文通过高通量实验先大规模补全底物-酶配对数据，再构建 CATNIP 这样能够在 chemical space 与 protein sequence space 之间双向检索与排序的模型。它不是普通 reaction prediction，而是把酶选择和底物兼容性判断变成一个可导航的联合空间问题。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得正式收录，因为它为 AI-guided biocatalysis 建了一层非常关键的基础设施：不再只是给定底物预测反应，而是让化学路线设计者能够系统搜索“什么酶可能做成这步化学”。这对 enzyme discovery、route planning、green synthesis 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为当前验证主要集中在特定酶家族与反应体系，虽然工作流意义很强，但还没有覆盖更广泛的酶宇宙或端到端自动化实验闭环。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>生物催化要真正进入合成路线设计，难点并不只是找到“会做这类反应的酶”，而是化学底物空间和蛋白序列空间之间长期缺乏高质量连接。这导致很多 biocatalysis 项目要靠漫长的筛酶和蛋白工程试错。</p><p>这篇论文通过高通量实验先大规模补全底物-酶配对数据，再构建 CATNIP 这样能够在 chemical space 与 protein sequence space 之间双向检索与排序的模型。它不是普通 reaction prediction，而是把酶选择和底物兼容性判断变成一个可导航的联合空间问题。</p><p>这篇论文值得正式收录，因为它为 AI-guided biocatalysis 建了一层非常关键的基础设施：不再只是给定底物预测反应，而是让化学路线设计者能够系统搜索“什么酶可能做成这步化学”。这对 enzyme discovery、route planning、green synthesis 都有明显外溢。</p><p>它不是更高一级，因为当前验证主要集中在特定酶家族与反应体系，虽然工作流意义很强，但还没有覆盖更广泛的酶宇宙或端到端自动化实验闭环。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>生物催化在合成中的应用有潜力提供针对目标分子的简化路线、可调的催化剂控制选择性以及可持续性得到改善的工艺。尽管有这些优势，生物催化通常是一种高风险的实施策略，因为识别一种能够对合成所需的特定中间体进行化学反应的酶可能是一个障碍，需要通过广泛的酶筛选和蛋白质工程来克服。预测哪种酶和小分子兼容的策略一直受到缺乏充分研究的生物催化反应数据集的阻碍。化学和蛋白质序列空间之间联系的探索不足限制了在这两个领域之间的导航。在此，我们报告了一项两阶段的工作，该工作依赖于高通量实验来建立有效底物和酶对之间的联系，并随后开发了一个工具CATNIP，用于预测给定底物的兼容α-酮戊二酸 (α-KG)/Fe( ii )-依赖性酶，或者反过来，用于对给定α-酮戊二酸 (α-KG)/Fe( ii )-依赖性酶序列的潜在底物进行排序。我们预计我们的方法可以很容易地扩展到更多的酶和转化类别，并将降低生物催化方法研究和应用的风险。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The application of biocatalysis in synthesis has the potential to offer streamlined routes towards target molecules , tunable catalyst-controlled selectivity , as well as processes with improved sustainability . Despite these advantages, biocatalysis is often a high-risk strategy to implement, as identifying an enzyme capable of performing chemistry on a specific intermediate required for a synthesis can be a roadblock that requires extensive screening of enzymes and protein engineering to overcome . Strategies for predicting which enzyme and small molecule are compatible have been hindered by the lack of well-studied biocatalytic reaction datasets . The underexploration of connections between chemical and protein sequence space constrains navigation between these two landscapes. Here we report a two-phase effort relying on high-throughput experimentation to populate connections between productive substrate and enzyme pairs and the subsequent development of a tool, CATNIP, for predicting compatible α-ketoglutarate (α-KG)/Fe( ii )-dependent enzymes for a given substrate or, conversely, for ranking potential substrates for a given α-KG/Fe( ii )-dependent enzyme sequence. We anticipate that our approach can be readily expanded to further enzyme and transformation classes and will derisk the investigation and application of biocatalytic methods.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251002bio20catni,
+  title = {Connecting chemical and protein sequence space to predict biocatalytic reactions},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41586-025-09519-5},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio20-catnip-biocatalysis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Connecting chemical and protein sequence space to predict biocatalytic reactions. https://www.nature.com/articles/s41586-025-09519-5</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-025-09519-5" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

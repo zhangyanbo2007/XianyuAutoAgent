@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spreadsheet-RL: Advancing Large Language Model Agents on Realistic Spreadsheet Tasks via Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="Spreadsheet-RL 把 spreadsheet agent 从 prompt-only 操作推进到真实 Excel 环境中的多轮 RL 训练，目标是处理复杂、多步骤、接近日常工作流的数据任务。
+
+系统包含自动收集 start-goal spreadsheets 的 pipeline、Domain-Spreadsheet benchmark，以及暴露大量 Excel 功能的 Spreads" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a307-spreadsheet-rl-excel-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Spreadsheet-RL: Advancing Large Language Model Agents on Realistic Spreadsheet Tasks via Reinforcement Learning" />
+    <meta property="og:description" content="Spreadsheet-RL 把 spreadsheet agent 从 prompt-only 操作推进到真实 Excel 环境中的多轮 RL 训练，目标是处理复杂、多步骤、接近日常工作流的数据任务。
+
+系统包含自动收集 start-goal spreadsheets 的 pipeline、Domain-Spreadsheet benchmark，以及暴露大量 Excel 功能的 Spreads" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a307-spreadsheet-rl-excel-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Spreadsheet-RL: Advancing Large Language Model Agents on Realistic Spreadsheet Tasks via Reinforcement Learning" />
+    <meta name="twitter:description" content="Spreadsheet-RL 把 spreadsheet agent 从 prompt-only 操作推进到真实 Excel 环境中的多轮 RL 训练，目标是处理复杂、多步骤、接近日常工作流的数据任务。
+
+系统包含自动收集 start-goal spreadsheets 的 pipeline、Domain-Spreadsheet benchmark，以及暴露大量 Excel 功能的 Spreads" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Spreadsheet-RL: Advancing Large Language Model Agents on Realistic Spreadsheet Tasks via Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.22642" target="_blank" rel="noopener noreferrer">2605.22642</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Spreadsheet-RL 把 spreadsheet agent 从 prompt-only 操作推进到真实 Excel 环境中的多轮 RL 训练，目标是处理复杂、多步骤、接近日常工作流的数据任务。</dd></div><div><dt>方法/机制</dt><dd>系统包含自动收集 start-goal spreadsheets 的 pipeline、Domain-Spreadsheet benchmark，以及暴露大量 Excel 功能的 Spreadsheet Gym；agent 通过 Python sandbox 和工具路由规则执行任务。</dd></div><div><dt>结果/证据</dt><dd>实验显示 RL fine-tuning 能显著提升 Qwen3-4B-Thinking-2507 在 SpreadsheetBench 和 Domain-Spreadsheet 上的 Pass@1，说明专门环境训练比单纯提示更适合这类工具密集型界面任务。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为 spreadsheet 是高频现实工作界面，论文提供了环境、数据、benchmark 和训练流程，能作为 GUI/data-interface agent 的可复用工作流模板。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Spreadsheet-RL 把 spreadsheet agent 从 prompt-only 操作推进到真实 Excel 环境中的多轮 RL 训练，目标是处理复杂、多步骤、接近日常工作流的数据任务。</p><p>系统包含自动收集 start-goal spreadsheets 的 pipeline、Domain-Spreadsheet benchmark，以及暴露大量 Excel 功能的 Spreadsheet Gym；agent 通过 Python sandbox 和工具路由规则执行任务。</p><p>实验显示 RL fine-tuning 能显著提升 Qwen3-4B-Thinking-2507 在 SpreadsheetBench 和 Domain-Spreadsheet 上的 Pass@1，说明专门环境训练比单纯提示更适合这类工具密集型界面任务。</p><p>它值得正式收录，因为 spreadsheet 是高频现实工作界面，论文提供了环境、数据、benchmark 和训练流程，能作为 GUI/data-interface agent 的可复用工作流模板。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>电子表格系统（例如，Microsoft Excel、Google Sheets）在现代以数据为中心的工作流程中扮演着核心角色。随着AI智能体在自动化复杂任务（如控制计算机和生成演示文稿）方面能力日益增强，构建一个AI驱动的电子表格智能体已成为一个有前景的研究方向。大多数现有电子表格智能体依赖于对通用LLMs的专门提示；虽然这种设计在简单的电子表格操作上具有潜力，但它难以管理真实应用中典型的复杂、多步骤工作流程。在本文中，我们引入了Spreadsheet-RL，一个强化学习（RL）微调框架，旨在现实的Microsoft Excel环境中训练专门的电子表格智能体。Spreadsheet-RL具有一个自动化管道，用于从在线论坛可扩展地收集配对的起始-目标电子表格，以及在金融和供应链管理等领域进行领域特定评估任务，我们将其汇编成新的Domain-Spreadsheet基准数据集。它还包括一个专为多轮RL设计的Spreadsheet Gym环境：Spreadsheet Gym通过Python沙盒暴露了广泛的Excel功能，以及一个经过改进的工具集，该工具集包含了全面的工具和为电子表格任务精心设计的工具路由规则。通过全面的实验，我们表明Spreadsheet-RL显著提升了AI智能体在通用和领域特定电子表格任务上的性能：它将Qwen3-4B-Thinking-2507在SpreadsheetBench上的Pass@1从12.0%提高到23.4%，并将我们精选的Domain-Spreadsheet数据集上的Pass@1从8.4%提高到17.2%。这些结果突显了Spreadsheet-RL在电子表格自动化中强大的泛化潜力和实际应用前景，并广泛地展示了其在日常工作中推进基于LLM与数据接口交互的潜力。我们将发布训练数据、环境和训练管道，以促进未来对电子表格智能体的研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Spreadsheet systems (e.g., Microsoft Excel, Google Sheets) play a central role in modern data-centric workflows. As AI agents grow increasingly capable of automating complex tasks, such as controlling computers and generating presentations, building an AI-driven spreadsheet agent has emerged as a promising research direction. Most existing spreadsheet agents rely on specialized prompting over general-purpose LLMs; while this design has potentials on simple spreadsheet operations, it struggles to manage the complex, multi-step workflows typical of real-world applications. In this paper, we introduce Spreadsheet-RL, a reinforcement learning (RL) finetuning framework designed to train specialized spreadsheet agents within a realistic Microsoft Excel environment. Spreadsheet-RL features an automated pipeline for scalable collection of paired start-goal spreadsheets from online forums, as well as domain-specific evaluation tasks in areas such as finance and supply chain management, which we compile into the new Domain-Spreadsheet benchmark dataset. It also includes a Spreadsheet Gym environment designed for multi-turn RL: Spreadsheet Gym exposes extensive Excel functionality through a Python sandbox, along with a refined harness that incorporates a comprehensive tool set and carefully designed tool-routing rules for spreadsheet tasks. Through comprehensive experiments, we show that Spreadsheet-RL substantially enhances AI agent’s performance on both general and domain-specific spreadsheet tasks: it improves Qwen3-4B-Thinking-2507’s Pass@1 on SpreadsheetBench from 12.0% to 23.4%, and raises Pass@1 from 8.4% to 17.2% on our curated Domain-Spreadsheet dataset. These results highlight Spreadsheet-RL’s strong potential for generalization and real-world adoption in spreadsheet automation, and broadly, its promise for advancing LLM-based interactions with data interfaces in everyday work. We will release the training data, environment, and training pipeline to facilitate future research on spreadsheet agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521a307spread,
+  title = {Spreadsheet-RL: Advancing Large Language Model Agents on Realistic Spreadsheet Tasks via Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.22642.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a307-spreadsheet-rl-excel-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Spreadsheet-RL: Advancing Large Language Model Agents on Realistic Spreadsheet Tasks via Reinforcement Learning. https://arxiv.org/pdf/2605.22642.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.22642.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://spreadsheet-rl.github.io/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.22642" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/Spreadsheet-RL/Spreadsheet-RL" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

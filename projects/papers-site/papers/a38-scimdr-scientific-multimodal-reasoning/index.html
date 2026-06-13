@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SciMDR: Benchmarking and Advancing Scientific Multimodal Document Reasoning | DAST Papers</title>
+    <meta name="description" content="科学文档推理一直存在一个老问题：如果只做小而精的人工 benchmark，真实性和可解释性强，但规模不够；如果做大规模合成数据，规模上来了，又很容易失真，尤其在跨图表、公式、正文、多页上下文联合推理时，模型学到的往往不是科学文档理解本身，而是数据构造偏差。SciMDR 试图直接解决这个数据构建层面的张力。
+
+作者提出 synthesize-and-reground 两阶段流程：先在局部片段上生成 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a38-scimdr-scientific-multimodal-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SciMDR: Benchmarking and Advancing Scientific Multimodal Document Reasoning" />
+    <meta property="og:description" content="科学文档推理一直存在一个老问题：如果只做小而精的人工 benchmark，真实性和可解释性强，但规模不够；如果做大规模合成数据，规模上来了，又很容易失真，尤其在跨图表、公式、正文、多页上下文联合推理时，模型学到的往往不是科学文档理解本身，而是数据构造偏差。SciMDR 试图直接解决这个数据构建层面的张力。
+
+作者提出 synthesize-and-reground 两阶段流程：先在局部片段上生成 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a38-scimdr-scientific-multimodal-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SciMDR: Benchmarking and Advancing Scientific Multimodal Document Reasoning" />
+    <meta name="twitter:description" content="科学文档推理一直存在一个老问题：如果只做小而精的人工 benchmark，真实性和可解释性强，但规模不够；如果做大规模合成数据，规模上来了，又很容易失真，尤其在跨图表、公式、正文、多页上下文联合推理时，模型学到的往往不是科学文档理解本身，而是数据构造偏差。SciMDR 试图直接解决这个数据构建层面的张力。
+
+作者提出 synthesize-and-reground 两阶段流程：先在局部片段上生成 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SciMDR: Benchmarking and Advancing Scientific Multimodal Document Reasoning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.12249" target="_blank" rel="noopener noreferrer">2603.12249</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>科学文档推理一直存在一个老问题：如果只做小而精的人工 benchmark，真实性和可解释性强，但规模不够；如果做大规模合成数据，规模上来了，又很容易失真，尤其在跨图表、公式、正文、多页上下文联合推理时，模型学到的往往不是科学文档理解本身，而是数据构造偏差。SciMDR 试图直接解决这个数据构建层面的张力。</dd></div><div><dt>方法/机制</dt><dd>作者提出 synthesize-and-reground 两阶段流程：先在局部片段上生成 claim-centric 的问答与推理链，再把这些问答程序化地回嵌到整篇文档任务中，以保留真实文档级复杂性。基于这个流程，论文构建了包含 20K scientific papers、300K QA pairs 的训练集 SciMDR，以及一个专家标注的 SciMDR-Eval。它的核心贡献不是单个模型，而是把科学多模态文档推理的数据生成与评测流程做成了一个可复用框架。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为仓库明确重视会改变后续优化目标的 benchmark 和 evaluation framework。科学多模态文档推理本身就是一个会长期增长的方向，既连接 AI for science，也连接多模态 reasoning 与 agentic scientific workflows。只要社区采用，这类 benchmark 很可能成为后续模型训练和评测的重要基线。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，主要因为当前仍是 arXiv 阶段，而且 benchmark 是否真正站住脚，还取决于社区采用、数据质量复核以及它对更广泛 scientific QA / multimodal reasoning 任务的持续影响。现阶段更准确的定位是一篇高价值 benchmark 论文，而不是已经定型的范式级成果。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>科学文档推理一直存在一个老问题：如果只做小而精的人工 benchmark，真实性和可解释性强，但规模不够；如果做大规模合成数据，规模上来了，又很容易失真，尤其在跨图表、公式、正文、多页上下文联合推理时，模型学到的往往不是科学文档理解本身，而是数据构造偏差。SciMDR 试图直接解决这个数据构建层面的张力。</p><p>作者提出 synthesize-and-reground 两阶段流程：先在局部片段上生成 claim-centric 的问答与推理链，再把这些问答程序化地回嵌到整篇文档任务中，以保留真实文档级复杂性。基于这个流程，论文构建了包含 20K scientific papers、300K QA pairs 的训练集 SciMDR，以及一个专家标注的 SciMDR-Eval。它的核心贡献不是单个模型，而是把科学多模态文档推理的数据生成与评测流程做成了一个可复用框架。</p><p>这项工作值得收录，因为仓库明确重视会改变后续优化目标的 benchmark 和 evaluation framework。科学多模态文档推理本身就是一个会长期增长的方向，既连接 AI for science，也连接多模态 reasoning 与 agentic scientific workflows。只要社区采用，这类 benchmark 很可能成为后续模型训练和评测的重要基线。</p><p>它还不到更高一级，主要因为当前仍是 arXiv 阶段，而且 benchmark 是否真正站住脚，还取决于社区采用、数据质量复核以及它对更广泛 scientific QA / multimodal reasoning 任务的持续影响。现阶段更准确的定位是一篇高价值 benchmark 论文，而不是已经定型的范式级成果。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>构建用于基础模型训练的科学多模态文档推理数据集，涉及规模、忠实性和真实性之间的固有权衡。为应对这一挑战，我们引入了“合成-重定位”框架，这是一个两阶段的流程，包括：(1) 以主张为中心的问答合成，它在聚焦片段上生成忠实、独立的问答对和推理；以及 (2) 文档级重定位，它以编程方式将这些问答对重新嵌入到完整文档任务中，以确保真实的复杂性。利用该框架，我们构建了 SCI MDR，一个用于跨模态理解的大规模训练数据集，包含来自 20K 篇科学论文的 300K 个问答对，并附有明确的推理链。我们进一步构建了 SCI MDR-Eval，一个由专家标注的基准，用于评估全长科学工作流程中的多模态理解能力。实验表明，在 SCI MDR 上微调的模型在多个科学问答基准上取得了显著改进，尤其是在那些需要复杂文档级推理的任务中。SCI MDR 简化上下文生成 幻觉是一种感官体验，看到、听到、闻到、尝到或感觉到不存在但似乎真实的事物，通常由精神健康状况如精神分裂症、神经系统问题、物质引起</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Constructing scientific multimodal document reasoning datasets for foundation model training involves an inherent trade-off among scale, faithfulness, and realism. To address this challenge, we introduce the synthesize-and-reground framework, a two-stage pipeline comprising: (1) Claim-Centric QA Synthesis, which generates faithful, isolated QA pairs and reasoning on focused segments, and (2) Document-Scale Regrounding, which programmatically re-embeds these pairs into full-document tasks to ensure realistic complexity. Using this framework, we construct S CI MDR, a large-scale training dataset for cross-modal comprehension, comprising 300K QA pairs with explicit reasoning chains across 20K scientific papers. We further construct S CI MDR-Eval, an expert-annotated benchmark to evaluate multimodal comprehension within full-length scientific workflows. Experiments demonstrate that models fine-tuned on S CI MDR achieve significant improvements across multiple scientific QA benchmarks, particularly in those tasks requiring complex document-level reasoning. S CI MDR SIMPLIFIED CONTEXT GENERATION Hallucinations are sensory experience seeing, hearing, smelling, tasting, or feeling things that aren&#x27;t there, that seem real, often caused by mental health conditions like schizophrenia, neurological issues, substance</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260312a38scimdrs,
+  title = {SciMDR: Benchmarking and Advancing Scientific Multimodal Document Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.12249v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a38-scimdr-scientific-multimodal-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SciMDR: Benchmarking and Advancing Scientific Multimodal Document Reasoning. https://arxiv.org/pdf/2603.12249v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.12249v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

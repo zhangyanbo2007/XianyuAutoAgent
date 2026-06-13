@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebXSkill: Skill Learning for Autonomous Web Agents | DAST Papers</title>
+    <meta name="description" content="WebXSkill 解决 Web agent 的长期痛点：已经完成过的流程不能稳定复用。它指出现有 skill 表示存在 grounding gap，纯文本技能无法执行，纯代码技能又不利于 agent 理解、恢复和泛化。
+
+方法把一个 skill 表示成参数化 action program 加逐步自然语言说明，兼顾可执行性和可解释性。系统包含 skill extraction、URL graph " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a219-webxskill-web-agent-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WebXSkill: Skill Learning for Autonomous Web Agents" />
+    <meta property="og:description" content="WebXSkill 解决 Web agent 的长期痛点：已经完成过的流程不能稳定复用。它指出现有 skill 表示存在 grounding gap，纯文本技能无法执行，纯代码技能又不利于 agent 理解、恢复和泛化。
+
+方法把一个 skill 表示成参数化 action program 加逐步自然语言说明，兼顾可执行性和可解释性。系统包含 skill extraction、URL graph " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a219-webxskill-web-agent-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WebXSkill: Skill Learning for Autonomous Web Agents" />
+    <meta name="twitter:description" content="WebXSkill 解决 Web agent 的长期痛点：已经完成过的流程不能稳定复用。它指出现有 skill 表示存在 grounding gap，纯文本技能无法执行，纯代码技能又不利于 agent 理解、恢复和泛化。
+
+方法把一个 skill 表示成参数化 action program 加逐步自然语言说明，兼顾可执行性和可解释性。系统包含 skill extraction、URL graph " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WebXSkill: Skill Learning for Autonomous Web Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.13318" target="_blank" rel="noopener noreferrer">2604.13318</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>WebXSkill 解决 Web agent 的长期痛点：已经完成过的流程不能稳定复用。它指出现有 skill 表示存在 grounding gap，纯文本技能无法执行，纯代码技能又不利于 agent 理解、恢复和泛化。</dd></div><div><dt>方法/机制</dt><dd>方法把一个 skill 表示成参数化 action program 加逐步自然语言说明，兼顾可执行性和可解释性。系统包含 skill extraction、URL graph 组织、retrieval，以及 grounded / guided 两种部署模式：强模型可以直接把技能当工具调用，弱模型可以按说明执行并保留局部自主性。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它给 agent capability extension 提供了具体、工程可落地的技能接口，而不是抽象记忆或普通 prompt reuse。跨 WebArena/WebVoyager 的迁移结果说明它有可能成为 Web agent 长程操作的可复用能力层。</dd></div><div><dt>收录价值</dt><dd>主要限制是技能来自 synthetic trajectories，真实网页变化、权限边界、支付/账号等高风险操作还没有充分覆盖；此外 skill graph 的维护、冲突解决和安全审计仍需要更成熟机制。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>WebXSkill 解决 Web agent 的长期痛点：已经完成过的流程不能稳定复用。它指出现有 skill 表示存在 grounding gap，纯文本技能无法执行，纯代码技能又不利于 agent 理解、恢复和泛化。</p><p>方法把一个 skill 表示成参数化 action program 加逐步自然语言说明，兼顾可执行性和可解释性。系统包含 skill extraction、URL graph 组织、retrieval，以及 grounded / guided 两种部署模式：强模型可以直接把技能当工具调用，弱模型可以按说明执行并保留局部自主性。</p><p>收录价值在于它给 agent capability extension 提供了具体、工程可落地的技能接口，而不是抽象记忆或普通 prompt reuse。跨 WebArena/WebVoyager 的迁移结果说明它有可能成为 Web agent 长程操作的可复用能力层。</p><p>主要限制是技能来自 synthetic trajectories，真实网页变化、权限边界、支付/账号等高风险操作还没有充分覆盖；此外 skill graph 的维护、冲突解决和安全审计仍需要更成熟机制。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>由大型语言模型（LLMs）驱动的自主网络代理在完成复杂的浏览器任务方面展现出潜力，但它们在长周期工作流方面仍面临挑战。一个关键瓶颈在于现有技能表述中的基础差距：基于文本的工作流技能提供自然语言指导但无法直接执行，而基于代码的技能可执行但对代理不透明，无法提供用于错误恢复或适应的步骤级理解。我们引入了W EB XS KILL，一个通过可执行技能弥合这一差距的框架，每个技能都将参数化动作程序与步骤级自然语言指导配对，从而实现直接执行和代理驱动的适应。W EB XS KILL分三个阶段运行：技能提取从现有的合成代理轨迹中挖掘可重用的动作子序列，并将其抽象为参数化技能；技能组织将技能索引到基于URL的图中以进行上下文感知检索；技能部署则提供两种互补模式：基础模式用于全自动多步执行，以及指导模式，其中技能作为代理通过其原生规划遵循的逐步指令。在WebArena和WebVoyager上，W EB XS KILL的任务成功率分别比基线提高了9.8和12.9个百分点，证明了可执行技能对网络代理的有效性。代码已在https://github.com/aiming-lab/WebXSkill公开。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autonomous web agents powered by large language models (LLMs) have shown promise in completing complex browser tasks, yet they still struggle with long-horizon workflows. A key bottleneck is the grounding gap in existing skill formulations: textual workflow skills provide natural language guidance but cannot be directly executed, while code-based skills are executable but opaque to the agent, offering no step-level understanding for error recovery or adaptation. We introduce W EB XS KILL, a framework that bridges this gap with executable skills, each pairing a parameterized action program with step-level natural language guidance, enabling both direct execution and agent-driven adaptation. W EB XS KILL operates in three stages: skill extraction mines reusable action subsequences from readily available synthetic agent trajectories and abstracts them into parameterized skills, skill organization indexes skills into a URL-based graph for contextaware retrieval, and skill deployment exposes two complementary modes, grounded mode for fully automated multi-step execution and guided mode where skills serve as step-by-step instructions that the agent follows with its native planning. On WebArena and WebVoyager, W EB XS KILL improves task success rate by up to 9.8 and 12.9 points over the baseline, respectively, demonstrating the effectiveness of executable skills for web agents. The code is publicly available at https://github.com/aiming-lab/WebXSkill.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414a219webxsk,
+  title = {WebXSkill: Skill Learning for Autonomous Web Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.13318.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a219-webxskill-web-agent-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WebXSkill: Skill Learning for Autonomous Web Agents. https://arxiv.org/pdf/2604.13318.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.13318.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/aiming-lab/WebXSkill" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

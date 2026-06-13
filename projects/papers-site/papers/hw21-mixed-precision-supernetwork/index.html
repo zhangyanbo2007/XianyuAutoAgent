@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Supernetwork-based efficient mapping of deep learning applications to mixed-precision hardware using model adaptation | DAST Papers</title>
+    <meta name="description" content="随着异构模拟-数字加速器逐渐成熟，真正的瓶颈不再只是单个硬件单元效率，而是如何把神经网络各层合理映射到不同精度、不同噪声特性的硬件上，同时兼顾能效和精度。这个问题如果靠逐模型、逐层手工搜索，成本极高，也很难形成稳定部署流程。
+
+这篇论文提出 Mixed-Precision Supernetwork，把量化层和受模拟噪声影响的层统一放到一个 supernetwork 里联合训练，并结合 mappin" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw21-mixed-precision-supernetwork/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Supernetwork-based efficient mapping of deep learning applications to mixed-precision hardware using model adaptation" />
+    <meta property="og:description" content="随着异构模拟-数字加速器逐渐成熟，真正的瓶颈不再只是单个硬件单元效率，而是如何把神经网络各层合理映射到不同精度、不同噪声特性的硬件上，同时兼顾能效和精度。这个问题如果靠逐模型、逐层手工搜索，成本极高，也很难形成稳定部署流程。
+
+这篇论文提出 Mixed-Precision Supernetwork，把量化层和受模拟噪声影响的层统一放到一个 supernetwork 里联合训练，并结合 mappin" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw21-mixed-precision-supernetwork/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Supernetwork-based efficient mapping of deep learning applications to mixed-precision hardware using model adaptation" />
+    <meta name="twitter:description" content="随着异构模拟-数字加速器逐渐成熟，真正的瓶颈不再只是单个硬件单元效率，而是如何把神经网络各层合理映射到不同精度、不同噪声特性的硬件上，同时兼顾能效和精度。这个问题如果靠逐模型、逐层手工搜索，成本极高，也很难形成稳定部署流程。
+
+这篇论文提出 Mixed-Precision Supernetwork，把量化层和受模拟噪声影响的层统一放到一个 supernetwork 里联合训练，并结合 mappin" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Supernetwork-based efficient mapping of deep learning applications to mixed-precision hardware using model adaptation</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-27</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-71071-1" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-71071-1</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着异构模拟-数字加速器逐渐成熟，真正的瓶颈不再只是单个硬件单元效率，而是如何把神经网络各层合理映射到不同精度、不同噪声特性的硬件上，同时兼顾能效和精度。这个问题如果靠逐模型、逐层手工搜索，成本极高，也很难形成稳定部署流程。</dd></div><div><dt>方法/机制</dt><dd>这篇论文提出 Mixed-Precision Supernetwork，把量化层和受模拟噪声影响的层统一放到一个 supernetwork 里联合训练，并结合 mapping-aware adaptation 与 hardware-aware architecture search，动态优化层级映射与模型适配。它的重点不是单纯混合精度，而是把模型适配和硬件映射合并为同一个搜索对象。</dd></div><div><dt>结果/证据</dt><dd>对 AI 硬件设计主线来说，这种方法有明显的 workflow 价值：它把 analog-digital heterogeneous accelerator 上的部署问题，从一次性工程调参提升为可复用的 supernetwork 搜索与适配框架。只要后续硬件族继续扩展，这类统一映射方法就会越来越重要。</dd></div><div><dt>收录价值</dt><dd>它暂时还不是更高等级，因为论文主要展示的是一条很强的 mapping/search 路线，而不是对整个 AI 加速器设计空间的全面重写。换句话说，它已经是优秀的 reusable co-design 方法，但还没有达到更广的 architecture blueprint 层面。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着异构模拟-数字加速器逐渐成熟，真正的瓶颈不再只是单个硬件单元效率，而是如何把神经网络各层合理映射到不同精度、不同噪声特性的硬件上，同时兼顾能效和精度。这个问题如果靠逐模型、逐层手工搜索，成本极高，也很难形成稳定部署流程。</p><p>这篇论文提出 Mixed-Precision Supernetwork，把量化层和受模拟噪声影响的层统一放到一个 supernetwork 里联合训练，并结合 mapping-aware adaptation 与 hardware-aware architecture search，动态优化层级映射与模型适配。它的重点不是单纯混合精度，而是把模型适配和硬件映射合并为同一个搜索对象。</p><p>对 AI 硬件设计主线来说，这种方法有明显的 workflow 价值：它把 analog-digital heterogeneous accelerator 上的部署问题，从一次性工程调参提升为可复用的 supernetwork 搜索与适配框架。只要后续硬件族继续扩展，这类统一映射方法就会越来越重要。</p><p>它暂时还不是更高等级，因为论文主要展示的是一条很强的 mapping/search 路线，而不是对整个 AI 加速器设计空间的全面重写。换句话说，它已经是优秀的 reusable co-design 方法，但还没有达到更广的 architecture blueprint 层面。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>人工智能应用的迅速普及需要可扩展的解决方案，以在实际约束下高效运行。结合专用模拟和数字单元的异构加速器提供了局部化、节能的神经网络计算。然而，在这些平台上实现最佳性能需要通过优化的神经网络层映射来平衡能效和模型精度。为此，我们引入了Mixed-Precision Supernetwork，这是一个统一的框架，用于训练将量化层与模拟噪声敏感层无缝集成的混合精度超网络。Mixed-Precision Supernetwork整合了一种映射感知自适应策略，通过硬件感知架构搜索动态优化层分配，同时优化神经网络。这一双重创新使Mixed-Precision Supernetwork成为在异构加速器上高效部署深度学习模型的开创性方法。平均而言，Mixed-Precision Supernetwork生成的映射速度提高了约2.2倍，模型精度比纯模拟方法提高了约3.4%，同时通过将高达80%的模型权重映射到模拟硬件并保持全精度，提高了能效。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The rapid proliferation of Artificial Intelligence applications necessitates scalable solutions that perform efficiently under real-world constraints. Heterogeneous accelerators combining specialized analog and digital units offer localized, energy-efficient neural network computations. However, achieving optimal performance on these platforms requires balancing energy efficiency and model accuracy through optimized neural network layer mapping. To this end, we introduce Mixed-Precision Supernetwork, a unified framework for training mixed-precision supernetworks that seamlessly integrate quantized layers with analog noise-sensitive layers. Mixed-Precision Supernetwork incorporates a mapping-aware adaptation strategy, dynamically optimizing layer assignments while refining the neural network via hardware-aware architecture search. This dual innovation establishes Mixed-Precision Supernetwork as a groundbreaking approach for deploying deep learning models efficiently on heterogeneous accelerators. On average, Mixed-Precision Supernetwork produces mappings ~ 2.2 × faster and achieves a ~ 3.4% increase in model accuracy over a fully analog approach, while improving energy-efficiency by mapping up to 80% of the model’s weights to analog hardware while maintaining full-precision accuracy.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260327hw21mixedp,
+  title = {Supernetwork-based efficient mapping of deep learning applications to mixed-precision hardware using model adaptation},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-71071-1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw21-mixed-precision-supernetwork/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Supernetwork-based efficient mapping of deep learning applications to mixed-precision hardware using model adaptation. https://www.nature.com/articles/s41467-026-71071-1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-71071-1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

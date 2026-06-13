@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence | DAST Papers</title>
+    <meta name="description" content="当前很多所谓 frontier agent benchmark 仍严重依赖语言知识、互联网经验或任务模板匹配，因此很难真正区分“会调用很多工具”与“具备流体式新任务适应能力”之间的差别。ARC-AGI-3 直接把问题重新拉回 agentic intelligence 的核心：在没有明确指令、没有外部知识补偿的陌生交互环境里，agent 是否能通过探索、归纳、建模和规划快速找出可行解法。
+
+ARC-" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a130-arc-agi-3-agentic-intelligence/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence" />
+    <meta property="og:description" content="当前很多所谓 frontier agent benchmark 仍严重依赖语言知识、互联网经验或任务模板匹配，因此很难真正区分“会调用很多工具”与“具备流体式新任务适应能力”之间的差别。ARC-AGI-3 直接把问题重新拉回 agentic intelligence 的核心：在没有明确指令、没有外部知识补偿的陌生交互环境里，agent 是否能通过探索、归纳、建模和规划快速找出可行解法。
+
+ARC-" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a130-arc-agi-3-agentic-intelligence/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence" />
+    <meta name="twitter:description" content="当前很多所谓 frontier agent benchmark 仍严重依赖语言知识、互联网经验或任务模板匹配，因此很难真正区分“会调用很多工具”与“具备流体式新任务适应能力”之间的差别。ARC-AGI-3 直接把问题重新拉回 agentic intelligence 的核心：在没有明确指令、没有外部知识补偿的陌生交互环境里，agent 是否能通过探索、归纳、建模和规划快速找出可行解法。
+
+ARC-" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24621" target="_blank" rel="noopener noreferrer">2603.24621</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前很多所谓 frontier agent benchmark 仍严重依赖语言知识、互联网经验或任务模板匹配，因此很难真正区分“会调用很多工具”与“具备流体式新任务适应能力”之间的差别。ARC-AGI-3 直接把问题重新拉回 agentic intelligence 的核心：在没有明确指令、没有外部知识补偿的陌生交互环境里，agent 是否能通过探索、归纳、建模和规划快速找出可行解法。</dd></div><div><dt>方法/机制</dt><dd>ARC-AGI-3 是一个交互式 benchmark，任务由 novel、abstract、turn-based environments 组成，要求 agent 在环境中自己发现目标、理解动态、构建内部世界模型并规划动作序列。它延续 ARC-AGI-1/2 避开语言和外部知识的设计原则，只使用 core knowledge priors，并进一步引入以人类操作基线为锚点的效率型 scoring framework，从而把评价重点放在 novel-task adaptive efficiency，而不是静态答题正确率。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是再造一个更难的数据集，而是在重写 frontier agent evaluation 的目标函数。对 agent research、general intelligence benchmarking 和 system design，它明确提出：真正重要的不是会不会利用已知模板，而是在陌生环境中能否快速形成有效内部模型并完成任务。这种 framing 对后续 agent benchmark 和训练目标都会有持续影响。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为 ARC-AGI-3 目前仍主要是一条新 benchmark 路线，虽然问题定义非常强，但它是否会成为整个 agent intelligence 评测的默认坐标系，还需要后续更广泛采用与围绕它展开的方法生态。当前给 disruptive 更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前很多所谓 frontier agent benchmark 仍严重依赖语言知识、互联网经验或任务模板匹配，因此很难真正区分“会调用很多工具”与“具备流体式新任务适应能力”之间的差别。ARC-AGI-3 直接把问题重新拉回 agentic intelligence 的核心：在没有明确指令、没有外部知识补偿的陌生交互环境里，agent 是否能通过探索、归纳、建模和规划快速找出可行解法。</p><p>ARC-AGI-3 是一个交互式 benchmark，任务由 novel、abstract、turn-based environments 组成，要求 agent 在环境中自己发现目标、理解动态、构建内部世界模型并规划动作序列。它延续 ARC-AGI-1/2 避开语言和外部知识的设计原则，只使用 core knowledge priors，并进一步引入以人类操作基线为锚点的效率型 scoring framework，从而把评价重点放在 novel-task adaptive efficiency，而不是静态答题正确率。</p><p>这篇工作值得收录，因为它不是再造一个更难的数据集，而是在重写 frontier agent evaluation 的目标函数。对 agent research、general intelligence benchmarking 和 system design，它明确提出：真正重要的不是会不会利用已知模板，而是在陌生环境中能否快速形成有效内部模型并完成任务。这种 framing 对后续 agent benchmark 和训练目标都会有持续影响。</p><p>它没有升到更高一级，是因为 ARC-AGI-3 目前仍主要是一条新 benchmark 路线，虽然问题定义非常强，但它是否会成为整个 agent intelligence 评测的默认坐标系，还需要后续更广泛采用与围绕它展开的方法生态。当前给 disruptive 更稳。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们引入ARC-AGI-3，这是一个交互式基准，用于通过新颖的、抽象的、回合制环境来研究智能体智能，在这些环境中，智能体必须在没有明确指令的情况下探索、推断目标、构建环境动态的内部模型并规划有效的行动序列。与其前身ARC-AGI-1和2一样，ARC-AGI-3完全专注于评估对新颖任务的流畅适应效率，同时避免使用语言和外部知识。ARC-AGI-3环境仅利用核心知识先验，并通过对人类测试者进行广泛测试来校准难度。我们的测试表明，人类可以解决100%的环境，而截至2026年3月，前沿AI系统的得分低于1%。在本文中，我们介绍了该基准的设计、其基于人类行动基线的效率评分框架，以及用于构建、验证和校准环境的方法论。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce ARC-AGI-3, an interactive benchmark for studying agentic intelligence through novel, abstract, turn-based environments in which agents must explore, infer goals, build internal models of environment dynamics, and plan effective action sequences without explicit instructions. Like its predecessors ARC-AGI-1 and 2, ARC-AGI-3 focuses entirely on evaluating fluid adaptive efficiency on novel tasks, while avoiding language and external knowledge. ARC-AGI-3 environments only leverage Core Knowledge priors and are difficulty-calibrated via extensive testing with human test-takers. Our testing shows humans can solve 100% of the environments, in contrast to frontier AI systems which, as of March 2026, score below 1%. In this paper, we present the benchmark design, its efficiency-based scoring framework grounded in human action baselines, and the methodology used to construct, validate, and calibrate the environments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260324a130arcagi,
+  title = {ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24621.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a130-arc-agi-3-agentic-intelligence/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ARC-AGI-3: A New Challenge for Frontier Agentic Intelligence. https://arxiv.org/pdf/2603.24621.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24621.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

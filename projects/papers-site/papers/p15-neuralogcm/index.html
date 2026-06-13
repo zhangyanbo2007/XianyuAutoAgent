@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeuralOGCM: Differentiable Ocean Modeling with Learnable Physics | DAST Papers</title>
+    <meta name="description" content="问题与背景
+海洋和气候动力学建模长期面对一个老问题：传统数值模型物理可信但太慢，纯深度学习模型很快但长期 rollout 容易发散、缺少物理一致性。NeuralOGCM 的目标正是去填这条缝，做一个既快又稳、还能保持物理合理性的海洋动力学模型。
+
+方法与新意
+这篇的核心不是单纯在 PDE 外面包一层网络，而是做了一个 differentiable physics core + neural cor" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p15-neuralogcm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="NeuralOGCM: Differentiable Ocean Modeling with Learnable Physics" />
+    <meta property="og:description" content="问题与背景
+海洋和气候动力学建模长期面对一个老问题：传统数值模型物理可信但太慢，纯深度学习模型很快但长期 rollout 容易发散、缺少物理一致性。NeuralOGCM 的目标正是去填这条缝，做一个既快又稳、还能保持物理合理性的海洋动力学模型。
+
+方法与新意
+这篇的核心不是单纯在 PDE 外面包一层网络，而是做了一个 differentiable physics core + neural cor" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p15-neuralogcm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NeuralOGCM: Differentiable Ocean Modeling with Learnable Physics" />
+    <meta name="twitter:description" content="问题与背景
+海洋和气候动力学建模长期面对一个老问题：传统数值模型物理可信但太慢，纯深度学习模型很快但长期 rollout 容易发散、缺少物理一致性。NeuralOGCM 的目标正是去填这条缝，做一个既快又稳、还能保持物理合理性的海洋动力学模型。
+
+方法与新意
+这篇的核心不是单纯在 PDE 外面包一层网络，而是做了一个 differentiable physics core + neural cor" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>NeuralOGCM: Differentiable Ocean Modeling with Learnable Physics</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2025-12-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.11525" target="_blank" rel="noopener noreferrer">2512.11525</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景</dd></div><div><dt>方法/机制</dt><dd>海洋和气候动力学建模长期面对一个老问题：传统数值模型物理可信但太慢，纯深度学习模型很快但长期 rollout 容易发散、缺少物理一致性。NeuralOGCM 的目标正是去填这条缝，做一个既快又稳、还能保持物理合理性的海洋动力学模型。</dd></div><div><dt>结果/证据</dt><dd>方法与新意</dd></div><div><dt>收录价值</dt><dd>这篇的核心不是单纯在 PDE 外面包一层网络，而是做了一个 differentiable physics core + neural corrector 的混合体系。物理核心负责大尺度的确定性演化，并把一些关键物理参数变成可学习参数；神经校正器则补偿子网格过程和离散误差。两部分通过统一 ODE 求解器联合训练。</dd></div><div><dt>要点 5</dt><dd>意义与仓库位置</dd></div><div><dt>要点 6</dt><dd>这是一篇典型的 AI for science 主线论文，适合放在物理/科学机器学习分区。它的价值在于证明“可学习的物理核心”可以作为一类基础设计模式，把传统海洋环流模型和纯数据驱动模型之间的矛盾显著缓和。</dd></div><div><dt>要点 7</dt><dd>局限与为什么不更高一级</dd></div><div><dt>要点 8</dt><dd>当前主要还是面向海洋动力学这一特定场景，外溢性虽然不差，但还没有到像通用世界模型或科学基础模型那样的广谱影响。它更像一篇高质量、很有方向感的混合科学建模论文，因此归为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景</p><p>海洋和气候动力学建模长期面对一个老问题：传统数值模型物理可信但太慢，纯深度学习模型很快但长期 rollout 容易发散、缺少物理一致性。NeuralOGCM 的目标正是去填这条缝，做一个既快又稳、还能保持物理合理性的海洋动力学模型。</p><p>方法与新意</p><p>这篇的核心不是单纯在 PDE 外面包一层网络，而是做了一个 differentiable physics core + neural corrector 的混合体系。物理核心负责大尺度的确定性演化，并把一些关键物理参数变成可学习参数；神经校正器则补偿子网格过程和离散误差。两部分通过统一 ODE 求解器联合训练。</p><p>意义与仓库位置</p><p>这是一篇典型的 AI for science 主线论文，适合放在物理/科学机器学习分区。它的价值在于证明“可学习的物理核心”可以作为一类基础设计模式，把传统海洋环流模型和纯数据驱动模型之间的矛盾显著缓和。</p><p>局限与为什么不更高一级</p><p>当前主要还是面向海洋动力学这一特定场景，外溢性虽然不差，但还没有到像通用世界模型或科学基础模型那样的广谱影响。它更像一篇高质量、很有方向感的混合科学建模论文，因此归为突破性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>高精度科学模拟面临计算效率和物理保真度之间长期存在的权衡。为应对这一挑战，我们提出了NeuralOGCM，一个融合了可微分编程与深度学习的海洋建模框架。NeuralOGCM的核心是一个完全可微分的动力学求解器，它利用物理知识作为其核心归纳偏置。可学习物理积分捕捉大规模、确定性的物理演化，并将关键物理参数（例如，扩散系数）转化为可学习参数，使模型能够通过端到端训练自主优化其物理核心。同时，一个深度神经网络学习纠正物理模型未捕捉到的亚网格尺度过程和离散化误差。这两个组件协同工作，其输出由一个统一的ODE求解器进行整合。实验表明，NeuralOGCM保持了长期稳定性和物理一致性，在速度上显著优于传统数值模型，在准确性上显著优于纯AI基线。我们的工作为构建快速、稳定且物理上合理的科学计算模型开辟了一条新途径。我们的代码可在此处获取。图1. 我们模型NeuralOGCM的动机。(a) 传统GCMs在物理上忠实但速度慢，而纯AI模型速度快但容易出现长期不稳定性，两者之间存在一个困境。(b) NeuralOGCM通过将可微分物理核心与神经校正器相结合来弥合这一差距。其关键创新是可学习物理核心，其中物理参数通过数据进行端到端优化，从而实现高保真度和计算速度。因此，海洋环流模拟对于增进我们的科学理解和为未来决策提供信息至关重要 (Madec et al., 1997; Parasyris et al., 2025)。目前，海洋通用环流模型 (OGCMs) 是实现此目的的核心科学工具。然而，现有的海洋建模方法面临一个根本性困境：计算效率和物理保真度之间的尖锐权衡。一方面，基于物理第一性原理的传统GCMs (Madec et al., 1997; Smith et al., 1992; Grotch &amp; MacCracken, 1991; Wilby &amp; Wigley, 1997) 代表了长期稳定性和物理可靠性的黄金标准。然而，它们的计算成本高得令人望而却步，通常需要数月的超级计算机时间来模拟一个世纪尺度的气候情景。这严重限制了科学探究的范围，例如进行大规模集合预报或不确定性量化。另一方面，纯数据驱动模型，特别是基于深度学习的模型，实现了数量级的加速 (Wu et al., 2024a;d;e;c;b; Gao et al., 2025; Li et al., 2022)。然而，它们的黑盒性质、缺乏物理一致性以及在长期自回归推演过程中容易积累误差，导致数值发散或物理上无意义的“幻觉”，使得它们难以在高风险科学发现中获得信任 (Wu et al., 2025)。这</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>High-precision scientific simulation faces a longstanding trade-off between computational efficiency and physical fidelity. To address this challenge, we propose NeuralOGCM, an ocean modeling framework that fuses differentiable programming with deep learning. At the core of NeuralOGCM is a fully differentiable dynamical solver, which leverages physics knowledge as its core inductive bias. The learnable physics integration captures large-scale, deterministic physical evolution, and transforms key physical parameters (e.g., diffusion coefficients) into learnable parameters, enabling the model to autonomously optimize its physical core via end-to-end training. Concurrently, a deep neural network learns to correct for subgrid-scale processes and discretization errors not captured by the physics model. Both components work in synergy, with their outputs integrated by a unified ODE solver. Experiments demonstrate that NeuralOGCM maintains long-term stability and physical consistency, significantly outperforming traditional numerical models in speed and pure AI baselines in accuracy. Our work paves a new path for building fast, stable, and physically-plausible models for scientific computing. Our codes are available here. Figure 1. The motivation for our model, NeuralOGCM. (a) A dilemma exists between traditional GCMs, which are physically faithful but slow, and pure AI models, which are fast but prone to long-term instability. (b) NeuralOGCM bridges this gap by integrating a Differentiable Physics Core with a Neural Corrector. Its key innovation is the learnable physics core, where physical parameters are optimized end-to-end from data, achieving both high fidelity and computational speed. simulation of ocean circulation is therefore crucial for advancing our scientific understanding and informing future decisions (Madec et al., 1997; Parasyris et al., 2025). Currently, Ocean General Circulation Models (OGCMs) serve as the core scientific tool for this purpose. However, existing ocean modeling approaches face a fundamental dilemma: a sharp trade-off between computational efficiency and physical fidelity. On one hand, traditional GCMs (Madec et al., 1997; Smith et al., 1992; Grotch &amp; MacCracken, 1991; Wilby &amp; Wigley, 1997), based on first principles of physics, represent the gold standard for longterm stability and physical reliability. Yet, their computational cost is prohibitively high, often requiring months of supercomputer time to simulate a single century-scale climate scenario. This severely limits the scope of scientific inquiry, such as performing large-scale ensemble forecasts or uncertainty quantification. On the other hand, pure data-driven models, particularly those based on deep learning, achieve orders-of-magnitude speedups (Wu et al., 2024a;d;e;c;b; Gao et al., 2025; Li et al., 2022). However, their black-box nature, lack of physical consistency, and tendency to accumulate errors during long-term autoregressive rollouts leading to numerical divergence or physically nonsensical ”hallucinations” make them difficult to trust for high-stakes scientific discovery (Wu et al., 2025). This</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251212p15neuralo,
+  title = {NeuralOGCM: Differentiable Ocean Modeling with Learnable Physics},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.11525.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p15-neuralogcm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). NeuralOGCM: Differentiable Ocean Modeling with Learnable Physics. https://arxiv.org/pdf/2512.11525.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.11525.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

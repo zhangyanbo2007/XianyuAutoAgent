@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Efficient Autoregressive Inference for Transformer Probabilistic Models | DAST Papers</title>
+    <meta name="description" content="## 问题与背景
+问题与背景：很多 transformer-based probabilistic models 在单次边际预测上很强，但一旦要做 coherent joint prediction，往往需要反复重编码上下文，推理开销很大。这个问题在表格、小样本和神经信号建模里都很实际。
+
+## 方法/新意
+方法/新意：论文提出 causal autoregressive buffer，把 con" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys2-autoregressive-inference-transformer-probabilistic-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Efficient Autoregressive Inference for Transformer Probabilistic Models" />
+    <meta property="og:description" content="## 问题与背景
+问题与背景：很多 transformer-based probabilistic models 在单次边际预测上很强，但一旦要做 coherent joint prediction，往往需要反复重编码上下文，推理开销很大。这个问题在表格、小样本和神经信号建模里都很实际。
+
+## 方法/新意
+方法/新意：论文提出 causal autoregressive buffer，把 con" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys2-autoregressive-inference-transformer-probabilistic-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Efficient Autoregressive Inference for Transformer Probabilistic Models" />
+    <meta name="twitter:description" content="## 问题与背景
+问题与背景：很多 transformer-based probabilistic models 在单次边际预测上很强，但一旦要做 coherent joint prediction，往往需要反复重编码上下文，推理开销很大。这个问题在表格、小样本和神经信号建模里都很实际。
+
+## 方法/新意
+方法/新意：论文提出 causal autoregressive buffer，把 con" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Efficient Autoregressive Inference for Transformer Probabilistic Models</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2025-10-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.09477" target="_blank" rel="noopener noreferrer">2510.09477</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>## 问题与背景</dd></div><div><dt>方法/机制</dt><dd>问题与背景：很多 transformer-based probabilistic models 在单次边际预测上很强，但一旦要做 coherent joint prediction，往往需要反复重编码上下文，推理开销很大。这个问题在表格、小样本和神经信号建模里都很实际。</dd></div><div><dt>结果/证据</dt><dd>## 方法/新意</dd></div><div><dt>收录价值</dt><dd>方法/新意：论文提出 causal autoregressive buffer，把 context encoding 与 target dependency 更新解耦。这样模型只处理一次上下文，然后通过动态 buffer 支撑 batched autoregressive generation 和 joint likelihood 计算。</dd></div><div><dt>要点 5</dt><dd>## 意义/放在仓库中的位置</dd></div><div><dt>要点 6</dt><dd>意义/放在仓库中的位置：这篇适合放在系统优化 / 概率 Transformer / TabPFN 旁系主线。它不是纯系统 hack，而是把 set-conditioned probabilistic modeling 和 autoregressive generation 更自然地接起来。</dd></div><div><dt>要点 7</dt><dd>## 局限/为何不更高</dd></div><div><dt>要点 8</dt><dd>局限/为何不更高：影响面主要集中在 probabilistic inference 这一子领域，虽然有价值，但不像 FlashAttention 这类基础设施论文那样外溢更广，因此归为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>## 问题与背景</p><p>问题与背景：很多 transformer-based probabilistic models 在单次边际预测上很强，但一旦要做 coherent joint prediction，往往需要反复重编码上下文，推理开销很大。这个问题在表格、小样本和神经信号建模里都很实际。</p><p>## 方法/新意</p><p>方法/新意：论文提出 causal autoregressive buffer，把 context encoding 与 target dependency 更新解耦。这样模型只处理一次上下文，然后通过动态 buffer 支撑 batched autoregressive generation 和 joint likelihood 计算。</p><p>## 意义/放在仓库中的位置</p><p>意义/放在仓库中的位置：这篇适合放在系统优化 / 概率 Transformer / TabPFN 旁系主线。它不是纯系统 hack，而是把 set-conditioned probabilistic modeling 和 autoregressive generation 更自然地接起来。</p><p>## 局限/为何不更高</p><p>局限/为何不更高：影响面主要集中在 probabilistic inference 这一子领域，虽然有价值，但不像 FlashAttention 这类基础设施论文那样外溢更广，因此归为突破性。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251010sys2autore,
+  title = {Efficient Autoregressive Inference for Transformer Probabilistic Models},
+  year = {2025},
+  url = {https://arxiv.org/abs/2510.09477},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys2-autoregressive-inference-transformer-probabilistic-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Efficient Autoregressive Inference for Transformer Probabilistic Models. https://arxiv.org/abs/2510.09477</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2510.09477" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

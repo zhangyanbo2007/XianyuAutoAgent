@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MT-Mol: Multi Agent System with Tool-based Reasoning for Molecular Optimization | DAST Papers</title>
+    <meta name="description" content="这篇 Findings EMNLP 2025 论文把分子优化建模为多智能体工具推理流程，而不是单一生成模型或单一性质预测器。它让不同 agent 承担生成、评估、约束检查和迭代改进等角色，并通过工具调用把推理落到可验证的化学计算与评价上。
+
+它的重要性在于 workflow pattern：分子设计系统开始从“模型直接吐候选分子”转向“多角色 agent + 工具验证 + 迭代优化”的闭环。这对药" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio33-mt-mol-tool-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MT-Mol: Multi Agent System with Tool-based Reasoning for Molecular Optimization" />
+    <meta property="og:description" content="这篇 Findings EMNLP 2025 论文把分子优化建模为多智能体工具推理流程，而不是单一生成模型或单一性质预测器。它让不同 agent 承担生成、评估、约束检查和迭代改进等角色，并通过工具调用把推理落到可验证的化学计算与评价上。
+
+它的重要性在于 workflow pattern：分子设计系统开始从“模型直接吐候选分子”转向“多角色 agent + 工具验证 + 迭代优化”的闭环。这对药" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio33-mt-mol-tool-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MT-Mol: Multi Agent System with Tool-based Reasoning for Molecular Optimization" />
+    <meta name="twitter:description" content="这篇 Findings EMNLP 2025 论文把分子优化建模为多智能体工具推理流程，而不是单一生成模型或单一性质预测器。它让不同 agent 承担生成、评估、约束检查和迭代改进等角色，并通过工具调用把推理落到可验证的化学计算与评价上。
+
+它的重要性在于 workflow pattern：分子设计系统开始从“模型直接吐候选分子”转向“多角色 agent + 工具验证 + 迭代优化”的闭环。这对药" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MT-Mol: Multi Agent System with Tool-based Reasoning for Molecular Optimization</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-11-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-01</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Findings EMNLP 2025 论文把分子优化建模为多智能体工具推理流程，而不是单一生成模型或单一性质预测器。它让不同 agent 承担生成、评估、约束检查和迭代改进等角色，并通过工具调用把推理落到可验证的化学计算与评价上。</dd></div><div><dt>方法/机制</dt><dd>它的重要性在于 workflow pattern：分子设计系统开始从“模型直接吐候选分子”转向“多角色 agent + 工具验证 + 迭代优化”的闭环。这对药物发现、材料分子设计、实验优先级排序都有可迁移意义。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它不只是窄 QSAR 或单指标提升，而是 AI for science 中 agentic molecular optimization 的一个可复用系统模式，因此进入正式收录。它也补足了顶会 NLP/agent 与科学发现交叉的覆盖。</dd></div><div><dt>收录价值</dt><dd>局限是多智能体系统容易受工具质量、prompt 稳定性和评价函数偏差影响；真实湿实验价值仍需要更强外部验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Findings EMNLP 2025 论文把分子优化建模为多智能体工具推理流程，而不是单一生成模型或单一性质预测器。它让不同 agent 承担生成、评估、约束检查和迭代改进等角色，并通过工具调用把推理落到可验证的化学计算与评价上。</p><p>它的重要性在于 workflow pattern：分子设计系统开始从“模型直接吐候选分子”转向“多角色 agent + 工具验证 + 迭代优化”的闭环。这对药物发现、材料分子设计、实验优先级排序都有可迁移意义。</p><p>按本库标准，它不只是窄 QSAR 或单指标提升，而是 AI for science 中 agentic molecular optimization 的一个可复用系统模式，因此进入正式收录。它也补足了顶会 NLP/agent 与科学发现交叉的覆盖。</p><p>局限是多智能体系统容易受工具质量、prompt 稳定性和评价函数偏差影响；真实湿实验价值仍需要更强外部验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>在化学领域 (Li et al., 2025; Wang et al., 2023; Luu et al., 2021; Wang et al., 2025; Nguyen and Grover, 2025; Bran et al., 2024)。特别是，利用LLM设计新分子（例如，候选药物）具有以下几个优势，因此前景广阔：(1) LLM展现出从大规模预训练中获得的通用理解和推理能力，(2) 它们可以使用现成的工具进行分子分析，并且(3) 它们能够与其他智能体交互以进一步改进设计候选。最近的研究已经探索了LLM在分子优化中的应用。例如，LICO (Nguyen and Grover, 2025) 通过嵌入层和上下文示例扩展了LLM，以构建分子优化的代理建模框架。MOLLEO (Wang et al., 2025) 利用LLM作为进化算法中的突变和交叉算子。ChemCrow (Bran et al., 2024) 将LLM与化学工具集成，以促进合成规划和分子分析。尽管这些方法展示了令人鼓舞的结果，但我们认为它们并未充分利用现代LLM的更广泛能力，例如多智能体协作、工具集成和迭代推理，而这些能力对于高质量的分子优化至关重要。大型语言模型（LLM）在分子优化方面具有巨大潜力，因为它们可以整合外部化学工具并实现协作交互，从而迭代地完善分子候选。然而，这种潜力尚未得到充分探索，特别是在结构化推理、可解释性和全面的工具驱动分子优化方面。为了弥补这一空白，我们引入了MT-M OL，这是一个用于分子优化的多智能体框架，它利用工具引导的推理和角色专业化的LLM智能体。我们的系统整合了全面的RDKit工具，这些工具分为五个不同的领域：结构描述符、电子和拓扑特征、基于片段的官能团、分子表示以及其他化学性质。每个类别都由一个专家分析师智能体管理，该智能体负责提取与任务相关的工具并提供可解释的、基于化学原理的反馈。MT-M OL通过分析师智能体、分子生成科学家、推理输出验证器和审阅者智能体之间的交互，生成具有工具对齐和逐步推理的分子。结果表明，我们的框架在PMO-1K基准测试的23项任务中有15项表现出最先进的性能，并在ChemCoTBench基准测试中优于LLM基线。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>in the chemical domain (Li et al., 2025; Wang et al., 2023; Luu et al., 2021; Wang et al., 2025; Nguyen and Grover, 2025; Bran et al., 2024). In particular, employing LLMs to design new molecules (e.g., drug candidates), is promising due to several advantages: (1) LLMs exhibit general understanding and reasoning capabilities obtained from large-scale pretraining, (2) they can use the off-the-shelf tools for analyzing molecules, and (3) they are capable of interact with other agents to further improve the design candidate. Recent studies have explored the application of LLMs in molecular optimization. For example, LICO (Nguyen and Grover, 2025) extends LLMs with embedding layers and in-context examples to build a surrogate modeling framework for molecular optimization. MOLLEO (Wang et al., 2025) leverages LLMs as mutation and crossover operators within an evolutionary algorithm. ChemCrow (Bran et al., 2024) integrates LLMs with chemical tools for to faciliate synthesis planning and molecular analysis. While these approaches demonstrate encouraging results, we argue that they do not fully exploit the broader capabilities of modern LLMs such as multi-agent collaboration, tool integration, and iterative reasoning, which are essential for high-quality molecular optimization. Large language models (LLMs) have large potential for molecular optimization, as they can gather external chemistry tools and enable collaborative interactions to iteratively refine molecular candidates. However, this potential remains underexplored, particularly in the context of structured reasoning, interpretability, and comprehensive tool-grounded molecular optimization. To address this gap, we introduce MT-M OL, a multi-agent framework for molecular optimization that leverages tool-guided reasoning and role-specialized LLM agents. Our system incorporates comprehensive RDKit tools, categorized into five distinct domains: structural descriptors, electronic and topological features, fragment-based functional groups, molecular representations, and miscellaneous chemical properties. Each category is managed by an expert analyst agent, responsible for extracting task-relevant tools and enabling interpretable, chemically grounded feedback. MTM OL produces molecules with tool-aligned and stepwise reasoning through the interaction between the analyst agents, a moleculegenerating scientist, a reasoning-output verifier, and a reviewer agent. As a result, we show that our framework shows the state-of-the-art performance of the PMO-1K benchmark on 15 out of 23 tasks and outperforms LLM baselines on ChemCoTBench benchmark.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251101bio33mtmol,
+  title = {MT-Mol: Multi Agent System with Tool-based Reasoning for Molecular Optimization},
+  year = {2025},
+  url = {https://aclanthology.org/2025.findings-emnlp.619.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio33-mt-mol-tool-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). MT-Mol: Multi Agent System with Tool-based Reasoning for Molecular Optimization. https://aclanthology.org/2025.findings-emnlp.619.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://aclanthology.org/2025.findings-emnlp.619.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

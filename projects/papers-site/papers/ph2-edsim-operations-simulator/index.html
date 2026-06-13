@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EDSim: An Agentic Simulator for Emergency Department Operations | DAST Papers</title>
+    <meta name="description" content="急诊科运营长期受拥堵、床位分配和人力调度约束影响。传统离散事件模拟或普通 agent-based simulation 能对齐宏观等待时间和吞吐量，但很难表达患者与医护之间的微观交互、临场沟通和状态依赖决策，而这些恰恰会改变瓶颈位置和流程效率。
+
+EDSim 提出的是一种 agentic operations simulator：患者与医护由大语言模型代理驱动，但这些代理并不是完全自由对话，而是被" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/ph2-edsim-operations-simulator/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EDSim: An Agentic Simulator for Emergency Department Operations" />
+    <meta property="og:description" content="急诊科运营长期受拥堵、床位分配和人力调度约束影响。传统离散事件模拟或普通 agent-based simulation 能对齐宏观等待时间和吞吐量，但很难表达患者与医护之间的微观交互、临场沟通和状态依赖决策，而这些恰恰会改变瓶颈位置和流程效率。
+
+EDSim 提出的是一种 agentic operations simulator：患者与医护由大语言模型代理驱动，但这些代理并不是完全自由对话，而是被" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/ph2-edsim-operations-simulator/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EDSim: An Agentic Simulator for Emergency Department Operations" />
+    <meta name="twitter:description" content="急诊科运营长期受拥堵、床位分配和人力调度约束影响。传统离散事件模拟或普通 agent-based simulation 能对齐宏观等待时间和吞吐量，但很难表达患者与医护之间的微观交互、临场沟通和状态依赖决策，而这些恰恰会改变瓶颈位置和流程效率。
+
+EDSim 提出的是一种 agentic operations simulator：患者与医护由大语言模型代理驱动，但这些代理并不是完全自由对话，而是被" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EDSim: An Agentic Simulator for Emergency Department Operations</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2026-03-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-03</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>急诊科运营长期受拥堵、床位分配和人力调度约束影响。传统离散事件模拟或普通 agent-based simulation 能对齐宏观等待时间和吞吐量，但很难表达患者与医护之间的微观交互、临场沟通和状态依赖决策，而这些恰恰会改变瓶颈位置和流程效率。</dd></div><div><dt>方法/机制</dt><dd>EDSim 提出的是一种 agentic operations simulator：患者与医护由大语言模型代理驱动，但这些代理并不是完全自由对话，而是被临床规则、急诊全局状态和模块化 patient journey 结构所约束。这样既保留了微观行为的可解释性，又能让运营方快速跑 what-if 场景，如重新分配床位或人员。</dd></div><div><dt>结果/证据</dt><dd>这项工作的仓库价值在于它把 LLM agent 从“做预测/问答”推进到“做 operations simulation”。对公共卫生与医疗运营这条线来说，这是一种更接近真实 workflow 的新模式：既能复现流转过程，又能让管理者测试干预方案。</dd></div><div><dt>收录价值</dt><dd>它暂时仍是 breakthrough，因为当前证据主要是对历史等待时间分布的对齐和少量场景实验，外部医院验证、长期稳定性和模型治理问题都还没有完全解决。Research Square 预印本的状态也意味着后续仍需持续跟踪。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>急诊科运营长期受拥堵、床位分配和人力调度约束影响。传统离散事件模拟或普通 agent-based simulation 能对齐宏观等待时间和吞吐量，但很难表达患者与医护之间的微观交互、临场沟通和状态依赖决策，而这些恰恰会改变瓶颈位置和流程效率。</p><p>EDSim 提出的是一种 agentic operations simulator：患者与医护由大语言模型代理驱动，但这些代理并不是完全自由对话，而是被临床规则、急诊全局状态和模块化 patient journey 结构所约束。这样既保留了微观行为的可解释性，又能让运营方快速跑 what-if 场景，如重新分配床位或人员。</p><p>这项工作的仓库价值在于它把 LLM agent 从“做预测/问答”推进到“做 operations simulation”。对公共卫生与医疗运营这条线来说，这是一种更接近真实 workflow 的新模式：既能复现流转过程，又能让管理者测试干预方案。</p><p>它暂时仍是 breakthrough，因为当前证据主要是对历史等待时间分布的对齐和少量场景实验，外部医院验证、长期稳定性和模型治理问题都还没有完全解决。Research Square 预印本的状态也意味着后续仍需持续跟踪。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260303ph2edsimop,
+  title = {EDSim: An Agentic Simulator for Emergency Department Operations},
+  year = {2026},
+  url = {https://assets-eu.researchsquare.com/files/rs-8960989/v1_covered_acbf103c-5ac1-40ae-b5c3-a50cfa032ab7.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/ph2-edsim-operations-simulator/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EDSim: An Agentic Simulator for Emergency Department Operations. https://assets-eu.researchsquare.com/files/rs-8960989/v1_covered_acbf103c-5ac1-40ae-b5c3-a50cfa032ab7.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med7-physicianbench-ehr-agents/">
+              <span>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med6-fair-unlearning-clinical-ai/">
+              <span>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med5-gsco-generalist-specialist-collaboration/">
+              <span>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</span>
+              <small>公共卫生与医疗运营 · 2026-05-01</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://assets-eu.researchsquare.com/files/rs-8960989/v1_covered_acbf103c-5ac1-40ae-b5c3-a50cfa032ab7.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://assets-eu.researchsquare.com/files/rs-8960989/v1_covered_acbf103c-5ac1-40ae-b5c3-a50cfa032ab7.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

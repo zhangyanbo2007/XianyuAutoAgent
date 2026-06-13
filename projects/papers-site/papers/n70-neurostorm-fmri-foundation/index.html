@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards a general-purpose foundation model for functional MRI analysis | DAST Papers</title>
+    <meta name="description" content="这篇论文抓的是 fMRI 分析里一个越来越明显的结构性问题：现有 pipeline 高度依赖繁琐预处理和任务特定模型，结果是可复现性和跨任务迁移一直很差。NeuroSTORM 试图把这条链条改造成 foundation-model 范式，直接从 4D fMRI volume 学通用表征。
+
+它的规模也足够说明问题：预训练覆盖 50,000 多名参与者、2865 万帧 fMRI，跨年龄和多中心。模型" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n70-neurostorm-fmri-foundation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards a general-purpose foundation model for functional MRI analysis" />
+    <meta property="og:description" content="这篇论文抓的是 fMRI 分析里一个越来越明显的结构性问题：现有 pipeline 高度依赖繁琐预处理和任务特定模型，结果是可复现性和跨任务迁移一直很差。NeuroSTORM 试图把这条链条改造成 foundation-model 范式，直接从 4D fMRI volume 学通用表征。
+
+它的规模也足够说明问题：预训练覆盖 50,000 多名参与者、2865 万帧 fMRI，跨年龄和多中心。模型" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n70-neurostorm-fmri-foundation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards a general-purpose foundation model for functional MRI analysis" />
+    <meta name="twitter:description" content="这篇论文抓的是 fMRI 分析里一个越来越明显的结构性问题：现有 pipeline 高度依赖繁琐预处理和任务特定模型，结果是可复现性和跨任务迁移一直很差。NeuroSTORM 试图把这条链条改造成 foundation-model 范式，直接从 4D fMRI volume 学通用表征。
+
+它的规模也足够说明问题：预训练覆盖 50,000 多名参与者、2865 万帧 fMRI，跨年龄和多中心。模型" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards a general-purpose foundation model for functional MRI analysis</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-04-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-23</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41551-026-01666-y" target="_blank" rel="noopener noreferrer">10.1038/s41551-026-01666-y</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓的是 fMRI 分析里一个越来越明显的结构性问题：现有 pipeline 高度依赖繁琐预处理和任务特定模型，结果是可复现性和跨任务迁移一直很差。NeuroSTORM 试图把这条链条改造成 foundation-model 范式，直接从 4D fMRI volume 学通用表征。</dd></div><div><dt>方法/机制</dt><dd>它的规模也足够说明问题：预训练覆盖 50,000 多名参与者、2865 万帧 fMRI，跨年龄和多中心。模型在 demographic/phenotype prediction、disease diagnosis、re-identification、state classification 等多个下游任务上都优于已有方法，说明它不只是单一诊断器，而更像神经影像分析的统一底座。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它改变的是 neuroimaging workflow，而不仅是某个医学任务分数。对于脑成像表征学习、跨中心迁移和 foundation-model 化的生物医学分析都有明显方法价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为它主要推动的是 fMRI analysis infrastructure，而不是对脑工作原理本身提出新的 AI-relevant 机制解释。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓的是 fMRI 分析里一个越来越明显的结构性问题：现有 pipeline 高度依赖繁琐预处理和任务特定模型，结果是可复现性和跨任务迁移一直很差。NeuroSTORM 试图把这条链条改造成 foundation-model 范式，直接从 4D fMRI volume 学通用表征。</p><p>它的规模也足够说明问题：预训练覆盖 50,000 多名参与者、2865 万帧 fMRI，跨年龄和多中心。模型在 demographic/phenotype prediction、disease diagnosis、re-identification、state classification 等多个下游任务上都优于已有方法，说明它不只是单一诊断器，而更像神经影像分析的统一底座。</p><p>它值得正式收录，因为它改变的是 neuroimaging workflow，而不仅是某个医学任务分数。对于脑成像表征学习、跨中心迁移和 foundation-model 化的生物医学分析都有明显方法价值。</p><p>它没有升到更高等级，是因为它主要推动的是 fMRI analysis infrastructure，而不是对脑工作原理本身提出新的 AI-relevant 机制解释。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>功能性磁共振成像 (fMRI) 对于研究大脑功能和诊断神经系统疾病至关重要。然而，现有的分析方法由于复杂的预处理流程和任务特定的模型设计，面临着可重现性和可迁移性方面的挑战。在本文中，我们介绍了具有时空优化和表征建模的神经影像基础模型 (NeuroSTORM)，它直接从四维 fMRI 体积中学习可泛化的表征，并能够高效地迁移到各种下游应用。具体而言，NeuroSTORM 在来自 50,000 多名参与者的 2865 万个 fMRI 帧上进行了预训练，这些参与者来自多个中心，年龄跨度为 5 至 100 岁。它结合了高效的时空建模设计和轻量级的任务适应，以实现可扩展的预训练和快速迁移到下游应用。我们表明，NeuroSTORM 在五项下游任务中始终优于现有方法，这些任务包括人口学预测、表型预测、疾病诊断、再识别和状态分类。在包含 17 种诊断的两个多医院临床队列中，NeuroSTORM 取得了最佳诊断性能，同时对心理和认知表型仍具有预测能力。这些结果表明，NeuroSTORM 有望成为可重现和可迁移的 fMRI 分析的标准化基础模型。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Functional magnetic resonance imaging (fMRI) is crucial for studying brain function and diagnosing neurological disorders. However, existing analysis methods suffer from reproducibility and transferability challenges due to complex preprocessing pipelines and task-specific model designs. Here we introduce the Neuroimaging Foundation Model with Spatial–Temporal Optimized and Representation Modelling (NeuroSTORM), which learns generalizable representations directly from four-dimensional fMRI volumes and enables efficient transfer to diverse downstream applications. Specifically, NeuroSTORM is pretrained on 28.65 million fMRI frames from over 50,000 participants, spanning multiple centres and ages 5–100. It combines an efficient spatiotemporal modelling design and lightweight task adaptation to enable scalable pretraining and fast transfer to downstream applications. We show that NeuroSTORM consistently outperforms existing methods across five downstream tasks, including demographic prediction, phenotype prediction, disease diagnosis, re-identification and state classification. On two multihospital clinical cohorts with 17 diagnoses, NeuroSTORM achieves the best diagnosis performance while remaining predictive of psychological and cognitive phenotypes. These results suggest that NeuroSTORM could become a standardized foundation model for reproducible and transferable fMRI analysis.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260423n70neurost,
+  title = {Towards a general-purpose foundation model for functional MRI analysis},
+  year = {2026},
+  url = {https://doi.org/10.1038/s41551-026-01666-y},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n70-neurostorm-fmri-foundation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Towards a general-purpose foundation model for functional MRI analysis. https://doi.org/10.1038/s41551-026-01666-y</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41551-026-01666-y" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

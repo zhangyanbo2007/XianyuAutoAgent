@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TraceScope: Interactive URL Triage via Decoupled Checklist Adjudication | DAST Papers</title>
+    <meta name="description" content="这篇论文把 phishing URL triage 从静态分类问题重述成 interactive forensics task，这个 framing 很对。很多现代 phishing 页面只有在交互后才显露真正内容，所以单次 snapshot classifier 很容易失效。
+
+TraceScope 的系统设计值得注意：先用 sandboxed operator agent 在真实 GUI br" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s73-tracescope-phishing-triage/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TraceScope: Interactive URL Triage via Decoupled Checklist Adjudication" />
+    <meta property="og:description" content="这篇论文把 phishing URL triage 从静态分类问题重述成 interactive forensics task，这个 framing 很对。很多现代 phishing 页面只有在交互后才显露真正内容，所以单次 snapshot classifier 很容易失效。
+
+TraceScope 的系统设计值得注意：先用 sandboxed operator agent 在真实 GUI br" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s73-tracescope-phishing-triage/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TraceScope: Interactive URL Triage via Decoupled Checklist Adjudication" />
+    <meta name="twitter:description" content="这篇论文把 phishing URL triage 从静态分类问题重述成 interactive forensics task，这个 framing 很对。很多现代 phishing 页面只有在交互后才显露真正内容，所以单次 snapshot classifier 很容易失效。
+
+TraceScope 的系统设计值得注意：先用 sandboxed operator agent 在真实 GUI br" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TraceScope: Interactive URL Triage via Decoupled Checklist Adjudication</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-04-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.21840" target="_blank" rel="noopener noreferrer">2604.21840</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 phishing URL triage 从静态分类问题重述成 interactive forensics task，这个 framing 很对。很多现代 phishing 页面只有在交互后才显露真正内容，所以单次 snapshot classifier 很容易失效。</dd></div><div><dt>方法/机制</dt><dd>TraceScope 的系统设计值得注意：先用 sandboxed operator agent 在真实 GUI browser 里主动触发页面行为，再把会话冻结成 immutable evidence bundle；随后 adjudicator agent 按需查询证据，验证 MITRE ATT&amp;CK checklist，并给出 audit-ready report。这样既减少 observer effect，也把安全分析流程结构化了。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是 secure computer-use / agentic security workflow 的一个清晰范式。贡献不只是 recall 提升，而是把交互、隔离、证据固定和审计报告串成了可复用的 triage pipeline。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前应用还比较集中在 phishing URL triage，一般化到更广交互式恶意内容分析场景还需要进一步验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 phishing URL triage 从静态分类问题重述成 interactive forensics task，这个 framing 很对。很多现代 phishing 页面只有在交互后才显露真正内容，所以单次 snapshot classifier 很容易失效。</p><p>TraceScope 的系统设计值得注意：先用 sandboxed operator agent 在真实 GUI browser 里主动触发页面行为，再把会话冻结成 immutable evidence bundle；随后 adjudicator agent 按需查询证据，验证 MITRE ATT&amp;CK checklist，并给出 audit-ready report。这样既减少 observer effect，也把安全分析流程结构化了。</p><p>它值得正式收录，因为这是 secure computer-use / agentic security workflow 的一个清晰范式。贡献不只是 recall 提升，而是把交互、隔离、证据固定和审计报告串成了可复用的 triage pipeline。</p><p>它没有更高，是因为当前应用还比较集中在 phishing URL triage，一般化到更广交互式恶意内容分析场景还需要进一步验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>TraceScope：通过解耦清单裁决实现交互式URL分类现代网络钓鱼活动越来越多地通过使用交互式门（例如，复选框/滑块挑战）、延迟内容渲染和无标志凭证收集器来规避基于快照的URL分类器。这将URL分类从静态分类转向交互式取证任务：分析师必须主动浏览页面，同时将自己与潜在的运行时漏洞隔离开来。我们提出了TraceScope，一个解耦的分类管道，能够大规模地实现这一工作流程。为了防止观察者效应并确保安全，一个沙盒化的操作代理驱动一个真实的GUI浏览器，在视觉动机的引导下引发页面行为，并将会话冻结成一个不可变的证据包。另外，一个裁决代理通过按需查询证据来验证MITRE ATT&amp;CK清单，从而规避了LLM上下文限制，并生成一份包含提取的危害指标（IOCs）和最终裁决的审计就绪报告。在来自现有数据集的708个可访问URL（其中241个是来自PhishTank的已验证网络钓鱼URL，467个是来自Tranco爬取的良性URL）上进行评估，TraceScope实现了0.94的精确率和0.78的召回率，显著提高了相对于三个现有视觉/基于引用的分类器的召回率，同时生成了可复现的、分析师级别的、适合审查的证据。更重要的是，我们手动整理了一个真实世界网络钓鱼电子邮件数据集，以在实际环境中评估我们的系统。我们的评估表明，TraceScope在真实世界场景中也表现出卓越的性能，成功检测出当前最先进防御系统未能识别的复杂网络钓鱼尝试。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Modern phishing campaigns increasingly evade snapshotbased URL classifiers using interaction gates (e.g., checkbox/slider challenges), delayed content rendering, and logoless credential harvesters. This shifts URL triage from static classification toward an interactive forensics task: an analyst must actively navigate the page while isolating themselves from potential runtime exploits. We present TraceScope, a decoupled triage pipeline that operationalizes this workflow at scale. To prevent the observer effect and ensure safety, a sandboxed operator agent drives a real GUI browser guided by visual motivation to elicit page behavior, freezing the session into an immutable evidence bundle. Separately, an adjudicator agent circumvents LLM context limitations by querying evidence on demand to verify a MITRE ATT&amp;CK checklist, and generates an audit-ready report with extracted indicators of compromise (IOCs) and a final verdict. Evaluated on 708 reachable URLs from existing dataset (241 verified phishing from PhishTank and 467 benign from Tranco-derived crawling), TraceScope achieves 0.94 precision and 0.78 recall, substantially improving recall over three prior visual/reference-based classifiers while producing reproducible, analyst-grade evidence suitable for review. More importantly, we manually curated a dataset of real-world phishing emails to evaluate our system in a practical setting. Our evaluation reveals that TraceScope demonstrates superior performance in a real-world scenario as well, successfully detecting sophisticated phishing attempts that current state-of-theart defenses fail to identify.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260423s73tracesc,
+  title = {TraceScope: Interactive URL Triage via Decoupled Checklist Adjudication},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.21840.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s73-tracescope-phishing-triage/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TraceScope: Interactive URL Triage via Decoupled Checklist Adjudication. https://arxiv.org/pdf/2604.21840.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.21840.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

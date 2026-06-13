@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Decision-Centric Design for LLM Systems | DAST Papers</title>
+    <meta name="description" content="很多 LLM systems 真正失败的地方并不是语言生成本身，而是控制决策被偷偷塞进了同一个 model call：什么时候直接回答、什么时候澄清、什么时候检索、什么时候调工具、什么时候 repair 或 escalate，都常常混在生成过程里，导致系统难以诊断、约束和逐层改进。
+
+论文提出 decision-centric framework，把 control decisions 从生成里显" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a125-decision-centric-llm-systems/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Decision-Centric Design for LLM Systems" />
+    <meta property="og:description" content="很多 LLM systems 真正失败的地方并不是语言生成本身，而是控制决策被偷偷塞进了同一个 model call：什么时候直接回答、什么时候澄清、什么时候检索、什么时候调工具、什么时候 repair 或 escalate，都常常混在生成过程里，导致系统难以诊断、约束和逐层改进。
+
+论文提出 decision-centric framework，把 control decisions 从生成里显" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a125-decision-centric-llm-systems/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Decision-Centric Design for LLM Systems" />
+    <meta name="twitter:description" content="很多 LLM systems 真正失败的地方并不是语言生成本身，而是控制决策被偷偷塞进了同一个 model call：什么时候直接回答、什么时候澄清、什么时候检索、什么时候调工具、什么时候 repair 或 escalate，都常常混在生成过程里，导致系统难以诊断、约束和逐层改进。
+
+论文提出 decision-centric framework，把 control decisions 从生成里显" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Decision-Centric Design for LLM Systems</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00414" target="_blank" rel="noopener noreferrer">2604.00414</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 LLM systems 真正失败的地方并不是语言生成本身，而是控制决策被偷偷塞进了同一个 model call：什么时候直接回答、什么时候澄清、什么时候检索、什么时候调工具、什么时候 repair 或 escalate，都常常混在生成过程里，导致系统难以诊断、约束和逐层改进。</dd></div><div><dt>方法/机制</dt><dd>论文提出 decision-centric framework，把 control decisions 从生成里显式拆出来，区分 decision-relevant signals 与 policy layer。这样系统可以把失败归因到 signal estimation、decision policy 或 execution 本身，并把这一思想统一到 routing、adaptive inference 以及更长的 sequential decision setting 中。作者通过三组 controlled experiments 展示，这种分层能减少 futile actions、提升任务成功率，并暴露更可解释的 failure modes。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent/control-heavy LLM systems 的一个普遍工程问题提升成了架构原则：不要把控制逻辑继续藏在自由生成里，而要把决策层做成可检查、可替换、可约束的显式模块。对于 agents、RAG orchestration、tool routing 和 controllable inference，这有很强的系统模式价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要来自 controlled experiments 和框架论证。它很像一条对的系统蓝图，但要成为更广泛默认范式，还需要更多外部实现和长期经验支持。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 LLM systems 真正失败的地方并不是语言生成本身，而是控制决策被偷偷塞进了同一个 model call：什么时候直接回答、什么时候澄清、什么时候检索、什么时候调工具、什么时候 repair 或 escalate，都常常混在生成过程里，导致系统难以诊断、约束和逐层改进。</p><p>论文提出 decision-centric framework，把 control decisions 从生成里显式拆出来，区分 decision-relevant signals 与 policy layer。这样系统可以把失败归因到 signal estimation、decision policy 或 execution 本身，并把这一思想统一到 routing、adaptive inference 以及更长的 sequential decision setting 中。作者通过三组 controlled experiments 展示，这种分层能减少 futile actions、提升任务成功率，并暴露更可解释的 failure modes。</p><p>这篇工作值得收录，因为它把 agent/control-heavy LLM systems 的一个普遍工程问题提升成了架构原则：不要把控制逻辑继续藏在自由生成里，而要把决策层做成可检查、可替换、可约束的显式模块。对于 agents、RAG orchestration、tool routing 和 controllable inference，这有很强的系统模式价值。</p><p>它没有升到更高一级，是因为当前证据仍主要来自 controlled experiments 和框架论证。它很像一条对的系统蓝图，但要成为更广泛默认范式，还需要更多外部实现和长期经验支持。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM 系统除了生成输出外，还必须做出控制决策：是回答、澄清、检索、调用工具、修复还是升级。在许多当前架构中，这些决策在生成过程中仍然是隐式的，将评估和行动纠缠在单个模型调用中，使得故障难以检查、约束或修复。我们提出了一个以决策为中心的设计框架，它将与决策相关的信号与将这些信号映射到行动的策略分开，从而将控制转变为系统的一个显式且可检查的层。这种分离支持将故障归因于信号估计、决策策略或执行，并能够对每个组件进行模块化改进。它统一了熟悉的单步设置，例如路由和自适应推理，并自然地扩展到行动在执行前改变可用信息的顺序设置。在三个受控实验中，该框架减少了无效行动，提高了任务成功率，并揭示了可解释的故障模式。更广泛地说，它为构建更可靠、可控和可诊断的 LLM 系统提供了一个通用的架构原则。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLM systems must make control decisions in addition to generating outputs: whether to answer, clarify, retrieve, call tools, repair, or escalate. In many current architectures, these decisions remain implicit within generation, entangling assessment and action in a single model call and making failures hard to inspect, constrain, or repair. We propose a decision-centric framework that separates decision-relevant signals from the policy that maps them to actions, turning control into an explicit and inspectable layer of the system. This separation supports attribution of failures to signal estimation, decision policy, or execution, and enables modular improvement of each component. It unifies familiar single-step settings such as routing and adaptive inference, and extends naturally to sequential settings in which actions alter the information available before acting. Across three controlled experiments, the framework reduces futile actions, improves task success, and reveals interpretable failure modes. More broadly, it offers a general architectural principle for building more reliable, controllable, and diagnosable LLM systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a125decisi,
+  title = {Decision-Centric Design for LLM Systems},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00414.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a125-decision-centric-llm-systems/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Decision-Centric Design for LLM Systems. https://arxiv.org/pdf/2604.00414.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00414.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

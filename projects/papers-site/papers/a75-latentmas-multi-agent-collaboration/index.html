@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Latent Collaboration in Multi-Agent Systems | DAST Papers</title>
+    <meta name="description" content="问题与背景：当前多智能体系统几乎都依赖自然语言文本进行中介式协作，这带来三个老问题：通信成本高、离散化造成信息丢失、协作延迟随着 agent 数量快速膨胀。LatentMAS 直接把问题改写为：智能体之间是否可以绕过文本，在连续 latent space 里进行信息交换，从而获得更高表达力和更低系统成本。
+
+方法/新意：论文提出一个 training-free 的 latent collabora" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a75-latentmas-multi-agent-collaboration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Latent Collaboration in Multi-Agent Systems" />
+    <meta property="og:description" content="问题与背景：当前多智能体系统几乎都依赖自然语言文本进行中介式协作，这带来三个老问题：通信成本高、离散化造成信息丢失、协作延迟随着 agent 数量快速膨胀。LatentMAS 直接把问题改写为：智能体之间是否可以绕过文本，在连续 latent space 里进行信息交换，从而获得更高表达力和更低系统成本。
+
+方法/新意：论文提出一个 training-free 的 latent collabora" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a75-latentmas-multi-agent-collaboration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Latent Collaboration in Multi-Agent Systems" />
+    <meta name="twitter:description" content="问题与背景：当前多智能体系统几乎都依赖自然语言文本进行中介式协作，这带来三个老问题：通信成本高、离散化造成信息丢失、协作延迟随着 agent 数量快速膨胀。LatentMAS 直接把问题改写为：智能体之间是否可以绕过文本，在连续 latent space 里进行信息交换，从而获得更高表达力和更低系统成本。
+
+方法/新意：论文提出一个 training-free 的 latent collabora" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Latent Collaboration in Multi-Agent Systems</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-11-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.20639" target="_blank" rel="noopener noreferrer">2511.20639</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：当前多智能体系统几乎都依赖自然语言文本进行中介式协作，这带来三个老问题：通信成本高、离散化造成信息丢失、协作延迟随着 agent 数量快速膨胀。LatentMAS 直接把问题改写为：智能体之间是否可以绕过文本，在连续 latent space 里进行信息交换，从而获得更高表达力和更低系统成本。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：论文提出一个 training-free 的 latent collaboration 框架，让 agent 通过最后一层 hidden embeddings 进行自回归 latent thoughts 生成，并把这些内部表征写入共享 latent working memory，供其他 agent 直接读取。作者同时给出理论分析，论证相对于文本通信的 expressiveness 和 lossless preservation 优势，并在数学、科学、常识和代码等 9 个 benchmark 上验证系统质量与效率收益。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇工作很适合放在 agent systems / multi-agent communication / memory substrate 主线。它的核心价值在于改变多智能体协作的通信基底，不再把自然语言视为唯一接口，而是把隐藏状态共享变成系统设计的一等公民。对未来的低成本 agent teams、latent working memory、跨 agent reasoning substrate 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：虽然方向很强，但当前仍主要建立在特定 latent 对齐与框架设定上，跨模型族、跨工具链和更开放环境下的稳健性还需要更多证据。它已经足够值得正式收录，但还不到无争议地重排整个多智能体路线的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：当前多智能体系统几乎都依赖自然语言文本进行中介式协作，这带来三个老问题：通信成本高、离散化造成信息丢失、协作延迟随着 agent 数量快速膨胀。LatentMAS 直接把问题改写为：智能体之间是否可以绕过文本，在连续 latent space 里进行信息交换，从而获得更高表达力和更低系统成本。</p><p>方法/新意：论文提出一个 training-free 的 latent collaboration 框架，让 agent 通过最后一层 hidden embeddings 进行自回归 latent thoughts 生成，并把这些内部表征写入共享 latent working memory，供其他 agent 直接读取。作者同时给出理论分析，论证相对于文本通信的 expressiveness 和 lossless preservation 优势，并在数学、科学、常识和代码等 9 个 benchmark 上验证系统质量与效率收益。</p><p>意义/放在仓库中的位置：这篇工作很适合放在 agent systems / multi-agent communication / memory substrate 主线。它的核心价值在于改变多智能体协作的通信基底，不再把自然语言视为唯一接口，而是把隐藏状态共享变成系统设计的一等公民。对未来的低成本 agent teams、latent working memory、跨 agent reasoning substrate 都有明显外溢。</p><p>局限/为何不再升一级：虽然方向很强，但当前仍主要建立在特定 latent 对齐与框架设定上，跨模型族、跨工具链和更开放环境下的稳健性还需要更多证据。它已经足够值得正式收录，但还不到无争议地重排整个多智能体路线的程度。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251125a75latentm,
+  title = {Latent Collaboration in Multi-Agent Systems},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.20639.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a75-latentmas-multi-agent-collaboration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Latent Collaboration in Multi-Agent Systems. https://arxiv.org/pdf/2511.20639.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.20639.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

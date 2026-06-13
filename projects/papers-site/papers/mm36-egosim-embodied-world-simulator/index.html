@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EgoSim: Egocentric World Simulator for Embodied Interaction Generation | DAST Papers</title>
+    <meta name="description" content="egocentric world simulation 是 embodied AI 很缺的一块：已有模拟器要么缺显式 3D grounding，导致视角变化后结构漂移；要么把场景视作静态背景，无法持续更新 world state，因此不适合多阶段互动和具身操作。EgoSim 正是在补这一层缺口。
+
+论文把 3D scene 建模为可更新的 world state，并用两个模块完成闭环模拟：Geom" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm36-egosim-embodied-world-simulator/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EgoSim: Egocentric World Simulator for Embodied Interaction Generation" />
+    <meta property="og:description" content="egocentric world simulation 是 embodied AI 很缺的一块：已有模拟器要么缺显式 3D grounding，导致视角变化后结构漂移；要么把场景视作静态背景，无法持续更新 world state，因此不适合多阶段互动和具身操作。EgoSim 正是在补这一层缺口。
+
+论文把 3D scene 建模为可更新的 world state，并用两个模块完成闭环模拟：Geom" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm36-egosim-embodied-world-simulator/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EgoSim: Egocentric World Simulator for Embodied Interaction Generation" />
+    <meta name="twitter:description" content="egocentric world simulation 是 embodied AI 很缺的一块：已有模拟器要么缺显式 3D grounding，导致视角变化后结构漂移；要么把场景视作静态背景，无法持续更新 world state，因此不适合多阶段互动和具身操作。EgoSim 正是在补这一层缺口。
+
+论文把 3D scene 建模为可更新的 world state，并用两个模块完成闭环模拟：Geom" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EgoSim: Egocentric World Simulator for Embodied Interaction Generation</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01001" target="_blank" rel="noopener noreferrer">2604.01001</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>egocentric world simulation 是 embodied AI 很缺的一块：已有模拟器要么缺显式 3D grounding，导致视角变化后结构漂移；要么把场景视作静态背景，无法持续更新 world state，因此不适合多阶段互动和具身操作。EgoSim 正是在补这一层缺口。</dd></div><div><dt>方法/机制</dt><dd>论文把 3D scene 建模为可更新的 world state，并用两个模块完成闭环模拟：Geometry-action-aware Observation Simulation 负责从状态和动作生成观察结果，Interaction-aware State Updating 负责在交互后更新底层 3D scene state。作者还给出一条可扩展数据流水线，从 in-the-wild monocular egocentric videos 中抽取点云、相机轨迹和 embodiment actions，并用 EgoCap 做低成本真实采集。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是又一个视频生成器，而是把 egocentric embodied simulation 做成了带 persistent 3D state 的闭环世界模型接口。这种‘观察生成 + 状态更新’的结构，对 embodied world models、机器人模拟数据合成、cross-embodiment transfer 和 interaction generation 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前影响仍集中在 egocentric interaction simulation 这条子线，且需要更多外部系统将其真正作为通用 world simulator 复用。现在它已经足够强，但还没到改写更广 multimodal world-model 蓝图的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>egocentric world simulation 是 embodied AI 很缺的一块：已有模拟器要么缺显式 3D grounding，导致视角变化后结构漂移；要么把场景视作静态背景，无法持续更新 world state，因此不适合多阶段互动和具身操作。EgoSim 正是在补这一层缺口。</p><p>论文把 3D scene 建模为可更新的 world state，并用两个模块完成闭环模拟：Geometry-action-aware Observation Simulation 负责从状态和动作生成观察结果，Interaction-aware State Updating 负责在交互后更新底层 3D scene state。作者还给出一条可扩展数据流水线，从 in-the-wild monocular egocentric videos 中抽取点云、相机轨迹和 embodiment actions，并用 EgoCap 做低成本真实采集。</p><p>这篇工作值得收录，因为它不是又一个视频生成器，而是把 egocentric embodied simulation 做成了带 persistent 3D state 的闭环世界模型接口。这种‘观察生成 + 状态更新’的结构，对 embodied world models、机器人模拟数据合成、cross-embodiment transfer 和 interaction generation 都有明显外溢。</p><p>它没有升到更高一级，是因为当前影响仍集中在 egocentric interaction simulation 这条子线，且需要更多外部系统将其真正作为通用 world simulator 复用。现在它已经足够强，但还没到改写更广 multimodal world-model 蓝图的程度。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。我们引入了 EgoSim，一个闭环的以自我为中心的（egocentric）世界模拟器，它生成空间一致的交互视频，并持续更新底层的 3D 场景状态以进行连续模拟。现有的以自我为中心的模拟器要么缺乏明确的 3D 基础，导致视角变化下的结构漂移，要么将场景视为静态，无法在多阶段交互中更新世界状态。EgoSim 通过将 3D 场景建模为可更新的世界状态来解决这两个限制。我们通过一个几何动作感知观察模拟模型（Geometryaction-aware Observation Simulation model）生成具身交互，并通过一个交互感知状态更新模块（Interaction-aware State Updating module）实现空间一致性。为了克服获取密集对齐的场景-交互训练对所带来的关键数据瓶颈，我们设计了一个可扩展的管道，从野外大规模单目以自我为中心的视频中提取静态点云、相机轨迹和具身动作。大量的实验表明，EgoSim 在视觉质量、空间一致性以及对复杂场景和野外灵巧交互的泛化方面显著优于现有方法，同时支持跨具身到机器人操作的迁移。代码和数据集将很快开源。项目页面位于 egosimulator.github.io。关键词：以自我为中心的世界模拟器 · 世界模型 · 生成模型</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. We introduce EgoSim, a closed-loop egocentric world simulator that generates spatially consistent interaction videos and persistently updates the underlying 3D scene state for continuous simulation. Existing egocentric simulators either lack explicit 3D grounding, causing structural drift under viewpoint changes, or treat the scene as static, failing to update world states across multi-stage interactions. EgoSim addresses both limitations by modeling 3D scenes as updatable world states. We generate embodiment interactions via a Geometryaction-aware Observation Simulation model, with spatial consistency from an Interaction-aware State Updating module. To overcome the critical data bottleneck posed by the difficulty in acquiring densely aligned scene–interaction training pairs, we design a scalable pipeline that extracts static point clouds, camera trajectories, and embodiment actions from in-the-wild large-scale monocular egocentric videos. Extensive experiments demonstrate that EgoSim significantly outperforms existing methods in terms of visual quality, spatial consistency, and generalization to complex scenes and in-the-wild dexterous interactions, while supporting cross-embodiment transfer to robotic manipulation. Codes and datasets will be open soon. The project page is at egosimulator.github. io. Keywords: Egocentric World Simulator · World Models · Generative Models</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401mm36egosim,
+  title = {EgoSim: Egocentric World Simulator for Embodied Interaction Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01001.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm36-egosim-embodied-world-simulator/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EgoSim: Egocentric World Simulator for Embodied Interaction Generation. https://arxiv.org/pdf/2604.01001.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01001.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toward Scalable Terminal Task Synthesis via Skill Graphs | DAST Papers</title>
+    <meta name="description" content="这篇工作的价值不只是再造一个 terminal benchmark，而是把 terminal-agent training data generation 做成了一个可控的 workflow synthesis 问题。核心不是多造任务，而是通过 scenario-mediated skill graph 先定义 skills 之间的可组合路径，再从图里采样 minimal execution tr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a246-skillsynth-terminal-task-synthesis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Toward Scalable Terminal Task Synthesis via Skill Graphs" />
+    <meta property="og:description" content="这篇工作的价值不只是再造一个 terminal benchmark，而是把 terminal-agent training data generation 做成了一个可控的 workflow synthesis 问题。核心不是多造任务，而是通过 scenario-mediated skill graph 先定义 skills 之间的可组合路径，再从图里采样 minimal execution tr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a246-skillsynth-terminal-task-synthesis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Toward Scalable Terminal Task Synthesis via Skill Graphs" />
+    <meta name="twitter:description" content="这篇工作的价值不只是再造一个 terminal benchmark，而是把 terminal-agent training data generation 做成了一个可控的 workflow synthesis 问题。核心不是多造任务，而是通过 scenario-mediated skill graph 先定义 skills 之间的可组合路径，再从图里采样 minimal execution tr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Toward Scalable Terminal Task Synthesis via Skill Graphs</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.25727" target="_blank" rel="noopener noreferrer">2604.25727</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的价值不只是再造一个 terminal benchmark，而是把 terminal-agent training data generation 做成了一个可控的 workflow synthesis 问题。核心不是多造任务，而是通过 scenario-mediated skill graph 先定义 skills 之间的可组合路径，再从图里采样 minimal execution trajectories。</dd></div><div><dt>方法/机制</dt><dd>这解决了以往终端任务合成里一个很实际的缺口：大家会扩大量，却很难显式控制 agent 真正经历的轨迹多样性。SkillSynth 通过 graph-sampled workflows + multi-agent harness，把任务实例生成和 skill coverage 联系起来，这对 terminal agents、computer-use agents、甚至 broader tool-using agents 都有外溢。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是一个局部 benchmark trick，而是一个训练数据引擎接口。后续凡是需要从技能单元组合成长程可执行任务的 agent 训练，都能借这套 skill-graph synthesis 思路。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前主验证仍集中在 terminal setting，虽然已经显示出对 Hy3 Preview 的训练价值，但跨更广 action domains 的普适性还没完全建立。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的价值不只是再造一个 terminal benchmark，而是把 terminal-agent training data generation 做成了一个可控的 workflow synthesis 问题。核心不是多造任务，而是通过 scenario-mediated skill graph 先定义 skills 之间的可组合路径，再从图里采样 minimal execution trajectories。</p><p>这解决了以往终端任务合成里一个很实际的缺口：大家会扩大量，却很难显式控制 agent 真正经历的轨迹多样性。SkillSynth 通过 graph-sampled workflows + multi-agent harness，把任务实例生成和 skill coverage 联系起来，这对 terminal agents、computer-use agents、甚至 broader tool-using agents 都有外溢。</p><p>它值得正式收录，因为这不是一个局部 benchmark trick，而是一个训练数据引擎接口。后续凡是需要从技能单元组合成长程可执行任务的 agent 训练，都能借这套 skill-graph synthesis 思路。</p><p>它没有更高，是因为当前主验证仍集中在 terminal setting，虽然已经显示出对 Hy3 Preview 的训练价值，但跨更广 action domains 的普适性还没完全建立。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SkillSynth 是一个基于情景介导技能图的自动化终端任务合成框架。它从连接命令行技能并通过中间情景采样工作流路径，然后使用多智能体框架将这些路径实例化为可执行任务，显式地控制轨迹多样性，而不是仅仅增加原始任务数量。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>SkillSynth is an automated terminal-task synthesis framework built on a scenario-mediated skill graph. It samples workflow paths from a graph that connects command-line skills through intermediate scenarios, then uses a multi-agent harness to instantiate those paths into executable tasks, explicitly controlling trajectory diversity rather than only increasing raw task count.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260428a246skills,
+  title = {Toward Scalable Terminal Task Synthesis via Skill Graphs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.25727.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a246-skillsynth-terminal-task-synthesis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Toward Scalable Terminal Task Synthesis via Skill Graphs. https://arxiv.org/pdf/2604.25727.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.25727.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling | DAST Papers</title>
+    <meta name="description" content="这篇论文的核心是让 LLM 帮助发现提升 LLM 测试时计算效率的方法。它把 test-time scaling 从人工设计策略，推进到 agentic discovery。
+
+它的重要性在于把模型优化本身变成一个 agent 搜索任务：coding agent 可以提出、测试和筛选推理策略，从而用相对低成本发现节省 token 或提升性能的方法。
+
+它值得正式收录，因为这符合 self-impr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a266-autotts-agentic-testtime-scaling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling" />
+    <meta property="og:description" content="这篇论文的核心是让 LLM 帮助发现提升 LLM 测试时计算效率的方法。它把 test-time scaling 从人工设计策略，推进到 agentic discovery。
+
+它的重要性在于把模型优化本身变成一个 agent 搜索任务：coding agent 可以提出、测试和筛选推理策略，从而用相对低成本发现节省 token 或提升性能的方法。
+
+它值得正式收录，因为这符合 self-impr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a266-autotts-agentic-testtime-scaling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling" />
+    <meta name="twitter:description" content="这篇论文的核心是让 LLM 帮助发现提升 LLM 测试时计算效率的方法。它把 test-time scaling 从人工设计策略，推进到 agentic discovery。
+
+它的重要性在于把模型优化本身变成一个 agent 搜索任务：coding agent 可以提出、测试和筛选推理策略，从而用相对低成本发现节省 token 或提升性能的方法。
+
+它值得正式收录，因为这符合 self-impr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.08083" target="_blank" rel="noopener noreferrer">2605.08083</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的核心是让 LLM 帮助发现提升 LLM 测试时计算效率的方法。它把 test-time scaling 从人工设计策略，推进到 agentic discovery。</dd></div><div><dt>方法/机制</dt><dd>它的重要性在于把模型优化本身变成一个 agent 搜索任务：coding agent 可以提出、测试和筛选推理策略，从而用相对低成本发现节省 token 或提升性能的方法。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这符合 self-improving AI systems 的主线：不是只让模型解任务，而是让模型改进模型使用方式。它和自动后训练、agentic ML engineering 形成互补。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前发现的策略是否能跨模型、任务和真实系统稳定迁移，还需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的核心是让 LLM 帮助发现提升 LLM 测试时计算效率的方法。它把 test-time scaling 从人工设计策略，推进到 agentic discovery。</p><p>它的重要性在于把模型优化本身变成一个 agent 搜索任务：coding agent 可以提出、测试和筛选推理策略，从而用相对低成本发现节省 token 或提升性能的方法。</p><p>它值得正式收录，因为这符合 self-improving AI systems 的主线：不是只让模型解任务，而是让模型改进模型使用方式。它和自动后训练、agentic ML engineering 形成互补。</p><p>它没有更高，是因为当前发现的策略是否能跨模型、任务和真实系统稳定迁移，还需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>测试时缩放（TTS）已成为一种有效的方法，通过在推理过程中分配额外的计算来提高大型语言模型（LLM）的性能。然而，现有的TTS策略大多是手工设计的：研究人员凭直觉手动设计推理模式和调整启发式方法，这使得大部分计算分配空间未被探索。我们提出了一个环境驱动的框架AutoTTS，它改变了研究人员的设计方式：从单个TTS启发式方法转向可以自动发现TTS策略的环境。AutoTTS的关键在于环境构建：发现环境必须使控制空间易于处理，并为TTS搜索提供廉价、频繁的反馈。作为一个具体的实例，我们将宽度-深度TTS表述为对预收集的推理轨迹和探测信号进行控制器合成，其中控制器决定何时分支、继续、探测、剪枝或停止，并且可以在不重复调用LLM的情况下廉价地进行评估。我们进一步引入了beta参数化以使搜索易于处理，并引入了细粒度的执行跟踪反馈，通过帮助代理诊断TTS程序失败的原因来提高发现效率。在数学推理基准上的实验表明，所发现的策略在整体准确性-成本权衡方面优于强大的人工设计基线。所发现的策略可以推广到未见过的基准和模型规模，而整个发现过程仅花费39.9美元和160分钟。我们的数据和代码将在https://github.com/zhengkid/AutoTTS开源。图1：我们的Auto-TTS框架概述。与传统的手动设计TTS策略的工作流程不同，Auto-TTS将人类的角色从直接手工制作分支、剪枝和停止启发式方法转变为通过定义状态、动作、反馈和目标来构建环境。给定构建好的环境，一个探索者LLM迭代地提出候选控制器，在离线回放环境中评估它们，接收来自缩放曲线和执行跟踪的反馈，并利用累积的历史来完善未来的提议。右侧面板显示了在Qwen-1.7B和AIME25上的一个评估示例，其中所发现的控制器以可承受的一次性搜索成本改进了优于手工基线的准确性-成本帕累托前沿。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Test-time scaling (TTS) has become an effective approach for improving large language model performance by allocating additional computation during inference. However, existing TTS strategies are largely hand-crafted: researchers manually design reasoning patterns and tune heuristics by intuition, leaving much of the computation-allocation space unexplored. We propose an environment-driven framework, AutoTTS, that changes what researchers design: from individual TTS heuristics to environments where TTS strategies can be discovered automatically. The key to AutoTTS lies in environment construction: the discovery environment must make the control space tractable and provide cheap, frequent feedback for TTS search. As a concrete instantiation, we formulate width–depth TTS as controller synthesis over pre-collected reasoning trajectories and probe signals, where controllers decide when to branch, continue, probe, prune, or stop and can be evaluated cheaply without repeated LLM calls. We further introduce beta parameterization to make the search tractable and fine-grained execution trace feedback to improve discovery efficiency by helping the agent diagnose why a TTS program fails. Experiments on mathematical reasoning benchmarks show that the discovered strategies improve the overall accuracy–cost tradeoff over strong manually designed baselines. The discovered strategies generalize to held-out benchmarks and model scales, while the entire discovery costs only $39.9 and 160 minutes. Our data, and code will be open-source at https://github.com/zhengkid/AutoTTS. Figure 1: Overview of our Auto-TTS framework. Unlike the traditional workflow of manually designing TTS strategies, Auto-TTS shifts the human role from directly hand-crafting branching, pruning, and stopping heuristics to constructing environments by defining states, actions, feedback, and objectives. Given the constructed environment, an explorer LLM iteratively proposes candidate controllers, evaluates them in the offline replay environment, receives feedback from scaling curves and execution traces, and uses the accumulated history to refine future proposals. The right panel shows an example evaluation on Qwen-1.7B and AIME25, where the discovered controller improves the accuracy–cost Pareto frontier over hand-crafted baselines with an affordable one-time search cost.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513a266autott,
+  title = {LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.08083.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a266-autotts-agentic-testtime-scaling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LLMs Improving LLMs: Agentic Discovery for Test-Time Scaling. https://arxiv.org/pdf/2605.08083.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.08083.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.08083" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

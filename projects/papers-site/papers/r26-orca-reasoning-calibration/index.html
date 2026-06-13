@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning | DAST Papers</title>
+    <meta name="description" content="test-time scaling 带来了更强推理能力，但也把推理成本迅速推高。很多情况下，真正的问题不是模型不会做，而是采样和 stopping 决策缺乏校准，导致系统在无需额外思考时仍然花大量算力。ORCA 正是从 reasoning calibration 这个角度切入，尝试在保证风险控制的前提下减少无效 compute。
+
+论文提出 Online Reasoning Calibration" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r26-orca-reasoning-calibration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning" />
+    <meta property="og:description" content="test-time scaling 带来了更强推理能力，但也把推理成本迅速推高。很多情况下，真正的问题不是模型不会做，而是采样和 stopping 决策缺乏校准，导致系统在无需额外思考时仍然花大量算力。ORCA 正是从 reasoning calibration 这个角度切入，尝试在保证风险控制的前提下减少无效 compute。
+
+论文提出 Online Reasoning Calibration" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r26-orca-reasoning-calibration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning" />
+    <meta name="twitter:description" content="test-time scaling 带来了更强推理能力，但也把推理成本迅速推高。很多情况下，真正的问题不是模型不会做，而是采样和 stopping 决策缺乏校准，导致系统在无需额外思考时仍然花大量算力。ORCA 正是从 reasoning calibration 这个角度切入，尝试在保证风险控制的前提下减少无效 compute。
+
+论文提出 Online Reasoning Calibration" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01170" target="_blank" rel="noopener noreferrer">2604.01170</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>test-time scaling 带来了更强推理能力，但也把推理成本迅速推高。很多情况下，真正的问题不是模型不会做，而是采样和 stopping 决策缺乏校准，导致系统在无需额外思考时仍然花大量算力。ORCA 正是从 reasoning calibration 这个角度切入，尝试在保证风险控制的前提下减少无效 compute。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Online Reasoning Calibration，把 conformal prediction 与 test-time training 结合起来。核心做法是为每个输入在线更新 calibration module，使其适应 reasoning 过程中的分布变化，以及开发阶段与部署阶段 prompt 分布的偏移。作者给出 conformal risk 保证，并在多类 reasoning 任务上报告显著效率提升，尤其在 OOD 设置下相对静态校准大幅提高节省算力的幅度。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 reasoning efficiency 问题从简单的 sample budget 调整，推进到‘在线校准 reasoning process’这一更系统的 post-deployment adaptation 模式。它与仓库关注的 test-time learning、inference-time adaptation 和 reasoning control 非常贴近，属于可复用的方法模式，而不只是某个技巧性节流。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要验证在特定推理 benchmark 和模型族上。理论与实证都不错，但是否会成为更广泛 reasoning stack 的标准组件，还需要跨模型、跨任务、跨部署场景的进一步证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>test-time scaling 带来了更强推理能力，但也把推理成本迅速推高。很多情况下，真正的问题不是模型不会做，而是采样和 stopping 决策缺乏校准，导致系统在无需额外思考时仍然花大量算力。ORCA 正是从 reasoning calibration 这个角度切入，尝试在保证风险控制的前提下减少无效 compute。</p><p>论文提出 Online Reasoning Calibration，把 conformal prediction 与 test-time training 结合起来。核心做法是为每个输入在线更新 calibration module，使其适应 reasoning 过程中的分布变化，以及开发阶段与部署阶段 prompt 分布的偏移。作者给出 conformal risk 保证，并在多类 reasoning 任务上报告显著效率提升，尤其在 OOD 设置下相对静态校准大幅提高节省算力的幅度。</p><p>这篇工作值得收录，因为它把 reasoning efficiency 问题从简单的 sample budget 调整，推进到‘在线校准 reasoning process’这一更系统的 post-deployment adaptation 模式。它与仓库关注的 test-time learning、inference-time adaptation 和 reasoning control 非常贴近，属于可复用的方法模式，而不只是某个技巧性节流。</p><p>它没有升到更高一级，是因为当前仍主要验证在特定推理 benchmark 和模型族上。理论与实证都不错，但是否会成为更广泛 reasoning stack 的标准组件，还需要跨模型、跨任务、跨部署场景的进一步证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管测试时缩放使得大型语言模型能够解决高度困难的任务，但最先进的结果却伴随着高昂的计算成本。这些低效率可归因于后训练语言模型的错误校准以及流行采样技术中校准的缺失。在本文中，我们提出了在线推理校准（ORCA），这是一个基于共形预测和测试时训练的采样过程校准框架。具体来说，我们引入了一种元学习过程，该过程为每个输入更新校准模块。这使我们能够在分布偏移下提供有效的置信度估计，例如在推理不同阶段出现的思维模式中，或在模型开发和部署之间的提示分布中。ORCA不仅提供了共形风险的理论保证，而且在不同推理任务中经验性地显示出更高的效率和泛化能力。在风险水平δ=0.1下，ORCA将Qwen2.5-32B在同分布任务上的效率提高了，使用监督标签可节省高达47.5%，使用自洽性标签可节省40.7%。在零样本域外设置下，它将MATH-500的节省从静态校准基线的24.8%提高到67.0%，同时保持较低的经验错误率，并且相同的趋势在模型家族和下游基准中也成立。我们的代码可在https://github.com/wzekai99/ORCA公开获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>While test-time scaling has enabled large language models to solve highly difficult tasks, state-of-the-art results come at exorbitant compute costs. These inefficiencies can be attributed to the miscalibration of post-trained language models, and the lack of calibration in popular sampling techniques. Here, we present Online Reasoning Calibration (ORCA), a framework for calibrating the sampling process that draws upon conformal prediction and test-time training. Specifically, we introduce a meta-learning procedure that updates the calibration module for each input. This allows us to provide valid confidence estimates under distributional shift, e.g. in thought patterns that occur across different stages of reasoning, or in prompt distributions between model development and deployment. ORCA not only provides theoretical guarantees on conformal risks, but also empirically shows higher efficiency and generalization across different reasoning tasks. At risk level δ=0.1, ORCA improves Qwen2.5-32B efficiency on in-distribution tasks with savings up to 47.5% with supervised labels and 40.7% with self-consistency labels. Under zero-shot out-of-domain settings, it improves MATH-500 savings from 24.8% of the static calibration baseline to 67.0% while maintaining a low empirical error rate, and the same trend holds across model families and downstream benchmarks. Our code is publicly available at https://github.com/wzekai99/ORCA.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r26orcarea,
+  title = {Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01170.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r26-orca-reasoning-calibration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Online Reasoning Calibration: Test-Time Training Enables Generalizable Conformal LLM Reasoning. https://arxiv.org/pdf/2604.01170.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01170.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

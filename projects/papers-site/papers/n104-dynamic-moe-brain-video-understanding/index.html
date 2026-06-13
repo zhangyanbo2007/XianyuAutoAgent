@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Human Brain as a Dynamic Mixture of Expert Models in Video Understanding | DAST Papers</title>
+    <meta name="description" content="这篇 ICLR 2026 论文把 NeuroAI 的 model-brain alignment 从静态图像和 fMRI 扩展到动态视频 EEG，并系统比较 100+ 个视频/视觉模型。
+
+方法上，作者提出 Cross-Temporal RSA，用时间展开的模型特征去匹配不断演化的 EEG 响应，形成大规模动态对齐评测，而不是只问某个模型和脑活动总体相似不相似。
+
+关键发现是，不同脑区和时间段偏好" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n104-dynamic-moe-brain-video-understanding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Human Brain as a Dynamic Mixture of Expert Models in Video Understanding" />
+    <meta property="og:description" content="这篇 ICLR 2026 论文把 NeuroAI 的 model-brain alignment 从静态图像和 fMRI 扩展到动态视频 EEG，并系统比较 100+ 个视频/视觉模型。
+
+方法上，作者提出 Cross-Temporal RSA，用时间展开的模型特征去匹配不断演化的 EEG 响应，形成大规模动态对齐评测，而不是只问某个模型和脑活动总体相似不相似。
+
+关键发现是，不同脑区和时间段偏好" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n104-dynamic-moe-brain-video-understanding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Human Brain as a Dynamic Mixture of Expert Models in Video Understanding" />
+    <meta name="twitter:description" content="这篇 ICLR 2026 论文把 NeuroAI 的 model-brain alignment 从静态图像和 fMRI 扩展到动态视频 EEG，并系统比较 100+ 个视频/视觉模型。
+
+方法上，作者提出 Cross-Temporal RSA，用时间展开的模型特征去匹配不断演化的 EEG 响应，形成大规模动态对齐评测，而不是只问某个模型和脑活动总体相似不相似。
+
+关键发现是，不同脑区和时间段偏好" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Human Brain as a Dynamic Mixture of Expert Models in Video Understanding</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-01-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-26</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 ICLR 2026 论文把 NeuroAI 的 model-brain alignment 从静态图像和 fMRI 扩展到动态视频 EEG，并系统比较 100+ 个视频/视觉模型。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者提出 Cross-Temporal RSA，用时间展开的模型特征去匹配不断演化的 EEG 响应，形成大规模动态对齐评测，而不是只问某个模型和脑活动总体相似不相似。</dd></div><div><dt>结果/证据</dt><dd>关键发现是，不同脑区和时间段偏好的模型能力不同：后部电极更贴近具有时间整合的中层动作特征，额叶更贴近高层静态动作表征，state-space/video temporal integration 和自监督预训练对部分后部活动更有利。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提供了 AI 视频模型和人脑动态视觉处理之间的可复用评测接口，并把单一最佳模型的假设改写成动态 expert switching，这对视频模型架构、MoE/路由、时序表征学习和 NeuroAI 都有明确外溢。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 ICLR 2026 论文把 NeuroAI 的 model-brain alignment 从静态图像和 fMRI 扩展到动态视频 EEG，并系统比较 100+ 个视频/视觉模型。</p><p>方法上，作者提出 Cross-Temporal RSA，用时间展开的模型特征去匹配不断演化的 EEG 响应，形成大规模动态对齐评测，而不是只问某个模型和脑活动总体相似不相似。</p><p>关键发现是，不同脑区和时间段偏好的模型能力不同：后部电极更贴近具有时间整合的中层动作特征，额叶更贴近高层静态动作表征，state-space/video temporal integration 和自监督预训练对部分后部活动更有利。</p><p>它值得正式收录，因为它提供了 AI 视频模型和人脑动态视觉处理之间的可复用评测接口，并把单一最佳模型的假设改写成动态 expert switching，这对视频模型架构、MoE/路由、时序表征学习和 NeuroAI 都有明确外溢。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>在ICLR 2026的一篇论文中，提出了利用跨时域表征相似性分析（Cross-Temporal Representational Similarity Analysis）对100多种大型深度视频模型，以及动态脑电（EEG）录制的大自然视频进行大规模基准测试。该研究认为，脑视频理解的行为表现为在不同时间段和区域上，专家模型偏好的动态混合。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>ICLR 2026 paper introducing large-scale benchmarking of 100+ deep video models against dynamic EEG recordings of natural videos using Cross-Temporal Representational Similarity Analysis, arguing that brain video understanding behaves like a dynamic mixture of expert model preferences over time and regions.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260126n104dynami,
+  title = {The Human Brain as a Dynamic Mixture of Expert Models in Video Understanding},
+  year = {2026},
+  url = {https://openreview.net/pdf?id=bSsNSfyj8m},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n104-dynamic-moe-brain-video-understanding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Human Brain as a Dynamic Mixture of Expert Models in Video Understanding. https://openreview.net/pdf?id=bSsNSfyj8m</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openreview.net/pdf?id=bSsNSfyj8m" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://iclr.cc/virtual/2026/poster/10008608" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

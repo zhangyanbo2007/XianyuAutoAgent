@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CollabVR: Collaborative Video Reasoning with Vision-Language and Video Generation Models | DAST Papers</title>
+    <meta name="description" content="这篇论文的关键点是把视频理解和视频生成放进同一个 collaborative reasoning loop。它不是单独做 VLM QA，也不是单独生成视频，而是让两类模型互相补足。
+
+这种结构对多模态推理有价值：VLM 可以提出解释和检查点，video generation model 可以模拟或补全可能的时序过程，从而改善长程视频推理。
+
+它值得正式收录，因为多模态系统正在从单模型输入输出转向 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm26-collabvr/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CollabVR: Collaborative Video Reasoning with Vision-Language and Video Generation Models" />
+    <meta property="og:description" content="这篇论文的关键点是把视频理解和视频生成放进同一个 collaborative reasoning loop。它不是单独做 VLM QA，也不是单独生成视频，而是让两类模型互相补足。
+
+这种结构对多模态推理有价值：VLM 可以提出解释和检查点，video generation model 可以模拟或补全可能的时序过程，从而改善长程视频推理。
+
+它值得正式收录，因为多模态系统正在从单模型输入输出转向 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm26-collabvr/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CollabVR: Collaborative Video Reasoning with Vision-Language and Video Generation Models" />
+    <meta name="twitter:description" content="这篇论文的关键点是把视频理解和视频生成放进同一个 collaborative reasoning loop。它不是单独做 VLM QA，也不是单独生成视频，而是让两类模型互相补足。
+
+这种结构对多模态推理有价值：VLM 可以提出解释和检查点，video generation model 可以模拟或补全可能的时序过程，从而改善长程视频推理。
+
+它值得正式收录，因为多模态系统正在从单模型输入输出转向 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CollabVR: Collaborative Video Reasoning with Vision-Language and Video Generation Models</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.08735" target="_blank" rel="noopener noreferrer">2605.08735</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的关键点是把视频理解和视频生成放进同一个 collaborative reasoning loop。它不是单独做 VLM QA，也不是单独生成视频，而是让两类模型互相补足。</dd></div><div><dt>方法/机制</dt><dd>这种结构对多模态推理有价值：VLM 可以提出解释和检查点，video generation model 可以模拟或补全可能的时序过程，从而改善长程视频推理。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为多模态系统正在从单模型输入输出转向 perception-generation-reasoning 的闭环协作。CollabVR 是这个工作流模式的代表。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为生成模型参与推理可能引入 hallucinated evidence，闭环可靠性和验证机制需要更强实验。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的关键点是把视频理解和视频生成放进同一个 collaborative reasoning loop。它不是单独做 VLM QA，也不是单独生成视频，而是让两类模型互相补足。</p><p>这种结构对多模态推理有价值：VLM 可以提出解释和检查点，video generation model 可以模拟或补全可能的时序过程，从而改善长程视频推理。</p><p>它值得正式收录，因为多模态系统正在从单模型输入输出转向 perception-generation-reasoning 的闭环协作。CollabVR 是这个工作流模式的代表。</p><p>它没有更高，是因为生成模型参与推理可能引入 hallucinated evidence，闭环可靠性和验证机制需要更强实验。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>最近的“视频思维”方法利用视频生成模型（VGMs）通过生成时间连贯的帧链作为推理产物来进行视觉推理。然而，即使是强大的VGMs，在目标导向任务上也表现出两种常见的失败模式：多步任务上的长时程漂移和中间片段模拟错误累积。这两种问题都源于VGM的短时程视觉先验之上缺乏明确的推理，而这一角色自然由视觉-语言模型（VLMs）来填补，但VLM的放置位置并非微不足道：预先计划在任何帧生成之前就已确定，而对整个视频的事后评论则干预得太晚。我们提出了VLM-VGM协作视频推理（CollabVR），这是一个闭环框架，它在步骤级别粒度上将VLM与VGM耦合：VLM计划紧接着的下一个动作，检查VGM生成的片段，并将验证器的诊断直接融入到下一个动作提示中，以修复检测到的故障。在Gen-ViRe和VBVR-Bench上，CollabVR在计算量匹配的情况下，相对于单次推理、Pass@k和先前的测试时间扩展基线，改进了开源和闭源VGMs，在最困难的任务上取得了最大的收益。它还在经过推理微调的VGM基础上带来了进一步的改进，表明步骤级VLM监督与面向推理的微调是正交且可叠加的。我们在项目页面提供了视频样本和额外的定性结果：https://joow0n-kim.github.io/collabvr-project-page。*同等贡献。†通讯作者。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent Thinking with Video approaches use Video Generation Models (VGMs) for visual reasoning by producing temporally coherent Chain-of-Frames as reasoning artifacts. Even strong VGMs, however, exhibit two recurring failure modes on goaldirected tasks: long-horizon drift on multi-step tasks and mid-clip simulation errors that compound. Both stem from the absence of explicit reasoning built upon the VGM’s short-horizon visual prior, a role naturally filled by Vision-Language Models (VLMs), but where to place the VLM is non-trivial: upfront plans commit before any frame is generated and post-hoc critiques over whole videos intervene too late. We propose VLM-VGM Collaborative Video Reasoning (CollabVR), a closedloop framework that couples the VLM with the VGM at step-level granularity: the VLM plans the immediate next action, inspects the clip the VGM generates, and folds the verifier’s diagnosis directly into the next action prompt to repair detected failures. On Gen-ViRe and VBVR-Bench, CollabVR improves both open-source and closed-source VGMs over single-inference, Pass@k, and prior test-time scaling baselines at matched compute, with the largest gains on the hardest tasks. It also yields further improvements on top of a reasoning-fine-tuned VGM, indicating that step-level VLM supervision is orthogonal to and stackable with reasoning-oriented fine-tuning. We provide video samples and additional qualitative results at our project page: https://joow0n-kim.github.io/collabvr-project-page. ∗ Equal contribution. † Corresponding author.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513mm26collab,
+  title = {CollabVR: Collaborative Video Reasoning with Vision-Language and Video Generation Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.08735.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm26-collabvr/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CollabVR: Collaborative Video Reasoning with Vision-Language and Video Generation Models. https://arxiv.org/pdf/2605.08735.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.08735.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.08735" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

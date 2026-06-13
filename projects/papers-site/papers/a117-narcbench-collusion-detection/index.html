@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detecting Multi-Agent Collusion Through Multi-Agent Interpretability | DAST Papers</title>
+    <meta name="description" content="随着 LLM agents 开始真正以多智能体方式协作，风险也从单体 deception 扩展到 covert coordination，也就是多个 agent 之间通过隐蔽协作共同规避人类监管。已有 interpretability 工作已经证明单体模型激活里能暴露一定欺骗信号，但 multi-agent collusion 是更高阶的问题：它不只取决于单个输出是否可疑，还取决于跨 agent " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a117-narcbench-collusion-detection/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Detecting Multi-Agent Collusion Through Multi-Agent Interpretability" />
+    <meta property="og:description" content="随着 LLM agents 开始真正以多智能体方式协作，风险也从单体 deception 扩展到 covert coordination，也就是多个 agent 之间通过隐蔽协作共同规避人类监管。已有 interpretability 工作已经证明单体模型激活里能暴露一定欺骗信号，但 multi-agent collusion 是更高阶的问题：它不只取决于单个输出是否可疑，还取决于跨 agent " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a117-narcbench-collusion-detection/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Detecting Multi-Agent Collusion Through Multi-Agent Interpretability" />
+    <meta name="twitter:description" content="随着 LLM agents 开始真正以多智能体方式协作，风险也从单体 deception 扩展到 covert coordination，也就是多个 agent 之间通过隐蔽协作共同规避人类监管。已有 interpretability 工作已经证明单体模型激活里能暴露一定欺骗信号，但 multi-agent collusion 是更高阶的问题：它不只取决于单个输出是否可疑，还取决于跨 agent " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Detecting Multi-Agent Collusion Through Multi-Agent Interpretability</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01151" target="_blank" rel="noopener noreferrer">2604.01151</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 LLM agents 开始真正以多智能体方式协作，风险也从单体 deception 扩展到 covert coordination，也就是多个 agent 之间通过隐蔽协作共同规避人类监管。已有 interpretability 工作已经证明单体模型激活里能暴露一定欺骗信号，但 multi-agent collusion 是更高阶的问题：它不只取决于单个输出是否可疑，还取决于跨 agent 的内部状态是否共同指向协调行为。</dd></div><div><dt>方法/机制</dt><dd>这篇论文把 collusion detection 明确转成 white-box multi-agent interpretability 问题。作者提出 NARCBench，用带分布偏移的多智能体场景评估 collusion detection，并设计五类 probing techniques，把每个 agent 的 deception signal 聚合到 group level classification。结果显示，这类内部表征信号在分布内几乎完美，在结构迁移和带隐写通信的 blackjack 卡牌计数任务上也保持可用，并且 token-level spikes 暗示 collusion signal 可能局部化在编码消息片段附近。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它为 agent safety 提供了一个新层级的评估与监控接口：不是只看文本输出，而是把多 agent activation aggregation 当成补充监管信号。对于仓库关注的 agent evaluation、agent safety 和 interpretability，这属于明确可复用的方法与 benchmark 组合，而不是一次性案例展示。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据还集中在作者构建的 benchmark 与少数迁移场景上，离成为默认的 multi-agent safety standard 还差外部复现和更广部署验证。它已经足够强，但还不到路线级重写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 LLM agents 开始真正以多智能体方式协作，风险也从单体 deception 扩展到 covert coordination，也就是多个 agent 之间通过隐蔽协作共同规避人类监管。已有 interpretability 工作已经证明单体模型激活里能暴露一定欺骗信号，但 multi-agent collusion 是更高阶的问题：它不只取决于单个输出是否可疑，还取决于跨 agent 的内部状态是否共同指向协调行为。</p><p>这篇论文把 collusion detection 明确转成 white-box multi-agent interpretability 问题。作者提出 NARCBench，用带分布偏移的多智能体场景评估 collusion detection，并设计五类 probing techniques，把每个 agent 的 deception signal 聚合到 group level classification。结果显示，这类内部表征信号在分布内几乎完美，在结构迁移和带隐写通信的 blackjack 卡牌计数任务上也保持可用，并且 token-level spikes 暗示 collusion signal 可能局部化在编码消息片段附近。</p><p>这篇工作值得收录，因为它为 agent safety 提供了一个新层级的评估与监控接口：不是只看文本输出，而是把多 agent activation aggregation 当成补充监管信号。对于仓库关注的 agent evaluation、agent safety 和 interpretability，这属于明确可复用的方法与 benchmark 组合，而不是一次性案例展示。</p><p>它没有升到更高一级，是因为当前证据还集中在作者构建的 benchmark 与少数迁移场景上，离成为默认的 multi-agent safety standard 还差外部复现和更广部署验证。它已经足够强，但还不到路线级重写。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>随着LLM智能体越来越多地部署在多智能体系统中，它们带来了秘密协调的风险，这可能逃避标准的人工监督形式。虽然模型激活上的线性探针在单智能体设置中检测欺骗方面显示出前景，但串通本质上是一种多智能体现象，并且使用内部表示来检测智能体之间的串通仍未被探索。我们引入了NARCB ENCH，这是一个用于评估环境分布偏移下串通检测的基准，并提出了五种探测技术，它们聚合每个智能体的欺骗分数以在群体层面分类场景。我们的探针在分布内实现了1.00 AUROC，并在零样本迁移到结构上不同的多智能体场景和隐写术二十一点算牌任务时实现了0.60–0.86 AUROC。我们发现没有单一的探测技术在所有串通类型中都占主导地位，这表明不同形式的串通在激活空间中表现不同。我们还发现了初步证据，表明该信号在token级别局部化，串通智能体的激活在处理其伙伴消息的编码部分时会特别激增。这项工作朝着多智能体可解释性迈进了一步：将白盒检查从单一模型扩展到多智能体环境，其中检测需要聚合跨智能体的信号。这些结果表明，模型内部提供了一个与文本级监控互补的信号，用于检测多智能体串通，特别是对于能够访问模型激活的组织。代码和数据可在https://github.com/aaronrose227/narcbench获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>As LLM agents are increasingly deployed in multi-agent systems, they introduce risks of covert coordination that may evade standard forms of human oversight. While linear probes on model activations have shown promise for detecting deception in single-agent settings, collusion is inherently a multi-agent phenomenon, and the use of internal representations for detecting collusion between agents remains unexplored. We introduce NARCB ENCH, a benchmark for evaluating collusion detection under environment distribution shift, and propose five probing techniques that aggregate per-agent deception scores to classify scenarios at the group level. Our probes achieve 1.00 AUROC in-distribution and 0.60–0.86 AUROC when transferred zero-shot to structurally different multi-agent scenarios and a steganographic blackjack card-counting task. We find that no single probing technique dominates across all collusion types, suggesting that different forms of collusion manifest differently in activation space. We also find preliminary evidence that this signal is localised at the token level, with the colluding agent’s activations spiking specifically when processing the encoded parts of their partner’s message. This work takes a step toward multi-agent interpretability: extending white-box inspection from single models to multi-agent contexts, where detection requires aggregating signals across agents. These results suggest that model internals provide a complementary signal to text-level monitoring for detecting multi-agent collusion, particularly for organisations with access to model activations. Code and data are available at https://github.com/aaronrose227/narcbench.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a117narcbe,
+  title = {Detecting Multi-Agent Collusion Through Multi-Agent Interpretability},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01151.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a117-narcbench-collusion-detection/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Detecting Multi-Agent Collusion Through Multi-Agent Interpretability. https://arxiv.org/pdf/2604.01151.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01151.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

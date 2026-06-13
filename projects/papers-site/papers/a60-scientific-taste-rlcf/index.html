@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Can Learn Scientific Taste | DAST Papers</title>
+    <meta name="description" content="这篇论文关注 AI scientist 研究中一个长期被忽视但非常关键的问题：模型不仅要会执行科研任务，还要具备对研究方向、研究问题和潜在影响力的判断力，也就是作者所说的 scientific taste。相比现有工作主要优化检索、实验执行或论文生成，这篇论文把科研品味本身提升为可学习、可评估、可对齐的对象。
+
+方法上，论文提出 Reinforcement Learning from Commun" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a60-scientific-taste-rlcf/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AI Can Learn Scientific Taste" />
+    <meta property="og:description" content="这篇论文关注 AI scientist 研究中一个长期被忽视但非常关键的问题：模型不仅要会执行科研任务，还要具备对研究方向、研究问题和潜在影响力的判断力，也就是作者所说的 scientific taste。相比现有工作主要优化检索、实验执行或论文生成，这篇论文把科研品味本身提升为可学习、可评估、可对齐的对象。
+
+方法上，论文提出 Reinforcement Learning from Commun" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a60-scientific-taste-rlcf/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AI Can Learn Scientific Taste" />
+    <meta name="twitter:description" content="这篇论文关注 AI scientist 研究中一个长期被忽视但非常关键的问题：模型不仅要会执行科研任务，还要具备对研究方向、研究问题和潜在影响力的判断力，也就是作者所说的 scientific taste。相比现有工作主要优化检索、实验执行或论文生成，这篇论文把科研品味本身提升为可学习、可评估、可对齐的对象。
+
+方法上，论文提出 Reinforcement Learning from Commun" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AI Can Learn Scientific Taste</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14473" target="_blank" rel="noopener noreferrer">2603.14473</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注 AI scientist 研究中一个长期被忽视但非常关键的问题：模型不仅要会执行科研任务，还要具备对研究方向、研究问题和潜在影响力的判断力，也就是作者所说的 scientific taste。相比现有工作主要优化检索、实验执行或论文生成，这篇论文把科研品味本身提升为可学习、可评估、可对齐的对象。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出 Reinforcement Learning from Community Feedback (RLCF) 框架，把大规模社区反馈转成偏好监督。作者先用 70 万组按时间和领域匹配的高引/低引论文对训练 Scientific Judge，再把它作为 reward model 去对齐 Scientific Thinker，使模型能够提出更有潜在影响力的研究想法。这个 framing 的重点不是再造一个执行 agent，而是把“选题判断”正式写成 preference modeling 和 alignment 问题。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它把 AI scientist 的研究重点从“能不能做”前移到了“该不该做、值不值得做”。这种前移会外溢到研究 agent、科学发现工作流、社区反馈对齐和长期自主科研系统，是一个可复用的问题定义和训练范式，而不是某个窄 benchmark 上的提分技巧。</dd></div><div><dt>收录价值</dt><dd>它目前还不是更高一级，因为 scientific taste 仍然主要通过 citation 和社区偏好做代理信号，离真正的科研价值判断还有距离；同时论文验证的是“研究想法质量”而不是完整的端到端科学发现闭环。它已经足够新、足够硬，但还没有彻底改写 AI scientist 主线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注 AI scientist 研究中一个长期被忽视但非常关键的问题：模型不仅要会执行科研任务，还要具备对研究方向、研究问题和潜在影响力的判断力，也就是作者所说的 scientific taste。相比现有工作主要优化检索、实验执行或论文生成，这篇论文把科研品味本身提升为可学习、可评估、可对齐的对象。</p><p>方法上，论文提出 Reinforcement Learning from Community Feedback (RLCF) 框架，把大规模社区反馈转成偏好监督。作者先用 70 万组按时间和领域匹配的高引/低引论文对训练 Scientific Judge，再把它作为 reward model 去对齐 Scientific Thinker，使模型能够提出更有潜在影响力的研究想法。这个 framing 的重点不是再造一个执行 agent，而是把“选题判断”正式写成 preference modeling 和 alignment 问题。</p><p>这篇论文值得收录，因为它把 AI scientist 的研究重点从“能不能做”前移到了“该不该做、值不值得做”。这种前移会外溢到研究 agent、科学发现工作流、社区反馈对齐和长期自主科研系统，是一个可复用的问题定义和训练范式，而不是某个窄 benchmark 上的提分技巧。</p><p>它目前还不是更高一级，因为 scientific taste 仍然主要通过 citation 和社区偏好做代理信号，离真正的科研价值判断还有距离；同时论文验证的是“研究想法质量”而不是完整的端到端科学发现闭环。它已经足够新、足够硬，但还没有彻底改写 AI scientist 主线。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI可以学习科学品味。伟大的科学家拥有强大的判断力和远见，这与我们所说的科学品味紧密相关。在本文中，我们用该术语指代判断和提出具有高潜在影响力研究想法的能力。然而，大多数相关研究侧重于提高AI科学家的执行能力，而增强AI的科学品味仍未得到充分探索。在这项工作中，我们提出了基于社区反馈的强化学习（RLCF），这是一种利用大规模社区信号作为监督的训练范式，并将科学品味学习表述为一个偏好建模和对齐问题。对于偏好建模，我们使用70万对领域和时间匹配的高引用与低引用论文来训练Scientific Judge，以判断想法。对于偏好对齐，我们使用Scientific Judge作为奖励模型，训练一个策略模型Scientific Thinker，以提出具有高潜在影响力的研究想法。实验表明，Scientific Judge优于SOTA LLMs（例如，GPT-5.2，Gemini 3 Pro），并能泛化到未来年份测试、未见领域和同行评审偏好。此外，Scientific Thinker提出的研究想法比基线具有更高的潜在影响力。我们的发现表明AI可以学习科学品味，标志着迈向人类水平AI科学家的关键一步。通讯作者：jqtong25@m.fudan.edu.cn, {xc_chen,zhaoj19,xpqiu}@fudan.edu.cn 代码库：https://github.com/tongjingqi/AI-Can-Learn-Scientific-Taste</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Great scientists have strong judgement and foresight, closely tied to what we call scientific taste. Here, we use the term to refer to the capacity to judge and propose research ideas with high potential impact. However, most relative research focuses on improving an AI scientist’s executive capability, while enhancing an AI’s scientific taste remains underexplored. In this work, we propose Reinforcement Learning from Community Feedback (RLCF), a training paradigm that uses large-scale community signals as supervision, and formulate scientific taste learning as a preference modeling and alignment problem. For preference modeling, we train Scientific Judge on 700K field- and time-matched pairs of high- vs. low-citation papers to judge ideas. For preference alignment, using Scientific Judge as a reward model, we train a policy model, Scientific Thinker, to propose research ideas with high potential impact. Experiments show Scientific Judge outperforms SOTA LLMs (e.g., GPT-5.2, Gemini 3 Pro) and generalizes to future-year test, unseen fields, and peer-review preference. Furthermore, Scientific Thinker proposes research ideas with higher potential impact than baselines. Our findings show that AI can learn scientific taste, marking a key step toward reaching human-level AI scientists. Correspondence: jqtong25@m.fudan.edu.cn, {xc_chen,zhaoj19,xpqiu}@fudan.edu.cn Code Repository: https://github.com/tongjingqi/AI-Can-Learn-Scientific-Taste</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260315a60scienti,
+  title = {AI Can Learn Scientific Taste},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14473v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a60-scientific-taste-rlcf/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AI Can Learn Scientific Taste. https://arxiv.org/pdf/2603.14473v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14473v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

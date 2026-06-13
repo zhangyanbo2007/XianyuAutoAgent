@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks | DAST Papers</title>
+    <meta name="description" content="现有 coding agent benchmark 大多看单次提交能否过测试，但真实软件开发是不断迭代扩展的。代码可能今天能过测试，明天就因为结构变形、冗余堆积而难以继续维护，因此 pass rate 对 agent 的长期开发能力测量严重不足。
+
+SlopCodeBench 针对这一缺口，设计了 20 个问题、93 个 checkpoint 的长程迭代 benchmark，让 agent 在不断" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a88-slopcodebench-coding-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks" />
+    <meta property="og:description" content="现有 coding agent benchmark 大多看单次提交能否过测试，但真实软件开发是不断迭代扩展的。代码可能今天能过测试，明天就因为结构变形、冗余堆积而难以继续维护，因此 pass rate 对 agent 的长期开发能力测量严重不足。
+
+SlopCodeBench 针对这一缺口，设计了 20 个问题、93 个 checkpoint 的长程迭代 benchmark，让 agent 在不断" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a88-slopcodebench-coding-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks" />
+    <meta name="twitter:description" content="现有 coding agent benchmark 大多看单次提交能否过测试，但真实软件开发是不断迭代扩展的。代码可能今天能过测试，明天就因为结构变形、冗余堆积而难以继续维护，因此 pass rate 对 agent 的长期开发能力测量严重不足。
+
+SlopCodeBench 针对这一缺口，设计了 20 个问题、93 个 checkpoint 的长程迭代 benchmark，让 agent 在不断" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24755" target="_blank" rel="noopener noreferrer">2603.24755</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有 coding agent benchmark 大多看单次提交能否过测试，但真实软件开发是不断迭代扩展的。代码可能今天能过测试，明天就因为结构变形、冗余堆积而难以继续维护，因此 pass rate 对 agent 的长期开发能力测量严重不足。</dd></div><div><dt>方法/机制</dt><dd>SlopCodeBench 针对这一缺口，设计了 20 个问题、93 个 checkpoint 的长程迭代 benchmark，让 agent 在不断变化的需求下持续修改自己先前写出的代码。作者显式跟踪 verbosity 和 structural erosion 两个轨迹级指标，并把 agent 代码与开源人类仓库做对照，展示当前 coding agent 会随迭代明显退化。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是又一个 coding leaderboard，而是把“长期代码退化”抽成了一个可复用评测对象。只要还在讨论代码代理、自然语言 harness、自治软件工程，这个 benchmark 都有明显的方法外溢和诊断价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，是因为它主要解决的是评测和诊断，不是新的训练范式或系统接口；而且 benchmark 规模还不算特别大，是否会成为默认标准还要看后续采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有 coding agent benchmark 大多看单次提交能否过测试，但真实软件开发是不断迭代扩展的。代码可能今天能过测试，明天就因为结构变形、冗余堆积而难以继续维护，因此 pass rate 对 agent 的长期开发能力测量严重不足。</p><p>SlopCodeBench 针对这一缺口，设计了 20 个问题、93 个 checkpoint 的长程迭代 benchmark，让 agent 在不断变化的需求下持续修改自己先前写出的代码。作者显式跟踪 verbosity 和 structural erosion 两个轨迹级指标，并把 agent 代码与开源人类仓库做对照，展示当前 coding agent 会随迭代明显退化。</p><p>这篇工作值得收录，因为它不是又一个 coding leaderboard，而是把“长期代码退化”抽成了一个可复用评测对象。只要还在讨论代码代理、自然语言 harness、自治软件工程，这个 benchmark 都有明显的方法外溢和诊断价值。</p><p>它没有更高一级，是因为它主要解决的是评测和诊断，不是新的训练范式或系统接口；而且 benchmark 规模还不算特别大，是否会成为默认标准还要看后续采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SlopCodeBench：衡量编码智能体在长周期迭代任务中退化程度的基准。软件开发是迭代的，然而智能体编码基准绝大多数评估的是针对完整规范的一次性解决方案。代码可以通过测试套件，但会变得越来越难以扩展。最近的迭代基准试图弥补这一差距，但它们对智能体的设计决策限制过严，无法真实衡量代码质量如何影响未来的扩展。我们引入了SlopCodeBench，这是一个与语言无关的基准，包含20个问题和93个检查点，其中智能体在不断演进的规范下反复扩展其先前的解决方案，这些规范强制要求架构决策，但不规定内部结构。我们跟踪了两个轨迹级别的质量信号：冗余度（即冗余或重复代码的比例）和结构侵蚀（即复杂性集中在高复杂性函数中的份额）。在11个模型中，没有智能体能端到端地解决任何问题；最高的检查点解决率为17.2%。质量稳步下降：80%的轨迹中侵蚀度上升，89.8%的轨迹中冗余度上升。与48个开源Python代码库相比，智能体代码的冗余度高出2.2倍，并且侵蚀程度显著更高。随着时间跟踪其中20个代码库显示，人类代码保持稳定，而智能体代码则随着每次迭代而恶化。一项提示干预研究表明，初始质量可以提高，但这并不能阻止退化。这些结果表明，通过率基准系统性地低估了扩展鲁棒性，并且当前的智能体缺乏迭代软件开发所要求的设计规范。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Software development is iterative, yet agentic coding benchmarks overwhelmingly evaluate single-shot solutions against complete specifications. Code can pass the test suite but become progressively harder to extend. Recent iterative benchmarks attempt to close this gap, but constrain the agent’s design decisions too tightly to faithfully measure how code quality shapes future extensions. We introduce SlopCodeBench, a language-agnostic benchmark comprising 20 problems and 93 checkpoints, in which agents repeatedly extend their own prior solutions under evolving specifications that force architectural decisions without prescribing internal structure. We track two trajectory-level quality signals: verbosity, the fraction of redundant or duplicated code, and structural erosion, the share of complexity mass concentrated in high-complexity functions. No agent solves any problem end-toend across 11 models; the highest checkpoint solve rate is 17.2%. Quality degrades steadily: erosion rises in 80% of trajectories and verbosity in 89.8%. Against 48 open-source Python repositories, agent code is 2.2x more verbose and markedly more eroded. Tracking 20 of those repositories over time shows that human code stays flat, while agent code deteriorates with each iteration. A prompt-intervention study shows that initial quality can be improved, but it does not halt degradation. These results demonstrate that pass-rate benchmarks systematically undermeasure extension robustness, and that current agents lack the design discipline iterative software development demands.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325a88slopcod,
+  title = {SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24755.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a88-slopcodebench-coding-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SlopCodeBench: Benchmarking How Coding Agents Degrade Over Long-Horizon Iterative Tasks. https://arxiv.org/pdf/2603.24755.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24755.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

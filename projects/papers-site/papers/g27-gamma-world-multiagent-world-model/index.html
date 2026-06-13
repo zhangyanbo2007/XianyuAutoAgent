@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players | DAST Papers</title>
+    <meta name="description" content="交互式视频 world models 过去多默认单一控制信号，但游戏、机器人和多主体仿真都需要多个 agent 在同一环境中同时行动。
+
+Gamma-World 的核心是把多 agent identity 和交互建模进生成式 world model：Simplex Rotary Agent Encoding 让 agent 既可区分又保持置换对称，Sparse Hub Attention 用 hu" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g27-gamma-world-multiagent-world-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players" />
+    <meta property="og:description" content="交互式视频 world models 过去多默认单一控制信号，但游戏、机器人和多主体仿真都需要多个 agent 在同一环境中同时行动。
+
+Gamma-World 的核心是把多 agent identity 和交互建模进生成式 world model：Simplex Rotary Agent Encoding 让 agent 既可区分又保持置换对称，Sparse Hub Attention 用 hu" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g27-gamma-world-multiagent-world-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players" />
+    <meta name="twitter:description" content="交互式视频 world models 过去多默认单一控制信号，但游戏、机器人和多主体仿真都需要多个 agent 在同一环境中同时行动。
+
+Gamma-World 的核心是把多 agent identity 和交互建模进生成式 world model：Simplex Rotary Agent Encoding 让 agent 既可区分又保持置换对称，Sparse Hub Attention 用 hu" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28816" target="_blank" rel="noopener noreferrer">2605.28816</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>交互式视频 world models 过去多默认单一控制信号，但游戏、机器人和多主体仿真都需要多个 agent 在同一环境中同时行动。</dd></div><div><dt>方法/机制</dt><dd>Gamma-World 的核心是把多 agent identity 和交互建模进生成式 world model：Simplex Rotary Agent Encoding 让 agent 既可区分又保持置换对称，Sparse Hub Attention 用 hub token 降低跨 agent attention 成本。</dd></div><div><dt>结果/证据</dt><dd>为了实时交互，论文还把 full-context diffusion teacher 蒸馏为带 KV cache 的 causal student，实现 action-responsive rollout。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它把 world model 从 single-agent video control 推向 multi-agent interactive simulation，并给出 agent identity、跨主体通信和实时生成三类可复用原语。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>交互式视频 world models 过去多默认单一控制信号，但游戏、机器人和多主体仿真都需要多个 agent 在同一环境中同时行动。</p><p>Gamma-World 的核心是把多 agent identity 和交互建模进生成式 world model：Simplex Rotary Agent Encoding 让 agent 既可区分又保持置换对称，Sparse Hub Attention 用 hub token 降低跨 agent attention 成本。</p><p>为了实时交互，论文还把 full-context diffusion teacher 蒸馏为带 KV cache 的 causal student，实现 action-responsive rollout。</p><p>它值得收录，因为它把 world model 从 single-agent video control 推向 multi-agent interactive simulation，并给出 agent identity、跨主体通信和实时生成三类可复用原语。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Gamma-World 引入了一种生成式多智能体世界模型，用于交互式模拟，采用辛普克斯旋转智能体编码实现排列等价的智能体身份，使用稀疏环状注意力机制进行高效的跨智能体交互，并利用因果蒸馏实现24帧每秒的动作响应式滚播。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Gamma-World introduces a generative multi-agent world model for interactive simulation, with Simplex Rotary Agent Encoding for permutation-equivalent agent identity, Sparse Hub Attention for efficient cross-agent interaction, and causal distillation for 24 FPS action-responsive rollout.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527g27gammawo,
+  title = {Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28816.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g27-gamma-world-multiagent-world-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players. https://arxiv.org/pdf/2605.28816.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/g24-scope-cross-game-fps-world-models/">
+              <span>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</span>
+              <small>生成建模与扩散 · 2026-05-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28816.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28816" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

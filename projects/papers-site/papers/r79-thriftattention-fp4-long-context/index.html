@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention | DAST Papers</title>
+    <meta name="description" content="ThriftAttention 处理长上下文推理中的注意力成本问题：全 FP16/FP8 计算昂贵，而统一低精度又会破坏关键 token 或关键头的精度。
+
+论文提出 selective mixed precision，让 attention 中不同位置、头或计算路径按重要性使用 FP4 与更高精度混合，从而降低内存带宽和计算成本。
+
+这种方法属于 long-context inference i" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r79-thriftattention-fp4-long-context/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention" />
+    <meta property="og:description" content="ThriftAttention 处理长上下文推理中的注意力成本问题：全 FP16/FP8 计算昂贵，而统一低精度又会破坏关键 token 或关键头的精度。
+
+论文提出 selective mixed precision，让 attention 中不同位置、头或计算路径按重要性使用 FP4 与更高精度混合，从而降低内存带宽和计算成本。
+
+这种方法属于 long-context inference i" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r79-thriftattention-fp4-long-context/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention" />
+    <meta name="twitter:description" content="ThriftAttention 处理长上下文推理中的注意力成本问题：全 FP16/FP8 计算昂贵，而统一低精度又会破坏关键 token 或关键头的精度。
+
+论文提出 selective mixed precision，让 attention 中不同位置、头或计算路径按重要性使用 FP4 与更高精度混合，从而降低内存带宽和计算成本。
+
+这种方法属于 long-context inference i" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.23081" target="_blank" rel="noopener noreferrer">2605.23081</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ThriftAttention 处理长上下文推理中的注意力成本问题：全 FP16/FP8 计算昂贵，而统一低精度又会破坏关键 token 或关键头的精度。</dd></div><div><dt>方法/机制</dt><dd>论文提出 selective mixed precision，让 attention 中不同位置、头或计算路径按重要性使用 FP4 与更高精度混合，从而降低内存带宽和计算成本。</dd></div><div><dt>结果/证据</dt><dd>这种方法属于 long-context inference infrastructure，直接服务于长程 agent、RAG、代码库理解和科学文献分析等上下文密集任务。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为低比特注意力是推理成本曲线的重要方向，ThriftAttention 给出了比全局量化更细粒度的控制 primitive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ThriftAttention 处理长上下文推理中的注意力成本问题：全 FP16/FP8 计算昂贵，而统一低精度又会破坏关键 token 或关键头的精度。</p><p>论文提出 selective mixed precision，让 attention 中不同位置、头或计算路径按重要性使用 FP4 与更高精度混合，从而降低内存带宽和计算成本。</p><p>这种方法属于 long-context inference infrastructure，直接服务于长程 agent、RAG、代码库理解和科学文献分析等上下文密集任务。</p><p>它值得正式收录，因为低比特注意力是推理成本曲线的重要方向，ThriftAttention 给出了比全局量化更细粒度的控制 primitive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>高效的注意力算法对于减轻长上下文工作负载中注意力的二次成本至关重要。先前的工作利用Blackwell GPU上的块缩放量化技术，将注意力计算转移到4位精度以加速推理。然而，这些技术在长上下文设置中会导致显著的质量下降。我们发现量化误差的输出影响高度不均匀，并随着每个查询-键交互的重要性而增加，将功能相关的误差集中在包含最重要令牌的少数注意力块中。我们提出了ThriftAttention，这是一种低位注意力变体，能够在FP4推理效率下提供接近FP16的长上下文质量。该方法分两个阶段进行。(1) 启发式方法快速选择少量重要的查询-键块对进行FP16精度计算。(2) 选定的块以FP16计算，其余块以FP4计算，两条路径通过在线softmax合并为一个输出。我们在长上下文基准和模型家族中证明，通过仅以FP16计算5%的查询-键块，ThriftAttention平均恢复了FP4→FP16性能差距的89.1%。我们表明ThriftAttention的优势随着序列长度的增加而增长，从而减轻了在更长上下文观察到的系统性FP4质量下降。代码可在https://github.com/joesharratt1229/ThriftAttention获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Efficient attention algorithms are critical to mitigate the quadratic cost of attention in long-context workloads. Prior work utilises block-scaled quantisation techniques on Blackwell GPUs to move attention computation to 4-bit precision to accelerate inference. However, these techniques result in significant quality degradation in long-context settings. We show that the output impact of quantisation error is highly non-uniform and increases with the importance of each query-key interaction, concentrating functionally relevant error in a small number of attention blocks that contain the most important tokens. We propose ThriftAttention, a low-bit attention variant that delivers near-FP16 long-context quality at FP4 inference efficiency. This approach proceeds in two stages. (1) A heuristic rapidly selects a small number of important query-key block pairs for FP16 precision. (2) The selected blocks are computed in FP16 and the remaining blocks in FP4, with both paths merged via online softmax into a single output. We demonstrate across long-context benchmarks and model families that by computing only 5% of query-key blocks in FP16, ThriftAttention recovers on average 89.1% of the FP4→FP16 performance gap. We show ThriftAttention’s advantage grows with sequence length, mitigating the systematic FP4 quality degradation observed at longer contexts. The code is available at https://github.com/joesharratt1229/ThriftAttention.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521r79thrifta,
+  title = {ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.23081.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r79-thriftattention-fp4-long-context/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ThriftAttention: Selective Mixed Precision for Long-Context FP4 Attention. https://arxiv.org/pdf/2605.23081.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.23081.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.23081" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

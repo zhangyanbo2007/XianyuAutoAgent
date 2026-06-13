@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unified Latents (UL): How to train your latents | DAST Papers</title>
+    <meta name="description" content="这篇论文关注生成式模型中的 latent representation 学习问题。作者试图统一 latent encoder、diffusion prior 与 diffusion decoder 的训练目标，避免 latent 空间先验与下游生成器彼此脱节，从而提升图像和视频生成中的压缩效率、重建质量与采样质量。
+
+方法上，Unified Latents (UL) 将编码器输出噪声与 prior" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g1-unified-latents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Unified Latents (UL): How to train your latents" />
+    <meta property="og:description" content="这篇论文关注生成式模型中的 latent representation 学习问题。作者试图统一 latent encoder、diffusion prior 与 diffusion decoder 的训练目标，避免 latent 空间先验与下游生成器彼此脱节，从而提升图像和视频生成中的压缩效率、重建质量与采样质量。
+
+方法上，Unified Latents (UL) 将编码器输出噪声与 prior" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g1-unified-latents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Unified Latents (UL): How to train your latents" />
+    <meta name="twitter:description" content="这篇论文关注生成式模型中的 latent representation 学习问题。作者试图统一 latent encoder、diffusion prior 与 diffusion decoder 的训练目标，避免 latent 空间先验与下游生成器彼此脱节，从而提升图像和视频生成中的压缩效率、重建质量与采样质量。
+
+方法上，Unified Latents (UL) 将编码器输出噪声与 prior" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Unified Latents (UL): How to train your latents</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-02-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.17270" target="_blank" rel="noopener noreferrer">2602.17270</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注生成式模型中的 latent representation 学习问题。作者试图统一 latent encoder、diffusion prior 与 diffusion decoder 的训练目标，避免 latent 空间先验与下游生成器彼此脱节，从而提升图像和视频生成中的压缩效率、重建质量与采样质量。</dd></div><div><dt>方法/机制</dt><dd>方法上，Unified Latents (UL) 将编码器输出噪声与 prior 的最小噪声水平显式绑定，得到一个同时约束 latent bitrate 与生成质量的训练目标。它不是单纯替换 autoencoder 或扩散先验，而是把 latent 学习、prior 约束和 decoder 训练放到同一框架里，强调 latent space 本身应当为 diffusion generation 原生设计。</dd></div><div><dt>结果/证据</dt><dd>它值得进入仓库，因为这是生成式领域里外溢性较强的 latent modeling 论文。论文在 ImageNet-512 上报告 FID 1.4，在 Kinetics-600 上报告 FVD 1.3，并强调训练 FLOPs 低于基于 Stable Diffusion latents 的方案。这类工作对 diffusion、video generation、representation learning 都有参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，因为这仍然主要属于生成模型子方向内的强方法论文，而不是改写更大研究路线的范式级成果。它对仓库主线的价值在于方法质量和潜在外溢，而不是像 AlphaEvolve、AlphaGenome 那样直接重排领域叙事。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注生成式模型中的 latent representation 学习问题。作者试图统一 latent encoder、diffusion prior 与 diffusion decoder 的训练目标，避免 latent 空间先验与下游生成器彼此脱节，从而提升图像和视频生成中的压缩效率、重建质量与采样质量。</p><p>方法上，Unified Latents (UL) 将编码器输出噪声与 prior 的最小噪声水平显式绑定，得到一个同时约束 latent bitrate 与生成质量的训练目标。它不是单纯替换 autoencoder 或扩散先验，而是把 latent 学习、prior 约束和 decoder 训练放到同一框架里，强调 latent space 本身应当为 diffusion generation 原生设计。</p><p>它值得进入仓库，因为这是生成式领域里外溢性较强的 latent modeling 论文。论文在 ImageNet-512 上报告 FID 1.4，在 Kinetics-600 上报告 FVD 1.3，并强调训练 FLOPs 低于基于 Stable Diffusion latents 的方案。这类工作对 diffusion、video generation、representation learning 都有参考价值。</p><p>它没有升到更高一级，因为这仍然主要属于生成模型子方向内的强方法论文，而不是改写更大研究路线的范式级成果。它对仓库主线的价值在于方法质量和潜在外溢，而不是像 AlphaEvolve、AlphaGenome 那样直接重排领域叙事。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了统一潜变量 (UL)，这是一个用于学习潜变量表示的框架，该表示由扩散先验联合正则化并由扩散模型解码。通过将编码器的输出噪声与先验的最小噪声水平关联起来，我们获得了一个简单的训练目标，该目标提供了潜变量比特率的紧密上限。在ImageNet-512上，我们的方法实现了1.4的竞争性FID，具有高重建质量 (PSNR)，同时比在Stable Diffusion潜变量上训练的模型需要更少的训练FLOPs。在Kinetics-600上，我们创造了1.3的最新FVD。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present Unified Latents (UL), a framework for learning latent representations that are jointly regularized by a diffusion prior and decoded by a diffusion model. By linking the encoder’s output noise to the prior’s minimum noise level, we obtain a simple training objective that provides a tight upper bound on the latent bitrate. On ImageNet-512, our approach achieves competitive FID of 1.4, with high reconstruction quality (PSNR) while requiring fewer training FLOPs than models trained on Stable Diffusion latents. On Kinetics-600, we set a new state-of-the-art FVD of 1.3.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260219g1unifiedl,
+  title = {Unified Latents (UL): How to train your latents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.17270v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g1-unified-latents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Unified Latents (UL): How to train your latents. https://arxiv.org/pdf/2602.17270v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.17270v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RAISE: A computational tool for evaluating sarbecovirus spillover potential | DAST Papers</title>
+    <meta name="description" content="这篇论文不是一般的病毒风险打分器，而是把 spillover assessment 做成了一个更完整的 computational workflow。它围绕 sarbecovirus 的关键危险点，也就是是否能结合人类 ACE2，构建了一个把结构预测、相互作用打分和进化可塑性评估接在一起的框架。
+
+RAISE 最有价值的地方是它不只给出‘能不能 bind’这种静态判断，而是进一步区分 high p" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio50-raise-sarbecovirus-spillover/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RAISE: A computational tool for evaluating sarbecovirus spillover potential" />
+    <meta property="og:description" content="这篇论文不是一般的病毒风险打分器，而是把 spillover assessment 做成了一个更完整的 computational workflow。它围绕 sarbecovirus 的关键危险点，也就是是否能结合人类 ACE2，构建了一个把结构预测、相互作用打分和进化可塑性评估接在一起的框架。
+
+RAISE 最有价值的地方是它不只给出‘能不能 bind’这种静态判断，而是进一步区分 high p" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio50-raise-sarbecovirus-spillover/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RAISE: A computational tool for evaluating sarbecovirus spillover potential" />
+    <meta name="twitter:description" content="这篇论文不是一般的病毒风险打分器，而是把 spillover assessment 做成了一个更完整的 computational workflow。它围绕 sarbecovirus 的关键危险点，也就是是否能结合人类 ACE2，构建了一个把结构预测、相互作用打分和进化可塑性评估接在一起的框架。
+
+RAISE 最有价值的地方是它不只给出‘能不能 bind’这种静态判断，而是进一步区分 high p" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RAISE: A computational tool for evaluating sarbecovirus spillover potential</h1>
+          <p class="subtitle">生物医药与药物发现 · 发表：2026-04-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生物医药与药物发现</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-25</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72327-6" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72327-6</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文不是一般的病毒风险打分器，而是把 spillover assessment 做成了一个更完整的 computational workflow。它围绕 sarbecovirus 的关键危险点，也就是是否能结合人类 ACE2，构建了一个把结构预测、相互作用打分和进化可塑性评估接在一起的框架。</dd></div><div><dt>方法/机制</dt><dd>RAISE 最有价值的地方是它不只给出‘能不能 bind’这种静态判断，而是进一步区分 high potential、negligible potential 和 evolutionarily poised 三类状态。后者尤其重要，因为它抓的是那些当前还不能高效感染人类、但只差少数突变就可能跨过去的病毒。论文里还通过对 PDF-2370 和 Khosta-1 的 mutation screening 证明了这一层判断不是空话。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作直接改变的是 pandemic preparedness 的 computational triage workflow：哪些病毒该优先实验验证、哪些突变值得盯、哪些谱系需要前瞻扩展。对 AI-driven biosurveillance、computational virology 和早期风险预警都有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前主要还是围绕 ACE2-binding driven spillover assessment 这一条机制主线；要成为更普适的 zoonotic risk operating layer，还需要更多跨宿主、跨机制与更广病毒家族验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文不是一般的病毒风险打分器，而是把 spillover assessment 做成了一个更完整的 computational workflow。它围绕 sarbecovirus 的关键危险点，也就是是否能结合人类 ACE2，构建了一个把结构预测、相互作用打分和进化可塑性评估接在一起的框架。</p><p>RAISE 最有价值的地方是它不只给出‘能不能 bind’这种静态判断，而是进一步区分 high potential、negligible potential 和 evolutionarily poised 三类状态。后者尤其重要，因为它抓的是那些当前还不能高效感染人类、但只差少数突变就可能跨过去的病毒。论文里还通过对 PDF-2370 和 Khosta-1 的 mutation screening 证明了这一层判断不是空话。</p><p>它值得正式收录，因为这类工作直接改变的是 pandemic preparedness 的 computational triage workflow：哪些病毒该优先实验验证、哪些突变值得盯、哪些谱系需要前瞻扩展。对 AI-driven biosurveillance、computational virology 和早期风险预警都有明显方法外溢。</p><p>它没有更高，是因为当前主要还是围绕 ACE2-binding driven spillover assessment 这一条机制主线；要成为更普适的 zoonotic risk operating layer，还需要更多跨宿主、跨机制与更广病毒家族验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>动物沙贝病毒（SARS-CoV或SARS-CoV-2的近亲）因其结合人ACE2 (hACE2) 受体的能力而构成严重的人畜共患病威胁。为应对评估这些威胁的挑战，我们开发了RAISE（受体结合域-hACE2相互作用评分评估），这是一个将结构预测与相互作用评分相结合的计算框架。通过对预测的hACE2相互作用进行评分，我们的RAISE模型将沙贝病毒分为三类：高潜力（hACE2结合型）、可忽略潜力（hACE2非结合型）以及中间的“蓄势待发”状态（该状态定义为结合活性较弱或具有高进化潜力）。使用RAISE对两种“hACE2-蓄势待发”沙贝病毒PDF-2370和Khosta-1进行突变筛选，揭示了T498Y/W等突变，这些突变使其能够利用人ACE2并扩大了它们结合更广泛物种ACE2受体的能力。该模型的通用性通过其对merbecoviruses的前瞻性应用得到进一步证实，突显了其在预先评估冠状病毒谱系中人畜共患病威胁方面的实用性。RAISE为优先识别风险病毒和指导大流行病防范提供了预测路线图。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Animal sarbecoviruses, relatives of SARS-CoV or SARS-CoV-2, pose a significant zoonotic threat driven by their ability to bind the human ACE2 (hACE2) receptor. To address challenges in evaluating these threats, we developed RAISE (Receptor binding domain-hACE2 Interaction Scoring Evaluation), a computational framework that integrates structural predictions with interaction scoring. By scoring predicted hACE2 interactions, our RAISE model categorized sarbecoviruses into three groups: high potential (hACE2-binding), negligible potential (hACE2-nonbinding), and an intermediate “poised” state (a state defined by either weak binding activity or a high potential to evolve it). Mutation screening of two “hACE2-poised” sarbecoviruses, PDF-2370 and Khosta-1 using RAISE, revealed mutations such as T498Y/W that enabled human ACE2 utilization and expanded their ability to bind to ACE2 receptors from a broader range of species. The model’s generalizability was further demonstrated through prospective application to merbecoviruses, highlighting its utility in preemptively assessing zoonotic threats across coronavirus lineages. RAISE provides a predictive roadmap for prioritizing risk viruses and guiding pandemic preparedness.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260425bio50raise,
+  title = {RAISE: A computational tool for evaluating sarbecovirus spillover potential},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72327-6.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio50-raise-sarbecovirus-spillover/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RAISE: A computational tool for evaluating sarbecovirus spillover potential. https://www.nature.com/articles/s41467-026-72327-6.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/bio53-comole-molecular-gfm/">
+              <span>Controllable Molecular Generative Foundation Models</span>
+              <small>生物医药与药物发现 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/ph5-octcube-m-oct-foundation/">
+              <span>A three-dimensional multi-modal foundation model for optical coherence tomography</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/bio49-ires-programmable-rna-translation/">
+              <span>Programmable RNA translation through deep learning-driven IRES discovery and de novo generation</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/bio48-deepdrugdiscovery-ad-autophagy/">
+              <span>DeepDrugDiscovery identifies blood–brain barrier permeable autophagy enhancers for Alzheimer’s disease</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72327-6.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

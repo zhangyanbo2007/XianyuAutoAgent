@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Signals: Trajectory Sampling and Triage for Agentic Interactions | DAST Papers</title>
+    <meta name="description" content="LLM agent 已经进入多步交互、工具调用和持续部署阶段，但真正阻碍后续优化的一个现实问题是：系统每天会产生成海量 trajectory，而人工或辅助模型逐条复核成本过高，导致很多后训练、偏好构造和 failure analysis 根本拿不到高质量样本。问题不只是缺少数据，而是缺少便宜、稳定、可在线运行的 triage 机制。
+
+论文提出 Signals，把轨迹筛选前移到在线交互层，通过不依" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a122-signals-trajectory-triage/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Signals: Trajectory Sampling and Triage for Agentic Interactions" />
+    <meta property="og:description" content="LLM agent 已经进入多步交互、工具调用和持续部署阶段，但真正阻碍后续优化的一个现实问题是：系统每天会产生成海量 trajectory，而人工或辅助模型逐条复核成本过高，导致很多后训练、偏好构造和 failure analysis 根本拿不到高质量样本。问题不只是缺少数据，而是缺少便宜、稳定、可在线运行的 triage 机制。
+
+论文提出 Signals，把轨迹筛选前移到在线交互层，通过不依" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a122-signals-trajectory-triage/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Signals: Trajectory Sampling and Triage for Agentic Interactions" />
+    <meta name="twitter:description" content="LLM agent 已经进入多步交互、工具调用和持续部署阶段，但真正阻碍后续优化的一个现实问题是：系统每天会产生成海量 trajectory，而人工或辅助模型逐条复核成本过高，导致很多后训练、偏好构造和 failure analysis 根本拿不到高质量样本。问题不只是缺少数据，而是缺少便宜、稳定、可在线运行的 triage 机制。
+
+论文提出 Signals，把轨迹筛选前移到在线交互层，通过不依" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Signals: Trajectory Sampling and Triage for Agentic Interactions</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00356" target="_blank" rel="noopener noreferrer">2604.00356</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LLM agent 已经进入多步交互、工具调用和持续部署阶段，但真正阻碍后续优化的一个现实问题是：系统每天会产生成海量 trajectory，而人工或辅助模型逐条复核成本过高，导致很多后训练、偏好构造和 failure analysis 根本拿不到高质量样本。问题不只是缺少数据，而是缺少便宜、稳定、可在线运行的 triage 机制。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Signals，把轨迹筛选前移到在线交互层，通过不依赖额外模型调用的轻量信号来标记 trajectory 的信息密度与异常模式。作者把这些信号组织为 interaction、execution、environment 三类，覆盖 misalignment、stagnation、failure、loop、exhaustion 等可操作状态，再把它们附着到 live interactions 上，供后续 sampling、annotation 和 optimization 使用。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent post-deployment improvement 里一个长期被忽略但极其实际的基础设施问题正式化了：什么轨迹值得看、值得标、值得回流。相比简单按 reward 或启发式抽样，Signals 更接近一种可复用的 trajectory triage layer，对 agent evaluation、preference data construction 和持续改进工作流都有直接方法价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前贡献仍主要是 sampling infrastructure，而不是完整的自我改进闭环或更上层 agent training 蓝图。它在 agent data curation 上很有用，但是否会成为更广部署优化栈的标准组件，还需要更多外部采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LLM agent 已经进入多步交互、工具调用和持续部署阶段，但真正阻碍后续优化的一个现实问题是：系统每天会产生成海量 trajectory，而人工或辅助模型逐条复核成本过高，导致很多后训练、偏好构造和 failure analysis 根本拿不到高质量样本。问题不只是缺少数据，而是缺少便宜、稳定、可在线运行的 triage 机制。</p><p>论文提出 Signals，把轨迹筛选前移到在线交互层，通过不依赖额外模型调用的轻量信号来标记 trajectory 的信息密度与异常模式。作者把这些信号组织为 interaction、execution、environment 三类，覆盖 misalignment、stagnation、failure、loop、exhaustion 等可操作状态，再把它们附着到 live interactions 上，供后续 sampling、annotation 和 optimization 使用。</p><p>这篇工作值得收录，因为它把 agent post-deployment improvement 里一个长期被忽略但极其实际的基础设施问题正式化了：什么轨迹值得看、值得标、值得回流。相比简单按 reward 或启发式抽样，Signals 更接近一种可复用的 trajectory triage layer，对 agent evaluation、preference data construction 和持续改进工作流都有直接方法价值。</p><p>它没有升到更高一级，是因为当前贡献仍主要是 sampling infrastructure，而不是完整的自我改进闭环或更上层 agent training 蓝图。它在 agent data curation 上很有用，但是否会成为更广部署优化栈的标准组件，还需要更多外部采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于大型语言模型的代理应用越来越依赖于涉及规划、行动执行和环境反馈的多步骤交互循环。虽然此类系统现已大规模部署，但部署后改进它们仍然具有挑战性。代理轨迹数量庞大且不确定，无论是通过人工审查还是辅助LLM审查，都既缓慢又成本高昂。我们提出了一种轻量级、基于信号的框架，用于对代理交互轨迹进行分类。我们的方法从实时交互中计算廉价、广泛适用的信号，并将其作为结构化属性附加，用于轨迹分类，从而识别可能提供信息的交互，而不会影响在线代理行为。我们将信号组织成一个粗粒度分类法，涵盖交互（错位、停滞、脱离、满意度）、执行（失败、循环）和环境（耗尽），旨在无需模型调用即可进行计算。在对τ-bench（一个广泛用于工具增强代理评估的基准）进行的受控标注研究中，我们表明基于信号的采样实现了82%的信息量率，而启发式过滤为74%，随机采样为54%，每个信息量轨迹的效率增益为1.52倍。该优势在奖励层和任务域中均表现稳健，证实信号提供了真实的每个轨迹信息量增益，而不仅仅是过度采样明显的失败。这些结果表明，轻量级信号可以作为代理系统的实用采样基础设施，并为偏好数据构建和部署后优化提供了途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic applications based on large language models increasingly rely on multi-step interaction loops involving planning, action execution, and environment feedback. While such systems are now deployed at scale, improving them post-deployment remains challenging. Agent trajectories are voluminous and non-deterministic, and reviewing each one, whether through human review or auxiliary LLMs, is slow and cost-prohibitive. We propose a lightweight, signal-based framework for triaging agentic interaction trajectories. Our approach computes cheap, broadly applicable signals from live interactions and attaches them as structured attributes for trajectory triage, identifying interactions likely to be informative without affecting online agent behavior. We organize signals into a coarse-grained taxonomy spanning interaction (misalignment, stagnation, disengagement, satisfaction), execution (failure, loop), and environment (exhaustion), designed for computation without model calls. In a controlled annotation study on τ -bench, a widely used benchmark for tool-augmented agent evaluation, we show that signal-based sampling achieves an 82% informativeness rate compared to 74% for heuristic filtering and 54% for random sampling, with a 1.52× efficiency gain per informative trajectory. The advantage is robust across reward strata and task domains, confirming that signals provide genuine per-trajectory informativeness gains rather than merely oversampling obvious failures. These results show that lightweight signals can serve as practical sampling infrastructure for agentic systems, and suggest a path toward preference data construction and post-deployment optimization.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a122signal,
+  title = {Signals: Trajectory Sampling and Triage for Agentic Interactions},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00356.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a122-signals-trajectory-triage/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Signals: Trajectory Sampling and Triage for Agentic Interactions. https://arxiv.org/pdf/2604.00356.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00356.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

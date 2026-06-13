@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning Tasks | DAST Papers</title>
+    <meta name="description" content="通用 embodied agent 和 Vision-Language-Action 模型开始具备处理语言条件操控任务的潜力，但现有 benchmark 对世界知识迁移、隐含意图理解和长时程多步任务覆盖不足，难以系统检验这类模型是否真正接近通用操作能力。VLABench 的目标就是把这类缺口明确成一个可复用的评测对象，而不是继续沿用偏模板化、短时程的操作任务集合。
+
+这篇工作的核心贡献是提出一个面" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl32-vlabench-long-horizon-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning Tasks" />
+    <meta property="og:description" content="通用 embodied agent 和 Vision-Language-Action 模型开始具备处理语言条件操控任务的潜力，但现有 benchmark 对世界知识迁移、隐含意图理解和长时程多步任务覆盖不足，难以系统检验这类模型是否真正接近通用操作能力。VLABench 的目标就是把这类缺口明确成一个可复用的评测对象，而不是继续沿用偏模板化、短时程的操作任务集合。
+
+这篇工作的核心贡献是提出一个面" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl32-vlabench-long-horizon-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning Tasks" />
+    <meta name="twitter:description" content="通用 embodied agent 和 Vision-Language-Action 模型开始具备处理语言条件操控任务的潜力，但现有 benchmark 对世界知识迁移、隐含意图理解和长时程多步任务覆盖不足，难以系统检验这类模型是否真正接近通用操作能力。VLABench 的目标就是把这类缺口明确成一个可复用的评测对象，而不是继续沿用偏模板化、短时程的操作任务集合。
+
+这篇工作的核心贡献是提出一个面" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning Tasks</h1>
+          <p class="subtitle">强化学习 · 发表：2024-12-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-12-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2412.18194" target="_blank" rel="noopener noreferrer">2412.18194</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>通用 embodied agent 和 Vision-Language-Action 模型开始具备处理语言条件操控任务的潜力，但现有 benchmark 对世界知识迁移、隐含意图理解和长时程多步任务覆盖不足，难以系统检验这类模型是否真正接近通用操作能力。VLABench 的目标就是把这类缺口明确成一个可复用的评测对象，而不是继续沿用偏模板化、短时程的操作任务集合。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心贡献是提出一个面向 language-conditioned manipulation 的开源 benchmark：包含 100 类任务、2000+ 物体，并把评测重点放在四类更接近通用智能体的问题上，即世界知识与常识迁移、带隐含人类意图的自然语言指令、需要多步推理的长时程任务，以及对动作策略和语言模型能力的联合检验。论文还提供了结合启发式技能与先验信息的自动化数据构造流程，为后续微调与统一评测提供了基础设施。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，不是因为又多了一个机器人 benchmark，而是因为它把 VLA / embodied agent 里最关键的一类难题重新压成了清晰的测试接口：模型不只要会动，还要在长时程操控里理解语言、做推理、处理常识和隐式目标。这对机器人、VLA、agent evaluation 这几条主线都有持续参考价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因也明确：这首先是一篇 benchmark / infrastructure paper，而不是新的通用控制范式或训练范式；其影响力还需要看后续是否成为 VLA 评测的默认基线，以及是否能稳定推动真实机器人上的方法改进，而不只是提供一个更难的任务集合。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>通用 embodied agent 和 Vision-Language-Action 模型开始具备处理语言条件操控任务的潜力，但现有 benchmark 对世界知识迁移、隐含意图理解和长时程多步任务覆盖不足，难以系统检验这类模型是否真正接近通用操作能力。VLABench 的目标就是把这类缺口明确成一个可复用的评测对象，而不是继续沿用偏模板化、短时程的操作任务集合。</p><p>这篇工作的核心贡献是提出一个面向 language-conditioned manipulation 的开源 benchmark：包含 100 类任务、2000+ 物体，并把评测重点放在四类更接近通用智能体的问题上，即世界知识与常识迁移、带隐含人类意图的自然语言指令、需要多步推理的长时程任务，以及对动作策略和语言模型能力的联合检验。论文还提供了结合启发式技能与先验信息的自动化数据构造流程，为后续微调与统一评测提供了基础设施。</p><p>它值得正式收录，不是因为又多了一个机器人 benchmark，而是因为它把 VLA / embodied agent 里最关键的一类难题重新压成了清晰的测试接口：模型不只要会动，还要在长时程操控里理解语言、做推理、处理常识和隐式目标。这对机器人、VLA、agent evaluation 这几条主线都有持续参考价值。</p><p>它暂时不升到更高一级，原因也明确：这首先是一篇 benchmark / infrastructure paper，而不是新的通用控制范式或训练范式；其影响力还需要看后续是否成为 VLA 评测的默认基线，以及是否能稳定推动真实机器人上的方法改进，而不只是提供一个更难的任务集合。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20241224rl32vlaben,
+  title = {VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning Tasks},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2412.18194.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl32-vlabench-long-horizon-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). VLABench: A Large-Scale Benchmark for Language-Conditioned Robotics Manipulation with Long-Horizon Reasoning Tasks. https://arxiv.org/pdf/2412.18194.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2412.18194.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

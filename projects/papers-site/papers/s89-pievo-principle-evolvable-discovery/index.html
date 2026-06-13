@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Principle-Evolvable Scientific Discovery via Uncertainty Minimization | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 LLM scientific agents 的一个核心低效来源：很多系统在固定初始理论/先验下搜索假设，一旦 baseline theory 失败，就会在错误假设空间里浪费大量计算。
+
+PiEvo 的关键转向是从 hypothesis search 变成 principle evolution。系统把科学发现建模为 expanding principle space 上的 Bayes" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s89-pievo-principle-evolvable-discovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Principle-Evolvable Scientific Discovery via Uncertainty Minimization" />
+    <meta property="og:description" content="这篇论文针对 LLM scientific agents 的一个核心低效来源：很多系统在固定初始理论/先验下搜索假设，一旦 baseline theory 失败，就会在错误假设空间里浪费大量计算。
+
+PiEvo 的关键转向是从 hypothesis search 变成 principle evolution。系统把科学发现建模为 expanding principle space 上的 Bayes" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s89-pievo-principle-evolvable-discovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Principle-Evolvable Scientific Discovery via Uncertainty Minimization" />
+    <meta name="twitter:description" content="这篇论文针对 LLM scientific agents 的一个核心低效来源：很多系统在固定初始理论/先验下搜索假设，一旦 baseline theory 失败，就会在错误假设空间里浪费大量计算。
+
+PiEvo 的关键转向是从 hypothesis search 变成 principle evolution。系统把科学发现建模为 expanding principle space 上的 Bayes" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Principle-Evolvable Scientific Discovery via Uncertainty Minimization</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-02-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.06448" target="_blank" rel="noopener noreferrer">2602.06448</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 LLM scientific agents 的一个核心低效来源：很多系统在固定初始理论/先验下搜索假设，一旦 baseline theory 失败，就会在错误假设空间里浪费大量计算。</dd></div><div><dt>方法/机制</dt><dd>PiEvo 的关键转向是从 hypothesis search 变成 principle evolution。系统把科学发现建模为 expanding principle space 上的 Bayesian optimization，而不是只在静态 hypothesis space 中做组合搜索。</dd></div><div><dt>结果/证据</dt><dd>方法上，PiEvo 结合 Information-Directed Hypothesis Selection via Gaussian Process 和 anomaly-driven augmentation：前者用不确定性最小化选择最有信息量的实验/假设，后者在异常结果出现时扩展和修订原则空间，使 agent 能调整自身理论世界观。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它给自动科学发现提供了一个可复用的 discovery-control primitive：让 agent 在发现过程中更新抽象原则层，而不仅仅调整局部假设或实验参数。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 LLM scientific agents 的一个核心低效来源：很多系统在固定初始理论/先验下搜索假设，一旦 baseline theory 失败，就会在错误假设空间里浪费大量计算。</p><p>PiEvo 的关键转向是从 hypothesis search 变成 principle evolution。系统把科学发现建模为 expanding principle space 上的 Bayesian optimization，而不是只在静态 hypothesis space 中做组合搜索。</p><p>方法上，PiEvo 结合 Information-Directed Hypothesis Selection via Gaussian Process 和 anomaly-driven augmentation：前者用不确定性最小化选择最有信息量的实验/假设，后者在异常结果出现时扩展和修订原则空间，使 agent 能调整自身理论世界观。</p><p>收录价值在于它给自动科学发现提供了一个可复用的 discovery-control primitive：让 agent 在发现过程中更新抽象原则层，而不仅仅调整局部假设或实验参数。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过不确定性最小化实现原理可演化的科学发现。基于大型语言模型（LLM）的科学智能体加速了科学发现，但它们常因固守固定初始先验而导致显著的低效。现有方法主要在静态假设空间中运行，这限制了新现象的发现，并在基线理论失效时导致计算浪费。为解决此问题，我们提出将重点从搜索假设转移到演化潜在的科学原理。我们提出了 P I E VO，这是一个原理可演化框架，它将科学发现视为在不断扩展的原理空间上的贝叶斯优化。通过整合基于高斯过程的信息导向假设选择和异常驱动的增强机制，P I E VO 使智能体能够自主地完善其理论世界观。在四个基准上的评估表明，P I E VO (1) 实现了高达 90.81%∼93.15% 的平均解决方案质量，比现有技术提高了 29.7%∼31.1%，(2) 通过优化紧凑的原理空间显著降低了样本复杂度，从而在收敛步骤中实现了 83.3% 的加速，并且 (3) 在不同的科学领域和 LLM 骨干模型中保持了稳健的性能。图 1. 原理演化示意图。P I E VO 通过逐步探索假设候选来演化可优化的原理空间，系统寻求一个能够解释或预测观测现象（例如，经验观测）的原理。等，2025），物理学（Ghafarollahi &amp; Buehler, 2024），以及材料科学（Panapitiya 等，2025）。尽管取得了这些进展，现有方法主要在固定搜索空间内最大化利用。尽管最近的框架已开始将科学原理作为指导（Pu 等，2025；Lai &amp; Pu, 2025；Zhao 等，2025），但它们通常将这些原理或先验知识视为不可变的约束。因此，当智能体遇到与其先验相矛盾的实验证据时，它们通常将有效的观测结果视为错误而丢弃，而非将其识别为理论完善和扩展的信号。这种僵化导致了显著的低效：智能体在受固定先验约束的假设空间中探索，而不根据新兴的实验证据更新对真实世界知识的“认知”。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Model (LLM)-based scientific agents have accelerated scientific discovery, yet they often suffer from significant inefficiencies due to adherence to fixed initial priors. Existing approaches predominantly operate within a static hypothesis space, which restricts the discovery of novel phenomena, resulting in computational waste when baseline theories fail. To address this, we propose shifting the focus from searching hypotheses to evolving the underlying scientific principles. We present P I E VO, a principleevolvable framework that treats scientific discovery as Bayesian optimization over an expanding principle space. By integrating InformationDirected Hypothesis Selection via Gaussian Process and an anomaly-driven augmentation mechanism, P I E VO enables agents to autonomously refine their theoretical worldview. Evaluation across four benchmarks demonstrates that P I E VO (1) achieves an average solution quality of up to 90.81%∼93.15%, representing a 29.7%∼31.1% improvement over the state-of-the-art, (2) attains an 83.3% speedup in convergence step via significantly reduced sample complexity by optimizing the compact principle space, and (3) maintains robust performance across diverse scientific domains and LLM backbones. Figure 1. Illustration of principle evolution. P I E VO evolves the optimizable principle space by exploring hypothesis candidates progressively, and the system seeks a principle capable of explaining or predicting the observed phenomena (e.g., empirical observations). et al., 2025), physics (Ghafarollahi &amp; Buehler, 2024), and material science (Panapitiya et al., 2025). Despite these advancements, existing approaches predominantly maximize exploitation within a fixed search space. While recent frameworks have begun to incorporate scientific principles as guidance (Pu et al., 2025; Lai &amp; Pu, 2025; Zhao et al., 2025), they typically treat these principles, or the prior knowledge, as immutable constraints. Consequently, when agents encounter experimental evidence that contradicts their prior, they often discard valid observations as errors rather than recognizing them as signals for theoretical refinement and extension. This rigidity leads to significant inefficiencies: agents explore the hypothesis space constrained by fixed priors without updating the “cognition” of real-world knowledge to emerging experimental evidence.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260206s89pievopr,
+  title = {Principle-Evolvable Scientific Discovery via Uncertainty Minimization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.06448.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s89-pievo-principle-evolvable-discovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Principle-Evolvable Scientific Discovery via Uncertainty Minimization. https://arxiv.org/pdf/2602.06448.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.06448.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/amair-lab/PiEvo" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

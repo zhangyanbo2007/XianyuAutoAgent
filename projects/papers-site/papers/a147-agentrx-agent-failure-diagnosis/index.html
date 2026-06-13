@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentRx: Diagnosing AI Agent Failures from Execution Trajectories | DAST Papers</title>
+    <meta name="description" content="随着 AI agents 开始执行长链条、多工具、甚至多代理协作任务，一个越来越突出的痛点是失败定位。很多系统只能给出最终成败，却很难指出轨迹中第一个不可恢复的错误发生在哪里，也难以稳定判断它属于工具异常、策略偏移还是策略与环境交互中的更深层失配。
+
+AgentRx 的核心贡献是把 agent debugging 从模糊的 post-hoc 解释改成可执行、可审计的诊断流程。它先把异构轨迹统一成中" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a147-agentrx-agent-failure-diagnosis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentRx: Diagnosing AI Agent Failures from Execution Trajectories" />
+    <meta property="og:description" content="随着 AI agents 开始执行长链条、多工具、甚至多代理协作任务，一个越来越突出的痛点是失败定位。很多系统只能给出最终成败，却很难指出轨迹中第一个不可恢复的错误发生在哪里，也难以稳定判断它属于工具异常、策略偏移还是策略与环境交互中的更深层失配。
+
+AgentRx 的核心贡献是把 agent debugging 从模糊的 post-hoc 解释改成可执行、可审计的诊断流程。它先把异构轨迹统一成中" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a147-agentrx-agent-failure-diagnosis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentRx: Diagnosing AI Agent Failures from Execution Trajectories" />
+    <meta name="twitter:description" content="随着 AI agents 开始执行长链条、多工具、甚至多代理协作任务，一个越来越突出的痛点是失败定位。很多系统只能给出最终成败，却很难指出轨迹中第一个不可恢复的错误发生在哪里，也难以稳定判断它属于工具异常、策略偏移还是策略与环境交互中的更深层失配。
+
+AgentRx 的核心贡献是把 agent debugging 从模糊的 post-hoc 解释改成可执行、可审计的诊断流程。它先把异构轨迹统一成中" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentRx: Diagnosing AI Agent Failures from Execution Trajectories</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.02475" target="_blank" rel="noopener noreferrer">2602.02475</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 AI agents 开始执行长链条、多工具、甚至多代理协作任务，一个越来越突出的痛点是失败定位。很多系统只能给出最终成败，却很难指出轨迹中第一个不可恢复的错误发生在哪里，也难以稳定判断它属于工具异常、策略偏移还是策略与环境交互中的更深层失配。</dd></div><div><dt>方法/机制</dt><dd>AgentRx 的核心贡献是把 agent debugging 从模糊的 post-hoc 解释改成可执行、可审计的诊断流程。它先把异构轨迹统一成中间表示，再结合 tool schema 与 domain policy 自动合成 guarded constraints，逐步检查每一步约束是否被违反，并生成带证据的 validation log，最后再由 LLM judge 基于该日志去定位 critical failure step 与 failure category。作者同时发布了包含 115 条人工标注失败轨迹的 benchmark 和 grounded failure taxonomy。</dd></div><div><dt>结果/证据</dt><dd>这让它不只是又一篇 reliability paper，而是给 agent engineering 提供了一条更耐久的诊断接口。对仓库来说，它和 guardrail、permissioning、computer-use safety、governed execution 这些线都能对接，因为真正的价值在于把失败归因、可观察性和可复盘性收敛到统一框架里。相比只报成功率的 agent benchmark，这类 failure-diagnosis primitive 更可能被后续系统复用。</dd></div><div><dt>收录价值</dt><dd>它暂时还不适合更高分级，原因在于当前证据主要集中在三类 domain 和作者自建 benchmark，生态扩散与跨系统复现仍需要时间验证。它更像一条很强的 agent diagnosis 基础模式，而不是已经改写整个 agent reliability 范式的总蓝图。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 AI agents 开始执行长链条、多工具、甚至多代理协作任务，一个越来越突出的痛点是失败定位。很多系统只能给出最终成败，却很难指出轨迹中第一个不可恢复的错误发生在哪里，也难以稳定判断它属于工具异常、策略偏移还是策略与环境交互中的更深层失配。</p><p>AgentRx 的核心贡献是把 agent debugging 从模糊的 post-hoc 解释改成可执行、可审计的诊断流程。它先把异构轨迹统一成中间表示，再结合 tool schema 与 domain policy 自动合成 guarded constraints，逐步检查每一步约束是否被违反，并生成带证据的 validation log，最后再由 LLM judge 基于该日志去定位 critical failure step 与 failure category。作者同时发布了包含 115 条人工标注失败轨迹的 benchmark 和 grounded failure taxonomy。</p><p>这让它不只是又一篇 reliability paper，而是给 agent engineering 提供了一条更耐久的诊断接口。对仓库来说，它和 guardrail、permissioning、computer-use safety、governed execution 这些线都能对接，因为真正的价值在于把失败归因、可观察性和可复盘性收敛到统一框架里。相比只报成功率的 agent benchmark，这类 failure-diagnosis primitive 更可能被后续系统复用。</p><p>它暂时还不适合更高分级，原因在于当前证据主要集中在三类 domain 和作者自建 benchmark，生态扩散与跨系统复现仍需要时间验证。它更像一条很强的 agent diagnosis 基础模式，而不是已经改写整个 agent reliability 范式的总蓝图。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AgentRx：从执行轨迹诊断AI智能体故障。AI智能体经常以难以定位的方式发生故障，因为执行是概率性的、长期的、多智能体的，并且由嘈杂的工具输出介导。我们通过手动标注失败的智能体运行来解决这一空白，并发布了一个包含115条失败轨迹的新型基准，这些轨迹涵盖了结构化API工作流、事件管理和开放式网络/文件任务。每条轨迹都标注了一个关键故障步骤和一个来自扎根理论推导的跨领域故障分类法中的类别。为了减轻故障归因的人力成本，我们提出了AGENT R X，这是一个自动化的、领域无关的诊断框架，能够精确定位失败智能体轨迹中的关键故障步骤。它综合约束条件，逐步评估它们，并生成一个可审计的约束违反验证日志及相关证据；一个基于LLM的判断器使用此日志来定位关键步骤和类别。我们的框架在三个领域中，相对于现有基线，改进了步骤定位和故障归因。通过在观察到副作用之前。因此，确保AI智能体的鲁棒性并非可选项，而是它们在现实世界中安全采用的先决条件。在本文中，我们的重点是：找出并定位阻止智能体成功完成任务的关键故障的根本原因。我们将关键故障定义为执行轨迹中任何智能体发生的第一个不可恢复的故障。为了理解和表征智能体故障，我们手动分析了失败的智能体执行，并引入了一个包含115条智能体执行轨迹的基准，这些轨迹涵盖了结构化API工作流、事件管理和开放式网络/文件任务。每条轨迹都包含完整的执行跟踪（消息、工具调用、工具输出和可观察的环境状态），并标注了关键步骤和捕获运行最终失败原因的故障类别。基于扎根理论的标注过程也产生了一种新颖的跨领域故障分类法，用于根本原因归因。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI agents often fail in ways that are difficult to localize because executions are probabilistic, longhorizon, multi-agent, and mediated by noisy tool outputs. We address this gap by manually annotating failed agent runs and release a novel benchmark of 115 failed trajectories spanning structured API workflows, incident management, and open-ended web/file tasks. Each trajectory is annotated with a critical failure step and a category from a grounded-theory derived, cross-domain failure taxonomy. To mitigate the human cost of failure attribution, we present AGENT R X, an automated domain-agnostic diagnostic framework that pinpoints the critical failure step in a failed agent trajectory. It synthesizes constraints, evaluates them step-by-step, and produces an auditable validation log of constraint violations with associated evidence; an LLM-based judge uses this log to localize the critical step and category. Our framework improves step localization and failure attribution over existing baselines across three domains. through side effects before they are observed. Consequently, ensuring the robustness of AI agents is not an option, but a prerequisite for their safe adoption in the real-world. In this paper, our focus is on: root-causing and localizing the critical failure which prevented the Agent from successful task completion. We define critical failure as the first unrecoverable failure by any agent in an execution trajectory. To understand and characterize agentic failures, we manually analyze failed agent executions and introduce a benchmark of 115 agent execution trajectories across structured API workflows, incident management, and open-ended web/file tasks. Each trajectory includes the full execution trace (messages, tool calls, tool outputs, and observable environment state) and is annotated with the critical step and a failure category capturing why the run ultimately fails. The grounded-theory–based annotation process also yields a novel cross-domain failure taxonomy for root-cause attribution.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260202a147agentr,
+  title = {AgentRx: Diagnosing AI Agent Failures from Execution Trajectories},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.02475v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a147-agentrx-agent-failure-diagnosis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentRx: Diagnosing AI Agent Failures from Execution Trajectories. https://arxiv.org/pdf/2602.02475v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.02475v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

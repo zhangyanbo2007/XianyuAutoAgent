@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HippoCamp: Benchmarking Contextual Agents on Personal Computers | DAST Papers</title>
+    <meta name="description" content="当前 agent benchmark 大多围绕网页操作、工具调用或通用软件自动化展开，但真实个人电脑环境中的 agent 还要处理完全不同的问题：理解用户背景、在海量个人文件中跨模态检索证据、并据此完成上下文化推理。HippoCamp 针对的正是这类更接近真实个人计算场景的 contextual agent 能力。
+
+论文构建了一个 device-scale benchmark，用真实用户档案和超" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a114-hippocamp-contextual-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HippoCamp: Benchmarking Contextual Agents on Personal Computers" />
+    <meta property="og:description" content="当前 agent benchmark 大多围绕网页操作、工具调用或通用软件自动化展开，但真实个人电脑环境中的 agent 还要处理完全不同的问题：理解用户背景、在海量个人文件中跨模态检索证据、并据此完成上下文化推理。HippoCamp 针对的正是这类更接近真实个人计算场景的 contextual agent 能力。
+
+论文构建了一个 device-scale benchmark，用真实用户档案和超" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a114-hippocamp-contextual-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HippoCamp: Benchmarking Contextual Agents on Personal Computers" />
+    <meta name="twitter:description" content="当前 agent benchmark 大多围绕网页操作、工具调用或通用软件自动化展开，但真实个人电脑环境中的 agent 还要处理完全不同的问题：理解用户背景、在海量个人文件中跨模态检索证据、并据此完成上下文化推理。HippoCamp 针对的正是这类更接近真实个人计算场景的 contextual agent 能力。
+
+论文构建了一个 device-scale benchmark，用真实用户档案和超" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HippoCamp: Benchmarking Contextual Agents on Personal Computers</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01221" target="_blank" rel="noopener noreferrer">2604.01221</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前 agent benchmark 大多围绕网页操作、工具调用或通用软件自动化展开，但真实个人电脑环境中的 agent 还要处理完全不同的问题：理解用户背景、在海量个人文件中跨模态检索证据、并据此完成上下文化推理。HippoCamp 针对的正是这类更接近真实个人计算场景的 contextual agent 能力。</dd></div><div><dt>方法/机制</dt><dd>论文构建了一个 device-scale benchmark，用真实用户档案和超过 2K 个真实文件搭建个人文件系统环境，总数据量达 42.4GB，并进一步标注 581 个 QA 任务以及 46.1K 条结构化执行轨迹。评测不只看最终答对率，还细分到 search、evidence perception 和 multi-step reasoning 等子能力，因此更适合做 agent failure diagnosis 与方法对比。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent evaluation 从公开网页和通用工具，推进到更贴近个人操作系统与私有文件空间的场景。这个方向和仓库近期关注的 memory、context engineering、contextual assistants 很一致，而且 dense trajectory 标注让它具备了比一般 benchmark 更高的分析与复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍是一条新 benchmark 线，长期耐久性要看外部团队是否会广泛采用，以及是否会成为 contextual agents / PC agents 的默认评测基座。现在它显然已超过普通 benchmark，但离更高层级的路线改写还差 adoption 证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前 agent benchmark 大多围绕网页操作、工具调用或通用软件自动化展开，但真实个人电脑环境中的 agent 还要处理完全不同的问题：理解用户背景、在海量个人文件中跨模态检索证据、并据此完成上下文化推理。HippoCamp 针对的正是这类更接近真实个人计算场景的 contextual agent 能力。</p><p>论文构建了一个 device-scale benchmark，用真实用户档案和超过 2K 个真实文件搭建个人文件系统环境，总数据量达 42.4GB，并进一步标注 581 个 QA 任务以及 46.1K 条结构化执行轨迹。评测不只看最终答对率，还细分到 search、evidence perception 和 multi-step reasoning 等子能力，因此更适合做 agent failure diagnosis 与方法对比。</p><p>这篇工作值得收录，因为它把 agent evaluation 从公开网页和通用工具，推进到更贴近个人操作系统与私有文件空间的场景。这个方向和仓库近期关注的 memory、context engineering、contextual assistants 很一致，而且 dense trajectory 标注让它具备了比一般 benchmark 更高的分析与复用价值。</p><p>它没有升到更高一级，是因为当前仍是一条新 benchmark 线，长期耐久性要看外部团队是否会广泛采用，以及是否会成为 contextual agents / PC agents 的默认评测基座。现在它显然已超过普通 benchmark，但离更高层级的路线改写还差 adoption 证明。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>两者都需要紧密耦合的搜索、多模态感知以及对用户特定证据的推理。参见§3.2和§4。S3. 实现可解释的故障诊断：HippoCamp将581个问答任务与46.1K个结构化标注配对，从而可以将错误定位到搜索、感知和推理阶段。参见§5.1和§5.2。S4. 揭示与强大的个人文件智能体之间的巨大差距：即使是最强的评估系统也仅达到48.3%的分析能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>both of which require tightly coupled search, multimodal perception, and reasoning over user-specific evidence. See §3.2 and §4 S3. Enable interpretable failure diagnosis: HippoCamp pairs 581 QA tasks with 46.1K structured annotations, allowing errors to be localized to search, perception, and reasoning stages. See §5.1 and §5.2 S4. Expose a large gap to robust personal-file agents: even the strongest evaluated system reaches only 48.3% profiling</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a114hippoc,
+  title = {HippoCamp: Benchmarking Contextual Agents on Personal Computers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01221.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a114-hippocamp-contextual-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HippoCamp: Benchmarking Contextual Agents on Personal Computers. https://arxiv.org/pdf/2604.01221.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01221.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

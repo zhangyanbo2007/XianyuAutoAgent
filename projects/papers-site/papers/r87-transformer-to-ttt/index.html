@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Linearizing Vision Transformer with Test-Time Training | DAST Papers</title>
+    <meta name="description" content="论文把 TTT 从一个独立架构方向推进为 pretrained Transformer linearization 的桥梁：不是从头训练线性注意力，而是继承 softmax attention 权重。
+
+关键机制是 architectural alignment + representational alignment：利用 TTT two-layer dynamic formulation 对齐" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r87-transformer-to-ttt/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Linearizing Vision Transformer with Test-Time Training" />
+    <meta property="og:description" content="论文把 TTT 从一个独立架构方向推进为 pretrained Transformer linearization 的桥梁：不是从头训练线性注意力，而是继承 softmax attention 权重。
+
+关键机制是 architectural alignment + representational alignment：利用 TTT two-layer dynamic formulation 对齐" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r87-transformer-to-ttt/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Linearizing Vision Transformer with Test-Time Training" />
+    <meta name="twitter:description" content="论文把 TTT 从一个独立架构方向推进为 pretrained Transformer linearization 的桥梁：不是从头训练线性注意力，而是继承 softmax attention 权重。
+
+关键机制是 architectural alignment + representational alignment：利用 TTT two-layer dynamic formulation 对齐" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Linearizing Vision Transformer with Test-Time Training</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.02772" target="_blank" rel="noopener noreferrer">2605.02772</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>论文把 TTT 从一个独立架构方向推进为 pretrained Transformer linearization 的桥梁：不是从头训练线性注意力，而是继承 softmax attention 权重。</dd></div><div><dt>方法/机制</dt><dd>关键机制是 architectural alignment + representational alignment：利用 TTT two-layer dynamic formulation 对齐 softmax attention，再用 key instance normalization 和 locality module 补齐性质差异。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它提供了可复用的模型改造工作流：把现有重型视觉/扩散 Transformer 转为线性复杂度 TTT 模型，和 inference efficiency、test-time architecture、long-context scaling 都有关。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>论文把 TTT 从一个独立架构方向推进为 pretrained Transformer linearization 的桥梁：不是从头训练线性注意力，而是继承 softmax attention 权重。</p><p>关键机制是 architectural alignment + representational alignment：利用 TTT two-layer dynamic formulation 对齐 softmax attention，再用 key instance normalization 和 locality module 补齐性质差异。</p><p>收录价值在于它提供了可复用的模型改造工作流：把现有重型视觉/扩散 Transformer 转为线性复杂度 TTT 模型，和 inference efficiency、test-time architecture、long-context scaling 都有关。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>表达能力伴随着高昂的代价：序列长度N的计算时间和内存复杂度呈二次方增长。这一限制严重限制了可扩展性，尤其是在涉及高分辨率图像或长上下文生成的情况下。虽然线性复杂度注意力机制为克服二次瓶颈提供了一种有希望的替代方案，但从头开始训练此类模型仍然代价高昂。从预训练的Transformer中继承权重具有吸引力，但Softmax和线性注意力之间的基本表征差距阻碍了有效的权重转移。在工作中，我们从两个角度解决了这一转换挑战：架构对齐和表征对齐。我们确定测试时训练（TTT）是一种线性复杂度架构，其双层动态公式与Softmax注意力具有结构上的对齐，从而可以实现预训练注意力的直接继承。为了进一步对齐表征属性，包括键移不变性和局部性，我们引入了键实例归一化和轻量级局部性增强模块。我们通过线性化Stable Diffusion 3.5并引入SD3.5-T5（Transformer To Test Time Training）来验证我们的方法。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>expressive power comes at a prohibitive cost: the time and memory complexity grows quadratically with the sequence length N . This limitation severely restricts scalability, particularly for applications involving high-resolution images or long-context generation. While linear-complexity attention mechanisms offer a promising alternative to Softmax attention for overcoming the quadratic bottleneck, training such models from scratch remains prohibitively expensive. Inheriting weights from pretrained Transformers provides an appealing shortcut, yet the fundamental representational gap between Softmax and linear attention prevents effective weight transfer. In this work, we address this conversion challenge from two perspectives: architectural alignment and representational alignment. We identify Test-Time Training (TTT) as a linearcomplexity architecture whose two-layer dynamic formulation is structurally aligned with Softmax attention, enabling direct inheritance of pretrained attention weights. To further align representational properties, including key shift-invariance and locality, we introduce key instance normalization and a lightweight locality enhancement module. We validate our approach by linearizing Stable Diffusion 3.5 and introduce SD3.5-T5 (Transformer To Test Time Training). With only</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528r87transfo,
+  title = {Linearizing Vision Transformer with Test-Time Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.02772.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r87-transformer-to-ttt/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Linearizing Vision Transformer with Test-Time Training. https://arxiv.org/pdf/2605.02772.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r84-omniretrieval-heterogeneous-sources/">
+              <span>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.02772.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/LeapLabTHU/Transformer-to-TTT" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

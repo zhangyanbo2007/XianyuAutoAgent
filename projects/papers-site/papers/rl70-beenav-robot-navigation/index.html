@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Efficient robot navigation inspired by honeybee learning flights | DAST Papers</title>
+    <meta name="description" content="这篇 Nature 论文把昆虫学习飞行中的视觉归巢原则转成可部署的机器人导航策略 Bee-Nav。系统用路径积分提供 home vector，再用训练于等价 learning flights 的微型神经网络修正漂移。
+
+关键工程结果是资源约束极强：室内外小型无人机实验中，3.4 kB 与 42 kB 级网络就能支撑 30-110 m 与部分 200-600 m windy flights 的归航。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl70-beenav-robot-navigation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Efficient robot navigation inspired by honeybee learning flights" />
+    <meta property="og:description" content="这篇 Nature 论文把昆虫学习飞行中的视觉归巢原则转成可部署的机器人导航策略 Bee-Nav。系统用路径积分提供 home vector，再用训练于等价 learning flights 的微型神经网络修正漂移。
+
+关键工程结果是资源约束极强：室内外小型无人机实验中，3.4 kB 与 42 kB 级网络就能支撑 30-110 m 与部分 200-600 m windy flights 的归航。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl70-beenav-robot-navigation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Efficient robot navigation inspired by honeybee learning flights" />
+    <meta name="twitter:description" content="这篇 Nature 论文把昆虫学习飞行中的视觉归巢原则转成可部署的机器人导航策略 Bee-Nav。系统用路径积分提供 home vector，再用训练于等价 learning flights 的微型神经网络修正漂移。
+
+关键工程结果是资源约束极强：室内外小型无人机实验中，3.4 kB 与 42 kB 级网络就能支撑 30-110 m 与部分 200-600 m windy flights 的归航。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Efficient robot navigation inspired by honeybee learning flights</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10461-3" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10461-3</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature 论文把昆虫学习飞行中的视觉归巢原则转成可部署的机器人导航策略 Bee-Nav。系统用路径积分提供 home vector，再用训练于等价 learning flights 的微型神经网络修正漂移。</dd></div><div><dt>方法/机制</dt><dd>关键工程结果是资源约束极强：室内外小型无人机实验中，3.4 kB 与 42 kB 级网络就能支撑 30-110 m 与部分 200-600 m windy flights 的归航。它不是大模型路线，而是极小模型、极低算力的 embodied navigation primitive。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它连接了神经行为学、tiny neural networks 与真实机器人导航，为小型无人机和低功耗 embodied agents 提供了可复用的视觉记忆/路径积分混合范式。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为任务主要是 home-return navigation；能否扩展到多目标、动态障碍、复杂语义任务和通用机器人策略，还需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature 论文把昆虫学习飞行中的视觉归巢原则转成可部署的机器人导航策略 Bee-Nav。系统用路径积分提供 home vector，再用训练于等价 learning flights 的微型神经网络修正漂移。</p><p>关键工程结果是资源约束极强：室内外小型无人机实验中，3.4 kB 与 42 kB 级网络就能支撑 30-110 m 与部分 200-600 m windy flights 的归航。它不是大模型路线，而是极小模型、极低算力的 embodied navigation primitive。</p><p>它值得正式收录，因为它连接了神经行为学、tiny neural networks 与真实机器人导航，为小型无人机和低功耗 embodied agents 提供了可复用的视觉记忆/路径积分混合范式。</p><p>它没有更高，是因为任务主要是 home-return navigation；能否扩展到多目标、动态障碍、复杂语义任务和通用机器人策略，还需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>受蜜蜂学习飞行启发的机器人高效导航。导航是动物和机器人的一项关键能力。尽管微小的飞虫能够稳定地进行长距离导航，但最先进的机器人导航方法计算成本高昂，因此仅限于大型机器人。在本文中，我们提出了一种名为“Bee-Nav”的高效导航策略，其灵感来源于蜜蜂的视觉学习飞行。在等效的机器人学习飞行中，一个微型神经网络被训练用于根据路径积分将全向图像映射到归巢向量。学习后，机器人可以飞离家园很远，然后利用路径积分直接返回，并使用视觉归巢网络消除积分漂移。模拟结果表明，在实际的路径积分精度下，神经网络仅需在总飞行区域的大约0.25%至10.00%的范围内进行训练。在真实的室内外实验中，一架小型无人机在有风条件下，对于30-110米长的飞行，100%成功返回到离家0.5米以内；对于200-600米长的飞行，70%成功返回到离家0.5米以内，分别使用了3.4-kB和42-kB的神经网络。所提出的导航策略对于在往返于家园位置执行任务的资源受限机器人至关重要。此外，它为昆虫导航的神经行为学提供了新视角，包括视觉学习如何塑造归巢轨迹以及认知地图的本质。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Navigation is a crucial capability for both animals and robots. Although tiny flying insects can robustly navigate over long distances , state-of-the-art robot navigation methods are computationally expensive and therefore restricted to large robots . Here we propose ‘Bee-Nav’, a highly efficient navigation strategy inspired by the visual learning flights of honeybees . In equivalent robotic learning flights, a tiny neural network is trained to map omnidirectional images to a home vector based on path integration. After learning, the robot can fly far away from home, come straight back using path integration and cancel integration drift using the visual homing network. Simulations showed that, for realistic path integration accuracies, the neural network requires training on only approximately 0.25–10.00% of the total flight area. In real-world indoor and outdoor experiments, a small drone successfully returned to within 0.5 m of home for 100% of 30–110-m flights and 70% of 200–600-m flights in windy conditions, using 3.4-kB and 42-kB neural networks, respectively. The proposed navigation strategy will be vital for resource-constrained robots that perform tasks while travelling from and to a home location. Furthermore, it provides new perspectives on the neuroethology of insect navigation, from how visual learning shapes homing trajectories to the nature of cognitive maps.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513rl70beenav,
+  title = {Efficient robot navigation inspired by honeybee learning flights},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10461-3.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl70-beenav-robot-navigation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Efficient robot navigation inspired by honeybee learning flights. https://www.nature.com/articles/s41586-026-10461-3.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10461-3.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

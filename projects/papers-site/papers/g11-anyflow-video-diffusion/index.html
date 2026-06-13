@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AnyFlow: Any-Step Video Diffusion Model with On-Policy Flow Map Distillation | DAST Papers</title>
+    <meta name="description" content="AnyFlow 针对 few-step video diffusion 的一个关键缺陷：consistency distillation 在少步采样时有效，但随着测试时步数增加反而可能退化，因为它替换了原始 probability-flow ODE trajectory，破坏了 ODE sampling 的 test-time scaling 行为。
+
+论文把蒸馏目标从 endpoint cons" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g11-anyflow-video-diffusion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AnyFlow: Any-Step Video Diffusion Model with On-Policy Flow Map Distillation" />
+    <meta property="og:description" content="AnyFlow 针对 few-step video diffusion 的一个关键缺陷：consistency distillation 在少步采样时有效，但随着测试时步数增加反而可能退化，因为它替换了原始 probability-flow ODE trajectory，破坏了 ODE sampling 的 test-time scaling 行为。
+
+论文把蒸馏目标从 endpoint cons" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g11-anyflow-video-diffusion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AnyFlow: Any-Step Video Diffusion Model with On-Policy Flow Map Distillation" />
+    <meta name="twitter:description" content="AnyFlow 针对 few-step video diffusion 的一个关键缺陷：consistency distillation 在少步采样时有效，但随着测试时步数增加反而可能退化，因为它替换了原始 probability-flow ODE trajectory，破坏了 ODE sampling 的 test-time scaling 行为。
+
+论文把蒸馏目标从 endpoint cons" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AnyFlow: Any-Step Video Diffusion Model with On-Policy Flow Map Distillation</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.13724" target="_blank" rel="noopener noreferrer">2605.13724</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AnyFlow 针对 few-step video diffusion 的一个关键缺陷：consistency distillation 在少步采样时有效，但随着测试时步数增加反而可能退化，因为它替换了原始 probability-flow ODE trajectory，破坏了 ODE sampling 的 test-time scaling 行为。</dd></div><div><dt>方法/机制</dt><dd>论文把蒸馏目标从 endpoint consistency mapping 改成 flow-map transition learning，在任意时间区间学习 z_t 到 z_r 的转移，并提出 Flow Map Backward Simulation，把完整 Euler rollout 分解成 shortcut flow-map transitions，做更高效的 on-policy distillation。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它为视频生成提供了 any-step distillation primitive：同一个蒸馏模型既能低步快速生成，也能随采样预算增加而继续受益。论文在 1.3B 到 14B、双向和因果视频架构上验证，且代码、模型和 demo 已公开。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为它仍处在视频 diffusion distillation 子方向，是否会成为通用视频生成后训练标准，还要看更多基础模型、长视频、可控生成和真实部署延迟上的复现。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AnyFlow 针对 few-step video diffusion 的一个关键缺陷：consistency distillation 在少步采样时有效，但随着测试时步数增加反而可能退化，因为它替换了原始 probability-flow ODE trajectory，破坏了 ODE sampling 的 test-time scaling 行为。</p><p>论文把蒸馏目标从 endpoint consistency mapping 改成 flow-map transition learning，在任意时间区间学习 z_t 到 z_r 的转移，并提出 Flow Map Backward Simulation，把完整 Euler rollout 分解成 shortcut flow-map transitions，做更高效的 on-policy distillation。</p><p>它值得正式收录，因为它为视频生成提供了 any-step distillation primitive：同一个蒸馏模型既能低步快速生成，也能随采样预算增加而继续受益。论文在 1.3B 到 14B、双向和因果视频架构上验证，且代码、模型和 demo 已公开。</p><p>它没有更高，是因为它仍处在视频 diffusion distillation 子方向，是否会成为通用视频生成后训练标准，还要看更多基础模型、长视频、可控生成和真实部署延迟上的复现。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过一致性蒸馏，少步视频生成取得了显著进展。然而，一致性蒸馏模型的性能往往在测试时分配更多采样步数时下降，限制了它们在任意步视频扩散中的有效性。我们认为这一限制的产生是因为一致性蒸馏用一致性采样轨迹取代了原始的概率流ODE轨迹，削弱了ODE采样理想的测试时缩放行为。为了解决这一限制，我们引入了AnyFlow，这是第一个基于流图的任意步视频扩散蒸馏框架。AnyFlow不是仅针对少数固定采样步数蒸馏模型，而是优化完整的ODE采样轨迹。为此，我们将蒸馏目标从端点一致性映射（z𝑡 → z0）转向任意时间间隔内的流图转换学习（z𝑡 → z𝑟）。我们进一步提出了流图反向模拟（Flow Map Backward Simulation），它将完整的欧拉展开分解为快捷流图转换，从而实现高效的在策略蒸馏，减少测试时误差（即少步采样中的离散化误差和因果生成中的曝光偏差）。在双向和因果架构上，从1.3B到14B参数规模的广泛实验表明，AnyFlow在少步机制下实现了与基于一致性的对应模型相当或更优的性能，同时支持在不同步数预算下的灵活和可扩展采样。在因果文本到视频设置中，AnyFlow-FAR在4个NFE下达到了84.05的VBench分数，并在32个NFE下进一步提高到84.41，超越了Krea-Realtime-14B（在4个NFE下为83.25）。对于图像到视频生成，AnyFlow-FAR在4个NFE下达到了87.87的VBench-I2V分数，与使用50×2个NFE的Wan2.1-I2V-14B（87.71）相当。在14B双向文本到视频设置中，AnyFlow在4个NFE下达到了84.04，优于rCM-14B（在4个NFE下为83.73）。代码已在https://github.com/NVLabs/AnyFlow发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Few-step video generation has been significantly advanced by consistency distillation. However, the performance of consistency-distilled models often degrades as more sampling steps are allocated at test time, limiting their effectiveness for any-step video diffusion. We argue that this limitation arises because consistency distillation replaces the original probability-flow ODE trajectory with a consistency-sampling trajectory, weakening the desirable test-time scaling behavior of ODE sampling. To address this limitation, we introduce AnyFlow, the first any-step video diffusion distillation framework based on flow maps. Instead of distilling a model for only a few fixed sampling steps, AnyFlow optimizes the full ODE sampling trajectory. To this end, we shift the distillation target from endpoint consistency mapping (z𝑡 → z0 ) to flow-map transition learning (z𝑡 → z𝑟 ) over arbitrary time intervals. We further propose Flow Map Backward Simulation, which decomposes a full Euler rollout into shortcut flow-map transitions, enabling efficient on-policy distillation that reduces test-time errors (i.e., discretization error in few-step sampling and exposure bias in causal generation). Extensive experiments across both bidirectional and causal architectures, at scales ranging from 1.3B to 14B parameters, demonstrate that AnyFlow achieves performance comparable to or better than consistency-based counterparts in the few-step regime, while supporting flexible and scalable sampling under varying step budgets. In the causal text-to-video setting, AnyFlow-FAR reaches a VBench score of 84.05 at 4 NFEs and further improves to 84.41 at 32 NFEs, surpassing Krea-Realtime-14B (83.25 at 4 NFEs). For image-to-video generation, AnyFlow-FAR achieves a VBench-I2V score of 87.87 at 4 NFEs, comparable to Wan2.1-I2V-14B using 50×2 NFEs (87.71). In the 14B bidirectional text-to-video setting, AnyFlow reaches 84.04 at 4 NFEs, outperforming rCM-14B (83.73 at 4 NFEs). Code is released at https://github.com/NVLabs/AnyFlow.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513g11anyflow,
+  title = {AnyFlow: Any-Step Video Diffusion Model with On-Policy Flow Map Distillation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.13724.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g11-anyflow-video-diffusion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AnyFlow: Any-Step Video Diffusion Model with On-Policy Flow Map Distillation. https://arxiv.org/pdf/2605.13724.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.13724.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://nvlabs.github.io/AnyFlow/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.13724" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/NVlabs/AnyFlow" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

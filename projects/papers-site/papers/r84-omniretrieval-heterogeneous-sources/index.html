@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources | DAST Papers</title>
+    <meta name="description" content="现实 RAG/agent retrieval 不只面对文本，还要访问表格、关系数据库、知识图谱和属性图；把它们全部压进统一向量空间会丢失结构能力。
+
+OmniRetrieval 的思路不是同质化，而是识别合适知识源，并派发 source-native queries 到各自执行引擎，保留 schema、ontology 和 compositional operators。
+
+论文在 13 个数据集" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r84-omniretrieval-heterogeneous-sources/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources" />
+    <meta property="og:description" content="现实 RAG/agent retrieval 不只面对文本，还要访问表格、关系数据库、知识图谱和属性图；把它们全部压进统一向量空间会丢失结构能力。
+
+OmniRetrieval 的思路不是同质化，而是识别合适知识源，并派发 source-native queries 到各自执行引擎，保留 schema、ontology 和 compositional operators。
+
+论文在 13 个数据集" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r84-omniretrieval-heterogeneous-sources/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources" />
+    <meta name="twitter:description" content="现实 RAG/agent retrieval 不只面对文本，还要访问表格、关系数据库、知识图谱和属性图；把它们全部压进统一向量空间会丢失结构能力。
+
+OmniRetrieval 的思路不是同质化，而是识别合适知识源，并派发 source-native queries 到各自执行引擎，保留 schema、ontology 和 compositional operators。
+
+论文在 13 个数据集" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.29250" target="_blank" rel="noopener noreferrer">2605.29250</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现实 RAG/agent retrieval 不只面对文本，还要访问表格、关系数据库、知识图谱和属性图；把它们全部压进统一向量空间会丢失结构能力。</dd></div><div><dt>方法/机制</dt><dd>OmniRetrieval 的思路不是同质化，而是识别合适知识源，并派发 source-native queries 到各自执行引擎，保留 schema、ontology 和 compositional operators。</dd></div><div><dt>结果/证据</dt><dd>论文在 13 个数据集、309 个知识库上的 benchmark 展示了跨文本、关系和图结构检索的统一接口价值。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为 agent memory 和 tool-augmented reasoning 需要跨异构知识源的检索编排；OmniRetrieval 提供了一个可复用 retrieval-router 模式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现实 RAG/agent retrieval 不只面对文本，还要访问表格、关系数据库、知识图谱和属性图；把它们全部压进统一向量空间会丢失结构能力。</p><p>OmniRetrieval 的思路不是同质化，而是识别合适知识源，并派发 source-native queries 到各自执行引擎，保留 schema、ontology 和 compositional operators。</p><p>论文在 13 个数据集、309 个知识库上的 benchmark 展示了跨文本、关系和图结构检索的统一接口价值。</p><p>它值得收录，因为 agent memory 和 tool-augmented reasoning 需要跨异构知识源的检索编排；OmniRetrieval 提供了一个可复用 retrieval-router 模式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现实世界的信息需求需要访问结构上多样化的知识源，包括非结构化文本、关系型表格、知识图谱和属性图。然而，现有的检索器仅在一个源头上运行，并使用固定的查询语言，从而在不兼容的接口下碎片化了更广泛的知识领域。试图统一这些源头的自然尝试是将它们合并到一个共享空间中，但这会抹去每个源头所具有的表达能力，例如模式、本体和组合操作符。因此，对多样化知识的有效检索需要不进行同质化，而是一个总体层，该层以各自的条款满足每个源头。为了实现这一目标，我们提出了OmniRetrieval，这是一个框架，它接受任何自然语言查询，识别适当的知识源，并将源头原生的查询发送到它们的原生执行引擎。在涵盖13个数据集和309个不同知识库的广泛基准测试中，OmniRetrieval超越了单源基线，证明它可以作为对异构源头的通用接口，同时保留每个源头所具有的价值。我们的代码可在https://github.com/JinheonBaek/OmniRetrieval处获得。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Real-world information needs require access to structurally diverse knowledge sources, from unstructured text and relational tables to knowledge graphs and property graphs. Existing retrievers, however, operate over one source at a time under a fixed query language, leaving the broader landscape of available knowledge fragmented behind incompatible interfaces. A natural attempt at unification would collapse these sources into a shared space, but this erases the structural affordances (such as schemas, ontologies, compositional operators) that give each source its expressive power. Effective retrieval over diverse knowledge, therefore, requires not homogenization but an overarching layer that meets each source on its own terms. To achieve this, we present OmniRetrieval, a framework that takes any natural-language query, identifies appropriate knowledge sources, and dispatches source-native queries to their native execution engines. Across an extensive benchmark spanning 13 datasets and 309 distinct knowledge bases over text, relational, and graph-structured sources, OmniRetrieval exceeds single-source baselines, demonstrating that it can serve as a general-purpose interface to the heterogeneous sources while preserving the structural distinctions that make each source valuable. Our code is available at https://github.com/JinheonBaek/OmniRetrieval.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528r84omniret,
+  title = {OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.29250.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r84-omniretrieval-heterogeneous-sources/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources. https://arxiv.org/pdf/2605.29250.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.29250.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.29250" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

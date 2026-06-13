@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment | DAST Papers</title>
+    <meta name="description" content="geospatial foundation models 在研究中已经很强，但部署一直被两个问题卡住：一是从 raw satellite imagery 到 model-ready dataset 的自动数据管道缺失，二是 fine-tuned models 往往太大，难以在真实业务或 humanitarian workflow 中快速交付。很多工作只证明 foundation model 精度更" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/geo1-instageo-geospatial-deployment/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment" />
+    <meta property="og:description" content="geospatial foundation models 在研究中已经很强，但部署一直被两个问题卡住：一是从 raw satellite imagery 到 model-ready dataset 的自动数据管道缺失，二是 fine-tuned models 往往太大，难以在真实业务或 humanitarian workflow 中快速交付。很多工作只证明 foundation model 精度更" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/geo1-instageo-geospatial-deployment/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment" />
+    <meta name="twitter:description" content="geospatial foundation models 在研究中已经很强，但部署一直被两个问题卡住：一是从 raw satellite imagery 到 model-ready dataset 的自动数据管道缺失，二是 fine-tuned models 往往太大，难以在真实业务或 humanitarian workflow 中快速交付。很多工作只证明 foundation model 精度更" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment</h1>
+          <p class="subtitle">地理空间、遥感与灾害系统 · 发表：2025-10-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">地理空间、遥感与灾害系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.05617" target="_blank" rel="noopener noreferrer">2510.05617</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>geospatial foundation models 在研究中已经很强，但部署一直被两个问题卡住：一是从 raw satellite imagery 到 model-ready dataset 的自动数据管道缺失，二是 fine-tuned models 往往太大，难以在真实业务或 humanitarian workflow 中快速交付。很多工作只证明 foundation model 精度更高，却没有解决 data-to-deployment 的最后一公里。</dd></div><div><dt>方法/机制</dt><dd>InstaGeo 的核心贡献是把 geospatial ML workflow 做成一个端到端开源框架，统一包含 automated data curation、task-specific model distillation 和 interactive web-map deployment。它不仅复现已有 flood mapping、crop segmentation、desert locust prediction 数据集和结果，还把 distillation 做成 default deployment step，使模型在精度损失很小的情况下缩小到最多 8 倍，并显著降低 FLOPs 和 CO2。更重要的是，作者强调用户可以在一天之内完成从原始数据到可部署模型的流程。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它不只是另一个 geospatial foundation model，而是把 geospatial AI 的工程化痛点做成了可复用 workflow。对仓库来说，这类论文的价值很高：它改变的不是单个任务精度，而是如何把 remote sensing / EO 模型真正推进到 field deployment 和 decision support。它对 flood、agriculture、disaster response 和 broader geospatial AI 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是当前证据仍以 geospatial tasks 为主，且 workflow 优势更多体现在工程效率、压缩和 deployment，而不是重构更底层的 foundation-model 训练范式。它是很强的基础设施论文，但影响范围还主要停留在 geospatial deployment 这条线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>geospatial foundation models 在研究中已经很强，但部署一直被两个问题卡住：一是从 raw satellite imagery 到 model-ready dataset 的自动数据管道缺失，二是 fine-tuned models 往往太大，难以在真实业务或 humanitarian workflow 中快速交付。很多工作只证明 foundation model 精度更高，却没有解决 data-to-deployment 的最后一公里。</p><p>InstaGeo 的核心贡献是把 geospatial ML workflow 做成一个端到端开源框架，统一包含 automated data curation、task-specific model distillation 和 interactive web-map deployment。它不仅复现已有 flood mapping、crop segmentation、desert locust prediction 数据集和结果，还把 distillation 做成 default deployment step，使模型在精度损失很小的情况下缩小到最多 8 倍，并显著降低 FLOPs 和 CO2。更重要的是，作者强调用户可以在一天之内完成从原始数据到可部署模型的流程。</p><p>这项工作值得正式收录，因为它不只是另一个 geospatial foundation model，而是把 geospatial AI 的工程化痛点做成了可复用 workflow。对仓库来说，这类论文的价值很高：它改变的不是单个任务精度，而是如何把 remote sensing / EO 模型真正推进到 field deployment 和 decision support。它对 flood、agriculture、disaster response 和 broader geospatial AI 都有明显外溢。</p><p>它暂时还不到更高一级，原因是当前证据仍以 geospatial tasks 为主，且 workflow 优势更多体现在工程效率、压缩和 deployment，而不是重构更底层的 foundation-model 训练范式。它是很强的基础设施论文，但影响范围还主要停留在 geospatial deployment 这条线。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251007geo1instag,
+  title = {InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.05617.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/geo1-instageo-geospatial-deployment/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). InstaGeo: Compute-Efficient Geospatial Machine Learning from Data to Deployment. https://arxiv.org/pdf/2510.05617.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/geo4-spectralearth-fm-hyperspectral-eo/">
+              <span>SpectralEarth-FM: Bringing Hyperspectral Imagery into Multimodal Earth Observation Pretraining</span>
+              <small>地理空间、遥感与灾害系统 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/geo3-geoagentbench-gis-agents/">
+              <span>GeoAgentBench: A Dynamic Execution Benchmark for Tool-Augmented Agents in Spatial Analysis</span>
+              <small>地理空间、遥感与灾害系统 · 2026-04-15</small>
+            </a>
+            <a class="related-item" href="../../papers/geo2-prithvi-eo-2-0/">
+              <span>Prithvi-EO-2.0: A Versatile Multitemporal Foundation Model for Earth Observation Applications</span>
+              <small>地理空间、遥感与灾害系统 · 2025-12-11</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.05617.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

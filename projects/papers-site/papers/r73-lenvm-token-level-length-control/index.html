@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling | DAST Papers</title>
+    <meta name="description" content="大模型生成长度一直很重要，但以前大多停留在 sequence-level heuristic：多给一点 prompt 约束、或者粗粒度调 budget。LenVM 把这个问题正式改写成 token-level value estimation，让模型在每个 token 上显式预测剩余生成长度。
+
+这篇工作的可复用点在于 supervision 设计很干净：每个 token 赋常数负奖励，把长度建模" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r73-lenvm-token-level-length-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling" />
+    <meta property="og:description" content="大模型生成长度一直很重要，但以前大多停留在 sequence-level heuristic：多给一点 prompt 约束、或者粗粒度调 budget。LenVM 把这个问题正式改写成 token-level value estimation，让模型在每个 token 上显式预测剩余生成长度。
+
+这篇工作的可复用点在于 supervision 设计很干净：每个 token 赋常数负奖励，把长度建模" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r73-lenvm-token-level-length-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling" />
+    <meta name="twitter:description" content="大模型生成长度一直很重要，但以前大多停留在 sequence-level heuristic：多给一点 prompt 约束、或者粗粒度调 budget。LenVM 把这个问题正式改写成 token-level value estimation，让模型在每个 token 上显式预测剩余生成长度。
+
+这篇工作的可复用点在于 supervision 设计很干净：每个 token 赋常数负奖励，把长度建模" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.27039" target="_blank" rel="noopener noreferrer">2604.27039</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>大模型生成长度一直很重要，但以前大多停留在 sequence-level heuristic：多给一点 prompt 约束、或者粗粒度调 budget。LenVM 把这个问题正式改写成 token-level value estimation，让模型在每个 token 上显式预测剩余生成长度。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的可复用点在于 supervision 设计很干净：每个 token 赋常数负奖励，把长度建模变成无标注、稠密、可扩展的 value pretraining。这样得到的不只是 exact length matching，而是一套可在推理时连续调节成本与性能的长度控制信号。</dd></div><div><dt>结果/证据</dt><dd>对本库来说，这种 length-as-value 的接口比单纯 budget decoding 更耐用。它属于 reasoning/inference control 方向里很少见的基础原语，既能做预算约束，也能解释生成过程中哪些 token 在把 reasoning 推向更长或更短。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，因为当前最强证据仍聚焦在长度控制与预算约束本身。它是不是会变成更广泛 RL 或 decoding control 的标准 value interface，还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>大模型生成长度一直很重要，但以前大多停留在 sequence-level heuristic：多给一点 prompt 约束、或者粗粒度调 budget。LenVM 把这个问题正式改写成 token-level value estimation，让模型在每个 token 上显式预测剩余生成长度。</p><p>这篇工作的可复用点在于 supervision 设计很干净：每个 token 赋常数负奖励，把长度建模变成无标注、稠密、可扩展的 value pretraining。这样得到的不只是 exact length matching，而是一套可在推理时连续调节成本与性能的长度控制信号。</p><p>对本库来说，这种 length-as-value 的接口比单纯 budget decoding 更耐用。它属于 reasoning/inference control 方向里很少见的基础原语，既能做预算约束，也能解释生成过程中哪些 token 在把 reasoning 推向更长或更短。</p><p>它没有升到更高一级，因为当前最强证据仍聚焦在长度控制与预算约束本身。它是不是会变成更广泛 RL 或 decoding control 的标准 value interface，还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LenVM 模型将剩余生成长度视为一个基于token级别的价值估计问题，利用每次生成的token给予恒定的负奖励来获得密集的、无标注的监督。由此产生的价值信号支持精确长度匹配、token预算控制以及在语言模型和视觉语言模型中生成动态的解释性视图。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LenVM models remaining generation length as a token-level value estimation problem, using a constant negative reward per generated token to derive dense, annotation-free supervision. The resulting value signal supports exact-length matching, token-budget control, and interpretable views of generation dynamics in both language and vision-language models.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260429r73lenvmto,
+  title = {Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.27039v1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r73-lenvm-token-level-length-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Length Value Model: Scalable Value Pretraining for Token-Level Length Modeling. https://arxiv.org/pdf/2604.27039v1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.27039v1" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/eric-ai-lab/Length-Value-Model" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

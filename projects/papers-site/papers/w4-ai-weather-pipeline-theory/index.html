@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline | DAST Papers</title>
+    <meta name="description" content="AI weather prediction 近年来进展很快，但理论解释一直比较碎片化：有人讨论架构，有人讨论数据，有人讨论损失函数，却缺少一个能把整个预测流水线统一起来的数学框架。这使得很多经验观察虽然反复出现，例如训练 recipe 和数据常比架构更重要，却缺少系统性的理论支撑。
+
+论文把 approximation theory on the sphere、dynamical systems、" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/w4-ai-weather-pipeline-theory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline" />
+    <meta property="og:description" content="AI weather prediction 近年来进展很快，但理论解释一直比较碎片化：有人讨论架构，有人讨论数据，有人讨论损失函数，却缺少一个能把整个预测流水线统一起来的数学框架。这使得很多经验观察虽然反复出现，例如训练 recipe 和数据常比架构更重要，却缺少系统性的理论支撑。
+
+论文把 approximation theory on the sphere、dynamical systems、" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/w4-ai-weather-pipeline-theory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline" />
+    <meta name="twitter:description" content="AI weather prediction 近年来进展很快，但理论解释一直比较碎片化：有人讨论架构，有人讨论数据，有人讨论损失函数，却缺少一个能把整个预测流水线统一起来的数学框架。这使得很多经验观察虽然反复出现，例如训练 recipe 和数据常比架构更重要，却缺少系统性的理论支撑。
+
+论文把 approximation theory on the sphere、dynamical systems、" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline</h1>
+          <p class="subtitle">天气、气候与地球系统 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">天气、气候与地球系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01215" target="_blank" rel="noopener noreferrer">2604.01215</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AI weather prediction 近年来进展很快，但理论解释一直比较碎片化：有人讨论架构，有人讨论数据，有人讨论损失函数，却缺少一个能把整个预测流水线统一起来的数学框架。这使得很多经验观察虽然反复出现，例如训练 recipe 和数据常比架构更重要，却缺少系统性的理论支撑。</dd></div><div><dt>方法/机制</dt><dd>论文把 approximation theory on the sphere、dynamical systems、information theory 和 statistical learning theory 接到一起，提出针对完整 AI weather pipeline 的统一框架。作者给出 Learning Pipeline Error Decomposition，论证在当前规模下 estimation error 往往压过 approximation error；同时还提出 Loss Function Spectral Theory 来刻画 MSE 带来的 spectral blurring，并推导 OOD extrapolation bounds 来解释极端事件系统性低估。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是又一个天气模型，而是在解释为什么当前 AI weather 该这样训练与评估。对科学机器学习、地球系统建模和更广的 pipeline-sensitive foundation modeling 来说，这类理论澄清具有超出天气领域本身的价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为它目前更像一篇强理论整合与解释性工作，而不是已经引出全新 operational pipeline 的范式替代。它很有长期参考价值，但暂时仍属于高质量理论突破。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AI weather prediction 近年来进展很快，但理论解释一直比较碎片化：有人讨论架构，有人讨论数据，有人讨论损失函数，却缺少一个能把整个预测流水线统一起来的数学框架。这使得很多经验观察虽然反复出现，例如训练 recipe 和数据常比架构更重要，却缺少系统性的理论支撑。</p><p>论文把 approximation theory on the sphere、dynamical systems、information theory 和 statistical learning theory 接到一起，提出针对完整 AI weather pipeline 的统一框架。作者给出 Learning Pipeline Error Decomposition，论证在当前规模下 estimation error 往往压过 approximation error；同时还提出 Loss Function Spectral Theory 来刻画 MSE 带来的 spectral blurring，并推导 OOD extrapolation bounds 来解释极端事件系统性低估。</p><p>这篇工作值得收录，因为它不是又一个天气模型，而是在解释为什么当前 AI weather 该这样训练与评估。对科学机器学习、地球系统建模和更广的 pipeline-sensitive foundation modeling 来说，这类理论澄清具有超出天气领域本身的价值。</p><p>它没有升到更高一级，是因为它目前更像一篇强理论整合与解释性工作，而不是已经引出全新 operational pipeline 的范式替代。它很有长期参考价值，但暂时仍属于高质量理论突破。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>（架构、损失函数、训练策略和数据分布；下文简称“管道”）而非仅仅架构。我们建立了学习管道误差分解（命题5.1），表明在当前规模下，估计误差（依赖于损失和数据）主导近似误差（依赖于架构）。一个核心发现是，所有主要架构在当前操作分辨率下实现的近似误差远低于估计误差，这意味着管道选择（损失函数、训练策略、数据分布）比架构选择更重要。我们开发了损失函数谱理论（定理4.1），形式化了MSE引起的球谐坐标中的谱模糊，并通过使用纬度加权快速傅里叶变换（FFT）谱（§4.2）进行了经验验证。我们推导了分布外推断界限（命题10.1），证明所有数据驱动模型系统性地低估破纪录的极端值，且偏差随破纪录的超出量线性增长。通过使用NVIDIA Earth2Studio和ERA5初始条件，对十种架构多样化的AI天气模型（AIFS、AIFSENS、Atlas、Aurora、FourCastNet 3、FengWu、FuXi、GraphCast、Pangu-Weather和SFNO；架构详情见表1）进行系统性推理，并评估六个具有数学基础的指标，我们经验性地验证了这些预测。人工智能方法在天气和气候预测中的迅速普及暴露了一个关键空白：尽管取得了显著的经验进展，但缺乏一个统一的数学框架来理解决定AI预测技能的因素，也缺乏一个全面的经验评估来将理论预测建立在可复现的多模型推理之上。现有的有限理论工作主要嵌入在单个模型论文中，其动机是特定的架构选择，例如等变性（Bonev et al., 2023）或谱表示（Li et al., 2020），而不是将学习管道作为一个整体来处理。同时，2023-2026年的操作证据日益表明，训练方法、损失函数设计和数据多样性至少与架构选择同等重要（Subich et al., 2025; Daub et al., 2025; Bodnar et al., 2025）。本文提出了两个交织的贡献。在理论上，我们构建了一个整体框架，植根于球面上的近似理论（Freeden et al., 1998; Driscoll &amp; Healy, 1994）、动力系统理论（Lorenz, 1969; Katok &amp; Hasselblatt, 1995）、信息论（Cover &amp; Thomas, 2006）和统计学习理论（Anthony &amp; Bartlett, 1999; Bartlett &amp; Mendelson, 2002），该框架处理用于中程预报的完整学习管道（NWP）。该领域此后加速发展：ECMWF的AIFS（Lang et al., 2024），一个GNN-transformer混合模型，于2025年2月成为第一个投入运营的ML天气系统；微软的Aurora（Bodnar et al., 2025）表明，在通用transformer上进行多数据集预训练可以超越所有先前的模型；NVIDIA的Atlas（Kossaifi et al., 2026）引入了潜在扩散transformer，在70多个变量上实现了低RMSE和CRPS；而FuXiS2S（Chen et al., 2024）将预测技能扩展到42天的次季节时间尺度。这种快速进展伴随着一个引人注目且理论上令人费解的观察：具有根本不同数学特性（谱表示与空间表示、全局感受野与局部感受野、确定性推理与生成性推理）的架构可以实现可比的预测技能。球形傅里叶神经算子（SFNO）、图神经网络（GNNs）、3D Swin Transformers、基于Perceiver的模型和潜在扩散transformer，涵盖谱、基于网格、基于补丁和生成范式，在经过适当训练后都可以产生具有竞争力的中程预报。NVIDIA自身的中程模型演变生动地说明了这一点：FourCastNet (AFNO/ViT, 2022) → SFNO (spectral, 2023) → FourCastNet v3 (hybrid local+spectral,</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>(architecture, loss function, training strategy, and data distribution; hereafter simply the pipeline) rather than architecture alone. We establish a Learning Pipeline Error Decomposition (Proposition 5.1) showing that at current scales, estimation error (loss- and data-dependent) dominates approximation error (architecture-dependent). A central finding is that all major architectures achieve approximation error well below estimation error at current operational resolutions, implying that pipeline choices (loss function, training strategy, data distribution) matter more than architecture selection. We develop a Loss Function Spectral Theory (Theorem 4.1) formalizing MSE-induced spectral blurring in spherical harmonic coordinates, validated empirically using latitude-weighted Fast Fourier Transform (FFT) spectra (§4.2). We derive Out-of-Distribution Extrapolation Bounds (Proposition 10.1) proving that all data-driven models systematically underestimate record-breaking extremes with bias growing linearly in record exceedance. Empirically, we validate these predictions through systematic inference across ten architecturally diverse AI weather models (AIFS, AIFSENS, Atlas, Aurora, FourCastNet 3, FengWu, FuXi, GraphCast, Pangu-Weather, and SFNO; see Table 1 for architecture details) using NVIDIA Earth2Studio with ERA5 initial conditions, evaluating six mathematically grounded metrics with The rapid proliferation of artificial intelligence methods in weather and climate prediction has exposed a critical gap: despite remarkable empirical progress, there is no unified mathematical framework for understanding what determines AI forecast skill, nor a comprehensive empirical evaluation grounding theoretical predictions in reproducible multi-model inference. The limited theoretical work that exists is largely embedded within individual model papers, motivated by specific architectural choices such as equivariance (Bonev et al., 2023) or spectral representations (Li et al., 2020), rather than addressing the learning pipeline as a whole. Meanwhile, operational evidence from 2023–2026 increasingly demonstrates that training methodology, loss function design, and data diversity are at least as important as architecture selection (Subich et al., 2025; Daub et al., 2025; Bodnar et al., 2025). This paper makes two interleaved contributions. Theoretically, we construct a holistic framework, rooted in approximation theory on the sphere (Freeden et al., 1998; Driscoll &amp; Healy, 1994), dynamical systems theory (Lorenz, 1969; Katok &amp; Hasselblatt, 1995), information theory (Cover &amp; Thomas, 2006), and statistical learning theory (Anthony &amp; Bartlett, 1999; Bartlett &amp; Mendelson, 2002), that treats the complete learning pipeline (NWP) for medium-range forecasting. The field has since accelerated: ECMWF’s AIFS (Lang et al., 2024), a GNN-transformer hybrid, became the first operational ML weather system in February 2025; Microsoft’s Aurora (Bodnar et al., 2025) showed that multi-dataset pretraining on a generalpurpose transformer can outperform all prior models; NVIDIA’s Atlas (Kossaifi et al., 2026) introduced latent diffusion transformers achieving low RMSE and CRPS across 70+ variables; and FuXiS2S (Chen et al., 2024) extended predictive skill to 42-day subseasonal timescales. This rapid progress has been accompanied by a striking and theoretically puzzling observation: architectures with fundamentally different mathematical properties (spectral versus spatial representations, global versus local receptive fields, deterministic versus generative inference) can achieve comparable forecast skill. Spherical Fourier Neural Operators (SFNO), graph neural networks (GNNs), 3D Swin Transformers, Perceiver-based models, and latent diffusion transformers, spanning spectral, meshbased, patch-based, and generative paradigms, can all produce competitive medium-range forecasts when properly trained. NVIDIA’s own mediumrange model evolution illustrates this vividly: FourCastNet (AFNO/ViT, 2022) → SFNO (spectral, 2023) → FourCastNet v3 (hybrid local+spectral,</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401w4aiweathe,
+  title = {The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01215.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/w4-ai-weather-pipeline-theory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline. https://arxiv.org/pdf/2604.01215.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/w3-archesweathergen-probabilistic-forecasting/">
+              <span>ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning</span>
+              <small>天气、气候与地球系统 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/w6-geosolver-remote-sensing-reasoning/">
+              <span>GeoSolver: Scaling Test-Time Reasoning in Remote Sensing with Fine-Grained Process Supervision</span>
+              <small>天气、气候与地球系统 · 2026-03-10</small>
+            </a>
+            <a class="related-item" href="../../papers/w1-ivsr-wildfire-digital-twin/">
+              <span>Digital Twin and Agentic AI for Wild Fire Disaster Management: Intelligent Virtual Situation Room</span>
+              <small>天气、气候与地球系统 · 2026-02-09</small>
+            </a>
+            <a class="related-item" href="../../papers/w5-geo-bench-2-geospatial-ai/">
+              <span>GEO-Bench-2: From Performance to Capability, Rethinking Evaluation in Geospatial AI</span>
+              <small>天气、气候与地球系统 · 2025-11-19</small>
+            </a>
+            <a class="related-item" href="../../papers/w3-zephyrus-weather-science/">
+              <span>Zephyrus: An Agentic Framework for Weather Science</span>
+              <small>天气、气候与地球系统 · 2025-10-05</small>
+            </a>
+            <a class="related-item" href="../../papers/w2-weathernext2-fgn/">
+              <span>Skillful joint probabilistic weather forecasting from marginals</span>
+              <small>天气、气候与地球系统 · 2025-06-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01215.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

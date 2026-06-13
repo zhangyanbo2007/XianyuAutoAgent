@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States | DAST Papers</title>
+    <meta name="description" content="Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+POISE estimates RLVR baselines from policy internal " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl68-poise-internal-state-value/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States" />
+    <meta property="og:description" content="Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+POISE estimates RLVR baselines from policy internal " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl68-poise-internal-state-value/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States" />
+    <meta name="twitter:description" content="Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+POISE estimates RLVR baselines from policy internal " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States</h1>
+          <p class="subtitle">强化学习 · 发表：2026-05-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.07579" target="_blank" rel="noopener noreferrer">2605.07579</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</dd></div><div><dt>方法/机制</dt><dd>POISE estimates RLVR baselines from policy internal states with negligible extra critic cost.</dd></div><div><dt>结果/证据</dt><dd>It is a reusable RLVR efficiency primitive, replacing large external critics or many rollouts with online internal-state value estimation.</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</p><p>POISE estimates RLVR baselines from policy internal states with negligible extra critic cost.</p><p>It is a reusable RLVR efficiency primitive, replacing large external critics or many rollouts with online internal-state value estimation.</p><p>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>用于大型推理模型（Large Reasoning Models）的可验证奖励强化学习（RLVR）依赖于基线估计来减少方差，但现有方法付出了沉重代价：PPO需要一个策略模型规模的评论家（critic），而GRPO需要每个提示进行多次rollout以保持其经验组均值稳定。我们引入了POISE（Policy Optimization with Internal State Value Estimation），它通过使用策略模型在策略前向传播期间已计算的内部信号，以可忽略的成本获得基线。一个轻量级探针从提示的隐藏状态和生成的轨迹以及token熵统计数据中预测预期的可验证奖励，并与策略一起在线训练。为了在使用轨迹条件特征的情况下保持梯度无偏性，我们引入了一种跨rollout的构造，该构造从独立rollout的内部状态预测每个rollout的值。由于POISE仅使用单个rollout估计提示值，因此它在固定计算预算下训练期间能够实现更高的提示多样性。这减少了梯度方差，从而实现更稳定的学习，并且还消除了检测零优势提示的采样成本带来的计算开销。在Qwen3-4B和DeepSeek-R1-Distill-Qwen-1.5B在数学推理基准上的实验表明，POISE在计算量更少的情况下与DAPO表现相当。此外，其价值估计器显示出与单独的LLM规模价值模型相似的性能，并可推广到各种可验证任务。通过利用模型自身的内部表示，POISE实现了更稳定和高效的策略优化。1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning with verifiable rewards (RLVR) for Large Reasoning Models hinges on baseline estimation for variance reduction, but existing approaches pay a heavy price: PPO requires a policy-model scale critic, while GRPO needs multiple rollouts per prompt to keep its empirical group mean stable. We introduce POISE (Policy Optimization with Internal State Value Estimation), which obtains a baseline at negligible cost by using the policy model’s internal signals already computed during the policy forward pass. A lightweight probe predicts the expected verifiable reward from the hidden states of the prompt and generated trajectory, as well as token-entropy statistics, and is trained online alongside the policy. To preserve gradient unbiasedness despite using trajectory-conditioned features, we introduce a cross-rollout construction that predicts each rollout’s value from an independent rollout’s internal states. Because POISE estimates prompt value using only a single rollout, it enables higher prompt diversity for a fixed compute budget during training. This reduces gradient variance for more stable learning and also eliminates the compute overhead of sampling costs for detecting zero-advantage prompts. On Qwen3-4B and DeepSeek-R1-Distill-Qwen-1.5B across math reasoning benchmarks, POISE matches DAPO while requiring less compute. Moreover, its value estimator shows similar performance to a separate LLM-scale value model and generalizes to various verifiable tasks. By leveraging the model’s own internal representations, POISE enables more stable and efficient policy optimization. 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260508rl68poisei,
+  title = {Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.07579.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl68-poise-internal-state-value/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor&#x27;s Internal States. https://arxiv.org/pdf/2605.07579.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.07579.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.07579" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HorusEye: a self-supervised foundation model for generalizable X-ray tomography restoration | DAST Papers</title>
+    <meta name="description" content="X-ray tomography 在科学和临床场景里都很关键，但图像退化、低剂量采集和数据稀缺一直限制其分析质量。已有 restoration 方法通常围绕特定模态和预设退化建模，泛化性差，导致大量后处理系统只能在窄条件下工作。
+
+HorusEye 的核心新意，是把 restoration 重新定义为直接从数据中学习真实且非参数化的 acquisition degradation process，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p26-horuseye-tomography-restoration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HorusEye: a self-supervised foundation model for generalizable X-ray tomography restoration" />
+    <meta property="og:description" content="X-ray tomography 在科学和临床场景里都很关键，但图像退化、低剂量采集和数据稀缺一直限制其分析质量。已有 restoration 方法通常围绕特定模态和预设退化建模，泛化性差，导致大量后处理系统只能在窄条件下工作。
+
+HorusEye 的核心新意，是把 restoration 重新定义为直接从数据中学习真实且非参数化的 acquisition degradation process，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p26-horuseye-tomography-restoration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HorusEye: a self-supervised foundation model for generalizable X-ray tomography restoration" />
+    <meta name="twitter:description" content="X-ray tomography 在科学和临床场景里都很关键，但图像退化、低剂量采集和数据稀缺一直限制其分析质量。已有 restoration 方法通常围绕特定模态和预设退化建模，泛化性差，导致大量后处理系统只能在窄条件下工作。
+
+HorusEye 的核心新意，是把 restoration 重新定义为直接从数据中学习真实且非参数化的 acquisition degradation process，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HorusEye: a self-supervised foundation model for generalizable X-ray tomography restoration</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-03-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-27</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-026-00973-3" target="_blank" rel="noopener noreferrer">10.1038/s43588-026-00973-3</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>X-ray tomography 在科学和临床场景里都很关键，但图像退化、低剂量采集和数据稀缺一直限制其分析质量。已有 restoration 方法通常围绕特定模态和预设退化建模，泛化性差，导致大量后处理系统只能在窄条件下工作。</dd></div><div><dt>方法/机制</dt><dd>HorusEye 的核心新意，是把 restoration 重新定义为直接从数据中学习真实且非参数化的 acquisition degradation process，而不是假设一套固定退化模型。作者使用 interslice contrastive pretraining 和自监督训练，在没有配对监督和先验退化假设的条件下，同时学习结构先验与退化机制，并在超大规模 X-ray 图像上形成 foundation model。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，不只是因为效果提升，而是因为它把 tomography restoration 从任务专用模块提升到了通用基础模型接口。论文还把这种恢复能力和更低剂量成像、硬件需求下降、下游 AI 任务增强直接连到了一起，属于很典型的 AI 重塑科研/医疗成像 workflow。</dd></div><div><dt>收录价值</dt><dd>为什么不是更高一级也很明确：它目前仍主要集中在 X-ray tomography 这一大类成像问题上，虽然覆盖面已经很广，但还没有形成更普适的 scientific imaging foundation-model 蓝图。它是很强的 breakthrough，但不是更大的范式重写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>X-ray tomography 在科学和临床场景里都很关键，但图像退化、低剂量采集和数据稀缺一直限制其分析质量。已有 restoration 方法通常围绕特定模态和预设退化建模，泛化性差，导致大量后处理系统只能在窄条件下工作。</p><p>HorusEye 的核心新意，是把 restoration 重新定义为直接从数据中学习真实且非参数化的 acquisition degradation process，而不是假设一套固定退化模型。作者使用 interslice contrastive pretraining 和自监督训练，在没有配对监督和先验退化假设的条件下，同时学习结构先验与退化机制，并在超大规模 X-ray 图像上形成 foundation model。</p><p>它值得收录，不只是因为效果提升，而是因为它把 tomography restoration 从任务专用模块提升到了通用基础模型接口。论文还把这种恢复能力和更低剂量成像、硬件需求下降、下游 AI 任务增强直接连到了一起，属于很典型的 AI 重塑科研/医疗成像 workflow。</p><p>为什么不是更高一级也很明确：它目前仍主要集中在 X-ray tomography 这一大类成像问题上，虽然覆盖面已经很广，但还没有形成更普适的 scientific imaging foundation-model 蓝图。它是很强的 breakthrough，但不是更大的范式重写。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>X射线断层扫描在科学和临床领域广泛应用，然而图像退化仍然是可靠分析的主要障碍，尤其是在低剂量或数据稀缺的条件下。现有的重建方法通常是为特定模态和预定义退化设计的，这限制了它们的泛化能力。在本文中，我们展示了图像重建可以被重新表述为直接从数据中学习真实的、非参数的采集退化过程。我们引入了HorusEye，这是一种用于X射线断层扫描重建的自监督基础模型，它利用层间对比预训练来联合学习结构先验和退化，而无需配对监督或预定义假设。HorusEye在超过1亿张图像上进行训练，能够泛化到不同的模态、重建任务以及以前未见的成像模态，并持续优于任务特定的方法。广泛的评估表明，它提高了光子效率并恢复了高频信息。临床研究进一步证明，它增强了低对比度解剖结构和病变的检测能力，并提高了下游任务的性能，突显了HorusEye作为X射线断层扫描通用后处理工具的价值。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>X-ray tomography is widely used across scientific and clinical domains, yet image degradation remains a major obstacle to reliable analysis, particularly under low-dose or data-scarce conditions. Existing restoration methods are typically designed for specific modalities and predefined degradation, limiting their generalizability. Here we show that image restoration can instead be formulated as learning realistic, nonparametric acquisition degradation processes directly from data. We introduce HorusEye, a self-supervised foundation model for X-ray tomography restoration that leverages interslice contrastive pretraining to jointly learn structural priors and degradation without paired supervision or predefined assumptions. Trained on over 100 million images, HorusEye generalizes across diverse modalities, restoration tasks and previously unseen imaging modalities, consistently outperforming task-specific approaches. Extensive evaluations demonstrate improved photon efficiency and recovery of high-frequency information. Clinical studies further demonstrate enhanced detectability of low-contrast anatomy and lesions, as well as improved performance on downstream tasks, highlighting HorusEye as a general postprocessing tool for X-ray tomography.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260327p26horusey,
+  title = {HorusEye: a self-supervised foundation model for generalizable X-ray tomography restoration},
+  year = {2026},
+  url = {https://www.nature.com/articles/s43588-026-00973-3},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p26-horuseye-tomography-restoration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HorusEye: a self-supervised foundation model for generalizable X-ray tomography restoration. https://www.nature.com/articles/s43588-026-00973-3</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s43588-026-00973-3" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

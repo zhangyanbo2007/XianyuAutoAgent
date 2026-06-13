@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是 VLA 后训练里一个非常现实的问题：真实机器人上的 RL 太贵，而 learned world model 又常常在闭环 rollout 中积累误差，导致策略学会利用模拟器漏洞而不是真正完成任务。
+
+WoVR 的核心是把 world model 当作“可靠模拟器”来设计和筛选，用它支持 VLA policy 的 RL post-training，而不是盲目把任何 imagined" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a16-wovr-vla-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL" />
+    <meta property="og:description" content="这篇论文解决的是 VLA 后训练里一个非常现实的问题：真实机器人上的 RL 太贵，而 learned world model 又常常在闭环 rollout 中积累误差，导致策略学会利用模拟器漏洞而不是真正完成任务。
+
+WoVR 的核心是把 world model 当作“可靠模拟器”来设计和筛选，用它支持 VLA policy 的 RL post-training，而不是盲目把任何 imagined" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a16-wovr-vla-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL" />
+    <meta name="twitter:description" content="这篇论文解决的是 VLA 后训练里一个非常现实的问题：真实机器人上的 RL 太贵，而 learned world model 又常常在闭环 rollout 中积累误差，导致策略学会利用模拟器漏洞而不是真正完成任务。
+
+WoVR 的核心是把 world model 当作“可靠模拟器”来设计和筛选，用它支持 VLA policy 的 RL post-training，而不是盲目把任何 imagined" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.13977" target="_blank" rel="noopener noreferrer">2602.13977</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是 VLA 后训练里一个非常现实的问题：真实机器人上的 RL 太贵，而 learned world model 又常常在闭环 rollout 中积累误差，导致策略学会利用模拟器漏洞而不是真正完成任务。</dd></div><div><dt>方法/机制</dt><dd>WoVR 的核心是把 world model 当作“可靠模拟器”来设计和筛选，用它支持 VLA policy 的 RL post-training，而不是盲目把任何 imagined rollout 都当真。它关注的是 world model 作为 simulator 的可靠性而不是纯生成质量。</dd></div><div><dt>结果/证据</dt><dd>它在仓库中属于 VLA / world model / robotics 主线。和 World-VLA-Loop、PerpetualWonder、Drive-JEPA 这类工作一起构成“world model 真正走向控制”的子线。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为尽管方向关键，但目前仍是在机器人和 VLA 后训练子领域内推进，还不到改变更大范围方法论的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是 VLA 后训练里一个非常现实的问题：真实机器人上的 RL 太贵，而 learned world model 又常常在闭环 rollout 中积累误差，导致策略学会利用模拟器漏洞而不是真正完成任务。</p><p>WoVR 的核心是把 world model 当作“可靠模拟器”来设计和筛选，用它支持 VLA policy 的 RL post-training，而不是盲目把任何 imagined rollout 都当真。它关注的是 world model 作为 simulator 的可靠性而不是纯生成质量。</p><p>它在仓库中属于 VLA / world model / robotics 主线。和 World-VLA-Loop、PerpetualWonder、Drive-JEPA 这类工作一起构成“world model 真正走向控制”的子线。</p><p>它没有更高，是因为尽管方向关键，但目前仍是在机器人和 VLA 后训练子领域内推进，还不到改变更大范围方法论的程度。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260215a16wovrvla,
+  title = {WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.13977.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a16-wovr-vla-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WoVR: World Models as Reliable Simulators for Post-Training VLA Policies with RL. https://arxiv.org/pdf/2602.13977.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.13977.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Continuous Adversarial Flow Models | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 flow matching 的训练目标提出替代：用 adversarial objective 训练 continuous-time flow model，而不是固定 MSE 准则。它也可以作为已有 flow-matching 模型的 post-training 方法。
+
+核心价值在于把判别器学习引入连续时间生成路径，使目标分布拟合更贴近样本质量指标。论文在 ImageNet 256" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g13-continuous-adversarial-flow/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Continuous Adversarial Flow Models" />
+    <meta property="og:description" content="这篇论文针对 flow matching 的训练目标提出替代：用 adversarial objective 训练 continuous-time flow model，而不是固定 MSE 准则。它也可以作为已有 flow-matching 模型的 post-training 方法。
+
+核心价值在于把判别器学习引入连续时间生成路径，使目标分布拟合更贴近样本质量指标。论文在 ImageNet 256" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g13-continuous-adversarial-flow/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Continuous Adversarial Flow Models" />
+    <meta name="twitter:description" content="这篇论文针对 flow matching 的训练目标提出替代：用 adversarial objective 训练 continuous-time flow model，而不是固定 MSE 准则。它也可以作为已有 flow-matching 模型的 post-training 方法。
+
+核心价值在于把判别器学习引入连续时间生成路径，使目标分布拟合更贴近样本质量指标。论文在 ImageNet 256" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Continuous Adversarial Flow Models</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11521" target="_blank" rel="noopener noreferrer">2604.11521</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 flow matching 的训练目标提出替代：用 adversarial objective 训练 continuous-time flow model，而不是固定 MSE 准则。它也可以作为已有 flow-matching 模型的 post-training 方法。</dd></div><div><dt>方法/机制</dt><dd>核心价值在于把判别器学习引入连续时间生成路径，使目标分布拟合更贴近样本质量指标。论文在 ImageNet 256px、latent/pixel SiT/JiT 以及 text-to-image 上显示显著指标提升。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它属于生成建模核心方法，因为它改变了 flow model 的后训练/训练目标，有可能成为 diffusion/flow 生成系统的可复用增强。</dd></div><div><dt>收录价值</dt><dd>局限是 adversarial training 可能引入稳定性和模式覆盖问题，长期是否优于更简单的 flow matching 改进还需更大规模验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 flow matching 的训练目标提出替代：用 adversarial objective 训练 continuous-time flow model，而不是固定 MSE 准则。它也可以作为已有 flow-matching 模型的 post-training 方法。</p><p>核心价值在于把判别器学习引入连续时间生成路径，使目标分布拟合更贴近样本质量指标。论文在 ImageNet 256px、latent/pixel SiT/JiT 以及 text-to-image 上显示显著指标提升。</p><p>按本库标准，它属于生成建模核心方法，因为它改变了 flow model 的后训练/训练目标，有可能成为 diffusion/flow 生成系统的可复用增强。</p><p>局限是 adversarial training 可能引入稳定性和模式覆盖问题，长期是否优于更简单的 flow matching 改进还需更大规模验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。我们提出了连续对抗流模型，这是一种采用对抗目标训练的连续时间流模型。与使用固定均方误差准则的流匹配不同，我们的方法引入了一个学习到的判别器来指导训练。目标函数的这一改变会产生一种不同的广义分布，经验上，它能生成与目标数据分布更好对齐的样本。我们的方法主要用于对现有流匹配模型进行后训练，尽管它也可以从头开始训练模型。在ImageNet 256px生成任务上，我们的后训练显著改善了潜在空间SiT的无引导FID，从8.26降至3.63，以及像素空间JiT的无引导FID，从7.17降至3.57。它还改进了引导生成，将SiT的FID从2.06降至1.53，将JiT的FID从1.86降至1.80。我们进一步在文本到图像生成任务上评估了我们的方法，它在GenEval和DPG基准测试上都取得了改进的结果。关键词：生成模型 · 对抗训练 · 流模型</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. We propose continuous adversarial flow models, a type of continuous-time flow model trained with an adversarial objective. Unlike flow matching, which uses a fixed mean-squared-error criterion, our approach introduces a learned discriminator to guide training. This change in objective induces a different generalized distribution, which empirically produces samples that are better aligned with the target data distribution. Our method is primarily proposed for post-training existing flow-matching models, although it can also train models from scratch. On the ImageNet 256px generation task, our post-training substantially improves the guidance-free FID of latent-space SiT from 8.26 to 3.63 and of pixel-space JiT from 7.17 to 3.57. It also improves guided generation, reducing FID from 2.06 to 1.53 for SiT and from 1.86 to 1.80 for JiT. We further evaluate our approach on text-to-image generation, where it achieves improved results on both the GenEval and DPG benchmarks. Keywords: Generative models · Adversarial training · Flow models</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413g13continu,
+  title = {Continuous Adversarial Flow Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11521.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g13-continuous-adversarial-flow/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Continuous Adversarial Flow Models. https://arxiv.org/pdf/2604.11521.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11521.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>$λ_A$: A Typed Lambda Calculus for LLM Agent Composition | DAST Papers</title>
+    <meta name="description" content="λ_A 直面 LLM agent 框架缺少形式语义的问题：多数 agent 配置能不能终止、工具循环是否有界、环境 mutation 是否合规，往往靠框架约定和运行时试错。论文把 agent composition 提升到 typed lambda calculus 层面。
+
+它扩展简单类型 λ 演算，加入 oracle calls、bounded fixpoints、probabilistic " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a193-lambdaa-agent-composition/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="$λ_A$: A Typed Lambda Calculus for LLM Agent Composition" />
+    <meta property="og:description" content="λ_A 直面 LLM agent 框架缺少形式语义的问题：多数 agent 配置能不能终止、工具循环是否有界、环境 mutation 是否合规，往往靠框架约定和运行时试错。论文把 agent composition 提升到 typed lambda calculus 层面。
+
+它扩展简单类型 λ 演算，加入 oracle calls、bounded fixpoints、probabilistic " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a193-lambdaa-agent-composition/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="$λ_A$: A Typed Lambda Calculus for LLM Agent Composition" />
+    <meta name="twitter:description" content="λ_A 直面 LLM agent 框架缺少形式语义的问题：多数 agent 配置能不能终止、工具循环是否有界、环境 mutation 是否合规，往往靠框架约定和运行时试错。论文把 agent composition 提升到 typed lambda calculus 层面。
+
+它扩展简单类型 λ 演算，加入 oracle calls、bounded fixpoints、probabilistic " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>$λ_A$: A Typed Lambda Calculus for LLM Agent Composition</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11767" target="_blank" rel="noopener noreferrer">2604.11767</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>λ_A 直面 LLM agent 框架缺少形式语义的问题：多数 agent 配置能不能终止、工具循环是否有界、环境 mutation 是否合规，往往靠框架约定和运行时试错。论文把 agent composition 提升到 typed lambda calculus 层面。</dd></div><div><dt>方法/机制</dt><dd>它扩展简单类型 λ 演算，加入 oracle calls、bounded fixpoints、probabilistic choice 和 mutable environments，并用 Coq 机械化证明 type safety、bounded termination 和 lint 规则 soundness。随后把语义落到真实 GitHub agent 配置 lint。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它为 agent orchestration 提供了形式化接口：不只是“如何写 agent”，而是“什么样的 agent 配置是结构良构的”。这对安全工具调用、agent 编排框架、配置验证和 CI 检查都有长期价值。</dd></div><div><dt>收录价值</dt><dd>局限在于当前语义覆盖的是结构层和有界循环，仍无法保证开放世界工具调用的语义正确性或任务成功。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>λ_A 直面 LLM agent 框架缺少形式语义的问题：多数 agent 配置能不能终止、工具循环是否有界、环境 mutation 是否合规，往往靠框架约定和运行时试错。论文把 agent composition 提升到 typed lambda calculus 层面。</p><p>它扩展简单类型 λ 演算，加入 oracle calls、bounded fixpoints、probabilistic choice 和 mutable environments，并用 Coq 机械化证明 type safety、bounded termination 和 lint 规则 soundness。随后把语义落到真实 GitHub agent 配置 lint。</p><p>它值得收录，是因为它为 agent orchestration 提供了形式化接口：不只是“如何写 agent”，而是“什么样的 agent 配置是结构良构的”。这对安全工具调用、agent 编排框架、配置验证和 CI 检查都有长期价值。</p><p>局限在于当前语义覆盖的是结构层和有界循环，仍无法保证开放世界工具调用的语义正确性或任务成功。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现有的LLM代理框架缺乏正式语义：不存在原则性的方法来确定代理配置是否健全或是否会终止。我们提出了一种名为$λ_A$的类型化λ演算，用于代理组合，该演算扩展了简单类型λ演算，并加入了或acles调用、有限的固定点（ReAct循环）、概率选择和可变环境。我们证明了类型安全、有限固定点的终止性以及派生lint规则的有效性，并实现了完整的Coq机械化（1,519行，42个定理，0个已证明）。作为实际应用，我们导出了一个lint工具，可以直接从操作语义检测结构配置错误。在一个包含835个真实世界的GitHub代理配置的评估中，94.1%的配置在$λ_A$下具有结构不完整性，仅使用YAML的lint精度为54%，在联合使用YAML+Python AST分析的175个样本中，上升至96--100%。这一差距首次量化了在代理生态系统中，声明式配置和命令式代码之间的语义纠缠程度。我们进一步表明，五种主流范式（LangGraph、CrewAI、AutoGen、OpenAI SDK、Dify）嵌入为类型的$λ_A$片段，从而将$λ_A$确立为LLM代理组合的统一演算。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Existing LLM agent frameworks lack formal semantics: there is no principled way to determine whether an agent configuration is well-formed or will terminate. We present $λ_A$, a typed lambda calculus for agent composition that extends the simply-typed lambda calculus with oracle calls, bounded fixpoints (the ReAct loop), probabilistic choice, and mutable environments. We prove type safety, termination of bounded fixpoints, and soundness of derived lint rules, with full Coq mechanization (1,519 lines, 42 theorems, 0 Admitted). As a practical application, we derive a lint tool that detects structural configuration errors directly from the operational semantics. An evaluation on 835 real-world GitHub agent configurations shows that 94.1% are structurally incomplete under $λ_A$, with YAML-only lint precision at 54%, rising to 96--100% under joint YAML+Python AST analysis on 175 samples. This gap quantifies, for the first time, the degree of semantic entanglement between declarative configuration and imperative code in the agent ecosystem. We further show that five mainstream paradigms (LangGraph, CrewAI, AutoGen, OpenAI SDK, Dify) embed as typed $λ_A$ fragments, establishing $λ_A$ as a unifying calculus for LLM agent composition.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413a193lambda,
+  title = {$λ_A$: A Typed Lambda Calculus for LLM Agent Composition},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11767.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a193-lambdaa-agent-composition/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). $λ_A$: A Typed Lambda Calculus for LLM Agent Composition. https://arxiv.org/pdf/2604.11767.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11767.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

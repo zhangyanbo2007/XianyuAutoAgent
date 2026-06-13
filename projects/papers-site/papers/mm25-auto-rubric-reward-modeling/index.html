@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是多模态生成训练中的 reward specification 问题。隐式偏好难以审计、难以复用，也容易把模型推向不可解释的 reward hacking。
+
+Auto-Rubric 的关键点是把偏好转成显式 rubric，并把 rubric 作为 reward。这个接口有利于把多模态生成评价从黑箱偏好模型推进到可读、可修改、可验证的标准集合。
+
+它值得正式收录，因为生成模型后训练正" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm25-auto-rubric-reward-modeling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria" />
+    <meta property="og:description" content="这篇论文处理的是多模态生成训练中的 reward specification 问题。隐式偏好难以审计、难以复用，也容易把模型推向不可解释的 reward hacking。
+
+Auto-Rubric 的关键点是把偏好转成显式 rubric，并把 rubric 作为 reward。这个接口有利于把多模态生成评价从黑箱偏好模型推进到可读、可修改、可验证的标准集合。
+
+它值得正式收录，因为生成模型后训练正" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm25-auto-rubric-reward-modeling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria" />
+    <meta name="twitter:description" content="这篇论文处理的是多模态生成训练中的 reward specification 问题。隐式偏好难以审计、难以复用，也容易把模型推向不可解释的 reward hacking。
+
+Auto-Rubric 的关键点是把偏好转成显式 rubric，并把 rubric 作为 reward。这个接口有利于把多模态生成评价从黑箱偏好模型推进到可读、可修改、可验证的标准集合。
+
+它值得正式收录，因为生成模型后训练正" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.08354" target="_blank" rel="noopener noreferrer">2605.08354</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是多模态生成训练中的 reward specification 问题。隐式偏好难以审计、难以复用，也容易把模型推向不可解释的 reward hacking。</dd></div><div><dt>方法/机制</dt><dd>Auto-Rubric 的关键点是把偏好转成显式 rubric，并把 rubric 作为 reward。这个接口有利于把多模态生成评价从黑箱偏好模型推进到可读、可修改、可验证的标准集合。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为生成模型后训练正在从单一偏好分数转向更结构化的评价和验证。显式 rubric 可能成为 multimodal RL / reward modeling 的重要工程抽象。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为 rubric 质量、自动生成 rubric 的偏差、以及与人类真实偏好的一致性仍需长期验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是多模态生成训练中的 reward specification 问题。隐式偏好难以审计、难以复用，也容易把模型推向不可解释的 reward hacking。</p><p>Auto-Rubric 的关键点是把偏好转成显式 rubric，并把 rubric 作为 reward。这个接口有利于把多模态生成评价从黑箱偏好模型推进到可读、可修改、可验证的标准集合。</p><p>它值得正式收录，因为生成模型后训练正在从单一偏好分数转向更结构化的评价和验证。显式 rubric 可能成为 multimodal RL / reward modeling 的重要工程抽象。</p><p>它没有更高，是因为 rubric 质量、自动生成 rubric 的偏差、以及与人类真实偏好的一致性仍需长期验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>将多模态生成模型与人类偏好对齐需要奖励信号，这些信号应尊重人类判断的组合性、多维度结构。主流的RLHF方法将这种结构简化为标量或成对标签，将细致的偏好压缩为不透明的参数代理，并暴露出奖励作弊的漏洞。尽管最近的“评分标准即奖励”（RaR）方法试图通过明确标准来恢复这种结构，但生成同时可靠、可扩展且数据高效的评分标准仍然是一个悬而未决的问题。我们引入了“自动评分标准即奖励”（ARR），这是一个将奖励建模从隐式权重优化重构为显式、基于标准的分解的框架。在任何成对比较之前，ARR将VLM内部化的偏好知识外部化为特定提示的评分标准，将整体意图转化为可独立验证的质量维度。这种将隐式偏好结构转换为可检查、可解释约束的方法，显著抑制了包括位置偏差在内的评估偏差，从而实现了零样本部署和基于最少监督的少样本条件化。为了将这些优势扩展到生成训练中，我们提出了“评分标准策略优化”（RPO），它将ARR的结构化多维度评估提炼成一个鲁棒的二元奖励，用评分标准条件化的偏好决策取代不透明的标量回归，从而稳定策略梯度。在文本到图像生成和图像编辑基准测试中，ARR-RPO优于成对奖励模型和VLM评判器，这表明将隐式偏好知识明确外部化为结构化评分标准可以实现更可靠、数据高效的多模态对齐，揭示了瓶颈在于缺乏分解接口，而非知识不足。代码已在https://github.com/OpenEnvision/AutoRubric-as-Reward公开。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Aligning multimodal generative models with human preferences demands reward signals that respect the compositional, multi-dimensional structure of human judgment. Prevailing RLHF approaches reduce this structure to scalar or pairwise labels, collapsing nuanced preferences into opaque parametric proxies and exposing vulnerabilities to reward hacking. While recent Rubrics-as-Reward (RaR) methods attempt to recover this structure through explicit criteria, generating rubrics that are simultaneously reliable, scalable, and data-efficient remains an open problem. We introduce Auto-Rubric as Reward (ARR), a framework that reframes reward modeling from implicit weight optimization to explicit, criteria-based decomposition. Before any pairwise comparison, ARR externalizes a VLM’s internalized preference knowledge as prompt-specific rubrics, translating holistic intent into independently verifiable quality dimensions. This conversion of implicit preference structure into inspectable, interpretable constraints substantially suppresses evaluation biases including positional bias, enabling both zero-shot deployment and few-shot conditioning on minimal supervision. To extend these gains into generative training, we propose Rubric Policy Optimization (RPO), which distills ARR’s structured multi-dimensional evaluation into a robust binary reward, replacing opaque scalar regression with rubric-conditioned preference decisions that stabilize policy gradients. On text-to-image generation and image editing benchmarks, ARR-RPO outperforms pairwise reward models and VLM judges, demonstrating that explicitly externalizing implicit preference knowledge into structured rubrics achieves more reliable, data-efficient multimodal alignment, revealing that the bottleneck is the absence of a factorized interface, not a deficit of knowledge. Code is publicly available at https://github.com/OpenEnvision/AutoRubric-as-Reward.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512mm25autoru,
+  title = {Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.08354.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm25-auto-rubric-reward-modeling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Auto-Rubric as Reward: From Implicit Preferences to Explicit Multimodal Generative Criteria. https://arxiv.org/pdf/2605.08354.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.08354.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.08354" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

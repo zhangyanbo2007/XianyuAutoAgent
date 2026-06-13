@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Small Vision-Language Models are Smart Compressors for Long Video Understanding | DAST Papers</title>
+    <meta name="description" content="这篇论文处理长视频理解中的上下文瓶颈。小时级视频会迅速耗尽 MLLM token budget，固定稀疏采样和均匀池化又容易丢掉关键瞬间，导致模型在长程问答中既浪费上下文又错过证据。
+
+Tempo 的核心思路是让小型视觉语言模型充当局部 temporal compressor，把 token reduction 变成 query-aware 的早期跨模态蒸馏。随后 Adaptive Token A" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm47-tempo-long-video-compression/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Small Vision-Language Models are Smart Compressors for Long Video Understanding" />
+    <meta property="og:description" content="这篇论文处理长视频理解中的上下文瓶颈。小时级视频会迅速耗尽 MLLM token budget，固定稀疏采样和均匀池化又容易丢掉关键瞬间，导致模型在长程问答中既浪费上下文又错过证据。
+
+Tempo 的核心思路是让小型视觉语言模型充当局部 temporal compressor，把 token reduction 变成 query-aware 的早期跨模态蒸馏。随后 Adaptive Token A" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm47-tempo-long-video-compression/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Small Vision-Language Models are Smart Compressors for Long Video Understanding" />
+    <meta name="twitter:description" content="这篇论文处理长视频理解中的上下文瓶颈。小时级视频会迅速耗尽 MLLM token budget，固定稀疏采样和均匀池化又容易丢掉关键瞬间，导致模型在长程问答中既浪费上下文又错过证据。
+
+Tempo 的核心思路是让小型视觉语言模型充当局部 temporal compressor，把 token reduction 变成 query-aware 的早期跨模态蒸馏。随后 Adaptive Token A" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Small Vision-Language Models are Smart Compressors for Long Video Understanding</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08120" target="_blank" rel="noopener noreferrer">2604.08120</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理长视频理解中的上下文瓶颈。小时级视频会迅速耗尽 MLLM token budget，固定稀疏采样和均匀池化又容易丢掉关键瞬间，导致模型在长程问答中既浪费上下文又错过证据。</dd></div><div><dt>方法/机制</dt><dd>Tempo 的核心思路是让小型视觉语言模型充当局部 temporal compressor，把 token reduction 变成 query-aware 的早期跨模态蒸馏。随后 Adaptive Token Allocation 利用小模型的零样本相关性先验和 semantic front-loading 现象，在不训练路由器的情况下，把更多 token 分配给 query-critical 片段，并把背景片段压缩成最小锚点。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它给长视频理解提供了一个实用且可迁移的分层接口：小模型负责局部、查询相关的压缩，大模型负责全局推理。论文显示 6B 级系统在严格视觉 token 预算下达到强长视频表现，并在 LVBench 等极长视频任务上超过若干闭源基线，说明长视频能力不一定来自盲目扩大上下文，而可以来自语义必要性驱动的动态带宽分配。</dd></div><div><dt>收录价值</dt><dd>主要限制是 Tempo 依赖 SVLM 已经具备可用的 relevance prior，当前 ATA 仍是启发式和零样本机制，而不是经过任务奖励优化的稳定路由策略。其优势也主要在视频问答/理解，尚未扩展到视频 agent、交互式 world model 或动作闭环。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理长视频理解中的上下文瓶颈。小时级视频会迅速耗尽 MLLM token budget，固定稀疏采样和均匀池化又容易丢掉关键瞬间，导致模型在长程问答中既浪费上下文又错过证据。</p><p>Tempo 的核心思路是让小型视觉语言模型充当局部 temporal compressor，把 token reduction 变成 query-aware 的早期跨模态蒸馏。随后 Adaptive Token Allocation 利用小模型的零样本相关性先验和 semantic front-loading 现象，在不训练路由器的情况下，把更多 token 分配给 query-critical 片段，并把背景片段压缩成最小锚点。</p><p>它值得收录，因为它给长视频理解提供了一个实用且可迁移的分层接口：小模型负责局部、查询相关的压缩，大模型负责全局推理。论文显示 6B 级系统在严格视觉 token 预算下达到强长视频表现，并在 LVBench 等极长视频任务上超过若干闭源基线，说明长视频能力不一定来自盲目扩大上下文，而可以来自语义必要性驱动的动态带宽分配。</p><p>主要限制是 Tempo 依赖 SVLM 已经具备可用的 relevance prior，当前 ATA 仍是启发式和零样本机制，而不是经过任务奖励优化的稳定路由策略。其优势也主要在视频问答/理解，尚未扩展到视频 agent、交互式 world model 或动作闭环。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>小型视觉-语言模型是长视频理解的智能压缩器。费俊杰1,2,∗,† , 陈军1 , 刘泽春1 , 熊云阳1 , 周冲1 , 温伟1 , 韩俊林1 , 诸葛明辰1,2 , 萨克沙姆·苏里1 , 钱琦1 , 刘树明1,2 , 吴乐萌1 , 拉古拉曼·克里希纳穆尔蒂1 , 维卡斯·钱德拉1,† , 穆罕默德·埃尔霍塞尼2,† , 朱晨晨1,† 1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Small Vision-Language Models are Smart Compressors for Long Video Understanding Junjie Fei1,2,∗,† , Jun Chen1 , Zechun Liu1 , Yunyang Xiong1 , Chong Zhou1 , Wei Wen1 , Junlin Han1 , Mingchen Zhuge1,2 , Saksham Suri1 , Qi Qian1 , Shuming Liu1,2 , Lemeng Wu1 , Raghuraman Krishnamoorthi1 , Vikas Chandra1,† , Mohamed Elhoseiny2,† , Chenchen Zhu1,† 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409mm47tempol,
+  title = {Small Vision-Language Models are Smart Compressors for Long Video Understanding},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08120.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm47-tempo-long-video-compression/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Small Vision-Language Models are Smart Compressors for Long Video Understanding. https://arxiv.org/pdf/2604.08120.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08120.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

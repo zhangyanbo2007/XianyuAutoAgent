@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment | DAST Papers</title>
+    <meta name="description" content="这篇论文关注一个对后训练和模型控制都很关键的问题：模型通过指令微调或推理训练获得的行为，是否可以在不重新训练目标模型的情况下迁移到另一个模型。作者提出 Master Key Hypothesis，认为能力可以表示为低维潜在子空间中的方向，并能通过线性子空间对齐跨模型映射。
+
+方法上，Unlock 先用同一家族或相关模型中的 capability-present / capability-absen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r56-master-key-capability-transfer/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment" />
+    <meta property="og:description" content="这篇论文关注一个对后训练和模型控制都很关键的问题：模型通过指令微调或推理训练获得的行为，是否可以在不重新训练目标模型的情况下迁移到另一个模型。作者提出 Master Key Hypothesis，认为能力可以表示为低维潜在子空间中的方向，并能通过线性子空间对齐跨模型映射。
+
+方法上，Unlock 先用同一家族或相关模型中的 capability-present / capability-absen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r56-master-key-capability-transfer/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment" />
+    <meta name="twitter:description" content="这篇论文关注一个对后训练和模型控制都很关键的问题：模型通过指令微调或推理训练获得的行为，是否可以在不重新训练目标模型的情况下迁移到另一个模型。作者提出 Master Key Hypothesis，认为能力可以表示为低维潜在子空间中的方向，并能通过线性子空间对齐跨模型映射。
+
+方法上，Unlock 先用同一家族或相关模型中的 capability-present / capability-absen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06377" target="_blank" rel="noopener noreferrer">2604.06377</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注一个对后训练和模型控制都很关键的问题：模型通过指令微调或推理训练获得的行为，是否可以在不重新训练目标模型的情况下迁移到另一个模型。作者提出 Master Key Hypothesis，认为能力可以表示为低维潜在子空间中的方向，并能通过线性子空间对齐跨模型映射。</dd></div><div><dt>方法/机制</dt><dd>方法上，Unlock 先用同一家族或相关模型中的 capability-present / capability-absent 变体做激活对比，提取能力方向，再用低秩线性变换把该方向映射到目标模型表示空间，最后在推理时作为 normalized activation intervention 注入。整个流程不需要标签、不需要梯度训练，主要依赖前向激活和线性对齐。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 steering vector 从风格/安全控制推进到能力迁移问题，并给出了一个可复用的训练外能力注入接口。论文在 CoT、GSM8K、MATH、SVAMP 等推理行为上展示了跨尺度迁移收益，尤其说明部分后训练收益可能来自对已有潜在能力的可达性重塑，而不一定是全新能力写入。</dd></div><div><dt>收录价值</dt><dd>主要限制是证据仍集中在推理行为和相对可控的模型家族/规模迁移上，Master Key 还更像一个强假设而非已被广泛验证的定律。它目前不能替代系统性后训练，也没有充分证明复杂多能力组合、跨架构迁移和长期副作用，因此定为突破而不是颠覆。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注一个对后训练和模型控制都很关键的问题：模型通过指令微调或推理训练获得的行为，是否可以在不重新训练目标模型的情况下迁移到另一个模型。作者提出 Master Key Hypothesis，认为能力可以表示为低维潜在子空间中的方向，并能通过线性子空间对齐跨模型映射。</p><p>方法上，Unlock 先用同一家族或相关模型中的 capability-present / capability-absent 变体做激活对比，提取能力方向，再用低秩线性变换把该方向映射到目标模型表示空间，最后在推理时作为 normalized activation intervention 注入。整个流程不需要标签、不需要梯度训练，主要依赖前向激活和线性对齐。</p><p>它值得收录，因为它把 steering vector 从风格/安全控制推进到能力迁移问题，并给出了一个可复用的训练外能力注入接口。论文在 CoT、GSM8K、MATH、SVAMP 等推理行为上展示了跨尺度迁移收益，尤其说明部分后训练收益可能来自对已有潜在能力的可达性重塑，而不一定是全新能力写入。</p><p>主要限制是证据仍集中在推理行为和相对可控的模型家族/规模迁移上，Master Key 还更像一个强假设而非已被广泛验证的定律。它目前不能替代系统性后训练，也没有充分证明复杂多能力组合、跨架构迁移和长期副作用，因此定为突破而不是颠覆。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们研究了后训练能力是否可以在不重新训练的情况下跨模型迁移，重点关注不同模型规模之间的迁移。我们提出了万能钥匙假设，该假设指出模型能力对应于低维潜在子空间中的方向，这些方向诱导特定行为，并通过线性对齐在模型之间可迁移。基于此假设，我们引入了Unlock，一个无需训练且无需标签的框架，它通过对比存在能力和不存在能力的源变体之间的激活来提取能力方向，通过低秩线性变换将其与目标模型对齐，并在推理时应用它以引发行为。在推理行为（包括思维链（CoT）和数学推理）上的实验表明，在不训练的情况下，跨模型规模实现了显著改进。例如，将CoT推理从Qwen1.5-14B迁移到Qwen1.5-7B，在MATH上准确率提高了12.1%；将数学推理方向从Qwen3-4B-Base迁移到Qwen3-14B-Base，将AGIEval Math准确率从61.1%提高到71.3%，超过了14B后训练模型实现的67.8%。我们的分析表明，迁移的成功取决于预训练期间学习到的能力，并且我们的干预通过使输出分布更趋向于成功的推理轨迹来放大潜在能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We investigate whether post-trained capabilities can be transferred across models without retraining, with a focus on transfer across different model scales. We propose the Master Key Hypothesis, which states that model capabilities correspond to directions in a low-dimensional latent subspace that induce specific behaviors and are transferable across models through linear alignment. Based on this hypothesis, we introduce Unlock, a training-free and label-free framework that extracts a capability direction by contrasting activations between capability-present and capability-absent Source variants, aligns it with a Target model through a low-rank linear transformation, and applies it at inference time to elicit the behavior. Experiments on reasoning behaviors, including Chain-of-Thought (CoT) and mathematical reasoning, demonstrate substantial improvements across model scales without training. For example, transferring CoT reasoning from Qwen1.5-14B to Qwen1.5-7B yields an accuracy gain of 12.1% on MATH, and transferring a mathematical reasoning direction from Qwen3-4B-Base to Qwen3-14B-Base improves AGIEval Math accuracy from 61.1% to 71.3%, surpassing the 67.8% achieved by the 14B post-trained model. Our analysis shows that the success of transfer depends on the capabilities learned during pre-training, and that our intervention amplifies latent capabilities by sharpening the output distribution toward successful reasoning trajectories.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407r56masterk,
+  title = {The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06377.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r56-master-key-capability-transfer/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment. https://arxiv.org/pdf/2604.06377.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06377.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

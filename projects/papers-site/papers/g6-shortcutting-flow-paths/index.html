@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>On the Design of One-step Diffusion via Shortcutting Flow Paths | DAST Papers</title>
+    <meta name="description" content="one-step diffusion 一直很吸引人，因为它承诺把生成速度直接压到单步，但这条线常常把理论推导、训练配方和工程 trick 混在一起，导致 shortcut model 的设计空间既碎片化又难复用。
+
+这篇工作的重要价值不只是又拿到更低 FID，而是把 shortcutting flow paths 的代表性做法放进同一设计框架，显式拆开组件级选择，并据此系统化改进 one-step" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g6-shortcutting-flow-paths/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="On the Design of One-step Diffusion via Shortcutting Flow Paths" />
+    <meta property="og:description" content="one-step diffusion 一直很吸引人，因为它承诺把生成速度直接压到单步，但这条线常常把理论推导、训练配方和工程 trick 混在一起，导致 shortcut model 的设计空间既碎片化又难复用。
+
+这篇工作的重要价值不只是又拿到更低 FID，而是把 shortcutting flow paths 的代表性做法放进同一设计框架，显式拆开组件级选择，并据此系统化改进 one-step" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g6-shortcutting-flow-paths/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="On the Design of One-step Diffusion via Shortcutting Flow Paths" />
+    <meta name="twitter:description" content="one-step diffusion 一直很吸引人，因为它承诺把生成速度直接压到单步，但这条线常常把理论推导、训练配方和工程 trick 混在一起，导致 shortcut model 的设计空间既碎片化又难复用。
+
+这篇工作的重要价值不只是又拿到更低 FID，而是把 shortcutting flow paths 的代表性做法放进同一设计框架，显式拆开组件级选择，并据此系统化改进 one-step" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>On the Design of One-step Diffusion via Shortcutting Flow Paths</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2025-12-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-03</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.11831" target="_blank" rel="noopener noreferrer">2512.11831</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>one-step diffusion 一直很吸引人，因为它承诺把生成速度直接压到单步，但这条线常常把理论推导、训练配方和工程 trick 混在一起，导致 shortcut model 的设计空间既碎片化又难复用。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的重要价值不只是又拿到更低 FID，而是把 shortcutting flow paths 的代表性做法放进同一设计框架，显式拆开组件级选择，并据此系统化改进 one-step diffusion 的训练与建模路线。结果上，它在不依赖 pre-training、distillation 或 curriculum learning 的前提下，把 one-step ImageNet-256 结果推到新的强基线。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类“重写设计空间”的工作对 generative modeling 的外溢明显高于单点指标提升。对于 shortcut diffusion、few-step generation 和更广的高效生成路线，这种 component-level design framework 有耐久参考价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前影响力仍主要集中在 image generation 子线，且这套设计框架是否会统一更广 shortcut / flow-based generation 家族，还需要后续社区采用来验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>one-step diffusion 一直很吸引人，因为它承诺把生成速度直接压到单步，但这条线常常把理论推导、训练配方和工程 trick 混在一起，导致 shortcut model 的设计空间既碎片化又难复用。</p><p>这篇工作的重要价值不只是又拿到更低 FID，而是把 shortcutting flow paths 的代表性做法放进同一设计框架，显式拆开组件级选择，并据此系统化改进 one-step diffusion 的训练与建模路线。结果上，它在不依赖 pre-training、distillation 或 curriculum learning 的前提下，把 one-step ImageNet-256 结果推到新的强基线。</p><p>它值得正式收录，因为这类“重写设计空间”的工作对 generative modeling 的外溢明显高于单点指标提升。对于 shortcut diffusion、few-step generation 和更广的高效生成路线，这种 component-level design framework 有耐久参考价值。</p><p>它暂时不升到更高一级，原因在于当前影响力仍主要集中在 image generation 子线，且这套设计框架是否会统一更广 shortcut / flow-based generation 家族，还需要后续社区采用来验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251203g6shortcut,
+  title = {On the Design of One-step Diffusion via Shortcutting Flow Paths},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.11831.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g6-shortcutting-flow-paths/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). On the Design of One-step Diffusion via Shortcutting Flow Paths. https://arxiv.org/pdf/2512.11831.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.11831.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

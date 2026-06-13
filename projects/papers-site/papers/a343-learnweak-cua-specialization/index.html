@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文处理 small computer-use agents 的现实部署问题：每个软件域都用大专家模型成本太高，但小模型的错误又高度 domain-specific。
+
+LearnWeak 不做粗放合成数据，而是让强 reference agent 找到学生模型在目标域的弱点，自动合成针对性任务和监督。
+
+训练目标还区分 planning error 与 execution error，使更新" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a343-learnweak-cua-specialization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents" />
+    <meta property="og:description" content="这篇论文处理 small computer-use agents 的现实部署问题：每个软件域都用大专家模型成本太高，但小模型的错误又高度 domain-specific。
+
+LearnWeak 不做粗放合成数据，而是让强 reference agent 找到学生模型在目标域的弱点，自动合成针对性任务和监督。
+
+训练目标还区分 planning error 与 execution error，使更新" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a343-learnweak-cua-specialization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents" />
+    <meta name="twitter:description" content="这篇论文处理 small computer-use agents 的现实部署问题：每个软件域都用大专家模型成本太高，但小模型的错误又高度 domain-specific。
+
+LearnWeak 不做粗放合成数据，而是让强 reference agent 找到学生模型在目标域的弱点，自动合成针对性任务和监督。
+
+训练目标还区分 planning error 与 execution error，使更新" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28775" target="_blank" rel="noopener noreferrer">2605.28775</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理 small computer-use agents 的现实部署问题：每个软件域都用大专家模型成本太高，但小模型的错误又高度 domain-specific。</dd></div><div><dt>方法/机制</dt><dd>LearnWeak 不做粗放合成数据，而是让强 reference agent 找到学生模型在目标域的弱点，自动合成针对性任务和监督。</dd></div><div><dt>结果/证据</dt><dd>训练目标还区分 planning error 与 execution error，使更新更精确地修复行为缺陷；在 OSWorld 多域任务上相对小型 CUA 基线有明显提升。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提供了 computer-use agent 的自动诊断-数据生成-专门化闭环，可作为本库关注的 capability acquisition/system repair 模式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理 small computer-use agents 的现实部署问题：每个软件域都用大专家模型成本太高，但小模型的错误又高度 domain-specific。</p><p>LearnWeak 不做粗放合成数据，而是让强 reference agent 找到学生模型在目标域的弱点，自动合成针对性任务和监督。</p><p>训练目标还区分 planning error 与 execution error，使更新更精确地修复行为缺陷；在 OSWorld 多域任务上相对小型 CUA 基线有明显提升。</p><p>收录价值在于它提供了 computer-use agent 的自动诊断-数据生成-专门化闭环，可作为本库关注的 capability acquisition/system repair 模式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>计算机使用智能体（CUA）最近取得了显著进展，但为每个软件领域部署一个单独的大型专家仍然成本高昂。小型开放CUA是更实用的专业化目标，但它们仍然明显较弱，并表现出不均衡的领域特定故障。一个直接的补救措施是为目标领域合成大规模训练数据，但我们发现这种朴素的方法只产生了微小的改进。基于这一观察，我们引入了L EARN W EAK，一个针对小型CUA的无标注专业化框架，它使用一个更强的参考智能体来识别学生在目标领域中的弱点，合成有针对性的任务，并自动构建监督。L EARN W EAK进一步引入了一个错误感知专业化目标，它将规划错误和执行错误解耦，从而实现比广泛统一监督更精确的行为更新。在OSWorld上，L EARN W EAK在八个领域中分别比EvoCUA-8B和OpenCUA7B平均提高了11.6和11.1个百分点。我们还验证了我们的学生感知数据集生成和训练方法优于现有的自主轨迹生成和训练基线。我们的工作强调了学生感知在数据合成和智能体训练中的重要性，为在不同领域中专业化小型CUA指明了一条更原则和高效的路径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Computer-use agents (CUAs) have recently made substantial progress, but deploying a separate large expert for each software domain remains expensive. Small open CUAs are more practical specialization targets, but they remain substantially weaker and exhibit uneven domain-specific failures. A straightforward remedy is to synthesize large-scale training data for the target domain, yet we find that this naive approach yields only marginal improvements. Building on this observation, we introduce L EARN W EAK, an annotation-free specialization framework for small CUAs that uses a stronger reference agent to identify the student’s weaknesses in the target domain, synthesize targeted tasks, and construct supervision automatically. L EARN W EAK further introduces an error-aware specialization objective that disentangles planning and execution errors, enabling more behaviorally precise updates than broad uniform supervision. On OSWorld, L EARN W EAK achieves average gains of 11.6 and 11.1 percentage points over EvoCUA-8B and OpenCUA7B, respectively, across eight domains. We also validate that our student-aware dataset generation and training approaches outperform existing autonomous trajectory generation and training baselines. Our work highlights the importance of student-awareness in both data synthesis and agent training, pointing toward a more principled and efficient path for specializing small CUAs in diverse domains.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527a343learnw,
+  title = {Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28775.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a343-learnweak-cua-specialization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learn from Weaknesses: Automated Domain Specialization for Small Computer-Use Agents. https://arxiv.org/pdf/2605.28775.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28775.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28775" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

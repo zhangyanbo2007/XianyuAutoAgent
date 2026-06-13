@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG | DAST Papers</title>
+    <meta name="description" content="Knowledge Graph RAG 一直比文档式 RAG 更难做，尤其在 multi-hop graph reasoning 上，传统做法往往要在 classical KG retrieval 和 LLM generation 之间做很多特化 glue code，或者退化成昂贵且脆弱的图检索流水线。UltRAG 的思路是换个接口：不再把 KG 当作普通上下文检索源，而是让 LLM 直接调用 q" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r32-ultrag-kg-rag/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG" />
+    <meta property="og:description" content="Knowledge Graph RAG 一直比文档式 RAG 更难做，尤其在 multi-hop graph reasoning 上，传统做法往往要在 classical KG retrieval 和 LLM generation 之间做很多特化 glue code，或者退化成昂贵且脆弱的图检索流水线。UltRAG 的思路是换个接口：不再把 KG 当作普通上下文检索源，而是让 LLM 直接调用 q" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r32-ultrag-kg-rag/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG" />
+    <meta name="twitter:description" content="Knowledge Graph RAG 一直比文档式 RAG 更难做，尤其在 multi-hop graph reasoning 上，传统做法往往要在 classical KG retrieval 和 LLM generation 之间做很多特化 glue code，或者退化成昂贵且脆弱的图检索流水线。UltRAG 的思路是换个接口：不再把 KG 当作普通上下文检索源，而是让 LLM 直接调用 q" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.28773" target="_blank" rel="noopener noreferrer">2603.28773</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Knowledge Graph RAG 一直比文档式 RAG 更难做，尤其在 multi-hop graph reasoning 上，传统做法往往要在 classical KG retrieval 和 LLM generation 之间做很多特化 glue code，或者退化成昂贵且脆弱的图检索流水线。UltRAG 的思路是换个接口：不再把 KG 当作普通上下文检索源，而是让 LLM 直接调用 query execution 模块。</dd></div><div><dt>方法/机制</dt><dd>论文提出 ULTRAG，通过现成的 neural query executing modules，让语言模型在无需重训练 LLM 或 executor 的前提下执行 Knowledge Graph 问答。作者强调这不是 classical RAG 的一个小变种，而是让 LLM 以更接近 query planner/executor 的方式与 Wikidata 级别的大图交互，并在 KGQA 上达到优于现有 KG-RAG 的效果，同时成本可控。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它给 graph-grounded retrieval-reasoning 提供了更可扩展的接口设计。对 KG-RAG、knowledge-intensive agents 和大规模结构化知识接入来说，这种‘LLM + query executor’的范式比单纯堆图检索模块更耐用。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要影响仍然集中在 KGQA 和 graph-grounded retrieval 这条子线，尚未证明会反过来重写更广泛的 RAG 基础设施。它是很好的方法推进，但还没到更高层。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Knowledge Graph RAG 一直比文档式 RAG 更难做，尤其在 multi-hop graph reasoning 上，传统做法往往要在 classical KG retrieval 和 LLM generation 之间做很多特化 glue code，或者退化成昂贵且脆弱的图检索流水线。UltRAG 的思路是换个接口：不再把 KG 当作普通上下文检索源，而是让 LLM 直接调用 query execution 模块。</p><p>论文提出 ULTRAG，通过现成的 neural query executing modules，让语言模型在无需重训练 LLM 或 executor 的前提下执行 Knowledge Graph 问答。作者强调这不是 classical RAG 的一个小变种，而是让 LLM 以更接近 query planner/executor 的方式与 Wikidata 级别的大图交互，并在 KGQA 上达到优于现有 KG-RAG 的效果，同时成本可控。</p><p>这篇工作值得收录，因为它给 graph-grounded retrieval-reasoning 提供了更可扩展的接口设计。对 KG-RAG、knowledge-intensive agents 和大规模结构化知识接入来说，这种‘LLM + query executor’的范式比单纯堆图检索模块更耐用。</p><p>它没有升到更高一级，是因为当前主要影响仍然集中在 KGQA 和 graph-grounded retrieval 这条子线，尚未证明会反过来重写更广泛的 RAG 基础设施。它是很好的方法推进，但还没到更高层。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>对LLM研究的挑战，可能解锁广泛依赖可信语言模型的应用。检索增强生成 (RAG) 已成为将LLM基于外部知识源的核心策略，通过从非结构化文档语料库中识别和检索与查询相关的信息 (Lewis et al., 2020; Borgeaud et al., 2022; Izacard et al., 2023)。然而，并非所有现实世界的信息都以文档形式组织。知识图谱 (KGs)，例如Wikidata (Vrandečić &amp; Krötzsch, 2014) 或领域特定KGs（通常包含专有企业数据），代表着一个巨大的可靠、可解释且易于更新的信息来源，以(主语、谓语、宾语)三元组的形式高效存储。不幸的是，将RAG的关键概念应用于图结构数据并非易事，因为相关事实通常分布在图中的多个实体和关系中，需要综合考虑才能提供可用知识的完整视图。尽管已经开发了一些使用KGs增强LLMs的方法 (Mavromatis &amp; Karypis, 2025; Li et al., 2025)，但它们通常在需要更深层次逻辑理解的复杂查询中表现不佳 (Cattaneo et al., 2025)，同时它们也无法很好地扩展到包含数亿甚至数十亿实体和关系的大型KGs。大型语言模型 (LLMs) 在用于语言生成时，经常生成自信但事实不正确的内容（这种现象通常被称为幻觉）。检索增强生成 (RAG) 试图通过在知识语料库中识别信息并将其放入模型的上下文窗口来减少事实错误。虽然这种方法对于文档结构化数据已得到充分确立，但将其应用于知识图谱 (KGs) 并非易事，特别是对于需要在图上进行多节点/多跳推理的查询。我们引入了U LT RAG，这是一个从知识图谱中检索信息的通用框架，它摆脱了经典的RAG方法。通过为LLMs配备现成的神经查询执行模块，我们强调了现有语言模型如何在不涉及LLM或执行器任何再训练的情况下，在知识图谱问答 (KGQA) 任务上取得最先进的结果。在我们的实验中，与最先进的KGRAG解决方案相比，U LT RAG取得了更好的性能，并且它使语言模型能够以相当或更低的成本与Wikidata规模的图（1.16亿实体，16亿关系）进行交互。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>lenge for LLM research, potentially unlocking a wide range of applications that strongly rely on trustworthy language models. Retrieval-augmented generation (RAG) has emerged as a central strategy for grounding LLMs in external knowledge sources by identifying and retrieving information relevant to a query from an unstructured corpus of documents (Lewis et al., 2020; Borgeaud et al., 2022; Izacard et al., 2023). However, not all real-world information is organized as documents. Knowledge Graphs (KGs) such as Wikidata (Vrandečić &amp; Krötzsch, 2014) or domainspecific KGs, often containing proprietary enterprise data, represent a huge source of reliable, interpretable, and easily updatable information, stored in a highly efficient way as (subject, predicate, object) triples. Unfortunately, translating the key concepts of RAG to graph-structure data is not an obvious task, as relevant facts are often distributed across multiple entities and relations within the graph, which need to be considered together to provide a complete picture of the available knowledge. While some approaches for using KGs to augment LLMs have been developed (Mavromatis &amp; Karypis, 2025; Li et al., 2025), they often fail for more complex queries that require deeper understanding of logic (Cattaneo et al., 2025), and at the same time they do not scale well to large KGs with hundreds of millions or even billions of entities and relations. Large language models (LLMs) frequently generate confident yet factually incorrect content when used for language generation (a phenomenon often known as hallucination). Retrieval augmented generation (RAG) tries to reduce factual errors by identifying information in a knowledge corpus and putting it in the context window of the model. While this approach is well-established for document-structured data, it is non-trivial to adapt it for Knowledge Graphs (KGs), especially for queries that require multi-node/multi-hop reasoning on graphs. We introduce U LT RAG, a general framework for retrieving information from Knowledge Graphs that shifts away from classical RAG. By endowing LLMs with off-the-shelf neural query executing modules, we highlight how readily available language models can achieve state-of-the-art results on Knowledge Graph Question Answering (KGQA) tasks without any retraining of the LLM or executor involved. In our experiments, U LT RAG achieves better performance when compared to state-of-the-art KGRAG solutions, and it enables language models to interface with Wikidata-scale graphs (116M entities, 1.6B relations) at comparable or lower costs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260329r32ultragk,
+  title = {UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.28773.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r32-ultrag-kg-rag/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). UltRAG: a Universal Simple Scalable Recipe for Knowledge Graph RAG. https://arxiv.org/pdf/2603.28773.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.28773.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

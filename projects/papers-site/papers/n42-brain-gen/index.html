@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brain-Gen: Towards Interpreting Neural Signals for Stimulus Reconstruction Using Transformers and Latent Diffusion Models | DAST Papers</title>
+    <meta name="description" content="问题与背景
+传统 EEG 解码往往停留在低层重建或类别预测，难以兼顾语义解释性、跨类别泛化和高质量视觉重建。Brain-Gen 针对的正是“如何从高噪声 EEG 中提取能驱动视觉生成的语义表征”这一 NeuroAI 难题。
+
+方法/新意
+论文用 transformer 提取 EEG 的时空表示，再把这些表征注入潜变量扩散模型的注意力层，用于重建对应的视觉刺激。方法的新意不只是“用扩散模型做脑信号生" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n42-brain-gen/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Brain-Gen: Towards Interpreting Neural Signals for Stimulus Reconstruction Using Transformers and Latent Diffusion Models" />
+    <meta property="og:description" content="问题与背景
+传统 EEG 解码往往停留在低层重建或类别预测，难以兼顾语义解释性、跨类别泛化和高质量视觉重建。Brain-Gen 针对的正是“如何从高噪声 EEG 中提取能驱动视觉生成的语义表征”这一 NeuroAI 难题。
+
+方法/新意
+论文用 transformer 提取 EEG 的时空表示，再把这些表征注入潜变量扩散模型的注意力层，用于重建对应的视觉刺激。方法的新意不只是“用扩散模型做脑信号生" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n42-brain-gen/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Brain-Gen: Towards Interpreting Neural Signals for Stimulus Reconstruction Using Transformers and Latent Diffusion Models" />
+    <meta name="twitter:description" content="问题与背景
+传统 EEG 解码往往停留在低层重建或类别预测，难以兼顾语义解释性、跨类别泛化和高质量视觉重建。Brain-Gen 针对的正是“如何从高噪声 EEG 中提取能驱动视觉生成的语义表征”这一 NeuroAI 难题。
+
+方法/新意
+论文用 transformer 提取 EEG 的时空表示，再把这些表征注入潜变量扩散模型的注意力层，用于重建对应的视觉刺激。方法的新意不只是“用扩散模型做脑信号生" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Brain-Gen: Towards Interpreting Neural Signals for Stimulus Reconstruction Using Transformers and Latent Diffusion Models</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-12-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.18843" target="_blank" rel="noopener noreferrer">2512.18843</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景</dd></div><div><dt>方法/机制</dt><dd>传统 EEG 解码往往停留在低层重建或类别预测，难以兼顾语义解释性、跨类别泛化和高质量视觉重建。Brain-Gen 针对的正是“如何从高噪声 EEG 中提取能驱动视觉生成的语义表征”这一 NeuroAI 难题。</dd></div><div><dt>结果/证据</dt><dd>方法/新意</dd></div><div><dt>收录价值</dt><dd>论文用 transformer 提取 EEG 的时空表示，再把这些表征注入潜变量扩散模型的注意力层，用于重建对应的视觉刺激。方法的新意不只是“用扩散模型做脑信号生成”，而是强调语义结构建模和 zero-shot 泛化，而不是仅追求像素级拟合。</dd></div><div><dt>要点 5</dt><dd>意义/放在仓库中的位置</dd></div><div><dt>要点 6</dt><dd>这篇适合放在 NeuroAI 主线，和 BrainIAC、Prima、The Pictorial Cortex 同类，代表“脑信号到可解释生成”的一条重要支线。它对 EEG 这种更廉价、更噪声的神经信号模态特别有价值。</dd></div><div><dt>要点 7</dt><dd>局限/为何不更高</dd></div><div><dt>要点 8</dt><dd>目前仍是 arXiv 预印本，实验规模和临床外溢性都还不如仓库里最强的脑基础模型工作。它是高质量方向论文，但还不是那种会重排整个 NeuroAI 版图的平台级成果。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景</p><p>传统 EEG 解码往往停留在低层重建或类别预测，难以兼顾语义解释性、跨类别泛化和高质量视觉重建。Brain-Gen 针对的正是“如何从高噪声 EEG 中提取能驱动视觉生成的语义表征”这一 NeuroAI 难题。</p><p>方法/新意</p><p>论文用 transformer 提取 EEG 的时空表示，再把这些表征注入潜变量扩散模型的注意力层，用于重建对应的视觉刺激。方法的新意不只是“用扩散模型做脑信号生成”，而是强调语义结构建模和 zero-shot 泛化，而不是仅追求像素级拟合。</p><p>意义/放在仓库中的位置</p><p>这篇适合放在 NeuroAI 主线，和 BrainIAC、Prima、The Pictorial Cortex 同类，代表“脑信号到可解释生成”的一条重要支线。它对 EEG 这种更廉价、更噪声的神经信号模态特别有价值。</p><p>局限/为何不更高</p><p>目前仍是 arXiv 预印本，实验规模和临床外溢性都还不如仓库里最强的脑基础模型工作。它是高质量方向论文，但还不是那种会重排整个 NeuroAI 版图的平台级成果。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251221n42brainge,
+  title = {Brain-Gen: Towards Interpreting Neural Signals for Stimulus Reconstruction Using Transformers and Latent Diffusion Models},
+  year = {2025},
+  url = {https://arxiv.org/abs/2512.18843},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n42-brain-gen/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Brain-Gen: Towards Interpreting Neural Signals for Stimulus Reconstruction Using Transformers and Latent Diffusion Models. https://arxiv.org/abs/2512.18843</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2512.18843" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

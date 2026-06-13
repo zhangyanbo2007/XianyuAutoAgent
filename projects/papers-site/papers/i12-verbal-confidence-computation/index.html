@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How do LLMs Compute Verbal Confidence | DAST Papers</title>
+    <meta name="description" content="这篇论文研究的是一个很基础但此前机制上并不清楚的问题：当大语言模型说出“我有 90% 把握”这类 verbal confidence 时，它内部到底是何时、如何形成这个判断的。围绕这个问题，作者试图区分两种可能：模型是在最后被问到时即时计算置信度，还是在生成答案过程中已经自动形成并缓存下来。
+
+论文综合使用 activation steering、patching、noising、swapping" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i12-verbal-confidence-computation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="How do LLMs Compute Verbal Confidence" />
+    <meta property="og:description" content="这篇论文研究的是一个很基础但此前机制上并不清楚的问题：当大语言模型说出“我有 90% 把握”这类 verbal confidence 时，它内部到底是何时、如何形成这个判断的。围绕这个问题，作者试图区分两种可能：模型是在最后被问到时即时计算置信度，还是在生成答案过程中已经自动形成并缓存下来。
+
+论文综合使用 activation steering、patching、noising、swapping" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i12-verbal-confidence-computation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How do LLMs Compute Verbal Confidence" />
+    <meta name="twitter:description" content="这篇论文研究的是一个很基础但此前机制上并不清楚的问题：当大语言模型说出“我有 90% 把握”这类 verbal confidence 时，它内部到底是何时、如何形成这个判断的。围绕这个问题，作者试图区分两种可能：模型是在最后被问到时即时计算置信度，还是在生成答案过程中已经自动形成并缓存下来。
+
+论文综合使用 activation steering、patching、noising、swapping" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>How do LLMs Compute Verbal Confidence</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-03-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.17839" target="_blank" rel="noopener noreferrer">2603.17839</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文研究的是一个很基础但此前机制上并不清楚的问题：当大语言模型说出“我有 90% 把握”这类 verbal confidence 时，它内部到底是何时、如何形成这个判断的。围绕这个问题，作者试图区分两种可能：模型是在最后被问到时即时计算置信度，还是在生成答案过程中已经自动形成并缓存下来。</dd></div><div><dt>方法/机制</dt><dd>论文综合使用 activation steering、patching、noising、swapping 和 attention blocking 等机制可解释性工具，在 Gemma 3 27B 和 Qwen 2.5 7B 上给出了一致证据，支持 cached retrieval 假说。核心结论是：与置信度相关的表征会在答案生成完成后先出现在答案后的关键位置，再被路由到 verbalization site。更重要的是，这种表征所解释的方差显著超出 token log-probabilities，本质上更接近一种对问答质量的二阶评估，而不是简单的生成流畅度读数。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是普通 interpretability 可视化，而是对一个广泛使用的模型能力给出了较扎实的因果机制解释。它对 calibration、uncertainty extraction、LLM metacognition 和机制可解释性研究都有明确外溢，属于重要活跃方向上的高价值机制澄清。</dd></div><div><dt>收录价值</dt><dd>它目前适合定为 breakthrough，而不是更高一级。原因是尽管证据很漂亮，但任务主要集中在知识问答和 verbal confidence setting 上，机制是否在更复杂推理、长链条 CoT 和多模态自信度表达中完全成立，还需要更广泛的验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文研究的是一个很基础但此前机制上并不清楚的问题：当大语言模型说出“我有 90% 把握”这类 verbal confidence 时，它内部到底是何时、如何形成这个判断的。围绕这个问题，作者试图区分两种可能：模型是在最后被问到时即时计算置信度，还是在生成答案过程中已经自动形成并缓存下来。</p><p>论文综合使用 activation steering、patching、noising、swapping 和 attention blocking 等机制可解释性工具，在 Gemma 3 27B 和 Qwen 2.5 7B 上给出了一致证据，支持 cached retrieval 假说。核心结论是：与置信度相关的表征会在答案生成完成后先出现在答案后的关键位置，再被路由到 verbalization site。更重要的是，这种表征所解释的方差显著超出 token log-probabilities，本质上更接近一种对问答质量的二阶评估，而不是简单的生成流畅度读数。</p><p>这篇工作值得正式收录，因为它不是普通 interpretability 可视化，而是对一个广泛使用的模型能力给出了较扎实的因果机制解释。它对 calibration、uncertainty extraction、LLM metacognition 和机制可解释性研究都有明确外溢，属于重要活跃方向上的高价值机制澄清。</p><p>它目前适合定为 breakthrough，而不是更高一级。原因是尽管证据很漂亮，但任务主要集中在知识问答和 verbal confidence setting 上，机制是否在更复杂推理、长链条 CoT 和多模态自信度表达中完全成立，还需要更广泛的验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>vath 等人，2022；Steyvers 等人，2025b；Steyvers &amp; Peters，2025）；基于采样的一致性方法通过测量多个模型输出之间的一致性提供了一种替代方案（Geng 等人，2023；Tian 等人，2023）。然而，大多数已部署的模型都是黑盒系统，不暴露词元级别的概率，这限制了这些方法的适用性。这促使了对获取口头置信度测量的研究，其中模型被明确提示以数字或置信度类别（例如，“几乎确定”）的形式陈述其置信度（Xiong 等人，2023；Geng 等人，2023；Yoon 等人，2025；Steyvers 等人，2025a;b）。口头置信度——提示 LLM 以数字或类别的形式陈述其置信度——被广泛用于从黑盒模型中提取不确定性估计。然而，LLM 内部如何生成这些分数仍然未知。我们探讨两个问题：首先，置信度何时计算——是在请求时即时计算，还是在答案生成过程中自动计算并缓存以供后续检索；其次，口头置信度代表什么——是词元对数概率，还是对答案质量的更丰富评估？我们以 Gemma 3 27B 和 Qwen 2.5 7B 为重点，为缓存检索提供了趋同的证据。激活引导、修补、噪声和交换实验表明，置信度表示在出现在口头表达位置之前，会在答案相邻位置出现。注意力阻断精确地揭示了信息流：置信度从答案词元中收集，缓存在第一个答案后位置，然后检索用于输出。关键的是，线性探测和方差分解揭示，这些缓存的表示解释了口头置信度中超出词元对数概率的显著方差，这表明它是一种更丰富的答案质量评估，而不仅仅是简单的流畅度读数。这些发现表明，口头置信度反映了自动、复杂的自我评估——而非事后重建——这对理解 LLM 中的元认知和改进校准具有重要意义。尽管口头置信度作为 LLM 不确定性的实用衡量标准越来越受到关注，但对其内部如何生成这些分数知之甚少。理解 LLM 如何计算置信度具有多方面的重要性。首先，机制洞察可以揭示口头置信度是否反映了对答案质量的有意义的自我评估，或者仅仅是生成流畅度的表面相关性。这可以从而阐明 LLM 的元认知能力，以及显式口头报告与词元级别似然之间观察到的校准差异（Xiong 等人，2023；Steyvers 等人，2025a）。其次，理解这些机制可以实现有原则的干预措施来改进校准，超越提示工程或通用微调。我们提出两个相关问题。我们的第一个问题是关于口头置信度何时计算——是仅在明确请求时（即在提示的最后一个词元处；一个冒号——参见图1），还是在模型知道需要置信度评分之前，在答案生成过程中自动计算（即在答案相邻词元处；图1中的换行符）。在即时（JIT）假设下，答案生成过程中不发生专门的置信度计算；相反，模型仅在被提示进行自我评估时才计算置信度，并在那一刻整合问题和答案的特征。然而，在缓存检索假设下，置信度在答案生成时自动计算并存储，以便在需要口头表达时进行后续检索。我们的第二个问题是，口头置信度是什么——是生成流畅度和词元对数概率的读数，还是对问题-答案匹配度的更丰富评估？</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>vath et al., 2022; Steyvers et al., 2025b; Steyvers &amp; Peters, 2025); sampling-based consistency methods offer an alternative by measuring agreement across multiple model outputs (Geng et al., 2023; Tian et al., 2023). However, most deployed models are black-box systems that do not expose token-level probabilities, limiting the applicability of these methods. This has motivated research into obtaining verbal confidence measures, where models are explicitly prompted to state their confidence as a number or confidence class (e.g., “Almost certain”) (Xiong et al., 2023; Geng et al., 2023; Yoon et al., 2025; Steyvers et al., 2025a;b). Verbal confidence—prompting LLMs to state their confidence as a number or category—is widely used to extract uncertainty estimates from black-box models. However, how LLMs internally generate such scores remains unknown. We address two questions: first, when confidence is computed – just-in-time when requested, or automatically during answer generation and cached for later retrieval; and second, what verbal confidence represents – token log-probabilities, or a richer evaluation of answer quality? Focusing on Gemma 3 27B and Qwen 2.5 7B, we provide convergent evidence for cached retrieval. Activation steering, patching, noising, and swap experiments reveal that confidence representations emerge at answer-adjacent positions before appearing at the verbalization site. Attention blocking pinpoints the information flow: confidence is gathered from answer tokens, cached at the first post-answer position, then retrieved for output. Critically, linear probing and variance partitioning reveal that these cached representations explain substantial variance in verbal confidence beyond token log-probabilities, suggesting a richer answerquality evaluation rather than a simple fluency readout. These findings demonstrate that verbal confidence reflects automatic, sophisticated selfevaluation—not post-hoc reconstruction—with implications for understanding metacognition in LLMs and improving calibration. Despite growing interest in verbal confidence as a practical measure of LLM uncertainty, little is understood about how such scores are internally generated. Understanding how LLMs compute confidence matters for several reasons. First, mechanistic insight could reveal whether verbal confidence reflects a meaningful self-evaluation of answer quality or merely surface-level correlates of generation fluency. This could thereby shed light on the metacognitive capacities of LLMs, and the observed difference in calibration between explicit verbal reports and token-level likelihoods (Xiong et al., 2023; Steyvers et al., 2025a). Second, understanding these mechanisms could enable principled interventions to improve calibration, moving beyond prompt engineering or generic fine-tuning. We ask two related questions. Our first question concerns when verbal confidence is computed—only when explicitly requested (i.e. at the last token of the prompt; a colon – see Figure 1), or automatically during answer generation before the model knows a confidence rating will be required (i.e. at answer-adjacent tokens; the newline token in Figure 1). Under the just-in-time (JIT) hypothesis, no dedicated confidence computation occurs during answer generation; instead, the model computes confidence only when prompted to self-evaluate, integrating features of the question and answer at that moment. Under the cached retrieval hypothesis, however, confidence is computed automatically as the answer is produced and stored for later retrieval when verbalization is required. Our second question asks what is verbal confidence—a readout of generation fluency and token log-probabilities, or a richer evaluation of questionanswer fit?</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260318i12verbalc,
+  title = {How do LLMs Compute Verbal Confidence},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.17839v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i12-verbal-confidence-computation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). How do LLMs Compute Verbal Confidence. https://arxiv.org/pdf/2603.17839v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.17839v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs | DAST Papers</title>
+    <meta name="description" content="这篇工作切中的问题很明确：纯视觉的 Video-Action / VLA 路线在长时任务上已经有一定能力，但在接触丰富、力控制敏感的交互里，视觉 token 无法稳定表征关键的接触状态。作者因此把 tactile 视为世界动作模型的基础模态，而不是附属传感器。
+
+方法上，VTAM 在预训练视频 transformer 上接入 tactile stream，用轻量化的 modality transf" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm27-vtam-video-tactile-action/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs" />
+    <meta property="og:description" content="这篇工作切中的问题很明确：纯视觉的 Video-Action / VLA 路线在长时任务上已经有一定能力，但在接触丰富、力控制敏感的交互里，视觉 token 无法稳定表征关键的接触状态。作者因此把 tactile 视为世界动作模型的基础模态，而不是附属传感器。
+
+方法上，VTAM 在预训练视频 transformer 上接入 tactile stream，用轻量化的 modality transf" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm27-vtam-video-tactile-action/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs" />
+    <meta name="twitter:description" content="这篇工作切中的问题很明确：纯视觉的 Video-Action / VLA 路线在长时任务上已经有一定能力，但在接触丰富、力控制敏感的交互里，视觉 token 无法稳定表征关键的接触状态。作者因此把 tactile 视为世界动作模型的基础模态，而不是附属传感器。
+
+方法上，VTAM 在预训练视频 transformer 上接入 tactile stream，用轻量化的 modality transf" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23481" target="_blank" rel="noopener noreferrer">2603.23481</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作切中的问题很明确：纯视觉的 Video-Action / VLA 路线在长时任务上已经有一定能力，但在接触丰富、力控制敏感的交互里，视觉 token 无法稳定表征关键的接触状态。作者因此把 tactile 视为世界动作模型的基础模态，而不是附属传感器。</dd></div><div><dt>方法/机制</dt><dd>方法上，VTAM 在预训练视频 transformer 上接入 tactile stream，用轻量化的 modality transfer finetuning 做跨模态对齐，并通过 tactile regularization loss 抑制视觉潜变量对动作模型的单边支配。它不要求 tactile-language 成对数据，也不要求单独的 tactile 预训练。</dd></div><div><dt>结果/证据</dt><dd>对仓库而言，这篇论文的价值在于它把 `video + tactile + action` 组织成一个可扩展的 embodied foundation-model 接口，清楚地说明了为什么复杂物理交互不能只靠视觉世界模型。这个接口层面的价值大于单个 manipulation 分数。</dd></div><div><dt>收录价值</dt><dd>它还不是更高一级，因为当前证据主要在 contact-rich manipulation，虽然结果很强，但离更广通用机器人平台和长期多任务泛化还差一步。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作切中的问题很明确：纯视觉的 Video-Action / VLA 路线在长时任务上已经有一定能力，但在接触丰富、力控制敏感的交互里，视觉 token 无法稳定表征关键的接触状态。作者因此把 tactile 视为世界动作模型的基础模态，而不是附属传感器。</p><p>方法上，VTAM 在预训练视频 transformer 上接入 tactile stream，用轻量化的 modality transfer finetuning 做跨模态对齐，并通过 tactile regularization loss 抑制视觉潜变量对动作模型的单边支配。它不要求 tactile-language 成对数据，也不要求单独的 tactile 预训练。</p><p>对仓库而言，这篇论文的价值在于它把 `video + tactile + action` 组织成一个可扩展的 embodied foundation-model 接口，清楚地说明了为什么复杂物理交互不能只靠视觉世界模型。这个接口层面的价值大于单个 manipulation 分数。</p><p>它还不是更高一级，因为当前证据主要在 contact-rich manipulation，虽然结果很强，但离更广通用机器人平台和长期多任务泛化还差一步。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260324mm27vtamvi,
+  title = {VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23481v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm27-vtam-video-tactile-action/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VTAM: Video-Tactile-Action Models for Complex Physical Interaction Beyond VLAs. https://arxiv.org/pdf/2603.23481v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23481v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

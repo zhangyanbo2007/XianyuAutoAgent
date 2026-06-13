@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios | DAST Papers</title>
+    <meta name="description" content="现实 agent 工具调用并不是同步、单任务、即时返回；API 延迟、多任务并发和等待期间的调度会显著影响效率。
+
+AsyncTool 把 delayed tool feedback 和多异构任务并发放入同一交互环境，评估 agent 是否能在等待工具返回时切换任务、维护依赖、追踪状态并提升总完成效率。
+
+论文提出 step、sub-task 和 task 层级指标，以及效率导向指标，暴露当前模型" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a330-asynctool-asynchronous-tool-calling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios" />
+    <meta property="og:description" content="现实 agent 工具调用并不是同步、单任务、即时返回；API 延迟、多任务并发和等待期间的调度会显著影响效率。
+
+AsyncTool 把 delayed tool feedback 和多异构任务并发放入同一交互环境，评估 agent 是否能在等待工具返回时切换任务、维护依赖、追踪状态并提升总完成效率。
+
+论文提出 step、sub-task 和 task 层级指标，以及效率导向指标，暴露当前模型" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a330-asynctool-asynchronous-tool-calling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios" />
+    <meta name="twitter:description" content="现实 agent 工具调用并不是同步、单任务、即时返回；API 延迟、多任务并发和等待期间的调度会显著影响效率。
+
+AsyncTool 把 delayed tool feedback 和多异构任务并发放入同一交互环境，评估 agent 是否能在等待工具返回时切换任务、维护依赖、追踪状态并提升总完成效率。
+
+论文提出 step、sub-task 和 task 层级指标，以及效率导向指标，暴露当前模型" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.27995" target="_blank" rel="noopener noreferrer">2605.27995</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现实 agent 工具调用并不是同步、单任务、即时返回；API 延迟、多任务并发和等待期间的调度会显著影响效率。</dd></div><div><dt>方法/机制</dt><dd>AsyncTool 把 delayed tool feedback 和多异构任务并发放入同一交互环境，评估 agent 是否能在等待工具返回时切换任务、维护依赖、追踪状态并提升总完成效率。</dd></div><div><dt>结果/证据</dt><dd>论文提出 step、sub-task 和 task 层级指标，以及效率导向指标，暴露当前模型在异步工具调用中的状态维护和调度失败。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为 asynchronous tool use 是真实 agent runtime 的关键能力；AsyncTool 提供了可复用评测接口，补上了同步函数调用 benchmark 的盲区。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现实 agent 工具调用并不是同步、单任务、即时返回；API 延迟、多任务并发和等待期间的调度会显著影响效率。</p><p>AsyncTool 把 delayed tool feedback 和多异构任务并发放入同一交互环境，评估 agent 是否能在等待工具返回时切换任务、维护依赖、追踪状态并提升总完成效率。</p><p>论文提出 step、sub-task 和 task 层级指标，以及效率导向指标，暴露当前模型在异步工具调用中的状态维护和调度失败。</p><p>它值得收录，因为 asynchronous tool use 是真实 agent runtime 的关键能力；AsyncTool 提供了可复用评测接口，补上了同步函数调用 benchmark 的盲区。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>能力日益增强的基于LLM的工具使用代理（OpenAI, 2025b; Comanici et al., 2025; Anthropic, 2025; Yang et al., 2025; Team et al., 2025; Zeng et al., 2025; Chen et al., 2025a; Wang et al., 2025; Chen et al., 2024b; Huang et al., 2026; Zhang et al., 2026）。这种能力使它们能够处理需要外部信息或行动的更复杂、多步骤的任务，并在各种工具使用场景中实现强大的性能（Liu et al., 2023; Li et al., 2025; Chan et al., 2024）。然而，现实世界环境通常更为复杂，经常需要并发执行可能涉及不同工具的多个任务。在实际应用中，函数调用通常会产生延迟，以同步方式顺序执行任务未能充分利用空闲等待时间，从而降低了整体效率。为了更好地评估和提升代理在此类条件下的性能，我们将异步工具调用（Asynchronous Tool Call）的概念引入到代理与环境的交互中，代理应利用这些空闲间隔来推进其他可用任务。受这些不足的启发，我们确定了三个关键观察结果：(i) 对代理在异步场景中完成多任务能力的评估不足。现有研究通常局限于工具以即时响应方式运行的单任务场景（Zhuang et al., 2023; Ruan et al., 2023; Xu et al., 2023; Guo et al., 2024; Qin et al., 2023; Ye et al., 2024），忽视了对异步场景中多任务的评估。(ii) 在涉及实时工具调用的交互式环境中，与现实世界条件缺乏对齐。现有的异步规划基准未在交互式环境中运行，这与涉及实时工具调用的现实世界场景不符（Lin et al., 2024）。(iii) 针对具有延迟和乱序工具反馈的并发任务，缺乏足够的度量标准和标准化协议。大型语言模型（LLM）代理在利用外部工具解决复杂任务方面已展现出强大能力。然而，现有评估在很大程度上忽视了工具调用的时间维度，特别是工具响应延迟的影响，并且通常局限于单任务设置。在实际应用中，多个任务通常需要并发执行，整体效率关键取决于代理在等待工具响应时能否利用空闲时间。我们将这种能力称为异步工具调用。为了评估这种能力，我们提出了AsyncTool，这是一个用于评估LLM代理在具有延迟工具反馈的交互式多任务工具使用环境中的基准。AsyncTool同时呈现多个异构任务，并在执行过程中模拟真实的工具响应延迟。我们采用混合数据演化策略，构建了一个涵盖多种场景和工具使用模式的多样化异步多任务数据集。我们从步骤、子任务和任务三个层面评估模型，并进一步引入了面向效率的指标来衡量任务协调和完成效率。大量实验表明，延迟的工具反馈对当前代理构成了巨大挑战，导致性能明显下降。在AsyncTool上，那些能更好地协调任务切换和依赖跟踪的模型往往能取得更强的性能。我们的分析指出了当前工具代理的主要失败模式，并为设计未来具有更强时间推理和协调能力的系统提供了实用指导。代码可在https://github.com/StoKou/repo-asynctool获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>increasingly capable LLM-based agents for tool use(OpenAI, 2025b; Comanici et al., 2025; Anthropic, 2025; Yang et al., 2025; Team et al., 2025; Zeng et al., 2025; Chen et al., 2025a; Wang et al., 2025; Chen et al., 2024b; Huang et al., 2026; Zhang et al., 2026). This capability enables them to handle more sophisticated, multi-step tasks that require external information or actions, and to achieve strong performance across diverse tool-use scenarios (Liu et al., 2023; Li et al., 2025; Chan et al., 2024). However, real-world environments are often more complex, frequently requiring the concurrent execution of multiple tasks that may involve different tools. In practical settings, function calls usually incur latency, and executing tasks sequentially in a synchronous manner fails to fully utilize idle waiting time, thereby reducing overall efficiency. To better evaluate and enhance the agent’s performance under such conditions, we introduce the concept of Asynchronous Tool Call into the interaction between the agent and the environment, where the agent should utilize these idle intervals to advance other available tasks. Motivated by these gaps, we identify three critical observations: (i) Inadequate evaluation of the agent’s capability to complete multiple tasks in asynchronous scenarios. Existing studies are typically restricted to single-task scenarios in which tools operate in an immediate response manner (Zhuang et al., 2023; Ruan et al., 2023; Xu et al., 2023; Guo et al., 2024; Qin et al., 2023; Ye et al., 2024), overlooking the evaluation for multiple tasks in asynchronous scenarios. (ii) Lack of alignment with real-world conditions in interactive environments involving real-time tool calls. Existing asynchronous planning benchmarks do not operate within interactive environments, which is inconsistent with real-world scenarios involving real-time tool calls (Lin et al., 2024). (iii) Insufficient metrics and standardized protocols specific to concurrent tasks with delayed and out-of-order tool feed- Large language model (LLM)-based agents have demonstrated strong capabilities in leveraging external tools to solve complex tasks. However, existing evaluations largely overlook the temporal dimension of tool invocation, particularly the impact of tool response latency, and are typically limited to single-task settings. In real-world applications, multiple tasks often need to be executed concurrently, and overall efficiency critically depends on whether an agent can utilize idle time while waiting for tool responses. We refer to this capability as asynchronous tool calling. To evaluate this capability, we propose AsyncTool, a benchmark for assessing LLM-based agents in interactive multi-task tool-use environments with delayed tool feedback. AsyncTool presents multiple heterogeneous tasks simultaneously and simulates realistic tool response latency during execution. Using a hybrid data evolution strategy, we construct a diverse asynchronous multitasking dataset covering multiple scenarios and tool-use patterns. We evaluate models at three levels—step, sub-task, and task—and further introduce efficiency-oriented metrics to measure task coordination and completion efficiency. Extensive experiments show that delayed tool feedback poses substantial challenges to current agents, leading to clear performance degradation. Models that better coordinate task switching and dependency tracking tend to achieve stronger performance on AsyncTool.Our analysis identifies the main failure modes of current tool agents and provides practical guidelines for designing future systems with stronger temporal reasoning and coordination capabilities.The code is available at https://github.com/StoKou/repo-asynctool</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527a330asynct,
+  title = {AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.27995.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a330-asynctool-asynchronous-tool-calling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AsyncTool: Evaluating the Asynchronous Function Calling Capability under Multi-Task Scenarios. https://arxiv.org/pdf/2605.27995.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.27995.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.27995" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

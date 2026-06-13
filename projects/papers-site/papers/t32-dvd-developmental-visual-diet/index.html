@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adopting a human developmental visual diet yields robust and shape-based AI vision | DAST Papers</title>
+    <meta name="description" content="这篇工作的推进点不在于再造一个更大的视觉模型，而是把‘人类视觉是如何长成的’直接变成训练课程。作者把婴儿到成年阶段的 visual acuity、contrast sensitivity 和 colour sensitivity 的心理物理发展轨迹系统化成一条 developmental visual diet，用它替代一开始就喂高保真图像的标准训练流程。
+
+真正有外溢价值的是这里给出了一种更稳的" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t32-dvd-developmental-visual-diet/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Adopting a human developmental visual diet yields robust and shape-based AI vision" />
+    <meta property="og:description" content="这篇工作的推进点不在于再造一个更大的视觉模型，而是把‘人类视觉是如何长成的’直接变成训练课程。作者把婴儿到成年阶段的 visual acuity、contrast sensitivity 和 colour sensitivity 的心理物理发展轨迹系统化成一条 developmental visual diet，用它替代一开始就喂高保真图像的标准训练流程。
+
+真正有外溢价值的是这里给出了一种更稳的" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t32-dvd-developmental-visual-diet/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Adopting a human developmental visual diet yields robust and shape-based AI vision" />
+    <meta name="twitter:description" content="这篇工作的推进点不在于再造一个更大的视觉模型，而是把‘人类视觉是如何长成的’直接变成训练课程。作者把婴儿到成年阶段的 visual acuity、contrast sensitivity 和 colour sensitivity 的心理物理发展轨迹系统化成一条 developmental visual diet，用它替代一开始就喂高保真图像的标准训练流程。
+
+真正有外溢价值的是这里给出了一种更稳的" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Adopting a human developmental visual diet yields robust and shape-based AI vision</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-24</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01228-6" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01228-6</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的推进点不在于再造一个更大的视觉模型，而是把‘人类视觉是如何长成的’直接变成训练课程。作者把婴儿到成年阶段的 visual acuity、contrast sensitivity 和 colour sensitivity 的心理物理发展轨迹系统化成一条 developmental visual diet，用它替代一开始就喂高保真图像的标准训练流程。</dd></div><div><dt>方法/机制</dt><dd>真正有外溢价值的是这里给出了一种更稳的 robustness interface：不是继续在架构和数据规模上硬堆，而是通过 developmental curriculum 去改变模型学到的视觉归纳偏置。结果上，DVD 明显提升了 shape bias、抽象形状识别，以及对 corruption 和 adversarial attack 的韧性，而且不是只在一个小 benchmark 上成立。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一个局部 augmentation recipe，而是一个可复用的训练范式：把认知发展规律翻译成机器视觉训练日程。对 robust vision、human-aligned perception、brain-inspired AI 和资源受限训练路线，这都是有方法外溢的。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据仍主要围绕 image classification 家族及其 robustness battery。这个 developmental curriculum 是否会稳定迁移到更广的视觉基础模型、视频、VLM 或 embodied perception，还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的推进点不在于再造一个更大的视觉模型，而是把‘人类视觉是如何长成的’直接变成训练课程。作者把婴儿到成年阶段的 visual acuity、contrast sensitivity 和 colour sensitivity 的心理物理发展轨迹系统化成一条 developmental visual diet，用它替代一开始就喂高保真图像的标准训练流程。</p><p>真正有外溢价值的是这里给出了一种更稳的 robustness interface：不是继续在架构和数据规模上硬堆，而是通过 developmental curriculum 去改变模型学到的视觉归纳偏置。结果上，DVD 明显提升了 shape bias、抽象形状识别，以及对 corruption 和 adversarial attack 的韧性，而且不是只在一个小 benchmark 上成立。</p><p>它值得正式收录，因为这不是又一个局部 augmentation recipe，而是一个可复用的训练范式：把认知发展规律翻译成机器视觉训练日程。对 robust vision、human-aligned perception、brain-inspired AI 和资源受限训练路线，这都是有方法外溢的。</p><p>它没有更高，是因为当前证据仍主要围绕 image classification 家族及其 robustness battery。这个 developmental curriculum 是否会稳定迁移到更广的视觉基础模型、视频、VLM 或 embodied perception，还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>采用人类发展视觉饮食可产生鲁棒且基于形状的AI视觉。尽管经过多年的研究和人工智能（AI）系统的显著扩展，人工视觉和人类视觉之间仍然存在显著错位。与人类相反，AI严重依赖纹理特征而非形状信息，对图像失真缺乏鲁棒性，仍然极易受到对抗性攻击，并且难以识别复杂背景中的简单抽象形状。在这里，为了弥合这一差距，我们从人类视觉如何从婴儿早期发展到成年中汲取灵感。我们通过综合数十年的研究，为AI视觉构建了一种新颖的发展视觉饮食，从而量化了视觉成熟。通过这个受人类启发的课程指导AI系统，该课程考虑了视力、对比敏感度和颜色的发展，所产生的模型在所测试的鲁棒视觉的每个标志上都与人类行为更好地对齐，表现出对形状信息的强烈依赖、超越最先进水平的抽象形状识别，以及对图像损坏和对抗性攻击的更高弹性。我们的结果因此表明，鲁棒的AI视觉可以通过指导模型如何学习而非仅仅学习多少来实现，为构建更安全、更像人类的人工视觉系统提供了一条资源高效的途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Despite years of research and the dramatic scaling of artificial intelligence (AI) systems, a striking misalignment between artificial and human vision persists. Contrary to humans, AI relies heavily on texture features rather than shape information, lacks robustness to image distortions, remains highly vulnerable to adversarial attacks, and struggles to recognize simple abstract shapes within complex backgrounds. Here, to close this gap, we take inspiration from how human vision develops from early infancy into adulthood. We quantified visual maturation by synthesizing decades of research into a novel developmental visual diet for AI vision. Guiding AI systems through this human-inspired curriculum, which considers the development of visual acuity, contrast sensitivity and colour, produces models that better align with human behaviour on every hallmark of robust vision tested, yielding strong reliance on shape information, abstract shape recognition beyond the state of the art, and higher resilience to image corruptions and adversarial attacks. Our results thus demonstrate that robust AI vision can be achieved by guiding how a model learns, not merely how much it learns, offering a resource-efficient route towards safer and more human-like artificial visual systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260424t32dvddeve,
+  title = {Adopting a human developmental visual diet yields robust and shape-based AI vision},
+  year = {2026},
+  url = {https://www.nature.com/articles/s42256-026-01228-6.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t32-dvd-developmental-visual-diet/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Adopting a human developmental visual diet yields robust and shape-based AI vision. https://www.nature.com/articles/s42256-026-01228-6.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-026-01228-6.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/KietzmannLab/DVD" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

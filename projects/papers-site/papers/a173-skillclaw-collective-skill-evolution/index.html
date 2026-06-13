@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillClaw: Let Skills Evolve Collectively with Agentic Evolver | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 skill-enabled agent 系统的一个真实瓶颈：OpenClaw 这类 agent 可以安装和调用大量可复用 skill，但部署后的 skill 往往是静态资产。不同用户会在相似工具链、相似工作流和相似失败模式上反复踩坑，单次会话中发现的修复很少能沉淀成共享能力，导致系统层面的经验无法累积。
+
+SkillClaw 的核心贡献是把 skill 更新从单用户局部修补推进到" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a173-skillclaw-collective-skill-evolution/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SkillClaw: Let Skills Evolve Collectively with Agentic Evolver" />
+    <meta property="og:description" content="这篇论文处理的是 skill-enabled agent 系统的一个真实瓶颈：OpenClaw 这类 agent 可以安装和调用大量可复用 skill，但部署后的 skill 往往是静态资产。不同用户会在相似工具链、相似工作流和相似失败模式上反复踩坑，单次会话中发现的修复很少能沉淀成共享能力，导致系统层面的经验无法累积。
+
+SkillClaw 的核心贡献是把 skill 更新从单用户局部修补推进到" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a173-skillclaw-collective-skill-evolution/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SkillClaw: Let Skills Evolve Collectively with Agentic Evolver" />
+    <meta name="twitter:description" content="这篇论文处理的是 skill-enabled agent 系统的一个真实瓶颈：OpenClaw 这类 agent 可以安装和调用大量可复用 skill，但部署后的 skill 往往是静态资产。不同用户会在相似工具链、相似工作流和相似失败模式上反复踩坑，单次会话中发现的修复很少能沉淀成共享能力，导致系统层面的经验无法累积。
+
+SkillClaw 的核心贡献是把 skill 更新从单用户局部修补推进到" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SkillClaw: Let Skills Evolve Collectively with Agentic Evolver</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08377" target="_blank" rel="noopener noreferrer">2604.08377</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 skill-enabled agent 系统的一个真实瓶颈：OpenClaw 这类 agent 可以安装和调用大量可复用 skill，但部署后的 skill 往往是静态资产。不同用户会在相似工具链、相似工作流和相似失败模式上反复踩坑，单次会话中发现的修复很少能沉淀成共享能力，导致系统层面的经验无法累积。</dd></div><div><dt>方法/机制</dt><dd>SkillClaw 的核心贡献是把 skill 更新从单用户局部修补推进到集体演化闭环。系统记录跨用户交互轨迹，包括 prompt、工具调用、环境反馈、错误和最终响应；再按引用的 skill 分组，形成带因果链的共享证据库；agentic evolver 对成功和失败轨迹做开放式诊断，选择 refine、create 或 skip，并把候选 skill 更新经真实环境验证后同步回共享 skill repository。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它直接命中仓库的 agent memory、capability acquisition 和 skill systems 主线。相比已有的单 agent skill discovery 或本地 trace repair，SkillClaw 明确提出了多用户 skill ecosystem 的演化机制：普通使用产生证据，夜间 evolver 生成更新，validator 过滤后全局分发。这是一个有工程可复用性的系统模式，也为 agent skill marketplace 如何持续改进提供了清晰蓝图。</dd></div><div><dt>收录价值</dt><dd>它目前仍只是 breakthrough，而不是更高一级。论文标注为 work in progress，实验是 8 个模拟用户、6 轮 day-night evolution、WildClawBench 中 4 类任务，并且主要由 Qwen3-Max 同时承担执行、演化和验证。结果显示社交、检索、创意和安全任务均有提升，但跨平台可迁移性、真实多用户部署中的噪声、恶意轨迹污染、验证成本和版本治理仍缺少充分证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 skill-enabled agent 系统的一个真实瓶颈：OpenClaw 这类 agent 可以安装和调用大量可复用 skill，但部署后的 skill 往往是静态资产。不同用户会在相似工具链、相似工作流和相似失败模式上反复踩坑，单次会话中发现的修复很少能沉淀成共享能力，导致系统层面的经验无法累积。</p><p>SkillClaw 的核心贡献是把 skill 更新从单用户局部修补推进到集体演化闭环。系统记录跨用户交互轨迹，包括 prompt、工具调用、环境反馈、错误和最终响应；再按引用的 skill 分组，形成带因果链的共享证据库；agentic evolver 对成功和失败轨迹做开放式诊断，选择 refine、create 或 skip，并把候选 skill 更新经真实环境验证后同步回共享 skill repository。</p><p>它值得正式收录，因为它直接命中仓库的 agent memory、capability acquisition 和 skill systems 主线。相比已有的单 agent skill discovery 或本地 trace repair，SkillClaw 明确提出了多用户 skill ecosystem 的演化机制：普通使用产生证据，夜间 evolver 生成更新，validator 过滤后全局分发。这是一个有工程可复用性的系统模式，也为 agent skill marketplace 如何持续改进提供了清晰蓝图。</p><p>它目前仍只是 breakthrough，而不是更高一级。论文标注为 work in progress，实验是 8 个模拟用户、6 轮 day-night evolution、WildClawBench 中 4 类任务，并且主要由 Qwen3-Max 同时承担执行、演化和验证。结果显示社交、检索、创意和安全任务均有提升，但跨平台可迁移性、真实多用户部署中的噪声、恶意轨迹污染、验证成本和版本治理仍缺少充分证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLM）代理，如OpenClaw，依赖可重用技能来执行复杂任务，但这些技能在部署后基本保持静态。因此，类似的工作流程、工具使用模式和故障模式在不同用户之间反复被重新发现，阻碍了系统随经验的改进。虽然来自不同用户的交互提供了关于技能何时有效或失效的互补信号，但现有系统缺乏将这种异构经验转化为可靠技能更新的机制。为了解决这些问题，我们提出了SkillClaw，一个在多用户代理生态系统中实现集体技能进化的框架，它将跨用户和随时间的交互视为改进技能的主要信号。SkillClaw持续聚合使用过程中生成的轨迹，并由一个自主进化器进行处理，该进化器识别重复的行为模式，并通过完善现有技能或扩展新能力将其转化为技能集的更新。由此产生的技能保存在共享存储库中并在用户之间同步，从而允许在一个上下文中发现的改进在系统范围内传播，同时无需用户付出额外努力。通过将多用户经验整合到持续的技能更新中，SkillClaw实现了跨用户知识转移和累积能力提升，并且在WildClawBench上的实验表明，在有限的交互和反馈下，它显著提高了Qwen3-Max在真实世界代理场景中的性能。Github：https://github.com/AMAP-ML/SkillClaw</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM) agents such as OpenClaw rely on reusable skills to perform complex tasks, yet these skills remain largely static after deployment. As a result, similar workflows, tool usage patterns, and failure modes are repeatedly rediscovered across users, preventing the system from improving with experience. While interactions from different users provide complementary signals about when a skill works or fails, existing systems lack a mechanism to convert such heterogeneous experiences into reliable skill updates. To address these issues, we present SkillClaw, a framework for collective skill evolution in multi-user agent ecosystems, which treats cross-user and over-time interactions as the primary signal for improving skills. SkillClaw continuously aggregates trajectories generated during use and processes them with an autonomous evolver, which identifies recurring behavioral patterns and translates them into updates to the skill set by refining existing skills or extending them with new capabilities. The resulting skills are maintained in a shared repository and synchronized across users, allowing improvements discovered in one context to propagate system-wide while requiring no additional effort from users. By integrating multi-user experience into ongoing skill updates, SkillClaw enables cross-user knowledge transfer and cumulative capability improvement, and experiments on WildClawBench show that limited interaction and feedback, it significantly improves the performance of Qwen3-Max in real-world agent scenarios. Github: https://github.com/AMAP-ML/SkillClaw</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409a173skillc,
+  title = {SkillClaw: Let Skills Evolve Collectively with Agentic Evolver},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08377.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a173-skillclaw-collective-skill-evolution/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SkillClaw: Let Skills Evolve Collectively with Agentic Evolver. https://arxiv.org/pdf/2604.08377.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08377.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

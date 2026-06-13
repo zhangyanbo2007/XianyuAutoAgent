@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Near-Future Policy Optimization | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 RLVR / post-training 一个很实在的问题：要想加速 on-policy 探索，最好能注入“比当前策略更强、但又别离得太远”的 off-policy 轨迹。现有做法通常只能二选一，要么外部教师质量高但分布太远，要么历史轨迹接近但上限有限。
+
+NPO 的关键想法是直接使用同一训练 run 的 near-future self，也就是更晚一点的 checkpoint，作为" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r68-near-future-policy-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Near-Future Policy Optimization" />
+    <meta property="og:description" content="这篇论文针对 RLVR / post-training 一个很实在的问题：要想加速 on-policy 探索，最好能注入“比当前策略更强、但又别离得太远”的 off-policy 轨迹。现有做法通常只能二选一，要么外部教师质量高但分布太远，要么历史轨迹接近但上限有限。
+
+NPO 的关键想法是直接使用同一训练 run 的 near-future self，也就是更晚一点的 checkpoint，作为" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r68-near-future-policy-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Near-Future Policy Optimization" />
+    <meta name="twitter:description" content="这篇论文针对 RLVR / post-training 一个很实在的问题：要想加速 on-policy 探索，最好能注入“比当前策略更强、但又别离得太远”的 off-policy 轨迹。现有做法通常只能二选一，要么外部教师质量高但分布太远，要么历史轨迹接近但上限有限。
+
+NPO 的关键想法是直接使用同一训练 run 的 near-future self，也就是更晚一点的 checkpoint，作为" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Near-Future Policy Optimization</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.20733" target="_blank" rel="noopener noreferrer">2604.20733</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 RLVR / post-training 一个很实在的问题：要想加速 on-policy 探索，最好能注入“比当前策略更强、但又别离得太远”的 off-policy 轨迹。现有做法通常只能二选一，要么外部教师质量高但分布太远，要么历史轨迹接近但上限有限。</dd></div><div><dt>方法/机制</dt><dd>NPO 的关键想法是直接使用同一训练 run 的 near-future self，也就是更晚一点的 checkpoint，作为辅助轨迹来源。这样它天然同时满足 stronger 和 closer 两个条件。论文还提出 AutoNPO，根据在线信号自动决定何时触发干预以及选哪个 guide checkpoint。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是一个窄任务 trick，而是 RLVR / mixed-policy post-training 的一个干净方法原语。尤其在 reasoning / multimodal post-training 上，这种“向近未来自己学习”的策略兼顾质量与方差，后续可复用空间很大。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为当前证据还集中在特定模型和 GRPO 设置，长期影响要看它在更广泛的 RLVR / preference / tool-use post-training 中是否成立。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 RLVR / post-training 一个很实在的问题：要想加速 on-policy 探索，最好能注入“比当前策略更强、但又别离得太远”的 off-policy 轨迹。现有做法通常只能二选一，要么外部教师质量高但分布太远，要么历史轨迹接近但上限有限。</p><p>NPO 的关键想法是直接使用同一训练 run 的 near-future self，也就是更晚一点的 checkpoint，作为辅助轨迹来源。这样它天然同时满足 stronger 和 closer 两个条件。论文还提出 AutoNPO，根据在线信号自动决定何时触发干预以及选哪个 guide checkpoint。</p><p>它值得正式收录，因为这不是一个窄任务 trick，而是 RLVR / mixed-policy post-training 的一个干净方法原语。尤其在 reasoning / multimodal post-training 上，这种“向近未来自己学习”的策略兼顾质量与方差，后续可复用空间很大。</p><p>它没有升到更高等级，是因为当前证据还集中在特定模型和 GRPO 设置，长期影响要看它在更广泛的 RLVR / preference / tool-use post-training 中是否成立。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>带有可验证奖励的强化学习（RLVR）已成为核心的后训练方法。将合适的离策略轨迹引入到在策略探索中可以加速RLVR的收敛并提高性能上限，然而，找到此类轨迹的来源仍然是关键挑战。现有的混合策略方法要么从外部教师导入轨迹（高质量但分布较远），要么重放过去的训练轨迹（接近但质量受限），两者都无法同时满足“足够强”（更高的Q值，更多新知识可学习）和“足够近”（更低的V值，更容易吸收）的条件，以最大化有效学习信号S = Q/V。我们提出了近未来策略优化（NPO），这是一种简单的混合策略方案，它从策略自身的近未来状态中学习：同一训练运行中较晚的检查点是辅助轨迹的天然来源，它既比当前策略更强，又比任何外部来源更接近，直接平衡了轨迹质量与方差成本。我们通过两次手动干预验证了NPO：早期引导和后期平台突破，并进一步提出了AutoNPO，这是一种自适应变体，它根据在线训练信号自动触发干预，并选择最大化S的引导检查点。在Qwen3-VL-8B-Instruct与GRPO结合使用时，NPO将平均性能从57.88提高到62.84，而AutoNPO将其推高到63.15，在加速收敛的同时提高了最终性能上限。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning with verifiable rewards (RLVR) has become a core post-training recipe. Introducing suitable off-policy trajectories into on-policy exploration accelerates RLVR convergence and raises the performance ceiling, yet finding a source of such trajectories remains the key challenge. Existing mixed-policy methods either import trajectories from external teachers (high-quality but distributionally far) or replay past training trajectories (close but capped in quality), and neither simultaneously satisfies the strong enough (higher Q , more new knowledge to learn) and close enough (lower V , more readily absorbed) conditions required to maximize the effective learning signal S = Q/V . We propose Near-Future Policy Optimization (NPO), a simple mixed-policy scheme that learns from a policy’s own near-future self: a later checkpoint from the same training run is a natural source of auxiliary trajectories that is both stronger than the current policy and closer than any external source, directly balancing trajectory quality against variance cost. We validate NPO through two manual interventions, early-stage bootstrapping and late-stage plateau breakthrough, and further propose AutoNPO,an adaptive variant that automatically triggers interventions from online training signals and selects the guide checkpoint that maximizes S. On Qwen3-VL-8B-Instruct with GRPO, NPO improves average performance from 57.88 to 62.84, and AutoNPO pushes it to 63.15, raising the final performance ceiling while accelerating convergence.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260424r68nearfut,
+  title = {Near-Future Policy Optimization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.20733.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r68-near-future-policy-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Near-Future Policy Optimization. https://arxiv.org/pdf/2604.20733.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.20733.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

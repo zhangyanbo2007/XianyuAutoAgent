@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization | DAST Papers</title>
+    <meta name="description" content="分子优化里最棘手的问题之一，是 activity cliffs 让微小结构变化触发巨大的性质跃迁，而许多深度学习方法又依赖相似性原则和黑箱表征，难以给出可解释的结构操作路径。MolEvolve 处理的不是普通的 property prediction 提分，而是如何让分子优化过程本身变成一个可规划、可解释、可工具化的 agentic search 问题。
+
+论文把 molecular discov" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c17-molevolve-molecular-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization" />
+    <meta property="og:description" content="分子优化里最棘手的问题之一，是 activity cliffs 让微小结构变化触发巨大的性质跃迁，而许多深度学习方法又依赖相似性原则和黑箱表征，难以给出可解释的结构操作路径。MolEvolve 处理的不是普通的 property prediction 提分，而是如何让分子优化过程本身变成一个可规划、可解释、可工具化的 agentic search 问题。
+
+论文把 molecular discov" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c17-molevolve-molecular-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization" />
+    <meta name="twitter:description" content="分子优化里最棘手的问题之一，是 activity cliffs 让微小结构变化触发巨大的性质跃迁，而许多深度学习方法又依赖相似性原则和黑箱表征，难以给出可解释的结构操作路径。MolEvolve 处理的不是普通的 property prediction 提分，而是如何让分子优化过程本身变成一个可规划、可解释、可工具化的 agentic search 问题。
+
+论文把 molecular discov" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24382" target="_blank" rel="noopener noreferrer">2603.24382</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>分子优化里最棘手的问题之一，是 activity cliffs 让微小结构变化触发巨大的性质跃迁，而许多深度学习方法又依赖相似性原则和黑箱表征，难以给出可解释的结构操作路径。MolEvolve 处理的不是普通的 property prediction 提分，而是如何让分子优化过程本身变成一个可规划、可解释、可工具化的 agentic search 问题。</dd></div><div><dt>方法/机制</dt><dd>论文把 molecular discovery 重写成 autonomous look-ahead planning：系统先由 LLM 冷启动，再通过 Monte Carlo Tree Search 与 RDKit 等外部化学工具共同搜索一组可执行 chemical symbolic operations。重点不在单次生成分子，而在于持续演化一个可操作、可审查的符号操作库，使结构改动和性质变化之间的关系能够被串成透明的 reasoning chain。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 AI x chemistry 从黑箱打分器推进到更接近 agentic scientific workflow 的层次：LLM、外部工具、测试时规划和可解释符号操作共同构成优化回路。对分子设计、AI for science agent、以及“可解释工具化搜索”这条主线都有明确外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为证据还主要来自 benchmark 级分子优化与性质预测任务，距离更强的实验闭环、湿实验验证和更大规模真实发现工作流还有距离。它已经展示了很好的方法方向，但长期影响仍取决于是否能走出 benchmark chemistry。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>分子优化里最棘手的问题之一，是 activity cliffs 让微小结构变化触发巨大的性质跃迁，而许多深度学习方法又依赖相似性原则和黑箱表征，难以给出可解释的结构操作路径。MolEvolve 处理的不是普通的 property prediction 提分，而是如何让分子优化过程本身变成一个可规划、可解释、可工具化的 agentic search 问题。</p><p>论文把 molecular discovery 重写成 autonomous look-ahead planning：系统先由 LLM 冷启动，再通过 Monte Carlo Tree Search 与 RDKit 等外部化学工具共同搜索一组可执行 chemical symbolic operations。重点不在单次生成分子，而在于持续演化一个可操作、可审查的符号操作库，使结构改动和性质变化之间的关系能够被串成透明的 reasoning chain。</p><p>它值得正式收录，因为它把 AI x chemistry 从黑箱打分器推进到更接近 agentic scientific workflow 的层次：LLM、外部工具、测试时规划和可解释符号操作共同构成优化回路。对分子设计、AI for science agent、以及“可解释工具化搜索”这条主线都有明确外溢。</p><p>它目前仍是 breakthrough，而不是更高一级，因为证据还主要来自 benchmark 级分子优化与性质预测任务，距离更强的实验闭环、湿实验验证和更大规模真实发现工作流还有距离。它已经展示了很好的方法方向，但长期影响仍取决于是否能走出 benchmark chemistry。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>的分子（Stärk et al., 2022; Li et al., 2023）。在分子数据（例如原子和键）上进行预训练等技术进一步巩固了GNNs作为各种性质预测任务的标准（Stuyver &amp; Coley, 2022; Cremer et al., 2023）。最近，大型语言模型（LLMs）在科学任务中展现出巨大潜力。领域特定的LLMs（Taylor et al., 2022; Liu et al., 2024）和检索增强生成（RAG）方法（Xian et al., 2025; Zhang et al., 2025）利用参数化领域知识和大量的外部文献语料库来捕获深度学习模型可能遗漏的知识和语义理解。尽管深度学习在化学领域取得了成功，但其影响力受到可解释性不足以及无法解决“活性悬崖”的阻碍，即微小的结构细微差别会引发剧烈的性质变化。当前受相似性原则约束的表征学习，常常无法捕捉这些结构-活性不连续性。为解决此问题，我们引入了MolEvolve，这是一个进化框架，将分子发现重新定义为一个自主的、前瞻性规划问题。与依赖人工设计特征或僵化先验知识的传统方法不同，MolEvolve利用大型语言模型（LLM）主动探索和演化可执行的化学符号操作库。通过利用LLM进行冷启动，并使用蒙特卡洛树搜索（MCTS）引擎结合外部工具（例如RDKit）进行测试时规划，该系统自主地自我发现最优轨迹。此过程演化出透明的推理链，将复杂的结构转换转化为可操作的、人类可读的化学见解。实验结果表明，MolEvolve的自主搜索不仅演化出透明的、人类可读的化学见解，而且在性质预测和分子优化任务中均优于基线方法。尽管这些现有方法具有强大的能力，但它们面临着显著的局限性。像GNNs这样的深度学习模型，尽管在分子数据挖掘方面具有强大能力（Li et al., 2023; Lavecchia, 2025; Stegmann et al., 2023），但它们作为黑箱运行。它们通常无法提供准确的特征归因来解释哪些特定子结构对给定的分子性质有贡献。这降低了模型的科学可解释性。此外，基于GNN的解释（例如注意力权重）是事后近似，而非内在逻辑（Stegmann et al., 2023; He et al., 2024）。另一方面，LLMs即使在领域特定知识上进行了微调，也容易产生幻觉（Suzgun et al., 2025）。LLMs倾向于生成看似合理但事实不正确的科学知识或性质（Truhn et al., 2023），并且它们通常难以预测准确的定量结果（Wang et al., 2025）。以往的方法通常将预测精度和可解释性视为独立的目标（Oviedo et al., 2022）。因此，一个关键的空白依然存在：科学家不仅需要知道最终结果，还需要知道使分子具有某种性质的明确因果规则（Mengaldo, 2024）。我们认为，实现这种可解释精度的困难源于一个根本的表征-精度悖论。正如附录B和图1所示，分子性质通常表现出高利普希茨常数，即所谓的“活性悬崖”，其中微小的结构细微差别会引发剧烈的性质变化。这一挑战源于分子流形与连续语义流形之间严重的拓扑不匹配。最近的工作</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>of molecules (Stärk et al., 2022; Li et al., 2023). Techniques such as pre-training on molecular data (e.g., atoms and bonds) have further solidified GNNs as the standard for diverse property prediction tasks (Stuyver &amp; Coley, 2022; Cremer et al., 2023). More recently, Large Language Models (LLMs) show great promise in scientific tasks. Domainspecific LLMs (Taylor et al., 2022; Liu et al., 2024) and Retrieval-Augmented Generation (RAG) methods (Xian et al., 2025; Zhang et al., 2025) leverage parametric domain knowledge and vast corpora of external literature to capture knowledge and semantic understanding that deep learning models may miss. Despite deep learning’s success in chemistry, its impact is hindered by a lack of interpretability and an inability to resolve ’activity cliffs’, where minor structural nuances trigger drastic property shifts. Current representation learning, bound by the similarity principle, often fails to capture these structural-activity discontinuities. To address this, we introduce MolEvolve, an evolutionary framework that reformulates molecular discovery as an autonomous, look-ahead planning problem. Unlike traditional methods that depend on human-engineered features or rigid prior knowledge, MolEvolve leverages a Large Language Model (LLM) to actively explore and evolve a library of executable chemical symbolic operations. By utilizing the LLM to cold start and an Monte Carlo Tree Search (MCTS) engine for test-time planning with external tools (e.g. RDKit), the system self-discovers optimal trajectories autonomously. This process evolves transparent reasoning chains that translate complex structural transformations into actionable, human-readable chemical insights. Experimental results demonstrate that MolEvolve’s autonomous search not only evolves transparent, human-readable chemical insights, but also outperforms baselines in both property prediction and molecule optimization tasks. In spite of their capabilities, these existing methods face significant limitations. Deep learning models like GNNs operate as black boxes despite their powerful capabilities in molecular data mining (Li et al., 2023; Lavecchia, 2025; Stegmann et al., 2023). They are often unable to provide accurate feature attributions to explain which specific substructures contribute to a given molecular property. This reduces the scientific interpretability of the models. In addition, GNN-based explanations (e.g., attention weights) serve as post-hoc approximations rather than intrinsic logic (Stegmann et al., 2023; He et al., 2024). On the other hand, LLMs, even when fine-tuned on domain-specific knowledge, are prone to hallucination (Suzgun et al., 2025). LLMs are prone to generate plausible but factually incorrect scientific knowledge or properties (Truhn et al., 2023), and they often struggle to predict accurate quantitative results (Wang et al., 2025). Previous approaches often treat predictive precision and interpretability as separate objectives (Oviedo et al., 2022). Consequently, a critical gap remains: scientists need to know not just the final results, but the explicit causal rules that enable a molecule to possess a certain property (Mengaldo, 2024). We argue that the difficulty in achieving such interpretable precision arises from a fundamental representationprecision paradox. As demonstrated in Appendix B and Figure 1, molecular properties often exhibit high Lipschitz constants, known as ”activity cliffs,” where minor structural nuances trigger drastic property shifts. This challenge arises from the severe topological mismatch between molecular manifolds and continuous semantic manifolds. Recent work</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325c17molevol,
+  title = {MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24382.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c17-molevolve-molecular-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MolEvolve: LLM-Guided Evolutionary Search for Interpretable Molecular Optimization. https://arxiv.org/pdf/2603.24382.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24382.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

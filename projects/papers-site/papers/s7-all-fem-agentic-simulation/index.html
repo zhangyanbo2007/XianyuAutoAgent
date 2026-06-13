@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ALL-FEM: Agentic Large Language models Fine-tuned for Finite Element Methods | DAST Papers</title>
+    <meta name="description" content="ALL-FEM 面向工程仿真中的有限元代码生成和验证瓶颈。普通 LLM 能写代码但容易幻觉，缺少变分结构意识，也无法闭环确认从问题描述到可验证解的正确性。
+
+论文构建了包含 expert FEniCS 代码和检索扩展脚本的领域数据集，并把 domain-finetuned LLM、agentic workflow、代码生成、执行和结果分析结合成自主 simulation system。重点是从问题" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s7-all-fem-agentic-simulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ALL-FEM: Agentic Large Language models Fine-tuned for Finite Element Methods" />
+    <meta property="og:description" content="ALL-FEM 面向工程仿真中的有限元代码生成和验证瓶颈。普通 LLM 能写代码但容易幻觉，缺少变分结构意识，也无法闭环确认从问题描述到可验证解的正确性。
+
+论文构建了包含 expert FEniCS 代码和检索扩展脚本的领域数据集，并把 domain-finetuned LLM、agentic workflow、代码生成、执行和结果分析结合成自主 simulation system。重点是从问题" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s7-all-fem-agentic-simulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ALL-FEM: Agentic Large Language models Fine-tuned for Finite Element Methods" />
+    <meta name="twitter:description" content="ALL-FEM 面向工程仿真中的有限元代码生成和验证瓶颈。普通 LLM 能写代码但容易幻觉，缺少变分结构意识，也无法闭环确认从问题描述到可验证解的正确性。
+
+论文构建了包含 expert FEniCS 代码和检索扩展脚本的领域数据集，并把 domain-finetuned LLM、agentic workflow、代码生成、执行和结果分析结合成自主 simulation system。重点是从问题" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ALL-FEM: Agentic Large Language models Fine-tuned for Finite Element Methods</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-01-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.21011" target="_blank" rel="noopener noreferrer">2603.21011</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ALL-FEM 面向工程仿真中的有限元代码生成和验证瓶颈。普通 LLM 能写代码但容易幻觉，缺少变分结构意识，也无法闭环确认从问题描述到可验证解的正确性。</dd></div><div><dt>方法/机制</dt><dd>论文构建了包含 expert FEniCS 代码和检索扩展脚本的领域数据集，并把 domain-finetuned LLM、agentic workflow、代码生成、执行和结果分析结合成自主 simulation system。重点是从问题到 verified solution 的闭环。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它是 AI for scientific/engineering computing 的可复用工作流：领域模型 + agent 执行 + verifier + 仿真代码生态。对 PDE/FEM、工程设计和自动仿真管线有明确溢出价值。</dd></div><div><dt>收录价值</dt><dd>局限在于系统绑定 FEniCS 和有限元任务，迁移到商业 CAE、多物理复杂边界和工业级网格流程还需扩展。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ALL-FEM 面向工程仿真中的有限元代码生成和验证瓶颈。普通 LLM 能写代码但容易幻觉，缺少变分结构意识，也无法闭环确认从问题描述到可验证解的正确性。</p><p>论文构建了包含 expert FEniCS 代码和检索扩展脚本的领域数据集，并把 domain-finetuned LLM、agentic workflow、代码生成、执行和结果分析结合成自主 simulation system。重点是从问题到 verified solution 的闭环。</p><p>它值得收录，是因为它是 AI for scientific/engineering computing 的可复用工作流：领域模型 + agent 执行 + verifier + 仿真代码生态。对 PDE/FEM、工程设计和自动仿真管线有明确溢出价值。</p><p>局限在于系统绑定 FEniCS 和有限元任务，迁移到商业 CAE、多物理复杂边界和工业级网格流程还需扩展。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>有限元 (FE) 分析指导着几乎所有制造对象的设计和验证。它在计算工程的核心地位，能够模拟从流体和固体到多物理系统等复杂物理系统。然而，实施 FE 代码和分析仿真结果需要对数值分析、连续介质力学和编程等领域拥有专业知识。传统的大型语言模型 (LLMs) 可以生成 FE 代码，但它们会产生幻觉，缺乏变分结构意识，并且无法从问题陈述到经过验证的解决方案的闭环。在此，我们提出 ALL-FEM，一个集成了自主 AI 与针对特定领域的微调 LLM 的自主仿真系统，用于 FEniCS 代码生成，应用于固体、流体和多物理学应用。我们通过将 500+ 经过精心策划的专家代码与检索增强、多 LLM 管道相结合，构建了 1000+ 经过验证的 FEniCS 脚本语料库，用于生成和过滤各种偏微分方程、几何形状和边界条件的代码。我们使用该语料库对具有 3B 到 120B 参数的 LLM 进行微调。我们的自主框架协调由微调的 LLM 驱动的专用代理，以将问题表述为偏微分方程，生成和调试代码并可视化结果。我们评估了该系统在 39 个基准测试中的表现，这些测试包括线性/非线性弹性、塑性、牛顿/非牛顿流体、热流体、流体-结构耦合、相分离和移动域上的输运问题。嵌入在多代理工作流程中，并具有运行时反馈，最佳微调模型 (GPT OSS 120B) 实现了 71.79% 的代码级别成功率，优于非自主部署的 GPT 5 Thinking。通过证明，通过自主框架协调，相对较小且微调的 LLM 可以自动化 FE 工作流程，ALL-FEM 为计算科学和工程中的自主仿真系统提供了一个蓝图。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Finite element (FE) analysis guides the design and verification of nearly all manufactured objects. It is at the core of computational engineering, enabling simulation of complex physical systems, from fluids and solids to multiphysics systems. However, implementing FE codes and analyzing simulation results demands expertise across numerical analysis, continuum mechanics, and programming. Conventional Large Language Models (LLMs) can generate FE code, but they hallucinate, lack awareness of variational structures, and cannot close the loop from problem statement to a verified solution. Here, we propose ALL-FEM, an autonomous simulation system that integrates agentic AI with domain-specific, fine-tuned LLMs for FEniCS code generation across solid, fluid, and multiphysics applications. We construct a corpus of 1000+ verified FEniCS scripts by combining 500+ curated expert codes with a retrieval-augmented, multi-LLM pipeline that generates and filters codes for diverse PDEs, geometries, and boundary conditions. We used the corpus to fine-tune LLMs with 3B to 120B parameters. Our agentic framework orchestrates specialized agents, powered by fine-tuned LLMs, to formulate problems as PDEs, generate and debug code and visualize the results. We evaluated the system on 39 benchmarks that include problems of linear/nonlinear elasticity, plasticity, Newtonian/non-Newtonian flow, thermofluids, fluid-structure interaction, phase separation, and transport on moving domains. Embedded in a multi-agent workflow with runtime feedback, the best fine-tuned model (GPT OSS 120B) achieves code-level success of 71.79%, outperforming a non-agentic deployment of GPT 5 Thinking. By showing that relatively small, fine-tuned LLMs, orchestrated through agentic frameworks, can automate FE workflows, ALL-FEM offers a blueprint for autonomous simulation systems in computational science and engineering.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260108s7allfemag,
+  title = {ALL-FEM: Agentic Large Language models Fine-tuned for Finite Element Methods},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.21011.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s7-all-fem-agentic-simulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ALL-FEM: Agentic Large Language models Fine-tuned for Finite Element Methods. https://arxiv.org/pdf/2603.21011.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.21011.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

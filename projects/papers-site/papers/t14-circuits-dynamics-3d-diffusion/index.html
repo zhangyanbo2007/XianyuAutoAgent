@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Circuits to Dynamics: Understanding and Stabilizing Failure in 3D Diffusion Transformers | DAST Papers</title>
+    <meta name="description" content="这篇论文关注 3D diffusion transformer 在稀疏点云条件下的一个灾难性失败模式：输入只做极小的表面扰动，生成结果就会突然碎裂成多个不连通部分。作者把这个现象称为 Meltdown，并把它当成机制解释与稳定控制的联合问题来研究。
+
+方法上，论文用 activation patching 把故障局部化到单个早期去噪 cross-attention 激活，再用该激活奇异值谱的 sp" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t14-circuits-dynamics-3d-diffusion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="From Circuits to Dynamics: Understanding and Stabilizing Failure in 3D Diffusion Transformers" />
+    <meta property="og:description" content="这篇论文关注 3D diffusion transformer 在稀疏点云条件下的一个灾难性失败模式：输入只做极小的表面扰动，生成结果就会突然碎裂成多个不连通部分。作者把这个现象称为 Meltdown，并把它当成机制解释与稳定控制的联合问题来研究。
+
+方法上，论文用 activation patching 把故障局部化到单个早期去噪 cross-attention 激活，再用该激活奇异值谱的 sp" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t14-circuits-dynamics-3d-diffusion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From Circuits to Dynamics: Understanding and Stabilizing Failure in 3D Diffusion Transformers" />
+    <meta name="twitter:description" content="这篇论文关注 3D diffusion transformer 在稀疏点云条件下的一个灾难性失败模式：输入只做极小的表面扰动，生成结果就会突然碎裂成多个不连通部分。作者把这个现象称为 Meltdown，并把它当成机制解释与稳定控制的联合问题来研究。
+
+方法上，论文用 activation patching 把故障局部化到单个早期去噪 cross-attention 激活，再用该激活奇异值谱的 sp" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>From Circuits to Dynamics: Understanding and Stabilizing Failure in 3D Diffusion Transformers</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-02-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.11130" target="_blank" rel="noopener noreferrer">2602.11130</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注 3D diffusion transformer 在稀疏点云条件下的一个灾难性失败模式：输入只做极小的表面扰动，生成结果就会突然碎裂成多个不连通部分。作者把这个现象称为 Meltdown，并把它当成机制解释与稳定控制的联合问题来研究。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文用 activation patching 把故障局部化到单个早期去噪 cross-attention 激活，再用该激活奇异值谱的 spectral entropy 作为可观测代理指标，进一步把它解释成 reverse diffusion 动力学中的 symmetry-breaking bifurcation。基于这一机制洞见，作者提出 PowerRemap 作为 test-time 控制手段来稳定生成。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里的价值很高，因为它把 mechanistic interpretability 不再只用于语言模型，而是推进到了 3D diffusion 这种复杂生成系统，并且不是停留在“解释”，而是进一步做了可验证的控制与修复。对于扩散模型稳定性研究，这是很强的案例。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它的方法和机制解释都很漂亮，但当前影响仍然集中在 3D diffusion / point-cloud completion 这条线上，还不到会重排更大生成模型研究路线的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注 3D diffusion transformer 在稀疏点云条件下的一个灾难性失败模式：输入只做极小的表面扰动，生成结果就会突然碎裂成多个不连通部分。作者把这个现象称为 Meltdown，并把它当成机制解释与稳定控制的联合问题来研究。</p><p>方法上，论文用 activation patching 把故障局部化到单个早期去噪 cross-attention 激活，再用该激活奇异值谱的 spectral entropy 作为可观测代理指标，进一步把它解释成 reverse diffusion 动力学中的 symmetry-breaking bifurcation。基于这一机制洞见，作者提出 PowerRemap 作为 test-time 控制手段来稳定生成。</p><p>它在仓库里的价值很高，因为它把 mechanistic interpretability 不再只用于语言模型，而是推进到了 3D diffusion 这种复杂生成系统，并且不是停留在“解释”，而是进一步做了可验证的控制与修复。对于扩散模型稳定性研究，这是很强的案例。</p><p>我把它放在“突破性”。原因是它的方法和机制解释都很漂亮，但当前影响仍然集中在 3D diffusion / point-cloud completion 这条线上，还不到会重排更大生成模型研究路线的程度。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从电路到动力学：理解和稳定3D扩散Transformer中的故障。从稀疏点云进行可靠的表面补全支撑着内容创作和机器人技术等诸多应用。尽管3D扩散Transformer在该任务上取得了最先进的结果，但我们发现它们表现出一种灾难性的故障模式：对输入点云进行任意小的表面扰动，都可能将输出分裂成多个不连贯的碎片——我们称之为“熔毁”（Meltdown）现象。利用机制可解释性中的激活修补（activationpatching），我们将“熔毁”定位到单个早期去噪交叉注意力（crossattention）激活。我们发现该激活的奇异值谱提供了一个标量代理：当碎片化发生时，其谱熵（spectral entropy）会上升，并在修补后恢复到基线水平。通过扩散动力学解释，我们表明该代理跟踪了逆向过程的对称破缺分岔。在这一洞察的指导下，我们引入了PowerRemap，这是一种在测试时稳定稀疏点云条件化的控制方法。我们证明“熔毁”现象在最先进的架构（WA L A, M AKE - A -S HAPE）、数据集（GSO, SimJEB）和去噪策略（DDPM, DDIM）中普遍存在，并且PowerRemap能有效对抗这种故障，稳定率高达98.3%。总的来说，这项工作是一个案例研究，展示了如何基于机制分析来理解和引导扩散模型的行为，将电路级的交叉注意力机制与轨迹分岔的扩散动力学解释联系起来。图1. 我们研究了扩散Transformer在稀疏点云表面重建任务上的表现。我们发现对点云进行任意小的表面扰动，可以将一个形状变成斑点。我们将这种故障称为“熔毁”，并通过机制可解释性和扩散动力学对其进行研究。基于此分析，我们提出了一种测试时干预措施PowerRemap，它能在测试时稳定稀疏条件下的基于扩散的表面重建。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reliable surface completion from sparse point clouds underpins many applications spanning content creation and robotics. While 3D diffusion transformers attain state-of-the-art results on this task, we uncover that they exhibit a catastrophic mode of failure: arbitrarily small on-surface perturbations to the input point cloud can fracture the output into multiple disconnected pieces – a phenomenon we call Meltdown. Using activationpatching from mechanistic interpretability, we localize Meltdown to a single early denoising crossattention activation. We find that the singularvalue spectrum of this activation provides a scalar proxy: its spectral entropy rises when fragmentation occurs and returns to baseline when patched. Interpreted through diffusion dynamics, we show that this proxy tracks a symmetry-breaking bifurcation of the reverse process. Guided by this insight, we introduce PowerRemap, a test-time control that stabilizes sparse point-cloud conditioning. We demonstrate that Meltdown persists across state-of-the-art architectures (WA L A, M AKE - A -S HAPE), datasets (GSO, SimJEB) and denoising strategies (DDPM, DDIM), and that PowerRemap effectively counters this failure with stabilization rates of up to 98.3%. Overall, this work is a case study on how diffusion model behavior can be understood and guided based on mechanistic analysis, linking a circuit-level crossattention mechanism to diffusion-dynamics accounts of trajectory bifurcations. Figure 1. We investigate diffusion transformers on the task of surface reconstruction from sparse point clouds. We find that arbitrarily small on-surface perturbations to a point cloud can turn a shape into a speckle. We call this failure Meltdown and study it through mechanistic interpretability and diffusion dynamics. Based on this analysis, we propose a test-time intervention, PowerRemap, which stabilizes diffusion-based surface reconstruction under sparse conditions at test-time.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260211t14circuit,
+  title = {From Circuits to Dynamics: Understanding and Stabilizing Failure in 3D Diffusion Transformers},
+  year = {2026},
+  url = {https://arxiv.org/abs/2602.11130},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t14-circuits-dynamics-3d-diffusion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). From Circuits to Dynamics: Understanding and Stabilizing Failure in 3D Diffusion Transformers. https://arxiv.org/abs/2602.11130</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2602.11130" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

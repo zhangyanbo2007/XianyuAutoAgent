@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MIND-V: Hierarchical Video Generation for Long-Horizon Robotic Manipulation with RL-based Physical Alignment | DAST Papers</title>
+    <meta name="description" content="机器人模仿学习长期受限于长时程、高质量操作视频数据不足，而现有生成模型通常只能合成短片段、简单动作，且缺少物理一致性。本文针对的是：如何生成长时程、可控且更符合物理规律的机器人操作视频。
+
+作者提出 MIND-V，一个分层视频生成框架，由语义推理中心、行为语义桥接器和运动视频生成器组成，并在测试时加入 staged visual future rollouts 以提高长时程稳定性。更关键的是，它引" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm7-mind-v-robotic-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MIND-V: Hierarchical Video Generation for Long-Horizon Robotic Manipulation with RL-based Physical Alignment" />
+    <meta property="og:description" content="机器人模仿学习长期受限于长时程、高质量操作视频数据不足，而现有生成模型通常只能合成短片段、简单动作，且缺少物理一致性。本文针对的是：如何生成长时程、可控且更符合物理规律的机器人操作视频。
+
+作者提出 MIND-V，一个分层视频生成框架，由语义推理中心、行为语义桥接器和运动视频生成器组成，并在测试时加入 staged visual future rollouts 以提高长时程稳定性。更关键的是，它引" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm7-mind-v-robotic-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MIND-V: Hierarchical Video Generation for Long-Horizon Robotic Manipulation with RL-based Physical Alignment" />
+    <meta name="twitter:description" content="机器人模仿学习长期受限于长时程、高质量操作视频数据不足，而现有生成模型通常只能合成短片段、简单动作，且缺少物理一致性。本文针对的是：如何生成长时程、可控且更符合物理规律的机器人操作视频。
+
+作者提出 MIND-V，一个分层视频生成框架，由语义推理中心、行为语义桥接器和运动视频生成器组成，并在测试时加入 staged visual future rollouts 以提高长时程稳定性。更关键的是，它引" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MIND-V: Hierarchical Video Generation for Long-Horizon Robotic Manipulation with RL-based Physical Alignment</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2025-12-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.06628" target="_blank" rel="noopener noreferrer">2512.06628</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>机器人模仿学习长期受限于长时程、高质量操作视频数据不足，而现有生成模型通常只能合成短片段、简单动作，且缺少物理一致性。本文针对的是：如何生成长时程、可控且更符合物理规律的机器人操作视频。</dd></div><div><dt>方法/机制</dt><dd>作者提出 MIND-V，一个分层视频生成框架，由语义推理中心、行为语义桥接器和运动视频生成器组成，并在测试时加入 staged visual future rollouts 以提高长时程稳定性。更关键的是，它引入 Physical Foresight Coherence 奖励，并用 V-JEPA world model 作为物理前瞻约束，对生成视频进行 RL 对齐。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合多模态 / world model / embodied data synthesis 主线。它不只是视频质量优化，而是把“生成数据是否有助于后续机器人学习”放到核心位置，对 robot data generation 和 physically grounded video synthesis 都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>它归为突破性而不是更高一级，因为目前仍属于机器人视频生成这一较窄赛道，虽然物理对齐思路很对，但离更广泛的视频世界模型范式转变还有距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>机器人模仿学习长期受限于长时程、高质量操作视频数据不足，而现有生成模型通常只能合成短片段、简单动作，且缺少物理一致性。本文针对的是：如何生成长时程、可控且更符合物理规律的机器人操作视频。</p><p>作者提出 MIND-V，一个分层视频生成框架，由语义推理中心、行为语义桥接器和运动视频生成器组成，并在测试时加入 staged visual future rollouts 以提高长时程稳定性。更关键的是，它引入 Physical Foresight Coherence 奖励，并用 V-JEPA world model 作为物理前瞻约束，对生成视频进行 RL 对齐。</p><p>这篇论文适合多模态 / world model / embodied data synthesis 主线。它不只是视频质量优化，而是把“生成数据是否有助于后续机器人学习”放到核心位置，对 robot data generation 和 physically grounded video synthesis 都有外溢价值。</p><p>它归为突破性而不是更高一级，因为目前仍属于机器人视频生成这一较窄赛道，虽然物理对齐思路很对，但离更广泛的视频世界模型范式转变还有距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过三个核心组件实现层级合成：一个语义PFC分数子任务率(%)推理中心(SRH)，它利用预训练的视觉-语言模型进行任务规划；一个行为语义桥(BSB)，它将抽象指令转换为领域不变的表示；图1. MIND-V与SOTA模型在长时程机器人视频生成方面的综合比较。以及一个用于条件视频渲染的运动视频生成器(MVG)。多样化的长时程机器人操作数据[9]。MIND-V 视频生成模型 [17, 30, 36] 提供了一种有前景的 分阶段视觉未来展望，一种测试时优化策略，以增强长时程鲁棒性。为了机器人操作视频 [9, 50]，这可以促进模仿学习，甚至作为具身智能体的世界模型 [5, 51]，我们将生成的视频与物理定律对齐，我们引入了一个由新颖的物理预见一致性(PFC)奖励指导的GRPO强化学习后训练阶段。PFC利用V-JEPA世界模型，通过对齐特征空间中预测和实际的动态演变来强制物理合理性。MIND-V 在长时程机器人操作视频生成中展示了最先进的性能，保持了跨一系列相互关联子任务的因果一致性和逻辑流，其中一个错误可能危及整个操作 [12, 38]，从而建立了具身数据合成的可扩展和可控范式。然而，生成高质量、长时程的机器人操作视频，使其符合人类指令的物理合理性，通过对齐特征空间中预测和实际的动态演变，带来了重大挑战，主要在三个方面：(1) 长时程一致性挑战：这要求在相互关联的子任务序列中保持因果一致性和逻辑流，其中一个错误可能危及整个操作 [12, 38]。(2) 语义到像素生成挑战：这涉及将抽象语言命令准确地转换为具体的空间-</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>level synthesis through three core components: a Semantic PFC Score Sub-task Rate (%) Reasoning Hub (SRH) that leverages a pre-trained vision- language model for task planning; a Behavioral Seman- Figure 1. Comprehensive comparison of MIND-V against SOTA models for long-horizon robotic video generation. tic Bridge (BSB) that translates abstract instructions into domain-invariant representations; and a Motor Video Gen- diverse, and long-horizon robotic manipulation data [9]. erator (MVG) for conditional video rendering. MIND-V Video generation models [17, 30, 36] offer a promising employs Staged Visual Future Rollouts, a test-time opti- solution by potentially synthesizing an infinite stream of mization strategy to enhance long-horizon robustness. To robotic operation videos [9, 50], which can fuel imitation align the generated videos with physical laws, we intro- learning and even function as world models [5, 51] for em- duce a GRPO reinforcement learning post-training phase bodied agents. guided by a novel Physical Foresight Coherence (PFC) re- However, generating high-quality, long-horizon robotic ward. PFC leverages the V-JEPA world model to enforce manipulation videos that adhere to human commands physical plausibility by aligning the predicted and actual presents significant challenges, primarily in three areas: (1) dynamic evolutions in the feature space. MIND-V demon- Long-Horizon Coherence Challenge: This demands main- strates state-of-the-art performance in long-horizon robotic taining causal consistency and logical flow across a se- manipulation video generation, establishing a scalable and quence of interconnected sub-tasks, where a single error can controllable paradigm for embodied data synthesis. compromise the entire operation [12, 38]. (2) Semantic- to-Pixel Generation Challenge: This involves accurately translating abstract language commands into concrete spa-</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251207mm7mindvro,
+  title = {MIND-V: Hierarchical Video Generation for Long-Horizon Robotic Manipulation with RL-based Physical Alignment},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.06628.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm7-mind-v-robotic-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). MIND-V: Hierarchical Video Generation for Long-Horizon Robotic Manipulation with RL-based Physical Alignment. https://arxiv.org/pdf/2512.06628.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.06628.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

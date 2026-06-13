@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>delta-mem: Efficient Online Memory for Large Language Models | DAST Papers</title>
+    <meta name="description" content="delta-mem: Efficient Online Memory for Large Language Models 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+Compact online associative memory state coupled to frozen attention for LLM long-term memory.
+
+It is a d" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r74-delta-mem-online-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="delta-mem: Efficient Online Memory for Large Language Models" />
+    <meta property="og:description" content="delta-mem: Efficient Online Memory for Large Language Models 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+Compact online associative memory state coupled to frozen attention for LLM long-term memory.
+
+It is a d" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r74-delta-mem-online-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="delta-mem: Efficient Online Memory for Large Language Models" />
+    <meta name="twitter:description" content="delta-mem: Efficient Online Memory for Large Language Models 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+Compact online associative memory state coupled to frozen attention for LLM long-term memory.
+
+It is a d" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>delta-mem: Efficient Online Memory for Large Language Models</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.12357" target="_blank" rel="noopener noreferrer">2605.12357</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>delta-mem: Efficient Online Memory for Large Language Models 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</dd></div><div><dt>方法/机制</dt><dd>Compact online associative memory state coupled to frozen attention for LLM long-term memory.</dd></div><div><dt>结果/证据</dt><dd>It is a direct memory primitive for LLM/agent systems, using a compact online state to modify attention without full fine-tuning or context extension.</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>delta-mem: Efficient Online Memory for Large Language Models 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</p><p>Compact online associative memory state coupled to frozen attention for LLM long-term memory.</p><p>It is a direct memory primitive for LLM/agent systems, using a compact online state to modify attention without full fine-tuning or context extension.</p><p>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）在长期助手和代理系统中越来越需要积累和重用历史信息。简单地扩展上下文窗口成本高昂，并且往往无法确保有效的上下文利用。我们提出了δ-mem，一种轻量级记忆机制，它通过一个紧凑的联想记忆在线状态来增强冻结的全注意力骨干模型。δ-mem将过去的信息压缩成一个通过delta-rule学习更新的固定大小状态矩阵，并利用其读出在生成过程中对骨干模型的注意力计算生成低秩修正。仅使用一个8 × 8的在线记忆状态，δ-mem将平均分数提高到冻结骨干模型的1.10倍和最强非δ-mem记忆基线的1.15倍。它在记忆密集型基准测试上取得了更大的收益，在MemoryAgentBench上达到1.31倍，在LoCoMo上达到1.20倍，同时在很大程度上保留了通用能力。这些结果表明，有效的记忆可以通过直接与注意力计算耦合的紧凑在线状态实现，而无需完全微调、骨干模型替换或显式上下文扩展。§ Github: Declare-lab &amp; MindLab-Research # 通讯作者: Jingdi Lei, Di Zhang, Soujanya Poria z 日期: 2026年5月13日</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models increasingly need to accumulate and reuse historical information in long-term assistants and agent systems. Simply expanding the context window is costly and often fails to ensure effective context utilization. We propose δ-mem, a lightweight memory mechanism that augments a frozen full-attention backbone with a compact online state of associative memory. δ-mem compresses past information into a fixed-size state matrix updated by delta-rule learning, and uses its readout to generate low-rank corrections to the backbone’s attention computation during generation. With only an 8 × 8 online memory state, δ-mem improves the average score to 1.10× that of the frozen backbone and 1.15× that of the strongest non-δ-mem memory baseline. It achieves larger gains on memory-heavy benchmarks, reaching 1.31× on MemoryAgentBench and 1.20× on LoCoMo, while largely preserving general capabilities. These results show that effective memory can be realized through a compact online state directly coupled with attention computation, without full fine-tuning, backbone replacement, or explicit context extension. § Github: Declare-lab &amp; MindLab-Research # Correspondence: Jingdi Lei, Di Zhang, Soujanya Poria z Date: May 13, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512r74deltame,
+  title = {delta-mem: Efficient Online Memory for Large Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.12357.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r74-delta-mem-online-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). delta-mem: Efficient Online Memory for Large Language Models. https://arxiv.org/pdf/2605.12357.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.12357.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.12357" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

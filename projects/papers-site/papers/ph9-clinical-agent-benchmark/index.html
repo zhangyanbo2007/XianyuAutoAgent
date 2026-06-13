@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Benchmarking large language model-based agent systems for clinical decision tasks | DAST Papers</title>
+    <meta name="description" content="This npj Digital Medicine paper evaluates agentic LLM systems in clinical decision workflows rather than treating medical AI as isolated question answering. It compares open-source and proprietary pla" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/ph9-clinical-agent-benchmark/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Benchmarking large language model-based agent systems for clinical decision tasks" />
+    <meta property="og:description" content="This npj Digital Medicine paper evaluates agentic LLM systems in clinical decision workflows rather than treating medical AI as isolated question answering. It compares open-source and proprietary pla" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/ph9-clinical-agent-benchmark/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Benchmarking large language model-based agent systems for clinical decision tasks" />
+    <meta name="twitter:description" content="This npj Digital Medicine paper evaluates agentic LLM systems in clinical decision workflows rather than treating medical AI as isolated question answering. It compares open-source and proprietary pla" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Benchmarking large language model-based agent systems for clinical decision tasks</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2026-02-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-18</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41746-026-02443-6" target="_blank" rel="noopener noreferrer">10.1038/s41746-026-02443-6</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>This npj Digital Medicine paper evaluates agentic LLM systems in clinical decision workflows rather than treating medical AI as isolated question answering. It compares open-source and proprietary planner-executor-verifier style agents across diagnostic simulation, medical QA, and hard multimodal/text benchmarks.</dd></div><div><dt>方法/机制</dt><dd>The main result is cautionary: tool-using clinical agents deliver only modest accuracy gains while increasing token use and latency substantially. Built-in safeguards filter many hallucinations but do not eliminate them.</dd></div><div><dt>结果/证据</dt><dd>For this repository, the paper is useful because it supplies a concrete evaluation pattern for agent systems in a high-stakes workflow: accuracy, tool cost, latency, multimodal failure, hallucination filtering, and clinical viability must be measured together.</dd></div><div><dt>收录价值</dt><dd>It is not collected because the systems themselves are strong; it is collected because the benchmark and negative result are reusable for medical operations and agent evaluation.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>This npj Digital Medicine paper evaluates agentic LLM systems in clinical decision workflows rather than treating medical AI as isolated question answering. It compares open-source and proprietary planner-executor-verifier style agents across diagnostic simulation, medical QA, and hard multimodal/text benchmarks.</p><p>The main result is cautionary: tool-using clinical agents deliver only modest accuracy gains while increasing token use and latency substantially. Built-in safeguards filter many hallucinations but do not eliminate them.</p><p>For this repository, the paper is useful because it supplies a concrete evaluation pattern for agent systems in a high-stakes workflow: accuracy, tool cost, latency, multimodal failure, hallucination filtering, and clinical viability must be measured together.</p><p>It is not collected because the systems themselves are strong; it is collected because the benchmark and negative result are reusable for medical operations and agent evaluation.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基准测试基于大型语言模型的临床决策任务智能体系统智能体人工智能 (AI) 系统旨在自主推理、规划和调用工具，已在医疗保健领域展现出前景，然而对其真实世界性能的系统性基准测试仍然有限。在本研究中，我们评估了两个此类系统：开源的OpenManus，它基于Meta的Llama-4构建并扩展了医学定制智能体；以及Manus，一个采用多步规划器-执行器-验证器架构的专有智能体系统。这两个系统在三个基准测试系列中进行了评估：AgentClinic，一个基于逐步对话的诊断模拟；MedAgentsBench，一个知识密集型医学问答数据集；以及Humanity’s Last Exam (HLE)，一套具有挑战性的纯文本和多模态问题。尽管能够访问高级工具（例如，网页浏览、代码开发和执行以及文本文件编辑），智能体系统相对于基线LLM仅取得了适度的准确性提升，在AgentClinic MedQA和MIMIC中分别达到60.3%和28.0%，在MedAgentsBench上达到30.3%，在HLE文本上达到8.6%。多模态准确性仍然很低（在多模态HLE上为15.5%，在AgentClinic NEJM上为29.2%），而资源需求大幅增加，伴随着超过10倍的token使用量和超过2倍的延迟。尽管89.9%的幻觉被智能体内部的安全措施过滤，幻觉仍然普遍存在。这些发现表明，当前的智能体设计仅提供了适度的性能优势，但伴随着显著的计算和工作流程成本，强调了对更准确、高效和临床可行的智能体系统的需求。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic artificial intelligence (AI) systems, designed to autonomously reason, plan, and invoke tools, have shown promise in healthcare, yet systematic benchmarking of their real-world performance remains limited. In this study, we evaluate two such systems: the open-source OpenManus, built on Meta’s Llama-4 and extended with medically customized agents; and Manus, a proprietary agent system employing a multistep planner-executor-verifier architecture. Both systems were assessed across three benchmark families: AgentClinic , a stepwise dialog-based diagnostic simulation; MedAgentsBench , a knowledge-intensive medical QA dataset; and Humanity’s Last Exam (HLE), a suite of challenging text-only and multimodal questions. Despite access to advanced tools (e.g., web browsing, code development and execution, and text file editing) agent systems yielded only modest accuracy gains over baseline LLMs, reaching 60.3% and 28.0% in AgentClinic MedQA and MIMIC, 30.3% on MedAgentsBench, and 8.6% on HLE text. Multimodal accuracy remained low (15.5% on multimodal HLE, 29.2% on AgentClinic NEJM), while resource demands increased substantially, with &gt;10× token usage and &gt;2× latency. Although 89.9% of hallucinations were filtered by in-agent safeguards, hallucinations remained prevalent. These findings reveal that current agentic designs offer modest performance benefits at significant computational and workflow cost, underscoring the need for more accurate, efficient, and clinically viable agent systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260218ph9clinica,
+  title = {Benchmarking large language model-based agent systems for clinical decision tasks},
+  year = {2026},
+  url = {https://doi.org/10.1038/s41746-026-02443-6},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/ph9-clinical-agent-benchmark/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Benchmarking large language model-based agent systems for clinical decision tasks. https://doi.org/10.1038/s41746-026-02443-6</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med7-physicianbench-ehr-agents/">
+              <span>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med6-fair-unlearning-clinical-ai/">
+              <span>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med5-gsco-generalist-specialist-collaboration/">
+              <span>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</span>
+              <small>公共卫生与医疗运营 · 2026-05-01</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41746-026-02443-6" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

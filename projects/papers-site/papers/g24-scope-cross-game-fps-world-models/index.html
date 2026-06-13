@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models | DAST Papers</title>
+    <meta name="description" content="SCOPE 处理 FPS playable world models 的控制难题：高频、重叠的控制信号会同时影响局部武器区域和全局相机/移动，普通全局 action injection 容易干扰无关区域。
+
+论文观察到 FPS actions 具有空间选择性，离散动作如开火和换弹主要影响 weapon scope，连续相机和移动则控制周围环境。
+
+方法在 pretrained video diff" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g24-scope-cross-game-fps-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models" />
+    <meta property="og:description" content="SCOPE 处理 FPS playable world models 的控制难题：高频、重叠的控制信号会同时影响局部武器区域和全局相机/移动，普通全局 action injection 容易干扰无关区域。
+
+论文观察到 FPS actions 具有空间选择性，离散动作如开火和换弹主要影响 weapon scope，连续相机和移动则控制周围环境。
+
+方法在 pretrained video diff" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g24-scope-cross-game-fps-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models" />
+    <meta name="twitter:description" content="SCOPE 处理 FPS playable world models 的控制难题：高频、重叠的控制信号会同时影响局部武器区域和全局相机/移动，普通全局 action injection 容易干扰无关区域。
+
+论文观察到 FPS actions 具有空间选择性，离散动作如开火和换弹主要影响 weapon scope，连续相机和移动则控制周围环境。
+
+方法在 pretrained video diff" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.23345" target="_blank" rel="noopener noreferrer">2605.23345</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SCOPE 处理 FPS playable world models 的控制难题：高频、重叠的控制信号会同时影响局部武器区域和全局相机/移动，普通全局 action injection 容易干扰无关区域。</dd></div><div><dt>方法/机制</dt><dd>论文观察到 FPS actions 具有空间选择性，离散动作如开火和换弹主要影响 weapon scope，连续相机和移动则控制周围环境。</dd></div><div><dt>结果/证据</dt><dd>方法在 pretrained video diffusion model 的每个 transformer block 中插入 conditioning module，把特征重排为 per-pixel temporal sequences，让每个位置按局部视觉内容计算 action response；同时发布 CrossFPS 多游戏数据集。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它为可玩世界模型提供了局部动作响应和跨游戏泛化接口，对游戏 world model、交互仿真和 embodied environment generation 有复用价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SCOPE 处理 FPS playable world models 的控制难题：高频、重叠的控制信号会同时影响局部武器区域和全局相机/移动，普通全局 action injection 容易干扰无关区域。</p><p>论文观察到 FPS actions 具有空间选择性，离散动作如开火和换弹主要影响 weapon scope，连续相机和移动则控制周围环境。</p><p>方法在 pretrained video diffusion model 的每个 transformer block 中插入 conditioning module，把特征重排为 per-pixel temporal sequences，让每个位置按局部视觉内容计算 action response；同时发布 CrossFPS 多游戏数据集。</p><p>它值得正式收录，因为它为可玩世界模型提供了局部动作响应和跨游戏泛化接口，对游戏 world model、交互仿真和 embodied environment generation 有复用价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SCOPE：在可玩环境中模拟FPS世界模型的跨游戏操作 用于第一人称射击 (FPS) 游戏的交互式世界模型必须在每一帧解决高频重叠的控制信号，同时不干扰未受影响的区域。现有方法全局注入动作并在单一游戏中进行训练，在密集的FPS输入下表现不佳。我们观察到FPS动作具有空间选择性：射击或重新装弹等离散事件仅影响武器周围的局部区域（即“范围”），而连续的摄像机和移动信号则控制稳定的周围环境。我们提出了SCOPE，它将一个条件模块插入到预训练视频扩散模型的每个Transformer块中。它将特征重塑为逐像素时间序列，使得每个位置都能从局部视觉内容计算其动作响应。这在没有分割标签的情况下，将范围内的效果与范围外的生成分离开来。我们还引入了CrossFPS，这是第一个具有帧对齐动作遥测数据的多游戏FPS数据集。它包含来自7款游戏的6.9万个片段，具有10自由度控制器信号，并经过精心策划以消除游戏玩法偏差。该模型学习通用的视觉到动作映射，而非特定于游戏的模式，从而实现对未见场景的零样本迁移。实验证实了强大的动作响应能力、精确的范围分离以及有效的跨游戏泛化能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Interactive world models for first-person shooter (FPS) games must resolve highfrequency overlapping control signals at every frame without disrupting unaffected † This work was completed during a research internship at Tencent, supervised by Yeying Jin. ‡ Project lead. ✉ Corresponding Author. regions. Existing methods inject actions globally and train on single titles, failing under dense FPS inputs. We observe that FPS actions are spatially selective: discrete events such as firing or reloading affect only a localized region around the weapon (the scope), while continuous camera and movement signals govern stable surroundings. We propose SCOPE, which inserts a conditioning module into each transformer block of a pretrained video diffusion model. It reshapes features into per-pixel temporal sequences so that each position computes its action response from local visual content. This separates in-scope effects from out-ofscope generation without segmentation labels. We also introduce CrossFPS, the first multi-game FPS dataset with frame-aligned action telemetry. It comprises 69K clips from 7 titles with 10-DoF controller signals, curated to remove gameplay bias. The model learns general visual-to-action mappings rather than game-specific patterns, enabling zero-shot transfer to unseen scenes. Experiments confirm strong action responsiveness, precise scope separation, and effective cross-game generalization.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260522g24scopecr,
+  title = {SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.23345.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g24-scope-cross-game-fps-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models. https://arxiv.org/pdf/2605.23345.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.23345.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://z2tong.github.io/SCOPE/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.23345" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/z2tong/SCOPE" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

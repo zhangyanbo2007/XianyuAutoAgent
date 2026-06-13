@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation | DAST Papers</title>
+    <meta name="description" content="WildClawBench 针对现有 agent benchmark 的沙盒化、短任务和 mock service 问题，构建 native-runtime long-horizon agent evaluation suite。
+
+它覆盖 productivity、code intelligence、social interaction、search/retrieval、creative syn" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a280-wildclawbench-long-horizon-agent-eval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation" />
+    <meta property="og:description" content="WildClawBench 针对现有 agent benchmark 的沙盒化、短任务和 mock service 问题，构建 native-runtime long-horizon agent evaluation suite。
+
+它覆盖 productivity、code intelligence、social interaction、search/retrieval、creative syn" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a280-wildclawbench-long-horizon-agent-eval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation" />
+    <meta name="twitter:description" content="WildClawBench 针对现有 agent benchmark 的沙盒化、短任务和 mock service 问题，构建 native-runtime long-horizon agent evaluation suite。
+
+它覆盖 productivity、code intelligence、social interaction、search/retrieval、creative syn" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10912" target="_blank" rel="noopener noreferrer">2605.10912</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>WildClawBench 针对现有 agent benchmark 的沙盒化、短任务和 mock service 问题，构建 native-runtime long-horizon agent evaluation suite。</dd></div><div><dt>方法/机制</dt><dd>它覆盖 productivity、code intelligence、social interaction、search/retrieval、creative synthesis 和 safety alignment 六类任务，并要求 agent 在真实 CLI harness、文件系统、工具和容器环境中完成多步工作。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 agent 评测推向真实运行时、可审计轨迹、双语与多模态任务的组合，对 coding agents、computer-use agents 和 tool agents 都有复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为任务数仍为 60，benchmark 生态和防过拟合机制需要时间检验。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>WildClawBench 针对现有 agent benchmark 的沙盒化、短任务和 mock service 问题，构建 native-runtime long-horizon agent evaluation suite。</p><p>它覆盖 productivity、code intelligence、social interaction、search/retrieval、creative synthesis 和 safety alignment 六类任务，并要求 agent 在真实 CLI harness、文件系统、工具和容器环境中完成多步工作。</p><p>它值得正式收录，因为它把 agent 评测推向真实运行时、可审计轨迹、双语与多模态任务的组合，对 coding agents、computer-use agents 和 tool agents 都有复用价值。</p><p>它没有更高，是因为任务数仍为 60，benchmark 生态和防过拟合机制需要时间检验。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型和视觉语言模型越来越多地驱动智能体，这些智能体通过命令行界面（CLI）工具代表用户执行操作。然而，大多数智能体基准仍然依赖于合成沙盒、短周期任务、模拟服务API和最终答案检查，这使得智能体是否能在其部署的运行时环境中完成真实的长期工作仍是一个悬而未决的问题。这项工作提出了WildClawBench，这是一个原生运行时基准，包含60个人工编写的双语多模态任务，涵盖六个主题类别。每个任务平均耗时约8分钟的实际运行时间，并涉及超过20次工具调用，运行在一个可复现的Docker容器中，该容器托管一个实际的CLI智能体工具（OpenClaw、Claude Code、Codex或Hermes Agent），并可访问真实工具而非模拟服务。评分采用混合方式，结合了确定性规则检查、环境状态副作用审计以及用于语义验证的LLM/VLM评判器。在19个前沿模型中，表现最好的Claude Opus 4.7在OpenClaw下总体得分仅达到62.2%，而其他所有模型均低于60%，仅切换工具就能使单个模型的分数变化高达18个百分点。这些结果表明，对于当前的前沿模型而言，长期、原生运行时智能体评估仍然是一项远未解决的任务。我们发布了任务、代码和容器化工具，以支持可复现的评估。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language and vision-language models increasingly power agents that act on a user’s behalf through command-line interface (CLI) harnesses. However, most agent benchmarks still rely on synthetic sandboxes, short-horizon tasks, mock-service APIs, and final-answer checks, leaving open whether agents can complete realistic long-horizon work in the runtimes where they are deployed. This work presents WildClawBench, a native-runtime benchmark of 60 human-authored, bilingual, multimodal tasks spanning six thematic categories. Each task averages roughly 8 minutes of wall-clock time and over 20 tool calls, and runs inside a reproducible Docker container hosting an actual CLI agent harness (OpenClaw, Claude Code, Codex, or Hermes Agent) with access to real tools rather than mock services. Grading is hybrid, combining deterministic rule-based checks, environment-state auditing of side effects, and an LLM/VLM judge for semantic verification. Across 19 frontier models, the best, Claude Opus 4.7, reaches only 62.2% overall under OpenClaw, while every other model stays below 60%, and switching harness alone shifts a single model by up to 18 points. These results show that long-horizon, native-runtime agent evaluation remains a far-from-resolved task for current frontier models. We release the tasks, code, and containerized tooling to support reproducible evaluation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511a280wildcl,
+  title = {WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10912.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a280-wildclawbench-long-horizon-agent-eval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation. https://arxiv.org/pdf/2605.10912.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10912.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.10912" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/internlm/WildClawBench" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

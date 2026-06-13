@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>M²RNN: Non-Linear RNNs with Matrix-Valued States for Scalable Language Modeling | DAST Papers</title>
+    <meta name="description" content="这篇论文针对一个被默认接受了很多年的判断提出了反驳：非线性 RNN 在语言建模里落后，并不一定是因为非线性本身不适合大规模建模，而更可能是因为传统 RNN 的状态容量太小。作者把问题从“是否使用非线性”转向“是否给非线性递归足够大的矩阵值状态空间”，重新打开了非线性 RNN 作为语言模型主干的一条路线。
+
+论文提出 M²RNN，把隐藏状态从向量扩展为矩阵，并把外积式状态扩展机制引入非线性 RNN。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t19-m2rnn-matrix-states/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="M²RNN: Non-Linear RNNs with Matrix-Valued States for Scalable Language Modeling" />
+    <meta property="og:description" content="这篇论文针对一个被默认接受了很多年的判断提出了反驳：非线性 RNN 在语言建模里落后，并不一定是因为非线性本身不适合大规模建模，而更可能是因为传统 RNN 的状态容量太小。作者把问题从“是否使用非线性”转向“是否给非线性递归足够大的矩阵值状态空间”，重新打开了非线性 RNN 作为语言模型主干的一条路线。
+
+论文提出 M²RNN，把隐藏状态从向量扩展为矩阵，并把外积式状态扩展机制引入非线性 RNN。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t19-m2rnn-matrix-states/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="M²RNN: Non-Linear RNNs with Matrix-Valued States for Scalable Language Modeling" />
+    <meta name="twitter:description" content="这篇论文针对一个被默认接受了很多年的判断提出了反驳：非线性 RNN 在语言建模里落后，并不一定是因为非线性本身不适合大规模建模，而更可能是因为传统 RNN 的状态容量太小。作者把问题从“是否使用非线性”转向“是否给非线性递归足够大的矩阵值状态空间”，重新打开了非线性 RNN 作为语言模型主干的一条路线。
+
+论文提出 M²RNN，把隐藏状态从向量扩展为矩阵，并把外积式状态扩展机制引入非线性 RNN。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>M²RNN: Non-Linear RNNs with Matrix-Valued States for Scalable Language Modeling</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14360" target="_blank" rel="noopener noreferrer">2603.14360</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对一个被默认接受了很多年的判断提出了反驳：非线性 RNN 在语言建模里落后，并不一定是因为非线性本身不适合大规模建模，而更可能是因为传统 RNN 的状态容量太小。作者把问题从“是否使用非线性”转向“是否给非线性递归足够大的矩阵值状态空间”，重新打开了非线性 RNN 作为语言模型主干的一条路线。</dd></div><div><dt>方法/机制</dt><dd>论文提出 M²RNN，把隐藏状态从向量扩展为矩阵，并把外积式状态扩展机制引入非线性 RNN。这样既保留了非线性状态转移的表达能力，又让状态容量和 Tensor Core 利用率都显著提升。论文还给出混合架构实验，显示即使只在 hybrid recurrent/attention 模型里替换极少数层，也能获得接近全量 M²RNN 的长上下文与状态追踪收益。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这不是单纯的架构变体堆分，而是对高效语言建模里一个核心设计选择做了重新归因：问题可能不在非线性，而在状态表示规模。再加上它把复杂性理论、状态追踪泛化、硬件对齐和 7B 级 hybrid 语言建模实验放在一起，外溢价值明显。对后续线性 RNN、SSM、hybrid LM 主干设计，这都是强信号。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，原因在于当前仍主要证明了一条很强的新路线，而不是已经取代 Transformer/linear-recurrent 主线成为默认答案。它的实证规模已不错，但距离“全行业默认主干”的证据还不够，因此更适合作为高位 breakthrough 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对一个被默认接受了很多年的判断提出了反驳：非线性 RNN 在语言建模里落后，并不一定是因为非线性本身不适合大规模建模，而更可能是因为传统 RNN 的状态容量太小。作者把问题从“是否使用非线性”转向“是否给非线性递归足够大的矩阵值状态空间”，重新打开了非线性 RNN 作为语言模型主干的一条路线。</p><p>论文提出 M²RNN，把隐藏状态从向量扩展为矩阵，并把外积式状态扩展机制引入非线性 RNN。这样既保留了非线性状态转移的表达能力，又让状态容量和 Tensor Core 利用率都显著提升。论文还给出混合架构实验，显示即使只在 hybrid recurrent/attention 模型里替换极少数层，也能获得接近全量 M²RNN 的长上下文与状态追踪收益。</p><p>它值得收录，因为这不是单纯的架构变体堆分，而是对高效语言建模里一个核心设计选择做了重新归因：问题可能不在非线性，而在状态表示规模。再加上它把复杂性理论、状态追踪泛化、硬件对齐和 7B 级 hybrid 语言建模实验放在一起，外溢价值明显。对后续线性 RNN、SSM、hybrid LM 主干设计，这都是强信号。</p><p>它没有升到更高一级，原因在于当前仍主要证明了一条很强的新路线，而不是已经取代 Transformer/linear-recurrent 主线成为默认答案。它的实证规模已不错，但距离“全行业默认主干”的证据还不够，因此更适合作为高位 breakthrough 收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>M²RNN：具有矩阵值状态的非线性RNN，用于可扩展语言建模。Transformers具有高度并行性，但其计算仅限于TC0复杂度类，排除了实体跟踪和代码执行等明确需要更强表达能力的任务。受此限制的启发，我们重新审视了用于语言建模的非线性循环神经网络（RNN），并引入了矩阵到矩阵RNN（M2 RNN）：一种具有矩阵值隐藏状态和富有表现力的非线性状态转换的架构。我们证明了非线性RNN的语言建模性能受其状态大小的限制。我们还展示了状态大小扩展机制如何实现张量核心的有效利用。经验上，M2 RNN在训练期间未见的序列长度上实现了完美的状体跟踪泛化。这些优势也体现在大规模语言建模中。在将循环层与注意力机制交织的混合设置中，Hybrid M2 RNN在7B MoE模型上，比同等的Gated DeltaNet混合模型在困惑度上高出0.4-0.5个点，同时循环层使用的状态大小缩小了3倍。值得注意的是，在现有混合架构中，即使只用M2 RNN替换一个循环层，也能获得与Hybrid M2 RNN相当的准确性增益，同时对训练吞吐量的影响最小。此外，带有单个M2 RNN层的Hybrid Gated DeltaNet模型也实现了卓越的长上下文泛化能力，在LongBench上比最先进的混合线性注意力架构高出多达8个点。综上所述，这些结果确立了非线性RNN层作为高效且可扩展语言模型的一个引人注目的构建块。通讯作者：Mayank Mishra @ mayank@learning-machine.ai</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Transformers are highly parallel but are limited to computations in the TC0 complexity class, excluding tasks such as entity tracking and code execution that provably require greater expressive power. Motivated by this limitation, we revisit non-linear Recurrent Neural Networks (RNNs) for language modeling and introduce Matrix-to-Matrix RNN (M2 RNN): an architecture with matrix-valued hidden states and expressive non-linear state transitions. We demonstrate that the language modeling performance of non-linear RNNs is limited by their state size. We also demonstrate how the state size expansion mechanism enables efficient use of tensor cores. Empirically, M2 RNN achieves perfect state tracking generalization at sequence lengths not seen during training. These benefits also translate to large-scale language modeling. In hybrid settings that interleave recurrent layers with attention, Hybrid M2 RNN outperforms equivalent Gated DeltaNet hybrids by 0.4–0.5 perplexity points on a 7B MoE model, while using 3× smaller state sizes for the recurrent layers. Notably, replacing even a single recurrent layer with M2 RNN in an existing hybrid architecture yields accuracy gains comparable to Hybrid M2 RNN with minimal impact on training throughput. Further, the Hybrid Gated DeltaNet models with a single M2 RNN layer also achieve superior long-context generalization, outperforming state-of-the-art hybrid linear attention architectures by up to 8 points on LongBench. Together, these results establish non-linear RNN layers as a compelling building block for efficient and scalable language models. Correspondence: Mayank Mishra @ mayank@learning-machine.ai</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260315t19m2rnnma,
+  title = {M²RNN: Non-Linear RNNs with Matrix-Valued States for Scalable Language Modeling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14360v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t19-m2rnn-matrix-states/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). M²RNN: Non-Linear RNNs with Matrix-Valued States for Scalable Language Modeling. https://arxiv.org/pdf/2603.14360v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14360v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

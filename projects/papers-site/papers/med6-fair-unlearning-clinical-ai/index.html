@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了 clinical AI 一个非常现实、也非常容易被忽略的系统矛盾：患者要求删除病历时，模型执行 machine unlearning 可能会改变对不同亚群体的认识，从而破坏公平性。它真正贡献的是把 ‘right to be forgotten’ 和 ‘fairness’ 的冲突正式化。
+
+方法上，它不是泛泛讨论伦理，而是提出 fair unlearning strategy，并用梯" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/med6-fair-unlearning-clinical-ai/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence" />
+    <meta property="og:description" content="这篇论文抓住了 clinical AI 一个非常现实、也非常容易被忽略的系统矛盾：患者要求删除病历时，模型执行 machine unlearning 可能会改变对不同亚群体的认识，从而破坏公平性。它真正贡献的是把 ‘right to be forgotten’ 和 ‘fairness’ 的冲突正式化。
+
+方法上，它不是泛泛讨论伦理，而是提出 fair unlearning strategy，并用梯" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/med6-fair-unlearning-clinical-ai/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence" />
+    <meta name="twitter:description" content="这篇论文抓住了 clinical AI 一个非常现实、也非常容易被忽略的系统矛盾：患者要求删除病历时，模型执行 machine unlearning 可能会改变对不同亚群体的认识，从而破坏公平性。它真正贡献的是把 ‘right to be forgotten’ 和 ‘fairness’ 的冲突正式化。
+
+方法上，它不是泛泛讨论伦理，而是提出 fair unlearning strategy，并用梯" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2026-05-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-04</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72601-7" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72601-7</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了 clinical AI 一个非常现实、也非常容易被忽略的系统矛盾：患者要求删除病历时，模型执行 machine unlearning 可能会改变对不同亚群体的认识，从而破坏公平性。它真正贡献的是把 ‘right to be forgotten’ 和 ‘fairness’ 的冲突正式化。</dd></div><div><dt>方法/机制</dt><dd>方法上，它不是泛泛讨论伦理，而是提出 fair unlearning strategy，并用梯度正交化去避免遗忘目标和公平目标彼此直接干扰。这让它更像一个可复用的高风险部署接口，而不是单次医疗公平 case study。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为任何处理长期记录、合规删除和高风险决策的 AI 系统都可能遇到类似张力。虽然论文落点在 clinical AI，但这里暴露的是更一般的 deployment-time governance primitive。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据主要集中在多医院临床预测任务。它对更广金融、公共治理或企业合规系统的迁移性很合理，但还缺直接验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了 clinical AI 一个非常现实、也非常容易被忽略的系统矛盾：患者要求删除病历时，模型执行 machine unlearning 可能会改变对不同亚群体的认识，从而破坏公平性。它真正贡献的是把 ‘right to be forgotten’ 和 ‘fairness’ 的冲突正式化。</p><p>方法上，它不是泛泛讨论伦理，而是提出 fair unlearning strategy，并用梯度正交化去避免遗忘目标和公平目标彼此直接干扰。这让它更像一个可复用的高风险部署接口，而不是单次医疗公平 case study。</p><p>它值得正式收录，因为任何处理长期记录、合规删除和高风险决策的 AI 系统都可能遇到类似张力。虽然论文落点在 clinical AI，但这里暴露的是更一般的 deployment-time governance primitive。</p><p>它没有更高，是因为当前证据主要集中在多医院临床预测任务。它对更广金融、公共治理或企业合规系统的迁移性很合理，但还缺直接验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>缓解临床人工智能中医疗记录遗忘导致的算法不公平性在数字时代保护患者的被遗忘权（RtbF）要求算法在收到请求时从已部署的人工智能（AI）模型中删除健康记录，这种范式也称为机器遗忘。然而，这种遗忘会改变AI模型对亚群体的看法，并可能产生歧视性的临床决策，从而损害医疗公平性并危及患者信任，这是我们深入调查证实的一种普遍现象。这一观察揭示了临床AI中的一个伦理困境：保护某些患者的RtbF将损害公平决策的提供，从而违背AI公平性原则，因此需要一种保障方法。为此，我们提出了一种公平遗忘策略，以有效地从训练模型中删除医疗记录，同时缓解决策偏差，从而提高算法公平性。该策略通过强制其梯度正交性来避免潜在冲突目标之间的负面干预。我们对快速COVID-19筛查、院内死亡率和休克预测的真实世界多医院数据集进行了广泛评估。与最先进的方法相比，我们的方法可以使模型更有效地遗忘患者记录，同时具有更好的预测性能，更重要的是，它能缓解跨种族和地点（医院）亚群的人口统计学不公平性，为RtbF和公平性困境提供了第一个通用解决方案。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Protecting patients’ right to be forgotten (RtbF) in the digital era underscores algorithms to delete health records from deployed artificial intelligence (AI) models upon requests, a paradigm also known as machine unlearning. Such forgetfulness, however, will alter AI models’ views of subpopulations and could yield discriminating clinical decisions that undermine healthcare equality and endanger patient trust, a common phenomenon confirmed by our thorough investigations. This observation reveals an ethical dilemma in clinical AI: protecting the RtbF of certain patients will compromise the delivery of equitable decisions and, thus, is against the AI fairness principle, necessitating a safeguarding approach. To this end, we propose a fair unlearning strategy to effectively remove medical records from trained models while mitigating decision biases to improve algorithmic equality. This strategy avoids negative interventions between potentially conflicting objectives by enforcing their gradient orthogonality. We perform extensive evaluations on real-world, multi-hospital datasets of rapid COVID-19 screening, in-hospital mortality and shock predictions. Compared with state-of-the-art approaches, our method can teach models to more effectively forget patient records with better predictive performance while, more importantly, mitigating demographic unfairness across subpopulations of ethnicities and sites (hospitals), accommodating the first generalised solution for the dilemma of RtbF and fairness.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260504med6fairun,
+  title = {Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72601-7.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/med6-fair-unlearning-clinical-ai/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence. https://www.nature.com/articles/s41467-026-72601-7.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med7-physicianbench-ehr-agents/">
+              <span>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med5-gsco-generalist-specialist-collaboration/">
+              <span>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</span>
+              <small>公共卫生与医疗运营 · 2026-05-01</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph4-fm-hct-head-ct/">
+              <span>3D foundation model for generalizable disease detection in head computed tomography</span>
+              <small>公共卫生与医疗运营 · 2026-04-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72601-7.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

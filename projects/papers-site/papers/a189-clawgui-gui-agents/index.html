@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents | DAST Papers</title>
+    <meta name="description" content="GUI agents 的瓶颈不只是模型能力，而是缺少完整开放基础设施：训练环境不稳定，评估协议难复现，在线 RL 和真实设备部署经常断裂，导致不同论文结果难比较，也难把 agent 真正放到真实手机或应用上。
+
+ClawGUI 提供训练、评估、部署一体化框架。ClawGUI-RL 支持并行虚拟环境和真实物理设备，结合 GiGPO 与 Process Reward Model 做 dense ste" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a189-clawgui-gui-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents" />
+    <meta property="og:description" content="GUI agents 的瓶颈不只是模型能力，而是缺少完整开放基础设施：训练环境不稳定，评估协议难复现，在线 RL 和真实设备部署经常断裂，导致不同论文结果难比较，也难把 agent 真正放到真实手机或应用上。
+
+ClawGUI 提供训练、评估、部署一体化框架。ClawGUI-RL 支持并行虚拟环境和真实物理设备，结合 GiGPO 与 Process Reward Model 做 dense ste" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a189-clawgui-gui-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents" />
+    <meta name="twitter:description" content="GUI agents 的瓶颈不只是模型能力，而是缺少完整开放基础设施：训练环境不稳定，评估协议难复现，在线 RL 和真实设备部署经常断裂，导致不同论文结果难比较，也难把 agent 真正放到真实手机或应用上。
+
+ClawGUI 提供训练、评估、部署一体化框架。ClawGUI-RL 支持并行虚拟环境和真实物理设备，结合 GiGPO 与 Process Reward Model 做 dense ste" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11784" target="_blank" rel="noopener noreferrer">2604.11784</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>GUI agents 的瓶颈不只是模型能力，而是缺少完整开放基础设施：训练环境不稳定，评估协议难复现，在线 RL 和真实设备部署经常断裂，导致不同论文结果难比较，也难把 agent 真正放到真实手机或应用上。</dd></div><div><dt>方法/机制</dt><dd>ClawGUI 提供训练、评估、部署一体化框架。ClawGUI-RL 支持并行虚拟环境和真实物理设备，结合 GiGPO 与 Process Reward Model 做 dense step-level supervision；整个框架同时覆盖 benchmark、在线 RL、真实设备执行和部署接口。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 GUI agent 从单个模型/单个 benchmark 推向 full-stack infrastructure。对仓库关注的 agent capability extension、tool use、computer-use/GUI automation，它提供的是可复用实验平台和工程基座，而不是局部 SOTA trick。</dd></div><div><dt>收录价值</dt><dd>局限在于 GUI agent 生态仍早期，ClawGUI 的长期价值取决于社区采用、任务覆盖和真实设备稳定性；因此它是 GUI agent infrastructure 的突破性收录，而不是 paradigm 级结论。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>GUI agents 的瓶颈不只是模型能力，而是缺少完整开放基础设施：训练环境不稳定，评估协议难复现，在线 RL 和真实设备部署经常断裂，导致不同论文结果难比较，也难把 agent 真正放到真实手机或应用上。</p><p>ClawGUI 提供训练、评估、部署一体化框架。ClawGUI-RL 支持并行虚拟环境和真实物理设备，结合 GiGPO 与 Process Reward Model 做 dense step-level supervision；整个框架同时覆盖 benchmark、在线 RL、真实设备执行和部署接口。</p><p>它值得收录，因为它把 GUI agent 从单个模型/单个 benchmark 推向 full-stack infrastructure。对仓库关注的 agent capability extension、tool use、computer-use/GUI automation，它提供的是可复用实验平台和工程基座，而不是局部 SOTA trick。</p><p>局限在于 GUI agent 生态仍早期，ClawGUI 的长期价值取决于社区采用、任务覆盖和真实设备稳定性；因此它是 GUI agent infrastructure 的突破性收录，而不是 paradigm 级结论。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>GUI 代理通过其视觉界面驱动应用程序，而不是通过程序化 API 进行交互，通过点击、滑动和按键与任意软件进行交互，从而触达 CLI 驱动代理无法触及的长期应用程序。然而，该领域的发展主要受限于建模能力而非完整堆栈基础设施的缺乏：在线 RL 训练遭受环境不稳定和封闭管道的困扰，评估协议在不同工作之间悄然漂移，训练好的代理很少能到达真实用户和真实设备。我们提出 \textbf{ClawGUI}，一个开源框架，解决了这些三个差距，在一个集成式框架中实现。\textbf{ClawGUI-RL} 提供第一个具有验证支持的开源 GUI 代理 RL 基础设施，该基础设施支持并行虚拟环境和真实物理设备，并集成了 GiGPO 与 Process Reward 模型以实现密集级步级监督。\textbf{ClawGUI-Eval} 在 6 个基准和 11+ 个模型上强制执行完全标准化的评估流程，实现了 95.8% 的官方基线重现率。\textbf{ClawGUI-Agent} 通过 12+ 款聊天平台将训练好的代理带到 Android、HarmonyOS 和 iOS，并利用混合 CLI-GUI 控制和持久个性化记忆。在整个流程中端到端训练 \textbf{ClawGUI-2B} 在 MobileWorld GUI-Only 上实现了 17.1% 的成功率，比同规模的 MAI-UI-2B 基线高出 6.0%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>GUI agents drive applications through their visual interfaces instead of programmatic APIs, interacting with arbitrary software via taps, swipes, and keystrokes, reaching a long tail of applications that CLI-based agents cannot. Yet progress in this area is bottlenecked less by modeling capacity than by the absence of a coherent full-stack infrastructure: online RL training suffers from environment instability and closed pipelines, evaluation protocols drift silently across works, and trained agents rarely reach real users on real devices. We present \textbf{ClawGUI}, an open-source framework addressing these three gaps within a single harness. \textbf{ClawGUI-RL} provides the first open-source GUI agent RL infrastructure with validated support for both parallel virtual environments and real physical devices, integrating GiGPO with a Process Reward Model for dense step-level supervision. \textbf{ClawGUI-Eval} enforces a fully standardized evaluation pipeline across 6 benchmarks and 11+ models, achieving 95.8\% reproduction against official baselines. \textbf{ClawGUI-Agent} brings trained agents to Android, HarmonyOS, and iOS through 12+ chat platforms with hybrid CLI-GUI control and persistent personalized memory. Trained end to end within this pipeline, \textbf{ClawGUI-2B} achieves 17.1\% Success Rate on MobileWorld GUI-Only, outperforming the same-scale MAI-UI-2B baseline by 6.0\%.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413a189clawgu,
+  title = {ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11784.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a189-clawgui-gui-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents. https://arxiv.org/pdf/2604.11784.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11784.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autonomous Agents Coordinating Distributed Discovery Through Emergent Artifact Exchange | DAST Papers</title>
+    <meta name="description" content="这篇论文把 AI scientist 的一个关键瓶颈说得很清楚：现有很多系统仍是静态、中心化、手工编排的 pipeline，多 agent 之间很少真正通过共享产物与可追溯 lineage 形成开放式协作。它试图把问题从“如何做一个更强的单体 AI scientist”改成“如何让独立 agent 在共享科学生态中无中心地协调发现过程”。
+
+ScienceClaw + Infinite 的核心设计" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a59-distributed-discovery-artifact-exchange/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Autonomous Agents Coordinating Distributed Discovery Through Emergent Artifact Exchange" />
+    <meta property="og:description" content="这篇论文把 AI scientist 的一个关键瓶颈说得很清楚：现有很多系统仍是静态、中心化、手工编排的 pipeline，多 agent 之间很少真正通过共享产物与可追溯 lineage 形成开放式协作。它试图把问题从“如何做一个更强的单体 AI scientist”改成“如何让独立 agent 在共享科学生态中无中心地协调发现过程”。
+
+ScienceClaw + Infinite 的核心设计" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a59-distributed-discovery-artifact-exchange/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Autonomous Agents Coordinating Distributed Discovery Through Emergent Artifact Exchange" />
+    <meta name="twitter:description" content="这篇论文把 AI scientist 的一个关键瓶颈说得很清楚：现有很多系统仍是静态、中心化、手工编排的 pipeline，多 agent 之间很少真正通过共享产物与可追溯 lineage 形成开放式协作。它试图把问题从“如何做一个更强的单体 AI scientist”改成“如何让独立 agent 在共享科学生态中无中心地协调发现过程”。
+
+ScienceClaw + Infinite 的核心设计" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Autonomous Agents Coordinating Distributed Discovery Through Emergent Artifact Exchange</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14312" target="_blank" rel="noopener noreferrer">2603.14312</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 AI scientist 的一个关键瓶颈说得很清楚：现有很多系统仍是静态、中心化、手工编排的 pipeline，多 agent 之间很少真正通过共享产物与可追溯 lineage 形成开放式协作。它试图把问题从“如何做一个更强的单体 AI scientist”改成“如何让独立 agent 在共享科学生态中无中心地协调发现过程”。</dd></div><div><dt>方法/机制</dt><dd>ScienceClaw + Infinite 的核心设计不是再加几个角色，而是把 artifact 当成协调媒介。系统围绕三个部件组织：300+ scientific skills 的可扩展 registry、保存完整计算 lineage 的 artifact DAG，以及带 provenance-aware governance 的 agent scientific discourse 平台。agent 不靠中心规划器串接，而是通过 open needs、artifact lineage 和 schema-overlap 触发 plannerless coordination 与多父合成。</dd></div><div><dt>结果/证据</dt><dd>这篇工作符合本仓库对 agent-driven scientific workflows 的高优先级，因为它贡献的是一个 durable workflow pattern：技能注册表、artifact DAG、共享需求索引、以及以 artifact exchange 为中心的协作机制。它对 AI scientist、科研自动化平台、agent governance 和可审计研究流水线都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它仍然只是 breakthrough。原因是目前仍属于早期系统框架，虽然结构上很强，但是否能在更多科学领域稳定产生高质量 emergent coordination，仍需要更广和更长周期的验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 AI scientist 的一个关键瓶颈说得很清楚：现有很多系统仍是静态、中心化、手工编排的 pipeline，多 agent 之间很少真正通过共享产物与可追溯 lineage 形成开放式协作。它试图把问题从“如何做一个更强的单体 AI scientist”改成“如何让独立 agent 在共享科学生态中无中心地协调发现过程”。</p><p>ScienceClaw + Infinite 的核心设计不是再加几个角色，而是把 artifact 当成协调媒介。系统围绕三个部件组织：300+ scientific skills 的可扩展 registry、保存完整计算 lineage 的 artifact DAG，以及带 provenance-aware governance 的 agent scientific discourse 平台。agent 不靠中心规划器串接，而是通过 open needs、artifact lineage 和 schema-overlap 触发 plannerless coordination 与多父合成。</p><p>这篇工作符合本仓库对 agent-driven scientific workflows 的高优先级，因为它贡献的是一个 durable workflow pattern：技能注册表、artifact DAG、共享需求索引、以及以 artifact exchange 为中心的协作机制。它对 AI scientist、科研自动化平台、agent governance 和可审计研究流水线都有明显外溢。</p><p>它仍然只是 breakthrough。原因是目前仍属于早期系统框架，虽然结构上很强，但是否能在更多科学领域稳定产生高质量 emergent coordination，仍需要更广和更长周期的验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要 我们提出了S CIENCE C LAW + I NFINITE，这是一个用于自主科学研究的框架，其中独立的智能体在没有中央协调的情况下进行研究，并且任何贡献者都可以将新智能体部署到共享生态系统中。该系统围绕三个组件构建：一个包含300多种可互操作科学技能的可扩展注册表，一个将完整计算谱系保留为有向无环图（DAG）的工件层，以及一个具有溯源感知治理的基于智能体的结构化科学论述平台。智能体根据其科学档案选择并链接工具，生成带有类型化元数据和父系谱的不可变工件，并将未满足的信息需求广播到共享的全局索引。ArtifactReactor实现了无规划器协调：对等智能体通过基于压力的评分发现并满足开放需求，而模式重叠匹配则触发跨独立分析的多父合成。一个自主突变层主动修剪不断扩展的工件DAG，以解决冲突或冗余的工作流，而持久内存允许智能体在多个周期中持续构建复杂的认知状态。I NFINITE通过结构化帖子、溯源视图和机器可读的论述关系将这些输出转换为可审计的科学记录，社区反馈指导后续的调查周期。在四项自主调查中，包括生长抑素受体SSTR2的肽设计、轻质抗冲击陶瓷筛选、跨领域共振（连接生物学、材料和音乐），以及城市形态与晶界演化之间的形式类比构建，该框架展示了异构工具链、独立运行智能体之间的涌现收敛，以及从原始计算到已发表发现的可追溯推理。关键词 智能体 · 科学人工智能 · 自主发现 · 涌现 · 群体 · 机器学习</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT We present S CIENCE C LAW + I NFINITE, a framework for autonomous scientific investigation in which independent agents conduct research without central coordination, and any contributor can deploy new agents into a shared ecosystem. The system is built around three components: an extensible registry of over 300 interoperable scientific skills, an artifact layer that preserves full computational lineage as a directed acyclic graph (DAG), and a structured platform for agent-based scientific discourse with provenance-aware governance. Agents select and chain tools based on their scientific profiles, produce immutable artifacts with typed metadata and parent lineage, and broadcast unsatisfied information needs to a shared global index. The ArtifactReactor enables plannerless coordination: peer agents discover and fulfill open needs through pressure-based scoring, while schema-overlap matching triggers multi-parent synthesis across independent analyses. An autonomous mutation layer actively prunes the expanding artifact DAG to resolve conflicting or redundant workflows, while persistent memory allows agents to continuously build upon complex epistemic states across multiple cycles. I NFINITE converts these outputs into auditable scientific records through structured posts, provenance views, and machine-readable discourse relations, with community feedback steering subsequent investigation cycles. Across four autonomous investigations, peptide design for the somatostatin receptor SSTR2, lightweight impact-resistant ceramic screening, cross-domain resonance bridging biology, materials, and music, and formal analogy construction between urban morphology and grainboundary evolution, the framework demonstrates heterogeneous tool chaining, emergent convergence among independently operating agents, and traceable reasoning from raw computation to published finding. Keywords Agents · AI for Science · Autonomous Discovery · Emergence · Swarms · Machine Learning</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260315a59distrib,
+  title = {Autonomous Agents Coordinating Distributed Discovery Through Emergent Artifact Exchange},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14312.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a59-distributed-discovery-artifact-exchange/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Autonomous Agents Coordinating Distributed Discovery Through Emergent Artifact Exchange. https://arxiv.org/pdf/2603.14312.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14312.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

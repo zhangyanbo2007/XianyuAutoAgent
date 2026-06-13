@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ELT: Elastic Looped Transformers for Visual Generation | DAST Papers</title>
+    <meta name="description" content="这篇论文把 recurrent / weight-sharing transformer 思路引入视觉生成，以解决图像和视频生成模型参数量持续膨胀的问题。传统生成模型通常依赖一组互不共享的深层 transformer block，而 ELT 让同一组 transformer block 在 loop 中反复使用，以较少参数维持生成质量。
+
+关键方法是 Elastic Looped Transfor" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g9-elt-looped-visual-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ELT: Elastic Looped Transformers for Visual Generation" />
+    <meta property="og:description" content="这篇论文把 recurrent / weight-sharing transformer 思路引入视觉生成，以解决图像和视频生成模型参数量持续膨胀的问题。传统生成模型通常依赖一组互不共享的深层 transformer block，而 ELT 让同一组 transformer block 在 loop 中反复使用，以较少参数维持生成质量。
+
+关键方法是 Elastic Looped Transfor" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g9-elt-looped-visual-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ELT: Elastic Looped Transformers for Visual Generation" />
+    <meta name="twitter:description" content="这篇论文把 recurrent / weight-sharing transformer 思路引入视觉生成，以解决图像和视频生成模型参数量持续膨胀的问题。传统生成模型通常依赖一组互不共享的深层 transformer block，而 ELT 让同一组 transformer block 在 loop 中反复使用，以较少参数维持生成质量。
+
+关键方法是 Elastic Looped Transfor" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ELT: Elastic Looped Transformers for Visual Generation</h1>
+          <p class="subtitle">生成模型与世界模型 · 发表：2026-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成模型与世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.09168" target="_blank" rel="noopener noreferrer">2604.09168</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 recurrent / weight-sharing transformer 思路引入视觉生成，以解决图像和视频生成模型参数量持续膨胀的问题。传统生成模型通常依赖一组互不共享的深层 transformer block，而 ELT 让同一组 transformer block 在 loop 中反复使用，以较少参数维持生成质量。</dd></div><div><dt>方法/机制</dt><dd>关键方法是 Elastic Looped Transformers 和 Intra-Loop Self Distillation（ILSD）。训练时用最大 loop 数作为 teacher configuration，并在单次训练中蒸馏中间 loop 的 student configuration，使不同深度/循环次数下的输出保持一致；同一个模型因此天然支持 any-time inference，在计算成本和生成质量之间动态折中。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它给视觉生成模型提供了可复用的“循环深度 + 自蒸馏 + 弹性推理”接口，和近期 LLM 中递归深度扩展、YOCO-U 等方向形成跨模态呼应。论文在 ImageNet 与 UCF-101 上展示了参数显著减少下仍保持强生成质量，说明循环共享不只是压缩技巧，也是一种部署友好的生成架构模式。</dd></div><div><dt>收录价值</dt><dd>局限在于实验仍集中在标准图像/视频生成基准，尚未证明在大规模文生视频、可控生成或世界模型训练中的 scaling 行为；循环结构的长程稳定性也需要进一步验证。因此它作为生成模型效率架构突破收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 recurrent / weight-sharing transformer 思路引入视觉生成，以解决图像和视频生成模型参数量持续膨胀的问题。传统生成模型通常依赖一组互不共享的深层 transformer block，而 ELT 让同一组 transformer block 在 loop 中反复使用，以较少参数维持生成质量。</p><p>关键方法是 Elastic Looped Transformers 和 Intra-Loop Self Distillation（ILSD）。训练时用最大 loop 数作为 teacher configuration，并在单次训练中蒸馏中间 loop 的 student configuration，使不同深度/循环次数下的输出保持一致；同一个模型因此天然支持 any-time inference，在计算成本和生成质量之间动态折中。</p><p>它值得收录，是因为它给视觉生成模型提供了可复用的“循环深度 + 自蒸馏 + 弹性推理”接口，和近期 LLM 中递归深度扩展、YOCO-U 等方向形成跨模态呼应。论文在 ImageNet 与 UCF-101 上展示了参数显著减少下仍保持强生成质量，说明循环共享不只是压缩技巧，也是一种部署友好的生成架构模式。</p><p>局限在于实验仍集中在标准图像/视频生成基准，尚未证明在大规模文生视频、可控生成或世界模型训练中的 scaling 行为；循环结构的长程稳定性也需要进一步验证。因此它作为生成模型效率架构突破收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们引入了弹性循环Transformer (ELT)，这是一种基于循环Transformer架构的高度参数高效的视觉生成模型。传统生成模型依赖于深度堆叠的独特Transformer层，而我们的方法采用迭代的、权重共享的Transformer块，以大幅减少参数数量，同时保持高合成质量。为了有效地训练这些模型进行图像和视频生成，我们提出了循环内自蒸馏 (ILSD) 的思想，其中学生配置（中间循环）从教师配置（最大训练循环）中蒸馏而来，以确保在单个训练步骤中模型深度上的一致性。我们的框架通过一次训练运行即可生成一系列弹性模型，实现了随时推理能力，在计算成本和生成质量之间进行动态权衡，且参数数量相同。ELT显著地改变了视觉合成的效率前沿。在等推理计算设置下，参数数量减少4倍，ELT在类条件ImageNet 256 × 256上实现了2.0的竞争性FID，并在类条件UCF-101上实现了72.8的FVD。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce Elastic Looped Transformers (ELT), a highly parameter-efficient class of visual generative models based on a recurrent transformer architecture. While conventional generative models rely on deep stacks of unique transformer layers, our approach employs iterative, weight-shared transformer blocks to drastically reduce parameter counts while maintaining high synthesis quality. To effectively train these models for image and video generation, we propose the idea of Intra-Loop Self Distillation (ILSD), where student configurations (intermediate loops) are distilled from the teacher configuration (maximum training loops) to ensure consistency across the model’s depth in a single training step. Our framework yields a family of elastic models from a single training run, enabling Any-Time inference capability with dynamic trade-offs between computational cost and generation quality, with the same parameter count. ELT significantly shifts the efficiency frontier for visual synthesis. With 4× reduction in parameter count under iso-inference-compute settings, ELT achieves a competitive FID of 2.0 on class-conditional ImageNet 256 × 256 and FVD of 72.8 on class-conditional UCF-101.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260410g9eltloope,
+  title = {ELT: Elastic Looped Transformers for Visual Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.09168.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g9-elt-looped-visual-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ELT: Elastic Looped Transformers for Visual Generation. https://arxiv.org/pdf/2604.09168.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g10-introspective-diffusion-lm/">
+              <span>Introspective Diffusion Language Models</span>
+              <small>生成模型与世界模型 · 2026-04-13</small>
+            </a>
+            <a class="related-item" href="../../papers/g11-zwm-developmental-world-model/">
+              <span>Zero-shot World Models Are Developmentally Efficient Learners</span>
+              <small>生成模型与世界模型 · 2026-04-11</small>
+            </a>
+            <a class="related-item" href="../../papers/g8-matrix-game-3-long-horizon-world-model/">
+              <span>Matrix-Game 3.0: Real-Time and Streaming Interactive World Model with Long-Horizon Memory</span>
+              <small>生成模型与世界模型 · 2026-04-10</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.09168.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

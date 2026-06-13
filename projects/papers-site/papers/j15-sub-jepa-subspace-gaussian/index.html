@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sub-JEPA: Subspace Gaussian Regularization for Stable End-to-End World Models | DAST Papers</title>
+    <meta name="description" content="这篇 arXiv 论文直接接在 LeWorldModel 之后，处理 JEPA 世界模型从像素端到端训练的核心问题：表示崩溃与过强先验之间的 bias-variance tradeoff。
+
+LeWM 用全 latent 空间的各向同性高斯正则防止 collapse，但作者指出控制任务的 latent 往往落在高维环境空间中的低维流形上，直接在全空间施加强高斯先验会压制表示灵活性。
+
+Sub-JE" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j15-sub-jepa-subspace-gaussian/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Sub-JEPA: Subspace Gaussian Regularization for Stable End-to-End World Models" />
+    <meta property="og:description" content="这篇 arXiv 论文直接接在 LeWorldModel 之后，处理 JEPA 世界模型从像素端到端训练的核心问题：表示崩溃与过强先验之间的 bias-variance tradeoff。
+
+LeWM 用全 latent 空间的各向同性高斯正则防止 collapse，但作者指出控制任务的 latent 往往落在高维环境空间中的低维流形上，直接在全空间施加强高斯先验会压制表示灵活性。
+
+Sub-JE" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j15-sub-jepa-subspace-gaussian/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sub-JEPA: Subspace Gaussian Regularization for Stable End-to-End World Models" />
+    <meta name="twitter:description" content="这篇 arXiv 论文直接接在 LeWorldModel 之后，处理 JEPA 世界模型从像素端到端训练的核心问题：表示崩溃与过强先验之间的 bias-variance tradeoff。
+
+LeWM 用全 latent 空间的各向同性高斯正则防止 collapse，但作者指出控制任务的 latent 往往落在高维环境空间中的低维流形上，直接在全空间施加强高斯先验会压制表示灵活性。
+
+Sub-JE" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Sub-JEPA: Subspace Gaussian Regularization for Stable End-to-End World Models</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.09241" target="_blank" rel="noopener noreferrer">2605.09241</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 arXiv 论文直接接在 LeWorldModel 之后，处理 JEPA 世界模型从像素端到端训练的核心问题：表示崩溃与过强先验之间的 bias-variance tradeoff。</dd></div><div><dt>方法/机制</dt><dd>LeWM 用全 latent 空间的各向同性高斯正则防止 collapse，但作者指出控制任务的 latent 往往落在高维环境空间中的低维流形上，直接在全空间施加强高斯先验会压制表示灵活性。</dd></div><div><dt>结果/证据</dt><dd>Sub-JEPA 的方法非常简单：把 Gaussian regularization 从原始 embedding 空间移到多个随机低维正交子空间中，在保留 anti-collapse 效果的同时放松全局约束。实验覆盖 Two-Room、Reacher、PushT 和 OGB-Cube 四个连续控制环境，报告相对 LeWM 有稳定大幅提升。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它是 JEPA/world model 训练稳定性的一种可复用正则化 primitive，不靠更大模型或复杂训练 recipe，而是调整 latent prior 的几何施加方式；对端到端世界模型、latent planning 和机器人控制都有直接参考价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 arXiv 论文直接接在 LeWorldModel 之后，处理 JEPA 世界模型从像素端到端训练的核心问题：表示崩溃与过强先验之间的 bias-variance tradeoff。</p><p>LeWM 用全 latent 空间的各向同性高斯正则防止 collapse，但作者指出控制任务的 latent 往往落在高维环境空间中的低维流形上，直接在全空间施加强高斯先验会压制表示灵活性。</p><p>Sub-JEPA 的方法非常简单：把 Gaussian regularization 从原始 embedding 空间移到多个随机低维正交子空间中，在保留 anti-collapse 效果的同时放松全局约束。实验覆盖 Two-Room、Reacher、PushT 和 OGB-Cube 四个连续控制环境，报告相对 LeWM 有稳定大幅提升。</p><p>收录价值在于它是 JEPA/world model 训练稳定性的一种可复用正则化 primitive，不靠更大模型或复杂训练 recipe，而是调整 latent prior 的几何施加方式；对端到端世界模型、latent planning 和机器人控制都有直接参考价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Sub-JEPA：用于稳定端到端世界模型的子空间高斯正则化。联合嵌入预测架构（JEPAs）提供了一个简单的框架，通过预测未来的潜在表示来学习世界模型。然而，JEPA训练受制于偏差-方差权衡。如果没有足够的结构约束，过度的表示方差会导致模型崩溃到平凡解。最近的LeWorldModel（LeWM）表明，通过简单地使用各向同性高斯先验约束潜在嵌入，可以缓解这个问题。然而，潜在表示本质上位于高维环境空间中的低维流形上，直接在该环境空间中强制执行各向同性高斯先验会引入过强的偏差。在这项工作中，我们提出了Sub-JEPA，它通过在多个随机子空间而不是原始嵌入空间中应用高斯约束，来寻求偏差-方差边界上的有利操作点。这种设计在保留其抗崩溃效果的同时放宽了全局约束，从而在训练稳定性和表示灵活性之间取得了更好的平衡。在四个连续控制环境中的大量实验表明，Sub-JEPA以非常明显的优势持续优于LeWM。我们的方法简单而有效，可以作为未来基于JEPA的世界模型研究的强大基线。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Joint-Embedding Predictive Architectures (JEPAs) provide a simple framework for learning world models by predicting future latent representations. However, JEPA training is subject to a bias-variance tradeoff. Without sufficient structural constraints, excessive representational variance causes the model to collapse to trivial solutions. The recent LeWorldModel (LeWM) shows that this issue can be alleviated by simply constraining latent embeddings with an isotropic Gaussian prior. However, latent representations inherently lie on low-dimensional manifolds within a high-dimensional ambient space, and enforcing an isotropic Gaussian prior directly in this ambient space introduces an overly strong bias. In this work, we propose Sub-JEPA, which seeks a favorable operating point on the bias-variance frontier by applying Gaussian constraints in multiple random subspaces rather than in the original embedding space. This design relaxes the global constraint while preserving its anti-collapse effect, leading to a better balance between training stability and representation flexibility. Extensive experiments across four continuous-control environments demonstrate that Sub-JEPA consistently outperforms LeWM with very clear margins. Our method is simple yet effective, and can serve as a strong baseline for future JEPA-based world model research.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260510j15subjepa,
+  title = {Sub-JEPA: Subspace Gaussian Regularization for Stable End-to-End World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.09241.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j15-sub-jepa-subspace-gaussian/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Sub-JEPA: Subspace Gaussian Regularization for Stable End-to-End World Models. https://arxiv.org/pdf/2605.09241.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.09241.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.09241" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/intcomp/Sub-JEPA" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

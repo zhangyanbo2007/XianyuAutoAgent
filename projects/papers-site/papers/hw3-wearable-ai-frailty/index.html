@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wearable AI for on-device frailty assessment | DAST Papers</title>
+    <meta name="description" content="这篇论文聚焦连续运行的临床级可穿戴设备如何在边缘侧长期执行高频生理信号分析。问题不只是分类精度，而是如何让设备在周到月尺度的持续监测中真正可部署，避免把大量原始数据回传云端或依赖高功耗无线链路。
+
+论文提出了一个把临床级 biosignal acquisition、边缘侧 AI 推理和长期 автоном运行放到同一设备框架里的方案。核心不是单个模型本身，而是把 on-device inferen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw3-wearable-ai-frailty/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Wearable AI for on-device frailty assessment" />
+    <meta property="og:description" content="这篇论文聚焦连续运行的临床级可穿戴设备如何在边缘侧长期执行高频生理信号分析。问题不只是分类精度，而是如何让设备在周到月尺度的持续监测中真正可部署，避免把大量原始数据回传云端或依赖高功耗无线链路。
+
+论文提出了一个把临床级 biosignal acquisition、边缘侧 AI 推理和长期 автоном运行放到同一设备框架里的方案。核心不是单个模型本身，而是把 on-device inferen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw3-wearable-ai-frailty/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Wearable AI for on-device frailty assessment" />
+    <meta name="twitter:description" content="这篇论文聚焦连续运行的临床级可穿戴设备如何在边缘侧长期执行高频生理信号分析。问题不只是分类精度，而是如何让设备在周到月尺度的持续监测中真正可部署，避免把大量原始数据回传云端或依赖高功耗无线链路。
+
+论文提出了一个把临床级 biosignal acquisition、边缘侧 AI 推理和长期 автоном运行放到同一设备框架里的方案。核心不是单个模型本身，而是把 on-device inferen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Wearable AI for on-device frailty assessment</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2025-12-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-20</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-67728-y" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-67728-y</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文聚焦连续运行的临床级可穿戴设备如何在边缘侧长期执行高频生理信号分析。问题不只是分类精度，而是如何让设备在周到月尺度的持续监测中真正可部署，避免把大量原始数据回传云端或依赖高功耗无线链路。</dd></div><div><dt>方法/机制</dt><dd>论文提出了一个把临床级 biosignal acquisition、边缘侧 AI 推理和长期 автоном运行放到同一设备框架里的方案。核心不是单个模型本身，而是把 on-device inference、低干预连续运行和 gait-based frailty assessment 打成一个完整硬件-软件闭环，并在 extended wear 实验中验证稳定性。</dd></div><div><dt>结果/证据</dt><dd>对仓库而言，这篇论文的价值在于它把 AI 对消费/医疗可穿戴硬件的作用从附加分析模块推进到设备级 operating pattern：AI 直接决定数据如何被压缩、理解和长期使用，使这类设备更接近真正可部署的边缘智能产品。</dd></div><div><dt>收录价值</dt><dd>它没有被放到更高等级，是因为当前影响仍主要集中在 frailty assessment 这一条医疗 wearable 任务线上，通用性和跨品类外溢还不足以成为更强的硬件范式条目。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文聚焦连续运行的临床级可穿戴设备如何在边缘侧长期执行高频生理信号分析。问题不只是分类精度，而是如何让设备在周到月尺度的持续监测中真正可部署，避免把大量原始数据回传云端或依赖高功耗无线链路。</p><p>论文提出了一个把临床级 biosignal acquisition、边缘侧 AI 推理和长期 автоном运行放到同一设备框架里的方案。核心不是单个模型本身，而是把 on-device inference、低干预连续运行和 gait-based frailty assessment 打成一个完整硬件-软件闭环，并在 extended wear 实验中验证稳定性。</p><p>对仓库而言，这篇论文的价值在于它把 AI 对消费/医疗可穿戴硬件的作用从附加分析模块推进到设备级 operating pattern：AI 直接决定数据如何被压缩、理解和长期使用，使这类设备更接近真正可部署的边缘智能产品。</p><p>它没有被放到更高等级，是因为当前影响仍主要集中在 frailty assessment 这一条医疗 wearable 任务线上，通用性和跨品类外溢还不足以成为更强的硬件范式条目。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>用于设备端虚弱评估的可穿戴AI。持续运行的可穿戴设备能提供对慢性健康状况的详细洞察，并有潜力重塑诊断和筛查工具。然而，数周至数月的持续监测所产生的能耗需求和庞大数据集难以或无法整合到现有临床实践中，从而限制了此类设备的实用性。机器学习提供了将这些大数据集浓缩为精简、易于理解的趋势的机会，具有显著的临床影响力，尽管离线推理需要先进的网络基础设施和充足的无线电供电。在本文中，我们介绍了一种设备框架，它将人工智能与边缘端的临床级生物信号采集相结合，在无需佩戴者交互的情况下，以临床级保真度长时间执行设备端推理。我们利用此框架在体内试验（N 1 = 16）中进行基于步态的虚弱评估，其结果与金标准诊断工具相匹配。临床实用性、模型稳定性和设备端推理通过体内试验（N 2 = 14）和为期十天的长时间佩戴实验得到验证，展示了无需佩戴者干预的持续运行以及对高采样率生物信号的自主纵向分析。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Continuously operating wearables offer detailed insight into chronic health conditions and have the potential to reshape diagnostic and screening tools. However, the energy demands and large datasets created by constant monitoring over weeks to months are difficult or impossible to integrate into existing clinical practice, limiting the utility of this device class. Machine learning offers the opportunity to condense these large datasets into streamlined, digestible trends with the potential for significant clinical impact, although off-device inference requires advanced network infrastructure and substantial power availability for radios. Here, we introduce a device framework that integrates artificial intelligence with clinical grade biosignal acquisition at the edge, performing on-device inference with clinical grade fidelity over extended durations with no interaction required by the wearer. We utilize this framework to perform gait-based frailty assessment during in vivo trials (N 1 = 16) with results that match gold standard diagnostic tools. Clinical utility, model stability, and on-device inference are validated through in vivo trials (N 2 = 14) and ten-day-long extended wear experiments, demonstrating continuous operation without wearer intervention and autonomous longitudinal analysis of high sampling rate biosignals.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251220hw3wearabl,
+  title = {Wearable AI for on-device frailty assessment},
+  year = {2025},
+  url = {https://doi.org/10.1038/s41467-025-67728-y},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw3-wearable-ai-frailty/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Wearable AI for on-device frailty assessment. https://doi.org/10.1038/s41467-025-67728-y</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41467-025-67728-y" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

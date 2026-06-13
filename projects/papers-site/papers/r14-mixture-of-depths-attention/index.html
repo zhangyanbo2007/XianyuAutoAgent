@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mixture-of-Depths Attention | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是深层 Transformer 一个很核心但长期被残差连接掩盖的问题：随着深度增加，浅层形成的有用信息会在反复残差更新中逐步被冲淡。标准做法默认每一层只通过当前层序列注意力和固定残差继续传播，而无法显式、动态地从更早的层里把有价值的表示重新读出来。作者试图把“跨层信息访问”从静态残差，升级成真正的数据依赖检索。
+
+论文提出 Mixture-of-Depths Attention（Mo" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r14-mixture-of-depths-attention/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Mixture-of-Depths Attention" />
+    <meta property="og:description" content="这篇论文处理的是深层 Transformer 一个很核心但长期被残差连接掩盖的问题：随着深度增加，浅层形成的有用信息会在反复残差更新中逐步被冲淡。标准做法默认每一层只通过当前层序列注意力和固定残差继续传播，而无法显式、动态地从更早的层里把有价值的表示重新读出来。作者试图把“跨层信息访问”从静态残差，升级成真正的数据依赖检索。
+
+论文提出 Mixture-of-Depths Attention（Mo" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r14-mixture-of-depths-attention/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mixture-of-Depths Attention" />
+    <meta name="twitter:description" content="这篇论文处理的是深层 Transformer 一个很核心但长期被残差连接掩盖的问题：随着深度增加，浅层形成的有用信息会在反复残差更新中逐步被冲淡。标准做法默认每一层只通过当前层序列注意力和固定残差继续传播，而无法显式、动态地从更早的层里把有价值的表示重新读出来。作者试图把“跨层信息访问”从静态残差，升级成真正的数据依赖检索。
+
+论文提出 Mixture-of-Depths Attention（Mo" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Mixture-of-Depths Attention</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15619" target="_blank" rel="noopener noreferrer">2603.15619</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是深层 Transformer 一个很核心但长期被残差连接掩盖的问题：随着深度增加，浅层形成的有用信息会在反复残差更新中逐步被冲淡。标准做法默认每一层只通过当前层序列注意力和固定残差继续传播，而无法显式、动态地从更早的层里把有价值的表示重新读出来。作者试图把“跨层信息访问”从静态残差，升级成真正的数据依赖检索。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Mixture-of-Depths Attention（MoDA），让每个注意力头不仅关注当前层的序列 KV，也能同时读取前置层的深度 KV，并在统一 softmax 里完成序列维度与深度维度的联合选择。方法上的亮点不只在架构本身，还在实现：作者通过兼容 FlashAttention 的布局、chunk-aware 与 group-aware 索引等设计，把原本会被非连续访存拖垮的跨层读取做到了接近 FlashAttention-2 的效率，从而让深度注意力不再只停留在纸面。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这项工作把“深度尺度上的信息路由”从概念层推进到了可训练、可扩展、可高效实现的基础算子。对于深层大模型、长上下文训练以及模型内部信息保真，这是一条很有持续性的路线。相比简单的 dense/residual 变体，MoDA 展示的是一种更通用的 depth-wise retrieval primitive，也与当前仓库关注的模型内部机制、长上下文和高效系统实现高度一致。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因在于目前证据仍主要集中在 700M 和 1.5B 量级及 400B token 训练设定，尚未证明 MoDA 在更大规模 industrial LLM 上会成为默认深度扩展范式。此外，它解决了信息稀释和跨层读取效率问题，但对极深网络下显存/带宽压力的长期上界仍需更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是深层 Transformer 一个很核心但长期被残差连接掩盖的问题：随着深度增加，浅层形成的有用信息会在反复残差更新中逐步被冲淡。标准做法默认每一层只通过当前层序列注意力和固定残差继续传播，而无法显式、动态地从更早的层里把有价值的表示重新读出来。作者试图把“跨层信息访问”从静态残差，升级成真正的数据依赖检索。</p><p>论文提出 Mixture-of-Depths Attention（MoDA），让每个注意力头不仅关注当前层的序列 KV，也能同时读取前置层的深度 KV，并在统一 softmax 里完成序列维度与深度维度的联合选择。方法上的亮点不只在架构本身，还在实现：作者通过兼容 FlashAttention 的布局、chunk-aware 与 group-aware 索引等设计，把原本会被非连续访存拖垮的跨层读取做到了接近 FlashAttention-2 的效率，从而让深度注意力不再只停留在纸面。</p><p>它值得正式收录，因为这项工作把“深度尺度上的信息路由”从概念层推进到了可训练、可扩展、可高效实现的基础算子。对于深层大模型、长上下文训练以及模型内部信息保真，这是一条很有持续性的路线。相比简单的 dense/residual 变体，MoDA 展示的是一种更通用的 depth-wise retrieval primitive，也与当前仓库关注的模型内部机制、长上下文和高效系统实现高度一致。</p><p>它还不到更高一级，原因在于目前证据仍主要集中在 700M 和 1.5B 量级及 400B token 训练设定，尚未证明 MoDA 在更大规模 industrial LLM 上会成为默认深度扩展范式。此外，它解决了信息稀释和跨层读取效率问题，但对极深网络下显存/带宽压力的长期上界仍需更多验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316r14mixture,
+  title = {Mixture-of-Depths Attention},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15619.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r14-mixture-of-depths-attention/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Mixture-of-Depths Attention. https://arxiv.org/pdf/2603.15619.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15619.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

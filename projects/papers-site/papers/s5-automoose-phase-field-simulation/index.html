@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoMOOSE: An Agentic AI for Autonomous Phase-Field Simulation | DAST Papers</title>
+    <meta name="description" content="像 MOOSE 这样的 multiphysics simulation framework 很强，但真实门槛并不只在物理知识本身，而在于如何写对 input file、配置参数扫描、诊断 runtime 失败并把结果整理成可信的研究流程。很多材料和 phase-field 工作流仍高度依赖熟练研究者手工维护。
+
+AutoMOOSE 的关键贡献，是把 phase-field simulation l" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s5-automoose-phase-field-simulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AutoMOOSE: An Agentic AI for Autonomous Phase-Field Simulation" />
+    <meta property="og:description" content="像 MOOSE 这样的 multiphysics simulation framework 很强，但真实门槛并不只在物理知识本身，而在于如何写对 input file、配置参数扫描、诊断 runtime 失败并把结果整理成可信的研究流程。很多材料和 phase-field 工作流仍高度依赖熟练研究者手工维护。
+
+AutoMOOSE 的关键贡献，是把 phase-field simulation l" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s5-automoose-phase-field-simulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AutoMOOSE: An Agentic AI for Autonomous Phase-Field Simulation" />
+    <meta name="twitter:description" content="像 MOOSE 这样的 multiphysics simulation framework 很强，但真实门槛并不只在物理知识本身，而在于如何写对 input file、配置参数扫描、诊断 runtime 失败并把结果整理成可信的研究流程。很多材料和 phase-field 工作流仍高度依赖熟练研究者手工维护。
+
+AutoMOOSE 的关键贡献，是把 phase-field simulation l" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AutoMOOSE: An Agentic AI for Autonomous Phase-Field Simulation</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-03-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.20986" target="_blank" rel="noopener noreferrer">2603.20986</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>像 MOOSE 这样的 multiphysics simulation framework 很强，但真实门槛并不只在物理知识本身，而在于如何写对 input file、配置参数扫描、诊断 runtime 失败并把结果整理成可信的研究流程。很多材料和 phase-field 工作流仍高度依赖熟练研究者手工维护。</dd></div><div><dt>方法/机制</dt><dd>AutoMOOSE 的关键贡献，是把 phase-field simulation lifecycle 变成自然语言驱动的多 agent workflow。它用多 agent 管道自动生成输入、并行执行参数扫描、诊断三类 runtime failures，并通过 plugin architecture 和 MCP tool interface 暴露可扩展的科学计算工作流接口；同时，论文不只看能不能跑通，还补上了 physical consistency check 与 FAIR-style provenance。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它符合本仓库对 AI for science 的高门槛要求：不是单一预测任务，而是把 simulation campaign 的组织方式做成可复用的 agentic infrastructure。对 self-driving lab、scientific workflow automation 和 domain simulation copilots，这类工作比单点 benchmark 更有长期价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前验证仍集中在 phase-field / grain-growth 这条具体科学子线，跨更广 simulation stack 的可迁移性还需要更多证据。现阶段它更像一个强科学 workflow prototype，而不是已经统一 scientific simulation automation 的通用平台。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>像 MOOSE 这样的 multiphysics simulation framework 很强，但真实门槛并不只在物理知识本身，而在于如何写对 input file、配置参数扫描、诊断 runtime 失败并把结果整理成可信的研究流程。很多材料和 phase-field 工作流仍高度依赖熟练研究者手工维护。</p><p>AutoMOOSE 的关键贡献，是把 phase-field simulation lifecycle 变成自然语言驱动的多 agent workflow。它用多 agent 管道自动生成输入、并行执行参数扫描、诊断三类 runtime failures，并通过 plugin architecture 和 MCP tool interface 暴露可扩展的科学计算工作流接口；同时，论文不只看能不能跑通，还补上了 physical consistency check 与 FAIR-style provenance。</p><p>它值得正式收录，因为它符合本仓库对 AI for science 的高门槛要求：不是单一预测任务，而是把 simulation campaign 的组织方式做成可复用的 agentic infrastructure。对 self-driving lab、scientific workflow automation 和 domain simulation copilots，这类工作比单点 benchmark 更有长期价值。</p><p>它没有升到更高一级，是因为当前验证仍集中在 phase-field / grain-growth 这条具体科学子线，跨更广 simulation stack 的可迁移性还需要更多证据。现阶段它更像一个强科学 workflow prototype，而不是已经统一 scientific simulation automation 的通用平台。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MOOSE（多物理场面向对象模拟环境）等多物理场模拟框架为相场材料建模提供了严谨、可扩展的引擎，但其实际应用受到构建有效输入文件、协调参数扫描、诊断收敛失败以及提取定量结果所需的专业知识和手动工作量的限制。在本文中，我们介绍了AutoMOOSE，一个开源智能体框架，它通过从单个自然语言提示编排完整的模拟生命周期来弥合这一差距。AutoMOOSE部署了一个五智能体管道——架构师、输入编写器、运行器、审阅器和可视化器——其中输入编写器将输入生成分解给六个专门的子智能体，审阅器则无需用户干预即可自主检测、分类和纠正运行时故障。一个模块化插件架构通过两函数契约将物理特定实现与编排层分离，使得新的相场公式无需修改核心框架即可集成。一个模型上下文协议（MCP）服务器将完整的工作流程公开为十个结构化工具，实现了与任何MCP兼容的AI客户端的互操作性以及与外部优化管道的可组合性。我们在四温度铜多晶晶粒生长基准上验证了AutoMOOSE。该管道自主生成语法有效的MOOSE输入文件（12个结构块中有6个完全匹配，4个在功能上等同于人工编写的专家参考），并行执行所有四次运行，实现了相对于串行执行1.8倍的实际运行时间加速，并执行了涵盖自然语言意图、有限元执行和宏观动力学分析的端到端一致性检查，无需中间人工验证。该智能体工作流程恢复了晶粒粗化动力学（在T ≥ 600 K时R2 = 0.90–0.95）和阿伦尼乌斯活化能Qfit = 0.296 eV，而指定输入Q = 0.23 eV——这与在相同网格和物理参数下恢复Qfit = 0.267 eV的人工编写参考运行结果一致。在扫描过程中遇到的三类收敛失败在单个纠正周期内被自主诊断和解决。每次运行都会生成一个自我记录的溯源记录，编码所有模拟计划字段和执行元数据，从而通过构建满足了FAIR数据原则。这些结果表明，了解物理学与执行经过验证的模拟活动之间的差距现在可以通过轻量级多智能体编排层来弥合，为AI驱动的材料发现和自动驾驶计算实验室提供了一条经过定量验证的途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Multiphysics simulation frameworks such as MOOSE (Multiphysics Object-Oriented Simulation Environment) provide rigorous, scalable engines for phase-field materials modeling, yet their practical adoption is constrained by the expertise and manual effort required to construct valid input files, coordinate parameter sweeps, diagnose convergence failures, and extract quantitative results. Here we introduce AutoMOOSE, an open-source agentic framework that closes this gap by orchestrating the full simulation lifecycle from a single natural-language prompt. AutoMOOSE deploys a fiveagent pipeline — Architect, Input Writer, Runner, Reviewer, and Visualization — in which the Input Writer decomposes input generation across six specialized sub-agents and the Reviewer autonomously detects, classifies, and corrects runtime failures without user intervention. A modular plugin architecture separates physics-specific implementations from the orchestration layer via a twofunction contract, enabling new phase-field formulations to be integrated without modifying the core framework. A Model Context Protocol (MCP) server exposes the complete workflow as ten structured tools, enabling interoperability with any MCP-compatible AI client and composability with external optimization pipelines. We validate AutoMOOSE on a four-temperature copper polycrystalline grain growth benchmark. The pipeline autonomously generates syntactically valid MOOSE input files (6 of 12 structural blocks match exactly and 4 are functionally equivalent to a human-written expert reference), executes all four runs in parallel achieving a 1.8× wall-clock speedup over serial execution, and performs an end-to-end consistency check spanning natural-language intent, finiteelement execution, and macroscopic kinetics analysis with no intermediate human verification. The agentic workflow recovers grain coarsening kinetics (R2 = 0.90–0.95 at T ≥ 600 K) and an Arrhenius activation energy Qfit = 0.296 eV against the specified input Q = 0.23 eV — consistent with a human-written reference run that recovers Qfit = 0.267 eV under identical mesh and physical parameters. Three classes of convergence failures encountered during the sweep were diagnosed and resolved autonomously within a single correction cycle. Every run produces a self-documenting provenance record encoding all simulation plan fields and execution metadata, satisfying FAIR data principles by construction. These results demonstrate that the gap between knowing the physics and executing a validated simulation campaign can now be bridged by a lightweight multi-agent orchestration layer, providing a quantitatively verified pathway toward AI-driven materials discovery and self-driving computational laboratories.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260322s5automoos,
+  title = {AutoMOOSE: An Agentic AI for Autonomous Phase-Field Simulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.20986.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s5-automoose-phase-field-simulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AutoMOOSE: An Agentic AI for Autonomous Phase-Field Simulation. https://arxiv.org/pdf/2603.20986.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.20986.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

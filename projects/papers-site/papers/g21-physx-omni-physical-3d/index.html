@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects | DAST Papers</title>
+    <meta name="description" content="PhysX-Omni 面向 embodied AI 和物理仿真的关键缺口：现有 3D 生成往往只生成外观几何，缺少可直接进入仿真的物理属性，且常局限于刚体、可变形物体或关节物体中的单一类别。
+
+论文提出统一的 simulation-ready physical 3D generation 框架，并设计适配 VLM 的高分辨率 3D 几何表示；同时构建 PhysXVerse 数据集，覆盖多类室内外物" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g21-physx-omni-physical-3d/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects" />
+    <meta property="og:description" content="PhysX-Omni 面向 embodied AI 和物理仿真的关键缺口：现有 3D 生成往往只生成外观几何，缺少可直接进入仿真的物理属性，且常局限于刚体、可变形物体或关节物体中的单一类别。
+
+论文提出统一的 simulation-ready physical 3D generation 框架，并设计适配 VLM 的高分辨率 3D 几何表示；同时构建 PhysXVerse 数据集，覆盖多类室内外物" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g21-physx-omni-physical-3d/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects" />
+    <meta name="twitter:description" content="PhysX-Omni 面向 embodied AI 和物理仿真的关键缺口：现有 3D 生成往往只生成外观几何，缺少可直接进入仿真的物理属性，且常局限于刚体、可变形物体或关节物体中的单一类别。
+
+论文提出统一的 simulation-ready physical 3D generation 框架，并设计适配 VLM 的高分辨率 3D 几何表示；同时构建 PhysXVerse 数据集，覆盖多类室内外物" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21572" target="_blank" rel="noopener noreferrer">2605.21572</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>PhysX-Omni 面向 embodied AI 和物理仿真的关键缺口：现有 3D 生成往往只生成外观几何，缺少可直接进入仿真的物理属性，且常局限于刚体、可变形物体或关节物体中的单一类别。</dd></div><div><dt>方法/机制</dt><dd>论文提出统一的 simulation-ready physical 3D generation 框架，并设计适配 VLM 的高分辨率 3D 几何表示；同时构建 PhysXVerse 数据集，覆盖多类室内外物体。</dd></div><div><dt>结果/证据</dt><dd>评估侧提出 PhysX-Bench，覆盖 geometry、absolute scale、material、affordance、kinematics、function description 六类属性，连接生成质量和物理/功能可用性。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 3D 生成从视觉资产推进到可仿真物理资产，为机器人策略学习、仿真环境构建和世界模型提供了更接近操作层的生成接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>PhysX-Omni 面向 embodied AI 和物理仿真的关键缺口：现有 3D 生成往往只生成外观几何，缺少可直接进入仿真的物理属性，且常局限于刚体、可变形物体或关节物体中的单一类别。</p><p>论文提出统一的 simulation-ready physical 3D generation 框架，并设计适配 VLM 的高分辨率 3D 几何表示；同时构建 PhysXVerse 数据集，覆盖多类室内外物体。</p><p>评估侧提出 PhysX-Bench，覆盖 geometry、absolute scale、material、affordance、kinematics、function description 六类属性，连接生成质量和物理/功能可用性。</p><p>它值得正式收录，因为它把 3D 生成从视觉资产推进到可仿真物理资产，为机器人策略学习、仿真环境构建和世界模型提供了更接近操作层的生成接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>PhysX-Omni 提出了一种统一的框架、数据集和基准，用于生成适用于物理模拟的 3D 内容，涵盖刚体、变形体和仿真的物体，包括几何、比例、材料、功能、运动学和功能属性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>PhysX-Omni proposes a unified framework, dataset, and benchmark for simulation-ready physical 3D generation across rigid, deformable, and articulated objects, including geometry, scale, material, affordance, kinematics, and function attributes.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520g21physxom,
+  title = {PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21572.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g21-physx-omni-physical-3d/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PhysX-Omni: Unified Simulation-Ready Physical 3D Generation for Rigid, Deformable, and Articulated Objects. https://arxiv.org/pdf/2605.21572.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21572.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://physx-omni.github.io" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.21572" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/physx-omni/PhysX-Omni" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

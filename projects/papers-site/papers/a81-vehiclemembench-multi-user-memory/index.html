@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents | DAST Papers</title>
+    <meta name="description" content="车载 agent 如果要从助手变成长时陪伴系统，真正难的不是回答单轮问题，而是持续建模多用户偏好、处理家庭成员间的冲突，并在习惯变化后做可靠决策。现有 long-term memory benchmark 大多还是单用户、静态 QA 或弱交互环境，因此很难覆盖真实 in-vehicle agents 面临的 preference evolution 和 tool-interactive 决策压力。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a81-vehiclemembench-multi-user-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents" />
+    <meta property="og:description" content="车载 agent 如果要从助手变成长时陪伴系统，真正难的不是回答单轮问题，而是持续建模多用户偏好、处理家庭成员间的冲突，并在习惯变化后做可靠决策。现有 long-term memory benchmark 大多还是单用户、静态 QA 或弱交互环境，因此很难覆盖真实 in-vehicle agents 面临的 preference evolution 和 tool-interactive 决策压力。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a81-vehiclemembench-multi-user-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents" />
+    <meta name="twitter:description" content="车载 agent 如果要从助手变成长时陪伴系统，真正难的不是回答单轮问题，而是持续建模多用户偏好、处理家庭成员间的冲突，并在习惯变化后做可靠决策。现有 long-term memory benchmark 大多还是单用户、静态 QA 或弱交互环境，因此很难覆盖真实 in-vehicle agents 面临的 preference evolution 和 tool-interactive 决策压力。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23840" target="_blank" rel="noopener noreferrer">2603.23840</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>车载 agent 如果要从助手变成长时陪伴系统，真正难的不是回答单轮问题，而是持续建模多用户偏好、处理家庭成员间的冲突，并在习惯变化后做可靠决策。现有 long-term memory benchmark 大多还是单用户、静态 QA 或弱交互环境，因此很难覆盖真实 in-vehicle agents 面临的 preference evolution 和 tool-interactive 决策压力。VehicleMemBench 明确补的是这个场景缺口。</dd></div><div><dt>方法/机制</dt><dd>它的核心价值在于可执行环境和客观评测接口。VehicleMemBench 不是只给一堆对话样本，而是把 memory 与 tool use 放进一个可执行车载模拟环境里，通过动作后的环境状态是否达成目标来评价模型，而不是依赖 LLM judge 或人工主观打分。基准里包含 23 个工具模块、每个样本超过 80 条历史记忆事件，因此它实际测到的是 memory retrieval、冲突解析和长时偏好更新后的真实决策质量。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它把 agent memory 评测从静态问答推进到 multi-user、long-horizon、executable benchmark，这正好命中仓库在 agent memory 和 evaluation 上的主线。尤其是“多用户偏好演化 + 工具交互 + 客观环境验收”这一组合，很可能会成为后续 memory systems 更有说服力的测试方式。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为场景仍然聚焦车载 domain，虽然机制上有外溢，但是否能上升为更广泛 multi-user memory benchmark 范式还需要更多跨领域复用。它已经很有评测价值，但还不是所有长期记忆 agent 的统一基准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>车载 agent 如果要从助手变成长时陪伴系统，真正难的不是回答单轮问题，而是持续建模多用户偏好、处理家庭成员间的冲突，并在习惯变化后做可靠决策。现有 long-term memory benchmark 大多还是单用户、静态 QA 或弱交互环境，因此很难覆盖真实 in-vehicle agents 面临的 preference evolution 和 tool-interactive 决策压力。VehicleMemBench 明确补的是这个场景缺口。</p><p>它的核心价值在于可执行环境和客观评测接口。VehicleMemBench 不是只给一堆对话样本，而是把 memory 与 tool use 放进一个可执行车载模拟环境里，通过动作后的环境状态是否达成目标来评价模型，而不是依赖 LLM judge 或人工主观打分。基准里包含 23 个工具模块、每个样本超过 80 条历史记忆事件，因此它实际测到的是 memory retrieval、冲突解析和长时偏好更新后的真实决策质量。</p><p>这篇工作值得正式收录，因为它把 agent memory 评测从静态问答推进到 multi-user、long-horizon、executable benchmark，这正好命中仓库在 agent memory 和 evaluation 上的主线。尤其是“多用户偏好演化 + 工具交互 + 客观环境验收”这一组合，很可能会成为后续 memory systems 更有说服力的测试方式。</p><p>它目前仍是 breakthrough，而不是更高一级，因为场景仍然聚焦车载 domain，虽然机制上有外溢，但是否能上升为更广泛 multi-user memory benchmark 范式还需要更多跨领域复用。它已经很有评测价值，但还不是所有长期记忆 agent 的统一基准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>VehicleMemBench：车载智能体中多用户长期记忆的可执行基准。随着对智能车载体验需求的增长，车载智能体正从简单的助手演变为长期的伴侣。这种演变要求智能体能够持续建模多用户偏好，并在面对用户间偏好冲突和随时间变化的习惯时做出可靠决策。然而，现有基准主要局限于单用户、静态问答设置，未能捕捉偏好的时间演变以及真实车载环境的多用户、工具交互性。为弥补这一空白，我们引入了VehicleMemBench，这是一个基于可执行车载模拟环境构建的多用户长上下文记忆基准。该基准通过比较行动后的环境状态与预定义的目标状态来评估工具使用和记忆，从而实现无需基于LLM或人工评分的客观且可复现的评估。VehicleMemBench包含23个工具模块，每个样本包含超过80个历史记忆事件。实验表明，强大的模型在直接指令任务上表现良好，但在涉及记忆演变的场景中，尤其当用户偏好动态变化时，表现不佳。即使是先进的记忆系统也难以处理该环境中的领域特定记忆需求。这些发现强调了需要更强大和专业的记忆管理机制，以支持真实车载系统中的长期自适应决策。为促进未来研究，我们发布了数据2和代码3。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>With the growing demand for intelligent in-vehicle experiences, vehicle-based agents are evolving from simple assistants to long-term companions. This evolution requires agents to continuously model multi-user preferences and make reliable decisions in the face of inter-user preference conflicts and changing habits over time. However, existing benchmarks are largely limited to single-user, static questionanswer settings, failing to capture the temporal evolution of preferences and the multi-user, tool-interactive nature of real vehicle environments. To address this gap, we introduce VehicleMemBench, a multi-user long-context memory benchmark built on an executable in-vehicle simulation environment. The benchmark evaluates tool use and memory by comparing the post-action environment state with a predefined target state, enabling objective and reproducible evaluation without LLM-based or human scoring. VehicleMemBench includes 23 tool modules, and each sample contains over 80 historical memory events. Experiments show that powerful models perform well on direct instruction tasks but struggle in scenarios involving memory evolution, particularly when user preferences change dynamically. Even advanced memory systems struggle to handle domain-specific memory requirements in this environment. These findings highlight the need for more robust and specialized memory management mechanisms to support longterm adaptive decision-making in real-world in-vehicle systems. To facilitate future research, we release the data2 and code3 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325a81vehicle,
+  title = {VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23840.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a81-vehiclemembench-multi-user-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VehicleMemBench: An Executable Benchmark for Multi-User Long-Term Memory in In-Vehicle Agents. https://arxiv.org/pdf/2603.23840.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23840.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

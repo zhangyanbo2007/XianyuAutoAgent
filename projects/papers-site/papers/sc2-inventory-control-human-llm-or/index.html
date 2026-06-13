@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Agents for Inventory Control: Human-LLM-OR Complementarity | DAST Papers</title>
+    <meta name="description" content="库存控制是一个经典但仍然现实的问题：传统 OR 方法有强理论基础，但通常依赖较硬的分布与结构假设；而大语言模型看似更灵活，却很难证明其在真实决策问题里的角色到底是什么。简单地把 LLM 当作 OR 替代品并不成立。
+
+这篇论文真正有价值的地方，是把问题改写成 complementarity study。作者构建了覆盖 synthetic 与 real-world demand 的 Inventor" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sc2-inventory-control-human-llm-or/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AI Agents for Inventory Control: Human-LLM-OR Complementarity" />
+    <meta property="og:description" content="库存控制是一个经典但仍然现实的问题：传统 OR 方法有强理论基础，但通常依赖较硬的分布与结构假设；而大语言模型看似更灵活，却很难证明其在真实决策问题里的角色到底是什么。简单地把 LLM 当作 OR 替代品并不成立。
+
+这篇论文真正有价值的地方，是把问题改写成 complementarity study。作者构建了覆盖 synthetic 与 real-world demand 的 Inventor" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sc2-inventory-control-human-llm-or/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AI Agents for Inventory Control: Human-LLM-OR Complementarity" />
+    <meta name="twitter:description" content="库存控制是一个经典但仍然现实的问题：传统 OR 方法有强理论基础，但通常依赖较硬的分布与结构假设；而大语言模型看似更灵活，却很难证明其在真实决策问题里的角色到底是什么。简单地把 LLM 当作 OR 替代品并不成立。
+
+这篇论文真正有价值的地方，是把问题改写成 complementarity study。作者构建了覆盖 synthetic 与 real-world demand 的 Inventor" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AI Agents for Inventory Control: Human-LLM-OR Complementarity</h1>
+          <p class="subtitle">供应链、物流与运营 · 发表：2026-02-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">供应链、物流与运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.12631" target="_blank" rel="noopener noreferrer">2602.12631</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>库存控制是一个经典但仍然现实的问题：传统 OR 方法有强理论基础，但通常依赖较硬的分布与结构假设；而大语言模型看似更灵活，却很难证明其在真实决策问题里的角色到底是什么。简单地把 LLM 当作 OR 替代品并不成立。</dd></div><div><dt>方法/机制</dt><dd>这篇论文真正有价值的地方，是把问题改写成 complementarity study。作者构建了覆盖 synthetic 与 real-world demand 的 InventoryBench，在需求漂移、季节性和 lead-time 不确定条件下系统比较 OR、LLM、OR-augmented LLM 以及 human-AI collaboration。结果表明 OR-augmented LLM 明显优于任一单独方法，而且 human-AI teams 在平均收益上也优于单独人类或单独 AI。</dd></div><div><dt>结果/证据</dt><dd>这使它不再只是 supply-chain application paper，而是一个更耐久的 operations decision pattern：由 OR 提供结构化约束与强先验，由 LLM 负责吸收上下文与柔性推理，人类则承担最终判断与例外处理。对物流、库存、履约和其他运营决策问题，这种 human-LLM-OR complementarity 有明确外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为当前证据仍主要围绕 inventory control 这一经典任务展开，虽然 framing 很强，但还没证明它会直接重排更广 operations research 与 enterprise decision systems 的默认范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>库存控制是一个经典但仍然现实的问题：传统 OR 方法有强理论基础，但通常依赖较硬的分布与结构假设；而大语言模型看似更灵活，却很难证明其在真实决策问题里的角色到底是什么。简单地把 LLM 当作 OR 替代品并不成立。</p><p>这篇论文真正有价值的地方，是把问题改写成 complementarity study。作者构建了覆盖 synthetic 与 real-world demand 的 InventoryBench，在需求漂移、季节性和 lead-time 不确定条件下系统比较 OR、LLM、OR-augmented LLM 以及 human-AI collaboration。结果表明 OR-augmented LLM 明显优于任一单独方法，而且 human-AI teams 在平均收益上也优于单独人类或单独 AI。</p><p>这使它不再只是 supply-chain application paper，而是一个更耐久的 operations decision pattern：由 OR 提供结构化约束与强先验，由 LLM 负责吸收上下文与柔性推理，人类则承担最终判断与例外处理。对物流、库存、履约和其他运营决策问题，这种 human-LLM-OR complementarity 有明确外溢。</p><p>它没有更高一级，因为当前证据仍主要围绕 inventory control 这一经典任务展开，虽然 framing 很强，但还没证明它会直接重排更广 operations research 与 enterprise decision systems 的默认范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>存货控制中的AI智能体：人、LLM与运筹学的互补性存货控制是一个基本运营问题，其中订购决策传统上由基于理论的运筹学（OR）算法指导。然而，此类算法通常依赖于僵化的建模假设，并且在需求分布发生变化或相关上下文信息不可用时，其性能可能不佳。大型语言模型（LLMs）的最新进展引发了人们对能够灵活推理并整合丰富上下文信号的AI智能体的兴趣，但目前尚不清楚如何最好地将基于LLM的方法整合到传统的决策流程中。我们研究了在多周期存货控制环境中，运筹学算法、LLMs和人类如何相互作用并互补。我们构建了InventoryBench，这是一个包含1,000多个存货实例的基准，涵盖合成和真实世界的需求数据，旨在在需求变化、季节性和不确定提前期下对决策规则进行压力测试。通过这个基准，我们发现运筹学增强的LLM方法优于任何单一方法，这表明这些方法是互补而非替代关系。我们通过一项受控的课堂实验进一步探讨了人类的作用，该实验将LLM的建议嵌入到人机协作的决策流程中。与先前认为人机协作可能降低性能的发现相反，我们表明，平均而言，人机团队比单独操作的人类或AI智能体获得更高的利润。除了这一群体层面的发现，我们还形式化了个体层面的互补效应，并推导出了从AI协作中受益的个体比例的无分布下限；经验上，我们发现这一比例是可观的。综上所述，我们的结果提供了证据，表明有效的存货管理受益于一个互补系统，其中运筹学提供启发式方法和计算器，LLMs贡献世界知识和上下文推理，而人类判断在自动化决策之外增加了价值。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Inventory control is a fundamental operations problem in which ordering decisions are traditionally guided by theoretically grounded operations research (OR) algorithms. However, such algorithms often rely on rigid modeling assumptions and can perform poorly when demand distributions shift or relevant contextual information is unavailable. Recent advances in large language models (LLMs) have generated interest in AI agents that can reason flexibly and incorporate rich contextual signals, but it remains unclear how best to incorporate LLM-based methods into traditional decision-making pipelines. We study how OR algorithms, LLMs, and humans can interact and complement each other in a multi-period inventory control setting. We construct InventoryBench, a benchmark of over 1,000 inventory instances spanning both synthetic and real-world demand data, designed to stress-test decision rules under demand shifts, seasonality, and uncertain lead times. Through this benchmark, we find that OR-augmented LLM methods outperform either method in isolation, suggesting that these methods are complementary rather than substitutes. We further investigate the role of humans through a controlled classroom experiment that embeds LLM recommendations into a human-in-the-loop decision pipeline. Contrary to prior findings that human-AI collaboration can degrade performance, we show that, on average, human-AI teams achieve higher profits than either humans or AI agents operating alone. Beyond this population-level finding, we formalize an individual-level complementarity effect and derive a distribution-free lower bound on the fraction of individuals who benefit from AI collaboration; empirically, we find this fraction to be substantial. Taken together, our results provide evidence that effective inventory management benefits from a complementary system in which OR provides heuristics and calculators, LLMs contribute world knowledge and contextual reasoning, and human judgment adds value beyond automated decision making.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260213sc2invento,
+  title = {AI Agents for Inventory Control: Human-LLM-OR Complementarity},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.12631.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sc2-inventory-control-human-llm-or/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AI Agents for Inventory Control: Human-LLM-OR Complementarity. https://arxiv.org/pdf/2602.12631.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/sc1-contextual-fulfillment-optimization/">
+              <span>Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty</span>
+              <small>供应链、物流与运营 · 2025-10-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.12631.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

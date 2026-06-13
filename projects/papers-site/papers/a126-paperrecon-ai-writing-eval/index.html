@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paper Reconstruction Evaluation: Evaluating Presentation and Hallucination in AI-written Papers | DAST Papers</title>
+    <meta name="description" content="随着 coding agents 和 research agents 开始写完整论文，问题已经不再只是“能不能生成一篇看起来像论文的文本”，而是 presentation quality 和 hallucination risk 如何同时量化。当前对 AI-written papers 的担忧很多，但真正系统化、可复现的评估框架仍然很少。
+
+论文提出 Paper Reconstruction Ev" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a126-paperrecon-ai-writing-eval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Paper Reconstruction Evaluation: Evaluating Presentation and Hallucination in AI-written Papers" />
+    <meta property="og:description" content="随着 coding agents 和 research agents 开始写完整论文，问题已经不再只是“能不能生成一篇看起来像论文的文本”，而是 presentation quality 和 hallucination risk 如何同时量化。当前对 AI-written papers 的担忧很多，但真正系统化、可复现的评估框架仍然很少。
+
+论文提出 Paper Reconstruction Ev" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a126-paperrecon-ai-writing-eval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Paper Reconstruction Evaluation: Evaluating Presentation and Hallucination in AI-written Papers" />
+    <meta name="twitter:description" content="随着 coding agents 和 research agents 开始写完整论文，问题已经不再只是“能不能生成一篇看起来像论文的文本”，而是 presentation quality 和 hallucination risk 如何同时量化。当前对 AI-written papers 的担忧很多，但真正系统化、可复现的评估框架仍然很少。
+
+论文提出 Paper Reconstruction Ev" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Paper Reconstruction Evaluation: Evaluating Presentation and Hallucination in AI-written Papers</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01128" target="_blank" rel="noopener noreferrer">2604.01128</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 coding agents 和 research agents 开始写完整论文，问题已经不再只是“能不能生成一篇看起来像论文的文本”，而是 presentation quality 和 hallucination risk 如何同时量化。当前对 AI-written papers 的担忧很多，但真正系统化、可复现的评估框架仍然很少。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Paper Reconstruction Evaluation（PaperRecon）：先从原论文生成 overview，再让 agent 只基于 overview 和极少额外资源重写完整论文，最后再与原论文进行比较。作者把评估拆成两个正交维度：Presentation 与 Hallucination，并引入 PaperWrite-Bench，包含 51 篇 2025 年后多领域 top-tier papers。实验显示 ClaudeCode 与 Codex 在写作表现与 hallucination 风险上存在清晰 trade-off，从而揭示 AI research writing 的具体失真模式。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 AI research automation 里的一个核心风险做成了正式 benchmark：不仅评生成质量，还评是否在科研写作中系统性胡编。对 agentic scientific writing、AI scientist safety 和研究工作流治理，这是一条很实用的评测基础设施。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍然是一个很聚焦的 evaluation layer，主要服务于 paper-writing agents，而不是整个 AI research automation 栈的统一评估体系。它很有价值，但范围仍偏具体。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 coding agents 和 research agents 开始写完整论文，问题已经不再只是“能不能生成一篇看起来像论文的文本”，而是 presentation quality 和 hallucination risk 如何同时量化。当前对 AI-written papers 的担忧很多，但真正系统化、可复现的评估框架仍然很少。</p><p>论文提出 Paper Reconstruction Evaluation（PaperRecon）：先从原论文生成 overview，再让 agent 只基于 overview 和极少额外资源重写完整论文，最后再与原论文进行比较。作者把评估拆成两个正交维度：Presentation 与 Hallucination，并引入 PaperWrite-Bench，包含 51 篇 2025 年后多领域 top-tier papers。实验显示 ClaudeCode 与 Codex 在写作表现与 hallucination 风险上存在清晰 trade-off，从而揭示 AI research writing 的具体失真模式。</p><p>这篇工作值得收录，因为它把 AI research automation 里的一个核心风险做成了正式 benchmark：不仅评生成质量，还评是否在科研写作中系统性胡编。对 agentic scientific writing、AI scientist safety 和研究工作流治理，这是一条很实用的评测基础设施。</p><p>它没有升到更高一级，是因为当前仍然是一个很聚焦的 evaluation layer，主要服务于 paper-writing agents，而不是整个 AI research automation 栈的统一评估体系。它很有价值，但范围仍偏具体。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文介绍了第一个系统性评估框架，用于量化现代编码代理撰写论文的质量和风险。尽管人工智能驱动的论文写作已成为日益增长的关注点，但对人工智能撰写论文的质量和潜在风险的严格评估仍然有限，对其可靠性的统一理解也仍然缺乏。我们引入了论文重建评估（PaperRecon），这是一个评估框架，其中从现有论文创建一个概述文件（overview.md），然后代理根据该概述和最少的额外资源生成一篇完整的论文，随后将结果与原始论文进行比较。PaperRecon 将人工智能撰写论文的评估分解为两个正交维度：呈现（Presentation）和幻觉（Hallucination），其中呈现通过评分标准进行评估，幻觉则通过基于原始论文来源的代理评估进行评估。为了进行评估，我们引入了 PaperWrite-Bench，这是一个包含 51 篇来自 2025 年后发表的顶级会议、跨越不同领域的论文的基准测试。我们的实验揭示了一个明显的权衡：虽然 ClaudeCode 和 Codex 都随着模型的进步而改进，但 ClaudeCode 以平均每篇论文超过 10 次幻觉的代价实现了更高的呈现质量，而 Codex 产生的幻觉较少但呈现质量较低。这项工作迈出了建立人工智能驱动论文写作评估框架并提高研究界对其风险理解的第一步。* 贡献相同</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper introduces the first systematic evaluation framework for quantifying the quality and risks of papers written by modern coding agents. While AI-driven paper writing has become a growing concern, rigorous evaluation of the quality and potential risks of AI-written papers remains limited, and a unified understanding of their reliability is still lacking. We introduce Paper Reconstruction Evaluation (PaperRecon), an evaluation framework in which an overview (overview.md) is created from an existing paper, after which an agent generates a full paper based on the overview and minimal additional resources, and the result is subsequently compared against the original paper. PaperRecon disentangles the evaluation of the AI-written papers into two orthogonal dimensions, Presentation and Hallucination, where Presentation is evaluated using a rubric and Hallucination is assessed via agentic evaluation grounded in the original paper source. For evaluation, we introduce PaperWrite-Bench, a benchmark of 51 papers from top-tier venues across diverse domains published after 2025. Our experiments reveal a clear trade-off: while both ClaudeCode and Codex improve with model advances, ClaudeCode achieves higher presentation quality at the cost of more than 10 hallucinations per paper on average, whereas Codex produces fewer hallucinations but lower presentation quality. This work takes a first step toward establishing evaluation frameworks for AI-driven paper writing and improving the understanding of its risks within the research community. ∗ Equal contribution</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a126paperr,
+  title = {Paper Reconstruction Evaluation: Evaluating Presentation and Hallucination in AI-written Papers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01128.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a126-paperrecon-ai-writing-eval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Paper Reconstruction Evaluation: Evaluating Presentation and Hallucination in AI-written Papers. https://arxiv.org/pdf/2604.01128.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01128.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

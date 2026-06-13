@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agentproof: Static Verification of Agent Workflow Graphs | DAST Papers</title>
+    <meta name="description" content="越来越多 agent framework 会把 tool-using behavior 编码成显式 workflow graphs，但多数安全控制仍发生在 runtime，意味着很多图结构层面的错误只有在坏路径真的被走到时才会暴露。对生产系统而言，这种事后发现成本很高。
+
+Agentproof 的贡献是把主流 framework 暴露出来的 graph structure 变成可统一静态验证的对象" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a150-agentproof-workflow-verification/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agentproof: Static Verification of Agent Workflow Graphs" />
+    <meta property="og:description" content="越来越多 agent framework 会把 tool-using behavior 编码成显式 workflow graphs，但多数安全控制仍发生在 runtime，意味着很多图结构层面的错误只有在坏路径真的被走到时才会暴露。对生产系统而言，这种事后发现成本很高。
+
+Agentproof 的贡献是把主流 framework 暴露出来的 graph structure 变成可统一静态验证的对象" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a150-agentproof-workflow-verification/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agentproof: Static Verification of Agent Workflow Graphs" />
+    <meta name="twitter:description" content="越来越多 agent framework 会把 tool-using behavior 编码成显式 workflow graphs，但多数安全控制仍发生在 runtime，意味着很多图结构层面的错误只有在坏路径真的被走到时才会暴露。对生产系统而言，这种事后发现成本很高。
+
+Agentproof 的贡献是把主流 framework 暴露出来的 graph structure 变成可统一静态验证的对象" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agentproof: Static Verification of Agent Workflow Graphs</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.20356" target="_blank" rel="noopener noreferrer">2603.20356</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>越来越多 agent framework 会把 tool-using behavior 编码成显式 workflow graphs，但多数安全控制仍发生在 runtime，意味着很多图结构层面的错误只有在坏路径真的被走到时才会暴露。对生产系统而言，这种事后发现成本很高。</dd></div><div><dt>方法/机制</dt><dd>Agentproof 的贡献是把主流 framework 暴露出来的 graph structure 变成可统一静态验证的对象。系统先从 LangGraph、CrewAI、AutoGen 和 Google ADK 中抽取抽象图模型，再执行 dead-end、unreachable exit 等结构检查，并把 temporal safety policies 编译成 DFA，通过 graph x DFA product construction 做静态验证，同时也支持运行时 trace 检查。整个流程不要求用户手工写 model checker 级别的建模。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它为 governed execution 提供了一个更底层、更可复用的 static verification primitive。与 runtime guardrails 相比，它能在部署前发现 topology-level defect 和 policy violation，对 agent workflow engineering 的长期价值明显大于单次 benchmark 分数。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前 benchmark 仍是作者构造的小型定向语料，更多证明‘这种验证接口可行且有价值’，还不是对真实生产工作流缺陷分布的大规模刻画。它是很强的基础模式，但尚未成为行业默认标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>越来越多 agent framework 会把 tool-using behavior 编码成显式 workflow graphs，但多数安全控制仍发生在 runtime，意味着很多图结构层面的错误只有在坏路径真的被走到时才会暴露。对生产系统而言，这种事后发现成本很高。</p><p>Agentproof 的贡献是把主流 framework 暴露出来的 graph structure 变成可统一静态验证的对象。系统先从 LangGraph、CrewAI、AutoGen 和 Google ADK 中抽取抽象图模型，再执行 dead-end、unreachable exit 等结构检查，并把 temporal safety policies 编译成 DFA，通过 graph x DFA product construction 做静态验证，同时也支持运行时 trace 检查。整个流程不要求用户手工写 model checker 级别的建模。</p><p>它值得正式收录，因为它为 governed execution 提供了一个更底层、更可复用的 static verification primitive。与 runtime guardrails 相比，它能在部署前发现 topology-level defect 和 policy violation，对 agent workflow engineering 的长期价值明显大于单次 benchmark 分数。</p><p>它没有升到更高一级，是因为当前 benchmark 仍是作者构造的小型定向语料，更多证明‘这种验证接口可行且有价值’，还不是对真实生产工作流缺陷分布的大规模刻画。它是很强的基础模式，但尚未成为行业默认标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>代理框架越来越多地将工具使用行为编码为显式工作流图，但安全强制执行仍是一个运行时问题。这些框架通过其API暴露可分析的图结构，从而能够对安全属性进行部署前静态验证，而运行时防护措施只能被动地检查这些属性。本文介绍了Agentproof，一个系统，它能自动从四个主要代理框架（LangGraph、CrewAI、AutoGen、Google ADK）中提取统一的抽象图模型，应用六种结构检查并生成见证轨迹，并通过编译为确定性有限自动机的DSL评估时间安全策略——既通过图×DFA乘积构造进行静态评估，也通过事件轨迹进行运行时评估。与通用模型检查器不同，Agentproof无需手动建模。在一个包含18个作者构建工作流的精选基准测试中，27%的基准测试包含结构缺陷（死胡同节点、不可达出口），55%在强制执行时违反了人工门控策略——这些是先前工作混淆的不同类别。定义的所有15个时间策略都符合七种形式的DSL片段，并且对于多达5,000个节点的图，验证在亚秒级时间内完成。该语料库是评估静态验证工具的可复现基准，而非流行率研究；缺陷率反映了工具在目标基准上的检测能力，而非生产系统中的基本发生率。尽管如此，静态图验证通过捕获运行时工具除非执行违规路径否则会遗漏的拓扑级缺陷，从而补充了运行时防护措施。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agent frameworks increasingly encode tool-using behavior as explicit workflow graphs, yet safety enforcement remains a runtime concern. These frameworks expose analyzable graph structure through their APIs, enabling pre-deployment static verification of safety properties that runtime guardrails can only check reactively. This paper presents Agentproof, a system that automatically extracts a unified abstract graph model from four major agent frameworks (LangGraph, CrewAI, AutoGen, Google ADK), applies six structural checks with witness trace generation, and evaluates temporal safety policies via a DSL compiled to deterministic finite automata—both statically through a graph × DFA product construction and at runtime over event traces. Unlike general-purpose model checkers, Agentproof requires no manual modeling. In a curated benchmark of 18 author-constructed workflows, 27% of the benchmark contain structural defects (dead-end nodes, unreachable exits) and 55% violate a human-gate policy when enforced—distinct categories that prior work conflates. All 15 temporal policies defined fit within the seven-form DSL fragment, and verification completes in sub-second time for graphs up to 5,000 nodes. The corpus serves as a reproducible benchmark for evaluating static verification tools rather than as a prevalence study; defect rates reflect tool detection capability on a targeted benchmark, not base rates in production systems. Nonetheless, static graph verification complements runtime guardrails by catching topology-level defects that runtime tools miss unless the offending path is exercised.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260320a150agentp,
+  title = {Agentproof: Static Verification of Agent Workflow Graphs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.20356.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a150-agentproof-workflow-verification/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Agentproof: Static Verification of Agent Workflow Graphs. https://arxiv.org/pdf/2603.20356.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.20356.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

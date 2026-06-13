@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mem-π: Adaptive Memory through Learning When and What to Generate | DAST Papers</title>
+    <meta name="description" content="这篇论文把 agent memory 从相似度检索式 episodic memory / skill library 推进一步：记忆不再只是拿回静态条目，而是由独立模型按当前上下文生成可执行 guidance。
+
+核心机制是 Mem-π 模型同时学习 when 和 what：什么时候不该干预、什么时候生成简洁有效的指导，以及指导内容应该是什么。作者用 decision-content decoup" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a327-mempi-adaptive-generative-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Mem-π: Adaptive Memory through Learning When and What to Generate" />
+    <meta property="og:description" content="这篇论文把 agent memory 从相似度检索式 episodic memory / skill library 推进一步：记忆不再只是拿回静态条目，而是由独立模型按当前上下文生成可执行 guidance。
+
+核心机制是 Mem-π 模型同时学习 when 和 what：什么时候不该干预、什么时候生成简洁有效的指导，以及指导内容应该是什么。作者用 decision-content decoup" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a327-mempi-adaptive-generative-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mem-π: Adaptive Memory through Learning When and What to Generate" />
+    <meta name="twitter:description" content="这篇论文把 agent memory 从相似度检索式 episodic memory / skill library 推进一步：记忆不再只是拿回静态条目，而是由独立模型按当前上下文生成可执行 guidance。
+
+核心机制是 Mem-π 模型同时学习 when 和 what：什么时候不该干预、什么时候生成简洁有效的指导，以及指导内容应该是什么。作者用 decision-content decoup" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Mem-π: Adaptive Memory through Learning When and What to Generate</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21463" target="_blank" rel="noopener noreferrer">2605.21463</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 agent memory 从相似度检索式 episodic memory / skill library 推进一步：记忆不再只是拿回静态条目，而是由独立模型按当前上下文生成可执行 guidance。</dd></div><div><dt>方法/机制</dt><dd>核心机制是 Mem-π 模型同时学习 when 和 what：什么时候不该干预、什么时候生成简洁有效的指导，以及指导内容应该是什么。作者用 decision-content decoupled RL 训练这个生成式记忆策略，避免把是否使用记忆和记忆内容质量混在一起。</dd></div><div><dt>结果/证据</dt><dd>实验覆盖 web navigation、terminal tool use 和 text-based embodied interaction 等 agentic benchmarks，并报告在 web navigation 上相对提升超过 30%，说明它不是单点 QA 记忆，而是面向复杂执行任务的 memory policy。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它给 agent memory 一个可复用的新接口：从 retrieve static memories 转向 generate context-conditioned operational guidance。这对长期 agent、工具使用、技能迁移和 memory controller 设计都有直接工程和研究价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 agent memory 从相似度检索式 episodic memory / skill library 推进一步：记忆不再只是拿回静态条目，而是由独立模型按当前上下文生成可执行 guidance。</p><p>核心机制是 Mem-π 模型同时学习 when 和 what：什么时候不该干预、什么时候生成简洁有效的指导，以及指导内容应该是什么。作者用 decision-content decoupled RL 训练这个生成式记忆策略，避免把是否使用记忆和记忆内容质量混在一起。</p><p>实验覆盖 web navigation、terminal tool use 和 text-based embodied interaction 等 agentic benchmarks，并报告在 web navigation 上相对提升超过 30%，说明它不是单点 QA 记忆，而是面向复杂执行任务的 memory policy。</p><p>它值得正式收录，因为它给 agent memory 一个可复用的新接口：从 retrieve static memories 转向 generate context-conditioned operational guidance。这对长期 agent、工具使用、技能迁移和 memory controller 设计都有直接工程和研究价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了Mem-π，一个用于大型语言模型（LLM）代理的自适应记忆框架，其中有用的指导是按需生成的，而不是从外部记忆存储中检索的。现有的记忆增强代理通常依赖于从情景记忆库或技能库中进行基于相似性的检索，返回的静态条目常常与当前的查询上下文不匹配。相比之下，我们将记忆建模为一个生成策略，该策略由一个具有独立参数的专用语言或视觉-语言模型实现，与下游代理分离，并经过专门微调以生成上下文特定的指导，从而提示代理如何执行复杂任务。记忆策略共同决定何时生成指导以及生成何种指导，它通过一个决策-内容解耦的强化学习（RL）目标进行训练，以便在生成无益时停止生成，否则生成简洁、与任务相关的指导。在涵盖网页导航、终端工具使用和具身环境的各种代理基准测试中，Mem-π始终优于基于检索和RL优化的记忆基线，平均实现了超过20%的相对改进。通讯作者：bang.liu@umontreal.ca, perouz.taslakian@servicenow.com</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present Mem-π, a framework for adaptive memory in large language model (LLM) agents, where useful guidance is generated on demand rather than retrieved from external memory stores. Existing memory-augmented agents typically rely on similarity-based retrieval from episodic memory banks or skill libraries, returning static entries that often misalign with the current query context. In contrast, we model memory as a generative policy realized by a dedicated language or vision-language model with its own parameters, separate from the downstream agent, and fine-tuned specifically to produce context-specific guidance that cues the agent on how to perform complex tasks. The memory policy jointly decides when to produce guidance and what guidance to produce, trained with a decision-content decoupled reinforcement learning (RL) objective so that it abstains when generation would not help and otherwise produces concise, task-relevant guidance. Across diverse agentic benchmarks spanning web navigation, terminal tool use, and embodied environments, Mem-π consistently outperforms retrieval-based and RL-optimized memory baselines, achieving over 20% relative improvement on average. Correspondence: bang.liu@umontreal.ca, perouz.taslakian@servicenow.com</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520a327mempia,
+  title = {Mem-π: Adaptive Memory through Learning When and What to Generate},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21463.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a327-mempi-adaptive-generative-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Mem-π: Adaptive Memory through Learning When and What to Generate. https://arxiv.org/pdf/2605.21463.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21463.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.21463" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

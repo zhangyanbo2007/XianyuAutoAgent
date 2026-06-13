@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents | DAST Papers</title>
+    <meta name="description" content="computer-use agent 现在最缺的不是又一个 benchmark 分数，而是连续、高质量、带动作与推理痕迹的人类演示数据。现有公开资源大多停留在稀疏截图、短时交互或极少量视频，导致 agent 很难真正学到长程桌面工作流里的时序线索、光标运动细节和局部失败恢复。CUA-Suite 正面处理的就是这个基础设施缺口。
+
+这篇工作的核心不是单一数据集，而是一整套面向 CUA 的视频演示生态" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a78-cua-suite-computer-use-dataset/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents" />
+    <meta property="og:description" content="computer-use agent 现在最缺的不是又一个 benchmark 分数，而是连续、高质量、带动作与推理痕迹的人类演示数据。现有公开资源大多停留在稀疏截图、短时交互或极少量视频，导致 agent 很难真正学到长程桌面工作流里的时序线索、光标运动细节和局部失败恢复。CUA-Suite 正面处理的就是这个基础设施缺口。
+
+这篇工作的核心不是单一数据集，而是一整套面向 CUA 的视频演示生态" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a78-cua-suite-computer-use-dataset/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents" />
+    <meta name="twitter:description" content="computer-use agent 现在最缺的不是又一个 benchmark 分数，而是连续、高质量、带动作与推理痕迹的人类演示数据。现有公开资源大多停留在稀疏截图、短时交互或极少量视频，导致 agent 很难真正学到长程桌面工作流里的时序线索、光标运动细节和局部失败恢复。CUA-Suite 正面处理的就是这个基础设施缺口。
+
+这篇工作的核心不是单一数据集，而是一整套面向 CUA 的视频演示生态" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24440" target="_blank" rel="noopener noreferrer">2603.24440</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>computer-use agent 现在最缺的不是又一个 benchmark 分数，而是连续、高质量、带动作与推理痕迹的人类演示数据。现有公开资源大多停留在稀疏截图、短时交互或极少量视频，导致 agent 很难真正学到长程桌面工作流里的时序线索、光标运动细节和局部失败恢复。CUA-Suite 正面处理的就是这个基础设施缺口。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心不是单一数据集，而是一整套面向 CUA 的视频演示生态。它以 VideoCUA 为中心，提供约一万条人类演示任务、覆盖 87 个应用、连续 30fps 屏幕录制、光标轨迹以及多层级 reasoning annotations，从而把 computer-use agent 的训练信号从稀疏状态截图提升到可学习连续交互过程。这个接口对 imitation、planning、verification 和 video-grounded action modeling 都是通用底座。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它补的是整个 computer-use 子方向最明确的瓶颈之一：公开视频演示规模不够，导致系统只能在截图级观测上打转。相比单纯再做一个 agent，CUA-Suite 这类数据与评测底座更可能成为长期引用点，也和仓库已经在收的 GUI / computer-use 主线高度一致。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为它的长期影响还取决于社区是否真的围绕这套 video-first 数据接口收敛，以及数据质量、标注一致性和跨平台泛化是否经得起后续验证。它已经非常像基础设施，但距离成为该方向默认基座还需要时间。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>computer-use agent 现在最缺的不是又一个 benchmark 分数，而是连续、高质量、带动作与推理痕迹的人类演示数据。现有公开资源大多停留在稀疏截图、短时交互或极少量视频，导致 agent 很难真正学到长程桌面工作流里的时序线索、光标运动细节和局部失败恢复。CUA-Suite 正面处理的就是这个基础设施缺口。</p><p>这篇工作的核心不是单一数据集，而是一整套面向 CUA 的视频演示生态。它以 VideoCUA 为中心，提供约一万条人类演示任务、覆盖 87 个应用、连续 30fps 屏幕录制、光标轨迹以及多层级 reasoning annotations，从而把 computer-use agent 的训练信号从稀疏状态截图提升到可学习连续交互过程。这个接口对 imitation、planning、verification 和 video-grounded action modeling 都是通用底座。</p><p>它值得正式收录，因为它补的是整个 computer-use 子方向最明确的瓶颈之一：公开视频演示规模不够，导致系统只能在截图级观测上打转。相比单纯再做一个 agent，CUA-Suite 这类数据与评测底座更可能成为长期引用点，也和仓库已经在收的 GUI / computer-use 主线高度一致。</p><p>它目前仍是 breakthrough，而不是更高一级，因为它的长期影响还取决于社区是否真的围绕这套 video-first 数据接口收敛，以及数据质量、标注一致性和跨平台泛化是否经得起后续验证。它已经非常像基础设施，但距离成为该方向默认基座还需要时间。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325a78cuasuit,
+  title = {CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24440.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a78-cua-suite-computer-use-dataset/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents. https://arxiv.org/pdf/2603.24440.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24440.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

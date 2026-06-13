@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NOBLE: Accelerating Transformers with Nonlinear Low-Rank Branches | DAST Papers</title>
+    <meta name="description" content="Transformer 预训练里，许多难拟合的细节往往要靠更多训练步数和更大模型硬吃下来，而低秩方法大多只被当作 finetuning 的 PEFT 接口。NOBLE 讨论的是另一件事：能不能把低秩分支变成预训练阶段的永久架构部件，直接提高拟合效率。
+
+它在每个 Transformer 线性层旁边加入一个永久性的 nonlinear low-rank branch，形式是 σ(xWdown)Wup" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r15-noble-nonlinear-low-rank-branches/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="NOBLE: Accelerating Transformers with Nonlinear Low-Rank Branches" />
+    <meta property="og:description" content="Transformer 预训练里，许多难拟合的细节往往要靠更多训练步数和更大模型硬吃下来，而低秩方法大多只被当作 finetuning 的 PEFT 接口。NOBLE 讨论的是另一件事：能不能把低秩分支变成预训练阶段的永久架构部件，直接提高拟合效率。
+
+它在每个 Transformer 线性层旁边加入一个永久性的 nonlinear low-rank branch，形式是 σ(xWdown)Wup" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r15-noble-nonlinear-low-rank-branches/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NOBLE: Accelerating Transformers with Nonlinear Low-Rank Branches" />
+    <meta name="twitter:description" content="Transformer 预训练里，许多难拟合的细节往往要靠更多训练步数和更大模型硬吃下来，而低秩方法大多只被当作 finetuning 的 PEFT 接口。NOBLE 讨论的是另一件事：能不能把低秩分支变成预训练阶段的永久架构部件，直接提高拟合效率。
+
+它在每个 Transformer 线性层旁边加入一个永久性的 nonlinear low-rank branch，形式是 σ(xWdown)Wup" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>NOBLE: Accelerating Transformers with Nonlinear Low-Rank Branches</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.06492" target="_blank" rel="noopener noreferrer">2603.06492</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Transformer 预训练里，许多难拟合的细节往往要靠更多训练步数和更大模型硬吃下来，而低秩方法大多只被当作 finetuning 的 PEFT 接口。NOBLE 讨论的是另一件事：能不能把低秩分支变成预训练阶段的永久架构部件，直接提高拟合效率。</dd></div><div><dt>方法/机制</dt><dd>它在每个 Transformer 线性层旁边加入一个永久性的 nonlinear low-rank branch，形式是 σ(xWdown)Wup，并发现带可学习频率与相位的 cosine bottleneck（CosNet）效果最好。与 LoRA 不同，这不是冻结主干后的临时适配器，而是从头训练时就共同学习的结构增强。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的仓库价值在于它把 low-rank augmentation 从 deployment-time adaptation 扩展到 pretraining-time efficiency，给出了一条很干净的 reusable architectural interface。跨 LLM、BERT、VQGAN 和 ViT 的一致收益，也让它不只是某个模型家族里的窄技巧。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，因为证据规模还不算终局，尚未在更大训练预算和更广优化配方下证明自己会成为标准组件；同时与 Mixup/CutMix 等正则化策略存在干扰，说明它的收益边界和适用条件还需要更系统澄清。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Transformer 预训练里，许多难拟合的细节往往要靠更多训练步数和更大模型硬吃下来，而低秩方法大多只被当作 finetuning 的 PEFT 接口。NOBLE 讨论的是另一件事：能不能把低秩分支变成预训练阶段的永久架构部件，直接提高拟合效率。</p><p>它在每个 Transformer 线性层旁边加入一个永久性的 nonlinear low-rank branch，形式是 σ(xWdown)Wup，并发现带可学习频率与相位的 cosine bottleneck（CosNet）效果最好。与 LoRA 不同，这不是冻结主干后的临时适配器，而是从头训练时就共同学习的结构增强。</p><p>这篇工作的仓库价值在于它把 low-rank augmentation 从 deployment-time adaptation 扩展到 pretraining-time efficiency，给出了一条很干净的 reusable architectural interface。跨 LLM、BERT、VQGAN 和 ViT 的一致收益，也让它不只是某个模型家族里的窄技巧。</p><p>它目前仍是 breakthrough，因为证据规模还不算终局，尚未在更大训练预算和更广优化配方下证明自己会成为标准组件；同时与 Mixup/CutMix 等正则化策略存在干扰，说明它的收益边界和适用条件还需要更系统澄清。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们引入了NOBLE（Nonlinear lOw-rank Branch for Linear Enhancement），这是一种架构增强，它为Transformer线性层添加了非线性低秩分支。与LoRA和其他参数高效微调（PEFT）方法不同，NOBLE旨在从头预训练。该分支是架构的永久组成部分，而不是用于在冻结权重之上进行微调的适配器。该分支计算σ(xWdown )Wup，其中σ是可学习的非线性。我们评估了几种激活函数，发现CosNet表现最佳，它是一种两层余弦非线性，具有可学习的频率和相位，并在瓶颈空间中包含一个线性投影。NOBLE以最小的开销实现了显著改进：达到基线评估损失的步长加速高达1.47倍（训练步数减少高达32%），额外参数低至4%，步长时间开销为7%，从而实现了高达1.22倍的净挂钟时间加速。在LLM（2.5亿和15亿参数）、BERT、自回归图像token建模和ViT上的实验一致显示出训练效率的提高。我们发现一个注意事项：Mixup/CutMix数据增强以及其他随机数据增强会干扰NOBLE在Imagenet分类中的优势，但当禁用这些增强时，ViT也得到了改进。这种差异可能可以通过正则化技术来解释，这些技术鼓励对目标函数进行更平滑的拟合，而NOBLE可能更专注于目标函数更尖锐的方面。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce NOBLE (Nonlinear lOw-rank Branch for Linear Enhancement), an architectural augmentation that adds nonlinear low-rank branches to transformer linear layers. Unlike LoRA and other parameter-efficient fine-tuning (PEFT) methods, NOBLE is designed for pretraining from scratch. The branch is a permanent part of the architecture as opposed to an adapter for finetuning on top of frozen weights. The branch computes σ(xWdown )Wup where σ is a learnable nonlinearity. We evaluate several activation functions and find that CosNet, a two-layer cosine nonlinearity with learnable frequency and phase with a linear projection in between them in the bottleneck space, performs best. NOBLE achieves substantial improvements with minimal overhead: up to 1.47× step speedup to reach baseline eval loss (up to 32% fewer training steps), with as low as 4% additional parameters and 7% step time overhead, resulting in up to 1.22× net wallclock speedup. Experiments on LLMs (250M and 1.5B parameters), BERT, autoregressive image token modeling, and ViT consistently show improved training efficiency. We identify one caveat: Mixup/CutMix augmentation interferes with NOBLE’s benefits in Imagenet classification along with other stochastic augmentations, but when disabled, ViT also improves. This discrepancy is possibly explained by regularization techniques that encourage smoother fits to the target function while NOBLE may specialize more in sharper aspects of the target function.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260306r15nobleno,
+  title = {NOBLE: Accelerating Transformers with Nonlinear Low-Rank Branches},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.06492.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r15-noble-nonlinear-low-rank-branches/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). NOBLE: Accelerating Transformers with Nonlinear Low-Rank Branches. https://arxiv.org/pdf/2603.06492.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.06492.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

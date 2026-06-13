@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Attention to Mamba: A Recipe for Cross-Architecture Distillation | DAST Papers</title>
+    <meta name="description" content="本文关注一个有明确系统价值的问题：如何把已有 Transformer 权重和训练经验迁移到更高吞吐、线性时间的 Mamba/SSM 架构，而不是从头重训或保留混合 attention block。它把跨架构蒸馏失败归因于直接从 softmax attention 到 Mamba 的结构鸿沟，并用线性化 attention 作为中间桥梁。
+
+核心机制是两阶段 distillation：第一阶段用 k" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t28-attention-to-mamba-distillation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Attention to Mamba: A Recipe for Cross-Architecture Distillation" />
+    <meta property="og:description" content="本文关注一个有明确系统价值的问题：如何把已有 Transformer 权重和训练经验迁移到更高吞吐、线性时间的 Mamba/SSM 架构，而不是从头重训或保留混合 attention block。它把跨架构蒸馏失败归因于直接从 softmax attention 到 Mamba 的结构鸿沟，并用线性化 attention 作为中间桥梁。
+
+核心机制是两阶段 distillation：第一阶段用 k" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t28-attention-to-mamba-distillation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Attention to Mamba: A Recipe for Cross-Architecture Distillation" />
+    <meta name="twitter:description" content="本文关注一个有明确系统价值的问题：如何把已有 Transformer 权重和训练经验迁移到更高吞吐、线性时间的 Mamba/SSM 架构，而不是从头重训或保留混合 attention block。它把跨架构蒸馏失败归因于直接从 softmax attention 到 Mamba 的结构鸿沟，并用线性化 attention 作为中间桥梁。
+
+核心机制是两阶段 distillation：第一阶段用 k" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Attention to Mamba: A Recipe for Cross-Architecture Distillation</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14191" target="_blank" rel="noopener noreferrer">2604.14191</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>本文关注一个有明确系统价值的问题：如何把已有 Transformer 权重和训练经验迁移到更高吞吐、线性时间的 Mamba/SSM 架构，而不是从头重训或保留混合 attention block。它把跨架构蒸馏失败归因于直接从 softmax attention 到 Mamba 的结构鸿沟，并用线性化 attention 作为中间桥梁。</dd></div><div><dt>方法/机制</dt><dd>核心机制是两阶段 distillation：第一阶段用 kernel adaptation 将 Transformer teacher 蒸馏成 linearized-attention student；第二阶段再把这个中间模型迁移到纯 Mamba mixer。这个中间初始化让 Mamba 不再从错误的表征几何起步，从而显著缓解 naive distillation 的性能坍塌。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它提供了一个可复用的架构迁移 primitive：如果该路线在更大规模成立，开源 Transformer 生态可以被转化为更低延迟、更低 KV 压力的 SSM 推理模型。对长上下文 agent serving、边缘推理和低成本部署都有明显溢出价值。</dd></div><div><dt>收录价值</dt><dd>限制也很清楚：主要证据仍在 1B 级别和 10B tokens 的蒸馏规模，距离直接迁移主流 7B/30B/100B 模型还有距离；同时下游 benchmark 与真实长上下文服务收益仍需更大规模验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>本文关注一个有明确系统价值的问题：如何把已有 Transformer 权重和训练经验迁移到更高吞吐、线性时间的 Mamba/SSM 架构，而不是从头重训或保留混合 attention block。它把跨架构蒸馏失败归因于直接从 softmax attention 到 Mamba 的结构鸿沟，并用线性化 attention 作为中间桥梁。</p><p>核心机制是两阶段 distillation：第一阶段用 kernel adaptation 将 Transformer teacher 蒸馏成 linearized-attention student；第二阶段再把这个中间模型迁移到纯 Mamba mixer。这个中间初始化让 Mamba 不再从错误的表征几何起步，从而显著缓解 naive distillation 的性能坍塌。</p><p>收录价值在于它提供了一个可复用的架构迁移 primitive：如果该路线在更大规模成立，开源 Transformer 生态可以被转化为更低延迟、更低 KV 压力的 SSM 推理模型。对长上下文 agent serving、边缘推理和低成本部署都有明显溢出价值。</p><p>限制也很清楚：主要证据仍在 1B 级别和 10B tokens 的蒸馏规模，距离直接迁移主流 7B/30B/100B 模型还有距离；同时下游 benchmark 与真实长上下文服务收益仍需更大规模验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Apple, † MILA研究所, ‡ Flat Iron研究所, ∗ 在Apple实习期间完成。状态空间模型（SSM），如Mamba，已成为Transformer模型的流行替代品，因为与基于注意力的模型相比，它们在生成时内存消耗更低，吞吐量更高。另一方面，社区已经积累了大量关于如何训练Transformer的知识，并且许多预训练的Transformer模型也随时可用。为了促进SSM的采用，同时利用现有的预训练Transformer，我们旨在确定一种有效的方案，将基于注意力的模型蒸馏到类似Mamba的架构中。然而，在之前的跨架构蒸馏工作中，已经表明从Transformer到Mamba的朴素蒸馏过程未能保留原始教师模型的性能，这一限制通常通过结合注意力块和SSM块的混合解决方案来克服。我们工作的关键论点是，通过为Mamba配备一个原则性的初始化，我们可以为跨架构蒸馏恢复一个整体上更好的方案。为此，我们提出了一个原则性的两阶段方法：首先，我们使用核技巧的改编，将知识从传统的Transformer蒸馏到注意力的线性化版本中。然后，我们将线性化版本蒸馏到一个不使用任何注意力块的适应性Mamba模型中。总体而言，蒸馏后的Mamba模型能够在下游任务中保留原始Pythia-1B Transformer的性能，保持14.11的困惑度，接近教师模型的13.86。为了展示我们方案的有效性，我们进行了彻底的消融实验，包括在1B规模和10B token下改变序列混合器架构，对模型大小和总蒸馏token进行扩展分析，以及对阶段之间token分配进行敏感性分析。通讯：Abhinav Moudgil: abhinavmoudgil95@gmail.com 日期：2026年4月17日</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Apple, † MILA Research Institute, ‡ Flat Iron Institute, ∗ Work done during Apple internship State Space Models (SSMs) such as Mamba have become a popular alternative to Transformer models, due to their reduced memory consumption and higher throughput at generation compared to their Attention-based counterparts. On the other hand, the community has built up a considerable body of knowledge on how to train Transformers, and many pretrained Transformer models are readily available. To facilitate the adoption of SSMs while leveraging existing pretrained Transformers, we aim to identify an effective recipe to distill an Attention-based model into a Mamba-like architecture. In prior work on cross-architecture distillation, however, it has been shown that a naïve distillation procedure from Transformers to Mamba fails to preserve the original teacher performance, a limitation often overcome with hybrid solutions combining Attention and SSM blocks. The key argument from our work is that, by equipping Mamba with a principled initialization, we can recover an overall better recipe for cross-architectural distillation. To this end, we propose a principled two-stage approach: first, we distill knowledge from a traditional Transformer into a linearized version of Attention, using an adaptation of the kernel trick. Then, we distill the linearized version into an adapted Mamba model that does not use any Attention block. Overall, the distilled Mamba model is able to preserve the original Pythia-1B Transformer performance in downstream tasks, maintaining a perplexity of 14.11 close to the teacher’s 13.86. To show the efficacy of our recipe, we conduct thorough ablations at 1B scale with 10B tokens varying sequence mixer architecture, scaling analysis on model sizes and total distillation tokens, and a sensitivity analysis on tokens allocation between stages. Correspondence: Abhinav Moudgil: abhinavmoudgil95@gmail.com Date: April 17, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260417t28attenti,
+  title = {Attention to Mamba: A Recipe for Cross-Architecture Distillation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14191.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t28-attention-to-mamba-distillation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Attention to Mamba: A Recipe for Cross-Architecture Distillation. https://arxiv.org/pdf/2604.14191.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14191.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

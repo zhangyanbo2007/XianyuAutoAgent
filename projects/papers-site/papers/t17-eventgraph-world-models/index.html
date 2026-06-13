@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning | DAST Papers</title>
+    <meta name="description" content="这篇论文提出一种非参数、可审计的 world model：把 agent state 表示成 append-only typed RDF triples，并通过 fork event log 回答结构化干预下的 counterfactual queries。
+
+它的价值不是追求更强神经预测，而是提供 exact counterfactuals、triple-level inspectability" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t17-eventgraph-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning" />
+    <meta property="og:description" content="这篇论文提出一种非参数、可审计的 world model：把 agent state 表示成 append-only typed RDF triples，并通过 fork event log 回答结构化干预下的 counterfactual queries。
+
+它的价值不是追求更强神经预测，而是提供 exact counterfactuals、triple-level inspectability" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t17-eventgraph-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning" />
+    <meta name="twitter:description" content="这篇论文提出一种非参数、可审计的 world model：把 agent state 表示成 append-only typed RDF triples，并通过 fork event log 回答结构化干预下的 counterfactual queries。
+
+它的价值不是追求更强神经预测，而是提供 exact counterfactuals、triple-level inspectability" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-05-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15967" target="_blank" rel="noopener noreferrer">2605.15967</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文提出一种非参数、可审计的 world model：把 agent state 表示成 append-only typed RDF triples，并通过 fork event log 回答结构化干预下的 counterfactual queries。</dd></div><div><dt>方法/机制</dt><dd>它的价值不是追求更强神经预测，而是提供 exact counterfactuals、triple-level inspectability 和跨域可迁移 runtime。作者还证明 explanatory 与 counterfactual queries 可归约到同一 causal-ancestor traversal。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 world model 方向不应只有视频/神经模拟；可审计 event substrate 为 agent memory、causal reasoning 和安全审计提供了另一种基础表示。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为在复杂连续环境和真实工具工作流中的表达能力、规模化和与神经模型协同仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文提出一种非参数、可审计的 world model：把 agent state 表示成 append-only typed RDF triples，并通过 fork event log 回答结构化干预下的 counterfactual queries。</p><p>它的价值不是追求更强神经预测，而是提供 exact counterfactuals、triple-level inspectability 和跨域可迁移 runtime。作者还证明 explanatory 与 counterfactual queries 可归约到同一 causal-ancestor traversal。</p><p>它值得正式收录，因为 world model 方向不应只有视频/神经模拟；可审计 event substrate 为 agent memory、causal reasoning 和安全审计提供了另一种基础表示。</p><p>它没有更高，是因为在复杂连续环境和真实工具工作流中的表达能力、规模化和与神经模型协同仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>世界建模可以通过基于类型化事件增量的确定性重放而不是学习到的潜在模拟来实现，并对可检查性和重放一致性提供形式化保证。我们描述了这种方法与参数化世界模型相比具有竞争力的适用范围（封闭事件推理、精确干预语义），以及它落后的方面（学习动力学下的长周期预测、隐藏属性推断）。我们研究了一类用于智能体系统的世界模型，这些模型将状态表示为类型化RDF三元组的只追加日志，并通过在选定时间点分叉日志并在结构化干预词汇下回答反事实查询。我们将此类模型称为事件图基底。基底可在单个三元组级别进行检查，支持对类型化状态的任意干预进行精确反事实推理，并且无需学习组件即可跨领域迁移。我们做出了三项贡献。首先，我们提出了事件图基底的形式化定义，包括确定性重放和干预语义，并描述了反事实查询简化为对观察到的事件日志进行图论操作的条件。我们证明了解释性查询（“哪个观察到的事件导致了E？”）与反事实查询（“如果对象X不存在，哪些观察到的事件不会发生？”）之间的对偶性，表明在封闭事件假设下，两者都通过相同的因果祖先遍历来回答。其次，我们在CLEVRER [Yi et al., 2020]（典型的视频因果推理基准）上，以完整验证规模（n=75,618个问题）评估了一个基于领域无关基底运行时的1,400行CLEVRER-DSL解释器。该基底在描述性、解释性（每问题）、反事实性（每问题）和预测性（每问题）方面分别超越了已发布的符号预言基线（NS-DR [Yi et al., 2020]）9.89、20.26、17.65和0.80个百分点。与参数化注意力基线ALOE [Ding et al., 2021]相比，该基底在描述性和解释性（每问题）方面表现优异，但在预测性和反事实性（每问题）方面落后，因为ALOE学习到的动力学分布提供了优势，而基底的闭式运动学投影无法匹配。第三，我们引入了twin-EventLog，一个包含500个规范的Park-canonical Smallville反事实基准，用于评估干预下智能体记忆一致性。在此基准上，该基底在联合准确率方面超越了在完整上下文提示下的Llama-3.1-8B 18.80个百分点，并超越了Park/Concordia风格的LLM驱动模拟器[Park et al., 2023, Vezhnevets et al., 2023] 65个百分点。这些结果共同表明反事实</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>world modeling can be implemented by deterministic replay over typed event deltas rather than learned latent simulation, with formal guarantees on inspectability and replay consistency. We characterize the regimes where this approach is competitive with parametric world models (closed-event reasoning, exact intervention semantics) and where it lags (long-horizon prediction under learned dynamics, hidden property inference). We study a class of world models for agentic systems that represent state as an append-only log of typed RDF triples and answer counterfactual queries by forking the log at a chosen tick under a structured intervention vocabulary. We refer to this class as event-graph substrates. Substrates are inspectable at the level of individual triples, support exact counterfactuals over arbitrary interventions on the typed state, and transfer across domains without learned components. We make three contributions. First, we present a formal definition of event-graph substrates with deterministic replay and intervention semantics, and characterize the conditions under which counterfactual queries reduce to graph-theoretic operations on the observed event log. We prove a duality between explanatory queries (“which observed event caused E?”) and counterfactual queries (“which observed events would not occur if object X were absent?”), showing that under closed-event assumptions both are answered by the same causalancestor traversal. Second, we evaluate a 1,400-line CLEVRER-DSL interpreter atop a domain-agnostic substrate runtime on CLEVRER [Yi et al., 2020], the canonical video causal-reasoning benchmark, at full validation scale (n=75,618 questions). The substrate exceeds the published symbolic-oracle baseline (NS-DR [Yi et al., 2020]) by 9.89 percentage points on descriptive, 20.26 on explanatory per-question, 17.65 on counterfactual perquestion, and 0.80 on predictive per-question. Against the parametric attention-based baseline ALOE [Ding et al., 2021] the substrate exceeds on descriptive and explanatory per-question but lags on predictive and counterfactual per-question, where ALOE’s learned dynamics distribution provides an advantage that the substrate’s closed-form kinematic projection does not match. Third, we introduce twin-EventLog, a 500-specification Parkcanonical Smallville counterfactual benchmark for evaluating agent memory consistency under intervention. On this benchmark the substrate exceeds Llama-3.1-8B prompted with full context by 18.80 percentage points on joint accuracy and exceeds a Park/Concordia-style LLMdriven simulator [Park et al., 2023, Vezhnevets et al., 2023] by 65 percentage points. Together these results indicate that counterfactual</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260518t17eventgr,
+  title = {Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15967.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t17-eventgraph-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning. https://arxiv.org/pdf/2605.15967.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t40-subliminal-steering/">
+              <span>Subliminal Steering: Stronger Encoding of Hidden Signals</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15967.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robust and Efficient Tool Orchestration via Layered Execution Structures with Reflective Correction | DAST Papers</title>
+    <meta name="description" content="tool-using agent 的一个顽固问题是：单层 planning 往往在长链工具调用里迅速偏航，而完全依赖反思又容易把延迟和成本推高。许多系统在 robustness 和 execution efficiency 之间做的是粗糙折中，并没有形成清晰的运行时结构。
+
+这篇工作提出 layered execution structures，把工具编排拆成更稳定的层级运行单元，并在关键层加入 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a137-layered-execution-tool-orchestration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Robust and Efficient Tool Orchestration via Layered Execution Structures with Reflective Correction" />
+    <meta property="og:description" content="tool-using agent 的一个顽固问题是：单层 planning 往往在长链工具调用里迅速偏航，而完全依赖反思又容易把延迟和成本推高。许多系统在 robustness 和 execution efficiency 之间做的是粗糙折中，并没有形成清晰的运行时结构。
+
+这篇工作提出 layered execution structures，把工具编排拆成更稳定的层级运行单元，并在关键层加入 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a137-layered-execution-tool-orchestration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Robust and Efficient Tool Orchestration via Layered Execution Structures with Reflective Correction" />
+    <meta name="twitter:description" content="tool-using agent 的一个顽固问题是：单层 planning 往往在长链工具调用里迅速偏航，而完全依赖反思又容易把延迟和成本推高。许多系统在 robustness 和 execution efficiency 之间做的是粗糙折中，并没有形成清晰的运行时结构。
+
+这篇工作提出 layered execution structures，把工具编排拆成更稳定的层级运行单元，并在关键层加入 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Robust and Efficient Tool Orchestration via Layered Execution Structures with Reflective Correction</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.18968" target="_blank" rel="noopener noreferrer">2602.18968</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>tool-using agent 的一个顽固问题是：单层 planning 往往在长链工具调用里迅速偏航，而完全依赖反思又容易把延迟和成本推高。许多系统在 robustness 和 execution efficiency 之间做的是粗糙折中，并没有形成清晰的运行时结构。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出 layered execution structures，把工具编排拆成更稳定的层级运行单元，并在关键层加入 reflective correction。这样做的重点不只是多一步反思，而是把执行图组织成更可校正、更少回滚成本的结构，使系统既能在长链任务里保持稳健，又不会把每一步都变成昂贵的 deliberation。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 tool orchestration 的 runtime 设计推进到结构层。相比普通 ReAct 变体或多加几轮 self-reflection 的方法，它更像一个可复用的 execution pattern，对复杂 API workflows、browser agents 和 enterprise automation 都有现实价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前更多展示的是强 execution pattern，而不是像更高阶 orchestration 论文那样直接改写整条 agent runtime 路线。它非常值得正式收录，但目前仍属于强突破级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>tool-using agent 的一个顽固问题是：单层 planning 往往在长链工具调用里迅速偏航，而完全依赖反思又容易把延迟和成本推高。许多系统在 robustness 和 execution efficiency 之间做的是粗糙折中，并没有形成清晰的运行时结构。</p><p>这篇工作提出 layered execution structures，把工具编排拆成更稳定的层级运行单元，并在关键层加入 reflective correction。这样做的重点不只是多一步反思，而是把执行图组织成更可校正、更少回滚成本的结构，使系统既能在长链任务里保持稳健，又不会把每一步都变成昂贵的 deliberation。</p><p>这篇工作值得收录，因为它把 tool orchestration 的 runtime 设计推进到结构层。相比普通 ReAct 变体或多加几轮 self-reflection 的方法，它更像一个可复用的 execution pattern，对复杂 API workflows、browser agents 和 enterprise automation 都有现实价值。</p><p>它没有升到更高一级，是因为当前更多展示的是强 execution pattern，而不是像更高阶 orchestration 论文那样直接改写整条 agent runtime 路线。它非常值得正式收录，但目前仍属于强突破级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>工具调用是智能体系统的核心能力，然而，失败往往并非源于单个工具调用，而是源于多个工具如何协同组织和执行。现有方法将工具执行与逐步语言推理或显式规划紧密耦合，导致行为脆弱且执行开销高昂。为克服这些局限性，我们从工具编排的角度重新审视工具调用。我们的关键见解是，有效的编排不需要精确的依赖图或细粒度规划。相反，粗粒度分层结构足以提供全局指导，而执行时错误可以在局部进行纠正。具体而言，我们将工具编排建模为学习一种分层执行结构，该结构捕获高层工具依赖关系，并通过上下文约束诱导层级执行。为处理执行时故障，我们引入了一种模式感知的反射式纠正机制，该机制能局部检测并修复错误。这种设计将错误限制在单个工具调用中，并避免重新规划整个执行轨迹。这种结构化执行范式为智能体系统提供了一个轻量级且可重用的编排组件。实验结果表明，我们的方法实现了鲁棒的工具执行，同时降低了执行复杂性和开销。代码将公开发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Tool invocation is a core capability of agentic systems, yet failures often arise not from individual tool calls but from how multiple tools are organized and executed together. Existing approaches tightly couple tool execution with stepwise language reasoning or explicit planning, leading to brittle behavior and high execution overhead. To overcome these limitations, we revisit tool invocation from the perspective of tool orchestration. Our key insight is that effective orchestration does not require precise dependency graphs or fine-grained planning. Instead, a coarsegrained layer structure suffices to provide global guidance, while execution-time errors can be corrected locally. Specifically, we model tool orchestration as learning a layered execution structure that captures high-level tool dependencies, inducing layer-wise execution through context constraints. To handle execution-time failures, we introduce a schema-aware reflective correction mechanism that detects and repairs errors locally. This design confines errors to individual tool calls and avoids re-planning entire execution trajectories. This structured execution paradigm enables a lightweight and reusable orchestration component for agentic systems. Experimental results show that our approach achieves robust tool execution while reducing execution complexity and overhead. Code will be made publicly available.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260227a137layere,
+  title = {Robust and Efficient Tool Orchestration via Layered Execution Structures with Reflective Correction},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.18968.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a137-layered-execution-tool-orchestration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Robust and Efficient Tool Orchestration via Layered Execution Structures with Reflective Correction. https://arxiv.org/pdf/2602.18968.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.18968.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

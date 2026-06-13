@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions | DAST Papers</title>
+    <meta name="description" content="这篇论文补齐现有 agent benchmark 的盲区：多数 benchmark 测 reasoning/tool use，但很少测长期用户交互中的个性化建模和主动补全信息。
+
+VitaBench 2.0 把任务组织成个人用户的时间序列，偏好分散在碎片化互动中，agent 必须持续抽取、更新和使用这些偏好。
+
+它还评估 proactiveness：agent 需要识别缺失信息，并主动向用户或环境" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a346-vitabench-2-longterm-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions" />
+    <meta property="og:description" content="这篇论文补齐现有 agent benchmark 的盲区：多数 benchmark 测 reasoning/tool use，但很少测长期用户交互中的个性化建模和主动补全信息。
+
+VitaBench 2.0 把任务组织成个人用户的时间序列，偏好分散在碎片化互动中，agent 必须持续抽取、更新和使用这些偏好。
+
+它还评估 proactiveness：agent 需要识别缺失信息，并主动向用户或环境" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a346-vitabench-2-longterm-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions" />
+    <meta name="twitter:description" content="这篇论文补齐现有 agent benchmark 的盲区：多数 benchmark 测 reasoning/tool use，但很少测长期用户交互中的个性化建模和主动补全信息。
+
+VitaBench 2.0 把任务组织成个人用户的时间序列，偏好分散在碎片化互动中，agent 必须持续抽取、更新和使用这些偏好。
+
+它还评估 proactiveness：agent 需要识别缺失信息，并主动向用户或环境" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.27141" target="_blank" rel="noopener noreferrer">2605.27141</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文补齐现有 agent benchmark 的盲区：多数 benchmark 测 reasoning/tool use，但很少测长期用户交互中的个性化建模和主动补全信息。</dd></div><div><dt>方法/机制</dt><dd>VitaBench 2.0 把任务组织成个人用户的时间序列，偏好分散在碎片化互动中，agent 必须持续抽取、更新和使用这些偏好。</dd></div><div><dt>结果/证据</dt><dd>它还评估 proactiveness：agent 需要识别缺失信息，并主动向用户或环境获取，而不是盲目执行。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它为 personalized/proactive agents 提供了长期交互评估接口，并带有可控 memory interface，适合比较不同记忆架构。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文补齐现有 agent benchmark 的盲区：多数 benchmark 测 reasoning/tool use，但很少测长期用户交互中的个性化建模和主动补全信息。</p><p>VitaBench 2.0 把任务组织成个人用户的时间序列，偏好分散在碎片化互动中，agent 必须持续抽取、更新和使用这些偏好。</p><p>它还评估 proactiveness：agent 需要识别缺失信息，并主动向用户或环境获取，而不是盲目执行。</p><p>收录价值在于它为 personalized/proactive agents 提供了长期交互评估接口，并带有可控 memory interface，适合比较不同记忆架构。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大语言模型（LLM）已发展成为在真实世界任务中与用户协作的交互式智能体。在此类设置中，有效的协作越来越依赖于理解用户未明确表达的内容，因为用户意图通常反映在碎片化的日常交互中，需要个性化建模和主动交互。然而，现有的智能体基准主要评估推理和工具使用，很大程度上忽视了在现实场景中推断和利用用户偏好的挑战。为了解决这一差距，我们引入了VitaBench 2.0，一个用于评估长期用户交互中个性化和主动智能体行为的基准。在VitaBench 2.0中，任务被组织为针对单个用户的时间有序序列，其中偏好嵌入在碎片化和异构的交互中。成功完成任务需要智能体不断地从这些交互中提取、利用和更新用户偏好。我们通过要求智能体识别缺失信息并在做出决策前主动从用户或环境中获取信息的任务来进一步评估其主动性。为了支持系统分析，我们提供了一个可扩展的内存接口，支持对不同内存架构进行受控比较。我们对一系列前沿的专有和开源LLM进行了基准测试。结果表明，即使对于最先进的模型，真实世界的个性化仍然极具挑战性，揭示了当前能力与实际需求之间的巨大差距。广泛的分析进一步揭示了当前智能体在真实世界个性化决策中的失败模式和能力瓶颈，为未来的模型改进提供了见解。代码可在 https://github.com/meituan-longcat/vitabench-2.0 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) have evolved into interactive agents that collaborate with users in real-world tasks. Effective collaboration in such settings increasingly depends on understanding the user beyond what is explicitly stated, as user intent is often reflected in fragmented daily interactions and requires both personalized modeling and proactive interaction. However, existing agent benchmarks primarily evaluate reasoning and tool use, largely overlooking the challenges of inferring and leveraging user preferences in realistic scenarios. To address this gap, we introduce VitaBench 2.0, a benchmark for evaluating personalized and proactive agent behavior in long-term user interactions. In VitaBench 2.0, tasks are organized as temporally ordered sequences for individual users, where preferences are embedded in fragmented and heterogeneous interactions. Successful completion of tasks requires the agent to continuously extract, utilize, and update user preferences from these interactions. We further evaluate proactiveness through tasks that require agents to recognize missing information and actively acquire it from users or environments before making decisions. To support systematic analysis, we provide an extensible memory interface that enables controlled comparison across different memory architectures. We benchmark a diverse set of frontier proprietary and open-source LLMs. Results show that real-world personalization remains highly challenging even for state-of-the-art models, revealing a substantial gap between current capabilities and practical requirements. Extensive analysis further reveals the failure modes and capability bottlenecks of current agents in real-world personalized decision-making, providing insights for future model improvements. Code is available at https://github.com/meituan-longcat/vitabench-2.0.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260526a346vitabe,
+  title = {VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.27141.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a346-vitabench-2-longterm-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VitaBench 2.0: Evaluating Personalized and Proactive Agents in Long-Term User Interactions. https://arxiv.org/pdf/2605.27141.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.27141.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.27141" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

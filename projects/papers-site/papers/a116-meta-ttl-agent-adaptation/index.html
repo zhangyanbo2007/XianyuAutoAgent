@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies | DAST Papers</title>
+    <meta name="description" content="Test-time learning 在语言 agent 上越来越重要，但现有做法大多把 adaptation policy 视作人工设计的固定规则，比如如何根据前几轮轨迹更新策略、保留什么反馈、怎样进行下一轮修正。这样做能工作，但它默认人类已经知道最优 adaptation rule 是什么。
+
+Meta-TTL 的关键点是把 adaptation policy 本身变成学习对象。作者把 TTL" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a116-meta-ttl-agent-adaptation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies" />
+    <meta property="og:description" content="Test-time learning 在语言 agent 上越来越重要，但现有做法大多把 adaptation policy 视作人工设计的固定规则，比如如何根据前几轮轨迹更新策略、保留什么反馈、怎样进行下一轮修正。这样做能工作，但它默认人类已经知道最优 adaptation rule 是什么。
+
+Meta-TTL 的关键点是把 adaptation policy 本身变成学习对象。作者把 TTL" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a116-meta-ttl-agent-adaptation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies" />
+    <meta name="twitter:description" content="Test-time learning 在语言 agent 上越来越重要，但现有做法大多把 adaptation policy 视作人工设计的固定规则，比如如何根据前几轮轨迹更新策略、保留什么反馈、怎样进行下一轮修正。这样做能工作，但它默认人类已经知道最优 adaptation rule 是什么。
+
+Meta-TTL 的关键点是把 adaptation policy 本身变成学习对象。作者把 TTL" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00830" target="_blank" rel="noopener noreferrer">2604.00830</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Test-time learning 在语言 agent 上越来越重要，但现有做法大多把 adaptation policy 视作人工设计的固定规则，比如如何根据前几轮轨迹更新策略、保留什么反馈、怎样进行下一轮修正。这样做能工作，但它默认人类已经知道最优 adaptation rule 是什么。</dd></div><div><dt>方法/机制</dt><dd>Meta-TTL 的关键点是把 adaptation policy 本身变成学习对象。作者把 TTL 写成 bi-level optimization：内层执行标准 TTL 过程，观察候选 adaptation policy 是否真的能帮助 agent 在后续 episode 中纠错；外层则在任务分布上用 evolutionary search 不断改进 adaptation policy。这样，post-deployment improvement 不再依赖固定启发式，而变成了可学习的策略搜索问题。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 test-time learning / post-deployment adaptation 从‘写一个更新规则’推进到‘学习更新规则’。这对语言 agent、web navigation、interactive environments 和更广的 deployment-time learning 都有很明确的模式价值，也与仓库关注的 self-improvement 与 test-time adaptation 主线高度一致。</dd></div><div><dt>收录价值</dt><dd>它暂时不更高，是因为验证仍主要在 Jericho 与 WebArena-Lite 这类环境上，路线虽对，但距离更广泛 agent setting 的 durable default 还需要更多复现与扩展。它是强方法论文，但还没到改写整条 TTL 研究图景的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Test-time learning 在语言 agent 上越来越重要，但现有做法大多把 adaptation policy 视作人工设计的固定规则，比如如何根据前几轮轨迹更新策略、保留什么反馈、怎样进行下一轮修正。这样做能工作，但它默认人类已经知道最优 adaptation rule 是什么。</p><p>Meta-TTL 的关键点是把 adaptation policy 本身变成学习对象。作者把 TTL 写成 bi-level optimization：内层执行标准 TTL 过程，观察候选 adaptation policy 是否真的能帮助 agent 在后续 episode 中纠错；外层则在任务分布上用 evolutionary search 不断改进 adaptation policy。这样，post-deployment improvement 不再依赖固定启发式，而变成了可学习的策略搜索问题。</p><p>这篇工作值得收录，因为它把 test-time learning / post-deployment adaptation 从‘写一个更新规则’推进到‘学习更新规则’。这对语言 agent、web navigation、interactive environments 和更广的 deployment-time learning 都有很明确的模式价值，也与仓库关注的 self-improvement 与 test-time adaptation 主线高度一致。</p><p>它暂时不更高，是因为验证仍主要在 Jericho 与 WebArena-Lite 这类环境上，路线虽对，但距离更广泛 agent setting 的 durable default 还需要更多复现与扩展。它是强方法论文，但还没到改写整条 TTL 研究图景的程度。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>测试时学习（TTL）使语言智能体能够通过在推理时与环境重复交互来迭代地改进其性能。TTL的核心是一种适应策略，它根据先前回合的经验更新行动者策略，从而改善未来的行为。现有方法依赖于固定的、手工设计的适应策略，而不是为下游改进优化它们。我们认为，最佳适应策略应该从任务环境中学习，而不是基于人类直觉手工设计。为了实现这一点，我们引入了M ETA -TTL，这是一个将有效适应策略的发现表述为双层优化问题的框架。在该框架内，内循环执行标准的TTL过程，衡量候选适应策略如何有效地帮助智能体在连续回合中纠正错误。在外循环中，在智能体性能的指导下，采用进化搜索在多样化的训练任务分布上持续优化适应策略。我们在Jericho和WebArena-Lite上，在分布内（ID）和分布外（OOD）设置下，使用多个元智能体骨干模型评估了M ETA -TTL。两个基准上的结果表明，M ETA -TTL始终优于手工设计的基线，这表明优化的适应策略编码了可迁移的策略，这些策略泛化到训练任务分布之外。代码可在https://github.com/zzzlou/meta-ttl获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Test-Time Learning (TTL) enables language agents to iteratively refine their performance through repeated interactions with the environment at inference time. At the core of TTL is an adaptation policy that updates the actor policy based on experience from previous episodes, thereby improving future behavior. Existing methods rely on fixed, hand-crafted adaptation policies rather than optimizing them for downstream improvement. We argue that optimal adaptation policies should be learned from task environments, not hand-engineered based on human intuition. To achieve this, we introduce M ETA -TTL, a framework that formulates the discovery of effective adaptation policies as a bi-level optimization problem. Within this framework, the inner loop executes the standard TTL process, measuring how effectively a candidate adaptation policy helps an agent correct errors across sequential episodes. Guided by the agent’s performance, the outer loop employs evolutionary search over a diverse distribution of training tasks to continually optimize the adaptation policy. We evaluate M ETA -TTL on Jericho and WebArena-Lite across both in-distribution (ID) and out-ofdistribution (OOD) settings, using multiple meta-agent backbones. Results on both benchmarks show that M ETA -TTL consistently outperforms handcrafted baselines, suggesting that the optimized adaptation policy encodes transferable strategies that generalize beyond the training task distribution. Code is available at https://github.com/zzzlou/meta-ttl.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a116metatt,
+  title = {Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00830.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a116-meta-ttl-agent-adaptation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Learn-at-Test-Time: Language Agents with Learnable Adaptation Policies. https://arxiv.org/pdf/2604.00830.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00830.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

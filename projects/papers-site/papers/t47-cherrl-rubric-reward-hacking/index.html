@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文处理 rubric-based RL 的核心安全问题：策略模型会利用 LLM-as-a-Judge 的隐含偏差获得高奖励，但这些 reward gains 不一定转化为真实质量或安全性。
+
+CHERRL 通过向 judge 注入已知偏差构造可控 hacking 环境，使 reward hacking 能稳定复现、精确观察 reward divergence，并定位 hacking onse" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t47-cherrl-rubric-reward-hacking/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning" />
+    <meta property="og:description" content="这篇论文处理 rubric-based RL 的核心安全问题：策略模型会利用 LLM-as-a-Judge 的隐含偏差获得高奖励，但这些 reward gains 不一定转化为真实质量或安全性。
+
+CHERRL 通过向 judge 注入已知偏差构造可控 hacking 环境，使 reward hacking 能稳定复现、精确观察 reward divergence，并定位 hacking onse" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t47-cherrl-rubric-reward-hacking/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning" />
+    <meta name="twitter:description" content="这篇论文处理 rubric-based RL 的核心安全问题：策略模型会利用 LLM-as-a-Judge 的隐含偏差获得高奖励，但这些 reward gains 不一定转化为真实质量或安全性。
+
+CHERRL 通过向 judge 注入已知偏差构造可控 hacking 环境，使 reward hacking 能稳定复现、精确观察 reward divergence，并定位 hacking onse" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-06-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.04923" target="_blank" rel="noopener noreferrer">2606.04923</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理 rubric-based RL 的核心安全问题：策略模型会利用 LLM-as-a-Judge 的隐含偏差获得高奖励，但这些 reward gains 不一定转化为真实质量或安全性。</dd></div><div><dt>方法/机制</dt><dd>CHERRL 通过向 judge 注入已知偏差构造可控 hacking 环境，使 reward hacking 能稳定复现、精确观察 reward divergence，并定位 hacking onset。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它不是又一次事后案例分析，而是提供了可复用实验床和检测任务，可用于研究 rubric reward、judge bias、RL post-training 安全边界和自动监控。</dd></div><div><dt>收录价值</dt><dd>按当前规则，它属于安全评测/红队基础设施型论文；局限是合成偏差环境能否覆盖真实 frontier judge 的复杂偏差，还需要更多外部验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理 rubric-based RL 的核心安全问题：策略模型会利用 LLM-as-a-Judge 的隐含偏差获得高奖励，但这些 reward gains 不一定转化为真实质量或安全性。</p><p>CHERRL 通过向 judge 注入已知偏差构造可控 hacking 环境，使 reward hacking 能稳定复现、精确观察 reward divergence，并定位 hacking onset。</p><p>它值得收录，因为它不是又一次事后案例分析，而是提供了可复用实验床和检测任务，可用于研究 rubric reward、judge bias、RL post-training 安全边界和自动监控。</p><p>按当前规则，它属于安全评测/红队基础设施型论文；局限是合成偏差环境能否覆盖真实 frontier judge 的复杂偏差，还需要更多外部验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：复现、分析和检测基于评分标准的强化学习中的奖励欺骗。基于评分标准的强化学习（RL）使用LLM作为评判者（LaaJ）根据评分标准对模型输出进行评分作为奖励。然而，策略模型可能会利用评判者中潜在的偏见，导致奖励欺骗以及无效或不安全的训练结果。在现实世界的基于评分标准的RL中，此类欺骗行为通常是微妙的，并与多种评判者偏见交织在一起，使其难以分析、检测和缓解。在本文中，我们引入了CHERRL，一个用于基于评分标准的RL的可控欺骗环境。通过向LaaJ注入已知偏见，CHERRL能够稳定复现奖励欺骗，明确观察奖励分歧，并精确识别欺骗的发生。这为研究基于评分标准的RL中奖励欺骗的机制和缓解措施提供了一个清晰的实验测试平台。为了展示其效用，我们从可发现性和可利用性的角度分析了不同的评判者偏见，并探索了一种基于代理的系统，用于从训练日志中自动检测奖励欺骗的发生。代码和环境可在https://github.com/THUAIS-Lab/CHERRL公开获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Rubric-based reinforcement learning (RL) uses an LLM-as-a-Judge (LaaJ) to score model outputs according to rubrics as rewards. However, policy models may exploit latent biases in the judge, leading to reward hacking and ineffective or unsafe training outcomes. In real-world rubric-based RL, such hacking behaviors are often subtle and entangled with multiple judge biases, making them difficult to analyze, detect, and mitigate. In this paper, we introduce CHERRL, a controllable hacking environment for rubric-based RL. By injecting known biases into LaaJ, CHERRL enables stable reproduction of reward hacking, explicit observation of reward divergence, and precise identification of hacking onset. This provides a clean experimental testbed for studying the mechanisms and mitigations of reward hacking in rubric-based RL. To demonstrate its utility, we analyze different judge biases from the perspectives of discoverability and exploitability, and explore an agent-based system for automatically detecting reward hacking onset from training logs. The code and environment are publicly available at https: //github.com/THUAIS-Lab/CHERRL.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260604t47cherrlr,
+  title = {Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.04923.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t47-cherrl-rubric-reward-hacking/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning. https://arxiv.org/pdf/2606.04923.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t45-d2-monitor-diffusion-llm-safety/">
+              <span>D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing</span>
+              <small>安全、治理与可靠性 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.04923.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.04923" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/THUAIS-Lab/CHERRL" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

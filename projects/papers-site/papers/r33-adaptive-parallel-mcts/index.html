@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling | DAST Papers</title>
+    <meta name="description" content="test-time compute scaling 已经成为提升 reasoning LLM 的一条主线，但 MCTS 这类方法在真实系统里很容易被长尾延迟拖垮。问题不只是平均性能，而是不同 query 的 search depth 和 search usefulness 高度不均，最终让线上系统在 p99 latency、资源争用和吞吐稳定性上付出很大代价。
+
+论文针对这一痛点提出 adapti" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r33-adaptive-parallel-mcts/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling" />
+    <meta property="og:description" content="test-time compute scaling 已经成为提升 reasoning LLM 的一条主线，但 MCTS 这类方法在真实系统里很容易被长尾延迟拖垮。问题不只是平均性能，而是不同 query 的 search depth 和 search usefulness 高度不均，最终让线上系统在 p99 latency、资源争用和吞吐稳定性上付出很大代价。
+
+论文针对这一痛点提出 adapti" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r33-adaptive-parallel-mcts/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling" />
+    <meta name="twitter:description" content="test-time compute scaling 已经成为提升 reasoning LLM 的一条主线，但 MCTS 这类方法在真实系统里很容易被长尾延迟拖垮。问题不只是平均性能，而是不同 query 的 search depth 和 search usefulness 高度不均，最终让线上系统在 p99 latency、资源争用和吞吐稳定性上付出很大代价。
+
+论文针对这一痛点提出 adapti" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00510" target="_blank" rel="noopener noreferrer">2604.00510</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>test-time compute scaling 已经成为提升 reasoning LLM 的一条主线，但 MCTS 这类方法在真实系统里很容易被长尾延迟拖垮。问题不只是平均性能，而是不同 query 的 search depth 和 search usefulness 高度不均，最终让线上系统在 p99 latency、资源争用和吞吐稳定性上付出很大代价。</dd></div><div><dt>方法/机制</dt><dd>论文针对这一痛点提出 adaptive parallel MCTS。核心不是单纯更快地跑搜索，而是增加 negative early exit 来主动剪掉无进展的 search branch，再用 adaptive boosting 机制把回收的预算重新分配给仍值得继续的并发搜索，从而在保持 reasoning accuracy 的同时改善尾延迟和资源利用。作者还把实现接进 vLLM，强调其系统落地性。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 TTCS 从“多给算力就行”的研究叙事推进到更接近线上可部署的调度与预算控制问题。对 reasoning serving、search-based decoding 和 inference-time adaptation infra，这种对 tail latency 与 parallel contention 的显式处理具有明显复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为方法仍然建立在既有 MCTS/TTCS 框架之上，更像把这一条路线做对、做稳，而不是改写 test-time reasoning 的总体范式。它是很强的系统化推进，但还不是更高层级的方向重构。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>test-time compute scaling 已经成为提升 reasoning LLM 的一条主线，但 MCTS 这类方法在真实系统里很容易被长尾延迟拖垮。问题不只是平均性能，而是不同 query 的 search depth 和 search usefulness 高度不均，最终让线上系统在 p99 latency、资源争用和吞吐稳定性上付出很大代价。</p><p>论文针对这一痛点提出 adaptive parallel MCTS。核心不是单纯更快地跑搜索，而是增加 negative early exit 来主动剪掉无进展的 search branch，再用 adaptive boosting 机制把回收的预算重新分配给仍值得继续的并发搜索，从而在保持 reasoning accuracy 的同时改善尾延迟和资源利用。作者还把实现接进 vLLM，强调其系统落地性。</p><p>这篇工作值得收录，因为它把 TTCS 从“多给算力就行”的研究叙事推进到更接近线上可部署的调度与预算控制问题。对 reasoning serving、search-based decoding 和 inference-time adaptation infra，这种对 tail latency 与 parallel contention 的显式处理具有明显复用价值。</p><p>它没有升到更高一级，是因为方法仍然建立在既有 MCTS/TTCS 框架之上，更像把这一条路线做对、做稳，而不是改写 test-time reasoning 的总体范式。它是很强的系统化推进，但还不是更高层级的方向重构。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>（MCTS）始终比并行候选扩展方法（例如，Best-of-N方法）实现更高的准确性。这一优势源于其平衡探索与利用、维护多条推理轨迹以及在早期评估较低但长期潜力仍有希望时重新访问路径的能力。蒙特卡洛树搜索（MCTS）是一种有效的测试时计算扩展（TTCS）方法，用于提高大型语言模型的推理性能，但其实际应用中高度可变的执行时间会导致严重的“长尾”延迟。现有的优化方法，例如正向提前退出，在有利情况下可以减少延迟，但在搜索没有实质性进展时效果不佳。我们引入了负向提前退出，它修剪无成效的MCTS轨迹，以及一种自适应增强机制，重新分配回收的计算资源以减少并发搜索之间的资源争用。这些技术集成到vLLM中后，显著降低了p99端到端延迟，同时提高了吞吐量并保持了推理准确性。尽管MCTS具有准确性优势，但由于其固有的顺序执行特性，在实际服务环境中带来了重大挑战。随着搜索的进行，决策越来越依赖于先前的探索，导致执行时间随搜索深度迅速增长。结果是，少量计算密集型请求可能会不成比例地消耗系统资源，导致显著的“长尾”延迟。此外，更深层次的搜索并不总是能带来更好的推理结果：即使进一步的探索收效甚微，MCTS也可能继续消耗大量计算，这从根本上限制了其在生产环境中的部署能力。先前的工作主要探索了两种策略来缓解MCTS延迟（Fu et al., 2024; Liu et al., 2018）。首先，尽管未应用于TTCS，并行MCTS变体通过允许多个rollout异步进行来放宽严格的串行依赖，从而实现并发扩展并减少单个搜索的实际运行时间（Liu et al., 2018）。其次，正向提前退出技术在中间评估超过预定义置信阈值时终止搜索，从而在早期找到高质量解决方案时避免不必要的计算（Fu et al., 2024）。当搜索快速收敛或早期评估提供可靠指导时，这些方法特别有效。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>sistently achieves higher accuracy than parallel candidate expansion methods (e.g., Best-of-N approaches). This advantage stems from its ability to balance exploration and exploitation, maintain multiple reasoning trajectories, and revisit paths with low early evaluations when their long-term potential remains promising. Monte Carlo Tree Search (MCTS) is an effective test-time compute scaling (TTCS) method for improving the reasoning performance of large language models, but its highly variable execution time leads to severe long-tail latency in practice. Existing optimizations such as positive early exit, reduce latency in favorable cases but are less effective when search continues without meaningful progress. We introduce negative early exit, which prunes unproductive MCTS trajectories, and an adaptive boosting mechanism that reallocates reclaimed computation to reduce resource contention among concurrent searches. Integrated into vLLM, these techniques substantially reduce p99 end-to-end latency while improving throughput and maintaining reasoning accuracy. Despite its accuracy advantages, MCTS poses a significant challenge in practical serving environments due to its inherently sequential execution. As the search progresses, decisions increasingly depend on prior explorations, causing execution time to grow rapidly with search depth. As a result, a small number of compute-intensive requests can disproportionately consume system resources, leading to pronounced long-tail latency. Moreover, deeper search does not always translate into better reasoning outcomes: MCTS may continue consuming substantial computation even when further exploration provides little benefit, fundamentally constraining its deployability in production settings. Prior work has primarily explored two strategies to mitigate MCTS latency (Fu et al., 2024; Liu et al., 2018). First, although not applied to TTCS, parallel MCTS variants relax strict serial dependencies by allowing multiple rollouts to proceed asynchronously, enabling concurrent expansion and reducing the wall-clock time of individual searches (Liu et al., 2018). Second, positive early exit techniques terminate the search once intermediate evaluations surpass a predefined confidence threshold, avoiding unnecessary computation when a high-quality solution is found early (Fu et al., 2024). These approaches are particularly effective when the search converges quickly or when early evaluations provide reliable guidance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r33adaptiv,
+  title = {Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00510.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r33-adaptive-parallel-mcts/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Adaptive Parallel Monte Carlo Tree Search for Efficient Test-time Compute Scaling. https://arxiv.org/pdf/2604.00510.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00510.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

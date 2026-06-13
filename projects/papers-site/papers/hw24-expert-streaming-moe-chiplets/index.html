@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Expert Streaming: Accelerating Low-Batch MoE Inference via Multi-chiplet Architecture and Dynamic Expert Trajectory Scheduling | DAST Papers</title>
+    <meta name="description" content="MoE 在 edge / low-batch inference 场景里很有吸引力，但真实部署时会同时撞上 expert sparsity、on-chip memory 限制、off-chip access 开销和 workload imbalance。随着 chiplet interconnect 带宽提升，低粒度分布式调度的机会也出现了。
+
+这篇工作的核心新意是提出 Fully Sharded" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw24-expert-streaming-moe-chiplets/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Expert Streaming: Accelerating Low-Batch MoE Inference via Multi-chiplet Architecture and Dynamic Expert Trajectory Scheduling" />
+    <meta property="og:description" content="MoE 在 edge / low-batch inference 场景里很有吸引力，但真实部署时会同时撞上 expert sparsity、on-chip memory 限制、off-chip access 开销和 workload imbalance。随着 chiplet interconnect 带宽提升，低粒度分布式调度的机会也出现了。
+
+这篇工作的核心新意是提出 Fully Sharded" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw24-expert-streaming-moe-chiplets/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Expert Streaming: Accelerating Low-Batch MoE Inference via Multi-chiplet Architecture and Dynamic Expert Trajectory Scheduling" />
+    <meta name="twitter:description" content="MoE 在 edge / low-batch inference 场景里很有吸引力，但真实部署时会同时撞上 expert sparsity、on-chip memory 限制、off-chip access 开销和 workload imbalance。随着 chiplet interconnect 带宽提升，低粒度分布式调度的机会也出现了。
+
+这篇工作的核心新意是提出 Fully Sharded" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Expert Streaming: Accelerating Low-Batch MoE Inference via Multi-chiplet Architecture and Dynamic Expert Trajectory Scheduling</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.27624" target="_blank" rel="noopener noreferrer">2603.27624</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>MoE 在 edge / low-batch inference 场景里很有吸引力，但真实部署时会同时撞上 expert sparsity、on-chip memory 限制、off-chip access 开销和 workload imbalance。随着 chiplet interconnect 带宽提升，低粒度分布式调度的机会也出现了。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心新意是提出 Fully Sharded Expert Data Parallelism 及其对应的 dynamic expert trajectory scheduling，把 fine-grained expert streams 沿高带宽 chiplet 链路调度和重叠执行。论文不只是给一个 scheduling trick，而是明确提出一套面向 low-batch MoE inference 的 parallelization paradigm，并配套轻量 virtualization rules 让数据流复杂度可硬件化实现。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作真正影响的是 AI hardware design space：MoE 推理不再只是把现有大模型搬到 chiplet 上，而是需要新的 sharding、通信和 runtime scheduling 组织方式。对仓库来说，这属于有耐久价值的 architecture/workflow paper，而不是单一 kernel 优化。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前范围仍主要集中在 low-batch MoE inference 和 multi-chiplet 这条明确子线，通用性还没有外推到更广的 accelerator family。它是强而清楚的设计模式，但暂时还不到更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>MoE 在 edge / low-batch inference 场景里很有吸引力，但真实部署时会同时撞上 expert sparsity、on-chip memory 限制、off-chip access 开销和 workload imbalance。随着 chiplet interconnect 带宽提升，低粒度分布式调度的机会也出现了。</p><p>这篇工作的核心新意是提出 Fully Sharded Expert Data Parallelism 及其对应的 dynamic expert trajectory scheduling，把 fine-grained expert streams 沿高带宽 chiplet 链路调度和重叠执行。论文不只是给一个 scheduling trick，而是明确提出一套面向 low-batch MoE inference 的 parallelization paradigm，并配套轻量 virtualization rules 让数据流复杂度可硬件化实现。</p><p>它值得正式收录，因为这类工作真正影响的是 AI hardware design space：MoE 推理不再只是把现有大模型搬到 chiplet 上，而是需要新的 sharding、通信和 runtime scheduling 组织方式。对仓库来说，这属于有耐久价值的 architecture/workflow paper，而不是单一 kernel 优化。</p><p>它没有升到更高一级，是因为当前范围仍主要集中在 low-batch MoE inference 和 multi-chiplet 这条明确子线，通用性还没有外推到更广的 accelerator family。它是强而清楚的设计模式，但暂时还不到更高一级。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260329hw24expert,
+  title = {Expert Streaming: Accelerating Low-Batch MoE Inference via Multi-chiplet Architecture and Dynamic Expert Trajectory Scheduling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.27624.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw24-expert-streaming-moe-chiplets/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Expert Streaming: Accelerating Low-Batch MoE Inference via Multi-chiplet Architecture and Dynamic Expert Trajectory Scheduling. https://arxiv.org/pdf/2603.27624.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.27624.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

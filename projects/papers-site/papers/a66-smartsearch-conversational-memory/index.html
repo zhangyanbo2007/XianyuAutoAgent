@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SmartSearch: How Ranking Beats Structure for Conversational Memory Retrieval | DAST Papers</title>
+    <meta name="description" content="这篇论文直指当前对话长期记忆系统的主流路线：很多系统在注入阶段就用 LLM 做摘要、结构化或图谱化，再在查询阶段叠加复杂的语义路由。但作者认为这些环节大多在做昂贵而脆弱的过度加工，真正的瓶颈并不在“如何把记忆整理得更复杂”，而在“检索到的大量候选里，什么证据能在 token 截断之前被排到前面”。
+
+论文提出 SmartSearch，一个几乎完全确定性的原始文本检索流水线：用基于 NER/POS " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a66-smartsearch-conversational-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SmartSearch: How Ranking Beats Structure for Conversational Memory Retrieval" />
+    <meta property="og:description" content="这篇论文直指当前对话长期记忆系统的主流路线：很多系统在注入阶段就用 LLM 做摘要、结构化或图谱化，再在查询阶段叠加复杂的语义路由。但作者认为这些环节大多在做昂贵而脆弱的过度加工，真正的瓶颈并不在“如何把记忆整理得更复杂”，而在“检索到的大量候选里，什么证据能在 token 截断之前被排到前面”。
+
+论文提出 SmartSearch，一个几乎完全确定性的原始文本检索流水线：用基于 NER/POS " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a66-smartsearch-conversational-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SmartSearch: How Ranking Beats Structure for Conversational Memory Retrieval" />
+    <meta name="twitter:description" content="这篇论文直指当前对话长期记忆系统的主流路线：很多系统在注入阶段就用 LLM 做摘要、结构化或图谱化，再在查询阶段叠加复杂的语义路由。但作者认为这些环节大多在做昂贵而脆弱的过度加工，真正的瓶颈并不在“如何把记忆整理得更复杂”，而在“检索到的大量候选里，什么证据能在 token 截断之前被排到前面”。
+
+论文提出 SmartSearch，一个几乎完全确定性的原始文本检索流水线：用基于 NER/POS " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SmartSearch: How Ranking Beats Structure for Conversational Memory Retrieval</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15599" target="_blank" rel="noopener noreferrer">2603.15599</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文直指当前对话长期记忆系统的主流路线：很多系统在注入阶段就用 LLM 做摘要、结构化或图谱化，再在查询阶段叠加复杂的语义路由。但作者认为这些环节大多在做昂贵而脆弱的过度加工，真正的瓶颈并不在“如何把记忆整理得更复杂”，而在“检索到的大量候选里，什么证据能在 token 截断之前被排到前面”。</dd></div><div><dt>方法/机制</dt><dd>论文提出 SmartSearch，一个几乎完全确定性的原始文本检索流水线：用基于 NER/POS 的 query weighting、grep 式子串匹配和规则化实体扩展做高召回，再把真正的机器学习部分压缩到 CPU 上运行的 CrossEncoder + ColBERT 重排序，并用 score-adaptive truncation 动态决定保留多少上下文。最重要的结论不是某个局部模块更强，而是作者通过消融把“compilation bottleneck”说清了：召回很容易做高，难的是排序和截断。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一个记忆 benchmark 小修补，而是对 agent memory / conversational memory workflow 的一次很有价值的纠偏。论文明确说明了在这类任务里，保留原始对话纹理、降低结构化损失、强化轻量级 reranking，往往比构建复杂知识图谱或在检索链路里塞更多 LLM 更有效。这对长期记忆代理、RAG 记忆层、低成本部署和工程实现都具有直接参考价值。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因在于当前证据主要集中在 LoCoMo 和 LongMemEval-S 这类长对话检索基准，时间推理场景仍有明显短板，而纯 grep/规则方法在更脏、更口语化、更超长的真实语料上是否还能保持同样优势也需要进一步验证。因此它更适合定为 breakthrough，而不是更高阶的方法重排。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文直指当前对话长期记忆系统的主流路线：很多系统在注入阶段就用 LLM 做摘要、结构化或图谱化，再在查询阶段叠加复杂的语义路由。但作者认为这些环节大多在做昂贵而脆弱的过度加工，真正的瓶颈并不在“如何把记忆整理得更复杂”，而在“检索到的大量候选里，什么证据能在 token 截断之前被排到前面”。</p><p>论文提出 SmartSearch，一个几乎完全确定性的原始文本检索流水线：用基于 NER/POS 的 query weighting、grep 式子串匹配和规则化实体扩展做高召回，再把真正的机器学习部分压缩到 CPU 上运行的 CrossEncoder + ColBERT 重排序，并用 score-adaptive truncation 动态决定保留多少上下文。最重要的结论不是某个局部模块更强，而是作者通过消融把“compilation bottleneck”说清了：召回很容易做高，难的是排序和截断。</p><p>它值得正式收录，因为这不是又一个记忆 benchmark 小修补，而是对 agent memory / conversational memory workflow 的一次很有价值的纠偏。论文明确说明了在这类任务里，保留原始对话纹理、降低结构化损失、强化轻量级 reranking，往往比构建复杂知识图谱或在检索链路里塞更多 LLM 更有效。这对长期记忆代理、RAG 记忆层、低成本部署和工程实现都具有直接参考价值。</p><p>它还不到更高一级，原因在于当前证据主要集中在 LoCoMo 和 LongMemEval-S 这类长对话检索基准，时间推理场景仍有明显短板，而纯 grep/规则方法在更脏、更口语化、更超长的真实语料上是否还能保持同样优势也需要进一步验证。因此它更适合定为 breakthrough，而不是更高阶的方法重排。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>令牌计数，使得系统在查询时显得更便宜，最近的对话记忆系统投入的时间比它们总共投入的要多，大量投入到基于LLM的摄取时结构化和查询时学习到的检索策略中。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>token counts, making systems appear cheaper at query Recent conversational memory systems invest time than they are in total. heavily in LLM-based structuring at ingestion time and learned retrieval policies at query time.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316a66smartse,
+  title = {SmartSearch: How Ranking Beats Structure for Conversational Memory Retrieval},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15599.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a66-smartsearch-conversational-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SmartSearch: How Ranking Beats Structure for Conversational Memory Retrieval. https://arxiv.org/pdf/2603.15599.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15599.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

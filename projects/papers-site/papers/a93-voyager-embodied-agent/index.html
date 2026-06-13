@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Voyager: An Open-Ended Embodied Agent with Large Language Models | DAST Papers</title>
+    <meta name="description" content="Voyager is one of the earliest strong demonstrations that an LLM agent can accumulate reusable skills in an open-ended embodied environment instead of merely solving isolated tasks. In Minecraft, it t" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a93-voyager-embodied-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Voyager: An Open-Ended Embodied Agent with Large Language Models" />
+    <meta property="og:description" content="Voyager is one of the earliest strong demonstrations that an LLM agent can accumulate reusable skills in an open-ended embodied environment instead of merely solving isolated tasks. In Minecraft, it t" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a93-voyager-embodied-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Voyager: An Open-Ended Embodied Agent with Large Language Models" />
+    <meta name="twitter:description" content="Voyager is one of the earliest strong demonstrations that an LLM agent can accumulate reusable skills in an open-ended embodied environment instead of merely solving isolated tasks. In Minecraft, it t" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Voyager: An Open-Ended Embodied Agent with Large Language Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2023-05-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2023-05-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2305.16291" target="_blank" rel="noopener noreferrer">2305.16291</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Voyager is one of the earliest strong demonstrations that an LLM agent can accumulate reusable skills in an open-ended embodied environment instead of merely solving isolated tasks. In Minecraft, it treats code generation, environment interaction, automatic curriculum, and skill library growth as a coupled loop rather than separate components.</dd></div><div><dt>方法/机制</dt><dd>Its main novelty is the combination of iterative exploration with a persistent skill library and an automatically expanding curriculum. That makes capability growth cumulative: the agent is not only improving within an episode, but building a reusable external competence base that later tasks can call back into.</dd></div><div><dt>结果/证据</dt><dd>The paper matters here because many later agent-memory and skill-library systems can be read as more general, more robust, or more practical descendants of the Voyager pattern. For embodied and tool-using agents, it was an early convincing example that open-ended capability acquisition can be orchestrated without changing base-model weights.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the environment and engineering stack are still relatively specific, and later work provides stronger generalization, evaluation, and systems grounding. But as an early milestone for open-ended skill accumulation in LLM agents, it is clearly worth formal collection.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Voyager is one of the earliest strong demonstrations that an LLM agent can accumulate reusable skills in an open-ended embodied environment instead of merely solving isolated tasks. In Minecraft, it treats code generation, environment interaction, automatic curriculum, and skill library growth as a coupled loop rather than separate components.</p><p>Its main novelty is the combination of iterative exploration with a persistent skill library and an automatically expanding curriculum. That makes capability growth cumulative: the agent is not only improving within an episode, but building a reusable external competence base that later tasks can call back into.</p><p>The paper matters here because many later agent-memory and skill-library systems can be read as more general, more robust, or more practical descendants of the Voyager pattern. For embodied and tool-using agents, it was an early convincing example that open-ended capability acquisition can be orchestrated without changing base-model weights.</p><p>It is not ranked higher because the environment and engineering stack are still relatively specific, and later work provides stronger generalization, evaluation, and systems grounding. But as an early milestone for open-ended skill accumulation in LLM agents, it is clearly worth formal collection.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们引入了 VOYAGER，这是第一个由 LLM 驱动的 Minecraft 具身终身学习智能体，它无需人工干预即可持续探索世界、获取多样化技能并进行新颖的发现。VOYAGER 由三个关键组件组成：1) 一个最大化探索的自动化课程，2) 一个不断增长的可执行代码技能库，用于存储和检索复杂行为，以及 3) 一种新的迭代提示机制，该机制结合了环境反馈、执行错误和自我验证以改进程序。VOYAGER 通过黑盒查询与 GPT-4 交互，这避免了模型参数微调的需要。VOYAGER 开发的技能具有时间扩展性、可解释性和组合性，这迅速增强了智能体的能力并缓解了灾难性遗忘。经验上，VOYAGER 展示了强大的上下文内终身学习能力，并在玩 Minecraft 方面表现出卓越的熟练度。它获得的独特物品数量是之前 SOTA 的 3.3 倍，旅行距离是 2.3 倍，解锁关键科技树里程碑的速度比之前 SOTA 快 15.3 倍。VOYAGER 能够在新的 Minecraft 世界中利用所学的技能库从头开始解决新颖任务，而其他技术则难以泛化。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce VOYAGER, the first LLM-powered embodied lifelong learning agent in Minecraft that continuously explores the world, acquires diverse skills, and makes novel discoveries without human intervention. VOYAGER consists of three key components: 1) an automatic curriculum that maximizes exploration, 2) an ever-growing skill library of executable code for storing and retrieving complex behaviors, and 3) a new iterative prompting mechanism that incorporates environment feedback, execution errors, and self-verification for program improvement. VOYAGER interacts with GPT-4 via blackbox queries, which bypasses the need for model parameter fine-tuning. The skills developed by VOYAGER are temporally extended, interpretable, and compositional, which compounds the agent’s abilities rapidly and alleviates catastrophic forgetting. Empirically, VOYAGER shows strong in-context lifelong learning capability and exhibits exceptional proficiency in playing Minecraft. It obtains 3.3× more unique items, travels 2.3× longer distances, and unlocks key tech tree milestones up to 15.3× faster than prior SOTA. VOYAGER is able to utilize the learned skill library in a new Minecraft world to solve novel tasks from scratch, while other techniques struggle to generalize.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20230525a93voyager,
+  title = {Voyager: An Open-Ended Embodied Agent with Large Language Models},
+  year = {2023},
+  url = {https://arxiv.org/pdf/2305.16291.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a93-voyager-embodied-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2023). Voyager: An Open-Ended Embodied Agent with Large Language Models. https://arxiv.org/pdf/2305.16291.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2305.16291.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

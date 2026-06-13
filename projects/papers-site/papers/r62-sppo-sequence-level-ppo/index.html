@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks | DAST Papers</title>
+    <meta name="description" content="SPPO 针对长链推理 RL 中 token-level PPO 的两个痛点：跨 CoT horizon 的 temporal credit assignment 不稳定，以及 value model 带来的显存成本。GRPO 等 critic-free 方法缓解部分问题，但需要多样本 baseline，吞吐受限。
+
+论文把推理过程重构为 sequence-level contextual ban" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r62-sppo-sequence-level-ppo/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks" />
+    <meta property="og:description" content="SPPO 针对长链推理 RL 中 token-level PPO 的两个痛点：跨 CoT horizon 的 temporal credit assignment 不稳定，以及 value model 带来的显存成本。GRPO 等 critic-free 方法缓解部分问题，但需要多样本 baseline，吞吐受限。
+
+论文把推理过程重构为 sequence-level contextual ban" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r62-sppo-sequence-level-ppo/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks" />
+    <meta name="twitter:description" content="SPPO 针对长链推理 RL 中 token-level PPO 的两个痛点：跨 CoT horizon 的 temporal credit assignment 不稳定，以及 value model 带来的显存成本。GRPO 等 critic-free 方法缓解部分问题，但需要多样本 baseline，吞吐受限。
+
+论文把推理过程重构为 sequence-level contextual ban" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08865" target="_blank" rel="noopener noreferrer">2604.08865</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SPPO 针对长链推理 RL 中 token-level PPO 的两个痛点：跨 CoT horizon 的 temporal credit assignment 不稳定，以及 value model 带来的显存成本。GRPO 等 critic-free 方法缓解部分问题，但需要多样本 baseline，吞吐受限。</dd></div><div><dt>方法/机制</dt><dd>论文把推理过程重构为 sequence-level contextual bandit，用解耦的标量 value function 生成低方差 advantage，避免逐 token value 模型和多 rollout baseline 的高成本。目标是在 PPO 的样本效率和 outcome-level 更新稳定性之间折中。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它给长时程 reasoning RL 提供了 sequence-level 训练接口，有望成为 GRPO/PPO 之间的实用替代。对大模型数学、代码和复杂推理 post-training 有直接系统价值。</dd></div><div><dt>收录价值</dt><dd>局限在于 sequence-level abstraction 可能牺牲部分细粒度 credit 信号；在开放式工具任务和多步 agent 环境中还需要验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SPPO 针对长链推理 RL 中 token-level PPO 的两个痛点：跨 CoT horizon 的 temporal credit assignment 不稳定，以及 value model 带来的显存成本。GRPO 等 critic-free 方法缓解部分问题，但需要多样本 baseline，吞吐受限。</p><p>论文把推理过程重构为 sequence-level contextual bandit，用解耦的标量 value function 生成低方差 advantage，避免逐 token value 模型和多 rollout baseline 的高成本。目标是在 PPO 的样本效率和 outcome-level 更新稳定性之间折中。</p><p>它值得收录，是因为它给长时程 reasoning RL 提供了 sequence-level 训练接口，有望成为 GRPO/PPO 之间的实用替代。对大模型数学、代码和复杂推理 post-training 有直接系统价值。</p><p>局限在于 sequence-level abstraction 可能牺牲部分细粒度 credit 信号；在开放式工具任务和多步 agent 环境中还需要验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Proximal Policy Optimization (PPO) 在将大型语言模型 (LLMs) 与可验证奖励对齐于推理任务方面起着核心作用。然而，标准以 token 级别进行的 PPO 在长 Chain-of-Thought (CoT) 视野上的时间信贷分配不稳定性以及价值模型的高内存成本方面面临挑战。虽然 critic-free 替代方案如 GRPO 缓解了这些问题，但它们通过需要多次采样来估计基线，从而产生了显著的计算开销，严重限制了训练吞吐量。在本文中，我们引入了 Sequence-Level PPO (SPPO)，这是一种可扩展算法，它将 PPO 的样本效率与基于结果的更新的稳定性相结合。SPPO 将推理过程重新表述为一个 Sequence-Level 上下文寻常问题，采用分离的标量价值函数来获得低方差的优势信号，而无需多采样。在数学基准上进行的广泛实验表明，SPPO 显著优于标准 PPO，并与计算量大的基于组的方法相媲美，为对齐推理 LLM 提供了一种资源效率高的框架。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Proximal Policy Optimization (PPO) is central to aligning Large Language Models (LLMs) in reasoning tasks with verifiable rewards. However, standard token-level PPO struggles in this setting due to the instability of temporal credit assignment over long Chain-of-Thought (CoT) horizons and the prohibitive memory cost of the value model. While critic-free alternatives like GRPO mitigate these issues, they incur significant computational overhead by requiring multiple samples for baseline estimation, severely limiting training throughput. In this paper, we introduce Sequence-Level PPO (SPPO), a scalable algorithm that harmonizes the sample efficiency of PPO with the stability of outcome-based updates. SPPO reformulates the reasoning process as a Sequence-Level Contextual Bandit problem, employing a decoupled scalar value function to derive low-variance advantage signals without multi-sampling. Extensive experiments on mathematical benchmarks demonstrate that SPPO significantly surpasses standard PPO and matches the performance of computation-heavy group-based methods, offering a resource-efficient framework for aligning reasoning LLMs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260410r62spposeq,
+  title = {SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08865.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r62-sppo-sequence-level-ppo/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SPPO: Sequence-Level PPO for Long-Horizon Reasoning Tasks. https://arxiv.org/pdf/2604.08865.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08865.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

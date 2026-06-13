@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay | DAST Papers</title>
+    <meta name="description" content="很多 LLM autonomous agents 虽然看起来能规划、执行和反思，但一旦面对结构相似却表面不同的任务，仍然会从头再做一遍，缺乏真正可积累的 procedural memory。现有 memory 方法常常只存简短摘要或纯语义向量，难以支撑跨任务的结构复用。APEX-EM 正是围绕这个问题设计。
+
+论文提出一种 non-parametric online learning 框架，把每次" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a119-apex-em-experience-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay" />
+    <meta property="og:description" content="很多 LLM autonomous agents 虽然看起来能规划、执行和反思，但一旦面对结构相似却表面不同的任务，仍然会从头再做一遍，缺乏真正可积累的 procedural memory。现有 memory 方法常常只存简短摘要或纯语义向量，难以支撑跨任务的结构复用。APEX-EM 正是围绕这个问题设计。
+
+论文提出一种 non-parametric online learning 框架，把每次" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a119-apex-em-experience-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay" />
+    <meta name="twitter:description" content="很多 LLM autonomous agents 虽然看起来能规划、执行和反思，但一旦面对结构相似却表面不同的任务，仍然会从头再做一遍，缺乏真正可积累的 procedural memory。现有 memory 方法常常只存简短摘要或纯语义向量，难以支撑跨任务的结构复用。APEX-EM 正是围绕这个问题设计。
+
+论文提出一种 non-parametric online learning 框架，把每次" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.29093" target="_blank" rel="noopener noreferrer">2603.29093</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 LLM autonomous agents 虽然看起来能规划、执行和反思，但一旦面对结构相似却表面不同的任务，仍然会从头再做一遍，缺乏真正可积累的 procedural memory。现有 memory 方法常常只存简短摘要或纯语义向量，难以支撑跨任务的结构复用。APEX-EM 正是围绕这个问题设计。</dd></div><div><dt>方法/机制</dt><dd>论文提出一种 non-parametric online learning 框架，把每次执行过程编码成 structured procedural-episodic experience，显式保留 planning steps、artifacts、iteration history、error analysis 和 quality scores。它再配合 Plan-Retrieve-Generate-Iterate-Ingest（PRGII）工作流、Task Verifiers 的多维 reward，以及结合 semantic search、structural signature matching 和 plan DAG traversal 的 hybrid retrieval，让 agent 在不改权重的情况下复用成功与失败经验。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent memory 从‘存点笔记’推进到‘存可执行程序化经验’，而且给出了清晰的 online learning loop。对仓库持续扩展的 agent memory、self-improving agents 和 capability accumulation 来说，这种结构化 procedural-episodic replay 是明确可复用的模式，不只是一个 benchmark 技巧。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要来自作者选取的几个 benchmark 和固定 backbone，外部 adoption 还没形成。它已经是一篇很强的 agent memory 工作，但是否会成为该方向的主导蓝图，还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 LLM autonomous agents 虽然看起来能规划、执行和反思，但一旦面对结构相似却表面不同的任务，仍然会从头再做一遍，缺乏真正可积累的 procedural memory。现有 memory 方法常常只存简短摘要或纯语义向量，难以支撑跨任务的结构复用。APEX-EM 正是围绕这个问题设计。</p><p>论文提出一种 non-parametric online learning 框架，把每次执行过程编码成 structured procedural-episodic experience，显式保留 planning steps、artifacts、iteration history、error analysis 和 quality scores。它再配合 Plan-Retrieve-Generate-Iterate-Ingest（PRGII）工作流、Task Verifiers 的多维 reward，以及结合 semantic search、structural signature matching 和 plan DAG traversal 的 hybrid retrieval，让 agent 在不改权重的情况下复用成功与失败经验。</p><p>这篇工作值得收录，因为它把 agent memory 从‘存点笔记’推进到‘存可执行程序化经验’，而且给出了清晰的 online learning loop。对仓库持续扩展的 agent memory、self-improving agents 和 capability accumulation 来说，这种结构化 procedural-episodic replay 是明确可复用的模式，不只是一个 benchmark 技巧。</p><p>它没有升到更高一级，是因为当前证据仍主要来自作者选取的几个 benchmark 和固定 backbone，外部 adoption 还没形成。它已经是一篇很强的 agent memory 工作，但是否会成为该方向的主导蓝图，还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>APEX-EM：通过结构化程序-情景经验回放实现自主智能体的非参数在线学习。基于LLM的自主智能体在程序层面本质上是无状态的：它们为每个任务从头推导解决方案，即使结构上相同的任务之前已经解决过。我们提出了APEX-EM，一个非参数在线学习框架，它使智能体能够迭代地积累、检索和重用结构化程序计划，而无需修改模型权重。APEX-EM引入了三项关键创新：(1) 一种结构化经验表示，它编码了每次任务执行的完整程序-情景轨迹——包括规划步骤、生成的工件、带有错误分析的迭代历史和质量分数；(2) 一个计划-检索-生成-迭代-摄取（PRGII）工作流，它将任务执行分解为确定性阶段，并由任务验证器提供多维奖励信号；以及 (3) 一个双结果经验记忆存储，其混合检索结合了语义搜索、对先前实验的结构签名匹配以及计划图遍历——从而实现了在没有词汇重叠但操作结构相似的任务之间进行程序知识的跨领域迁移。成功的经验作为正向上下文示例，而失败的经验则作为带有结构化错误注释的负向示例。我们在三个不同的基准测试上进行了评估——BigCodeBench (Zhuo et al., 2025)（代码生成）、KGQAGen-10k (Zhang et al., 2025a)（结构化查询生成）和 Humanity’s Last Exam (Phan et al., 2025)（多领域知识推理）——使用 Claude Sonnet 4.5 和 Claude Opus 4.5 作为智能体骨干模型，并在相同的冻结骨干条件下与 MemRL (Wang et al., 2025) 及其基线进行了比较。在 KGQAGen-10k 上，APEX-EM 实现了 89.6% 的准确率（95.3% CSR），而没有记忆的情况下为 41.3%，这完全归因于通过积累的程序经验进行的在线学习，带来了 48.3 个百分点的提升，超过了预言机检索的上限（GPT4o w/ SP 为 84.9%）。在 BigCodeBench 上，APEX-EM 从 53.9% 的基线达到了 83.3% SR / 84.0% CSR（+29.4pp），超过了 MemRL 使用 GPT-4o 获得的 +11.0pp 增益。在 HLE 上，实体图检索从 25.2% 的基线达到了 48.0%（+22.8pp）。消融分析表明，每个组件的价值都取决于任务：丰富的判断反馈对代码生成提供的益处微乎其微（在 BCB 上 A1≈A2），但对结构化查询生成至关重要（在 KGQA 上 +10.3pp），而带有二元信号的迭代可以部分弥补较弱的反馈质量。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLM-based autonomous agents are fundamentally stateless at the procedural level: they rederive solutions from scratch for every task, even when structurally identical tasks have been solved before. We present APEX-EM, a non-parametric online learning framework that enables agents to iteratively accumulate, retrieve, and reuse structured procedural plans without modifying model weights. APEX-EM introduces three key innovations: (1) a structured experience representation that encodes the complete procedural-episodic trace of each task execution—including planning steps, generated artifacts, iteration history with error analysis, and quality scores; (2) a Plan-RetrieveGenerate-Iterate-Ingest (PRGII) workflow that decomposes task execution into deterministic phases with Task Verifiers providing multidimensional reward signals; and (3) a dualoutcome Experience Memory store with hybrid retrieval combining semantic search, structural signature matching over previous experiments, and plan graph traversal—enabling cross-domain transfer of procedural knowledge between tasks that share no lexical overlap but have analogous operational structure. Successful experiences serve as positive in-context examples while failed experiences serve as negative examples with structured error annotations. We evaluate on three diverse benchmarks— BigCodeBench (Zhuo et al., 2025) (code generation), KGQAGen-10k (Zhang et al., 2025a) (structured query generation), and Humanity’s Last Exam (Phan et al., 2025) (multi-domain knowledge reasoning)—using Claude Sonnet 4.5 and Claude Opus 4.5 as agent backbones, and compare against MemRL (Wang et al., 2025) and its baselines under identical frozenbackbone conditions. On KGQAGen-10k, APEX-EM achieves 89.6% accuracy (95.3% CSR) compared to 41.3% without memory which is a 48.3 percentage point improvement attributable solely to online learning through accumulated procedural experience, surpass- ing the oracle-retrieval upper bound (GPT4o w/ SP at 84.9%). On BigCodeBench, APEX-EM reaches 83.3% SR / 84.0% CSR from a 53.9% baseline (+29.4pp), exceeding MemRL’s +11.0pp gain with GPT-4o. On HLE, entity graph retrieval reaches 48.0% from a 25.2% baseline (+22.8pp). Ablation analysis reveals that the value of each component is taskdependent: rich judge feedback provides negligible benefit for code generation (A1≈A2 on BCB) but is critical for structured query generation (+10.3pp on KGQA), while iteration with binary signal can partially compensate for weaker feedback quality.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260330a119apexem,
+  title = {APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.29093.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a119-apex-em-experience-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). APEX-EM: Non-Parametric Online Learning for Autonomous Agents via Structured Procedural-Episodic Experience Replay. https://arxiv.org/pdf/2603.29093.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.29093.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proteome-wide model for human disease genetics | DAST Papers</title>
+    <meta name="description" content="问题与背景：missense variant interpretation 的难点在于跨蛋白、跨疾病严重度和未见变异的可比性。许多模型能在已知疾病基因内分类，但不能稳定地把不同基因上的变异放到同一严重度尺度上。
+
+方法与新意：popEVE 结合 EVE/ESM 等进化序列信息与 UKBB、gnomAD 等人群约束，用概率模型把蛋白内变异效应校准到 proteome-wide deleterious" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio35-popeve-disease-genetics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Proteome-wide model for human disease genetics" />
+    <meta property="og:description" content="问题与背景：missense variant interpretation 的难点在于跨蛋白、跨疾病严重度和未见变异的可比性。许多模型能在已知疾病基因内分类，但不能稳定地把不同基因上的变异放到同一严重度尺度上。
+
+方法与新意：popEVE 结合 EVE/ESM 等进化序列信息与 UKBB、gnomAD 等人群约束，用概率模型把蛋白内变异效应校准到 proteome-wide deleterious" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio35-popeve-disease-genetics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Proteome-wide model for human disease genetics" />
+    <meta name="twitter:description" content="问题与背景：missense variant interpretation 的难点在于跨蛋白、跨疾病严重度和未见变异的可比性。许多模型能在已知疾病基因内分类，但不能稳定地把不同基因上的变异放到同一严重度尺度上。
+
+方法与新意：popEVE 结合 EVE/ESM 等进化序列信息与 UKBB、gnomAD 等人群约束，用概率模型把蛋白内变异效应校准到 proteome-wide deleterious" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Proteome-wide model for human disease genetics</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-11-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-24</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41588-025-02400-1" target="_blank" rel="noopener noreferrer">10.1038/s41588-025-02400-1</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：missense variant interpretation 的难点在于跨蛋白、跨疾病严重度和未见变异的可比性。许多模型能在已知疾病基因内分类，但不能稳定地把不同基因上的变异放到同一严重度尺度上。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：popEVE 结合 EVE/ESM 等进化序列信息与 UKBB、gnomAD 等人群约束，用概率模型把蛋白内变异效应校准到 proteome-wide deleteriousness 尺度。它强调可跨基因排序，而不只是二分类 pathogenic/benign。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇值得进入 AI biology/clinical genomics 主线，因为它改变的是罕见病变异解释工作流：在没有亲代测序的 singleton case 中也能优先排序候选 causal variant，并能降低人群结构偏差。对 AI 辅助诊断和基因组发现流程有持久参考价值。</dd></div><div><dt>收录价值</dt><dd>局限：临床采用仍需要前瞻性验证、管线整合和监管证据；模型仍依赖既有人群数据库与进化序列覆盖。因此按 breakthrough 收录，而不是更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：missense variant interpretation 的难点在于跨蛋白、跨疾病严重度和未见变异的可比性。许多模型能在已知疾病基因内分类，但不能稳定地把不同基因上的变异放到同一严重度尺度上。</p><p>方法与新意：popEVE 结合 EVE/ESM 等进化序列信息与 UKBB、gnomAD 等人群约束，用概率模型把蛋白内变异效应校准到 proteome-wide deleteriousness 尺度。它强调可跨基因排序，而不只是二分类 pathogenic/benign。</p><p>收录意义：这篇值得进入 AI biology/clinical genomics 主线，因为它改变的是罕见病变异解释工作流：在没有亲代测序的 singleton case 中也能优先排序候选 causal variant，并能降低人群结构偏差。对 AI 辅助诊断和基因组发现流程有持久参考价值。</p><p>局限：临床采用仍需要前瞻性验证、管线整合和监管证据；模型仍依赖既有人群数据库与进化序列覆盖。因此按 breakthrough 收录，而不是更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>识别致病突变可加速遗传疾病诊断和治疗开发。错义变异在遗传诊断中构成瓶颈，因为其影响不如截短或无义突变那样直接。尽管计算预测方法在已知疾病基因变异的预测方面日益成功，但由于分数未在整个蛋白质组1-6中进行校准，它们不能很好地推广到其他基因。为解决此问题，我们开发了一种深度生成模型popEVE，它将进化信息与群体序列数据7相结合，在按严重程度对变异进行排序以区分严重发育障碍8患者与潜在健康个体9方面达到了最先进的性能。popEVE在该发育障碍队列患者中识别出442个基因，包括123种新型遗传疾病的证据，其中许多无需基因水平富集，也未高估群体中致病性变异的流行率。这些变异中的大多数在三维复合物中与相互作用伙伴接近。对儿童外显子组的初步分析表明，popEVE无需遗传标签即可识别候选变异。通过将变异置于统一尺度上，我们的模型提供了关于整个蛋白质组和更广泛人群中适应度效应分布的全面视角。即使在依赖重复观察的传统技术可能不适用的极其罕见的单患者疾病中，popEVE也能为遗传诊断提供令人信服的证据。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Identifying causal mutations accelerates genetic disease diagnosis, and therapeutic development. Missense variants present a bottleneck in genetic diagnoses as their effects are less straightforward than truncations or nonsense mutations. While computational prediction methods are increasingly successful at prediction for variants in known disease genes, they do not generalize well to other genes as the scores are not calibrated across the proteome1–6. To address this, we developed a deep generative model, popEVE, that combines evolutionary information with population sequence data7 and achieves state-ofthe-art performance at ranking variants by severity to distinguish patients with severe developmental disorders8 from potentially healthy individuals9. popEVE identifies 442 genes in patients this developmental disorder cohort, including evidence of 123 novel genetic disorders, many without the need for gene-level enrichment and without overestimating the prevalence of pathogenic variants in the population. A majority of these variants are close to interacting partners in 3D complexes. Preliminary analyses on child exomes indicate that popEVE can identify candidate variants without the need for inheritance labels. By placing variants on a unified scale, our model offers a comprehensive perspective on the distribution of fitness effects across the entire proteome and the broader human population. popEVE provides compelling evidence for genetic diagnoses even in exceptionally rare single-patient disorders where conventional techniques relying on repeated observations may not be applicable.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251124bio35popev,
+  title = {Proteome-wide model for human disease genetics},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41588-025-02400-1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio35-popeve-disease-genetics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Proteome-wide model for human disease genetics. https://www.nature.com/articles/s41588-025-02400-1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41588-025-02400-1" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://www.nature.com/articles/s41588-025-02400-1" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

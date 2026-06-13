@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OCR-Memory: Optical Context Retrieval for Long-Horizon Agent Memory | DAST Papers</title>
+    <meta name="description" content="这篇工作的关键不是再做一个更聪明的 textual memory retriever，而是直接换了 memory substrate：把长历史轨迹编码成带视觉锚点的图像，用 locate-and-transcribe 的方式取回原文证据。
+
+这种设计针对的是 agent memory 里一个很硬的系统约束：原始轨迹文本太长，summary 会丢证据，纯向量检索又容易把证据碎片化。OCR-Memor" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a248-ocr-memory-long-horizon/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OCR-Memory: Optical Context Retrieval for Long-Horizon Agent Memory" />
+    <meta property="og:description" content="这篇工作的关键不是再做一个更聪明的 textual memory retriever，而是直接换了 memory substrate：把长历史轨迹编码成带视觉锚点的图像，用 locate-and-transcribe 的方式取回原文证据。
+
+这种设计针对的是 agent memory 里一个很硬的系统约束：原始轨迹文本太长，summary 会丢证据，纯向量检索又容易把证据碎片化。OCR-Memor" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a248-ocr-memory-long-horizon/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OCR-Memory: Optical Context Retrieval for Long-Horizon Agent Memory" />
+    <meta name="twitter:description" content="这篇工作的关键不是再做一个更聪明的 textual memory retriever，而是直接换了 memory substrate：把长历史轨迹编码成带视觉锚点的图像，用 locate-and-transcribe 的方式取回原文证据。
+
+这种设计针对的是 agent memory 里一个很硬的系统约束：原始轨迹文本太长，summary 会丢证据，纯向量检索又容易把证据碎片化。OCR-Memor" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OCR-Memory: Optical Context Retrieval for Long-Horizon Agent Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.26622" target="_blank" rel="noopener noreferrer">2604.26622</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的关键不是再做一个更聪明的 textual memory retriever，而是直接换了 memory substrate：把长历史轨迹编码成带视觉锚点的图像，用 locate-and-transcribe 的方式取回原文证据。</dd></div><div><dt>方法/机制</dt><dd>这种设计针对的是 agent memory 里一个很硬的系统约束：原始轨迹文本太长，summary 会丢证据，纯向量检索又容易把证据碎片化。OCR-Memory 通过视觉高密度承载 + 定位后转录，等于在 token budget 和 evidence fidelity 之间开了一个新接口。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是 agent memory 的真正机制层创新，不是 benchmark 上的一个 retrieval hack。对长程 computer-use agent、workspace agent、甚至 multimodal episodic memory 都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据仍主要来自 long-horizon agent benchmarks，跨更多真实交互环境和更复杂 memory workloads 的鲁棒性还需继续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的关键不是再做一个更聪明的 textual memory retriever，而是直接换了 memory substrate：把长历史轨迹编码成带视觉锚点的图像，用 locate-and-transcribe 的方式取回原文证据。</p><p>这种设计针对的是 agent memory 里一个很硬的系统约束：原始轨迹文本太长，summary 会丢证据，纯向量检索又容易把证据碎片化。OCR-Memory 通过视觉高密度承载 + 定位后转录，等于在 token budget 和 evidence fidelity 之间开了一个新接口。</p><p>它值得正式收录，因为这是 agent memory 的真正机制层创新，不是 benchmark 上的一个 retrieval hack。对长程 computer-use agent、workspace agent、甚至 multimodal episodic memory 都有直接外溢。</p><p>它没有更高，是因为当前证据仍主要来自 long-horizon agent benchmarks，跨更多真实交互环境和更复杂 memory workloads 的鲁棒性还需继续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自主LLM代理越来越多地在长周期、交互式环境中运行，其中成功取决于重用在长时间历史中积累的经验。然而，现有的代理记忆系统受到文本上下文预算的根本限制：存储或重新访问原始轨迹会消耗过多的token，而摘要和纯文本检索则以牺牲信息损失和碎片化证据为代价来节省token。为了解决这一限制，我们提出了光学上下文检索记忆（OCR-Memory），这是一种记忆框架，它利用视觉模态作为代理经验的高密度表示，从而能够在检索时以最小的提示开销保留任意长的历史记录。具体来说，OCR-Memory将历史轨迹渲染成带有独特视觉标识符的图像。OCR-Memory通过定位-转录范式检索存储的经验，该范式通过视觉锚点选择相关区域并检索相应的逐字文本，从而避免自由形式生成并减少幻觉。在长周期代理基准测试上的实验表明，在严格的上下文限制下，OCR-Memory取得了持续的提升，这表明光学编码增加了有效记忆容量，同时保留了忠实的证据恢复。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autonomous LLM agents increasingly operate in long-horizon, interactive settings where success depends on reusing experience accumulated over extended histories. However, existing agent memory systems are fundamentally constrained by text-context budgets: storing or revisiting raw trajectories is prohibitively token-expensive, while summarization and textonly retrieval trade token savings for information loss and fragmented evidence. To address this limitation, we propose Optical Context Retrieval Memory (OCR-Memory), a memory framework that leverages the visual modality as a high-density representation of agent experience, enabling retention of arbitrarily long histories with minimal prompt overhead at retrieval time. Specifically, OCRMemory renders historical trajectories into images annotated with unique visual identifiers. OCR-Memory retrieves stored experience via a locate-and-transcribe paradigm that selects relevant regions through visual anchors and retrieves the corresponding verbatim text, avoiding free-form generation and reducing hallucination. Experiments on long-horizon agent benchmarks show consistent gains under strict context limits, demonstrating that optical encoding increases effective memory capacity while preserving faithful evidence recovery.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260429a248ocrmem,
+  title = {OCR-Memory: Optical Context Retrieval for Long-Horizon Agent Memory},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.26622.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a248-ocr-memory-long-horizon/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OCR-Memory: Optical Context Retrieval for Long-Horizon Agent Memory. https://arxiv.org/pdf/2604.26622.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.26622.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personalize-then-Store: Benchmarking and Learning Personalized Memory for Long-horizon Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文处理个人 agent 的长期记忆难题：并非所有对话内容都应直接存储，真正有用的是能支持后续个性化决策的稳定偏好、事实和习惯。
+
+Personalize-then-Store 将记忆写入前的个性化判断作为核心环节，强调先识别对用户长期有价值的信息，再进入 memory store。
+
+PerMemBench 评估 long-horizon agents 对个人信息的选择、更新和使用能力，使 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a323-permembench-personalized-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Personalize-then-Store: Benchmarking and Learning Personalized Memory for Long-horizon Agents" />
+    <meta property="og:description" content="这篇论文处理个人 agent 的长期记忆难题：并非所有对话内容都应直接存储，真正有用的是能支持后续个性化决策的稳定偏好、事实和习惯。
+
+Personalize-then-Store 将记忆写入前的个性化判断作为核心环节，强调先识别对用户长期有价值的信息，再进入 memory store。
+
+PerMemBench 评估 long-horizon agents 对个人信息的选择、更新和使用能力，使 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a323-permembench-personalized-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Personalize-then-Store: Benchmarking and Learning Personalized Memory for Long-horizon Agents" />
+    <meta name="twitter:description" content="这篇论文处理个人 agent 的长期记忆难题：并非所有对话内容都应直接存储，真正有用的是能支持后续个性化决策的稳定偏好、事实和习惯。
+
+Personalize-then-Store 将记忆写入前的个性化判断作为核心环节，强调先识别对用户长期有价值的信息，再进入 memory store。
+
+PerMemBench 评估 long-horizon agents 对个人信息的选择、更新和使用能力，使 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Personalize-then-Store: Benchmarking and Learning Personalized Memory for Long-horizon Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.25535" target="_blank" rel="noopener noreferrer">2605.25535</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理个人 agent 的长期记忆难题：并非所有对话内容都应直接存储，真正有用的是能支持后续个性化决策的稳定偏好、事实和习惯。</dd></div><div><dt>方法/机制</dt><dd>Personalize-then-Store 将记忆写入前的个性化判断作为核心环节，强调先识别对用户长期有价值的信息，再进入 memory store。</dd></div><div><dt>结果/证据</dt><dd>PerMemBench 评估 long-horizon agents 对个人信息的选择、更新和使用能力，使 memory 系统从粗粒度保存转向可判定的个性化维护。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为个人 agent memory 是当前高优先级方向，这篇给出了存储策略和评测接口，而不只是又一个聊天记忆 demo。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理个人 agent 的长期记忆难题：并非所有对话内容都应直接存储，真正有用的是能支持后续个性化决策的稳定偏好、事实和习惯。</p><p>Personalize-then-Store 将记忆写入前的个性化判断作为核心环节，强调先识别对用户长期有价值的信息，再进入 memory store。</p><p>PerMemBench 评估 long-horizon agents 对个人信息的选择、更新和使用能力，使 memory 系统从粗粒度保存转向可判定的个性化维护。</p><p>它值得正式收录，因为个人 agent memory 是当前高优先级方向，这篇给出了存储策略和评测接口，而不只是又一个聊天记忆 demo。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现有的基于大型语言模型（LLM）的记忆系统采用通用、静态的策略，忽视了一个基本事实：值得存储在记忆中的上下文因用户而异。这种不匹配将有限的记忆预算浪费在短暂的交互上，同时未能为长周期任务保留关键上下文。为了解决这一空白，我们研究了一个未充分探索的问题：基于LLM的记忆系统能否学习个性化的记忆策略？我们引入了PerMem-Bench，这是第一个用于评估个性化记忆系统的基准，具有跨越不同用户画像的多年、多领域交互历史。我们进一步提出了记忆个性化的首次实证研究，提出了会话级存储门控——一个轻量级框架，选择性地绕过短暂会话的记忆操作。我们的研究证实，在完美门控下，个性化带来了显著的保留增益，但也揭示了准确门控仍然是一个开放且关键的挑战。我们的基准和源代码可在 https://github.com/yeonjun-in/PerMemBench 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Existing large language model (LLM)-based memory systems apply universal, static policies that overlook a fundamental reality: the contexts that are worth storing in memory are different across users. This misalignment wastes limited memory budget on transient interactions while failing to preserve critical context for long-horizon tasks. To address this gap, we investigate an underexplored question: can LLM-based memory systems learn personalized memory policies? We introduce PerMem-Bench, the first benchmark for evaluating personalized memory systems, featuring multi-year, multi-domain interaction histories across diverse user personas. We further present the first empirical study of memory personalization, proposing session-level storage gating — a lightweight framework that selectively bypasses memory operations for transient sessions. Our study confirms that personalization yields substantial retention gains under perfect gating, yet reveals that accurate gating remains an open and critical challenge. Our benchmark and source code are available at https://github.com/yeonjun-in/PerMemBench.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260525a323permem,
+  title = {Personalize-then-Store: Benchmarking and Learning Personalized Memory for Long-horizon Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.25535.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a323-permembench-personalized-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Personalize-then-Store: Benchmarking and Learning Personalized Memory for Long-horizon Agents. https://arxiv.org/pdf/2605.25535.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.25535.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.25535" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

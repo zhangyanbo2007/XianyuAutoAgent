@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to Train Your Advisor: Steering Black-Box LLMs with Advisor Models | DAST Papers</title>
+    <meta name="description" content="越来越多前沿模型以 black-box service 形式部署，调用方既拿不到权重，也很难做真正的参数级定制，最后往往只能在 system prompt 或 prompt optimization 上反复试错。这样的问题不只是可控性差，更在于一旦任务需要细粒度、按实例变化的辅助策略，静态提示很快就会失效。
+
+这篇工作提出 Advisor Models：训练一个小型开源模型，专门针对当前输入生成 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a171-advisor-models-black-box-steering/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="How to Train Your Advisor: Steering Black-Box LLMs with Advisor Models" />
+    <meta property="og:description" content="越来越多前沿模型以 black-box service 形式部署，调用方既拿不到权重，也很难做真正的参数级定制，最后往往只能在 system prompt 或 prompt optimization 上反复试错。这样的问题不只是可控性差，更在于一旦任务需要细粒度、按实例变化的辅助策略，静态提示很快就会失效。
+
+这篇工作提出 Advisor Models：训练一个小型开源模型，专门针对当前输入生成 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a171-advisor-models-black-box-steering/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How to Train Your Advisor: Steering Black-Box LLMs with Advisor Models" />
+    <meta name="twitter:description" content="越来越多前沿模型以 black-box service 形式部署，调用方既拿不到权重，也很难做真正的参数级定制，最后往往只能在 system prompt 或 prompt optimization 上反复试错。这样的问题不只是可控性差，更在于一旦任务需要细粒度、按实例变化的辅助策略，静态提示很快就会失效。
+
+这篇工作提出 Advisor Models：训练一个小型开源模型，专门针对当前输入生成 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>How to Train Your Advisor: Steering Black-Box LLMs with Advisor Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-10-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.02453" target="_blank" rel="noopener noreferrer">2510.02453</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>越来越多前沿模型以 black-box service 形式部署，调用方既拿不到权重，也很难做真正的参数级定制，最后往往只能在 system prompt 或 prompt optimization 上反复试错。这样的问题不只是可控性差，更在于一旦任务需要细粒度、按实例变化的辅助策略，静态提示很快就会失效。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出 Advisor Models：训练一个小型开源模型，专门针对当前输入生成 per-instance 的自然语言 advice，再把 advice 注入冻结的黑盒前沿模型。关键点不在于普通 prompt engineering，而在于把“如何给黑盒模型提建议”本身做成可训练对象，并证明这种 advisor 可以低成本训练、跨模型迁移，还能在税务规则问答、SWE agent 轨迹效率和个性化偏好场景里稳定带来提升。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这条路线把 black-box frontier model 的能力定制推进成了一个可复用接口：不改大模型本体，用小模型做动态 steering。对 agent 系统、黑盒模型后训练、部署侧 customization 和模型协作结构，这都有明确的外溢价值，不是一次性的 benchmark trick。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前主要还是围绕 advice-based steering 这一条很强的新接口展开，虽然结果漂亮、迁移性也不错，但是否会成为更广泛 frontier-model orchestration 的默认层，还需要更多任务族和产品级采用来验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>越来越多前沿模型以 black-box service 形式部署，调用方既拿不到权重，也很难做真正的参数级定制，最后往往只能在 system prompt 或 prompt optimization 上反复试错。这样的问题不只是可控性差，更在于一旦任务需要细粒度、按实例变化的辅助策略，静态提示很快就会失效。</p><p>这篇工作提出 Advisor Models：训练一个小型开源模型，专门针对当前输入生成 per-instance 的自然语言 advice，再把 advice 注入冻结的黑盒前沿模型。关键点不在于普通 prompt engineering，而在于把“如何给黑盒模型提建议”本身做成可训练对象，并证明这种 advisor 可以低成本训练、跨模型迁移，还能在税务规则问答、SWE agent 轨迹效率和个性化偏好场景里稳定带来提升。</p><p>它值得正式收录，因为这条路线把 black-box frontier model 的能力定制推进成了一个可复用接口：不改大模型本体，用小模型做动态 steering。对 agent 系统、黑盒模型后训练、部署侧 customization 和模型协作结构，这都有明确的外溢价值，不是一次性的 benchmark trick。</p><p>它暂时不升到更高一级，原因在于当前主要还是围绕 advice-based steering 这一条很强的新接口展开，虽然结果漂亮、迁移性也不错，但是否会成为更广泛 frontier-model orchestration 的默认层，还需要更多任务族和产品级采用来验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>如何训练你的顾问：用顾问模型引导黑盒LLM前沿语言模型以黑盒服务的形式部署，其模型权重无法修改，定制仅限于提示。我们引入了A DVISOR M ODELS，这是一种训练小型开源权重模型的方法，用于生成动态的、针对每个实例的自然语言建议，从而提升黑盒前沿模型的能力。A DVISOR M ODELS将GPT-5在RuleArena (Taxes)上的性能提高了71%，将Gemini 3 Pro在SWE代理任务中采取的步骤减少了24.6%，并且在根据用户偏好个性化GPT-5方面优于静态提示优化器（85-100% 对比 40-60%）。我们还发现顾问是可迁移的：用低成本学生模型训练的顾问仍然能将改进迁移到前沿模型上。此外，A DVISOR M ODELS是鲁棒的：我们观察到在管道训练所用的基准之外的其他基准上没有性能下降。我们的方法展示了如何以实用且经济高效的方式对黑盒前沿模型进行参数优化。图1. A DVISOR M ODELS将开源模型与黑盒模型结合。A DVISOR M ODELS训练一个顾问来生成实例特定的建议，这些建议被注入到上下文中以引导一个冻结的黑盒模型。最终输出环境中的奖励用于通过强化学习训练顾问。我们引入了A DVISOR M ODELS（图1），这是一种训练轻量级模型的方法，通过生成动态的、输入特定的建议来响应式地引导黑盒模型。至关重要的是，A DVISOR M ODELS可以通过强化学习进行参数优化，利用从学生模型的最终输出中获得的任务特定奖励。这一过程使复合系统能够在不访问学生模型参数或梯度的情况下进行学习和适应，从而使我们的方法在引导或个性化黑盒模型方面非常有效。学习提供建议的范式将提示从一个静态搜索问题重新定义为学习一种为每个实例生成定制建议的策略。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Frontier language models are deployed as blackbox services, where model weights cannot be modified and customization is limited to prompting. We introduce A DVISOR M ODELS, a method to train small open-weight models to generate dynamic, per-instance natural language advice that improves the capabilities of black-box frontier models. A DVISOR M ODELS improve GPT-5’s performance on RuleArena (Taxes) by 71%, reduce Gemini 3 Pro’s steps taken in SWE agent tasks by 24.6%, and outperform static prompt optimizers in personalizing GPT-5 to user preferences (85-100% vs. 40-60%). We also find that advisors are transferable: an advisor trained with a low-cost student model still transfers improvements to a frontier model. Moreover, A DVISOR M ODELS are robust: we observe no degradation on other benchmarks than the pipeline is trained on. Our method shows how to perform parametric optimization for black-box frontier models in a practical and cost-effective way. Figure 1. A DVISOR M ODELS combine open-source models with black box models. A DVISOR M ODELS trains an advisor to generate instance-specific advice that is injected in-context to steer a frozen black-box model. Rewards from the environment of the final output are used to train the advisor with reinforcement learning. We introduce A DVISOR M ODELS (Figure 1), a method for training a lightweight model to reactively steer a black-box model by generating dynamic input-specific advice. Crucially, A DVISOR M ODELS can be parametrically optimized with reinforcement learning, using task-specific rewards derived from the student model’s final outputs. This process enables the compound system to learn and adapt without access to the student model’s parameters or gradients, making our approach effective for steering or personalizing blackbox models. The learning to advise formulation re-frames prompting from a static search problem into learning a policy that generates custom advice for every instance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251002a171adviso,
+  title = {How to Train Your Advisor: Steering Black-Box LLMs with Advisor Models},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.02453.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a171-advisor-models-black-box-steering/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). How to Train Your Advisor: Steering Black-Box LLMs with Advisor Models. https://arxiv.org/pdf/2510.02453.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.02453.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents | DAST Papers</title>
+    <meta name="description" content="问题与背景：computer-use agents 的安全评测通常盯显式恶意请求和 prompt injection，但真实部署里更危险的是用户指令本身看似良性，风险埋在环境状态、执行后果或被拆分后的子任务里。
+
+方法与新意：论文提出 OS-BLIND，包含 300 个跨 12 类、8 个应用的人写任务，覆盖环境嵌入威胁和 agent 主动造成的伤害。它把安全问题从“拒绝恶意文本”转向“执行过程中" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a213-os-blind-agent-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents" />
+    <meta property="og:description" content="问题与背景：computer-use agents 的安全评测通常盯显式恶意请求和 prompt injection，但真实部署里更危险的是用户指令本身看似良性，风险埋在环境状态、执行后果或被拆分后的子任务里。
+
+方法与新意：论文提出 OS-BLIND，包含 300 个跨 12 类、8 个应用的人写任务，覆盖环境嵌入威胁和 agent 主动造成的伤害。它把安全问题从“拒绝恶意文本”转向“执行过程中" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a213-os-blind-agent-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents" />
+    <meta name="twitter:description" content="问题与背景：computer-use agents 的安全评测通常盯显式恶意请求和 prompt injection，但真实部署里更危险的是用户指令本身看似良性，风险埋在环境状态、执行后果或被拆分后的子任务里。
+
+方法与新意：论文提出 OS-BLIND，包含 300 个跨 12 类、8 个应用的人写任务，覆盖环境嵌入威胁和 agent 主动造成的伤害。它把安全问题从“拒绝恶意文本”转向“执行过程中" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.10577" target="_blank" rel="noopener noreferrer">2604.10577</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：computer-use agents 的安全评测通常盯显式恶意请求和 prompt injection，但真实部署里更危险的是用户指令本身看似良性，风险埋在环境状态、执行后果或被拆分后的子任务里。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：论文提出 OS-BLIND，包含 300 个跨 12 类、8 个应用的人写任务，覆盖环境嵌入威胁和 agent 主动造成的伤害。它把安全问题从“拒绝恶意文本”转向“执行过程中持续识别危险后果”。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇是 agent safety 的高价值基准，因为它暴露了当前安全对齐的触发时机缺陷：模型往往只在前几步检查风险，多步执行和多 agent 分解会稀释危险语义。对安全 runtime、权限边界、持续监控和子任务审计都有直接参考。</dd></div><div><dt>收录价值</dt><dd>局限：OS-BLIND 仍主要是 benchmark 与现象揭示，防御方案不完整；具体 ASR 也依赖所选 agent harness 和应用环境。因此按 breakthrough 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：computer-use agents 的安全评测通常盯显式恶意请求和 prompt injection，但真实部署里更危险的是用户指令本身看似良性，风险埋在环境状态、执行后果或被拆分后的子任务里。</p><p>方法与新意：论文提出 OS-BLIND，包含 300 个跨 12 类、8 个应用的人写任务，覆盖环境嵌入威胁和 agent 主动造成的伤害。它把安全问题从“拒绝恶意文本”转向“执行过程中持续识别危险后果”。</p><p>收录意义：这篇是 agent safety 的高价值基准，因为它暴露了当前安全对齐的触发时机缺陷：模型往往只在前几步检查风险，多步执行和多 agent 分解会稀释危险语义。对安全 runtime、权限边界、持续监控和子任务审计都有直接参考。</p><p>局限：OS-BLIND 仍主要是 benchmark 与现象揭示，防御方案不完整；具体 ASR 也依赖所选 agent harness 和应用环境。因此按 breakthrough 收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>计算机使用智能体（CUAs）现在可以在真实的数字环境中自主完成复杂任务，但当被误导时，它们也可以被用来以编程方式自动化有害行为。现有的安全评估主要针对显式威胁，如滥用和提示注入，但却忽视了一个微妙而关键的场景：用户指令完全是良性的，而危害却源于任务上下文或执行结果。我们引入了OS-B LIND，一个在非预期攻击条件下评估CUA的基准，包含300个人工制作的任务，涵盖12个类别、8个应用和2个威胁集群：环境嵌入式威胁和智能体引发的危害。我们对前沿模型和智能体框架的评估显示，大多数CUA的攻击成功率（ASR）超过90%，即使是安全对齐的Claude 4.5 Sonnet也达到了73.0%的ASR。更有趣的是，当Claude 4.5 Sonnet部署在多智能体系统中时，这种漏洞变得更加严重，ASR从73.0%上升到92.7%。我们的分析进一步表明，当用户指令是良性时，现有的安全防御提供有限的保护。安全对齐主要在前几个步骤中激活，在后续执行中很少重新参与。在多智能体系统中，分解的子任务会模糊模型的有害意图，导致安全对齐模型失效。我们将发布OS-B LIND，以鼓励更广泛的研究社区进一步调查和解决这些安全挑战。警告：本文包含可能具有冒犯性或令人不安的示例。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Computer-use agents (CUAs) can now autonomously complete complex tasks in real digital environments, but when misled, they can also be used to automate harmful actions programmatically. Existing safety evaluations largely target explicit threats such as misuse and prompt injection, but overlook a subtle yet critical setting where user instructions are entirely benign and harm arises from the task context or execution outcome. We introduce OS-B LIND, a benchmark that evaluates CUAs under unintended attack conditions, comprising 300 human-crafted tasks across 12 categories, 8 applications, and 2 threat clusters: environment-embedded threats and agent-initiated harms. Our evaluation on frontier models and agentic frameworks reveals that most CUAs exceed 90% attack success rate (ASR), and even the safety-aligned Claude 4.5 Sonnet reaches 73.0% ASR. More interestingly, this vulnerability becomes even more severe, with ASR rising from 73.0% to 92.7% when Claude 4.5 Sonnet is deployed in multi-agent systems. Our analysis further shows that existing safety defenses provide limited protection when user instructions are benign. Safety alignment primarily activates within the first few steps and rarely re-engages during subsequent execution. In multi-agent systems, decomposed subtasks obscure the harmful intent from the model, causing safetyaligned models to fail. We will release our OS-B LIND to encourage the broader research community to further investigate and address these safety challenges. Warning: This paper contains examples that may be offensive or disturbing.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260412a213osblin,
+  title = {The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.10577.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a213-os-blind-agent-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Blind Spot of Agent Safety: How Benign User Instructions Expose Critical Vulnerabilities in Computer-Use Agents. https://arxiv.org/pdf/2604.10577.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.10577.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

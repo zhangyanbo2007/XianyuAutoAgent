@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent Explorative Policy Optimization for Multimodal Agentic Reasoning | DAST Papers</title>
+    <meta name="description" content="这篇论文聚焦 multimodal agentic reasoning 中的结构性训练问题：模型会倾向内部 thinking，而工具调用是高方差 auxiliary action，标准 GRPO 对失败工具调用给不出足够学习信号。
+
+作者把这个问题定义为 Thinking-Acting Gap，并观察到训练中 tool use rollout 比例低、且很多 tool-using subgroup" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a342-axpo-multimodal-agentic-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agent Explorative Policy Optimization for Multimodal Agentic Reasoning" />
+    <meta property="og:description" content="这篇论文聚焦 multimodal agentic reasoning 中的结构性训练问题：模型会倾向内部 thinking，而工具调用是高方差 auxiliary action，标准 GRPO 对失败工具调用给不出足够学习信号。
+
+作者把这个问题定义为 Thinking-Acting Gap，并观察到训练中 tool use rollout 比例低、且很多 tool-using subgroup" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a342-axpo-multimodal-agentic-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agent Explorative Policy Optimization for Multimodal Agentic Reasoning" />
+    <meta name="twitter:description" content="这篇论文聚焦 multimodal agentic reasoning 中的结构性训练问题：模型会倾向内部 thinking，而工具调用是高方差 auxiliary action，标准 GRPO 对失败工具调用给不出足够学习信号。
+
+作者把这个问题定义为 Thinking-Acting Gap，并观察到训练中 tool use rollout 比例低、且很多 tool-using subgroup" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agent Explorative Policy Optimization for Multimodal Agentic Reasoning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28774" target="_blank" rel="noopener noreferrer">2605.28774</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文聚焦 multimodal agentic reasoning 中的结构性训练问题：模型会倾向内部 thinking，而工具调用是高方差 auxiliary action，标准 GRPO 对失败工具调用给不出足够学习信号。</dd></div><div><dt>方法/机制</dt><dd>作者把这个问题定义为 Thinking-Acting Gap，并观察到训练中 tool use rollout 比例低、且很多 tool-using subgroup 全错，导致真正该学习的 tool call 被压低。</dd></div><div><dt>结果/证据</dt><dd>AXPO 的做法是在全错工具子组中固定 thinking prefix，重新采样 tool call 与后续轨迹，并用不确定性选择前缀，让 RL 更集中地探索行动分支。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它给 agentic RL 提供了一个专门针对 tool-use exploration 的优化原语，而不是只把工具调用混进普通推理 RL。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文聚焦 multimodal agentic reasoning 中的结构性训练问题：模型会倾向内部 thinking，而工具调用是高方差 auxiliary action，标准 GRPO 对失败工具调用给不出足够学习信号。</p><p>作者把这个问题定义为 Thinking-Acting Gap，并观察到训练中 tool use rollout 比例低、且很多 tool-using subgroup 全错，导致真正该学习的 tool call 被压低。</p><p>AXPO 的做法是在全错工具子组中固定 thinking prefix，重新采样 tool call 与后续轨迹，并用不确定性选择前缀，让 RL 更集中地探索行动分支。</p><p>收录价值在于它给 agentic RL 提供了一个专门针对 tool-use exploration 的优化原语，而不是只把工具调用混进普通推理 RL。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>具有扩展推理能力的视觉语言模型在复杂问题上取得了成功，但许多现实世界问题需要外部工具，而仅凭内部推理往往无法解决。因此，智能体推理将两种行为交织在一起，它们具有结构不对称性：思考（自包含的默认行为）和工具使用（高方差的辅助行为）。我们将这种不对称性称为“思考-行动差距”。在像GRPO这样的标准强化学习方法下，这种差距在训练期间表现为两种诊断症状：工具使用仅在约30%的rollout中尝试，并且当尝试时，一个组内使用工具的rollout在约40%的问题上完全错误，从而抑制了在需要工具调用的地方的学习信号。我们提出了AXPO（Agent eXplorative Policy Optimization）：对于每个完全错误的工具使用子组，AXPO固定思考前缀并重新采样工具调用及其后续，并结合基于不确定性的前缀选择。在九个多模态基准测试和三个规模的Qwen3-VL-Thinking上，SFT + AXPO平均优于SFT + GRPO（平均在8B上Pass@1提高1.8个百分点，Pass@4提高1.8个百分点），并且8B的SFT + AXPO在Pass@4上超越了32B Base，参数量减少了4倍。项目页面可在链接处获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a structural asymmetry: thinking (the self-contained default) and tool use (a high-variance auxiliary acting). We refer to this asymmetry as the Thinking-Acting Gap. Under standard RL recipes like GRPO, the gap manifests as two diagnostic symptoms during training: tool use is attempted on only ∼30% of rollouts, and when attempted, the tool-using rollouts within a group are all-wrong on ∼40% of questions, suppressing the learning signal at the tool calls that needed it. We propose AXPO (Agent eXplorative Policy Optimization): for each all-wrong tool-using subgroup, AXPO fixes the thinking prefix and resamples the tool call and its continuation, paired with uncertainty-based prefix selection. Across nine multimodal benchmarks and three scales of Qwen3-VL-Thinking, SFT + AXPO outperforms SFT + GRPO at average (+1.8 pp Pass@1 and +1.8 pp Pass@4 at 8B on average) and 8B with SFT + AXPO surpasses the 32B Base on Pass@4 with 4× fewer parameters. The project page is available at link.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527a342axpomu,
+  title = {Agent Explorative Policy Optimization for Multimodal Agentic Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28774.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a342-axpo-multimodal-agentic-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Agent Explorative Policy Optimization for Multimodal Agentic Reasoning. https://arxiv.org/pdf/2605.28774.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28774.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28774" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

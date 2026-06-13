@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是 agent memory 领域一个长期存在的问题：很多系统会堆外部记忆组件，但缺乏清晰的版本语义、信念更新原则和稳定的长期知识结构。它符合仓库新扩展的 agent memory 范围，而且相比一般 memory system 论文更重视形式化与架构一致性。
+
+作者提出 Kumiho，把图原生版本化记忆、工作记忆/长期记忆双存储、全文与向量混合检索，以及 prospective i" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a55-kumiho-graph-native-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures" />
+    <meta property="og:description" content="这篇论文解决的是 agent memory 领域一个长期存在的问题：很多系统会堆外部记忆组件，但缺乏清晰的版本语义、信念更新原则和稳定的长期知识结构。它符合仓库新扩展的 agent memory 范围，而且相比一般 memory system 论文更重视形式化与架构一致性。
+
+作者提出 Kumiho，把图原生版本化记忆、工作记忆/长期记忆双存储、全文与向量混合检索，以及 prospective i" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a55-kumiho-graph-native-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures" />
+    <meta name="twitter:description" content="这篇论文解决的是 agent memory 领域一个长期存在的问题：很多系统会堆外部记忆组件，但缺乏清晰的版本语义、信念更新原则和稳定的长期知识结构。它符合仓库新扩展的 agent memory 范围，而且相比一般 memory system 论文更重视形式化与架构一致性。
+
+作者提出 Kumiho，把图原生版本化记忆、工作记忆/长期记忆双存储、全文与向量混合检索，以及 prospective i" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.17244" target="_blank" rel="noopener noreferrer">2603.17244</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是 agent memory 领域一个长期存在的问题：很多系统会堆外部记忆组件，但缺乏清晰的版本语义、信念更新原则和稳定的长期知识结构。它符合仓库新扩展的 agent memory 范围，而且相比一般 memory system 论文更重视形式化与架构一致性。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Kumiho，把图原生版本化记忆、工作记忆/长期记忆双存储、全文与向量混合检索，以及 prospective indexing 等机制统一起来，并明确把这一体系和 AGM belief revision 对应起来。它的贡献不只是“存更多记忆”，而是试图给 agent memory 提供可解释、可演化的操作语义。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为 agent memory 现在很热，但真正同时兼顾形式化 grounding、工程架构和基准表现的条目不多。Kumiho 至少提供了一个比较像长期参考点的 memory architecture 方案，对 versioned memory、belief revision 和 agent asset management 的结合有明显方法价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为虽然形式化部分很强，但生态还早，评测和采用范围仍有限，还不足以证明自己会成为 agent memory 的事实标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是 agent memory 领域一个长期存在的问题：很多系统会堆外部记忆组件，但缺乏清晰的版本语义、信念更新原则和稳定的长期知识结构。它符合仓库新扩展的 agent memory 范围，而且相比一般 memory system 论文更重视形式化与架构一致性。</p><p>作者提出 Kumiho，把图原生版本化记忆、工作记忆/长期记忆双存储、全文与向量混合检索，以及 prospective indexing 等机制统一起来，并明确把这一体系和 AGM belief revision 对应起来。它的贡献不只是“存更多记忆”，而是试图给 agent memory 提供可解释、可演化的操作语义。</p><p>它值得正式收录，是因为 agent memory 现在很热，但真正同时兼顾形式化 grounding、工程架构和基准表现的条目不多。Kumiho 至少提供了一个比较像长期参考点的 memory architecture 方案，对 versioned memory、belief revision 和 agent asset management 的结合有明显方法价值。</p><p>它没有升到更高等级，是因为虽然形式化部分很强，但生态还早，评测和采用范围仍有限，还不足以证明自己会成为 agent memory 的事实标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI智能体的图原生认知记忆：版本化记忆架构的形式化信念修正语义 尽管AI智能体记忆的各个独立组件——版本控制、检索、整合——已存在于Graphiti、Mem0和Letta等现有系统中，但它们的架构综合和形式化基础仍未得到充分探索。本文提出了Kumiho，一种基于形式化信念修正语义的图原生认知记忆架构。AI智能体日益产生大量的输出——代码、设计、文档、中间结果——这些输出在没有系统版本控制、溯源跟踪或与创建它们的决策关联的情况下不断累积。在多智能体工作流中——一个智能体的输出成为下一个智能体的输入——这种结构缺失是一个根本性的瓶颈。核心洞察是，认知记忆所需的结构原语——不可变修订、可变标签指针、类型化依赖边、基于URI的寻址——与将这些智能体生成的输出作为可版本化、可寻址、依赖关联的资产进行管理所需的结构原语是相同的。我们没有构建一个记忆层和一个独立的资产跟踪器，而是构建了一个认知记忆架构，其图原生原语本身就作为多智能体工作的操作基础设施：智能体使用同一个图来记忆、查找彼此的输出并在此基础上进行构建。该架构实现了一个双存储模型（Redis工作记忆，Neo4j长期图）——这是智能体记忆领域中公认的模式，如Hu et al. [2025]所述——并结合了全文和向量模态的混合检索。一个异步整合管道扩展了先前的休眠时间计算方法[2025]，并引入了分布式系统和内容管理中借鉴的安全防护措施：已发布项保护、断路器、空运行验证和可审计的基于游标的恢复。关键在于，存储智能体记忆的同一个图也管理其工作产品：下游智能体通过URI解析定位输入，通过标签指针跟踪哪个修订是当前的，并通过类型化边将自己的输出链接回去——同时，人类操作员可以使用该图审计整个链条。认知记忆与资产管理之间的结构对应关系是通过作者在为主要视觉效果制作构建管道基础设施的经验中认识到的。联系方式：support@kumiho.io ∗</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>While individual components for AI agent memory—versioning, retrieval, consolidation— exist in prior systems such as Graphiti, Mem0, and Letta, their architectural synthesis and formal grounding remain underexplored. This paper presents Kumiho, a graph-native cognitive memory architecture grounded in formal belief revision semantics. AI agents increasingly produce substantial outputs—code, designs, documents, intermediate results—that accumulate without systematic versioning, provenance tracking, or linkage to the decisions that created them. In multi-agent workflows—where one agent’s output becomes the next agent’s input—this lack of structure is a fundamental bottleneck. The core insight is that the structural primitives required for cognitive memory—immutable revisions, mutable tag pointers, typed dependency edges, URI-based addressing—are identical to those required for managing these agent-produced outputs as versionable, addressable, dependency-linked assets. Rather than building a memory layer and a separate asset tracker, we built a cognitive memory architecture whose graph-native primitives inherently serve as the operational infrastructure for multi-agent work: agents use the same graph to remember, to find each other’s outputs, and to build upon them. The architecture implements a dual-store model (Redis working memory, Neo4j long-term graph)— a recognized pattern in the agent memory space Hu et al. [2025]—with hybrid retrieval across fulltext and vector modalities. An asynchronous consolidation pipeline extends prior sleep-time compute approaches [2025] with safety guards adapted from distributed systems and content management: published-item protection, circuit breakers, dry-run validation, and auditable cursor-based resumption. Critically, the same graph that stores an agent’s memories also manages its work products: downstream agents locate inputs via URI resolution, track which revision is current via tag pointers, and link their own outputs back via typed edges—while human operators audit the entire chain with the The structural correspondence between cognitive memory and asset management was recognized through the author’s experience building pipeline infrastructure for major visual effects productions. Contact: support@kumiho.io ∗</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260318a55kumihog,
+  title = {Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.17244.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a55-kumiho-graph-native-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Graph-Native Cognitive Memory for AI Agents: Formal Belief Revision Semantics for Versioned Memory Architectures. https://arxiv.org/pdf/2603.17244.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.17244.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ViVa: A Video-Generative Value Model for Robot Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是机器人强化学习中的 value estimation 问题。VLA 模型已经能从大规模预训练获得操作能力，但真实长程任务仍受 partial observability 和 delayed feedback 影响；传统基于静态 VLM 的 value model 很难判断当前状态是否真的朝成功方向推进。
+
+ViVa 的核心想法是把 value estimation 重写为 futu" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl34-viva-video-value-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ViVa: A Video-Generative Value Model for Robot Reinforcement Learning" />
+    <meta property="og:description" content="这篇论文处理的是机器人强化学习中的 value estimation 问题。VLA 模型已经能从大规模预训练获得操作能力，但真实长程任务仍受 partial observability 和 delayed feedback 影响；传统基于静态 VLM 的 value model 很难判断当前状态是否真的朝成功方向推进。
+
+ViVa 的核心想法是把 value estimation 重写为 futu" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl34-viva-video-value-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ViVa: A Video-Generative Value Model for Robot Reinforcement Learning" />
+    <meta name="twitter:description" content="这篇论文处理的是机器人强化学习中的 value estimation 问题。VLA 模型已经能从大规模预训练获得操作能力，但真实长程任务仍受 partial observability 和 delayed feedback 影响；传统基于静态 VLM 的 value model 很难判断当前状态是否真的朝成功方向推进。
+
+ViVa 的核心想法是把 value estimation 重写为 futu" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ViVa: A Video-Generative Value Model for Robot Reinforcement Learning</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08168" target="_blank" rel="noopener noreferrer">2604.08168</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是机器人强化学习中的 value estimation 问题。VLA 模型已经能从大规模预训练获得操作能力，但真实长程任务仍受 partial observability 和 delayed feedback 影响；传统基于静态 VLM 的 value model 很难判断当前状态是否真的朝成功方向推进。</dd></div><div><dt>方法/机制</dt><dd>ViVa 的核心想法是把 value estimation 重写为 future anticipation：复用预训练视频生成模型的时空先验，让模型在当前多视角观测和机器人本体状态条件下，同时预测未来 proprioception 和当前 scalar value。价值估计因此不只看静态截图，而是被未来身体动态预测约束。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它给 robot RL/VLA 后训练提供了一个可复用接口：用视频生成模型作为 value model 的结构先验，而不是只把视频模型当世界模型或生成器。集成到 RECAP 后，ViVa 在真实 box assembly 中将成功率提升到 73%，并提高 throughput；定性分析显示它能更敏感地反映任务进度和异常动作。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为当前最强实验证据集中在少数真实机器人任务和特定 RECAP/VLA 环境；视频生成 value model 在更多机器人、更多动作空间和更复杂安全约束下的泛化还需要证明。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是机器人强化学习中的 value estimation 问题。VLA 模型已经能从大规模预训练获得操作能力，但真实长程任务仍受 partial observability 和 delayed feedback 影响；传统基于静态 VLM 的 value model 很难判断当前状态是否真的朝成功方向推进。</p><p>ViVa 的核心想法是把 value estimation 重写为 future anticipation：复用预训练视频生成模型的时空先验，让模型在当前多视角观测和机器人本体状态条件下，同时预测未来 proprioception 和当前 scalar value。价值估计因此不只看静态截图，而是被未来身体动态预测约束。</p><p>它值得收录，因为它给 robot RL/VLA 后训练提供了一个可复用接口：用视频生成模型作为 value model 的结构先验，而不是只把视频模型当世界模型或生成器。集成到 RECAP 后，ViVa 在真实 box assembly 中将成功率提升到 73%，并提高 throughput；定性分析显示它能更敏感地反映任务进度和异常动作。</p><p>它不是更高一级，因为当前最强实验证据集中在少数真实机器人任务和特定 RECAP/VLA 环境；视频生成 value model 在更多机器人、更多动作空间和更复杂安全约束下的泛化还需要证明。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作（VLA）模型通过大规模预训练推动了机器人操作的发展，但由于部分可观测性和延迟反馈，实际部署仍然充满挑战。强化学习通过价值函数解决这个问题，价值函数评估任务进展并指导策略改进。然而，现有基于视觉-语言模型（VLM）构建的价值模型难以捕捉时间动态，从而损害了长周期任务中可靠的价值估计。在本文中，我们提出了ViVa，一个视频生成价值模型，它将预训练的视频生成器重新用于价值估计。ViVa以当前观测和机器人本体感受作为输入，共同预测未来的本体感受和当前状态的标量值。通过利用预训练视频生成器的时空先验，我们的方法将价值估计建立在预期的具身动力学上，超越了静态快照，将价值与预见性内在耦合。ViVa集成到RECAP中，在真实世界的箱子组装任务中取得了显著改进。对所有三个任务的定性分析证实，ViVa产生了更可靠的价值信号，准确反映了任务进展。通过利用视频语料库中的时空先验，ViVa还能泛化到新颖物体，突显了视频生成模型在价值估计方面的潜力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-language-action (VLA) models have advanced robot manipulation through large-scale pretraining, but real-world deployment remains challenging due to partial observability and delayed feedback. Reinforcement learning addresses this via value functions, which assess task progress and guide policy improvement. However, existing value models built on vision-language models (VLMs) struggle to capture temporal dynamics, undermining reliable value estimation in long-horizon tasks. In this paper, we propose ViVa, a video-generative value model that repurposes a pretrained video generator for value estimation. Taking the current observation and robot proprioception as input, ViVa jointly predicts future proprioception and a scalar value for the current state. By leveraging the spatiotemporal priors of a pretrained video generator, our approach grounds value estimation in anticipated embodiment dynamics, moving beyond static snapshots to intrinsically couple value with foresight. Integrated into RECAP, ViVa delivers substantial improvements on real-world box assembly. Qualitative analysis across all three tasks confirms that ViVa produces more reliable value signals, accurately reflecting task progress. By leveraging spatiotemporal priors from video corpora, ViVa also generalizes to novel objects, highlighting the promise of video-generative models for value estimation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409rl34vivavi,
+  title = {ViVa: A Video-Generative Value Model for Robot Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08168.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl34-viva-video-value-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ViVa: A Video-Generative Value Model for Robot Reinforcement Learning. https://arxiv.org/pdf/2604.08168.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08168.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

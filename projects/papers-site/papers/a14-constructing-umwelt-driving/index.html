@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Constructing the Umwelt: Cognitive Planning through Belief-Intent Co-Evolution | DAST Papers</title>
+    <meta name="description" content="端到端自动驾驶常默认认为，高性能规划必须建立在高保真世界重建之上。本文挑战的是这个前提：规划是否可以更多建立在“对行动相关世界的认知一致性”上，而不是像素级重建保真。
+
+作者提出 Mental Bayesian Causal World Model，并将其实现为 Tokenized Intent World Model。方法把 belief、intent 与 causal dynamics 统一到" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a14-constructing-umwelt-driving/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Constructing the Umwelt: Cognitive Planning through Belief-Intent Co-Evolution" />
+    <meta property="og:description" content="端到端自动驾驶常默认认为，高性能规划必须建立在高保真世界重建之上。本文挑战的是这个前提：规划是否可以更多建立在“对行动相关世界的认知一致性”上，而不是像素级重建保真。
+
+作者提出 Mental Bayesian Causal World Model，并将其实现为 Tokenized Intent World Model。方法把 belief、intent 与 causal dynamics 统一到" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a14-constructing-umwelt-driving/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Constructing the Umwelt: Cognitive Planning through Belief-Intent Co-Evolution" />
+    <meta name="twitter:description" content="端到端自动驾驶常默认认为，高性能规划必须建立在高保真世界重建之上。本文挑战的是这个前提：规划是否可以更多建立在“对行动相关世界的认知一致性”上，而不是像素级重建保真。
+
+作者提出 Mental Bayesian Causal World Model，并将其实现为 Tokenized Intent World Model。方法把 belief、intent 与 causal dynamics 统一到" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Constructing the Umwelt: Cognitive Planning through Belief-Intent Co-Evolution</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-11-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.05540" target="_blank" rel="noopener noreferrer">2511.05540</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>端到端自动驾驶常默认认为，高性能规划必须建立在高保真世界重建之上。本文挑战的是这个前提：规划是否可以更多建立在“对行动相关世界的认知一致性”上，而不是像素级重建保真。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Mental Bayesian Causal World Model，并将其实现为 Tokenized Intent World Model。方法把 belief、intent 与 causal dynamics 统一到闭环驾驶规划系统中，强调 belief-intent co-evolution，而不是只做被动环境重建。摘要里最关键的结果是：在 nuPlan 上，系统既提升了 open-loop 规划性能，也在 closed-loop 中表现出更接近人类的探索与 affordance 行为。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合仓库的 world model / autonomous driving / embodied planning 主线。它和 LaST-VLA、World-VLA-Loop、Drive-JEPA 是相邻路线，但更强调认知式内部世界与规划耦合，而不是单纯 latent prediction。</dd></div><div><dt>收录价值</dt><dd>它归为突破性而不是更高一级，原因是当前主要证据仍集中在自动驾驶场景和特定 benchmark 上，概念野心很大，但还没有足够外部验证来证明其会重排更大范围的 world model 路线。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>端到端自动驾驶常默认认为，高性能规划必须建立在高保真世界重建之上。本文挑战的是这个前提：规划是否可以更多建立在“对行动相关世界的认知一致性”上，而不是像素级重建保真。</p><p>作者提出 Mental Bayesian Causal World Model，并将其实现为 Tokenized Intent World Model。方法把 belief、intent 与 causal dynamics 统一到闭环驾驶规划系统中，强调 belief-intent co-evolution，而不是只做被动环境重建。摘要里最关键的结果是：在 nuPlan 上，系统既提升了 open-loop 规划性能，也在 closed-loop 中表现出更接近人类的探索与 affordance 行为。</p><p>这篇论文适合仓库的 world model / autonomous driving / embodied planning 主线。它和 LaST-VLA、World-VLA-Loop、Drive-JEPA 是相邻路线，但更强调认知式内部世界与规划耦合，而不是单纯 latent prediction。</p><p>它归为突破性而不是更高一级，原因是当前主要证据仍集中在自动驾驶场景和特定 benchmark 上，概念野心很大，但还没有足够外部验证来证明其会重排更大范围的 world model 路线。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251108a14constru,
+  title = {Constructing the Umwelt: Cognitive Planning through Belief-Intent Co-Evolution},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.05540.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a14-constructing-umwelt-driving/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Constructing the Umwelt: Cognitive Planning through Belief-Intent Co-Evolution. https://arxiv.org/pdf/2511.05540.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.05540.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

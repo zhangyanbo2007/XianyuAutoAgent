@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards building a World Model to simulate perturbation-induced cellular dynamics by AlphaCell | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是一个很强的 AI for biology 目标：能否构建一个可泛化的 virtual cell world model，用来预测细胞在扰动下的动态响应。现实问题很明确，真实实验筛选受到组合空间和成本的强限制，而现有计算模型又往往只在高变基因、局部表达重建或特定细胞背景里有效，难以把学到的扰动动力学迁移到未见过的细胞上下文。
+
+AlphaCell 的核心做法是把 genome-wid" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio13-alphacell-virtual-cell/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards building a World Model to simulate perturbation-induced cellular dynamics by AlphaCell" />
+    <meta property="og:description" content="这篇论文处理的是一个很强的 AI for biology 目标：能否构建一个可泛化的 virtual cell world model，用来预测细胞在扰动下的动态响应。现实问题很明确，真实实验筛选受到组合空间和成本的强限制，而现有计算模型又往往只在高变基因、局部表达重建或特定细胞背景里有效，难以把学到的扰动动力学迁移到未见过的细胞上下文。
+
+AlphaCell 的核心做法是把 genome-wid" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio13-alphacell-virtual-cell/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards building a World Model to simulate perturbation-induced cellular dynamics by AlphaCell" />
+    <meta name="twitter:description" content="这篇论文处理的是一个很强的 AI for biology 目标：能否构建一个可泛化的 virtual cell world model，用来预测细胞在扰动下的动态响应。现实问题很明确，真实实验筛选受到组合空间和成本的强限制，而现有计算模型又往往只在高变基因、局部表达重建或特定细胞背景里有效，难以把学到的扰动动力学迁移到未见过的细胞上下文。
+
+AlphaCell 的核心做法是把 genome-wid" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards building a World Model to simulate perturbation-induced cellular dynamics by AlphaCell</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是一个很强的 AI for biology 目标：能否构建一个可泛化的 virtual cell world model，用来预测细胞在扰动下的动态响应。现实问题很明确，真实实验筛选受到组合空间和成本的强限制，而现有计算模型又往往只在高变基因、局部表达重建或特定细胞背景里有效，难以把学到的扰动动力学迁移到未见过的细胞上下文。</dd></div><div><dt>方法/机制</dt><dd>AlphaCell 的核心做法是把 genome-wide 表征、可逆的高保真解码和连续状态转移统一起来。论文强调三层创新：第一，用全蛋白编码转录组做 latent manifold rectification，构建更完整的虚拟细胞空间；第二，用大规模 decoder 从 latent state 重建 genome-wide expression，提升生物真实性；第三，用 optimal transport conditional flow matching 把扰动建模为连续、可组合的状态转移向量场，而不是离散标签映射。这样，模型不只是记住某些特定 perturbation 结果，而是在学习更一般的状态演化规律。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这已经不是普通单细胞预测模型，而是明确朝着“virtual cell world model”推进：把表示、重建和动力学统一在同一生成框架下，并把目标放在 compositional generalization 和 unseen cellular context 的 zero-shot prediction 上。这对 perturbation biology、药物发现、细胞命运工程和 AI 驱动实验设计都有明显外溢，属于当前生物 foundation model / world model 线里值得保留的高价值条目。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，原因在于当前还是 bioRxiv 预印本，且这条路线虽然雄心和 framing 都很强，但离被社区验证为“细胞世界模型”的标准参考还需要更多外部复现和下游闭环结果。现阶段更适合作为高位 breakthrough 收录，而不是更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是一个很强的 AI for biology 目标：能否构建一个可泛化的 virtual cell world model，用来预测细胞在扰动下的动态响应。现实问题很明确，真实实验筛选受到组合空间和成本的强限制，而现有计算模型又往往只在高变基因、局部表达重建或特定细胞背景里有效，难以把学到的扰动动力学迁移到未见过的细胞上下文。</p><p>AlphaCell 的核心做法是把 genome-wide 表征、可逆的高保真解码和连续状态转移统一起来。论文强调三层创新：第一，用全蛋白编码转录组做 latent manifold rectification，构建更完整的虚拟细胞空间；第二，用大规模 decoder 从 latent state 重建 genome-wide expression，提升生物真实性；第三，用 optimal transport conditional flow matching 把扰动建模为连续、可组合的状态转移向量场，而不是离散标签映射。这样，模型不只是记住某些特定 perturbation 结果，而是在学习更一般的状态演化规律。</p><p>它值得收录，因为这已经不是普通单细胞预测模型，而是明确朝着“virtual cell world model”推进：把表示、重建和动力学统一在同一生成框架下，并把目标放在 compositional generalization 和 unseen cellular context 的 zero-shot prediction 上。这对 perturbation biology、药物发现、细胞命运工程和 AI 驱动实验设计都有明显外溢，属于当前生物 foundation model / world model 线里值得保留的高价值条目。</p><p>它没有升到更高一级，原因在于当前还是 bioRxiv 预印本，且这条路线虽然雄心和 framing 都很强，但离被社区验证为“细胞世界模型”的标准参考还需要更多外部复现和下游闭环结果。现阶段更适合作为高位 breakthrough 收录，而不是更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>预测细胞对扰动的响应对于治疗发现至关重要，然而实验筛选受到生物空间组合巨大性的严重限制。尽管计算模拟提供了一种可扩展的替代方案，但当前模型受到以下限制：不完整的潜在表征——主要依赖于特征表征中的高变基因；较差的全基因组重建保真度；以及在不同背景下不可泛化的动态规律。因此，它们未能将所学动力学机械地迁移到未见过的细胞环境中。为了解决这些系统性缺陷，我们引入了AlphaCell，一个生成式虚拟细胞世界模型，它将全基因组表征与连续状态转换建模相结合。AlphaCell实现了三项协同创新：(1) 潜在流形校正：处理完整的蛋白质编码转录组以构建可微分虚拟细胞空间，有效过滤噪声同时保留内在细胞拓扑结构；(2) 生物现实重建：利用一个大规模、知识丰富的解码器，将抽象潜在状态转换回高保真、全基因组表达谱；(3) 通用状态转换：应用最优传输条件流匹配，将扰动建模为连续的、确定性向量场。通过将扰动机制抽象为广义动态规律，AlphaCell在组合泛化场景中对扰动响应进行鲁棒预测，并能够对完全未见过的细胞环境中的细胞动力学进行零样本预测，为细胞环境可泛化的扰动预测和扰动诱导的细胞动力学模拟提供了一个基础引擎。bioRxiv预印本doi: https://doi.org/10.64898/2026.03.02.709176; 此版本发布于2026年3月5日。此预印本（未经同行评审认证）的版权所有者是作者/资助者，他们已授予bioRxiv永久展示此预印本的许可。此预印本根据aCC-BY-NC-ND 4.0国际许可协议提供。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Predicting cellular responses to perturbations is crucial for therapeutic discovery, yet experimental screening is severely constrained by the combinatorial vastness of biological space. While computational simulations offer a scalable alternative, current models are limited by the incomplete latent representation——mainly relying on highly variable genes in feature representation; the poor genome-wide reconstruction fidelity; and the ungeneralizable dynamic laws across diverse contexts. Consequently, they fail to mechanistically transfer learned dynamics to unseen cellular contexts. To address these systemic flaws, we introduce AlphaCell, a generative Virtual Cell World Model that unifies genome-wise representation with continuous state transition modeling. AlphaCell achieves three synergistic innovations: (1) Latent Manifold Rectification, processing the full protein-coding transcriptome to construct a differentiable Virtual Cell Space, effectively filtering noise while preserving intrinsic cellular topology; (2) Biological Reality Reconstruction, utilizing a massive, knowledge-rich decoder to translate abstract latent states back into high-fidelity, genome-wide expression profiles; and (3) Universal State Transition, applying Optimal Transport Conditional Flow Matching to model perturbations as continuous, deterministic vector fields. By abstracting perturbation mechanisms into generalized dynamic laws, AlphaCell makes robust prediction of perturbation responses in a compositional generalization scenario and enables zero-shot prediction of cellular dynamics in entirely unseen cellular contexts, providing a foundational engine for cellular-context-generalizable perturbation prediction and perturbation-induced cellular dynamics simulation. bioRxiv preprint doi: https://doi.org/10.64898/2026.03.02.709176; this version posted March 5, 2026. The copyright holder for this preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made available under aCC-BY-NC-ND 4.0 International license.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305bio13alpha,
+  title = {Towards building a World Model to simulate perturbation-induced cellular dynamics by AlphaCell},
+  year = {2026},
+  url = {https://www.biorxiv.org/content/10.64898/2026.03.02.709176v1.full.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio13-alphacell-virtual-cell/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Towards building a World Model to simulate perturbation-induced cellular dynamics by AlphaCell. https://www.biorxiv.org/content/10.64898/2026.03.02.709176v1.full.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.biorxiv.org/content/10.64898/2026.03.02.709176v1.full.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

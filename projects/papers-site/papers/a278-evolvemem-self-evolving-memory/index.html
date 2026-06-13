@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EvolveMem:Self-Evolving Memory Architecture via AutoResearch for LLM Agents | DAST Papers</title>
+    <meta name="description" content="EvolveMem 指出当前 agent memory 系统通常只更新存储内容，而检索评分、融合策略和回答策略在部署后固定，导致长期记忆增长时 retrieval infrastructure 不适配。
+
+它把完整 retrieval configuration 暴露为结构化 action space，由 LLM diagnosis module 读取失败日志、定位 root cause、提出配置" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a278-evolvemem-self-evolving-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EvolveMem:Self-Evolving Memory Architecture via AutoResearch for LLM Agents" />
+    <meta property="og:description" content="EvolveMem 指出当前 agent memory 系统通常只更新存储内容，而检索评分、融合策略和回答策略在部署后固定，导致长期记忆增长时 retrieval infrastructure 不适配。
+
+它把完整 retrieval configuration 暴露为结构化 action space，由 LLM diagnosis module 读取失败日志、定位 root cause、提出配置" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a278-evolvemem-self-evolving-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EvolveMem:Self-Evolving Memory Architecture via AutoResearch for LLM Agents" />
+    <meta name="twitter:description" content="EvolveMem 指出当前 agent memory 系统通常只更新存储内容，而检索评分、融合策略和回答策略在部署后固定，导致长期记忆增长时 retrieval infrastructure 不适配。
+
+它把完整 retrieval configuration 暴露为结构化 action space，由 LLM diagnosis module 读取失败日志、定位 root cause、提出配置" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EvolveMem:Self-Evolving Memory Architecture via AutoResearch for LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.13941" target="_blank" rel="noopener noreferrer">2605.13941</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>EvolveMem 指出当前 agent memory 系统通常只更新存储内容，而检索评分、融合策略和回答策略在部署后固定，导致长期记忆增长时 retrieval infrastructure 不适配。</dd></div><div><dt>方法/机制</dt><dd>它把完整 retrieval configuration 暴露为结构化 action space，由 LLM diagnosis module 读取失败日志、定位 root cause、提出配置调整，再由 guarded meta-analyzer 执行、回滚退化并在停滞时探索。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 agent memory 从静态检索组件推进到自演化系统对象，在 LoCoMo 和 MemBench 上相对最强 baseline 有明显提升，并展示跨 benchmark 正迁移。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为 AutoResearch 式自调参可能受评价集和诊断质量影响；生产环境的安全边界、成本和可解释回滚还需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>EvolveMem 指出当前 agent memory 系统通常只更新存储内容，而检索评分、融合策略和回答策略在部署后固定，导致长期记忆增长时 retrieval infrastructure 不适配。</p><p>它把完整 retrieval configuration 暴露为结构化 action space，由 LLM diagnosis module 读取失败日志、定位 root cause、提出配置调整，再由 guarded meta-analyzer 执行、回滚退化并在停滞时探索。</p><p>它值得正式收录，因为它把 agent memory 从静态检索组件推进到自演化系统对象，在 LoCoMo 和 MemBench 上相对最强 baseline 有明显提升，并展示跨 benchmark 正迁移。</p><p>它没有更高，是因为 AutoResearch 式自调参可能受评价集和诊断质量影响；生产环境的安全边界、成本和可解释回滚还需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>长期记忆对于跨多个会话操作的LLM代理至关重要，但现有记忆系统将检索基础设施视为固定的：存储内容不断演变，而评分函数、融合策略和答案生成策略在部署时保持不变。我们认为，真正自适应的记忆需要在两个层面进行共同演变：存储的知识和查询它的检索机制。我们提出了EvolveMem，一个自演化记忆架构，它将其完整的检索配置暴露为一个结构化的动作空间，由LLM驱动的诊断模块进行优化。在每个演化回合中，该模块读取每个问题的失败日志，识别根本原因，并提出有针对性的配置调整；一个受保护的元分析器应用这些调整，并带有自动回滚（revert-on-regression）和停滞探索（explore-on-stagnation）的安全措施。这种闭环自演化实现了AutoResearch过程：系统自主地对其自身架构进行迭代研究循环，取代了手动配置调整。从最小基线开始，该过程自主收敛，发现了有效的检索策略，包括原始动作空间中不存在的全新配置维度。在LoCoMo上，EvolveMem比最强基线相对提高了25.7%，比最小基线相对提高了78.0%。在MemBench上，EvolveMem比最强基线相对提高了18.9%。演化出的配置在不同基准测试之间实现了正向而非灾难性的迁移，表明自演化过程捕捉了通用的检索原则，而非特定于基准测试的启发式方法。代码可在https://github.com/aiming-lab/SimpleMem获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-term memory is essential for LLM agents that operate across multiple sessions, yet existing memory systems treat retrieval infrastructure as fixed: stored content evolves while scoring functions, fusion strategies, and answer-generation policies remain frozen at deployment. We argue that truly adaptive memory requires co-evolution at two levels: the stored knowledge and the retrieval mechanism that queries it. We present E VOLVE M EM, a self-evolving memory architecture that exposes its full retrieval configuration as a structured action space optimized by an LLM-powered diagnosis module. In each evolution round, the module reads per-question failure logs, identifies root causes, and proposes targeted configuration adjustments; a guarded meta-analyzer applies them with automatic revert-onregression and explore-on-stagnation safeguards. This closed-loop self-evolution realizes an AutoResearch process: the system autonomously conducts iterative research cycles on its own architecture, replacing manual configuration tuning. Starting from a minimal baseline, the process converges autonomously, discovering effective retrieval strategies including entirely new configuration dimensions not present in the original action space. On LoCoMo, E VOLVE M EM outperforms the strongest baseline by 25.7% relative and achieves a 78.0% relative improvement over the minimal baseline. On MemBench, E VOLVE M EM exceeds the strongest baseline by 18.9% relative. Evolved configurations transfer across benchmarks with positive rather than catastrophic transfer, indicating that the self-evolution process captures universal retrieval principles rather than benchmark-specific heuristics. Code is available at https://github.com/aiming-lab/SimpleMem.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513a278evolve,
+  title = {EvolveMem:Self-Evolving Memory Architecture via AutoResearch for LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.13941.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a278-evolvemem-self-evolving-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EvolveMem:Self-Evolving Memory Architecture via AutoResearch for LLM Agents. https://arxiv.org/pdf/2605.13941.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.13941.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.13941" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/aiming-lab/SimpleMem" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

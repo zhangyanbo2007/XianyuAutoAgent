@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Linear Scaling Video VLMs for Long Video Understanding | DAST Papers</title>
+    <meta name="description" content="StateKV 面向 long-video/streaming VLM 的核心瓶颈：视频 prefill 随帧数二次增长，导致长视频理解和在线系统成本过高。
+
+方法用 fixed-capacity recurrent state 保存跨帧上下文，再配合 per-frame cache 解码，实现无需微调、无需改架构的 linear-time video prefill。
+
+收录价值在于它是一个可复" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm78-statekv-long-video-vlm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Linear Scaling Video VLMs for Long Video Understanding" />
+    <meta property="og:description" content="StateKV 面向 long-video/streaming VLM 的核心瓶颈：视频 prefill 随帧数二次增长，导致长视频理解和在线系统成本过高。
+
+方法用 fixed-capacity recurrent state 保存跨帧上下文，再配合 per-frame cache 解码，实现无需微调、无需改架构的 linear-time video prefill。
+
+收录价值在于它是一个可复" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm78-statekv-long-video-vlm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Linear Scaling Video VLMs for Long Video Understanding" />
+    <meta name="twitter:description" content="StateKV 面向 long-video/streaming VLM 的核心瓶颈：视频 prefill 随帧数二次增长，导致长视频理解和在线系统成本过高。
+
+方法用 fixed-capacity recurrent state 保存跨帧上下文，再配合 per-frame cache 解码，实现无需微调、无需改架构的 linear-time video prefill。
+
+收录价值在于它是一个可复" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Linear Scaling Video VLMs for Long Video Understanding</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.31598" target="_blank" rel="noopener noreferrer">2605.31598</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>StateKV 面向 long-video/streaming VLM 的核心瓶颈：视频 prefill 随帧数二次增长，导致长视频理解和在线系统成本过高。</dd></div><div><dt>方法/机制</dt><dd>方法用 fixed-capacity recurrent state 保存跨帧上下文，再配合 per-frame cache 解码，实现无需微调、无需改架构的 linear-time video prefill。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它是一个可复用的 video memory / state management primitive，可外溢到长视频理解、流式多模态 agent、视频世界模型和边缘部署。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>StateKV 面向 long-video/streaming VLM 的核心瓶颈：视频 prefill 随帧数二次增长，导致长视频理解和在线系统成本过高。</p><p>方法用 fixed-capacity recurrent state 保存跨帧上下文，再配合 per-frame cache 解码，实现无需微调、无需改架构的 linear-time video prefill。</p><p>收录价值在于它是一个可复用的 video memory / state management primitive，可外溢到长视频理解、流式多模态 agent、视频世界模型和边缘部署。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视频视觉-语言模型（VLMs）越来越多地被用于长时延和流式设置，但大多数视频编码器仍然依赖于时空自注意力机制，导致计算量和延迟随着帧数呈二次增长。现有的效率方法改善了可扩展性，但通常会牺牲相对于全自注意力的准确性，例如通过激进的帧/标记丢弃或粗糙注意力近似。我们引入了StateKV，一种推理时的方法，通过在固定容量、基于重要性的循环状态中携带跨帧上下文，与用于解码的第二个全帧缓存配对，将预训练的长视频VLMs适应为线性时间视频填充。在三个长视频基准和七种跨三种家族和多个规模的模型上，StateKV保持在全自注意力机制附近，并且始终优于主流的滑动窗口/基于时间衰减的流式近似，而无需微调或架构更改。StateKV还减少了视频填充的成本（以FLOPs为度量），从而在固定计算预算下通过运行更大的模型实现更强的准确性。这些结果表明，这是一个迈向可扩展长视频理解的实用步骤。关键词：视觉-语言模型 · 长视频理解</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Video vision-language models (VLMs) are increasingly used in long-horizon and streaming settings, yet most video encoders still rely on spatiotemporal self-attention, causing compute and latency to grow quadratically with the number of frames. Existing efficiency methods improve scalability but often lose accuracy relative to full self-attention, for example through aggressive frame/token dropping or coarse attention approximations. We introduce StateKV, an inference-time method that adapts pretrained long-video VLMs to linear-time video prefill by carrying cross-frame context in a fixed-capacity, importance-based recurrent state, paired with a second full per-frame cache used for decoding. Across three long-video benchmarks and seven models spanning three families and multiple scales, StateKV remains close to full self-attention and consistently outperforms dominant sliding-window / recency-based streaming approximations, without fine-tuning or architectural changes. StateKV also reduces video-prefill cost measured FLOPs, enabling stronger accuracy at a fixed compute budget by running larger models. These results suggest a practical step toward scalable long-video understanding. Keywords: Vision-Language Models · Long-Video Understanding</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260529mm78statek,
+  title = {Linear Scaling Video VLMs for Long Video Understanding},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.31598.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm78-statekv-long-video-vlm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Linear Scaling Video VLMs for Long Video Understanding. https://arxiv.org/pdf/2605.31598.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm73-locateanything-parallel-box-decoding/">
+              <span>LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding</span>
+              <small>多模态基础模型 · 2026-05-26</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.31598.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

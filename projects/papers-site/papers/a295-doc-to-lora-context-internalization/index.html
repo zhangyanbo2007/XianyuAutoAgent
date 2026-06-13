@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Doc-to-LoRA: Learning to Instantly Internalize Contexts | DAST Papers</title>
+    <meta name="description" content="Doc-to-LoRA 把长上下文信息从 token-level context 转成 transient LoRA adapter，提供了一种参数记忆接口：文档不再每次都作为 KV/context 被反复读入，而是由 hypernetwork 在一次前向中编译成目标 LLM 的 LoRA 权重。
+
+它瞄准的是 context distillation 的实际瓶颈。传统 per-prompt di" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a295-doc-to-lora-context-internalization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Doc-to-LoRA: Learning to Instantly Internalize Contexts" />
+    <meta property="og:description" content="Doc-to-LoRA 把长上下文信息从 token-level context 转成 transient LoRA adapter，提供了一种参数记忆接口：文档不再每次都作为 KV/context 被反复读入，而是由 hypernetwork 在一次前向中编译成目标 LLM 的 LoRA 权重。
+
+它瞄准的是 context distillation 的实际瓶颈。传统 per-prompt di" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a295-doc-to-lora-context-internalization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Doc-to-LoRA: Learning to Instantly Internalize Contexts" />
+    <meta name="twitter:description" content="Doc-to-LoRA 把长上下文信息从 token-level context 转成 transient LoRA adapter，提供了一种参数记忆接口：文档不再每次都作为 KV/context 被反复读入，而是由 hypernetwork 在一次前向中编译成目标 LLM 的 LoRA 权重。
+
+它瞄准的是 context distillation 的实际瓶颈。传统 per-prompt di" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Doc-to-LoRA: Learning to Instantly Internalize Contexts</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-02-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.15902" target="_blank" rel="noopener noreferrer">2602.15902</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Doc-to-LoRA 把长上下文信息从 token-level context 转成 transient LoRA adapter，提供了一种参数记忆接口：文档不再每次都作为 KV/context 被反复读入，而是由 hypernetwork 在一次前向中编译成目标 LLM 的 LoRA 权重。</dd></div><div><dt>方法/机制</dt><dd>它瞄准的是 context distillation 的实际瓶颈。传统 per-prompt distillation 需要昂贵训练，RAG/长上下文每次查询又要承担上下文和 KV cache 成本；D2L 试图把“读文档”和“后续问答”解耦。</dd></div><div><dt>结果/证据</dt><dd>实验显示 D2L 可以在 needle-in-a-haystack 和真实 QA 任务中把上下文信息写入 adapter，在超过目标模型原生 context window 的长度上保持较强表现，并降低峰值内存与更新延迟。仓库还提供参考实现、demo 和预训练模型下载。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 agent memory / personalized context / frequent knowledge update 变成一种可组合的参数化能力注入接口，和 MSA 这类隐式注意力记忆形成互补：一个扩展可注意的内生记忆容量，一个把文档编译进临时参数。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Doc-to-LoRA 把长上下文信息从 token-level context 转成 transient LoRA adapter，提供了一种参数记忆接口：文档不再每次都作为 KV/context 被反复读入，而是由 hypernetwork 在一次前向中编译成目标 LLM 的 LoRA 权重。</p><p>它瞄准的是 context distillation 的实际瓶颈。传统 per-prompt distillation 需要昂贵训练，RAG/长上下文每次查询又要承担上下文和 KV cache 成本；D2L 试图把“读文档”和“后续问答”解耦。</p><p>实验显示 D2L 可以在 needle-in-a-haystack 和真实 QA 任务中把上下文信息写入 adapter，在超过目标模型原生 context window 的长度上保持较强表现，并降低峰值内存与更新延迟。仓库还提供参考实现、demo 和预训练模型下载。</p><p>它值得正式收录，因为它把 agent memory / personalized context / frequent knowledge update 变成一种可组合的参数化能力注入接口，和 MSA 这类隐式注意力记忆形成互补：一个扩展可注意的内生记忆容量，一个把文档编译进临时参数。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Doc-to-LoRA：学习即时内化上下文通过二次注意力机制和KV缓存增长增加延迟和内存。此外，在更长的上下文长度下，生成质量通常会下降（Liu et al., 2024; Li et al., 2025; Hong et al., 2025）。一种标准补救措施是通过监督微调（SFT, Zhang et al., 2023; Pareja et al., 2025）将上下文信息压缩到模型参数中。然而，SFT需要收集一个代表所需行为的任务特定数据集，并且在数据稀缺时存在过拟合的风险。此外，如果信息（例如用户偏好）随时间变化，则需要重复进行昂贵的SFT过程。这些限制阻碍了从业者进行可扩展模型定制的可能性。长输入序列对于大型语言模型（LLMs）的上下文学习、文档理解和多步推理至关重要。然而，Transformer的二次注意力成本使得推理内存密集且缓慢。尽管上下文蒸馏（CD）可以将信息传输到模型参数中，但由于训练成本和延迟，每次提示的蒸馏是不切实际的。为了解决这些限制，我们提出了Doc-to-LoRA（D2L），这是一种轻量级超网络，它通过元学习在一个前向传播中执行近似CD。给定一个未见过的提示，D2L为目标LLM生成一个LoRA适配器，使得后续查询无需重新消耗原始上下文即可得到回答，从而减少目标LLM推理期间的延迟和KV缓存内存消耗。在长上下文“大海捞针”任务中，D2L成功地学习将上下文映射到存储“针”信息的适配器中，在序列长度超过目标LLM原生上下文窗口4倍以上时，实现了近乎完美的零样本准确率。在计算资源有限的真实世界QA数据集上，D2L优于标准CD，同时显著降低了峰值内存消耗和更新延迟。我们设想D2L可以促进LLMs的快速适应，开启频繁知识更新和个性化聊天行为的可能性。请访问我们的项目：github.com/SakanaAI/doc-to-lora。上下文蒸馏（CD）提供了一个引人注目的替代方案（Askell et al., 2021; Choi et al., 2023; Padmanabhan et al., 2023; Snell et al., 2023; Bhargava et al., 2024; Caccia et al., 2025; Eyuboglu et al., 2025; Kujanpää et al., 2025; Qi et al., 2025; Shin et al., 2025）。其核心是，CD训练一个LLM——在无法访问相关信息的情况下——模仿当信息在上下文中提供时它自己的输出。一旦信息被内化1，后续的推理调用会显著加快，因为模型不再需要信息存在于其上下文窗口中。然而，其训练缓慢且内存密集，使其不适用于交互式或设备上的应用。此外，当信息源不断变化时，必须重复进行缓慢的CD过程。在这项工作中，我们旨在将ICL的便利性与CD的有效内化相结合。我们提出将CD过程元学习到一个超网络中（Ha et al., 2016）。换句话说，我们元训练超网络来表示从给定上下文到CD产生的相应权重更新的映射。从概念上讲，在读取一次上下文后，一个轻量级超网络会生成一个上下文特定的LoRA适配器（Hu et al., 2022）。有了这个适配器，目标LLM可以在没有上下文的情况下响应后续查询，从而减少延迟和KV缓存大小。一旦训练完成，该超网络可以重复用于任何新的上下文。单次廉价的前向传播即可执行学习到的CD过程，实现低延迟内化。我们将此方法称为Doc-to-LoRA (D2L)。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>increase latency and memory via quadratic attention and KV-cache growth. Moreover, generation quality typically degrades under longer context lengths (Liu et al., 2024; Li et al., 2025; Hong et al., 2025). A standard remedy is to compress information from context into model parameters via supervised finetuning (SFT, Zhang et al., 2023; Pareja et al., 2025). However, SFT requires collecting a task-specific dataset that represents the desired behavior and risks overfitting when data is scarce. Furthermore, repeated expensive SFT processes are required if the information, e.g., user preference, changes over time. These constraints limit the possibility of scalable model customization by practitioners. Long input sequences are central to in-context learning, document understanding, and multi-step reasoning of Large Language Models (LLMs). However, the quadratic attention cost of Transformers makes inference memory-intensive and slow. While context distillation (CD) can transfer information into model parameters, per-prompt distillation is impractical due to training costs and latency. To address these limitations, we propose Doc-to-LoRA (D2L), a lightweight hypernetwork that meta-learns to perform approximate CD within a single forward pass. Given an unseen prompt, D2L generates a LoRA adapter for a target LLM, enabling subsequent queries to be answered without re-consuming the original context, reducing latency and KV-cache memory consumption during inference of the target LLM. On a long-context needle-in-a-haystack task, D2L successfully learns to map contexts into adapters that store the needle information, achieving nearperfect zero-shot accuracy at sequence lengths exceeding the target LLM’s native context window by more than 4×. On real-world QA datasets with limited compute, D2L outperforms standard CD while significantly reducing peak memory consumption and update latency. We envision that D2L can facilitate rapid adaptation of LLMs, opening up the possibility of frequent knowledge updates and personalized chat behavior. Checkout our project at github.com/SakanaAI/doc-to-lora. Context distillation (CD) offers a compelling alternative (Askell et al., 2021; Choi et al., 2023; Padmanabhan et al., 2023; Snell et al., 2023; Bhargava et al., 2024; Caccia et al., 2025; Eyuboglu et al., 2025; Kujanpää et al., 2025; Qi et al., 2025; Shin et al., 2025). At its core, CD trains an LLM— without access to relevant information—to imitate its own outputs when the information is provided in context. Once the information is internalized1 , subsequent inference calls are significantly faster as the model does not need the information to be in its context window. Still, its training is slow and memory-intensive, making it impractical for interactive or on-device applications. Furthermore, when the information sources are constantly changing, repeated slow CD processes must take place. In this work, we aim to combine the convenience of ICL with the effective internalization of CD. We propose to metalearn the CD process into a hypernetwork (Ha et al., 2016). In other words, we meta-train the hypernetwork to represent a mapping from a given context to its corresponding weight updates produced by CD. Conceptually, after reading a context once, a lightweight hypernetwork generates a context-specific LoRA adapter (Hu et al., 2022). With the adapter, the target LLM can respond to subsequent queries without the context, reducing latency and KV-cache size. Once trained, the hypernetwork can be reused for any new context. A single, inexpensive forward pass executes the learned CD process, enabling low-latency internalization. We call this method Doc-to-LoRA (D2L).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260213a295doctol,
+  title = {Doc-to-LoRA: Learning to Instantly Internalize Contexts},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.15902.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a295-doc-to-lora-context-internalization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Doc-to-LoRA: Learning to Instantly Internalize Contexts. https://arxiv.org/pdf/2602.15902.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.15902.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://pub.sakana.ai/doc-to-lora/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/SakanaAI/doc-to-lora" target="_blank" rel="noopener noreferrer">代码</a><a href="https://huggingface.co/SakanaAI" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

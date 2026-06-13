@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foundation Models for Discovery and Exploration in Chemical Space | DAST Papers</title>
+    <meta name="description" content="这篇论文瞄准的是化学空间探索中的核心瓶颈：现有分子表示和性质预测体系覆盖面窄、任务割裂，很难支撑真正跨化学领域的发现与筛选。作者试图建立一个面向广泛分子结构和性质的统一基础模型，而不只是某个单项 benchmark 的最优器。
+
+方法上，论文提出 MIST 系列分子基础模型，在参数量和训练数据规模上都显著超过既有工作，并设计了同时编码核、电子和几何信息的 tokenization 方案。模型先在大" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p11-mist-chemical-space/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Foundation Models for Discovery and Exploration in Chemical Space" />
+    <meta property="og:description" content="这篇论文瞄准的是化学空间探索中的核心瓶颈：现有分子表示和性质预测体系覆盖面窄、任务割裂，很难支撑真正跨化学领域的发现与筛选。作者试图建立一个面向广泛分子结构和性质的统一基础模型，而不只是某个单项 benchmark 的最优器。
+
+方法上，论文提出 MIST 系列分子基础模型，在参数量和训练数据规模上都显著超过既有工作，并设计了同时编码核、电子和几何信息的 tokenization 方案。模型先在大" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p11-mist-chemical-space/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Foundation Models for Discovery and Exploration in Chemical Space" />
+    <meta name="twitter:description" content="这篇论文瞄准的是化学空间探索中的核心瓶颈：现有分子表示和性质预测体系覆盖面窄、任务割裂，很难支撑真正跨化学领域的发现与筛选。作者试图建立一个面向广泛分子结构和性质的统一基础模型，而不只是某个单项 benchmark 的最优器。
+
+方法上，论文提出 MIST 系列分子基础模型，在参数量和训练数据规模上都显著超过既有工作，并设计了同时编码核、电子和几何信息的 tokenization 方案。模型先在大" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Foundation Models for Discovery and Exploration in Chemical Space</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2025-10-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.18900" target="_blank" rel="noopener noreferrer">2510.18900</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文瞄准的是化学空间探索中的核心瓶颈：现有分子表示和性质预测体系覆盖面窄、任务割裂，很难支撑真正跨化学领域的发现与筛选。作者试图建立一个面向广泛分子结构和性质的统一基础模型，而不只是某个单项 benchmark 的最优器。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出 MIST 系列分子基础模型，在参数量和训练数据规模上都显著超过既有工作，并设计了同时编码核、电子和几何信息的 tokenization 方案。模型先在大规模无标签分子数据上预训练，再在 400 多个 structure-property 关系上微调。作者还把 mechanistic interpretability 和 scaling-law 分析嵌进去，使其不只是一个黑盒预测器。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里的意义在于：这是“foundation model for chemistry”路线的代表作之一，和 AlphaGenome、MOSAIC、QUASAR 这些条目一起，构成 AI 进入分子与材料发现的不同底层形态。它的价值不在单个任务分数，而在把跨性质、跨场景化学预测放到统一底座上。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它外溢性很强，覆盖真实化学空间探索，但目前仍主要体现为高质量基础模型工程与实验体系，还不到彻底重写整个化学 AI 版图的等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文瞄准的是化学空间探索中的核心瓶颈：现有分子表示和性质预测体系覆盖面窄、任务割裂，很难支撑真正跨化学领域的发现与筛选。作者试图建立一个面向广泛分子结构和性质的统一基础模型，而不只是某个单项 benchmark 的最优器。</p><p>方法上，论文提出 MIST 系列分子基础模型，在参数量和训练数据规模上都显著超过既有工作，并设计了同时编码核、电子和几何信息的 tokenization 方案。模型先在大规模无标签分子数据上预训练，再在 400 多个 structure-property 关系上微调。作者还把 mechanistic interpretability 和 scaling-law 分析嵌进去，使其不只是一个黑盒预测器。</p><p>它在仓库里的意义在于：这是“foundation model for chemistry”路线的代表作之一，和 AlphaGenome、MOSAIC、QUASAR 这些条目一起，构成 AI 进入分子与材料发现的不同底层形态。它的价值不在单个任务分数，而在把跨性质、跨场景化学预测放到统一底座上。</p><p>我把它放在“突破性”。原因是它外溢性很强，覆盖真实化学空间探索，但目前仍主要体现为高质量基础模型工程与实验体系，还不到彻底重写整个化学 AI 版图的等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从分子结构准确预测原子、热力学和动力学性质是材料创新的基础。现有的计算和实验方法缺乏有效探索化学空间所需的可扩展性 [1, 2]。在大型未标记数据集上训练的科学基础模型为跨应用领域探索化学空间提供了途径。在本文中，我们开发了 MIST，这是一个分子基础模型家族，其参数和数据量比现有工作 [3, 4] 多出一个数量级。MIST 采用一种新颖的标记化方案进行训练，该方案全面捕获了核、电子和几何信息，从而学习了各种各样的分子。MIST 模型已被微调以预测超过 400 种结构-性质关系，并已在从生理学到电化学和量子化学等各种基准测试中展现出与最先进水平相当或超越的性能。我们展示了这些模型解决化学空间中实际问题的能力——多目标电解质溶剂筛选、嗅觉感知映射、同位素半衰期预测、手性有机金属化合物的立体化学推理以及二元和多组分混合物性质预测。使用机制可解释性方法探究 MIST 模型，我们发现了训练数据中未明确存在的、可识别的模式和趋势，这表明模型学习了可泛化的科学概念。我们制定了超参数惩罚贝叶斯神经缩放定律，并利用它们将模型开发的计算成本降低了一个数量级。本文提出的方法和发现代表了利用基础模型加速材料发现、设计和优化方面迈出的重要一步；它们为训练计算最优的科学基础模型提供了宝贵指导。所有代码、模型权重和训练方案均已开源，以加速对化学空间的进一步探索。化学空间极其广阔，估计小分子数量约为 10^60 [1]。此外，它具有异质性，涵盖从简单有机分子到无机盐，再到复杂有机金属化合物及其混合物的一切 [5, 6]。传统上，探索这一空间以寻找具有理想化学、热学、生物学或感知性质的分子，一直依赖于资本和时间密集型的湿实验室实验和/或计算成本高昂的第一性原理模拟 [2]。这些方法的成本在大规模应用时变得难以承受，将当前的探索限制在化学空间中极小的一部分 [5, 7, 8]。在过去十年中，分子机器学习加速了材料开发周期，提高了效率并降低了成本 [2]。然而，大多数最先进的分子性质预测模型仍然依赖于标记训练数据，而这些数据稀疏、稀缺且生成成本高昂 [2, 9, 10]。因此，这些模型普遍存在泛化能力差的问题，这阻碍了它们在实际应用中的效用，因为实际应用中感兴趣的新型分子与精选训练数据集中包含的分子存在显著差异 [9]。迁移学习在自然语言处理 (NLP) [11] 和计算机视觉 (CV) [12] 领域的近期成功，引发了人们对开发大规模科学基础模型 (SciFMs) [3, 4, 13, 14] 的兴趣。SciFMs 不依赖稀缺的标记数据集进行训练，而是利用大型未标记科学语料库来发现广泛适用于下游任务的表示 [4, 15]，从而减轻了对越来越大的标记数据集的需求。分子化学特别适合受益于 NLP 基础模型 (FM) 的突破，因为大量的文本编码分子库随时可用 [16]。尽管如此，现有的化学 FM 仍然专注于特定的子领域，因此未能提供一个可供构建的通用基础 [17]，并且在跨化学空间泛化方面能力有限 [3, 4, 13]。需要一个单一模型，能够从数十亿种不同分子中学习，同时解决同位素、立体化学、结构和电子方面的细微差别。这样的模型随后可以发现统一的科学原理，并加速从能源到嗅觉等应用领域的化学设计。在本文中，我们介绍了分子洞察 SMILES 变换器 (MIST)，这是一个分子 FM 家族，通过 Smirk [18] 进行训练，该方案是一种新颖的标记化方案，可捕获分子结构的全面表示，包括核、电子和几何特征，从而扩展了化学空间的覆盖范围。受 NLP [19–21] 中缩放趋势的启发，最大的 MIST 模型以比先前工作 [3, 4, 13] 多一个数量级的参数和数据进行训练，在各种化学基准测试中达到或超越了最先进水平。我们展示了 MIST 在解决化学空间中问题方面的功效：多目标电解质溶剂筛选、嗅觉感知映射、有机金属立体化学推理、同位素半衰期预测和混合物性质预测。此外，我们表明可泛化的</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Accurate prediction of atomistic, thermodynamic, and kinetic properties from molecular structures underpins materials innovation. Existing computational and experimental approaches lack the scalability required to navigate chemical space efficiently [1, 2]. Scientific foundation models trained on large unlabelled datasets offer a path towards navigating chemical space across application domains. Here, we develop MIST, a family of molecular foundation models with up to an order of magnitude more parameters and data than prior works [3, 4]. Trained using a novel tokenization scheme which comprehensively captures nuclear, electronic, and geometric information, MIST learns a diverse range of molecules. MIST models have been fine-tuned to predict more than 400 structure-property relationships and have been shown to match or exceed state-of-the-art performance across diverse benchmarks, from physiology to electrochemistry and quantum chemistry. We demonstrate the ability of these models to solve real-world problems across chemical space — multiobjective electrolyte solvent screening, olfactory perception mapping, isotope half-life prediction, stereochemical reasoning for chiral organometallic compounds, and binary and multi-component mixture property prediction. Probing MIST models using mechanistic interpretibility methods, we find identifiable patterns and trends not explicitly present in the training data, suggesting that the models learn generalizable scientific concepts. We formulated hyperparameter penalized Bayesian neural scaling laws and used them to reduce the computational cost of model development by an order of magnitude. The methods and findings presented here represent a significant step towards accelerating materials discovery, design, and optimization using foundation models; they provide valuable guidance on training compute-optimal scientific foundation models. All code, model weights, and training recipes have been open-sourced to accelerate further exploration of chemical space. Chemical space is extraordinarily vast, with estimates placing the number of small molecules on the order of 1060 [1]. Moreover, it is heterogeneous, encompassing everything from simple organic molecules to inorganic salts to complex organometallics and mixtures of them [5, 6]. Navigating this space to find molecules with desirable chemical, thermal, biological, or perceptual properties has traditionally relied on capital- and time-intensive wet lab experimentation and/or computationally expensive first-principles simulations [2]. The cost of these methods becomes intractable at scale, limiting current exploration to only a minuscule fraction of chemical space [5, 7, 8]. Over the past decade, molecular machine learning has accelerated material development cycles, improved efficiency, and reduced costs [2]. However, most state-of-the-art molecular property prediction models still rely on labelled training data, which is sparse, scarce, and expensive to generate [2, 9, 10]. Consequently, these models are plagued by poor generalization, hampering their utility in real-world applications where novel molecules of interest differ substantially from those contained in curated training datasets [9]. The recent success of transfer learning in Natural Language Processing (NLP) [11] and Computer Vision (CV) [12] has led to interest in the development of large-scale Scientific Foundation Models (SciFMs) [3, 4, 13, 14]. Rather than train on scarce labelled datasets, SciFMs leverage large unlabelled scientific corpora to uncover representations broadly applicable to downstream tasks [4, 15], thereby alleviating the need for everlarger labelled datasets. Molecular chemistry is especially well-positioned to benefit from NLP Foundation Model (FM) breakthroughs, as large libraries of text-encoded molecules are readily available [16]. Despite this, existing chemical FMs remain specialized to particular subdomains, thus failing to provide a general foundation on which to build [17], and with limited ability to generalize across chemical space [3, 4, 13]. There is a need for a single model capable of learning from billions of diverse molecules, while resolving isotopic, stereochemical, structural, and electronic nuances. Such a model can then discover unifying scientific principles and accelerate chemical design across application domains, from energy to olfaction. Here, we introduce Molecular Insight SMILES Transformers (MIST), a family of molecular FMs with expanded coverage of chemical space trained using Smirk [18], a novel tokenization scheme which captures a comprehensive representation of molecular structure including nuclear, electronic, and geometric features. Motivated by scaling trends in NLP [19–21], the largest MIST models were trained with an order of magnitude more parameters and data than prior work [3, 4, 13], matching or exceeding the state-of-the-art across diverse chemical benchmarks. We demonstrate MIST’s efficacy in solving problems across chemical space: multiobjective electrolyte solvent screening, olfactory perception mapping, organometallic stereochemical reasoning, isotope half-life prediction, and mixture property prediction. Moreover, we show that generalizable</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251020p11mistche,
+  title = {Foundation Models for Discovery and Exploration in Chemical Space},
+  year = {2025},
+  url = {https://arxiv.org/abs/2510.18900},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p11-mist-chemical-space/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Foundation Models for Discovery and Exploration in Chemical Space. https://arxiv.org/abs/2510.18900</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2510.18900" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

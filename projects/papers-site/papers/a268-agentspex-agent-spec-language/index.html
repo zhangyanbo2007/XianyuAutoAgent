@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentSPEX: An Agent SPecification and EXecution Language | DAST Papers</title>
+    <meta name="description" content="AgentSPEX 把 agent 系统从隐式 prompt orchestration 推向显式 specification and execution language。它关注的是如何描述 agent 的控制流、中间状态和工具执行，而不是只给一个更长的提示词。
+
+这类语言化接口有长期价值，因为复杂 agent 的可控性、调试、权限边界和复用都依赖清晰的执行结构。它与 LangGraph、DSP" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a268-agentspex-agent-spec-language/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentSPEX: An Agent SPecification and EXecution Language" />
+    <meta property="og:description" content="AgentSPEX 把 agent 系统从隐式 prompt orchestration 推向显式 specification and execution language。它关注的是如何描述 agent 的控制流、中间状态和工具执行，而不是只给一个更长的提示词。
+
+这类语言化接口有长期价值，因为复杂 agent 的可控性、调试、权限边界和复用都依赖清晰的执行结构。它与 LangGraph、DSP" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a268-agentspex-agent-spec-language/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentSPEX: An Agent SPecification and EXecution Language" />
+    <meta name="twitter:description" content="AgentSPEX 把 agent 系统从隐式 prompt orchestration 推向显式 specification and execution language。它关注的是如何描述 agent 的控制流、中间状态和工具执行，而不是只给一个更长的提示词。
+
+这类语言化接口有长期价值，因为复杂 agent 的可控性、调试、权限边界和复用都依赖清晰的执行结构。它与 LangGraph、DSP" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentSPEX: An Agent SPecification and EXecution Language</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.13346" target="_blank" rel="noopener noreferrer">2604.13346</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AgentSPEX 把 agent 系统从隐式 prompt orchestration 推向显式 specification and execution language。它关注的是如何描述 agent 的控制流、中间状态和工具执行，而不是只给一个更长的提示词。</dd></div><div><dt>方法/机制</dt><dd>这类语言化接口有长期价值，因为复杂 agent 的可控性、调试、权限边界和复用都依赖清晰的执行结构。它与 LangGraph、DSPy、CrewAI 类框架的关系也使其更像系统接口论文。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为本库 agent 方向优先收 reusable workflow / OS pattern / governed execution primitive。AgentSPEX 正好提供了面向 agent 行为的规格化表达和执行抽象。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为规范语言是否成为实际生态接口，还取决于工具链、运行时、开发者采纳和真实任务上的鲁棒性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AgentSPEX 把 agent 系统从隐式 prompt orchestration 推向显式 specification and execution language。它关注的是如何描述 agent 的控制流、中间状态和工具执行，而不是只给一个更长的提示词。</p><p>这类语言化接口有长期价值，因为复杂 agent 的可控性、调试、权限边界和复用都依赖清晰的执行结构。它与 LangGraph、DSPy、CrewAI 类框架的关系也使其更像系统接口论文。</p><p>它值得正式收录，因为本库 agent 方向优先收 reusable workflow / OS pattern / governed execution primitive。AgentSPEX 正好提供了面向 agent 行为的规格化表达和执行抽象。</p><p>它没有更高，是因为规范语言是否成为实际生态接口，还取决于工具链、运行时、开发者采纳和真实任务上的鲁棒性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>语言模型智能体系统通常依赖于反应式提示，其中单个指令引导模型通过开放式的推理和工具使用步骤序列，使控制流和中间状态隐式化，并可能使智能体行为难以控制。LangGraph、DSPy和CrewAI等编排框架通过显式工作流定义施加了更大的结构，但将工作流逻辑与Python紧密耦合，使得智能体难以维护和修改。在本文中，我们介绍了AgentSPEX，一种智能体规范和执行语言（Agent SPecification and EXecution Language），用于指定具有显式控制流和模块化结构的LLM智能体工作流，并提供一个可定制的智能体线束。AgentSPEX支持类型化步骤、分支和循环、并行执行、可重用子模块和显式状态管理，这些工作流在一个智能体线束中执行，该线束提供工具访问、沙盒虚拟环境以及对检查点、验证和日志记录的支持。此外，我们提供了一个具有同步图和工作流视图的可视化编辑器，用于创作和检查。我们包含了用于深度研究和科学研究的即用型智能体，并在7个基准测试上评估了AgentSPEX。最后，我们通过一项用户研究表明，AgentSPEX提供了一种比流行的现有智能体框架更具可解释性和可访问性的工作流创作范式。§ 代码</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Language-model agent systems commonly rely on reactive prompting, in which a single instruction guides the model through an open-ended sequence of reasoning and tool-use steps, leaving control flow and intermediate state implicit and making agent behavior potentially difficult to control. Orchestration frameworks such as LangGraph, DSPy, and CrewAI impose greater structure through explicit workflow definitions, but tightly couple workflow logic with Python, making agents difficult to maintain and modify. In this paper, we introduce AgentSPEX, an Agent SPecification and EXecution Language for specifying LLM-agent workflows with explicit control flow and modular structure, along with a customizable agent harness. AgentSPEX supports typed steps, branching and loops, parallel execution, reusable submodules, and explicit state management, and these workflows execute within an agent harness that provides tool access, a sandboxed virtual environment, and support for checkpointing, verification, and logging. Furthermore, we provide a visual editor with synchronized graph and workflow views for authoring and inspection. We include ready-to-use agents for deep research and scientific research, and we evaluate AgentSPEX on 7 benchmarks. Finally, we show through a user study that AgentSPEX provides a more interpretable and accessible workflow-authoring paradigm than a popular existing agent framework. § Code</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416a268agents,
+  title = {AgentSPEX: An Agent SPecification and EXecution Language},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.13346.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a268-agentspex-agent-spec-language/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentSPEX: An Agent SPecification and EXecution Language. https://arxiv.org/pdf/2604.13346.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.13346.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2604.13346" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

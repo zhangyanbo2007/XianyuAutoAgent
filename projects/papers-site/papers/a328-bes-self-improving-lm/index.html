@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-Improving Language Models with Bidirectional Evolutionary Search | DAST Papers</title>
+    <meta name="description" content="这篇论文关注 self-improving language models 中 search 的两个瓶颈：验证信号稀疏，以及 autoregressive expansion 只在模型高概率区域附近探索。
+
+Bidirectional Evolutionary Search 同时做 forward candidate evolution 和 backward goal decomposition：" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a328-bes-self-improving-lm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Self-Improving Language Models with Bidirectional Evolutionary Search" />
+    <meta property="og:description" content="这篇论文关注 self-improving language models 中 search 的两个瓶颈：验证信号稀疏，以及 autoregressive expansion 只在模型高概率区域附近探索。
+
+Bidirectional Evolutionary Search 同时做 forward candidate evolution 和 backward goal decomposition：" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a328-bes-self-improving-lm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Self-Improving Language Models with Bidirectional Evolutionary Search" />
+    <meta name="twitter:description" content="这篇论文关注 self-improving language models 中 search 的两个瓶颈：验证信号稀疏，以及 autoregressive expansion 只在模型高概率区域附近探索。
+
+Bidirectional Evolutionary Search 同时做 forward candidate evolution 和 backward goal decomposition：" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Self-Improving Language Models with Bidirectional Evolutionary Search</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28814" target="_blank" rel="noopener noreferrer">2605.28814</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注 self-improving language models 中 search 的两个瓶颈：验证信号稀疏，以及 autoregressive expansion 只在模型高概率区域附近探索。</dd></div><div><dt>方法/机制</dt><dd>Bidirectional Evolutionary Search 同时做 forward candidate evolution 和 backward goal decomposition：前者用 recombination 等 evolution operators 生成单次 rollout 难到达的候选，后者把目标分解为可检查子目标以提供更密集反馈。</dd></div><div><dt>结果/证据</dt><dd>论文给出理论动机，说明 expansion-only search 会受限在较窄 entropy shell，而 evolutionary operators 和 backward decomposition 能扩大有效探索并降低采样需求。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它把 inference-time search、post-training data generation 和 self-improving agents 连接到一个可复用搜索框架，对自演化模型和 agentic reasoning 都有直接价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注 self-improving language models 中 search 的两个瓶颈：验证信号稀疏，以及 autoregressive expansion 只在模型高概率区域附近探索。</p><p>Bidirectional Evolutionary Search 同时做 forward candidate evolution 和 backward goal decomposition：前者用 recombination 等 evolution operators 生成单次 rollout 难到达的候选，后者把目标分解为可检查子目标以提供更密集反馈。</p><p>论文给出理论动机，说明 expansion-only search 会受限在较窄 entropy shell，而 evolutionary operators 和 backward decomposition 能扩大有效探索并降低采样需求。</p><p>它值得收录，因为它把 inference-time search、post-training data generation 和 self-improving agents 连接到一个可复用搜索框架，对自演化模型和 agentic reasoning 都有直接价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：具有双向演化搜索的自改进语言模型 搜索已被提出作为一种有效方法，用于自改进语言模型和智能体系统，既可用于训练后样本生成，也可用于推理。然而，广泛使用的方法，如最佳-N采样和树搜索，面临两个基本限制：它们由稀疏的验证信号引导，并且它们主要通过自回归扩展来构建候选，将探索限制在具有大量模型概率质量的区域。为解决这些问题，我们提出了双向演化搜索（BES），这是一个将前向候选演化与后向目标分解相结合的搜索框架。在前向搜索中，BES通过演化算子增强了标准扩展，这些算子重组部分轨迹以生成难以通过单次模型运行获得的候选。在后向搜索中，BES递归地将原始任务分解为可检查的子目标，产生密集的中间反馈以引导前向搜索。我们提供了理论依据，表明仅通过扩展搜索生成的候选被限制在一个狭窄的熵壳中，而演化算子可以逃离它，并且后向搜索可以指数级地减少找到正确答案所需的样本数量。实验表明，在主流训练后算法未能改进的挑战性训练后任务上，BES实现了持续的提升；在推理时的三个开放问题解决基准上，BES在平均和最佳情况性能方面均优于现有开源框架。代码和训练模型可在 https://github.com/Embodied-Minds-Lab/BES 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Search has been proposed as an effective method for self-improving language models and agentic systems, both for post-training sample generation and for inference. However, widely used methods such as best-of-N sampling and tree search face two fundamental limitations: they are guided by sparse verification signals, and they construct candidates primarily through autoregressive expansion, restricting exploration to regions with substantial model probability mass. To address these, we propose Bidirectional Evolutionary Search (BES), a search framework that couples forward candidate evolution with backward goal decomposition. In the forward search, BES augments standard expansion with evolution operators that recombine partial trajectories to generate candidates that are difficult to obtain from a single model rollout. In the backward search, BES recursively decomposes the original task into checkable sub-goals, producing dense intermediate feedback that guides forward search. We provide theoretical motivation showing that candidates generated by expansion-only search are confined to a narrow entropy shell while evolutionary operators can escape it, and that backward search can exponentially reduce the number of required samples to find a correct answer. Experiments show that on challenging post-training tasks where mainstream post-training algorithms fail to improve, BES enables consistent gains, and on three open problem solving benchmarks at inference time, BES outperforms existing open-source frameworks in both average and best-case performance. Code and trained models are available at https://github.com/Embodied-Minds-Lab/BES.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527a328bessel,
+  title = {Self-Improving Language Models with Bidirectional Evolutionary Search},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28814.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a328-bes-self-improving-lm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Self-Improving Language Models with Bidirectional Evolutionary Search. https://arxiv.org/pdf/2605.28814.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28814.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28814" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

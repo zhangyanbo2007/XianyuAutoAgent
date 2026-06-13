@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Competing Biases underlie Overconfidence and Underconfidence in LLMs | DAST Papers</title>
+    <meta name="description" content="这篇论文试图解释一个在 LLM 可靠性里非常实在但此前表述分散的问题：模型既会过度坚持自己的初始答案，又会对相反意见表现出异常大的波动，表面上看是两种互相冲突的行为。作者把这件事收敛成两个可计算的竞争性偏差：choice-supportive bias 和 hypersensitivity to contradiction。
+
+它的价值不在于再做一个 calibration benchmark，而" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t30-competing-biases-llm-confidence/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Competing Biases underlie Overconfidence and Underconfidence in LLMs" />
+    <meta property="og:description" content="这篇论文试图解释一个在 LLM 可靠性里非常实在但此前表述分散的问题：模型既会过度坚持自己的初始答案，又会对相反意见表现出异常大的波动，表面上看是两种互相冲突的行为。作者把这件事收敛成两个可计算的竞争性偏差：choice-supportive bias 和 hypersensitivity to contradiction。
+
+它的价值不在于再做一个 calibration benchmark，而" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t30-competing-biases-llm-confidence/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Competing Biases underlie Overconfidence and Underconfidence in LLMs" />
+    <meta name="twitter:description" content="这篇论文试图解释一个在 LLM 可靠性里非常实在但此前表述分散的问题：模型既会过度坚持自己的初始答案，又会对相反意见表现出异常大的波动，表面上看是两种互相冲突的行为。作者把这件事收敛成两个可计算的竞争性偏差：choice-supportive bias 和 hypersensitivity to contradiction。
+
+它的价值不在于再做一个 calibration benchmark，而" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Competing Biases underlie Overconfidence and Underconfidence in LLMs</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-04-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-22</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01217-9" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01217-9</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文试图解释一个在 LLM 可靠性里非常实在但此前表述分散的问题：模型既会过度坚持自己的初始答案，又会对相反意见表现出异常大的波动，表面上看是两种互相冲突的行为。作者把这件事收敛成两个可计算的竞争性偏差：choice-supportive bias 和 hypersensitivity to contradiction。</dd></div><div><dt>方法/机制</dt><dd>它的价值不在于再做一个 calibration benchmark，而在于给出了一个更耐用的行为解释框架。这个框架把 confidence dynamics、self-correction 和 human-AI interaction 里的很多现象放进同一个模型里，适合作为后续干预、评测和机制分析的基线。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是对 LLM 置信度与更新机制的强解释型结果，和仓库关心的可靠性、校准、推理控制有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为当前主要贡献还是解释与建模，而不是已经被证明能稳定改善系统行为的 intervention primitive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文试图解释一个在 LLM 可靠性里非常实在但此前表述分散的问题：模型既会过度坚持自己的初始答案，又会对相反意见表现出异常大的波动，表面上看是两种互相冲突的行为。作者把这件事收敛成两个可计算的竞争性偏差：choice-supportive bias 和 hypersensitivity to contradiction。</p><p>它的价值不在于再做一个 calibration benchmark，而在于给出了一个更耐用的行为解释框架。这个框架把 confidence dynamics、self-correction 和 human-AI interaction 里的很多现象放进同一个模型里，适合作为后续干预、评测和机制分析的基线。</p><p>它值得正式收录，因为这是对 LLM 置信度与更新机制的强解释型结果，和仓库关心的可靠性、校准、推理控制有直接外溢。</p><p>它没有升到更高等级，是因为当前主要贡献还是解释与建模，而不是已经被证明能稳定改善系统行为的 intervention primitive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM中过度自信和不自信背后的竞争性偏差。大型语言模型（LLM）正越来越多地部署在高风险应用中，在这些应用中，可靠的置信度估计对于可信赖的人工智能（AI）至关重要。然而，它们的置信度动态仍然知之甚少，用户报告了矛盾的行为：LLM在更新初始响应时表现出灵活性降低，同时对矛盾反馈表现出过度敏感。理解这些置信度模式对于开发更可靠的AI系统和改善人机交互至关重要。在本文中，我们展示了LLM的置信度受两种竞争机制的支配，这解释了上述矛盾。首先，我们发现了一种选择支持性偏差：当LLM查看其初始答案时，它们表现出膨胀的置信度，并以超过最优决策的速度维持其原始响应，即使面对相反的证据也是如此。其次，我们证明了对矛盾信息的系统性过重：LLM在响应反对性建议时比响应支持性建议时更强烈地更新其置信度，这显著偏离了最优贝叶斯推理。这些机制在不同的模型中均起作用，并从简单的事实查询推广到推理任务。我们的计算建模揭示，这两个原则——自我一致性保持和对矛盾的超敏感性——捕捉了LLM在不同领域中的行为。这些发现提供了关于LLM何时以及为何表现出对初始响应的坚持以及不成比例的更新的理解，对增强LLM决策的鲁棒性和透明度具有重要意义。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) are increasingly deployed in high-stakes applications where reliable confidence estimation is crucial for trustworthy artificial intelligence (AI). However, their confidence dynamics remain poorly understood, with users reporting paradoxical behaviours: LLMs exhibit reduced flexibility in updating initial responses while simultaneously showing excessive sensitivity to contradictory feedback. Understanding these confidence patterns is essential for developing more reliable AI systems and improving human–AI interaction. Here we show that LLM confidence is governed by two competing mechanisms that explain this paradox. First, we identify a choice-supportive bias: when LLMs view their initial answers, they exhibit inflated confidence and maintain their original responses at rates exceeding optimal decision-making, even when presented with contrary evidence. Second, we demonstrate systematic overweighting of contradictory information: LLMs update their confidence more strongly in response to opposing advice than supporting advice, deviating markedly from optimal Bayesian reasoning. These mechanisms operate across diverse models and generalize from simple factual queries to reasoning tasks. Our computational modelling reveals that these two principles—self-consistency preservation and hypersensitivity to contradiction—capture LLM behaviour across domains. These findings provide an understanding of when and why LLMs exhibit adherence to initial responses versus disproportionate updating, with implications for enhancing the robustness and transparency of LLM decision-making.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260422t30competi,
+  title = {Competing Biases underlie Overconfidence and Underconfidence in LLMs},
+  year = {2026},
+  url = {/Users/lijie/Downloads/s42256-026-01217-9.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t30-competing-biases-llm-confidence/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Competing Biases underlie Overconfidence and Underconfidence in LLMs. /Users/lijie/Downloads/s42256-026-01217-9.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+            <a class="related-item" href="../../papers/i17-weight-tying-output-bias/">
+              <span>Weight Tying Biases Token Embeddings Towards the Output Space</span>
+              <small>可解释性与机制分析 · 2026-03-27</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="/Users/lijie/Downloads/s42256-026-01217-9.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study | DAST Papers</title>
+    <meta name="description" content="问题与背景：多数 emotion-aware LLM 研究把情绪当作表层风格或识别目标，而不是内部计算变量。E-STEER 关注的问题是：情绪式表示是否会以机制方式改变 LLM 与 agent 的推理、安全和多步行为。
+
+方法与新意：论文把情绪编码为可控的 hidden-state 变量，并进行 representation-level steering，而不是只改 prompt 语气。它在客观推" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a218-e-steer-emotion-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study" />
+    <meta property="og:description" content="问题与背景：多数 emotion-aware LLM 研究把情绪当作表层风格或识别目标，而不是内部计算变量。E-STEER 关注的问题是：情绪式表示是否会以机制方式改变 LLM 与 agent 的推理、安全和多步行为。
+
+方法与新意：论文把情绪编码为可控的 hidden-state 变量，并进行 representation-level steering，而不是只改 prompt 语气。它在客观推" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a218-e-steer-emotion-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study" />
+    <meta name="twitter:description" content="问题与背景：多数 emotion-aware LLM 研究把情绪当作表层风格或识别目标，而不是内部计算变量。E-STEER 关注的问题是：情绪式表示是否会以机制方式改变 LLM 与 agent 的推理、安全和多步行为。
+
+方法与新意：论文把情绪编码为可控的 hidden-state 变量，并进行 representation-level steering，而不是只改 prompt 语气。它在客观推" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00005" target="_blank" rel="noopener noreferrer">2604.00005</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：多数 emotion-aware LLM 研究把情绪当作表层风格或识别目标，而不是内部计算变量。E-STEER 关注的问题是：情绪式表示是否会以机制方式改变 LLM 与 agent 的推理、安全和多步行为。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：论文把情绪编码为可控的 hidden-state 变量，并进行 representation-level steering，而不是只改 prompt 语气。它在客观推理、主观生成、安全行为和多步 agent 任务中比较不同情绪信号的非单调影响。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇适合进入 agent behavior / mechanistic control 主线，因为它提供了一个可复用的内部状态干预接口，用于研究和调节 agent 行为偏置。对安全控制、人格/情绪变量建模、agent 行为诊断都有参考价值。</dd></div><div><dt>收录价值</dt><dd>局限：目前证据主要来自实验性 steering 和行为分析，情绪变量的因果边界、跨模型稳定性和安全副作用还需要更强验证；因此按 breakthrough 收录，不升更高。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：多数 emotion-aware LLM 研究把情绪当作表层风格或识别目标，而不是内部计算变量。E-STEER 关注的问题是：情绪式表示是否会以机制方式改变 LLM 与 agent 的推理、安全和多步行为。</p><p>方法与新意：论文把情绪编码为可控的 hidden-state 变量，并进行 representation-level steering，而不是只改 prompt 语气。它在客观推理、主观生成、安全行为和多步 agent 任务中比较不同情绪信号的非单调影响。</p><p>收录意义：这篇适合进入 agent behavior / mechanistic control 主线，因为它提供了一个可复用的内部状态干预接口，用于研究和调节 agent 行为偏置。对安全控制、人格/情绪变量建模、agent 行为诊断都有参考价值。</p><p>局限：目前证据主要来自实验性 steering 和行为分析，情绪变量的因果边界、跨模型稳定性和安全副作用还需要更强验证；因此按 breakthrough 收录，不升更高。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>情感在人类认知和表现中扮演着重要角色。受此启发，我们研究类似的情感信号是否能够塑造大型语言模型 (LLMs) 和智能体的行为。现有关注情感的研究主要将情感视为表面层面的风格因素或感知目标，忽视了其在任务处理中的机制作用。为解决这一局限，我们提出了 E-STEER，一个可解释的情感引导框架，能够在 LLMs 和智能体中实现直接的表示层面干预。它将情感嵌入为隐藏状态中一个结构化、可控的变量，并借此我们研究情感对客观推理、主观生成、安全性以及多步智能体行为的影响。结果揭示了与既定心理学理论一致的非单调情感-行为关系，并表明特定情感不仅能增强 LLM 能力，而且能提高安全性，并系统地塑造多步智能体行为。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Emotion plays an important role in human cognition and performance. Motivated by this, we investigate whether analogous emotional signals can shape the behavior of large language models (LLMs) and agents. Existing emotion-aware studies mainly treat emotion as a surface-level style factor or a perception target, overlooking its mechanistic role in task processing. To address this limitation, we propose E-STEER, an interpretable emotion steering framework that enables direct representation-level intervention in LLMs and agents. It embeds emotion as a structured, controllable variable in hidden states, and with it, we examine the impact of emotion on objective reasoning, subjective generation, safety, and multi-step agent behaviors. The results reveal non-monotonic emotion-behavior relations consistent with established psychological theories, and show that specific emotions not only enhance LLM capability but also improve safety, and systematically shape multi-step agent behaviors.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309a218esteer,
+  title = {How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00005.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a218-e-steer-emotion-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study. https://arxiv.org/pdf/2604.00005.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00005.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

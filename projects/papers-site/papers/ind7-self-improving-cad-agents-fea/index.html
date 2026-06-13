@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback | DAST Papers</title>
+    <meta name="description" content="这篇论文把 CAD generation 从外观几何生成推进到更接近工程实践的任务：从 free-form engineering brief 生成完整 assembled multi-part STEP file，并接受 finite element analysis 检验。
+
+作者指出现有 learned CAD generators 多把 part synthesis 和 assembly " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/ind7-self-improving-cad-agents-fea/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback" />
+    <meta property="og:description" content="这篇论文把 CAD generation 从外观几何生成推进到更接近工程实践的任务：从 free-form engineering brief 生成完整 assembled multi-part STEP file，并接受 finite element analysis 检验。
+
+作者指出现有 learned CAD generators 多把 part synthesis 和 assembly " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/ind7-self-improving-cad-agents-fea/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback" />
+    <meta name="twitter:description" content="这篇论文把 CAD generation 从外观几何生成推进到更接近工程实践的任务：从 free-form engineering brief 生成完整 assembled multi-part STEP file，并接受 finite element analysis 检验。
+
+作者指出现有 learned CAD generators 多把 part synthesis 和 assembly " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback</h1>
+          <p class="subtitle">工业过程与制造 · 发表：2026-05-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">工业过程与制造</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.17448" target="_blank" rel="noopener noreferrer">2605.17448</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 CAD generation 从外观几何生成推进到更接近工程实践的任务：从 free-form engineering brief 生成完整 assembled multi-part STEP file，并接受 finite element analysis 检验。</dd></div><div><dt>方法/机制</dt><dd>作者指出现有 learned CAD generators 多把 part synthesis 和 assembly 拆开处理，评价也偏 reference proximity；而真实工程需要迭代、结构约束、装配关系和物理性能验证。</dd></div><div><dt>结果/证据</dt><dd>论文加入 text-only blueprint schema、21-view renderer 和 FEA feedback，让 agent 能像工程师一样检查和修正设计；在 S2O 和 Fusion360 任务中，这些反馈提升了几何重建和工程一致性。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它符合仓库扩展的 CAD/工业设计工作流方向：AI 不只是画零件，而是进入工程验证驱动的硬件设计迭代闭环。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 CAD generation 从外观几何生成推进到更接近工程实践的任务：从 free-form engineering brief 生成完整 assembled multi-part STEP file，并接受 finite element analysis 检验。</p><p>作者指出现有 learned CAD generators 多把 part synthesis 和 assembly 拆开处理，评价也偏 reference proximity；而真实工程需要迭代、结构约束、装配关系和物理性能验证。</p><p>论文加入 text-only blueprint schema、21-view renderer 和 FEA feedback，让 agent 能像工程师一样检查和修正设计；在 S2O 和 Fusion360 任务中，这些反馈提升了几何重建和工程一致性。</p><p>它值得正式收录，因为它符合仓库扩展的 CAD/工业设计工作流方向：AI 不只是画零件，而是进入工程验证驱动的硬件设计迭代闭环。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>计算机辅助设计 (CAD) 是现代工业设计的骨干，然而，学习型CAD生成器仍未能达到实际工程管道的要求：它们既不能像工程师那样迭代，也不能评估工程所需。以往的工作将CAD生成视为两个不相关的步骤，零件合成和装配，其中前者通过与黄金参考的接近程度进行评分，而后者，如果处理的话，则简化为一个独立的约束求解步骤。在这项工作中，我们引入了一种更贴近行业的任务表述，它要求模型从自由形式的工程简报中生成一个完全组装的多部件STEP文件，然后通过有限元分析 (FEA) 进行验证。FEA验证表明，Codex (GPT-5.5) 和 Claude Code (Opus-4.7) 代理未能生成一个严格通过的工件，在</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Computer-aided design (CAD) is the backbone of modern industrial design, yet learned CAD generators still fall short of real engineering pipelines: they neither iterate like engineers nor evaluate what engineering requires. Prior work has treated CAD generation as two disjoint steps, part synthesis and assembly, where the former is graded by proximity to a gold reference and the latter, when handled at all, is reduced to a separate constraint solving step. In this work, we introduce a more industry-native task formulation that requires a model to produce a fully assembled multi-part STEP file from a free-form engineering brief, which is then validated via finite element analysis (FEA). FEA validation reveals that Codex (GPT-5.5) and Claude Code (Opus-4.7) agents do not produce a single strict-passing artifact in the</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260517ind7selfim,
+  title = {Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.17448.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/ind7-self-improving-cad-agents-fea/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback. https://arxiv.org/pdf/2605.17448.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ind6-cipher-manufacturing-vla/">
+              <span>Hybrid reasoning for perception, explanation, and autonomous action in manufacturing</span>
+              <small>工业过程与制造 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/ind3-owl-auraid-scientific-instrumentation/">
+              <span>Owl-AuraID 1.0: An Intelligent System for Autonomous Scientific Instrumentation and Scientific Data Analysis</span>
+              <small>工业过程与制造 · 2026-03-31</small>
+            </a>
+            <a class="related-item" href="../../papers/ind4-chemical-process-digitalisation/">
+              <span>A semantic framework for chemical process digitalisation using ontologies</span>
+              <small>工业过程与制造 · 2026-02-19</small>
+            </a>
+            <a class="related-item" href="../../papers/ind5-ai-directed-3d-printing-foams/">
+              <span>AI-Directed 3D Printing of Hierarchical Polyurethane Foams</span>
+              <small>工业过程与制造 · 2025-11-29</small>
+            </a>
+            <a class="related-item" href="../../papers/ind2-coembodied-intelligence/">
+              <span>Human-AI Co-Embodied Intelligence for Scientific Experimentation and Manufacturing</span>
+              <small>工业过程与制造 · 2025-11-03</small>
+            </a>
+            <a class="related-item" href="../../papers/ind1-aila-afm-automation/">
+              <span>Evaluating large language model agents for automation of atomic force microscopy</span>
+              <small>工业过程与制造 · 2025-10-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.17448.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.17448" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

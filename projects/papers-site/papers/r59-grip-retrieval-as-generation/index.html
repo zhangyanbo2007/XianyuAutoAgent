@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning | DAST Papers</title>
+    <meta name="description" content="这篇论文重新定义 RAG 的控制接口：传统 RAG 把检索当成外部模块或独立 controller，模型生成与检索决策往往松耦合，尤其在多步问题中容易出现检索时机、查询改写和终止条件不协调。
+
+作者提出 Retrieval as Generation，并实现 GRIP：模型通过生成控制 token 自己决定何时检索、如何重写 query、何时停止检索，把信息规划嵌入同一条自回归轨迹。Self-Tr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r59-grip-retrieval-as-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning" />
+    <meta property="og:description" content="这篇论文重新定义 RAG 的控制接口：传统 RAG 把检索当成外部模块或独立 controller，模型生成与检索决策往往松耦合，尤其在多步问题中容易出现检索时机、查询改写和终止条件不协调。
+
+作者提出 Retrieval as Generation，并实现 GRIP：模型通过生成控制 token 自己决定何时检索、如何重写 query、何时停止检索，把信息规划嵌入同一条自回归轨迹。Self-Tr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r59-grip-retrieval-as-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning" />
+    <meta name="twitter:description" content="这篇论文重新定义 RAG 的控制接口：传统 RAG 把检索当成外部模块或独立 controller，模型生成与检索决策往往松耦合，尤其在多步问题中容易出现检索时机、查询改写和终止条件不协调。
+
+作者提出 Retrieval as Generation，并实现 GRIP：模型通过生成控制 token 自己决定何时检索、如何重写 query、何时停止检索，把信息规划嵌入同一条自回归轨迹。Self-Tr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11407" target="_blank" rel="noopener noreferrer">2604.11407</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文重新定义 RAG 的控制接口：传统 RAG 把检索当成外部模块或独立 controller，模型生成与检索决策往往松耦合，尤其在多步问题中容易出现检索时机、查询改写和终止条件不协调。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Retrieval as Generation，并实现 GRIP：模型通过生成控制 token 自己决定何时检索、如何重写 query、何时停止检索，把信息规划嵌入同一条自回归轨迹。Self-Triggered Information Planning 让 retrieval control 成为 generation policy 的一部分，而不是外接分类器或固定流程。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 RAG 从“检索增强生成”推进到“生成式检索控制”，和仓库关注的 agent memory、reasoning control、test-time evidence use 高度相关。这个接口对长程问答、知识密集推理和可学习检索策略都有可复用价值。</dd></div><div><dt>收录价值</dt><dd>局限在于这类方法对训练数据、控制 token 设计和 retrieval backend 仍敏感；是否能稳定迁移到复杂 agent memory 或开放科学检索任务，还需要更多验证。因此它是突破性 RAG 控制框架，而不是最终范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文重新定义 RAG 的控制接口：传统 RAG 把检索当成外部模块或独立 controller，模型生成与检索决策往往松耦合，尤其在多步问题中容易出现检索时机、查询改写和终止条件不协调。</p><p>作者提出 Retrieval as Generation，并实现 GRIP：模型通过生成控制 token 自己决定何时检索、如何重写 query、何时停止检索，把信息规划嵌入同一条自回归轨迹。Self-Triggered Information Planning 让 retrieval control 成为 generation policy 的一部分，而不是外接分类器或固定流程。</p><p>它值得收录，因为它把 RAG 从“检索增强生成”推进到“生成式检索控制”，和仓库关注的 agent memory、reasoning control、test-time evidence use 高度相关。这个接口对长程问答、知识密集推理和可学习检索策略都有可复用价值。</p><p>局限在于这类方法对训练数据、控制 token 设计和 retrieval backend 仍敏感；是否能稳定迁移到复杂 agent memory 或开放科学检索任务，还需要更多验证。因此它是突破性 RAG 控制框架，而不是最终范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们通过将检索控制直接嵌入到生成中来重新审视检索增强生成（RAG）。我们没有将检索视为外部干预，而是在令牌级解码中表达检索决策，从而无需额外的控制器或分类器即可实现端到端协调。在“检索即生成”的范式下，我们提出了GRIP（生成引导的带信息规划的检索），这是一个统一框架，其中模型通过控制令牌的发出调节检索行为。GRIP的核心是自触发信息规划，它允许模型在一个单一的自回归轨迹中决定何时检索、如何重新表述查询以及何时终止。这种设计紧密结合了检索和推理，并支持动态多步推理和即时证据整合。为了监督这些行为，我们构建了一个结构化训练集，涵盖可回答、部分可回答和多跳查询，每个都与特定的令牌模式对齐。在五个问答基准上的实验表明，GRIP超越了强大的RAG基线，并且在参数量显著减少的情况下与GPT-4o具有竞争力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We revisit retrieval-augmented generation (RAG) by embedding retrieval control directly into generation. Instead of treating retrieval as an external intervention, we express retrieval decisions within token-level decoding, enabling end-to-end coordination without additional controllers or classifiers. Under the paradigm of Retrieval as Generation, we propose GRIP (Generation-guided Retrieval with Information Planning), a unified framework in which the model regulates retrieval behavior through control-token emission. Central to GRIP is Self-Triggered Information Planning, which allows the model to decide when to retrieve, how to reformulate queries, and when to terminate, all within a single autoregressive trajectory. This design tightly couples retrieval and reasoning and supports dynamic multi-step inference with on-the-fly evidence integration. To supervise these behaviors, we construct a structured training set covering answerable, partially answerable, and multi-hop queries, each aligned with specific token patterns. Experiments on five QA benchmarks show that GRIP surpasses strong RAG baselines and is competitive with GPT-4o while using substantially fewer parameters.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413r59gripret,
+  title = {Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11407.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r59-grip-retrieval-as-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Retrieval as Generation: A Unified Framework with Self-Triggered Information Planning. https://arxiv.org/pdf/2604.11407.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11407.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

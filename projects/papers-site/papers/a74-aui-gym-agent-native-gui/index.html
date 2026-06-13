@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computer-Use Agents as Judges for Generative User Interface | DAST Papers</title>
+    <meta name="description" content="问题与背景：现有 GUI 基本都为人类设计，强调视觉美观和传统可用性，而 computer-use agents 被迫沿用这些人类优先界面完成任务，效率和稳定性都受限。与此同时，代码模型已经足够强，能够自动生成和修改网站。这篇论文讨论的核心问题因此不是“agent 如何更好地使用人类 GUI”，而是“能否让 agent 反过来充当裁判和反馈源，帮助生成更适合 agent 执行的界面”。
+
+方法/新" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a74-aui-gym-agent-native-gui/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Computer-Use Agents as Judges for Generative User Interface" />
+    <meta property="og:description" content="问题与背景：现有 GUI 基本都为人类设计，强调视觉美观和传统可用性，而 computer-use agents 被迫沿用这些人类优先界面完成任务，效率和稳定性都受限。与此同时，代码模型已经足够强，能够自动生成和修改网站。这篇论文讨论的核心问题因此不是“agent 如何更好地使用人类 GUI”，而是“能否让 agent 反过来充当裁判和反馈源，帮助生成更适合 agent 执行的界面”。
+
+方法/新" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a74-aui-gym-agent-native-gui/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Computer-Use Agents as Judges for Generative User Interface" />
+    <meta name="twitter:description" content="问题与背景：现有 GUI 基本都为人类设计，强调视觉美观和传统可用性，而 computer-use agents 被迫沿用这些人类优先界面完成任务，效率和稳定性都受限。与此同时，代码模型已经足够强，能够自动生成和修改网站。这篇论文讨论的核心问题因此不是“agent 如何更好地使用人类 GUI”，而是“能否让 agent 反过来充当裁判和反馈源，帮助生成更适合 agent 执行的界面”。
+
+方法/新" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Computer-Use Agents as Judges for Generative User Interface</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-11-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.15567" target="_blank" rel="noopener noreferrer">2511.15567</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：现有 GUI 基本都为人类设计，强调视觉美观和传统可用性，而 computer-use agents 被迫沿用这些人类优先界面完成任务，效率和稳定性都受限。与此同时，代码模型已经足够强，能够自动生成和修改网站。这篇论文讨论的核心问题因此不是“agent 如何更好地使用人类 GUI”，而是“能否让 agent 反过来充当裁判和反馈源，帮助生成更适合 agent 执行的界面”。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：作者提出 AUI-Gym，覆盖 52 个应用和 1560 个任务，用程序化 verifier 保证任务可执行性；在此基础上设计 Coder-CUA 协作框架，由 Coder 生成与修改界面，由 Computer-Use Agent 作为 Judge 评估任务可解性和导航成功率，并通过 CUA Dashboard 将多步执行历史压缩成可供迭代设计的摘要反馈。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇工作很适合放在 agent / GUI / computer-use 主线。它的长期价值不只在 benchmark，而在于把“agent 既是使用者也是界面优化反馈源”建立成一条工作流，推动 UI 设计从 human-centric 走向 agent-native。这对 GUI benchmark、数字环境自动化、代码生成和 agent infrastructure 都有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：当前证据仍主要集中在 web GUI 和自动设计循环，离更普遍的操作系统级或跨模态界面设计范式还有距离。它是很强的方向性工作，但是否会重排更广泛的人机界面设计仍需更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：现有 GUI 基本都为人类设计，强调视觉美观和传统可用性，而 computer-use agents 被迫沿用这些人类优先界面完成任务，效率和稳定性都受限。与此同时，代码模型已经足够强，能够自动生成和修改网站。这篇论文讨论的核心问题因此不是“agent 如何更好地使用人类 GUI”，而是“能否让 agent 反过来充当裁判和反馈源，帮助生成更适合 agent 执行的界面”。</p><p>方法/新意：作者提出 AUI-Gym，覆盖 52 个应用和 1560 个任务，用程序化 verifier 保证任务可执行性；在此基础上设计 Coder-CUA 协作框架，由 Coder 生成与修改界面，由 Computer-Use Agent 作为 Judge 评估任务可解性和导航成功率，并通过 CUA Dashboard 将多步执行历史压缩成可供迭代设计的摘要反馈。</p><p>意义/放在仓库中的位置：这篇工作很适合放在 agent / GUI / computer-use 主线。它的长期价值不只在 benchmark，而在于把“agent 既是使用者也是界面优化反馈源”建立成一条工作流，推动 UI 设计从 human-centric 走向 agent-native。这对 GUI benchmark、数字环境自动化、代码生成和 agent infrastructure 都有明显方法外溢。</p><p>局限/为何不再升一级：当前证据仍主要集中在 web GUI 和自动设计循环，离更普遍的操作系统级或跨模态界面设计范式还有距离。它是很强的方向性工作，但是否会重排更广泛的人机界面设计仍需更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>计算机使用智能体（CUA）正变得越来越有能力通过图形用户界面（GUI）自主操作数字环境。然而，大多数GUI仍然主要为人类设计——优先考虑美观性和可用性——这迫使智能体采用对高效任务执行而言不必要的人类导向行为。与此同时，面向编码的语言模型（Coder）的快速发展已经改变了自动GUI设计。这提出了一个基本问题：CUA能否作为评判者协助Coder进行自动GUI设计？为了探究，我们引入了AUI-Gym，这是一个用于自动GUI开发的基准，涵盖了52个跨越不同领域的应用程序。我们使用语言模型合成了1560个模拟真实世界场景的任务。为了确保任务的可靠性，我们进一步开发了一个验证器，以编程方式检查每个任务是否在其环境中可执行。在此基础上，我们提出了一个Coder-CUA协作框架：Coder充当设计者，生成和修改网站，而CUA则充当评判者，评估功能并完善设计。成功不是通过视觉外观来衡量，而是通过任务可解决性和CUA导航成功率来衡量。为了将CUA反馈转化为可用的指导，我们设计了一个CUA仪表板，它将多步导航历史压缩成简洁的视觉摘要，为迭代重新设计提供可解释的指导。通过将智能体定位为设计者和评判者，我们的框架将界面设计转向智能体原生的效率和可靠性。我们的工作朝着将智能体从被动使用转向积极参与数字环境迈出了一步。我们的代码和数据集可在https://github.com/showlab/AUI获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Computer-Use Agents (CUA) are becoming increasingly capable of autonomously operating digital environments through Graphical User Interfaces (GUI). Yet, most GUI remain designed primarily for humans—prioritizing aesthetics and usability—forcing agents to adopt human-oriented behaviors that are unnecessary for efficient task execution. At the same time, rapid advances in coding-oriented language models (Coder) have transformed automatic GUI design. This raises a fundamental question: Can CUA as judges to assist Coder for automatic GUI design? To investigate, we introduce AUI-Gym, a benchmark for Automatic GUI development spanning 52 applications across diverse domains. Using language models, we synthesize 1560 tasks that simulate real-world scenarios. To ensure task reliability, we further develop a verifier that programmatically checks whether each task is executable within its environment. Building on this, we propose a Coder-CUA in Collaboration framework: the Coder acts as Designer, generating and revising websites, while the CUA serves as Judge, evaluating functionality and refining designs. Success is measured not by visual appearance, but by task solvability and CUA navigation success rate. To turn CUA feedback into usable guidance, we design a CUA Dashboard that compresses multi-step navigation histories into concise visual summaries, offering interpretable guidance for iterative redesign. By positioning agents as both designers and judges, our framework shifts interface design toward agent-native efficiency and reliability. Our work takes a step toward shifting agents from passive use toward active participation in digital environments. Our code and dataset are available at https://github.com/showlab/AUI.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251119a74auigyma,
+  title = {Computer-Use Agents as Judges for Generative User Interface},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.15567.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a74-aui-gym-agent-native-gui/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Computer-Use Agents as Judges for Generative User Interface. https://arxiv.org/pdf/2511.15567.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.15567.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

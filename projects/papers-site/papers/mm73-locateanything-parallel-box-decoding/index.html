@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding | DAST Papers</title>
+    <meta name="description" content="许多 VLM grounding/detection 方法把 2D box 序列化成多个坐标 token，既破坏 box 几何耦合，也带来严格串行解码瓶颈。
+
+LocateAnything 提出 Parallel Box Decoding，把 bounding boxes 和 points 作为 atomic geometric units 一步解码，同时提升几何一致性和推理并行度。
+
+论文还构建" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm73-locateanything-parallel-box-decoding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding" />
+    <meta property="og:description" content="许多 VLM grounding/detection 方法把 2D box 序列化成多个坐标 token，既破坏 box 几何耦合，也带来严格串行解码瓶颈。
+
+LocateAnything 提出 Parallel Box Decoding，把 bounding boxes 和 points 作为 atomic geometric units 一步解码，同时提升几何一致性和推理并行度。
+
+论文还构建" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm73-locateanything-parallel-box-decoding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding" />
+    <meta name="twitter:description" content="许多 VLM grounding/detection 方法把 2D box 序列化成多个坐标 token，既破坏 box 几何耦合，也带来严格串行解码瓶颈。
+
+LocateAnything 提出 Parallel Box Decoding，把 bounding boxes 和 points 作为 atomic geometric units 一步解码，同时提升几何一致性和推理并行度。
+
+论文还构建" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.27365" target="_blank" rel="noopener noreferrer">2605.27365</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>许多 VLM grounding/detection 方法把 2D box 序列化成多个坐标 token，既破坏 box 几何耦合，也带来严格串行解码瓶颈。</dd></div><div><dt>方法/机制</dt><dd>LocateAnything 提出 Parallel Box Decoding，把 bounding boxes 和 points 作为 atomic geometric units 一步解码，同时提升几何一致性和推理并行度。</dd></div><div><dt>结果/证据</dt><dd>论文还构建 LocateAnything-Data，包含超过 1.38 亿训练样本，用于提高高精度定位的数据多样性。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为 precise grounding 是多模态提取、GUI/robot perception 和视觉 agent 的基础接口；PBD 是一个简单但可复用的解码原语。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>许多 VLM grounding/detection 方法把 2D box 序列化成多个坐标 token，既破坏 box 几何耦合，也带来严格串行解码瓶颈。</p><p>LocateAnything 提出 Parallel Box Decoding，把 bounding boxes 和 points 作为 atomic geometric units 一步解码，同时提升几何一致性和推理并行度。</p><p>论文还构建 LocateAnything-Data，包含超过 1.38 亿训练样本，用于提高高精度定位的数据多样性。</p><p>它值得收录，因为 precise grounding 是多模态提取、GUI/robot perception 和视觉 agent 的基础接口；PBD 是一个简单但可复用的解码原语。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉语言模型（VLM）通常将视觉定位和检测表述为坐标-令牌生成问题，将每个2D框序列化为多个1D令牌，这些令牌在很大程度上独立地学习和解码。这种逐令牌解码与框几何的耦合结构不匹配，并且由于严格的顺序生成，造成了实际的推理瓶颈。我们引入了LocateAnything，一个基于并行框解码（PBD）的统一生成式定位和检测框架。通过在单个步骤中将边界框和点等几何元素作为原子单元进行解码，LocateAnything保持了框内几何一致性并释放了巨大的并行性。我们表明PBD提高了解码吞吐量和定位精度。我们进一步开发了一个可扩展数据引擎，并整理了LocateAnything-Data，一个包含超过1.38亿训练样本的大规模数据集，大幅增加了高精度定位的数据多样性。广泛的评估表明，LocateAnything推进了速度-精度前沿，在提高各种基准测试中高IoU定位质量的同时，实现了显著更高的解码吞吐量。结果突出了并行框解码和大规模训练数据在实现高效精确的统一视觉定位和检测方面的互补优势。* 该工作在NVIDIA实习期间完成。† 通讯作者：zhidingy@nvidia.com。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-language models (VLMs) commonly formulate visual grounding and detection as a coordinatetoken generation problem, serializing each 2D box into multiple 1D tokens that are learned and decoded largely independently. This token-by-token decoding mismatches the coupled structure of box geometry and creates a practical inference bottleneck due to strictly sequential generation. We introduce LocateAnything, a unified generative grounding and detection framework based on Parallel Box Decoding (PBD). By decoding geometric elements such as bounding boxes and points as atomic units in a single step, LocateAnything preserves intra-box geometric coherence and unlocks substantial parallelism. We show that PBD improves both decoding throughput and localization accuracy. We further develop a scalable data engine and curate LocateAnything-Data, a large-scale dataset with more than 138 million training samples, substantially increasing data diversity for high-precision localization. Extensive evaluations show that LocateAnything advances the speed–accuracy frontier, achieving significantly higher decoding throughput while improving high-IoU localization quality across diverse benchmarks. The results highlight the complementary benefits of Parallel Box Decoding and large-scale training data in enabling efficient and precise unified visual grounding and detection. * Work done during an internship at NVIDIA. † Corresponding author: zhidingy@nvidia.com.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260526mm73locate,
+  title = {LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.27365.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm73-locateanything-parallel-box-decoding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding. https://arxiv.org/pdf/2605.27365.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.27365.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.27365" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OmniMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory | DAST Papers</title>
+    <meta name="description" content="长程、多模态、可持续更新的 agent memory 仍然是现实智能体最难补齐的短板之一。问题不只是设计一个 memory store，而是同时要在架构、检索、prompt、数据流水线和评测之间做联动优化。OmniMem 针对的正是这个高度耦合、靠人工很难系统搜索的 memory design space。
+
+论文核心贡献有两层。第一层是 OmniMem 本身，一个 unified multimo" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a115-omnimem-multimodal-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OmniMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory" />
+    <meta property="og:description" content="长程、多模态、可持续更新的 agent memory 仍然是现实智能体最难补齐的短板之一。问题不只是设计一个 memory store，而是同时要在架构、检索、prompt、数据流水线和评测之间做联动优化。OmniMem 针对的正是这个高度耦合、靠人工很难系统搜索的 memory design space。
+
+论文核心贡献有两层。第一层是 OmniMem 本身，一个 unified multimo" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a115-omnimem-multimodal-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OmniMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory" />
+    <meta name="twitter:description" content="长程、多模态、可持续更新的 agent memory 仍然是现实智能体最难补齐的短板之一。问题不只是设计一个 memory store，而是同时要在架构、检索、prompt、数据流水线和评测之间做联动优化。OmniMem 针对的正是这个高度耦合、靠人工很难系统搜索的 memory design space。
+
+论文核心贡献有两层。第一层是 OmniMem 本身，一个 unified multimo" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OmniMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01007" target="_blank" rel="noopener noreferrer">2604.01007</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长程、多模态、可持续更新的 agent memory 仍然是现实智能体最难补齐的短板之一。问题不只是设计一个 memory store，而是同时要在架构、检索、prompt、数据流水线和评测之间做联动优化。OmniMem 针对的正是这个高度耦合、靠人工很难系统搜索的 memory design space。</dd></div><div><dt>方法/机制</dt><dd>论文核心贡献有两层。第一层是 OmniMem 本身，一个 unified multimodal lifelong memory framework；第二层更重要，是作者部署了一条 autonomous research pipeline，让系统在无人工内环干预下自主运行约 50 个实验，诊断失败模式、提出结构修改、修复数据流水线 bug，并据此把 LoCoMo 与 Mem-Gallery 上的成绩从很弱的 baseline 推到新的 SOTA。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它同时触及了仓库的两条主线：agent memory 与 self-improving/autoresearch systems。它证明了 memory system 的关键进步并不只是超参，而可能来自 bug 修复、架构调整和 prompt 改写等异质改动，而这些可以被一个 autoresearch loop 真正发现和累积。</dd></div><div><dt>收录价值</dt><dd>它暂时不更高，是因为当前证据仍主要来自作者构建的自动研究闭环和指定 benchmark。虽然信号很强，但长期影响力还要看这条 autoresearch-guided memory design 路线是否被更多团队采纳，以及在更开放、更真实的 agent memory 任务中能否稳定复现。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长程、多模态、可持续更新的 agent memory 仍然是现实智能体最难补齐的短板之一。问题不只是设计一个 memory store，而是同时要在架构、检索、prompt、数据流水线和评测之间做联动优化。OmniMem 针对的正是这个高度耦合、靠人工很难系统搜索的 memory design space。</p><p>论文核心贡献有两层。第一层是 OmniMem 本身，一个 unified multimodal lifelong memory framework；第二层更重要，是作者部署了一条 autonomous research pipeline，让系统在无人工内环干预下自主运行约 50 个实验，诊断失败模式、提出结构修改、修复数据流水线 bug，并据此把 LoCoMo 与 Mem-Gallery 上的成绩从很弱的 baseline 推到新的 SOTA。</p><p>这篇工作值得收录，因为它同时触及了仓库的两条主线：agent memory 与 self-improving/autoresearch systems。它证明了 memory system 的关键进步并不只是超参，而可能来自 bug 修复、架构调整和 prompt 改写等异质改动，而这些可以被一个 autoresearch loop 真正发现和累积。</p><p>它暂时不更高，是因为当前证据仍主要来自作者构建的自动研究闭环和指定 benchmark。虽然信号很强，但长期影响力还要看这条 autoresearch-guided memory design 路线是否被更多团队采纳，以及在更开放、更真实的 agent memory 任务中能否稳定复现。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI智能体越来越多地在更长的时间跨度内运行，但它们保留、组织和回忆多模态经验的能力仍然是一个关键瓶颈。构建有效的终身记忆需要在一个巨大的设计空间中进行探索，该空间涵盖架构、检索策略、提示工程和数据管道；这个空间过于庞大和相互关联，无法通过手动探索或传统AutoML有效探索。我们部署了一个自主研究管道来发现O MNI M EM，这是一个用于终身AI智能体的统一多模态记忆框架。从一个朴素基线（LoCoMo上的F1 = 0.117）开始，该管道自主执行了跨两个基准的约50个实验，诊断故障模式、提出架构修改并修复数据管道错误，所有这些都在内循环中无需人工干预。由此产生的系统在两个基准上均达到了最先进水平，相对于初始配置，LoCoMo上的F1提高了+411% (0.117→0.598)，Mem-Gallery上的F1提高了+214% (0.254→0.797)。关键的是，最具影响力的发现并非超参数调整：错误修复 (+175%)、架构更改 (+44%) 和提示工程 (在特定类别上 +188%) 各自都超过了所有超参数调整的累积贡献，这表明其能力从根本上超越了传统AutoML的范围。我们提供了六种发现类型的分类法，并确定了使多模态记忆特别适合自主研究的四个特性，为将自主研究管道应用于其他AI系统领域提供指导。代码可在https://github.com/aiming-lab/OmniMem获取。图1：OMNIMEM的发现过程概述。(a) 发现的架构：多模态输入经过新颖性过滤，压缩成MAU，并通过金字塔扩展的混合密集-稀疏图搜索进行检索。(b) Mem-Gallery上的自主优化轨迹：39个实验将F1从0.254提高到0.793 (+214%)。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI agents increasingly operate over extended time horizons, yet their ability to retain, organize, and recall multimodal experiences remains a critical bottleneck. Building effective lifelong memory requires navigating a vast design space spanning architecture, retrieval strategies, prompt engineering, and data pipelines; this space is too large and interconnected for manual exploration or traditional AutoML to explore effectively. We deploy an autonomous research pipeline to discover O MNI M EM, a unified multimodal memory framework for lifelong AI agents. Starting from a naïve baseline (F1 = 0.117 on LoCoMo), the pipeline autonomously executes ∼50 experiments across two benchmarks, diagnosing failure modes, proposing architectural modifications, and repairing data pipeline bugs, all without human intervention in the inner loop. The resulting system achieves state-of-theart on both benchmarks, improving F1 by +411% on LoCoMo (0.117→0.598) and +214% on Mem-Gallery (0.254→0.797) relative to the initial configurations. Critically, the most impactful discoveries are not hyperparameter adjustments: bug fixes (+175%), architectural changes (+44%), and prompt engineering (+188% on specific categories) each individually exceed the cumulative contribution of all hyperparameter tuning, demonstrating capabilities fundamentally beyond the reach of traditional AutoML. We provide a taxonomy of six discovery types and identify four properties that make multimodal memory particularly suited for autoresearch, offering guidance for applying autonomous research pipelines to other AI system domains. Code is available at this https://github.com/aiming-lab/OmniMem. Figure 1: Overview of the Discovery Process of O MNI M EM. (a) Discovered architecture: multimodal inputs are filtered for novelty, compressed into MAUs, and retrieved via hybrid dense-sparse-graph search with pyramid expansion. (b) Autonomous optimization trajectory on Mem-Gallery: 39 experiments improve F1 from 0.254 to 0.793 (+214%).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a115omnime,
+  title = {OmniMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01007.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a115-omnimem-multimodal-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OmniMem: Autoresearch-Guided Discovery of Lifelong Multimodal Agent Memory. https://arxiv.org/pdf/2604.01007.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01007.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

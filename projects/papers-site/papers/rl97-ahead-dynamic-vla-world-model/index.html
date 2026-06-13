@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation | DAST Papers</title>
+    <meta name="description" content="VLA 模型在静态 manipulation 上泛化较好，但目标物体移动时，观察到动作执行之间的延迟会让当前帧决策失效。
+
+AHEAD 在 frozen VLA 外加 motion-aware latent world model，预测未来视觉 patch tokens，再做 predict-then-act，从而处理动态目标抓取。
+
+它值得收录，因为这是把 latent world model " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl97-ahead-dynamic-vla-world-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation" />
+    <meta property="og:description" content="VLA 模型在静态 manipulation 上泛化较好，但目标物体移动时，观察到动作执行之间的延迟会让当前帧决策失效。
+
+AHEAD 在 frozen VLA 外加 motion-aware latent world model，预测未来视觉 patch tokens，再做 predict-then-act，从而处理动态目标抓取。
+
+它值得收录，因为这是把 latent world model " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl97-ahead-dynamic-vla-world-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation" />
+    <meta name="twitter:description" content="VLA 模型在静态 manipulation 上泛化较好，但目标物体移动时，观察到动作执行之间的延迟会让当前帧决策失效。
+
+AHEAD 在 frozen VLA 外加 motion-aware latent world model，预测未来视觉 patch tokens，再做 predict-then-act，从而处理动态目标抓取。
+
+它值得收录，因为这是把 latent world model " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.02486" target="_blank" rel="noopener noreferrer">2606.02486</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>VLA 模型在静态 manipulation 上泛化较好，但目标物体移动时，观察到动作执行之间的延迟会让当前帧决策失效。</dd></div><div><dt>方法/机制</dt><dd>AHEAD 在 frozen VLA 外加 motion-aware latent world model，预测未来视觉 patch tokens，再做 predict-then-act，从而处理动态目标抓取。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这是把 latent world model 作为 VLA runtime wrapper 的清晰模式，直接面向真实机器人动态环境。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>VLA 模型在静态 manipulation 上泛化较好，但目标物体移动时，观察到动作执行之间的延迟会让当前帧决策失效。</p><p>AHEAD 在 frozen VLA 外加 motion-aware latent world model，预测未来视觉 patch tokens，再做 predict-then-act，从而处理动态目标抓取。</p><p>它值得收录，因为这是把 latent world model 作为 VLA runtime wrapper 的清晰模式，直接面向真实机器人动态环境。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作 (VLA) 模型在静态操作中具有泛化能力，但在任务执行过程中遇到物体移动时会失败。它们将当前观察结果映射到动作，并假设观察与执行之间场景是静止的，因此在任何非平凡的物体速度下，结果延迟超过了抓取的时间。我们通过 AHEAD (基于自适应动力学的预测-然后-行动包装器) 填补这一差距，该包装器增强了冻结的 VLA，并包含了一个具有感知运动的潜在世界模型。一个在操作视频上训练的小世界模型预测了 VLA 特征空间中的未来补丁令牌，这些预测基于每个令牌的光流速度和加速度。一种语言和运动显著性掩码将预测集中在与任务相关的补丁上，并且模型以自适应地前进的方式进行滚动，当预测不确定性超过阈值时停止。冻结的动作解码器接收预测的未来令牌，而不是当前的令牌。AHEAD 为冻结的 7B OpenVLA 添加了 4.9M 个参数，并在 20 个动态模拟场景中实现了 79% 到 97% 的成功率，而最强基线在 31% 到 58% 之间。在物理 UFactory xArm 7 上，AHEAD 在三个传送带和滚动球任务中成功率为 29/30 到 30/30，在拍球拦截任务中成功率为 23/30，在投球捕获任务中成功率为 19/30，而所有基线都为 0/30。关键词：视觉-语言-动作模型，世界模型，操作。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract: Vision-Language-Action (VLA) models generalize across static manipulation but fail when objects move during task execution. They map the current observation to an action and assume the scene is stationary between observation and execution, so at any non-trivial object speed the resulting latency exceeds the time available to grasp. We close this gap with AHEAD (Anticipatory Horizon Extrapolation with Adaptive Dynamics), a predict-then-act wrapper that augments a frozen VLA with a motion-aware latent world model. A small world model trained on manipulation video forecasts future patch tokens in the VLA’s feature space, conditioned on per-token velocity and acceleration from optical flow. A language-and-motion saliency mask concentrates prediction on task-relevant patches, and the model rolls forward for an adaptive horizon, halting when prediction uncertainty crosses a threshold. The frozen action decoder then receives the predicted future tokens in place of the current ones. AHEAD adds 4.9M parameters to a frozen 7B OpenVLA and reaches 79 to 97% success across 20 dynamic simulation scenarios where the strongest baseline reaches 31 to 58%. On a physical UFactory xArm 7, AHEAD succeeds on 29/30 to 30/30 on three conveyor and rolling-ball tasks, 23/30 on paddle interception, and 19/30 on projectile catching where every baseline scores 0/30. Keywords: Vision-Language-Action Models, World Models, Manipulation</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601rl97aheadd,
+  title = {Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.02486.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl97-ahead-dynamic-vla-world-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation. https://arxiv.org/pdf/2606.02486.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl85-qwen-vla-unified-embodied-model/">
+              <span>Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments</span>
+              <small>机器人与具身智能 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.02486.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

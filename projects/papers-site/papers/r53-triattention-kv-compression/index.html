@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TriAttention: Efficient Long Reasoning with Trigonometric KV Compression | DAST Papers</title>
+    <meta name="description" content="长链推理把 KV cache 推成了部署瓶颈，但现有压缩方法往往依赖 recent post-RoPE queries 去估计 key importance。问题在于 query 在 RoPE 之后会随位置旋转，代表性 query 变得很少，导致 top-key selection 不稳定，尤其在需要长 reasoning trace 的设置里容易明显掉质。
+
+TriAttention 的推进在于" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r53-triattention-kv-compression/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TriAttention: Efficient Long Reasoning with Trigonometric KV Compression" />
+    <meta property="og:description" content="长链推理把 KV cache 推成了部署瓶颈，但现有压缩方法往往依赖 recent post-RoPE queries 去估计 key importance。问题在于 query 在 RoPE 之后会随位置旋转，代表性 query 变得很少，导致 top-key selection 不稳定，尤其在需要长 reasoning trace 的设置里容易明显掉质。
+
+TriAttention 的推进在于" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r53-triattention-kv-compression/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TriAttention: Efficient Long Reasoning with Trigonometric KV Compression" />
+    <meta name="twitter:description" content="长链推理把 KV cache 推成了部署瓶颈，但现有压缩方法往往依赖 recent post-RoPE queries 去估计 key importance。问题在于 query 在 RoPE 之后会随位置旋转，代表性 query 变得很少，导致 top-key selection 不稳定，尤其在需要长 reasoning trace 的设置里容易明显掉质。
+
+TriAttention 的推进在于" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TriAttention: Efficient Long Reasoning with Trigonometric KV Compression</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.04921" target="_blank" rel="noopener noreferrer">2604.04921</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长链推理把 KV cache 推成了部署瓶颈，但现有压缩方法往往依赖 recent post-RoPE queries 去估计 key importance。问题在于 query 在 RoPE 之后会随位置旋转，代表性 query 变得很少，导致 top-key selection 不稳定，尤其在需要长 reasoning trace 的设置里容易明显掉质。</dd></div><div><dt>方法/机制</dt><dd>TriAttention 的推进在于直接回到 pre-RoPE 空间，利用作者观察到的 Q/K concentration 现象：Q 和 K 向量围绕稳定的非零中心聚集，并由这些中心通过三角级数决定 query 对不同距离 key 的偏好。基于这个结构，方法不再只靠近邻 attention score，而是用由中心刻画出的 distance preference 再结合 Q/K norm 去估计 key importance，从而做更稳的 KV compression。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是一个靠工程调参换吞吐的局部技巧，而是给长 reasoning 的 KV importance estimation 提供了更可解释、更可迁移的几何接口。对 long-context inference、reasoning deployment、KV cache management 和 memory-efficient serving，这种 pre-RoPE 视角有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前最强证据仍集中在特定长推理 benchmark 和 OpenClaw 部署场景。它已经是很强的方法论文，但是否会成为更广泛 KV compression 的默认思路，还需要更多模型家族与真实 serving 环境验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长链推理把 KV cache 推成了部署瓶颈，但现有压缩方法往往依赖 recent post-RoPE queries 去估计 key importance。问题在于 query 在 RoPE 之后会随位置旋转，代表性 query 变得很少，导致 top-key selection 不稳定，尤其在需要长 reasoning trace 的设置里容易明显掉质。</p><p>TriAttention 的推进在于直接回到 pre-RoPE 空间，利用作者观察到的 Q/K concentration 现象：Q 和 K 向量围绕稳定的非零中心聚集，并由这些中心通过三角级数决定 query 对不同距离 key 的偏好。基于这个结构，方法不再只靠近邻 attention score，而是用由中心刻画出的 distance preference 再结合 Q/K norm 去估计 key importance，从而做更稳的 KV compression。</p><p>它值得正式收录，因为这不是一个靠工程调参换吞吐的局部技巧，而是给长 reasoning 的 KV importance estimation 提供了更可解释、更可迁移的几何接口。对 long-context inference、reasoning deployment、KV cache management 和 memory-efficient serving，这种 pre-RoPE 视角有明显方法外溢。</p><p>它暂时不升到更高一级，原因在于当前最强证据仍集中在特定长推理 benchmark 和 OpenClaw 部署场景。它已经是很强的方法论文，但是否会成为更广泛 KV compression 的默认思路，还需要更多模型家族与真实 serving 环境验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）中的扩展推理会造成严重的KV缓存内存瓶颈。领先的KV缓存压缩方法利用最近的后RoPE查询的注意力分数来估计KV的重要性。然而，查询在RoPE期间会随位置旋转，导致代表性查询非常少，从而导致糟糕的topkey选择和不稳定的推理。为了避免这个问题，我们转向前RoPE空间，在那里我们观察到Q和K向量高度集中在固定的非零中心周围，并且在不同位置保持稳定——即Q/K集中。我们表明，这种集中导致查询优先关注特定距离（例如，最近的键）的键，其中中心通过三角级数确定哪些距离是首选。基于此，我们提出了TriAttention，通过利用这些中心来估计键的重要性。通过三角级数，我们使用这些中心所表征的距离偏好根据其位置对键进行评分，并利用Q/K范数作为重要性估计的额外信号。在AIME25上进行32Ktoken生成时，TriAttention在推理准确性上与Full Attention匹配，同时实现了2.5倍的吞吐量提升或10.7倍的KV内存减少，而领先的基线在相同效率下仅达到约一半的准确性。TriAttention使得OpenClaw能够在单个消费级GPU上部署，否则在Full Attention下长上下文会导致内存不足。我们的代码可在https://github.com/WeianMao/triattention获取。图1. AIME25（Qwen3-8B）上的性能权衡。(A) 在相同准确性（40.8%）下，TriAttention实现了比Full Attention高2.5倍的吞吐量。(B) TriAttention将KV缓存内存减少了10.7倍，同时匹配了Full Attention的准确性。2025）。KV缓存按比例增长，造成严重的内存瓶颈。KV缓存压缩通过仅保留最重要的token来解决这个问题，其重要性是根据最近查询计算的注意力分数来估计的（Li et al., 2024b; Zhang et al., 2023; Devoto et al., 2025; Zhou et al., 2024; Tang et al., 2024; Shi et al., 2024）。然而，这些方法本质上是不稳定的：只有少数查询可用于重要性估计。它们在后RoPE查询上操作，这些查询会随位置旋转，如图2(B)所示；因此，只有最近的查询才保留最新的方向，形成一个微小的观察窗口。由于代表性查询如此之少，重要的键可能未被检测到——一个在此短窗口期间注意力较低的token可能会被永久逐出，即使它后来变得至关重要。这对于检索头（Wu et al., 2025; Xiao et al., 2025）尤其具有挑战性，其中相关token在变得必不可少之前可能会长时间处于休眠状态。在推理中，这种损失会打破思维链。先前的研究证实了这一限制：增加观察窗口无济于事——性能在大约25个查询时达到峰值，这仅占典型长上下文的一小部分，此后便会下降（Zhang et al., 2025）。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Extended reasoning in large language models (LLMs) creates severe KV cache memory bottlenecks. Leading KV cache compression methods estimate KV importance using attention scores from recent post-RoPE queries. However, queries rotate with position during RoPE, making representative queries very few, leading to poor topkey selection and unstable reasoning. To avoid this issue, we turn to the pre-RoPE space, where we observe that Q and K vectors are highly concentrated around fixed non-zero centers and remain stable across positions—Q/K concentration. We show that this concentration causes queries to preferentially attend to keys at specific distances (e.g., nearest keys), with the centers determining which distances are preferred via a trigonometric series. Based on this, we propose TriAttention to estimate key importance by leveraging these centers. Via the trigonometric series, we use the distance preference characterized by these centers to score keys according to their positions, and also leverage Q/K norms as an additional signal for importance estimation. On AIME25 with 32Ktoken generation, TriAttention matches Full Attention reasoning accuracy while achieving 2.5× higher throughput or 10.7× KV memory reduction, whereas leading baselines achieve only about half the accuracy at the same efficiency. TriAttention enables OpenClaw deployment on a single consumer GPU, where long context would otherwise cause out-of-memory with Full Attention. Our code is available at https://github. com/WeianMao/triattention. Figure 1. Performance trade-offs on AIME25 (Qwen3-8B). (A) At equivalent accuracy (40.8%), TriAttention achieves 2.5× higher throughput than Full Attention. (B) TriAttention reduces KV cache memory by 10.7× while matching Full Attention accuracy. 2025). KV cache grows proportionally, creating severe memory bottlenecks. KV cache compression addresses this by retaining only the most important tokens, with importance estimated from attention scores computed over recent queries (Li et al., 2024b; Zhang et al., 2023; Devoto et al., 2025; Zhou et al., 2024; Tang et al., 2024; Shi et al., 2024). However, these methods are inherently unstable: only a few queries are usable for importance estimation. They operate on post-RoPE queries, which rotate with position as illustrated in Figure 2(B); consequently, only the most recent queries retain up-to-date orientations, forming a tiny observation window. With so few representative queries, important keys go undetected—a token receiving low attention during this short window may be permanently evicted, even if it becomes critical later. This is particularly challenging for retrieval heads (Wu et al., 2025; Xiao et al., 2025), where relevant tokens can remain dormant for long periods before becoming essential. In reasoning, such loss breaks the chain of thought. Prior work confirms this limitation: increasing the observation window does not help—performance peaks at around 25 queries, a tiny fraction of typical long contexts, and declines thereafter (Zhang et al., 2025).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406r53triatte,
+  title = {TriAttention: Efficient Long Reasoning with Trigonometric KV Compression},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.04921.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r53-triattention-kv-compression/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TriAttention: Efficient Long Reasoning with Trigonometric KV Compression. https://arxiv.org/pdf/2604.04921.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.04921.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

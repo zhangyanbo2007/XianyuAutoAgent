@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators | DAST Papers</title>
+    <meta name="description" content="随着 large-model inference 越来越向 tile-based、chip-scale 和 wafer-scale accelerator 迁移，attention 的瓶颈不再只是 kernel 算子本身，而是 tile fabric、HBM 访问和数据流组织方式的整体协同。单纯移植 GPU 上的 FlashAttention 思路，往往无法把新型 fabric 的潜力真正吃满。
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw25-flatattention-tile-accelerators/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators" />
+    <meta property="og:description" content="随着 large-model inference 越来越向 tile-based、chip-scale 和 wafer-scale accelerator 迁移，attention 的瓶颈不再只是 kernel 算子本身，而是 tile fabric、HBM 访问和数据流组织方式的整体协同。单纯移植 GPU 上的 FlashAttention 思路，往往无法把新型 fabric 的潜力真正吃满。
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw25-flatattention-tile-accelerators/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators" />
+    <meta name="twitter:description" content="随着 large-model inference 越来越向 tile-based、chip-scale 和 wafer-scale accelerator 迁移，attention 的瓶颈不再只是 kernel 算子本身，而是 tile fabric、HBM 访问和数据流组织方式的整体协同。单纯移植 GPU 上的 FlashAttention 思路，往往无法把新型 fabric 的潜力真正吃满。
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-04-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.02110" target="_blank" rel="noopener noreferrer">2604.02110</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 large-model inference 越来越向 tile-based、chip-scale 和 wafer-scale accelerator 迁移，attention 的瓶颈不再只是 kernel 算子本身，而是 tile fabric、HBM 访问和数据流组织方式的整体协同。单纯移植 GPU 上的 FlashAttention 思路，往往无法把新型 fabric 的潜力真正吃满。</dd></div><div><dt>方法/机制</dt><dd>FlatAttention 的关键新意，是把 dataflow 与 on-chip fabric collectives 一起联合优化。它针对现代 attention variants 设计新的 tile-based dataflow，显式利用网络 fabric 内置 collective primitives 去压低 HBM 访问，并在 tile-scale 系统上实现高利用率、较大端到端吞吐提升和更低 token latency。真正重要的不是某一个 kernel 数字，而是 attention inference 在这类架构上的组织方式被重写了。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作符合本仓库对 AI hardware 的严格标准：不是窄设备结果，而是能够改变 AI inference system design 的 reusable co-design pattern。对未来 tile/wafer-scale AI compute 来说，attention 不只是算子实现问题，而是 fabric-aware dataflow problem，这一点被这篇论文讲得很清楚。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要集中在 tile-based accelerator family 和作者设定的系统条件下，普适性还需更多平台验证。现阶段它是一个强而清楚的 AI-hardware design pattern，但尚未成为跨架构默认答案。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 large-model inference 越来越向 tile-based、chip-scale 和 wafer-scale accelerator 迁移，attention 的瓶颈不再只是 kernel 算子本身，而是 tile fabric、HBM 访问和数据流组织方式的整体协同。单纯移植 GPU 上的 FlashAttention 思路，往往无法把新型 fabric 的潜力真正吃满。</p><p>FlatAttention 的关键新意，是把 dataflow 与 on-chip fabric collectives 一起联合优化。它针对现代 attention variants 设计新的 tile-based dataflow，显式利用网络 fabric 内置 collective primitives 去压低 HBM 访问，并在 tile-scale 系统上实现高利用率、较大端到端吞吐提升和更低 token latency。真正重要的不是某一个 kernel 数字，而是 attention inference 在这类架构上的组织方式被重写了。</p><p>它值得正式收录，因为这类工作符合本仓库对 AI hardware 的严格标准：不是窄设备结果，而是能够改变 AI inference system design 的 reusable co-design pattern。对未来 tile/wafer-scale AI compute 来说，attention 不只是算子实现问题，而是 fabric-aware dataflow problem，这一点被这篇论文讲得很清楚。</p><p>它没有升到更高一级，是因为当前证据仍主要集中在 tile-based accelerator family 和作者设定的系统条件下，普适性还需更多平台验证。现阶段它是一个强而清楚的 AI-hardware design pattern，但尚未成为跨架构默认答案。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260402hw25flatat,
+  title = {FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.02110v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw25-flatattention-tile-accelerators/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FlatAttention: Dataflow and Fabric Collectives Co-Optimization for Large Attention-Based Model Inference on Tile-Based Accelerators. https://arxiv.org/pdf/2604.02110v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.02110v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

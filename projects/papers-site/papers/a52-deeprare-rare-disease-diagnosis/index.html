@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>An agentic system for rare disease diagnosis with traceable reasoning | DAST Papers</title>
+    <meta name="description" content="这篇论文针对罕见病诊断长期存在的“诊断漂流”问题，目标不是做一个普通的单模型问答器，而是建立一个能够处理异构临床输入、调用外部工具并输出可追溯证据链的诊断支持系统。对于本仓库，它首先属于 agent systems 与 AI x biomedicine 的交叉条目，重点不在医学分数本身，而在可复用的 agentic workflow。
+
+论文提出的 DeepRare 把大语言模型、多代理协作、四十" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a52-deeprare-rare-disease-diagnosis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="An agentic system for rare disease diagnosis with traceable reasoning" />
+    <meta property="og:description" content="这篇论文针对罕见病诊断长期存在的“诊断漂流”问题，目标不是做一个普通的单模型问答器，而是建立一个能够处理异构临床输入、调用外部工具并输出可追溯证据链的诊断支持系统。对于本仓库，它首先属于 agent systems 与 AI x biomedicine 的交叉条目，重点不在医学分数本身，而在可复用的 agentic workflow。
+
+论文提出的 DeepRare 把大语言模型、多代理协作、四十" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a52-deeprare-rare-disease-diagnosis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="An agentic system for rare disease diagnosis with traceable reasoning" />
+    <meta name="twitter:description" content="这篇论文针对罕见病诊断长期存在的“诊断漂流”问题，目标不是做一个普通的单模型问答器，而是建立一个能够处理异构临床输入、调用外部工具并输出可追溯证据链的诊断支持系统。对于本仓库，它首先属于 agent systems 与 AI x biomedicine 的交叉条目，重点不在医学分数本身，而在可复用的 agentic workflow。
+
+论文提出的 DeepRare 把大语言模型、多代理协作、四十" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>An agentic system for rare disease diagnosis with traceable reasoning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-18</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-025-10097-9" target="_blank" rel="noopener noreferrer">10.1038/s41586-025-10097-9</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对罕见病诊断长期存在的“诊断漂流”问题，目标不是做一个普通的单模型问答器，而是建立一个能够处理异构临床输入、调用外部工具并输出可追溯证据链的诊断支持系统。对于本仓库，它首先属于 agent systems 与 AI x biomedicine 的交叉条目，重点不在医学分数本身，而在可复用的 agentic workflow。</dd></div><div><dt>方法/机制</dt><dd>论文提出的 DeepRare 把大语言模型、多代理协作、四十多个专业工具和最新知识源整合到同一决策流程中，输入可以同时包含自由文本病历、人类表型本体术语和遗传检测结果，输出则是带证据支撑的排序诊断假设。真正的新意在于把“诊断支持”做成可审计、可追踪、可组合的 agent system，而不是黑盒式生成结论。</dd></div><div><dt>结果/证据</dt><dd>它的重要性在于把医学诊断问题转化为一个高价值的工具编排与证据链接问题，这对 agent 研究、专业场景中的工具使用、以及高风险领域中的 traceable reasoning 都有明显外溢。对仓库来说，这类工作比一般医疗分类器更值得保留，因为它提供了一个清晰的部署级系统模式。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为贡献仍然明显受限于 rare disease differential diagnosis 场景，泛化到更广 agent 研究或更通用科学工作流还需要更多验证；同时它更偏强系统集成与应用落地，而不是重新定义 agent 理论本身。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对罕见病诊断长期存在的“诊断漂流”问题，目标不是做一个普通的单模型问答器，而是建立一个能够处理异构临床输入、调用外部工具并输出可追溯证据链的诊断支持系统。对于本仓库，它首先属于 agent systems 与 AI x biomedicine 的交叉条目，重点不在医学分数本身，而在可复用的 agentic workflow。</p><p>论文提出的 DeepRare 把大语言模型、多代理协作、四十多个专业工具和最新知识源整合到同一决策流程中，输入可以同时包含自由文本病历、人类表型本体术语和遗传检测结果，输出则是带证据支撑的排序诊断假设。真正的新意在于把“诊断支持”做成可审计、可追踪、可组合的 agent system，而不是黑盒式生成结论。</p><p>它的重要性在于把医学诊断问题转化为一个高价值的工具编排与证据链接问题，这对 agent 研究、专业场景中的工具使用、以及高风险领域中的 traceable reasoning 都有明显外溢。对仓库来说，这类工作比一般医疗分类器更值得保留，因为它提供了一个清晰的部署级系统模式。</p><p>它没有升到更高等级，是因为贡献仍然明显受限于 rare disease differential diagnosis 场景，泛化到更广 agent 研究或更通用科学工作流还需要更多验证；同时它更偏强系统集成与应用落地，而不是重新定义 agent 理论本身。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>罕见病影响全球超过3亿人，然而及时准确的诊断仍然是一个紧迫的挑战。患者常常经历长达5年以上的漫长“诊断漫游”，其特点是反复转诊、误诊和不必要的干预，导致治疗延误以及巨大的情感和经济负担。在此，我们介绍DeepRare——一个由大型语言模型驱动的、用于罕见病鉴别诊断决策支持的多智能体系统，它集成了40多种专业工具和最新知识来源。DeepRare处理异构临床输入，包括自由文本描述、结构化人类表型本体术语和基因检测结果，以生成具有透明推理并与可验证医学证据相关联的排名诊断假设。DeepRare在来自亚洲、北美和欧洲的文献、病例报告和临床中心的九个数据集上进行了评估，涵盖14个医学专科，对2,919种疾病表现出卓越的性能。在基于人类表型本体的任务中，它实现了57.18%的平均Recall@1，比次优方法高出23.79%；在多模态测试中，它在168个病例上达到69.1%，而Exomiser为55.9%。专家评审对其推理链的有效性和可追溯性达成了95.4%的一致性。我们的工作不仅推动了罕见病诊断的进展，还展示了最新强大的大型语言模型驱动的智能体系统如何重塑当前的临床工作流程。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Rare diseases affect more than 300 million people worldwide , yet timely and accurate diagnosis remains an urgent challenge . Patients often endure a prolonged ‘diagnostic odyssey’ exceeding 5 years, marked by repeated referrals, misdiagnoses and unnecessary interventions, leading to delayed treatment and substantial emotional and economic burden . Here we present DeepRare—a multi-agent system for rare disease differential diagnosis decision support powered by large language models, integrating more than 40 specialized tools and up-to-date knowledge sources. DeepRare processes heterogeneous clinical inputs, including free-text descriptions, structured human phenotype ontology terms and genetic testing results to generate ranked diagnostic hypotheses with transparent reasoning linked to verifiable medical evidence. Evaluated across nine datasets from literature, case reports and clinical centres across Asia, North America and Europe spanning 14 medical specialties, DeepRare demonstrates exceptional performance on 2,919 diseases. In human-phenotype-ontology-based tasks, it achieves an average Recall@1 of 57.18%, outperforming the next best method by 23.79%; in multi-modal tests, it reaches 69.1% compared with Exomiser’s 55.9% on 168 cases. Expert review achieved 95.4% agreement on its reasoning chains, confirming their validity and traceability. Our work not only advances rare disease diagnosis but also demonstrates how the latest powerful large-language-model-driven agentic systems can reshape current clinical workflows.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260218a52deeprar,
+  title = {An agentic system for rare disease diagnosis with traceable reasoning},
+  year = {2026},
+  url = {https://doi.org/10.1038/s41586-025-10097-9},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a52-deeprare-rare-disease-diagnosis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). An agentic system for rare disease diagnosis with traceable reasoning. https://doi.org/10.1038/s41586-025-10097-9</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41586-025-10097-9" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

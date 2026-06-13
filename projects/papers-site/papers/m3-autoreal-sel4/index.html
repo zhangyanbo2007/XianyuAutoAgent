@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4 | DAST Papers</title>
+    <meta name="description" content="- 分级：`颠覆性`
+- 正式标题：`Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4`
+- 原文：`2026-02-09-M3_AutoReal_seL4-Towards_Real_World_Industrial_Scale_Verification_LLM_Driven_T" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/m3-autoreal-sel4/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4" />
+    <meta property="og:description" content="- 分级：`颠覆性`
+- 正式标题：`Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4`
+- 原文：`2026-02-09-M3_AutoReal_seL4-Towards_Real_World_Industrial_Scale_Verification_LLM_Driven_T" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/m3-autoreal-sel4/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4" />
+    <meta name="twitter:description" content="- 分级：`颠覆性`
+- 正式标题：`Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4`
+- 原文：`2026-02-09-M3_AutoReal_seL4-Towards_Real_World_Industrial_Scale_Verification_LLM_Driven_T" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4</h1>
+          <p class="subtitle">数学与形式推理 · 发表：2026-02-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">数学与形式推理</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.08384" target="_blank" rel="noopener noreferrer">2602.08384</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>- 分级：`颠覆性`</dd></div><div><dt>方法/机制</dt><dd>- 正式标题：`Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4`</dd></div><div><dt>结果/证据</dt><dd>- 原文：`2026-02-09-M3_AutoReal_seL4-Towards_Real_World_Industrial_Scale_Verification_LLM_Driven_Theorem_Proving_on_s.pdf`</dd></div><div><dt>收录价值</dt><dd>- 抽取：`extracted.md`</dd></div><div><dt>要点 5</dt><dd>## 重写摘要</dd></div><div><dt>要点 6</dt><dd>这篇论文最重要的一点，是把 LLM 驱动的证明从学术玩具 benchmark 推进到真实工业级形式化验证项目 seL4。作者提出 AutoReal，并基于该方法微调得到一个可本地部署的 7B 级证明器。系统结合了两类关键增强：一是 CoT 风格的证明训练，使模型不仅给 proof script，也学习步骤间的推理逻辑；二是上下文增强，把项目内部的证明背景显式注入模型。</dd></div><div><dt>要点 7</dt><dd>论文在 seL4 重要理论集的 660 个定理上报告了 51.67% 的成功率。这个结果的意义不是“数字本身有多高”，而是它证明了本地、小模型、面向真实工程系统的证明器已经开始可用，而不再依赖超大闭源模型。</dd></div><div><dt>要点 8</dt><dd>## 为什么重要</dd></div><div><dt>要点 9</dt><dd>形式化验证能不能在工业里落地，关键不在 miniF2F，而在 seL4、协议、内核、编译器这类真实工程对象。AutoReal 属于把“数学能力”翻译成“工程工具”的关键过桥工作。</dd></div><div><dt>要点 10</dt><dd>## 局限</dd></div><div><dt>要点 11</dt><dd>需要继续确认它到底是推理能力提升，还是更强的上下文拼接和库风格拟合。真正的外部验证，必须看它在非 seL4 项目上的迁移表现。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>- 分级：`颠覆性`</p><p>- 正式标题：`Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4`</p><p>- 原文：`2026-02-09-M3_AutoReal_seL4-Towards_Real_World_Industrial_Scale_Verification_LLM_Driven_Theorem_Proving_on_s.pdf`</p><p>- 抽取：`extracted.md`</p><p>## 重写摘要</p><p>这篇论文最重要的一点，是把 LLM 驱动的证明从学术玩具 benchmark 推进到真实工业级形式化验证项目 seL4。作者提出 AutoReal，并基于该方法微调得到一个可本地部署的 7B 级证明器。系统结合了两类关键增强：一是 CoT 风格的证明训练，使模型不仅给 proof script，也学习步骤间的推理逻辑；二是上下文增强，把项目内部的证明背景显式注入模型。</p><p>论文在 seL4 重要理论集的 660 个定理上报告了 51.67% 的成功率。这个结果的意义不是“数字本身有多高”，而是它证明了本地、小模型、面向真实工程系统的证明器已经开始可用，而不再依赖超大闭源模型。</p><p>## 为什么重要</p><p>形式化验证能不能在工业里落地，关键不在 miniF2F，而在 seL4、协议、内核、编译器这类真实工程对象。AutoReal 属于把“数学能力”翻译成“工程工具”的关键过桥工作。</p><p>## 局限</p><p>需要继续确认它到底是推理能力提升，还是更强的上下文拼接和库风格拟合。真正的外部验证，必须看它在非 seL4 项目上的迁移表现。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。形式化方法（FM）可靠但应用成本高昂，在seL4等工业级项目中，尤其是在定理证明方面，通常需要数年专家级的努力。大型语言模型（LLMs）的最新进展使得自动化定理证明变得越来越可行。然而，大多数现有工作侧重于miniF2F等面向数学的基准测试，对真实世界验证项目的评估有限。少数考虑工业级验证的研究大多依赖于拥有数千亿参数的闭源模型，这些模型无法在本地部署并产生高昂的使用成本。在本文中，我们提出了AutoReal，一种用于真实世界工业级系统的LLM驱动定理证明方法，支持轻量级本地部署。我们以seL4-Isabelle验证项目作为代表性和挑战性的案例研究，对AutoReal进行了评估。AutoReal包含两项关键改进：(1) 基于思维链（CoT）的证明训练，它教会LLM证明步骤背后的推理，并支持在证明的同时提供分步解释；(2) 上下文增强，它利用项目中的证明上下文来增强LLM驱动的证明。基于AutoReal方法，我们微调了一个基础模型，获得了AutoReal-Prover，一个用于工业级定理证明的紧凑型7B规模证明器。AutoReal-Prover在来自seL4指定重要理论的660个定理上，在所有10个seL4证明类别中，实现了51.67%的证明成功率，显著优于之前在seL4上的尝试（27.06%）。为了评估泛化能力，我们将AutoReal-Prover进一步应用于形式化证明档案库（AFP）中的三个安全相关项目：CRYSTALS-Kyber_Security、RSAPSS和Elliptic_Curves_Group_Law，涵盖所有451个定理，并取得了53.88%的证明成功率。总的来说，这项工作推动了LLM驱动的定理证明在真实世界工业级验证中的应用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Formal methods (FM) are reliable but costly to apply, often requiring years of expert effort in industrial-scale projects such as seL4, especially for theorem proving. Recent advances in large language models (LLMs) have made automated theorem proving increasingly feasible. How- ever, most prior work focuses on mathematics-oriented benchmarks such as miniF2F, with limited evaluation on real-world verification projects. The few studies that consider industrial-scale verification mostly rely on closed-source models with hundreds of billions of parameters, which cannot be locally deployed and incur substantial usage costs. In this paper, we propose AutoReal, an LLM-driven theorem proving method for real-world industrial-scale systems with support for lightweight local de- ployment. We evaluate AutoReal on the seL4-Isabelle verification project as a representative and challenging case study. AutoReal incorporates two key improvements: (1) chain-of-thought (CoT)-based proof training, which teaches the LLM the reasoning behind proof steps and enables step-wise explanations alongside proofs, and (2) context augmentation, which leverages proof context from the project to enhance LLM-driven proving. Based on the AutoReal methodology, we fine-tune a base model to obtain AutoReal-Prover, a compact 7B-scale prover for industrial-scale theorem proving. AutoReal-Prover achieves a 51.67% proof success rate on 660 theorems from seL4-designated Important Theories across all 10 seL4 proof categories, substantially outperforming prior attempts on seL4 (27.06%). To evaluate generalization, we further apply AutoReal-Prover to three security-related projects from the Archive of Formal Proofs (AFP): CRYSTALS-Kyber_Security, RSAPSS, and Elliptic_Curves_Group_Law, covering all 451 theorems and achieving a proof success rate of 53.88%. Overall, this work advances the application of LLM-driven theorem prov- ing in real-world industrial-scale verification.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260209m3autoreal,
+  title = {Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.08384.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/m3-autoreal-sel4/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Towards Real-World Industrial-Scale Verification: LLM-Driven Theorem Proving on seL4. https://arxiv.org/pdf/2602.08384.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/m54-legone-nash-algorithms/">
+              <span>Discovering expert-level Nash equilibrium algorithms with large language models</span>
+              <small>数学与形式推理 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/m53-researchmath-14k-agents/">
+              <span>ResearchMath-14K: Scaling Research-Level Mathematics via Agents</span>
+              <small>数学与形式推理 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/m52-ai-formal-proof-search/">
+              <span>Advancing Mathematics Research with AI-Driven Formal Proof Search</span>
+              <small>数学与形式推理 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/m51-soohak-math-benchmark/">
+              <span>Soohak: A Mathematician-Curated Benchmark for Evaluating Research-level Math Capabilities of LLMs</span>
+              <small>数学与形式推理 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/m50-ai-comathematician/">
+              <span>AI Co-Mathematician: Accelerating Mathematicians with Agentic AI</span>
+              <small>数学与形式推理 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/p31-dreamprover-transferable-lemmas/">
+              <span>DreamProver: Evolving Transferable Lemma Libraries via a Wake-Sleep Theorem-Proving Agent</span>
+              <small>数学与形式推理 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.08384.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

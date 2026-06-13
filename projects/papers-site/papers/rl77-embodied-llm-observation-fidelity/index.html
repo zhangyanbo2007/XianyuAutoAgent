@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Probing Embodied LLMs: When Higher Observation Fidelity Hurts Problem Solving | DAST Papers</title>
+    <meta name="description" content="这篇论文提出一个反直觉但重要的 embodied LLM 评估发现：更高保真观察不一定带来更强问题求解。
+
+作者在物理 Lockbox 机械谜题和受控仿真中比较 RGB、RGB-D 和 ground-truth symbolic observations，发现原始 RGB 最好、完美符号观察最差；适度噪声反而能减少重复动作循环。
+
+它值得正式收录，因为它提醒机器人/具身 agent 评估不能只看成" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl77-embodied-llm-observation-fidelity/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Probing Embodied LLMs: When Higher Observation Fidelity Hurts Problem Solving" />
+    <meta property="og:description" content="这篇论文提出一个反直觉但重要的 embodied LLM 评估发现：更高保真观察不一定带来更强问题求解。
+
+作者在物理 Lockbox 机械谜题和受控仿真中比较 RGB、RGB-D 和 ground-truth symbolic observations，发现原始 RGB 最好、完美符号观察最差；适度噪声反而能减少重复动作循环。
+
+它值得正式收录，因为它提醒机器人/具身 agent 评估不能只看成" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl77-embodied-llm-observation-fidelity/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Probing Embodied LLMs: When Higher Observation Fidelity Hurts Problem Solving" />
+    <meta name="twitter:description" content="这篇论文提出一个反直觉但重要的 embodied LLM 评估发现：更高保真观察不一定带来更强问题求解。
+
+作者在物理 Lockbox 机械谜题和受控仿真中比较 RGB、RGB-D 和 ground-truth symbolic observations，发现原始 RGB 最好、完美符号观察最差；适度噪声反而能减少重复动作循环。
+
+它值得正式收录，因为它提醒机器人/具身 agent 评估不能只看成" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Probing Embodied LLMs: When Higher Observation Fidelity Hurts Problem Solving</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.20072" target="_blank" rel="noopener noreferrer">2605.20072</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文提出一个反直觉但重要的 embodied LLM 评估发现：更高保真观察不一定带来更强问题求解。</dd></div><div><dt>方法/机制</dt><dd>作者在物理 Lockbox 机械谜题和受控仿真中比较 RGB、RGB-D 和 ground-truth symbolic observations，发现原始 RGB 最好、完美符号观察最差；适度噪声反而能减少重复动作循环。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它提醒机器人/具身 agent 评估不能只看成功率，也不能默认 perception fidelity 越高越好；表现可能来自感知误差与推理缺陷的交互。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为任务仍是特定机械谜题，结论需要在更复杂机器人控制和 VLA 系统中复现。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文提出一个反直觉但重要的 embodied LLM 评估发现：更高保真观察不一定带来更强问题求解。</p><p>作者在物理 Lockbox 机械谜题和受控仿真中比较 RGB、RGB-D 和 ground-truth symbolic observations，发现原始 RGB 最好、完美符号观察最差；适度噪声反而能减少重复动作循环。</p><p>它值得正式收录，因为它提醒机器人/具身 agent 评估不能只看成功率，也不能默认 perception fidelity 越高越好；表现可能来自感知误差与推理缺陷的交互。</p><p>它没有更高，是因为任务仍是特定机械谜题，结论需要在更复杂机器人控制和 VLA 系统中复现。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。大型语言模型 (LLMs) 正越来越多地被提议作为机器人系统的认知组件，然而其不透明的决策过程使得解释闭环具身任务中的成功或失败变得困难。遵循经验性AI方法，我们通过改变智能体可用的信息并测量由此产生的行为变化，对具身LLM智能体进行行为研究。我们使用Lockbox——一个具有隐藏相互依赖关系的顺序机械谜题——在物理机器人设置中评估LLMs在RGB、RGB-D和真实符号观测下的表现，并使用受控模拟来探究由此产生的行为。反直觉的是，智能体在原始RGB输入下表现最佳，而在完美的真实观测下表现最差。在模拟中，我们通过随机翻转感知到的行动结果来探究这种效应，发现适度噪声可以提高性能，在40%的翻转概率下达到峰值，成功率比无噪声基线提高了2.85倍。进一步分析将这种提升与重复行动循环的减少联系起来。这些发现表明，仅凭成功率不足以评估LLMs，因为测量的性能可能反映了感知错误和推理失败之间的相互作用，而非鲁棒的问题解决。关键词：问题解决 · 具身LLMs · 观测噪声</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Large Language Models are increasingly proposed as cognitive components for robotic systems, yet their opaque decision processes make it difficult to explain success or failure in closed-loop embodied tasks. Following an empirical AI methodology, we study embodied LLM agents behaviorally by varying the information available to the agent and measuring the resulting changes in behavior. Using the Lockbox, a sequential mechanical puzzle with hidden interdependencies, we evaluate LLMs across RGB, RGB-D, and ground-truth symbolic observations in a physical robotic setup and use controlled simulation to probe the resulting behavior. Counterintuitively, agents perform best under raw RGB input and worst under perfect ground-truth observations. In simulation, we probe this effect by randomly flipping perceived action outcomes and find that moderate noise improves performance, peaking at a 40% flip probability with a 2.85-fold success rate increase over the noise-free baseline. Further analysis links this gain to a reduction in repetitive action loops. These findings suggest that success rates alone are insufficient for evaluating LLMs, as measured performance may reflect the interaction between perceptual errors and reasoning failures rather than robust problem solving. Keywords: Problem Solving · Embodied LLMs · Observational Noise</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520rl77embodi,
+  title = {Probing Embodied LLMs: When Higher Observation Fidelity Hurts Problem Solving},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.20072.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl77-embodied-llm-observation-fidelity/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Probing Embodied LLMs: When Higher Observation Fidelity Hurts Problem Solving. https://arxiv.org/pdf/2605.20072.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.20072.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

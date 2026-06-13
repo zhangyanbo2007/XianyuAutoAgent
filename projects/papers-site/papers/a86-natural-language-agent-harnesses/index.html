@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Natural-Language Agent Harnesses | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了一个经常被低估但越来越关键的问题：agent 表现高度依赖 harness engineering，但 harness 往往埋在控制器代码、运行时约定和框架细节里，难以迁移、比较和系统研究。结果是很多 agent 进步其实发生在 harness 层，却没有形成稳定的可复用对象。
+
+作者提出 Natural-Language Agent Harnesses，把高层控制逻辑外化成可编辑的" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a86-natural-language-agent-harnesses/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Natural-Language Agent Harnesses" />
+    <meta property="og:description" content="这篇论文抓住了一个经常被低估但越来越关键的问题：agent 表现高度依赖 harness engineering，但 harness 往往埋在控制器代码、运行时约定和框架细节里，难以迁移、比较和系统研究。结果是很多 agent 进步其实发生在 harness 层，却没有形成稳定的可复用对象。
+
+作者提出 Natural-Language Agent Harnesses，把高层控制逻辑外化成可编辑的" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a86-natural-language-agent-harnesses/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Natural-Language Agent Harnesses" />
+    <meta name="twitter:description" content="这篇论文抓住了一个经常被低估但越来越关键的问题：agent 表现高度依赖 harness engineering，但 harness 往往埋在控制器代码、运行时约定和框架细节里，难以迁移、比较和系统研究。结果是很多 agent 进步其实发生在 harness 层，却没有形成稳定的可复用对象。
+
+作者提出 Natural-Language Agent Harnesses，把高层控制逻辑外化成可编辑的" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Natural-Language Agent Harnesses</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.25723" target="_blank" rel="noopener noreferrer">2603.25723</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了一个经常被低估但越来越关键的问题：agent 表现高度依赖 harness engineering，但 harness 往往埋在控制器代码、运行时约定和框架细节里，难以迁移、比较和系统研究。结果是很多 agent 进步其实发生在 harness 层，却没有形成稳定的可复用对象。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Natural-Language Agent Harnesses，把高层控制逻辑外化成可编辑的自然语言工件，并配套 Intelligent Harness Runtime，通过显式 contract、durable artifact 和轻量 adapter 来执行这些 harness。真正的新意不只是“用自然语言写配置”，而是把 harness 从隐藏代码路径提升为可移植、可实验、可迁移的独立执行层。</dd></div><div><dt>结果/证据</dt><dd>这条路线对本仓库很重要，因为它触及 agent 系统工程里最缺少标准化的一层：控制逻辑、运行时约束和能力编排接口。如果 harness 可以像 prompt、tool schema 或 memory policy 一样被抽象出来，后续 agent 复现、迁移和比较都会更清晰。</dd></div><div><dt>收录价值</dt><dd>它暂时还不是 paradigm 级别，因为证据仍主要围绕 coding 与 computer-use 场景，且运行时契约能否跨更多 agent stack 稳定成立仍需时间验证。但作为可复用的 agent harness 外化范式，它已经足够形成正式收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了一个经常被低估但越来越关键的问题：agent 表现高度依赖 harness engineering，但 harness 往往埋在控制器代码、运行时约定和框架细节里，难以迁移、比较和系统研究。结果是很多 agent 进步其实发生在 harness 层，却没有形成稳定的可复用对象。</p><p>作者提出 Natural-Language Agent Harnesses，把高层控制逻辑外化成可编辑的自然语言工件，并配套 Intelligent Harness Runtime，通过显式 contract、durable artifact 和轻量 adapter 来执行这些 harness。真正的新意不只是“用自然语言写配置”，而是把 harness 从隐藏代码路径提升为可移植、可实验、可迁移的独立执行层。</p><p>这条路线对本仓库很重要，因为它触及 agent 系统工程里最缺少标准化的一层：控制逻辑、运行时约束和能力编排接口。如果 harness 可以像 prompt、tool schema 或 memory policy 一样被抽象出来，后续 agent 复现、迁移和比较都会更清晰。</p><p>它暂时还不是 paradigm 级别，因为证据仍主要围绕 coding 与 computer-use 场景，且运行时契约能否跨更多 agent stack 稳定成立仍需时间验证。但作为可复用的 agent harness 外化范式，它已经足够形成正式收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：自然语言智能体线束。智能体性能日益依赖于线束工程，然而线束设计通常隐藏在控制器代码和运行时特定约定中，这使得其难以作为科学对象进行迁移、比较和研究。我们探讨智能体线束的高级控制逻辑是否可以外部化为可移植的可执行工件。我们引入了自然语言智能体线束（NLAHs），它以可编辑的自然语言表达线束行为，以及智能线束运行时（IHR），这是一个共享运行时，通过明确的契约、持久工件和轻量级适配器来执行这些线束。在编码和计算机使用基准测试中，我们对操作可行性、模块消融以及代码到文本的线束迁移进行了受控评估。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agent performance increasingly depends on harness engineering, yet harness design is usually buried in controller code and runtimespecific conventions, making it hard to transfer, compare, and study as a scientific object. We ask whether the high-level control logic of an agent harness can instead be externalized as a portable executable artifact. We introduce Natural-Language Agent Harnesses (NLAHs), which express harness behavior in editable natural language, and Intelligent Harness Runtime (IHR), a shared runtime that executes these harnesses through explicit contracts, durable artifacts, and lightweight adapters. Across coding and computer-use benchmarks, we conduct controlled evaluations of operational viability, module ablation, and code-to-text harness migration.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260326a86natural,
+  title = {Natural-Language Agent Harnesses},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.25723.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a86-natural-language-agent-harnesses/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Natural-Language Agent Harnesses. https://arxiv.org/pdf/2603.25723.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.25723.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

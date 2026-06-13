@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>World Action Models are Zero-shot Policies | DAST Papers</title>
+    <meta name="description" content="这篇论文提出 World Action Model 路线，把机器人策略从典型 VLA 的观察-语言-动作映射转向同时建模未来世界状态和动作。对本仓库来说，它的关键价值不是单个机器人 benchmark，而是 embodied AI 中 world model 与 action generation 的统一接口。
+
+DreamZero 基于预训练视频 diffusion backbone，把视频预测" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl60-dreamzero-world-action-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="World Action Models are Zero-shot Policies" />
+    <meta property="og:description" content="这篇论文提出 World Action Model 路线，把机器人策略从典型 VLA 的观察-语言-动作映射转向同时建模未来世界状态和动作。对本仓库来说，它的关键价值不是单个机器人 benchmark，而是 embodied AI 中 world model 与 action generation 的统一接口。
+
+DreamZero 基于预训练视频 diffusion backbone，把视频预测" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl60-dreamzero-world-action-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="World Action Models are Zero-shot Policies" />
+    <meta name="twitter:description" content="这篇论文提出 World Action Model 路线，把机器人策略从典型 VLA 的观察-语言-动作映射转向同时建模未来世界状态和动作。对本仓库来说，它的关键价值不是单个机器人 benchmark，而是 embodied AI 中 world model 与 action generation 的统一接口。
+
+DreamZero 基于预训练视频 diffusion backbone，把视频预测" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>World Action Models are Zero-shot Policies</h1>
+          <p class="subtitle">强化学习 · 发表：2026-02-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.15922" target="_blank" rel="noopener noreferrer">2602.15922</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文提出 World Action Model 路线，把机器人策略从典型 VLA 的观察-语言-动作映射转向同时建模未来世界状态和动作。对本仓库来说，它的关键价值不是单个机器人 benchmark，而是 embodied AI 中 world model 与 action generation 的统一接口。</dd></div><div><dt>方法/机制</dt><dd>DreamZero 基于预训练视频 diffusion backbone，把视频预测的世界动态知识转化为 zero-shot policies，并在跨 embodiment、跨任务控制中展示能力。系统主张通过生成未来视频帧和动作序列，让模型在没有任务特定策略训练的情况下直接产生可执行控制。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它是机器人世界模型方向的强代表：把视频生成模型的物理动态先验显式接入动作选择，对 VLA、具身泛化、zero-shot control 和世界模型评估都有很强外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到 paradigm，是因为真实机器人部署、长时稳定性、实时性、失败恢复和大规模任务覆盖仍需要独立验证；当前更像强烈改变问题处理方式的 disruptive 系统原型。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文提出 World Action Model 路线，把机器人策略从典型 VLA 的观察-语言-动作映射转向同时建模未来世界状态和动作。对本仓库来说，它的关键价值不是单个机器人 benchmark，而是 embodied AI 中 world model 与 action generation 的统一接口。</p><p>DreamZero 基于预训练视频 diffusion backbone，把视频预测的世界动态知识转化为 zero-shot policies，并在跨 embodiment、跨任务控制中展示能力。系统主张通过生成未来视频帧和动作序列，让模型在没有任务特定策略训练的情况下直接产生可执行控制。</p><p>它值得正式收录，是因为它是机器人世界模型方向的强代表：把视频生成模型的物理动态先验显式接入动作选择，对 VLA、具身泛化、zero-shot control 和世界模型评估都有很强外溢。</p><p>它没有升到 paradigm，是因为真实机器人部署、长时稳定性、实时性、失败恢复和大规模任务覆盖仍需要独立验证；当前更像强烈改变问题处理方式的 disruptive 系统原型。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文介绍了一种名为DreamZero的世界动作模型，通过同时预测未来世界状态和动作，将视频扩散模型转化为零样本的机器人策略。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper introduces DreamZero, a World Action Model that turns video diffusion models into zero-shot robotic policies by jointly predicting future world states and actions.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260217rl60dreamz,
+  title = {World Action Models are Zero-shot Policies},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.15922.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl60-dreamzero-world-action-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). World Action Models are Zero-shot Policies. https://arxiv.org/pdf/2602.15922.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.15922.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://dreamzero0.github.io/" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

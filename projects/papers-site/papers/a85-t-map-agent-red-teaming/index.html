@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search | DAST Papers</title>
+    <meta name="description" content="这篇论文针对一个已经变得现实但仍缺少系统方法的问题：传统 LLM 红队主要诱导有害文本输出，却难以覆盖多步工具执行中的 agent 漏洞，尤其是在 MCP 这类快速扩张的工具生态里。仅看单轮文本对齐已经不足以刻画代理系统的真实风险，攻击是否真的通过工具链被执行，才是更关键的安全边界。
+
+论文提出 T-MAP，把红队搜索对象从孤立提示词扩展到执行轨迹，并用 trajectory-aware evol" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a85-t-map-agent-red-teaming/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search" />
+    <meta property="og:description" content="这篇论文针对一个已经变得现实但仍缺少系统方法的问题：传统 LLM 红队主要诱导有害文本输出，却难以覆盖多步工具执行中的 agent 漏洞，尤其是在 MCP 这类快速扩张的工具生态里。仅看单轮文本对齐已经不足以刻画代理系统的真实风险，攻击是否真的通过工具链被执行，才是更关键的安全边界。
+
+论文提出 T-MAP，把红队搜索对象从孤立提示词扩展到执行轨迹，并用 trajectory-aware evol" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a85-t-map-agent-red-teaming/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search" />
+    <meta name="twitter:description" content="这篇论文针对一个已经变得现实但仍缺少系统方法的问题：传统 LLM 红队主要诱导有害文本输出，却难以覆盖多步工具执行中的 agent 漏洞，尤其是在 MCP 这类快速扩张的工具生态里。仅看单轮文本对齐已经不足以刻画代理系统的真实风险，攻击是否真的通过工具链被执行，才是更关键的安全边界。
+
+论文提出 T-MAP，把红队搜索对象从孤立提示词扩展到执行轨迹，并用 trajectory-aware evol" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.22341" target="_blank" rel="noopener noreferrer">2603.22341</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对一个已经变得现实但仍缺少系统方法的问题：传统 LLM 红队主要诱导有害文本输出，却难以覆盖多步工具执行中的 agent 漏洞，尤其是在 MCP 这类快速扩张的工具生态里。仅看单轮文本对齐已经不足以刻画代理系统的真实风险，攻击是否真的通过工具链被执行，才是更关键的安全边界。</dd></div><div><dt>方法/机制</dt><dd>论文提出 T-MAP，把红队搜索对象从孤立提示词扩展到执行轨迹，并用 trajectory-aware evolutionary search 自动生成更有效的攻击样本。核心新意不只是 evolutionary search 本身，而是把执行轨迹反馈显式纳入攻击优化目标，使搜索过程直接朝着有害目标的实现率而不是表面越狱率收敛。</dd></div><div><dt>结果/证据</dt><dd>它对本仓库的价值在于 agent safety 的方法接口很明确：安全评测不再停留在文本层，而要落到真实 tool-use 轨迹、攻击实现率和跨环境迁移性上。这使它更像一个可复用的 agent 红队范式，而不是又一篇针对单模型的越狱论文。</dd></div><div><dt>收录价值</dt><dd>局限也很清楚：目前证据主要集中在 MCP 风格环境和自动攻击生成流程，还不是统一的 agent 安全理论或通用防御框架。它更像是在现有 agent tool-use 安全问题上建立了高质量攻击基线，因此收为 breakthrough，而不抬到更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对一个已经变得现实但仍缺少系统方法的问题：传统 LLM 红队主要诱导有害文本输出，却难以覆盖多步工具执行中的 agent 漏洞，尤其是在 MCP 这类快速扩张的工具生态里。仅看单轮文本对齐已经不足以刻画代理系统的真实风险，攻击是否真的通过工具链被执行，才是更关键的安全边界。</p><p>论文提出 T-MAP，把红队搜索对象从孤立提示词扩展到执行轨迹，并用 trajectory-aware evolutionary search 自动生成更有效的攻击样本。核心新意不只是 evolutionary search 本身，而是把执行轨迹反馈显式纳入攻击优化目标，使搜索过程直接朝着有害目标的实现率而不是表面越狱率收敛。</p><p>它对本仓库的价值在于 agent safety 的方法接口很明确：安全评测不再停留在文本层，而要落到真实 tool-use 轨迹、攻击实现率和跨环境迁移性上。这使它更像一个可复用的 agent 红队范式，而不是又一篇针对单模型的越狱论文。</p><p>局限也很清楚：目前证据主要集中在 MCP 风格环境和自动攻击生成流程，还不是统一的 agent 安全理论或通用防御框架。它更像是在现有 agent tool-use 安全问题上建立了高质量攻击基线，因此收为 breakthrough，而不抬到更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管先前的红队测试工作主要集中于从大型语言模型 (LLM) 中引出有害文本输出，但这些方法未能捕捉到通过多步工具执行而出现的代理特有漏洞，尤其是在模型上下文协议 (MCP) 等快速发展的生态系统中。为弥补这一空白，我们提出了一种轨迹感知进化搜索方法 T-MAP，该方法利用执行轨迹来指导对抗性提示的发现。我们的方法能够自动生成攻击，这些攻击不仅能绕过安全防护措施，而且能通过实际的工具交互可靠地实现有害目标。在不同的 MCP 环境中进行的实证评估表明，T-MAP 在攻击实现率 (ARR) 方面显著优于基线方法，并且对包括 GPT-5.2、Gemini-3-Pro、Qwen3.5 和 GLM-5 在内的前沿模型仍然有效，从而揭示了自主 LLM 代理中先前未充分探索的漏洞。代码可在 https://github.com/pwnhyo/T-MAP 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>While prior red-teaming efforts have focused on eliciting harmful text outputs from large language models (LLMs), such approaches fail to capture agent-specific vulnerabilities that emerge through multi-step tool execution, particularly in rapidly growing ecosystems such as the Model Context Protocol (MCP). To address this gap, we propose a trajectory-aware evolutionary search method, T-MAP, which leverages execution trajectories to guide the discovery of adversarial prompts. Our approach enables the automatic generation of attacks that not only bypass safety guardrails but also reliably realize harmful objectives through actual tool interactions. Empirical evaluations across diverse MCP environments demonstrate that T-MAP substantially outperforms baselines in attack realization rate (ARR) and remains effective against frontier models, including GPT-5.2, Gemini-3-Pro, Qwen3.5, and GLM-5, thereby revealing previously underexplored vulnerabilities in autonomous LLM agents. Code is available at https://github.com/pwnhyo/T-MAP</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260321a85tmapage,
+  title = {T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.22341.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a85-t-map-agent-red-teaming/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). T-MAP: Red-Teaming LLM Agents with Trajectory-aware Evolutionary Search. https://arxiv.org/pdf/2603.22341.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.22341.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SAGE: Synthetic Aging for a Grid Environment | DAST Papers</title>
+    <meta name="description" content="电网级储能系统的老化问题具有多年尺度、强耦合电热反馈和显著资产异质性，但现实世界中很少有可开放获取、长期连续、物理一致的数据可以支持算法开发。这使很多 degradation-aware optimization、digital twin 和 machine learning 工作缺乏稳定 benchmark 与 ground truth。
+
+SAGE 提供的是一个 physics-informe" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/en4-sage-grid-battery-aging/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SAGE: Synthetic Aging for a Grid Environment" />
+    <meta property="og:description" content="电网级储能系统的老化问题具有多年尺度、强耦合电热反馈和显著资产异质性，但现实世界中很少有可开放获取、长期连续、物理一致的数据可以支持算法开发。这使很多 degradation-aware optimization、digital twin 和 machine learning 工作缺乏稳定 benchmark 与 ground truth。
+
+SAGE 提供的是一个 physics-informe" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/en4-sage-grid-battery-aging/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SAGE: Synthetic Aging for a Grid Environment" />
+    <meta name="twitter:description" content="电网级储能系统的老化问题具有多年尺度、强耦合电热反馈和显著资产异质性，但现实世界中很少有可开放获取、长期连续、物理一致的数据可以支持算法开发。这使很多 degradation-aware optimization、digital twin 和 machine learning 工作缺乏稳定 benchmark 与 ground truth。
+
+SAGE 提供的是一个 physics-informe" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SAGE: Synthetic Aging for a Grid Environment</h1>
+          <p class="subtitle">能源、水与基础设施 · 发表：2026-03-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">能源、水与基础设施</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.13976" target="_blank" rel="noopener noreferrer">2603.13976</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>电网级储能系统的老化问题具有多年尺度、强耦合电热反馈和显著资产异质性，但现实世界中很少有可开放获取、长期连续、物理一致的数据可以支持算法开发。这使很多 degradation-aware optimization、digital twin 和 machine learning 工作缺乏稳定 benchmark 与 ground truth。</dd></div><div><dt>方法/机制</dt><dd>SAGE 提供的是一个 physics-informed synthetic aging environment。它把环境驱动、市场调度、电热行为、老化动力学和资产级异质性耦合到一个可外部参数化的开源框架中，生成小时级、多十年跨度的 BESS 运行与退化轨迹。论文还通过分层物理一致性测试验证框架，包括 Arrhenius 温度加速、热分层与磨损统计等。</dd></div><div><dt>结果/证据</dt><dd>按仓库标准，这类论文属于高价值 AI-enabling infrastructure。它不是直接做一个特定 controller，而是补上 grid-scale energy storage 里长期缺位的 simulation substrate，让 optimization、state estimation、ML 和 digital twin research 可以在统一平台上进行可复现比较。对能源系统 AI 来说，这种平台型工作流比单个调度算法更有长期价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为当前贡献主要在 enabling environment 和 benchmark substrate 层，而不是已经用该框架重写真实电网储能运营方式。它更像一块关键底座，而不是现成部署范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>电网级储能系统的老化问题具有多年尺度、强耦合电热反馈和显著资产异质性，但现实世界中很少有可开放获取、长期连续、物理一致的数据可以支持算法开发。这使很多 degradation-aware optimization、digital twin 和 machine learning 工作缺乏稳定 benchmark 与 ground truth。</p><p>SAGE 提供的是一个 physics-informed synthetic aging environment。它把环境驱动、市场调度、电热行为、老化动力学和资产级异质性耦合到一个可外部参数化的开源框架中，生成小时级、多十年跨度的 BESS 运行与退化轨迹。论文还通过分层物理一致性测试验证框架，包括 Arrhenius 温度加速、热分层与磨损统计等。</p><p>按仓库标准，这类论文属于高价值 AI-enabling infrastructure。它不是直接做一个特定 controller，而是补上 grid-scale energy storage 里长期缺位的 simulation substrate，让 optimization、state estimation、ML 和 digital twin research 可以在统一平台上进行可复现比较。对能源系统 AI 来说，这种平台型工作流比单个调度算法更有长期价值。</p><p>它没有更高一级，因为当前贡献主要在 enabling environment 和 benchmark substrate 层，而不是已经用该框架重写真实电网储能运营方式。它更像一块关键底座，而不是现成部署范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>电网级电池退化在电化学、热学和运行反馈的耦合作用下，以多年时间尺度展开，这些反馈很难通过实验室循环数据或专有现场数据集来捕捉。这限制了需要长期、物理一致真实数据的退化感知算法、电池组管理策略和数字孪生方法的发展和验证。在本文中，我们提出了SAGE（电网环境下的合成老化），这是一个开源、物理信息模拟框架，用于在实际调度下，为异构电池储能系统（BESS）群生成小时级、多十年运行历史和退化轨迹。该框架在一个透明、外部参数化的架构中耦合了随机环境驱动因素、基于市场的调度逻辑、电热行为、日历和循环老化动力学以及资产级异质性，该架构旨在实现可复现性和系统敏感性分析。我们通过分层测试验证了该框架的物理一致性，包括阿伦尼乌斯温度加速验证、热分层效应的正确传播、涌现的磨损失效统计以及效率衰减、热量产生和退化累积之间内部一致的耦合。电池组模拟展示了热环境和制造质量的内在异质性如何自然地导致健康状态轨迹和资产寿命的分散性，而无需对失效分布施加统计假设。SAGE旨在作为一个通用合成数据生成器和基准测试平台，用于退化感知优化、状态估计、机器学习和电池组规模风险分析，但不尝试资产级寿命预测。通过提供开放、可配置且基于物理的长期数据集，该框架能够对BESS中的电池老化行为进行受控探索，并支持电网级储能建模中的可复现研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Grid-scale battery degradation unfolds over multi-year timescales under coupled electrochemical, thermal, and operational feedbacks that are difficult to capture using laboratory cycling data or proprietary field datasets. This limits the development and validation of degradation-aware algorithms, fleet management strategies, and digital twin methodologies that require long-horizon, physically consistent ground truth. Here we present SAGE (Synthetic Aging for a Grid Environment), an open-source, physics-informed simulation framework that generates hour-resolved, multi-decade operating histories and degradation trajectories for heterogeneous battery energy storage system (BESS) fleets under realistic dispatch. The framework couples stochastic environmental drivers, market-based dispatch logic, electro-thermal behavior, calendar and cycle aging kinetics, and asset-level heterogeneity within a transparent, externally parameterized architecture designed for reproducibility and systematic sensitivity analysis. We validate the physical consistency of the framework through hierarchical tests, including verification of Arrhenius temperature acceleration, correct propagation of thermal stratification effects, emergent wear-out failure statistics, and internally consistent coupling between efficiency fade, heat generation, and degradation accumulation. Fleet simulations demonstrate how intrinsic heterogeneity in thermal environment and manufacturing quality naturally produces dispersion in state-of-health trajectories and asset lifetimes, without imposing statistical assumptions on failure distributions. SAGE is intended as a general-purpose synthetic data generator and benchmarking platform for degradation-aware optimization, state estimation, machine learning, and fleet-scale risk analysis, without attempting asset-level lifetime forecasting. By providing open, configurable, and physically grounded long-horizon datasets, the framework enables controlled exploration of battery aging behavior in BESS and supports reproducible research in grid-scale energy storage modeling. HIGHLIGHTS •</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260314en4sagegri,
+  title = {SAGE: Synthetic Aging for a Grid Environment},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.13976.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/en4-sage-grid-battery-aging/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SAGE: Synthetic Aging for a Grid Environment. https://arxiv.org/pdf/2603.13976.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/en7-llm-utp-traffic-foundation/">
+              <span>A scalable and generic framework for city-wide traffic prediction with large language model</span>
+              <small>能源、水与基础设施 · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/en9-tegnet-thermoelectric-emulator/">
+              <span>Composable neural emulators accelerate thermoelectric generator design</span>
+              <small>能源、水与基础设施 · 2026-04-15</small>
+            </a>
+            <a class="related-item" href="../../papers/en8-autonomous-perovskite-cells/">
+              <span>Autonomous closed-loop framework for reproducible perovskite solar cells</span>
+              <small>能源、水与基础设施 · 2026-04-14</small>
+            </a>
+            <a class="related-item" href="../../papers/en3-twinai-water-distribution/">
+              <span>TwinAI: A digital twin and graph reinforcement learning framework for real-time management of water distribution networks</span>
+              <small>能源、水与基础设施 · 2026-03-04</small>
+            </a>
+            <a class="related-item" href="../../papers/en1-optagent-building-operations/">
+              <span>OptAgent: an Agentic AI framework for Intelligent Building Operations</span>
+              <small>能源、水与基础设施 · 2026-01-27</small>
+            </a>
+            <a class="related-item" href="../../papers/en6-vissimrl-traffic-control/">
+              <span>VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim</span>
+              <small>能源、水与基础设施 · 2026-01-26</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.13976.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

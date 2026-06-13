@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization | DAST Papers</title>
+    <meta name="description" content="ScoreFlow continues the automatic workflow-optimization line by targeting a concrete weakness in prior methods: many workflow-search systems rely on discrete search or brittle hand-crafted modificatio" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a101-scoreflow-workflow-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization" />
+    <meta property="og:description" content="ScoreFlow continues the automatic workflow-optimization line by targeting a concrete weakness in prior methods: many workflow-search systems rely on discrete search or brittle hand-crafted modificatio" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a101-scoreflow-workflow-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization" />
+    <meta name="twitter:description" content="ScoreFlow continues the automatic workflow-optimization line by targeting a concrete weakness in prior methods: many workflow-search systems rely on discrete search or brittle hand-crafted modificatio" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-02-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-02-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2502.04306" target="_blank" rel="noopener noreferrer">2502.04306</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ScoreFlow continues the automatic workflow-optimization line by targeting a concrete weakness in prior methods: many workflow-search systems rely on discrete search or brittle hand-crafted modification operators, which makes them hard to scale and adapt. The paper proposes a smoother preference-driven optimization route for agent workflows.</dd></div><div><dt>方法/机制</dt><dd>Its central idea is to optimize workflows in a continuous space using score-based preference optimization, specifically a quantitative-feedback-aware variant of DPO. This makes workflow improvement less dependent on purely discrete search and positions preference learning as a reusable control signal for multi-step agent orchestration.</dd></div><div><dt>结果/证据</dt><dd>This is relevant to the repository because it broadens the workflow-optimization toolbox beyond tree search and graph abstractions. It shows that workflow quality can be optimized with a preference-learning lens, which has direct spillover to coding agents, reasoning pipelines, and multi-agent system design.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because it remains one method family inside the larger workflow-optimization line, and its long-term dominance relative to search-based approaches is still uncertain. But it is strong enough to collect as a representative next-stage optimization paper.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ScoreFlow continues the automatic workflow-optimization line by targeting a concrete weakness in prior methods: many workflow-search systems rely on discrete search or brittle hand-crafted modification operators, which makes them hard to scale and adapt. The paper proposes a smoother preference-driven optimization route for agent workflows.</p><p>Its central idea is to optimize workflows in a continuous space using score-based preference optimization, specifically a quantitative-feedback-aware variant of DPO. This makes workflow improvement less dependent on purely discrete search and positions preference learning as a reusable control signal for multi-step agent orchestration.</p><p>This is relevant to the repository because it broadens the workflow-optimization toolbox beyond tree search and graph abstractions. It shows that workflow quality can be optimized with a preference-learning lens, which has direct spillover to coding agents, reasoning pipelines, and multi-agent system design.</p><p>It is not ranked higher because it remains one method family inside the larger workflow-optimization line, and its long-term dominance relative to search-based approaches is still uncertain. But it is strong enough to collect as a representative next-stage optimization paper.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ScoreFlow：通过基于分数的偏好优化掌握LLM智能体工作流。近期研究利用大型语言模型多智能体系统解决复杂问题，同时试图减少构建这些系统所需的人工工作量，从而推动了自动化智能体工作流优化方法的发展。然而，现有方法由于表示限制、适应性不足以及依赖离散优化技术时的可扩展性差而缺乏灵活性。我们通过ScoreFlow解决了这些挑战，ScoreFlow是一个简单但高性能的框架，它利用连续空间中高效的基于梯度的优化。ScoreFlow整合了Score-DPO，这是一种直接偏好优化方法的新颖变体，它考虑了定量反馈。在涵盖问答、编码和数学推理的六个基准测试中，ScoreFlow比现有基线提高了8.2%。此外，它使小型模型能够以更低的推理成本超越大型模型。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent research has leveraged large language model multi-agent systems for complex problemsolving while trying to reduce the manual effort required to build them, driving the development of automated agent workflow optimization methods. However, existing methods remain inflexible due to representational limitations, a lack of adaptability, and poor scalability when relying on discrete optimization techniques. We address these challenges with ScoreFlow, a simple yet highperformance framework that leverages efficient gradient-based optimization in a continuous space. ScoreFlow incorporates Score-DPO, a novel variant of the direct preference optimization method that accounts for quantitative feedback. Across six benchmarks spanning question answering, coding, and mathematical reasoning, ScoreFlow achieves an 8.2% improvement over existing baselines. Moreover, it empowers smaller models to outperform larger ones with lower inference costs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250206a101scoref,
+  title = {ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2502.04306.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a101-scoreflow-workflow-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). ScoreFlow: Mastering LLM Agent Workflows via Score-based Preference Optimization. https://arxiv.org/pdf/2502.04306.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2502.04306.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

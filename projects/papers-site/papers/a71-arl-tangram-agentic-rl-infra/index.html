@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="agentic RL 和传统 RL 最大的系统差异，不在训练循环本身，而在外部资源依赖：代码执行要占 CPU，reward model 和 verifier 可能跑在独立 GPU 池里，轨迹执行又会因为工具调用和环境交互拉长生命周期。现有框架通常按任务或轨迹做静态过配，这让外部资源长期被锁死，成为 agentic RL 训练扩展的真实瓶颈。
+
+ARL-Tangram 提出的核心不是单点调度优化，而" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a71-arl-tangram-agentic-rl-infra/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning" />
+    <meta property="og:description" content="agentic RL 和传统 RL 最大的系统差异，不在训练循环本身，而在外部资源依赖：代码执行要占 CPU，reward model 和 verifier 可能跑在独立 GPU 池里，轨迹执行又会因为工具调用和环境交互拉长生命周期。现有框架通常按任务或轨迹做静态过配，这让外部资源长期被锁死，成为 agentic RL 训练扩展的真实瓶颈。
+
+ARL-Tangram 提出的核心不是单点调度优化，而" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a71-arl-tangram-agentic-rl-infra/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning" />
+    <meta name="twitter:description" content="agentic RL 和传统 RL 最大的系统差异，不在训练循环本身，而在外部资源依赖：代码执行要占 CPU，reward model 和 verifier 可能跑在独立 GPU 池里，轨迹执行又会因为工具调用和环境交互拉长生命周期。现有框架通常按任务或轨迹做静态过配，这让外部资源长期被锁死，成为 agentic RL 训练扩展的真实瓶颈。
+
+ARL-Tangram 提出的核心不是单点调度优化，而" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.13019" target="_blank" rel="noopener noreferrer">2603.13019</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>agentic RL 和传统 RL 最大的系统差异，不在训练循环本身，而在外部资源依赖：代码执行要占 CPU，reward model 和 verifier 可能跑在独立 GPU 池里，轨迹执行又会因为工具调用和环境交互拉长生命周期。现有框架通常按任务或轨迹做静态过配，这让外部资源长期被锁死，成为 agentic RL 训练扩展的真实瓶颈。</dd></div><div><dt>方法/机制</dt><dd>ARL-Tangram 提出的核心不是单点调度优化，而是 action-level orchestration。它把外部资源使用从长生命周期 trajectory 粒度切到更细的 action 粒度，用统一动作抽象和 elastic scheduling algorithm 去最小化 action completion time，并针对异构 CPU/GPU 资源和不同拓扑设计配套 resource managers，使资源能在 heterogeneous workloads 间细粒度共享和弹性回收。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于它把 agentic RL 的系统问题清晰地重新表述了出来：真正需要被调度的不是 trajectory，而是 action graph 上不断变化的外部依赖。这个 framing 对 agent training infra、tool-using RL、以及带 verifier/executor 的后训练系统都有明显复用价值，不是一次性的集群工程 patch。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为验证和 deployment 证据仍主要围绕 MiMo 系列及一组具体 agentic RL workloads，距离成为更广泛 post-training / agent training 基础设施默认蓝图还有距离。它对非 agentic RL、通用 serving 或更开放企业 agent workflows 的泛化也还需要更多公开证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>agentic RL 和传统 RL 最大的系统差异，不在训练循环本身，而在外部资源依赖：代码执行要占 CPU，reward model 和 verifier 可能跑在独立 GPU 池里，轨迹执行又会因为工具调用和环境交互拉长生命周期。现有框架通常按任务或轨迹做静态过配，这让外部资源长期被锁死，成为 agentic RL 训练扩展的真实瓶颈。</p><p>ARL-Tangram 提出的核心不是单点调度优化，而是 action-level orchestration。它把外部资源使用从长生命周期 trajectory 粒度切到更细的 action 粒度，用统一动作抽象和 elastic scheduling algorithm 去最小化 action completion time，并针对异构 CPU/GPU 资源和不同拓扑设计配套 resource managers，使资源能在 heterogeneous workloads 间细粒度共享和弹性回收。</p><p>这篇工作的价值在于它把 agentic RL 的系统问题清晰地重新表述了出来：真正需要被调度的不是 trajectory，而是 action graph 上不断变化的外部依赖。这个 framing 对 agent training infra、tool-using RL、以及带 verifier/executor 的后训练系统都有明显复用价值，不是一次性的集群工程 patch。</p><p>它目前仍是 breakthrough，而不是更高一级，因为验证和 deployment 证据仍主要围绕 MiMo 系列及一组具体 agentic RL workloads，距离成为更广泛 post-training / agent training 基础设施默认蓝图还有距离。它对非 agentic RL、通用 serving 或更开放企业 agent workflows 的泛化也还需要更多公开证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>智能体强化学习 (RL) 已成为云集群中一种变革性的工作负载，使大型语言模型 (LLMs) 能够通过与真实世界的交互来解决复杂问题。然而，与传统RL不同，智能体RL需要大量的外部云资源，例如用于代码执行的CPU和用于奖励模型的GPU，这些资源存在于主训练集群之外。现有的智能体RL框架通常依赖于静态过度配置，即资源通常与长生命周期轨迹绑定或按任务隔离，这导致了严重的资源效率低下。我们提出了动作级编排，并将其整合到ARL-Tangram中，这是一个统一的资源管理系统，实现了细粒度的外部资源共享和弹性。ARL-Tangram利用统一的动作级公式和弹性调度算法，在满足异构资源约束的同时，最小化动作完成时间 (ACT)。此外，异构资源管理器经过定制，以高效支持在具有异构特性和拓扑的资源上的动作级执行。在真实世界的智能体RL任务上的评估表明，ARL-Tangram将平均ACT提高了高达4.3倍，将RL训练的步长持续时间加快了高达1.5倍，并节省了高达71.2%的外部资源。该系统已部署以支持MiMo系列模型的训练。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic reinforcement learning (RL) has emerged as a transformative workload in cloud clusters, enabling large language models (LLMs) to solve complex problems through interactions with real world. However, unlike traditional RL, agentic RL demands substantial external cloud resources, e.g., CPUs for code execution and GPUs for reward models, that exist outside the primary training cluster. Existing agentic RL framework typically rely on static over-provisioning, i.e., resources are often tied to long-lived trajectories or isolated by tasks, which leads to severe resource inefficiency. We propose the action-level orchestration, and incorporate it into ARL-Tangram, a unified resource management system that enables fine-grained external resource sharing and elasticity. ARLTangram utilizes a unified action-level formulation and an elastic scheduling algorithm to minimize action completion time (ACT) while satisfying heterogeneous resource constraints. Further, heterogeneous resource managers are tailored to efficiently support the action-level execution on resources with heterogeneous characteristics and topologies. Evaluation on real-world agentic RL tasks demonstrates that ARL-Tangram improves average ACT by up to 4.3×, speeds up the step duration of RL training by up to 1.5×, and saves the external resources by up to 71.2%. This system has been deployed to support the training of the MiMo series models.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260313a71arltang,
+  title = {ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.13019.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a71-arl-tangram-agentic-rl-infra/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ARL-Tangram: Unleash the Resource Efficiency in Agentic Reinforcement Learning. https://arxiv.org/pdf/2603.13019.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.13019.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

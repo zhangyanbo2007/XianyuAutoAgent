@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending | DAST Papers</title>
+    <meta name="description" content="这篇论文聚焦产品级机械设计里最实际也最缺数据支撑的问题之一：在 CAD 阶段尽早判断零件在具体制造工艺下是否可制造、制造难度有多高。现有学习式 DFM 工作要么 manufacturability 定义混乱，要么数据只覆盖可制造样本，导致模型难以学习真正有用的边界。
+
+论文的核心贡献有两部分。第一，它把 manufacturability 指标按 configuration dependence " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw16-bendfm-sheet-metal-dfm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending" />
+    <meta property="og:description" content="这篇论文聚焦产品级机械设计里最实际也最缺数据支撑的问题之一：在 CAD 阶段尽早判断零件在具体制造工艺下是否可制造、制造难度有多高。现有学习式 DFM 工作要么 manufacturability 定义混乱，要么数据只覆盖可制造样本，导致模型难以学习真正有用的边界。
+
+论文的核心贡献有两部分。第一，它把 manufacturability 指标按 configuration dependence " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw16-bendfm-sheet-metal-dfm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending" />
+    <meta name="twitter:description" content="这篇论文聚焦产品级机械设计里最实际也最缺数据支撑的问题之一：在 CAD 阶段尽早判断零件在具体制造工艺下是否可制造、制造难度有多高。现有学习式 DFM 工作要么 manufacturability 定义混乱，要么数据只覆盖可制造样本，导致模型难以学习真正有用的边界。
+
+论文的核心贡献有两部分。第一，它把 manufacturability 指标按 configuration dependence " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.13102" target="_blank" rel="noopener noreferrer">2603.13102</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文聚焦产品级机械设计里最实际也最缺数据支撑的问题之一：在 CAD 阶段尽早判断零件在具体制造工艺下是否可制造、制造难度有多高。现有学习式 DFM 工作要么 manufacturability 定义混乱，要么数据只覆盖可制造样本，导致模型难以学习真正有用的边界。</dd></div><div><dt>方法/机制</dt><dd>论文的核心贡献有两部分。第一，它把 manufacturability 指标按 configuration dependence 和 measurement type 做了更清晰的 taxonomy，帮助后续工作区分“工艺无关约束”与“设备/工装相关约束”。第二，它提出 BenDFM，这是一套面向 sheet metal bending 的 process-aware synthetic CAD dataset，包含 2 万个可制造与不可制造样本，并提供 folded/unfolded 几何和多种 manufacturability 标签。</dd></div><div><dt>结果/证据</dt><dd>对这个仓库来说，它的价值不在单次模型成绩，而在于它把 learning-based DFM 从模糊概念推进到较清晰的任务定义和数据基线。这正好补上了 `CAD / MCAD / DFM` 方向的明显空白，后续无论是设计代理、可制造性评估模型，还是 ECAD-MCAD 协同，都可以把它当成更稳的起点。</dd></div><div><dt>收录价值</dt><dd>它没有被定到更高一级，是因为当前贡献仍主要集中在 taxonomy + dataset + baseline，工艺范围也限定在 sheet metal bending。它还没有像更成熟的 design automation workflow 论文那样，把评估、优化、仿真和设计迭代完整闭环起来。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文聚焦产品级机械设计里最实际也最缺数据支撑的问题之一：在 CAD 阶段尽早判断零件在具体制造工艺下是否可制造、制造难度有多高。现有学习式 DFM 工作要么 manufacturability 定义混乱，要么数据只覆盖可制造样本，导致模型难以学习真正有用的边界。</p><p>论文的核心贡献有两部分。第一，它把 manufacturability 指标按 configuration dependence 和 measurement type 做了更清晰的 taxonomy，帮助后续工作区分“工艺无关约束”与“设备/工装相关约束”。第二，它提出 BenDFM，这是一套面向 sheet metal bending 的 process-aware synthetic CAD dataset，包含 2 万个可制造与不可制造样本，并提供 folded/unfolded 几何和多种 manufacturability 标签。</p><p>对这个仓库来说，它的价值不在单次模型成绩，而在于它把 learning-based DFM 从模糊概念推进到较清晰的任务定义和数据基线。这正好补上了 `CAD / MCAD / DFM` 方向的明显空白，后续无论是设计代理、可制造性评估模型，还是 ECAD-MCAD 协同，都可以把它当成更稳的起点。</p><p>它没有被定到更高一级，是因为当前贡献仍主要集中在 taxonomy + dataset + baseline，工艺范围也限定在 sheet metal bending。它还没有像更成熟的 design automation workflow 论文那样，把评估、优化、仿真和设计迭代完整闭环起来。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>BenDFM：一种用于钣金折弯可制造性评估的分类法和合成CAD数据集 摘要 早期预测CAD设计的可制造性，包括可行性和所需工作量，是面向制造设计（DFM）的一个关键目标。尽管CAD深度学习取得了进展，并在制造工艺选择中得到广泛应用，但针对特定工艺预测可制造性的基于学习的方法仍然有限。限制进展的两个关键挑战是：先前工作中可制造性定义的不一致性以及由此产生的相关学习目标的不一致性，以及合适数据集的稀缺性。现有标签差异很大：它们可能反映内在设计约束或取决于特定的制造能力（例如可用工具），并且范围从离散可行性检查到连续复杂性度量。此外，工业数据集通常只包含可制造零件，为不可行情况提供的信号很少，而现有合成数据集则侧重于简单几何形状和减材工艺。为了解决这些空白，我们提出了一个可制造性指标分类法，沿配置依赖性和测量类型轴进行划分，从而更清晰地界定泛化能力和学习目标。接下来，我们介绍了BenDFM，这是第一个用于钣金折弯可制造性评估的合成数据集。BenDFM包含20,000个零件，既有可制造的也有不可制造的，通过工艺感知折弯仿真生成，提供折叠和展开的几何形状以及跨分类法的多个可制造性标签，从而能够系统地研究以前未探索的基于学习的DFM挑战。我们在BenDFM上对两种最先进的3D学习架构进行了基准测试，结果表明，捕获零件表面之间关系的基于图的表示实现了更好的准确性，并且预测依赖于特定制造设置的指标仍然更具挑战性。综上所述，该分类法和BenDFM数据集为工业设计工作流程中深度学习辅助的DFM迈出了重要一步。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Predicting the manufacturability of CAD designs early, in terms of both feasibility and required effort, is a key goal of Design for Manufacturing (DFM). Despite advances in deep learning for CAD and its widespread use in manufacturing process selection, learning-based approaches for predicting manufacturability within a specific process remain limited. Two key challenges limit progress: inconsistency across prior work in how manufacturability is defined and consequently in the associated learning targets, and a scarcity of suitable datasets. Existing labels vary significantly: they may reflect intrinsic design constraints or depend on specific manufacturing capabilities (such as available tools), and they range from discrete feasibility checks to continuous complexity measures. Furthermore, industrial datasets typically contain only manufacturable parts, offering little signal for infeasible cases, while existing synthetic datasets focus on simple geometries and subtractive processes. To address these gaps, we propose a taxonomy of manufacturability metrics along the axes of configuration dependence and measurement type, allowing clearer scoping of generalizability and learning objectives. Next, we introduce BenDFM, the first synthetic dataset for manufacturability assessment in sheet metal bending. BenDFM contains 20,000 parts, both manufacturable and unmanufacturable, generated with process-aware bending simulations, providing both folded and unfolded geometries and multiple manufacturability labels across the taxonomy, enabling systematic study of previously unexplored learning-based DFM challenges. We benchmark two state-of-theart 3D learning architectures on BenDFM, showing that graph-based representations that capture relationships between part surfaces achieve better accuracy, and that predicting metrics that depend on specific manufacturing setups remains more challenging. Together, the taxonomy and BenDFM dataset provide a significant step toward deep-learning-assisted DFM in industrial design workflows.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260313hw16bendfm,
+  title = {BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.13102.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw16-bendfm-sheet-metal-dfm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). BenDFM: A taxonomy and synthetic CAD dataset for manufacturability assessment in sheet metal bending. https://arxiv.org/pdf/2603.13102.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.13102.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

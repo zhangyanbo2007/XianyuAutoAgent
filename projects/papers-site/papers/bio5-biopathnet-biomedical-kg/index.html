@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enhancing link prediction in biomedical knowledge graphs with BioPathNet | DAST Papers</title>
+    <meta name="description" content="问题与背景：生物医学知识图谱的链路预测直接关系到药物重定位、基因功能注释和合成致死发现，但传统基于节点嵌入的方法对多跳关系和路径语义建模不足，可解释性也有限。
+
+方法/新意：BioPathNet 以 neural Bellman-Ford network 为基础，用路径级推理替代单点嵌入匹配，并引入背景调控图和严格负采样来提升精度与可扩展性。它不仅预测边是否存在，还能回溯哪些路径在驱动预测。
+
+意" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio5-biopathnet-biomedical-kg/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Enhancing link prediction in biomedical knowledge graphs with BioPathNet" />
+    <meta property="og:description" content="问题与背景：生物医学知识图谱的链路预测直接关系到药物重定位、基因功能注释和合成致死发现，但传统基于节点嵌入的方法对多跳关系和路径语义建模不足，可解释性也有限。
+
+方法/新意：BioPathNet 以 neural Bellman-Ford network 为基础，用路径级推理替代单点嵌入匹配，并引入背景调控图和严格负采样来提升精度与可扩展性。它不仅预测边是否存在，还能回溯哪些路径在驱动预测。
+
+意" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio5-biopathnet-biomedical-kg/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Enhancing link prediction in biomedical knowledge graphs with BioPathNet" />
+    <meta name="twitter:description" content="问题与背景：生物医学知识图谱的链路预测直接关系到药物重定位、基因功能注释和合成致死发现，但传统基于节点嵌入的方法对多跳关系和路径语义建模不足，可解释性也有限。
+
+方法/新意：BioPathNet 以 neural Bellman-Ford network 为基础，用路径级推理替代单点嵌入匹配，并引入背景调控图和严格负采样来提升精度与可扩展性。它不仅预测边是否存在，还能回溯哪些路径在驱动预测。
+
+意" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Enhancing link prediction in biomedical knowledge graphs with BioPathNet</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-01-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-20</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41551-025-01598-z" target="_blank" rel="noopener noreferrer">10.1038/s41551-025-01598-z</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：生物医学知识图谱的链路预测直接关系到药物重定位、基因功能注释和合成致死发现，但传统基于节点嵌入的方法对多跳关系和路径语义建模不足，可解释性也有限。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：BioPathNet 以 neural Bellman-Ford network 为基础，用路径级推理替代单点嵌入匹配，并引入背景调控图和严格负采样来提升精度与可扩展性。它不仅预测边是否存在，还能回溯哪些路径在驱动预测。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇论文属于 AI-enabled biomedicine / knowledge graph reasoning 主线。它代表了一类从表示学习转向路径推理的生物医学知识图谱方法，对药物和功能基因组学都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：它仍属于明确任务边界内的方法论文，外溢主要集中在 biomedical KG 和 link prediction，而不是重排更广泛 AI 或生物学研究范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：生物医学知识图谱的链路预测直接关系到药物重定位、基因功能注释和合成致死发现，但传统基于节点嵌入的方法对多跳关系和路径语义建模不足，可解释性也有限。</p><p>方法/新意：BioPathNet 以 neural Bellman-Ford network 为基础，用路径级推理替代单点嵌入匹配，并引入背景调控图和严格负采样来提升精度与可扩展性。它不仅预测边是否存在，还能回溯哪些路径在驱动预测。</p><p>意义/放在仓库中的位置：这篇论文属于 AI-enabled biomedicine / knowledge graph reasoning 主线。它代表了一类从表示学习转向路径推理的生物医学知识图谱方法，对药物和功能基因组学都有明显外溢价值。</p><p>局限/为何不再升一级：它仍属于明确任务边界内的方法论文，外溢主要集中在 biomedical KG 和 link prediction，而不是重排更广泛 AI 或生物学研究范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>理解生物医学网络中的复杂相互作用对于生物医学的进步至关重要，但传统的链接预测 (LP) 方法在捕捉这种复杂性方面存在局限性。基于表示的学习技术通过将节点映射到低维嵌入来提高预测准确性，但它们通常在可解释性和可扩展性方面面临挑战。我们提出了BioPathNet，一个基于神经贝尔曼-福特网络 (NBFNet) 的新型图神经网络框架，通过在生物医学知识图谱中进行基于路径的LP推理来解决这些局限性。与节点嵌入框架不同，BioPathNet通过考虑路径上的所有关系来学习节点对之间的表示，从而提高预测准确性和可解释性。这使得有影响力的路径可视化成为可能，并促进了生物学验证。BioPathNet利用背景调控图 (BRG) 来增强消息传递，并采用严格的负采样来提高精确度。在基因功能注释、药物-疾病适应症、合成致死和lncRNA-mRNA相互作用预测等各种LP任务的评估中，BioPathNet始终优于浅层节点嵌入方法、关系图神经网络和特定任务的最新方法，展示了强大的性能和多功能性。我们的研究预测了急性淋巴细胞白血病 (ALL) 和阿尔茨海默病等疾病的新型药物适应症，并得到了医学专家和临床试验的验证。我们还识别了新的合成致死基因对以及涉及lncRNA和靶基因的调控相互作用，并通过文献综述得到了证实。BioPathNet的可解释性将使研究人员能够追溯预测路径并获得分子见解，使其成为药物发现、个性化医疗和一般生物学领域的宝贵工具。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Understanding complex interactions in biomedical networks is crucial for advancements in biomedicine, but traditional link prediction (LP) methods are limited in capturing this complexity. Representation-based learning techniques improve prediction accuracy by mapping nodes to lowdimensional embeddings, yet they often struggle with interpretability and scalability. We present BioPathNet, a novel graph neural network framework based on the Neural Bellman-Ford Network (NBFNet), addressing these limitations through path-based reasoning for LP in biomedical knowledge graphs. Unlike node-embedding frameworks, BioPathNet learns representations between node pairs by considering all relations along paths, enhancing prediction accuracy and interpretability. This allows visualization of influential paths and facilitates biological validation. BioPathNet leverages a background regulatory graph (BRG) for enhanced message passing and uses stringent negative sampling to improve precision. In evaluations across various LP tasks, such as gene function annotation, drug-disease indication, synthetic lethality, and lncRNA-mRNA interaction prediction, BioPathNet consistently outperformed shallow node embedding methods, relational graph neural networks and task-specific state-of-the-art methods, demonstrating robust performance and versatility. Our study predicts novel drug indications for diseases like acute lymphoblastic leukemia (ALL) and Alzheimer’s, validated by medical experts and clinical trials. We also identified new synthetic lethality gene pairs and regulatory interactions involving lncRNAs and target genes, confirmed through literature reviews. BioPathNet’s interpretability will enable researchers to trace prediction paths and gain molecular insights, making it a valuable tool for drug discovery, personalized medicine and biology in general.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260120bio5biopat,
+  title = {Enhancing link prediction in biomedical knowledge graphs with BioPathNet},
+  year = {2026},
+  url = {https://doi.org/10.1038/s41551-025-01598-z},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio5-biopathnet-biomedical-kg/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Enhancing link prediction in biomedical knowledge graphs with BioPathNet. https://doi.org/10.1038/s41551-025-01598-z</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41551-025-01598-z" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

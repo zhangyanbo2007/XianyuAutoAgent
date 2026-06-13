@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling | DAST Papers</title>
+    <meta name="description" content="COSINE 处理从观测动力学中发现潜在交互图和符号方程的逆问题。传统神经方法可拟合但黑盒，符号回归可解释但通常假设拓扑和函数库固定，难以同时发现关系和机制。
+
+论文提出可微框架，联合优化 interaction graph 与 sparse symbolic dynamics，并在外环引入 LLM 根据内层反馈裁剪和扩展假设空间。这样把符号动力学发现从固定库搜索推进到 LLM-guided ad" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p28-cosine-symbolic-dynamics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling" />
+    <meta property="og:description" content="COSINE 处理从观测动力学中发现潜在交互图和符号方程的逆问题。传统神经方法可拟合但黑盒，符号回归可解释但通常假设拓扑和函数库固定，难以同时发现关系和机制。
+
+论文提出可微框架，联合优化 interaction graph 与 sparse symbolic dynamics，并在外环引入 LLM 根据内层反馈裁剪和扩展假设空间。这样把符号动力学发现从固定库搜索推进到 LLM-guided ad" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p28-cosine-symbolic-dynamics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling" />
+    <meta name="twitter:description" content="COSINE 处理从观测动力学中发现潜在交互图和符号方程的逆问题。传统神经方法可拟合但黑盒，符号回归可解释但通常假设拓扑和函数库固定，难以同时发现关系和机制。
+
+论文提出可微框架，联合优化 interaction graph 与 sparse symbolic dynamics，并在外环引入 LLM 根据内层反馈裁剪和扩展假设空间。这样把符号动力学发现从固定库搜索推进到 LLM-guided ad" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12806" target="_blank" rel="noopener noreferrer">2604.12806</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>COSINE 处理从观测动力学中发现潜在交互图和符号方程的逆问题。传统神经方法可拟合但黑盒，符号回归可解释但通常假设拓扑和函数库固定，难以同时发现关系和机制。</dd></div><div><dt>方法/机制</dt><dd>论文提出可微框架，联合优化 interaction graph 与 sparse symbolic dynamics，并在外环引入 LLM 根据内层反馈裁剪和扩展假设空间。这样把符号动力学发现从固定库搜索推进到 LLM-guided adaptive hypothesis search。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它把 LLM 作为科学建模中的假设空间管理器，而不是最终答案生成器。该模式对多体系统、因果动力学、科学发现 agent 和可解释 surrogate modeling 都有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限在于 LLM 外环可能引入先验偏差，复杂真实系统中的噪声、部分观测和高维状态仍会显著提高难度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>COSINE 处理从观测动力学中发现潜在交互图和符号方程的逆问题。传统神经方法可拟合但黑盒，符号回归可解释但通常假设拓扑和函数库固定，难以同时发现关系和机制。</p><p>论文提出可微框架，联合优化 interaction graph 与 sparse symbolic dynamics，并在外环引入 LLM 根据内层反馈裁剪和扩展假设空间。这样把符号动力学发现从固定库搜索推进到 LLM-guided adaptive hypothesis search。</p><p>它值得收录，是因为它把 LLM 作为科学建模中的假设空间管理器，而不是最终答案生成器。该模式对多体系统、因果动力学、科学发现 agent 和可解释 surrogate modeling 都有复用价值。</p><p>局限在于 LLM 外环可能引入先验偏差，复杂真实系统中的噪声、部分观测和高维状态仍会显著提高难度。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从观测到的动力学中推断潜在的相互作用结构是许多多体相互作用系统中的一个基本逆问题。大多数神经方法依赖于可训练图上的黑盒代理，在实现准确性同时牺牲了机制可解释性。符号回归提供明确的动力学方程和更强的归纳偏见，但通常假设已知的拓扑结构和固定的函数库。我们提出 \textbf{COSINE} (\textbf{C}o-\textbf{O}ptimization of \textbf{S}ymbolic \textbf{I}nteractions and \textbf{N}etwork \textbf{E}dges)，这是一个可微分框架，它同时发现相互作用图和稀疏符号动力学。为了克服固定符号库的限制，COSINE 进一步引入了一个外循环大型语言模型，该模型通过内优化循环的反馈，自适应地修剪和扩展假设空间。在合成系统和大规模真实世界疫情数据上的实验证明了强大的结构恢复能力和紧凑的、机制一致的动力学表达式。代码：https://anonymous.4open.science/r/COSINE-6D43.</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Inferring latent interaction structures from observed dynamics is a fundamental inverse problem in many-body interacting systems. Most neural approaches rely on black-box surrogates over trainable graphs, achieving accuracy at the expense of mechanistic interpretability. Symbolic regression offers explicit dynamical equations and stronger inductive biases, but typically assumes known topology and a fixed function library. We propose \textbf{COSINE} (\textbf{C}o-\textbf{O}ptimization of \textbf{S}ymbolic \textbf{I}nteractions and \textbf{N}etwork \textbf{E}dges), a differentiable framework that jointly discovers interaction graphs and sparse symbolic dynamics. To overcome the limitations of fixed symbolic libraries, COSINE further incorporates an outer-loop large language model that adaptively prunes and expands the hypothesis space using feedback from the inner optimization loop. Experiments on synthetic systems and large-scale real-world epidemic data demonstrate robust structural recovery and compact, mechanism-aligned dynamical expressions. Code: https://anonymous.4open.science/r/COSINE-6D43.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414p28cosines,
+  title = {Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12806.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p28-cosine-symbolic-dynamics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling. https://arxiv.org/pdf/2604.12806.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p27-sign-ultra-large-dynamics/">
+              <span>Predicting Dynamics of Ultra-Large Complex Systems by Inferring Governing Equations</span>
+              <small>物理与 AI for Science · 2026-04-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12806.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

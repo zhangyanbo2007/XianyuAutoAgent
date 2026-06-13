@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rethinking VLM Representation for VLA Initialization | DAST Papers</title>
+    <meta name="description" content="VLA 模型普遍用 VLM 作为 backbone，但哪些 VLM 表征真正适合作为 action policy initialization 并不清楚。
+
+这篇论文把 VLA initialization 作为 representation-design problem，系统比较 embodied VQA supervision、参数更新策略和 robot-data pretraining 等因" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl88-vlm-representation-vla-init/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Rethinking VLM Representation for VLA Initialization" />
+    <meta property="og:description" content="VLA 模型普遍用 VLM 作为 backbone，但哪些 VLM 表征真正适合作为 action policy initialization 并不清楚。
+
+这篇论文把 VLA initialization 作为 representation-design problem，系统比较 embodied VQA supervision、参数更新策略和 robot-data pretraining 等因" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl88-vlm-representation-vla-init/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rethinking VLM Representation for VLA Initialization" />
+    <meta name="twitter:description" content="VLA 模型普遍用 VLM 作为 backbone，但哪些 VLM 表征真正适合作为 action policy initialization 并不清楚。
+
+这篇论文把 VLA initialization 作为 representation-design problem，系统比较 embodied VQA supervision、参数更新策略和 robot-data pretraining 等因" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Rethinking VLM Representation for VLA Initialization</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.25802" target="_blank" rel="noopener noreferrer">2605.25802</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>VLA 模型普遍用 VLM 作为 backbone，但哪些 VLM 表征真正适合作为 action policy initialization 并不清楚。</dd></div><div><dt>方法/机制</dt><dd>这篇论文把 VLA initialization 作为 representation-design problem，系统比较 embodied VQA supervision、参数更新策略和 robot-data pretraining 等因素。</dd></div><div><dt>结果/证据</dt><dd>它的贡献不是又提出一个 VLA 模型，而是澄清 VLM 表征如何影响 VLA 初始化和机器人策略学习。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为 VLA 领域需要从模型堆叠转向表征机制理解，这篇对后续 VLA backbone 选择和预训练设计有指导价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>VLA 模型普遍用 VLM 作为 backbone，但哪些 VLM 表征真正适合作为 action policy initialization 并不清楚。</p><p>这篇论文把 VLA initialization 作为 representation-design problem，系统比较 embodied VQA supervision、参数更新策略和 robot-data pretraining 等因素。</p><p>它的贡献不是又提出一个 VLA 模型，而是澄清 VLM 表征如何影响 VLA 初始化和机器人策略学习。</p><p>它值得收录，因为 VLA 领域需要从模型堆叠转向表征机制理解，这篇对后续 VLA backbone 选择和预训练设计有指导价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作 (VLA) 模型广泛采用预训练的视觉-语言模型 (VLM) 作为策略骨干模型，但目前尚不清楚哪种预训练 VLM 表示形式对 VLA 初始化有用。在本文中，我们沿着三个轴线将 VLA 初始化作为一个受控的表示设计问题进行研究：能力级具身 VQA 监督、参数更新策略和机器人数据预训练。我们的实验表明，原始预训练 VLM 表示是动作性能的关键来源。然而，具身 VQA 适应并不能带来统一的收益：它的益处取决于下游瓶颈，并且来自不同能力领域的收益并非简单叠加。对于更新策略，LoRA 提供了比完全微调更可靠的初始化，这表明过度重塑预训练表示会削弱 VLA 初始化。机器人数据预训练进一步改善了 VLA 初始化，通过分阶段的基于 LoRA 的训练获得了最强的变体。总而言之，这些发现表明，有效的 VLM 到 VLA 适应应该注入与动作相关的具身和机器人轨迹信号，同时保留对动作学习仍然有用的预训练 VLM 表示。代码可在以下网址获取：https://github.com/AFeng-x/Rethink_VLA_Initialization</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-Language-Action (VLA) models widely adopt pretrained Vision-Language Models (VLMs) as policy backbones, yet it remains unclear what kind of pretrained VLM representation is useful as a VLA initialization. In this paper, we study VLA initialization as a controlled representation-design problem along three axes: capability-level embodied VQA supervision, parameter-update strategy, and robot-data pretraining. Our experiments show that the original pretrained VLM representation is a key source of action performance. However, embodied VQA adaptation does not yield uniform gains: its benefit depends on downstream bottlenecks, and gains from different capability domains are not simply additive. For update strategy, LoRA provides a more reliable initialization than Full Finetune, indicating that overly reshaping the pretrained representation can weaken VLA initialization. Robot-data pretraining further improves VLA initialization, with the strongest variant obtained by staged LoRA-based training. Together, these findings suggest that effective VLM-to-VLA adaptation should inject actionrelevant embodied and robot-trajectory signals while preserving the pretrained VLM representation that remains useful for action learning. Code is available at: https://github.com/AFeng-x/Rethink_VLA_Initialization</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527rl88vlmrep,
+  title = {Rethinking VLM Representation for VLA Initialization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.25802.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl88-vlm-representation-vla-init/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Rethinking VLM Representation for VLA Initialization. https://arxiv.org/pdf/2605.25802.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.25802.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.25802" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

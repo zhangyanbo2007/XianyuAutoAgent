@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A family of large language models for materials research with insights into model adaptability in continued pretraining | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 AI for science 里一个已经很现实的问题：通用大语言模型是否真的适合被改造成高质量的材料研究 copilot，还是需要更深层次的领域化预训练。作者围绕这一问题构建了 LLaMat，一组面向材料科学的专用大语言模型，并把性能评估扩展到从自然语言处理、信息抽取到晶体生成在内的 42 个任务，试图给出一个更完整的材料研究 LLM 版图。
+
+方法上，LLaMat 并不是只做少" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c8-llamat-materials-llm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A family of large language models for materials research with insights into model adaptability in continued pretraining" />
+    <meta property="og:description" content="这篇论文处理的是 AI for science 里一个已经很现实的问题：通用大语言模型是否真的适合被改造成高质量的材料研究 copilot，还是需要更深层次的领域化预训练。作者围绕这一问题构建了 LLaMat，一组面向材料科学的专用大语言模型，并把性能评估扩展到从自然语言处理、信息抽取到晶体生成在内的 42 个任务，试图给出一个更完整的材料研究 LLM 版图。
+
+方法上，LLaMat 并不是只做少" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c8-llamat-materials-llm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A family of large language models for materials research with insights into model adaptability in continued pretraining" />
+    <meta name="twitter:description" content="这篇论文处理的是 AI for science 里一个已经很现实的问题：通用大语言模型是否真的适合被改造成高质量的材料研究 copilot，还是需要更深层次的领域化预训练。作者围绕这一问题构建了 LLaMat，一组面向材料科学的专用大语言模型，并把性能评估扩展到从自然语言处理、信息抽取到晶体生成在内的 42 个任务，试图给出一个更完整的材料研究 LLM 版图。
+
+方法上，LLaMat 并不是只做少" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A family of large language models for materials research with insights into model adaptability in continued pretraining</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-27</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01199-8" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01199-8</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 AI for science 里一个已经很现实的问题：通用大语言模型是否真的适合被改造成高质量的材料研究 copilot，还是需要更深层次的领域化预训练。作者围绕这一问题构建了 LLaMat，一组面向材料科学的专用大语言模型，并把性能评估扩展到从自然语言处理、信息抽取到晶体生成在内的 42 个任务，试图给出一个更完整的材料研究 LLM 版图。</dd></div><div><dt>方法/机制</dt><dd>方法上，LLaMat 并不是只做少量 instruction tuning，而是先对 LLaMA 家族进行 continued pretraining，在约 400 万篇材料科学文献和晶体学数据上训练 300 亿 token，再进一步做 17.5 万条材料问答对的 instruction 与 task fine-tuning。更重要的是，论文不只报告性能提升，还比较了不同底座在 continued pretraining 中的可塑性，提出了一个更具普适意义的观察：预训练越充分的模型，未必越容易被新科学领域重塑，反而可能出现 adaptation rigidity。</dd></div><div><dt>结果/证据</dt><dd>这篇值得收录，核心不是“又一个垂直领域模型”，而是它把材料科学 LLM 做成了可系统评估的 family，并且把 domain adaptation 的边界问题真正提了出来。对 AI for science 来说，这项结果的外溢点在于：专用科学 LLM 的优势不仅来自领域数据堆叠，也来自底座模型对 continued pretraining 的可塑性差异，这会直接影响后续化学、物理、生物等领域模型的设计选择。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为目前影响面仍主要集中在 scientific language model / domain adaptation 这一层，而不是像 AlphaGenome、QUASAR 这类直接重塑科学工作流的平台型系统。更稳的定位是高质量 breakthrough：一篇兼具应用价值和方法论提醒的 AI for science 条目。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 AI for science 里一个已经很现实的问题：通用大语言模型是否真的适合被改造成高质量的材料研究 copilot，还是需要更深层次的领域化预训练。作者围绕这一问题构建了 LLaMat，一组面向材料科学的专用大语言模型，并把性能评估扩展到从自然语言处理、信息抽取到晶体生成在内的 42 个任务，试图给出一个更完整的材料研究 LLM 版图。</p><p>方法上，LLaMat 并不是只做少量 instruction tuning，而是先对 LLaMA 家族进行 continued pretraining，在约 400 万篇材料科学文献和晶体学数据上训练 300 亿 token，再进一步做 17.5 万条材料问答对的 instruction 与 task fine-tuning。更重要的是，论文不只报告性能提升，还比较了不同底座在 continued pretraining 中的可塑性，提出了一个更具普适意义的观察：预训练越充分的模型，未必越容易被新科学领域重塑，反而可能出现 adaptation rigidity。</p><p>这篇值得收录，核心不是“又一个垂直领域模型”，而是它把材料科学 LLM 做成了可系统评估的 family，并且把 domain adaptation 的边界问题真正提了出来。对 AI for science 来说，这项结果的外溢点在于：专用科学 LLM 的优势不仅来自领域数据堆叠，也来自底座模型对 continued pretraining 的可塑性差异，这会直接影响后续化学、物理、生物等领域模型的设计选择。</p><p>它没有更高一级，因为目前影响面仍主要集中在 scientific language model / domain adaptation 这一层，而不是像 AlphaGenome、QUASAR 这类直接重塑科学工作流的平台型系统。更稳的定位是高质量 breakthrough：一篇兼具应用价值和方法论提醒的 AI for science 条目。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>用于材料研究的大语言模型家族及其在持续预训练中模型适应性的见解。材料的发现和开发对于应对可再生能源、可持续性和先进技术领域的全球挑战至关重要。大语言模型（LLM）为加速材料研究提供了前所未有的机遇，但其有效部署需要领域特定的适应。在本文中，我们介绍了材料大语言模型（LLaMat），这是一个材料科学的基础模型家族，通过对LLaMA模型进行持续预训练而开发，其训练数据来源于约400万份材料科学出版物和晶体学数据，共计300亿个token。为了开发一个材料助手，这些模型通过对175,000个材料科学问答对进行指令和任务微调而得到适应。通过对涵盖材料研究全范围的42项任务进行评估，包括自然语言处理、结构化信息提取和晶体生成，我们证明LLaMat在保持通用语言能力的同时，始终优于最先进的商业LLM（Claude、GPT和Gemini）。除了展示领域适应对于实际可部署的材料研究助手的有效性之外，我们的发现还揭示了关于LLM适应性的基本见解，这些见解可能会影响跨领域专业科学人工智能系统的发展。例如，我们发现在LLaMA-3等经过广泛预训练的LLM中，对领域适应的刚性增加。实验中观察到的这种一致模式表明存在一种先前未被识别的“适应刚性”，即过度训练的LLM对领域适应表现出越来越强的刚性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Materials discovery and development are critical for addressing global challenges in renewable energy, sustainability, and advanced technology. Large language models (LLMs) offer unprecedented opportunities to accelerate materials research, yet their effective deployment requires domain-specific adaptation. Here we present large language models for materials (LLaMat), a family of foundational models for materials science, developed through continued pretraining of LLaMA models on 30 billion tokens derived from approximately 4 million materials science publications and crystallographic data. To develop a materials copilot, the models were adapted by instruction and task fine-tuning on 175,000 materials science question-answering pairs. Through evaluation across 42 tasks covering the entire spectrum of materials research, spanning natural language processing, structured information extraction and crystal generation, we demonstrate that LLaMat consistently outperforms state-of-the-art commercial LLMs (Claude, GPT and Gemini) while maintaining general linguistic capabilities. Beyond demonstrating the effectiveness of domain adaptation for practically deployable materials research copilots, our findings also reveal fundamental insights about LLM adaptation that may influence the development of specialized scientific artificial intelligence systems across domains. For instance, we identify increasing rigidity to domain adaptation in extensively pretrained LLMs such as LLaMA-3. This consistent pattern observed across the experiments suggests a previously unidentified ‘adaptation rigidity’, where overtrained LLMs exhibit increasing rigidity to domain adaptation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260227c8llamatma,
+  title = {A family of large language models for materials research with insights into model adaptability in continued pretraining},
+  year = {2026},
+  url = {https://doi.org/10.1038/s42256-026-01199-8},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c8-llamat-materials-llm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A family of large language models for materials research with insights into model adaptability in continued pretraining. https://doi.org/10.1038/s42256-026-01199-8</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s42256-026-01199-8" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

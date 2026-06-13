@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accelerating protein engineering with fitness landscape modelling and reinforcement learning | DAST Papers</title>
+    <meta name="description" content="蛋白工程的核心瓶颈一直是实验搜索空间过大：单点突变还能穷举，多位点组合一旦展开，湿实验成本和迭代速度都会迅速失控。这篇论文正面解决的是“如何把实验蛋白工程变成可持续、可加速的主动探索过程”，而不是只再做一个更准的序列打分器。
+
+论文把 fitness landscape modelling 和 reinforcement learning 结合起来，形成面向实验迭代的闭环：模型不只预测当前序列的优" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio16-muprotein-protein-engineering/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Accelerating protein engineering with fitness landscape modelling and reinforcement learning" />
+    <meta property="og:description" content="蛋白工程的核心瓶颈一直是实验搜索空间过大：单点突变还能穷举，多位点组合一旦展开，湿实验成本和迭代速度都会迅速失控。这篇论文正面解决的是“如何把实验蛋白工程变成可持续、可加速的主动探索过程”，而不是只再做一个更准的序列打分器。
+
+论文把 fitness landscape modelling 和 reinforcement learning 结合起来，形成面向实验迭代的闭环：模型不只预测当前序列的优" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio16-muprotein-protein-engineering/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Accelerating protein engineering with fitness landscape modelling and reinforcement learning" />
+    <meta name="twitter:description" content="蛋白工程的核心瓶颈一直是实验搜索空间过大：单点突变还能穷举，多位点组合一旦展开，湿实验成本和迭代速度都会迅速失控。这篇论文正面解决的是“如何把实验蛋白工程变成可持续、可加速的主动探索过程”，而不是只再做一个更准的序列打分器。
+
+论文把 fitness landscape modelling 和 reinforcement learning 结合起来，形成面向实验迭代的闭环：模型不只预测当前序列的优" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Accelerating protein engineering with fitness landscape modelling and reinforcement learning</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-09-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-08</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-025-01103-w" target="_blank" rel="noopener noreferrer">10.1038/s42256-025-01103-w</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>蛋白工程的核心瓶颈一直是实验搜索空间过大：单点突变还能穷举，多位点组合一旦展开，湿实验成本和迭代速度都会迅速失控。这篇论文正面解决的是“如何把实验蛋白工程变成可持续、可加速的主动探索过程”，而不是只再做一个更准的序列打分器。</dd></div><div><dt>方法/机制</dt><dd>论文把 fitness landscape modelling 和 reinforcement learning 结合起来，形成面向实验迭代的闭环：模型不只预测当前序列的优劣，还主动决定下一轮该探索哪里，从而在有限实验预算下更快找到高性能变体。这个 framing 的关键在于，它把 protein engineering 从静态筛选问题改写成 sequential decision-making 问题。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得高于普通 breakthrough，因为它给出了蛋白工程中很强的可复用模式：代理模型、实验回传、策略更新和多轮探索统一在一个可迭代回路里。对 protein engineering、enzyme optimization、directed evolution 甚至更广的实验设计型 AI for science 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它还没有升到 paradigm，原因是适用性和通用性仍需在更多蛋白家族、更多性质目标和更复杂实验条件下进一步证明。但作为把 RL 明确推进到实验蛋白工程闭环里的代表工作，它已经足够 disruptive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>蛋白工程的核心瓶颈一直是实验搜索空间过大：单点突变还能穷举，多位点组合一旦展开，湿实验成本和迭代速度都会迅速失控。这篇论文正面解决的是“如何把实验蛋白工程变成可持续、可加速的主动探索过程”，而不是只再做一个更准的序列打分器。</p><p>论文把 fitness landscape modelling 和 reinforcement learning 结合起来，形成面向实验迭代的闭环：模型不只预测当前序列的优劣，还主动决定下一轮该探索哪里，从而在有限实验预算下更快找到高性能变体。这个 framing 的关键在于，它把 protein engineering 从静态筛选问题改写成 sequential decision-making 问题。</p><p>这篇论文值得高于普通 breakthrough，因为它给出了蛋白工程中很强的可复用模式：代理模型、实验回传、策略更新和多轮探索统一在一个可迭代回路里。对 protein engineering、enzyme optimization、directed evolution 甚至更广的实验设计型 AI for science 都有明显外溢。</p><p>它还没有升到 paradigm，原因是适用性和通用性仍需在更多蛋白家族、更多性质目标和更复杂实验条件下进一步证明。但作为把 RL 明确推进到实验蛋白工程闭环里的代表工作，它已经足够 disruptive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>蛋白质工程在设计具有定制功能的蛋白质方面具有巨大潜力，然而，潜在突变的广阔图景与有限的实验室能力限制了最佳序列的发现。为此，我们提出了μProtein框架，该框架通过结合μFormer（一个用于准确突变效应预测的深度学习模型）与μSearch（一个旨在利用μFormer作为预言机高效探索蛋白质适应度景观的强化学习算法）来加速蛋白质工程。μProtein利用单点突变数据，通过其对上位性相互作用的建模和多步搜索策略，预测具有复杂多氨基酸突变的最佳序列。除了在基准数据集上表现出色外，μProtein还为酶β-内酰胺酶识别出高功能增益的多点突变体，这些突变体在湿实验室中，仅通过单点突变数据训练，就超越了已知最高活性水平之一。这些结果证明了μProtein在广阔的蛋白质序列空间中发现有影响力的突变的能力，为蛋白质优化提供了一种稳健高效的方法。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Protein engineering holds substantial promise for designing proteins with customized functions, yet the vast landscape of potential mutations versus limited laboratory capacity constrains the discovery of optimal sequences. Here, to address this, we present the μProtein framework, which accelerates protein engineering by combining μFormer, a deep learning model for accurate mutational effect prediction, with μSearch, a reinforcement learning algorithm designed to efficiently navigate the protein fitness landscape using μFormer as an oracle. μProtein leverages single-mutation data to predict optimal sequences with complex, multi-amino-acid mutations through its modelling of epistatic interactions and a multi-step search strategy. In addition to strong performance on benchmark datasets, μProtein identified high-gain-of-function multi-point mutants for the enzyme β-lactamase, surpassing one of the highest-known activity levels, in wet laboratory, trained solely on single-mutation data. These results demonstrate μProtein’s capability to discover impactful mutations across the vast protein sequence space, offering a robust, efficient approach for protein optimization.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250908bio16mupro,
+  title = {Accelerating protein engineering with fitness landscape modelling and reinforcement learning},
+  year = {2025},
+  url = {https://www.nature.com/articles/s42256-025-01103-w},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio16-muprotein-protein-engineering/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Accelerating protein engineering with fitness landscape modelling and reinforcement learning. https://www.nature.com/articles/s42256-025-01103-w</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-025-01103-w" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

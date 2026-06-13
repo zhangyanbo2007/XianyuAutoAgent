@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism | DAST Papers</title>
+    <meta name="description" content="问题与背景：Diffusion Transformers 在科学计算和高分辨率生成中需要多 GPU 推理，Ulysses sequence parallelism 可扩展但 all-to-all collective 成为主要延迟。
+
+方法与新意：CoCoDiff 利用 Q/K/V 计算差异和相邻 denoising step 的时间冗余，提出 TAPA、V-First scheduling 和 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw32-cocodiff-distributed-dit/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism" />
+    <meta property="og:description" content="问题与背景：Diffusion Transformers 在科学计算和高分辨率生成中需要多 GPU 推理，Ulysses sequence parallelism 可扩展但 all-to-all collective 成为主要延迟。
+
+方法与新意：CoCoDiff 利用 Q/K/V 计算差异和相邻 denoising step 的时间冗余，提出 TAPA、V-First scheduling 和 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw32-cocodiff-distributed-dit/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism" />
+    <meta name="twitter:description" content="问题与背景：Diffusion Transformers 在科学计算和高分辨率生成中需要多 GPU 推理，Ulysses sequence parallelism 可扩展但 all-to-all collective 成为主要延迟。
+
+方法与新意：CoCoDiff 利用 Q/K/V 计算差异和相邻 denoising step 的时间冗余，提出 TAPA、V-First scheduling 和 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14561" target="_blank" rel="noopener noreferrer">2604.14561</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：Diffusion Transformers 在科学计算和高分辨率生成中需要多 GPU 推理，Ulysses sequence parallelism 可扩展但 all-to-all collective 成为主要延迟。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：CoCoDiff 利用 Q/K/V 计算差异和相邻 denoising step 的时间冗余，提出 TAPA、V-First scheduling 和 V-Major selective communication，在 Aurora 超算上获得显著加速。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇是 AI inference systems 的强方法，不是局部 kernel trick，而是围绕 DiT 分布式推理通信瓶颈设计的 runtime strategy，对大规模 diffusion/科学生成部署有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限：实验依赖 Aurora/Intel GPU tile 与特定 Ulysses 设置，跨硬件和通用云 GPU 栈上的收益需要验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：Diffusion Transformers 在科学计算和高分辨率生成中需要多 GPU 推理，Ulysses sequence parallelism 可扩展但 all-to-all collective 成为主要延迟。</p><p>方法与新意：CoCoDiff 利用 Q/K/V 计算差异和相邻 denoising step 的时间冗余，提出 TAPA、V-First scheduling 和 V-Major selective communication，在 Aurora 超算上获得显著加速。</p><p>收录意义：这篇是 AI inference systems 的强方法，不是局部 kernel trick，而是围绕 DiT 分布式推理通信瓶颈设计的 runtime strategy，对大规模 diffusion/科学生成部署有复用价值。</p><p>局限：实验依赖 Aurora/Intel GPU tile 与特定 Ulysses 设置，跨硬件和通用云 GPU 栈上的收益需要验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>CoCoDiff 是一种分布式 DiT 推理引擎，它通过 Ulysses 序列并行化优化所有-到-所有的集体通信，并采用具有拓扑信息的全部-到-全部、V-first 调度和 V-major 选择性通信。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>CoCoDiff is a distributed DiT inference engine that optimizes all-to-all collectives under Ulysses sequence parallelism with topology-aware all-to-all, V-first scheduling, and V-major selective communication.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416hw32cocodi,
+  title = {CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14561.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw32-cocodiff-distributed-dit/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CoCoDiff: Optimizing Collective Communications for Distributed Diffusion Transformer Inference Under Ulysses Sequence Parallelism. https://arxiv.org/pdf/2604.14561.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14561.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents | DAST Papers</title>
+    <meta name="description" content="computer-use agents 的一类核心失败不是传统意义上的 jailbreak，而是 action 与用户真实意图逐步偏离。这样的 misaligned actions 既可能来自外部注入，也可能来自内部 reasoning 错误，最终直接造成错误操作、效率下降和安全事故。
+
+这篇工作的价值在于同时定义了问题、数据和修复环路。它提出 MisActBench 来标注真实轨迹中的 acti" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a145-misactbench-computer-use-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents" />
+    <meta property="og:description" content="computer-use agents 的一类核心失败不是传统意义上的 jailbreak，而是 action 与用户真实意图逐步偏离。这样的 misaligned actions 既可能来自外部注入，也可能来自内部 reasoning 错误，最终直接造成错误操作、效率下降和安全事故。
+
+这篇工作的价值在于同时定义了问题、数据和修复环路。它提出 MisActBench 来标注真实轨迹中的 acti" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a145-misactbench-computer-use-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents" />
+    <meta name="twitter:description" content="computer-use agents 的一类核心失败不是传统意义上的 jailbreak，而是 action 与用户真实意图逐步偏离。这样的 misaligned actions 既可能来自外部注入，也可能来自内部 reasoning 错误，最终直接造成错误操作、效率下降和安全事故。
+
+这篇工作的价值在于同时定义了问题、数据和修复环路。它提出 MisActBench 来标注真实轨迹中的 acti" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.08995" target="_blank" rel="noopener noreferrer">2602.08995</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>computer-use agents 的一类核心失败不是传统意义上的 jailbreak，而是 action 与用户真实意图逐步偏离。这样的 misaligned actions 既可能来自外部注入，也可能来自内部 reasoning 错误，最终直接造成错误操作、效率下降和安全事故。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的价值在于同时定义了问题、数据和修复环路。它提出 MisActBench 来标注真实轨迹中的 action-level alignment，并给出 DeAction 这种在执行前检测并通过结构化反馈迭代纠正动作的 guardrail 机制，把“偏行动作”从模糊现象变成可评测、可修复的运行时对象。</dd></div><div><dt>结果/证据</dt><dd>对仓库来说，这是一条非常实用的可复用安全模式：既能和 prompt injection、silent egress、permissioning、role confusion 这类工作互补，也能直接服务于 GUI agents、browser agents 和 enterprise automation agents 的运行时防护。它比单纯的 attack paper 更耐久。</dd></div><div><dt>收录价值</dt><dd>边界在于，它目前仍主要锚定 computer-use agents，而不是所有 agent 形态；同时 guardrail 的泛化还需要更多异构系统验证。所以正式收录为 breakthrough 合理，但不宜再升。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>computer-use agents 的一类核心失败不是传统意义上的 jailbreak，而是 action 与用户真实意图逐步偏离。这样的 misaligned actions 既可能来自外部注入，也可能来自内部 reasoning 错误，最终直接造成错误操作、效率下降和安全事故。</p><p>这篇工作的价值在于同时定义了问题、数据和修复环路。它提出 MisActBench 来标注真实轨迹中的 action-level alignment，并给出 DeAction 这种在执行前检测并通过结构化反馈迭代纠正动作的 guardrail 机制，把“偏行动作”从模糊现象变成可评测、可修复的运行时对象。</p><p>对仓库来说，这是一条非常实用的可复用安全模式：既能和 prompt injection、silent egress、permissioning、role confusion 这类工作互补，也能直接服务于 GUI agents、browser agents 和 enterprise automation agents 的运行时防护。它比单纯的 attack paper 更耐久。</p><p>边界在于，它目前仍主要锚定 computer-use agents，而不是所有 agent 形态；同时 guardrail 的泛化还需要更多异构系统验证。所以正式收录为 breakthrough 合理，但不宜再升。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>在真实的沙盒基准测试（Xie et al., 2024; Bonatti et al., 2025）上表现出色，提升了人们对实际部署的期望。然而，这种日益增长的自主性也带来了不容忽视的风险：在执行过程中，CUA可能会采取偏离用户意图的行动，导致诸如进度停滞或现实世界损害等不良后果。计算机使用代理（CUA）在过去一年中取得了巨大进展，但它们仍然经常产生偏离用户原始意图的错位行动。此类错位行动可能源于外部攻击（例如，间接提示注入）或内部局限性（例如，错误推理）。它们不仅使CUA面临安全风险，还会降低任务效率和可靠性。本工作首次尝试定义和研究CUA中的错位行动检测，全面涵盖了外部诱导和内部产生的错位行动。我们进一步识别了实际CUA部署中的三个常见类别，并构建了M IS ACT B ENCH，这是一个包含人类标注的行动级对齐标签的真实轨迹基准。此外，我们提出了D E ACTION，这是一种实用且通用的防护栏，可在执行前检测错位行动，并通过结构化反馈迭代地纠正它们。D E ACTION在离线和在线评估中均优于所有现有基线，且延迟开销适中：(1) 在M IS ACT B ENCH上，它在F1分数上绝对值超过15%优于基线；(2) 在在线评估中，它在对抗性设置下将攻击成功率降低了90%以上，同时在良性环境中保持甚至提高了任务成功率。先前的工作主要从安全风险的角度研究此类偏差，重点关注间接提示注入（Greshake et al., 2023）或策略违规（Wen et al., 2025）等威胁。因此，现有基准仅提供轨迹级别的安全或策略标签（Wen et al., 2025; Chen et al., 2025b; Sun et al., 2025），并且现有防护栏主要与预定义策略或已知攻击模式相关联（Xiang et al., 2025; Luo et al., 2025b; Shi et al., 2025）。尽管有价值，但这种以安全为中心的范式留下了一个关键空白：并非所有问题行为都能提前预测并列举为策略违规。在实践中，代理可能会产生技术上允许且非恶意的行动，但仍以不合理的方式偏离用户意图（图1）。例如，它们可能会引入不必要的交互、追求意外的子目标或阻碍任务进展。此类偏差可能不会违反预定义约束，但仍会侵蚀用户信任并降低代理的可靠性。这些局限性促使我们采用一种更以意图为中心的视角来分析代理偏差。我们不问一个行动是否违反了预定义的安全策略，而是关注行动对齐（Jia et al., 2025; Fang et al., 2025），即一个提议的行动是否可以被证明是推进用户真实意图的。我们将错位行动定义为无法被证明是实现预期目标的合法工作流程一部分的偏差。在CUA执行中，我们根据其原因和后果识别出三类常见的错位行动（图1）：(1) 恶意指令遵循：行动遵循外部环境中的恶意指令以实现攻击者的目标；(2) 有害的意外行为：行动由于固有局限性（例如，推理错误）而非对抗性攻击而无意中造成损害；(3) 其他与任务无关的行为：行动</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>mance on realistic sandboxed benchmarks (Xie et al., 2024; Bonatti et al., 2025), raising expectations for real-world deployment. However, this growing autonomy also introduces nontrivial risks: during execution, CUAs may take actions that deviate from user intent, leading to undesired consequences such as stalled progress or real-world harm. Computer-use agents (CUAs) have made tremendous progress in the past year, yet they still frequently produce misaligned actions that deviate from the user’s original intent. Such misaligned actions may arise from external attacks (e.g., indirect prompt injection) or from internal limitations (e.g., erroneous reasoning). They not only expose CUAs to safety risks, but also degrade task efficiency and reliability. This work makes the first effort to define and study misaligned action detection in CUAs, with comprehensive coverage of both externally induced and internally arising misaligned actions. We further identify three common categories in real-world CUA deployment and construct M IS ACT B ENCH, a benchmark of realistic trajectories with humanannotated, action-level alignment labels. Moreover, we propose D E ACTION, a practical and universal guardrail that detects misaligned actions before execution and iteratively corrects them through structured feedback. D E ACTION outperforms all existing baselines across offline and online evaluations with moderate latency overhead: (1) On M IS ACT B ENCH, it outperforms baselines by over 15% absolute in F1 score; (2) In online evaluation, it reduces attack success rate by over 90% under adversarial settings while preserving or even improving task success rate in benign environments. Prior work has studied such deviations primarily through the lens of safety risks, focusing on threats such as indirect prompt injection (Greshake et al., 2023) or policy violations (Wen et al., 2025). As a result, existing benchmarks provide only trajectory-level safety or policy labels (Wen et al., 2025; Chen et al., 2025b; Sun et al., 2025), and existing guardrails are predominantly tied to predefined policies or known attack patterns (Xiang et al., 2025; Luo et al., 2025b; Shi et al., 2025). While valuable, this safety-centric paradigm leaves a critical gap: not all problematic behaviors can be anticipated and enumerated as policy violations in advance. In practice, agents may produce actions that are technically permissible and non-malicious, yet still deviate from user intent in unjustified ways (Figure 1). For instance, they may introduce unnecessary interactions, pursue unintended subgoals, or derail task progress. Such deviations may not violate predefined constraints, but still erode user trust and degrade agent reliability. These limitations motivate a more intent-centric view for analyzing agent deviations. Rather than asking whether an action violates predefined safety policies, we focus on action alignment (Jia et al., 2025; Fang et al., 2025), i.e., whether a proposed action can be justified as advancing the user’s authentic intent. We define misaligned actions as deviations that cannot be justified as part of a legitimate workflow toward the intended goal. In CUA execution, we identify three common categories of misaligned actions based on their cause and consequence (Figure 1): (1) Malicious Instruction Following, where the action complies with malicious instructions in external environments to achieve an attacker’s goal; (2) Harmful Unintended Behavior, where the action causes harm inadvertently due to inherent limitations (e.g., reasoning error) rather than adversarial attack; (3) Other Task-Irrelevant Behavior, where the action does</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260209a145misact,
+  title = {When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.08995v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a145-misactbench-computer-use-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). When Actions Go Off-Task: Detecting and Correcting Misaligned Actions in Computer-Use Agents. https://arxiv.org/pdf/2602.08995v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.08995v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

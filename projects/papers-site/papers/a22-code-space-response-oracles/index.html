@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Code-Space Response Oracles: Generating Interpretable Multi-Agent Policies with Large Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文要解决的是多智能体强化学习里一个长期存在的问题：最优应对策略通常由黑盒神经网络给出，难以解释、难以调试，也很难信任。作者把这一问题重写为“让大语言模型直接生成可执行策略代码”，从而把策略学习从参数优化变成程序合成。
+
+核心方法是 Code-Space Response Oracles（CSRO）。它在 PSRO 框架里用 LLM 取代传统 RL oracle，直接输出带注释的 Python" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a22-code-space-response-oracles/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Code-Space Response Oracles: Generating Interpretable Multi-Agent Policies with Large Language Models" />
+    <meta property="og:description" content="这篇论文要解决的是多智能体强化学习里一个长期存在的问题：最优应对策略通常由黑盒神经网络给出，难以解释、难以调试，也很难信任。作者把这一问题重写为“让大语言模型直接生成可执行策略代码”，从而把策略学习从参数优化变成程序合成。
+
+核心方法是 Code-Space Response Oracles（CSRO）。它在 PSRO 框架里用 LLM 取代传统 RL oracle，直接输出带注释的 Python" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a22-code-space-response-oracles/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Code-Space Response Oracles: Generating Interpretable Multi-Agent Policies with Large Language Models" />
+    <meta name="twitter:description" content="这篇论文要解决的是多智能体强化学习里一个长期存在的问题：最优应对策略通常由黑盒神经网络给出，难以解释、难以调试，也很难信任。作者把这一问题重写为“让大语言模型直接生成可执行策略代码”，从而把策略学习从参数优化变成程序合成。
+
+核心方法是 Code-Space Response Oracles（CSRO）。它在 PSRO 框架里用 LLM 取代传统 RL oracle，直接输出带注释的 Python" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Code-Space Response Oracles: Generating Interpretable Multi-Agent Policies with Large Language Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.10098" target="_blank" rel="noopener noreferrer">2603.10098</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文要解决的是多智能体强化学习里一个长期存在的问题：最优应对策略通常由黑盒神经网络给出，难以解释、难以调试，也很难信任。作者把这一问题重写为“让大语言模型直接生成可执行策略代码”，从而把策略学习从参数优化变成程序合成。</dd></div><div><dt>方法/机制</dt><dd>核心方法是 Code-Space Response Oracles（CSRO）。它在 PSRO 框架里用 LLM 取代传统 RL oracle，直接输出带注释的 Python 策略，并支持零样本生成、迭代精修和 AlphaEvolve 式代码进化。论文还发现，对手上下文的保留多样性比只盯最优对手更重要，否则模型会过拟合生成脆弱策略。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里属于“agentic reasoning / multi-agent learning / interpretable policy synthesis”主线。价值不只在可解释性，还在于展示了 LLM 能在复杂博弈中显式合成带有心智理论和期望值计算的策略结构，这和 AlphaEvolve、代码搜索、可解释智能体设计有明显方法亲缘性。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为证据主要仍集中在多智能体博弈与可解释策略生成场景，尚未显示出对更大范围基础模型、Agent 系统或 AI for science 路线的重排能力。它是一篇很强的方法论文，但还不是总范式级成果。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文要解决的是多智能体强化学习里一个长期存在的问题：最优应对策略通常由黑盒神经网络给出，难以解释、难以调试，也很难信任。作者把这一问题重写为“让大语言模型直接生成可执行策略代码”，从而把策略学习从参数优化变成程序合成。</p><p>核心方法是 Code-Space Response Oracles（CSRO）。它在 PSRO 框架里用 LLM 取代传统 RL oracle，直接输出带注释的 Python 策略，并支持零样本生成、迭代精修和 AlphaEvolve 式代码进化。论文还发现，对手上下文的保留多样性比只盯最优对手更重要，否则模型会过拟合生成脆弱策略。</p><p>它在仓库里属于“agentic reasoning / multi-agent learning / interpretable policy synthesis”主线。价值不只在可解释性，还在于展示了 LLM 能在复杂博弈中显式合成带有心智理论和期望值计算的策略结构，这和 AlphaEvolve、代码搜索、可解释智能体设计有明显方法亲缘性。</p><p>它没有升到更高一级，是因为证据主要仍集中在多智能体博弈与可解释策略生成场景，尚未显示出对更大范围基础模型、Agent 系统或 AI for science 路线的重排能力。它是一篇很强的方法论文，但还不是总范式级成果。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>代码空间响应预言机：使用大型语言模型生成可解释的多智能体策略。多智能体强化学习的最新进展，特别是策略空间响应预言机（PSRO），使得在日益复杂的领域中计算近似博弈论均衡成为可能。然而，这些方法依赖于深度强化学习预言机，它们生成“黑盒”神经网络策略，使其难以解释、信任或调试。我们引入了代码空间响应预言机（CSRO），这是一个新颖的框架，通过用大型语言模型（LLMs）取代RL预言机来解决这一挑战。CSRO将最佳响应计算重新定义为代码生成任务，提示LLM直接生成人类可读的代码作为策略。这种方法不仅产生了本质上可解释的策略，而且还利用了LLM的预训练知识来发现复杂的、类人的策略。我们探索了构建和增强基于LLM的预言机的多种方法：零样本提示、迭代细化以及AlphaEvolve（一个基于LLM的分布式进化系统）。我们证明CSRO在生成多样化的可解释策略的同时，实现了与基线相当的性能。我们的工作为多智能体学习提供了一个新视角，将重点从优化不透明的策略参数转向合成可解释的算法行为。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent advances in multi-agent reinforcement learning, particularly Policy-Space Response Oracles (PSRO), have enabled the computation of approximate game-theoretic equilibria in increasingly complex domains. However, these methods rely on deep reinforcement learning oracles that produce ‘black-box’ neural network policies, making them difficult to interpret, trust or debug. We introduce Code-Space Response Oracles (CSRO), a novel framework that addresses this challenge by replacing RL oracles with Large Language Models (LLMs). CSRO reframes the best response computation as a code generation task, prompting an LLM to generate policies directly as human-readable code. This approach not only yields inherently interpretable policies but also leverages the LLM’s pretrained knowledge to discover complex, human-like strategies. We explore multiple ways to construct and enhance an LLM-based oracle: zero-shot prompting, iterative refinement and AlphaEvolve, a distributed LLM-based evolutionary system. We demonstrate that CSRO achieves performance competitive with baselines while producing a diverse set of explainable policies. Our work presents a new perspective on multi-agent learning, shifting the focus from optimizing opaque policy parameters to synthesizing interpretable algorithmic behavior.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260310a22codespa,
+  title = {Code-Space Response Oracles: Generating Interpretable Multi-Agent Policies with Large Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.10098v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a22-code-space-response-oracles/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Code-Space Response Oracles: Generating Interpretable Multi-Agent Policies with Large Language Models. https://arxiv.org/pdf/2603.10098v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.10098v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Price Is Not Right: Neuro-Symbolic Methods Outperform VLAs on Structured Long-Horizon Manipulation Tasks with Significantly Lower Energy Consumption | DAST Papers</title>
+    <meta name="description" content="问题与背景：VLA 被视为通用机器人策略路径，但长程结构化任务是否必须依赖端到端基础模型并不清楚。论文用相同任务和能耗指标正面比较 VLA fine-tuning 与 neuro-symbolic planning。
+
+方法与新意：对照系统把 PDDL 符号规划和学习型低层控制组合起来，与微调的开放 VLA 在 Towers of Hanoi 操作任务上比较成功率、未见 4-block 泛化、训练" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl56-price-not-right-neurosymbolic-vla/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Price Is Not Right: Neuro-Symbolic Methods Outperform VLAs on Structured Long-Horizon Manipulation Tasks with Significantly Lower Energy Consumption" />
+    <meta property="og:description" content="问题与背景：VLA 被视为通用机器人策略路径，但长程结构化任务是否必须依赖端到端基础模型并不清楚。论文用相同任务和能耗指标正面比较 VLA fine-tuning 与 neuro-symbolic planning。
+
+方法与新意：对照系统把 PDDL 符号规划和学习型低层控制组合起来，与微调的开放 VLA 在 Towers of Hanoi 操作任务上比较成功率、未见 4-block 泛化、训练" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl56-price-not-right-neurosymbolic-vla/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Price Is Not Right: Neuro-Symbolic Methods Outperform VLAs on Structured Long-Horizon Manipulation Tasks with Significantly Lower Energy Consumption" />
+    <meta name="twitter:description" content="问题与背景：VLA 被视为通用机器人策略路径，但长程结构化任务是否必须依赖端到端基础模型并不清楚。论文用相同任务和能耗指标正面比较 VLA fine-tuning 与 neuro-symbolic planning。
+
+方法与新意：对照系统把 PDDL 符号规划和学习型低层控制组合起来，与微调的开放 VLA 在 Towers of Hanoi 操作任务上比较成功率、未见 4-block 泛化、训练" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Price Is Not Right: Neuro-Symbolic Methods Outperform VLAs on Structured Long-Horizon Manipulation Tasks with Significantly Lower Energy Consumption</h1>
+          <p class="subtitle">强化学习 · 发表：2026-02-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.19260" target="_blank" rel="noopener noreferrer">2602.19260</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：VLA 被视为通用机器人策略路径，但长程结构化任务是否必须依赖端到端基础模型并不清楚。论文用相同任务和能耗指标正面比较 VLA fine-tuning 与 neuro-symbolic planning。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：对照系统把 PDDL 符号规划和学习型低层控制组合起来，与微调的开放 VLA 在 Towers of Hanoi 操作任务上比较成功率、未见 4-block 泛化、训练能耗和运行能耗。结果显示 neuro-symbolic 在成功率和能效上明显优于 VLA。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇的价值不是提出新 VLA，而是给机器人长程任务提供了一个清晰的反例和评测框架：显式结构、规划约束和低层学习的组合在某些任务上比端到端 VLA 更可靠、更省能。它对 embodied AI 的架构选择有可复用警示价值。</dd></div><div><dt>收录价值</dt><dd>局限：任务仍是结构化仿真操作，领域范围窄，不能推出所有机器人任务都应回到符号规划；因此作为 breakthrough 反例和评测证据收录，而不是更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：VLA 被视为通用机器人策略路径，但长程结构化任务是否必须依赖端到端基础模型并不清楚。论文用相同任务和能耗指标正面比较 VLA fine-tuning 与 neuro-symbolic planning。</p><p>方法与新意：对照系统把 PDDL 符号规划和学习型低层控制组合起来，与微调的开放 VLA 在 Towers of Hanoi 操作任务上比较成功率、未见 4-block 泛化、训练能耗和运行能耗。结果显示 neuro-symbolic 在成功率和能效上明显优于 VLA。</p><p>收录意义：这篇的价值不是提出新 VLA，而是给机器人长程任务提供了一个清晰的反例和评测框架：显式结构、规划约束和低层学习的组合在某些任务上比端到端 VLA 更可靠、更省能。它对 embodied AI 的架构选择有可复用警示价值。</p><p>局限：任务仍是结构化仿真操作，领域范围窄，不能推出所有机器人任务都应回到符号规划；因此作为 breakthrough 反例和评测证据收录，而不是更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本ICRA 2026论文比较了经过微调的开放权重VLA模型与结合PDDL符号规划和学习型低层控制的神经符号架构在结构化塔的哈诺操纵任务上的表现，并测量了成功率、泛化能力、训练能量和执行能量。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This ICRA 2026 paper compares a fine-tuned open-weight VLA model with a neuro-symbolic architecture combining PDDL symbolic planning and learned low-level control on structured Towers of Hanoi manipulation tasks, measuring success, generalization, training energy, and execution energy.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260222rl56pricen,
+  title = {The Price Is Not Right: Neuro-Symbolic Methods Outperform VLAs on Structured Long-Horizon Manipulation Tasks with Significantly Lower Energy Consumption},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.19260.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl56-price-not-right-neurosymbolic-vla/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Price Is Not Right: Neuro-Symbolic Methods Outperform VLAs on Structured Long-Horizon Manipulation Tasks with Significantly Lower Energy Consumption. https://arxiv.org/pdf/2602.19260.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.19260.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://price-is-not-right.github.io" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

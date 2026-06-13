@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Imaging hidden objects with consumer LiDAR via motion-induced sampling | DAST Papers</title>
+    <meta name="description" content="这篇 Nature 论文把非视距隐藏物体成像推进到低成本消费级 LiDAR 场景，不再依赖昂贵、专用的实验室 NLOS 硬件。
+
+核心思路是利用运动诱导采样，把多帧消费级 LiDAR 数据和运动模型融合起来，实现隐藏物体的三维重建、跟踪和定位。
+
+对机器人和具身系统而言，这相当于扩展了感知边界：拐角后、遮挡后和视线外的风险可以通过低成本传感器和时序融合被估计。
+
+它值得收录，因为它提供了一个可复用" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl83-consumer-lidar-hidden-object-imaging/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Imaging hidden objects with consumer LiDAR via motion-induced sampling" />
+    <meta property="og:description" content="这篇 Nature 论文把非视距隐藏物体成像推进到低成本消费级 LiDAR 场景，不再依赖昂贵、专用的实验室 NLOS 硬件。
+
+核心思路是利用运动诱导采样，把多帧消费级 LiDAR 数据和运动模型融合起来，实现隐藏物体的三维重建、跟踪和定位。
+
+对机器人和具身系统而言，这相当于扩展了感知边界：拐角后、遮挡后和视线外的风险可以通过低成本传感器和时序融合被估计。
+
+它值得收录，因为它提供了一个可复用" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl83-consumer-lidar-hidden-object-imaging/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Imaging hidden objects with consumer LiDAR via motion-induced sampling" />
+    <meta name="twitter:description" content="这篇 Nature 论文把非视距隐藏物体成像推进到低成本消费级 LiDAR 场景，不再依赖昂贵、专用的实验室 NLOS 硬件。
+
+核心思路是利用运动诱导采样，把多帧消费级 LiDAR 数据和运动模型融合起来，实现隐藏物体的三维重建、跟踪和定位。
+
+对机器人和具身系统而言，这相当于扩展了感知边界：拐角后、遮挡后和视线外的风险可以通过低成本传感器和时序融合被估计。
+
+它值得收录，因为它提供了一个可复用" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Imaging hidden objects with consumer LiDAR via motion-induced sampling</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10502-x" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10502-x</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature 论文把非视距隐藏物体成像推进到低成本消费级 LiDAR 场景，不再依赖昂贵、专用的实验室 NLOS 硬件。</dd></div><div><dt>方法/机制</dt><dd>核心思路是利用运动诱导采样，把多帧消费级 LiDAR 数据和运动模型融合起来，实现隐藏物体的三维重建、跟踪和定位。</dd></div><div><dt>结果/证据</dt><dd>对机器人和具身系统而言，这相当于扩展了感知边界：拐角后、遮挡后和视线外的风险可以通过低成本传感器和时序融合被估计。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它提供了一个可复用的 embodied sensing primitive，可用于移动机器人、AR、自动驾驶边缘感知和低成本空间智能系统。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature 论文把非视距隐藏物体成像推进到低成本消费级 LiDAR 场景，不再依赖昂贵、专用的实验室 NLOS 硬件。</p><p>核心思路是利用运动诱导采样，把多帧消费级 LiDAR 数据和运动模型融合起来，实现隐藏物体的三维重建、跟踪和定位。</p><p>对机器人和具身系统而言，这相当于扩展了感知边界：拐角后、遮挡后和视线外的风险可以通过低成本传感器和时序融合被估计。</p><p>它值得收录，因为它提供了一个可复用的 embodied sensing primitive，可用于移动机器人、AR、自动驾驶边缘感知和低成本空间智能系统。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过运动诱导采样利用消费级LiDAR对隐藏物体进行成像。光探测与测距 (LiDAR) 正越来越多地应用于手持、可穿戴和机器人等消费级成像领域。这些传感器以皮秒级分辨率测量光的飞行时间，这使得它们能够对视场之外的隐藏物体进行成像。尽管此类非视距 (NLOS) 成像能力已在研究级LiDAR设备上得到展示，但由于激光功率低、空间分辨率低以及物体和相机运动导致的信号质量差，在消费级设备上实现这些能力仍然具有挑战性。在本文中，我们提出了一种多帧融合策略来克服这些挑战，并在消费级LiDAR上展示了NLOS成像。我们引入了运动诱导孔径采样模型，以在单一测量模型下统一物体形状、物体运动和相机运动的影响。利用该模型，我们在智能手机级LiDAR上展示了几种NLOS能力：(1) 三维重建；(2) 单物体和多物体跟踪；以及 (3) 使用隐藏物体进行相机定位。此前，NLOS成像能力仅限于笨重且昂贵的研究级硬件，这些硬件需要广泛的设置和校准。我们的结果代表了向即插即用NLOS成像的转变，任何人都可以使用现成硬件（成本低于100美元）且无需额外设置即可对隐藏物体进行成像。我们相信此类能力的普及将推动NLOS成像的消费应用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Light-detection and ranging (LiDAR) is being increasingly deployed for consumer imaging across handheld, wearable and robotic applications . These sensors measure the time-of-flight of light at picosecond resolution, which could enable them to image objects hidden from their field of view. Although such non-line-of-sight (NLOS) imaging capabilities have been shown on research-grade LiDAR devices, they remain challenging to achieve on consumer devices due to poor signal quality resulting from low laser power, low spatial resolution, and object and camera motion. Here we propose a multi-frame fusion strategy to overcome these challenges and demonstrate NLOS imaging on consumer LiDAR. We introduce the motion-induced aperture sampling model to unify the effects of object shape, object motion and camera motion under a single measurement model. Using this model, we demonstrate several NLOS capabilities on a smartphone-grade LiDAR: (1) three-dimensional reconstruction; (2) single- and multi-object tracking; and (3) camera localization using hidden objects. Previously, NLOS imaging capabilities were restricted to bulky and expensive research-grade hardware that requires extensive set-up and calibration. Our results represent a shift towards plug-and-play NLOS imaging, where anyone can image hidden objects with off-the-shelf hardware (for less than US$100) and no additional set-up. We believe democratization of such capabilities will advance consumer applications of NLOS imaging.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520rl83consum,
+  title = {Imaging hidden objects with consumer LiDAR via motion-induced sampling},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10502-x.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl83-consumer-lidar-hidden-object-imaging/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Imaging hidden objects with consumer LiDAR via motion-induced sampling. https://www.nature.com/articles/s41586-026-10502-x.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10502-x.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

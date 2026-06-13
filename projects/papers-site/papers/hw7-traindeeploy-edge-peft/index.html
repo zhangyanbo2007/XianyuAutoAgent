@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrainDeeploy: Hardware-Accelerated Parameter-Efficient Fine-Tuning of Small Transformer Models at the Extreme Edge | DAST Papers</title>
+    <meta name="description" content="这篇论文关注的是极端边缘设备上的一个关键缺口：很多 edge AI 论文讨论 on-device inference，却默认训练和适配仍在云端完成。TrainDeeploy 直接把问题推进到 ultra-low-power、memory-constrained SoC 上的本地训练与微调，尤其覆盖了 Transformer 和 LoRA 这类对部署很关键的适配路径。
+
+方法上，TrainDeepl" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw7-traindeeploy-edge-peft/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TrainDeeploy: Hardware-Accelerated Parameter-Efficient Fine-Tuning of Small Transformer Models at the Extreme Edge" />
+    <meta property="og:description" content="这篇论文关注的是极端边缘设备上的一个关键缺口：很多 edge AI 论文讨论 on-device inference，却默认训练和适配仍在云端完成。TrainDeeploy 直接把问题推进到 ultra-low-power、memory-constrained SoC 上的本地训练与微调，尤其覆盖了 Transformer 和 LoRA 这类对部署很关键的适配路径。
+
+方法上，TrainDeepl" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw7-traindeeploy-edge-peft/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TrainDeeploy: Hardware-Accelerated Parameter-Efficient Fine-Tuning of Small Transformer Models at the Extreme Edge" />
+    <meta name="twitter:description" content="这篇论文关注的是极端边缘设备上的一个关键缺口：很多 edge AI 论文讨论 on-device inference，却默认训练和适配仍在云端完成。TrainDeeploy 直接把问题推进到 ultra-low-power、memory-constrained SoC 上的本地训练与微调，尤其覆盖了 Transformer 和 LoRA 这类对部署很关键的适配路径。
+
+方法上，TrainDeepl" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TrainDeeploy: Hardware-Accelerated Parameter-Efficient Fine-Tuning of Small Transformer Models at the Extreme Edge</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.09511" target="_blank" rel="noopener noreferrer">2603.09511</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注的是极端边缘设备上的一个关键缺口：很多 edge AI 论文讨论 on-device inference，却默认训练和适配仍在云端完成。TrainDeeploy 直接把问题推进到 ultra-low-power、memory-constrained SoC 上的本地训练与微调，尤其覆盖了 Transformer 和 LoRA 这类对部署很关键的适配路径。</dd></div><div><dt>方法/机制</dt><dd>方法上，TrainDeeploy 不是只给一个 kernel，而是做了完整 pipeline：在异构超低功耗 SoC 上统一 inference 与 training，支持 selective layer-wise fine-tuning 和 LoRA，并把运行时调度、内存约束和硬件加速联动起来。论文的价值点在于它把 PEFT 从“服务器上的低成本训练技巧”推进成“极端边缘设备可落地的适配工作流”。</dd></div><div><dt>结果/证据</dt><dd>这对本仓库的 test-time / PEFT / hardware 三条主线都有交叉价值。它展示的不是简单的 LoRA 涨点，而是参数高效适配如何嵌入 edge deployment、隐私保护和长期本地个性化中，这属于很清晰的 hardware-software co-design pattern。</dd></div><div><dt>收录价值</dt><dd>之所以不升到更高等级，是因为当前验证仍聚焦 small transformer / compact model 场景，更多像一个重要的系统起点，而不是已经改变主流边缘 AI 训练范式的通用基础设施。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注的是极端边缘设备上的一个关键缺口：很多 edge AI 论文讨论 on-device inference，却默认训练和适配仍在云端完成。TrainDeeploy 直接把问题推进到 ultra-low-power、memory-constrained SoC 上的本地训练与微调，尤其覆盖了 Transformer 和 LoRA 这类对部署很关键的适配路径。</p><p>方法上，TrainDeeploy 不是只给一个 kernel，而是做了完整 pipeline：在异构超低功耗 SoC 上统一 inference 与 training，支持 selective layer-wise fine-tuning 和 LoRA，并把运行时调度、内存约束和硬件加速联动起来。论文的价值点在于它把 PEFT 从“服务器上的低成本训练技巧”推进成“极端边缘设备可落地的适配工作流”。</p><p>这对本仓库的 test-time / PEFT / hardware 三条主线都有交叉价值。它展示的不是简单的 LoRA 涨点，而是参数高效适配如何嵌入 edge deployment、隐私保护和长期本地个性化中，这属于很清晰的 hardware-software co-design pattern。</p><p>之所以不升到更高等级，是因为当前验证仍聚焦 small transformer / compact model 场景，更多像一个重要的系统起点，而不是已经改变主流边缘 AI 训练范式的通用基础设施。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260310hw7trainde,
+  title = {TrainDeeploy: Hardware-Accelerated Parameter-Efficient Fine-Tuning of Small Transformer Models at the Extreme Edge},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.09511.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw7-traindeeploy-edge-peft/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TrainDeeploy: Hardware-Accelerated Parameter-Efficient Fine-Tuning of Small Transformer Models at the Extreme Edge. https://arxiv.org/pdf/2603.09511.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.09511.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AnaFlow: Agentic LLM-based Workflow for Reasoning-Driven Explainable and Sample-Efficient Analog Circuit Sizing | DAST Papers</title>
+    <meta name="description" content="模拟/混合信号电路设计长期依赖人工经验，设计周期长、仿真开销高，而且很多 AI 自动化方法虽然能优化参数，却缺乏解释性，也很难被设计人员真正接入日常流程。
+
+AnaFlow 提出一个多 agent LLM workflow：不同 agent 分别解释 topology、理解设计目标、推进参数更新，并通过 adaptive simulation strategy 控制仿真预算。它同时保留 human" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw13-anaflow-analog-circuit-sizing/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AnaFlow: Agentic LLM-based Workflow for Reasoning-Driven Explainable and Sample-Efficient Analog Circuit Sizing" />
+    <meta property="og:description" content="模拟/混合信号电路设计长期依赖人工经验，设计周期长、仿真开销高，而且很多 AI 自动化方法虽然能优化参数，却缺乏解释性，也很难被设计人员真正接入日常流程。
+
+AnaFlow 提出一个多 agent LLM workflow：不同 agent 分别解释 topology、理解设计目标、推进参数更新，并通过 adaptive simulation strategy 控制仿真预算。它同时保留 human" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw13-anaflow-analog-circuit-sizing/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AnaFlow: Agentic LLM-based Workflow for Reasoning-Driven Explainable and Sample-Efficient Analog Circuit Sizing" />
+    <meta name="twitter:description" content="模拟/混合信号电路设计长期依赖人工经验，设计周期长、仿真开销高，而且很多 AI 自动化方法虽然能优化参数，却缺乏解释性，也很难被设计人员真正接入日常流程。
+
+AnaFlow 提出一个多 agent LLM workflow：不同 agent 分别解释 topology、理解设计目标、推进参数更新，并通过 adaptive simulation strategy 控制仿真预算。它同时保留 human" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AnaFlow: Agentic LLM-based Workflow for Reasoning-Driven Explainable and Sample-Efficient Analog Circuit Sizing</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2025-11-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.03697" target="_blank" rel="noopener noreferrer">2511.03697</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>模拟/混合信号电路设计长期依赖人工经验，设计周期长、仿真开销高，而且很多 AI 自动化方法虽然能优化参数，却缺乏解释性，也很难被设计人员真正接入日常流程。</dd></div><div><dt>方法/机制</dt><dd>AnaFlow 提出一个多 agent LLM workflow：不同 agent 分别解释 topology、理解设计目标、推进参数更新，并通过 adaptive simulation strategy 控制仿真预算。它同时保留 human-interpretable reasoning，使 sizing 结果不再只是黑盒最优点，而是可追踪的设计过程。</dd></div><div><dt>结果/证据</dt><dd>这篇论文命中了你要求的 `硬件电路设计与仿真` 范围。它的价值不在于某个电路 benchmark，而在于把 reasoning、simulation control 和 explainability 放进同一个 analog design loop，形成更可复用的自动化模式。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为验证范围仍然较窄，只在有限电路上证明了 sizing 任务；离完整模拟设计流、版图生成和 silicon-proven flow 还有明显距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>模拟/混合信号电路设计长期依赖人工经验，设计周期长、仿真开销高，而且很多 AI 自动化方法虽然能优化参数，却缺乏解释性，也很难被设计人员真正接入日常流程。</p><p>AnaFlow 提出一个多 agent LLM workflow：不同 agent 分别解释 topology、理解设计目标、推进参数更新，并通过 adaptive simulation strategy 控制仿真预算。它同时保留 human-interpretable reasoning，使 sizing 结果不再只是黑盒最优点，而是可追踪的设计过程。</p><p>这篇论文命中了你要求的 `硬件电路设计与仿真` 范围。它的价值不在于某个电路 benchmark，而在于把 reasoning、simulation control 和 explainability 放进同一个 analog design loop，形成更可复用的自动化模式。</p><p>它不是更高一级，因为验证范围仍然较窄，只在有限电路上证明了 sizing 任务；离完整模拟设计流、版图生成和 silicon-proven flow 还有明显距离。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251105hw13anaflo,
+  title = {AnaFlow: Agentic LLM-based Workflow for Reasoning-Driven Explainable and Sample-Efficient Analog Circuit Sizing},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.03697.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw13-anaflow-analog-circuit-sizing/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). AnaFlow: Agentic LLM-based Workflow for Reasoning-Driven Explainable and Sample-Efficient Analog Circuit Sizing. https://arxiv.org/pdf/2511.03697.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.03697.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

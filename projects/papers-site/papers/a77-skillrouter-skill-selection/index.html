@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillRouter: Retrieve-and-Rerank Skill Selection for LLM Agents at Scale | DAST Papers</title>
+    <meta name="description" content="随着 agent skill 生态从几十个工具扩展到上万条 skills、plugins 和 prompts，真正的瓶颈已经不只是“agent 会不会调用工具”，而是“在巨大且高度同质的 skill 池里，系统怎样先找对 skill”。这篇论文把 skill routing 提升成一个独立问题来研究，而不是继续默认 name 和 description 足够代表技能能力。它面对的是现实里最常见但此" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a77-skillrouter-skill-selection/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SkillRouter: Retrieve-and-Rerank Skill Selection for LLM Agents at Scale" />
+    <meta property="og:description" content="随着 agent skill 生态从几十个工具扩展到上万条 skills、plugins 和 prompts，真正的瓶颈已经不只是“agent 会不会调用工具”，而是“在巨大且高度同质的 skill 池里，系统怎样先找对 skill”。这篇论文把 skill routing 提升成一个独立问题来研究，而不是继续默认 name 和 description 足够代表技能能力。它面对的是现实里最常见但此" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a77-skillrouter-skill-selection/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SkillRouter: Retrieve-and-Rerank Skill Selection for LLM Agents at Scale" />
+    <meta name="twitter:description" content="随着 agent skill 生态从几十个工具扩展到上万条 skills、plugins 和 prompts，真正的瓶颈已经不只是“agent 会不会调用工具”，而是“在巨大且高度同质的 skill 池里，系统怎样先找对 skill”。这篇论文把 skill routing 提升成一个独立问题来研究，而不是继续默认 name 和 description 足够代表技能能力。它面对的是现实里最常见但此" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SkillRouter: Retrieve-and-Rerank Skill Selection for LLM Agents at Scale</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.22455" target="_blank" rel="noopener noreferrer">2603.22455</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 agent skill 生态从几十个工具扩展到上万条 skills、plugins 和 prompts，真正的瓶颈已经不只是“agent 会不会调用工具”，而是“在巨大且高度同质的 skill 池里，系统怎样先找对 skill”。这篇论文把 skill routing 提升成一个独立问题来研究，而不是继续默认 name 和 description 足够代表技能能力。它面对的是现实里最常见但此前几乎没被系统研究的场景：大量重名、近义、实现细节不同的社区 skill 并存。</dd></div><div><dt>方法/机制</dt><dd>SkillRouter 的关键贡献有两层。第一层是经验性但很重要的结论：skill body，也就是完整实现文本，不是附属信息，而是决定 skill selection 的主要信号；拿掉 body 后，各种检索方法都会出现 29 到 44 个百分点的退化。第二层是方法与评测：作者基于约 8 万 skills 和 75 条 expert-verified queries 构建标准化 benchmark，并提出一个 0.6B encoder + 0.6B reranker 的两阶段 retrieve-and-rerank pipeline，在 consumer hardware 约束下仍能给出有竞争力的 routing 结果。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不只是做了一个小型 tool retriever，而是明确改写了 agent skill system 的一个默认假设：progressive disclosure 下只看 metadata 做 selection 是不够的，routing 端必须利用 skill body。这个结论对 skill marketplace、capability extension、local-first agent tooling 和 memory-plus-skill library 设计都有直接复用价值，也为后续技能检索 benchmark 和 router 设计提供了清晰参照。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为 benchmark 规模虽已像样，但查询数量还不大，且主要围绕阿里系构建的 skill pool 和 under-review 设定。它已经证明了问题存在且 body 信息关键，但是否会成为跨生态的默认 skill routing 基础设施，还要看更多公开技能仓库、真实 agent loop 和 end-to-end task completion 的后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 agent skill 生态从几十个工具扩展到上万条 skills、plugins 和 prompts，真正的瓶颈已经不只是“agent 会不会调用工具”，而是“在巨大且高度同质的 skill 池里，系统怎样先找对 skill”。这篇论文把 skill routing 提升成一个独立问题来研究，而不是继续默认 name 和 description 足够代表技能能力。它面对的是现实里最常见但此前几乎没被系统研究的场景：大量重名、近义、实现细节不同的社区 skill 并存。</p><p>SkillRouter 的关键贡献有两层。第一层是经验性但很重要的结论：skill body，也就是完整实现文本，不是附属信息，而是决定 skill selection 的主要信号；拿掉 body 后，各种检索方法都会出现 29 到 44 个百分点的退化。第二层是方法与评测：作者基于约 8 万 skills 和 75 条 expert-verified queries 构建标准化 benchmark，并提出一个 0.6B encoder + 0.6B reranker 的两阶段 retrieve-and-rerank pipeline，在 consumer hardware 约束下仍能给出有竞争力的 routing 结果。</p><p>这篇工作值得正式收录，因为它不只是做了一个小型 tool retriever，而是明确改写了 agent skill system 的一个默认假设：progressive disclosure 下只看 metadata 做 selection 是不够的，routing 端必须利用 skill body。这个结论对 skill marketplace、capability extension、local-first agent tooling 和 memory-plus-skill library 设计都有直接复用价值，也为后续技能检索 benchmark 和 router 设计提供了清晰参照。</p><p>它目前仍是 breakthrough，而不是更高一级，因为 benchmark 规模虽已像样，但查询数量还不大，且主要围绕阿里系构建的 skill pool 和 under-review 设定。它已经证明了问题存在且 body 信息关键，但是否会成为跨生态的默认 skill routing 基础设施，还要看更多公开技能仓库、真实 agent loop 和 end-to-end task completion 的后续验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260323a77skillro,
+  title = {SkillRouter: Retrieve-and-Rerank Skill Selection for LLM Agents at Scale},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.22455},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a77-skillrouter-skill-selection/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SkillRouter: Retrieve-and-Rerank Skill Selection for LLM Agents at Scale. https://arxiv.org/pdf/2603.22455</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.22455" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

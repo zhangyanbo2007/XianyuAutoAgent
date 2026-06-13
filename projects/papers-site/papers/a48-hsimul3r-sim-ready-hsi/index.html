@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HSImul3R: Physics-in-the-Loop Reconstruction of Simulation-Ready Human-Scene Interactions | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 embodied AI 里一个关键但长期没有被真正打通的问题：从稀疏视角图片或单目视频重建 human-scene interaction 时，视觉上看着合理的结果往往并不满足物理约束，放进 simulator 就会失稳，从而无法直接用于机器人、仿真或 real-to-sim 工作流。
+
+HSImul3R 的核心是把 physics simulator 变成主动监督信号，做双向的" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a48-hsimul3r-sim-ready-hsi/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HSImul3R: Physics-in-the-Loop Reconstruction of Simulation-Ready Human-Scene Interactions" />
+    <meta property="og:description" content="这篇论文处理的是 embodied AI 里一个关键但长期没有被真正打通的问题：从稀疏视角图片或单目视频重建 human-scene interaction 时，视觉上看着合理的结果往往并不满足物理约束，放进 simulator 就会失稳，从而无法直接用于机器人、仿真或 real-to-sim 工作流。
+
+HSImul3R 的核心是把 physics simulator 变成主动监督信号，做双向的" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a48-hsimul3r-sim-ready-hsi/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HSImul3R: Physics-in-the-Loop Reconstruction of Simulation-Ready Human-Scene Interactions" />
+    <meta name="twitter:description" content="这篇论文处理的是 embodied AI 里一个关键但长期没有被真正打通的问题：从稀疏视角图片或单目视频重建 human-scene interaction 时，视觉上看着合理的结果往往并不满足物理约束，放进 simulator 就会失稳，从而无法直接用于机器人、仿真或 real-to-sim 工作流。
+
+HSImul3R 的核心是把 physics simulator 变成主动监督信号，做双向的" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HSImul3R: Physics-in-the-Loop Reconstruction of Simulation-Ready Human-Scene Interactions</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15612" target="_blank" rel="noopener noreferrer">2603.15612</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 embodied AI 里一个关键但长期没有被真正打通的问题：从稀疏视角图片或单目视频重建 human-scene interaction 时，视觉上看着合理的结果往往并不满足物理约束，放进 simulator 就会失稳，从而无法直接用于机器人、仿真或 real-to-sim 工作流。</dd></div><div><dt>方法/机制</dt><dd>HSImul3R 的核心是把 physics simulator 变成主动监督信号，做双向的 physics-in-the-loop 优化。在 forward 方向，作者用 scene-targeted reinforcement learning 优化人体动作，同时兼顾 motion fidelity 和接触稳定；在 reverse 方向，用 Direct Simulation Reward Optimization 直接根据重力稳定性与交互成功率等仿真反馈细化场景几何。论文还提出 HSIBench 来系统评测 simulation-ready 的 human-scene interaction reconstruction。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是又一个看图重建更精细的 4D 感知模型，而是明确把目标改成 simulation-ready reconstruction，直接缩小 perception 和 simulation 之间的断层。对机器人、具身感知、real-to-sim 数据构建和 humanoid interaction modeling 来说，这是一种非常清晰的新工作流模式。</dd></div><div><dt>收录价值</dt><dd>它当前仍是 breakthrough，而不是更高一级，因为证据还主要集中在 human-scene interaction reconstruction 与下游部署可行性，没有进一步扩展成更通用的场景世界模型或大规模机器人训练基础设施。它能否升得更高，要看 HSIBench 和这套 physics-in-the-loop 方案是否被后续社区广泛沿用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 embodied AI 里一个关键但长期没有被真正打通的问题：从稀疏视角图片或单目视频重建 human-scene interaction 时，视觉上看着合理的结果往往并不满足物理约束，放进 simulator 就会失稳，从而无法直接用于机器人、仿真或 real-to-sim 工作流。</p><p>HSImul3R 的核心是把 physics simulator 变成主动监督信号，做双向的 physics-in-the-loop 优化。在 forward 方向，作者用 scene-targeted reinforcement learning 优化人体动作，同时兼顾 motion fidelity 和接触稳定；在 reverse 方向，用 Direct Simulation Reward Optimization 直接根据重力稳定性与交互成功率等仿真反馈细化场景几何。论文还提出 HSIBench 来系统评测 simulation-ready 的 human-scene interaction reconstruction。</p><p>这篇工作值得正式收录，因为它不是又一个看图重建更精细的 4D 感知模型，而是明确把目标改成 simulation-ready reconstruction，直接缩小 perception 和 simulation 之间的断层。对机器人、具身感知、real-to-sim 数据构建和 humanoid interaction modeling 来说，这是一种非常清晰的新工作流模式。</p><p>它当前仍是 breakthrough，而不是更高一级，因为证据还主要集中在 human-scene interaction reconstruction 与下游部署可行性，没有进一步扩展成更通用的场景世界模型或大规模机器人训练基础设施。它能否升得更高，要看 HSIBench 和这套 physics-in-the-loop 方案是否被后续社区广泛沿用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>HSImul3R：物理循环中的可模拟人-场景交互重建。图1：真实世界人形机器人部署示例。给定随意捕获的数据，我们的方法通过物理驱动的双向优化流程，精炼人体运动和场景几何，实现可用于模拟的人-场景交互3D重建。我们优化后的人体运动可以无缝迁移并部署到人形机器人中。摘要。我们提出了HSImul3R1，这是一个统一的框架，用于从随意捕获的数据（包括稀疏视图图像和单目视频）中进行可用于模拟的人-场景交互（HSI）3D重建。现有方法存在感知-模拟鸿沟：视觉上看似合理的重建结果常常违反物理约束，导致物理引擎不稳定，并在具身AI应用中失败。为了弥合这一鸿沟，我们引入了一个物理驱动的双向优化流程，将物理模拟器视为一个主动监督者，共同精炼人体动力学和场景几何。在正向过程中，我们采用Scene-targeted Reinforcement Learning，在运动保真度和接触稳定性的双重监督下优化人体运动。在反向过程中，我们提出了Direct Simulation Reward Optimization，它利用模拟器关于重力稳定性和交互成功率的反馈来精炼场景几何。我们进一步提出了HSIBench，这是一个包含多样化物体和交互场景的新基准。大量实验表明，HSImul3R生成了首个稳定、可用于模拟的HSI重建结果，并且可以直接部署到真实世界的人形机器人中。1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Fig. 1: Examples of real-world humanoid robotic deployment. Given casual captures, our approach achieves simulation-ready 3D reconstruction of human–scene interactions by refining the human motions and scene geometry via a physically-grounded bi-directional optimization pipeline. Our optimized human motions can be seamlessly transferred and deployed in humanoid robotics. Abstract. We present HSImul3R1 , a unified framework for simulationready 3D reconstruction of human-scene interactions (HSI) from casual captures, including sparse-view images and monocular videos. Existing methods suffer from a perception-simulation gap: visually plausible reconstructions often violate physical constraints, leading to instability in physics engines and failure in embodied AI applications. To bridge this gap, we introduce a physically-grounded bi-directional optimization pipeline that treats the physics simulator as an active supervisor to jointly refine human dynamics and scene geometry. In the forward direction, we employ Scene-targeted Reinforcement Learning to optimize human motion under dual supervision of motion fidelity and contact stability. In the reverse direction, we propose Direct Simulation Reward Optimization, which leverages simulation feedback on gravitational stability and interaction success to refine scene geometry. We further present HSIBench, a new benchmark with diverse objects and interaction scenarios. Extensive experiments demonstrate that HSImul3R produces the first stable, simulation-ready HSI reconstructions and can be directly deployed to real-world humanoid robots. 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316a48hsimul3,
+  title = {HSImul3R: Physics-in-the-Loop Reconstruction of Simulation-Ready Human-Scene Interactions},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15612v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a48-hsimul3r-sim-ready-hsi/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HSImul3R: Physics-in-the-Loop Reconstruction of Simulation-Ready Human-Scene Interactions. https://arxiv.org/pdf/2603.15612v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15612v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

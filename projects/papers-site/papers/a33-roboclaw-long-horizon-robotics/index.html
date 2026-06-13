@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks | DAST Papers</title>
+    <meta name="description" content="问题与背景：长时程机器人任务的一个核心瓶颈是数据采集、策略学习和部署流程割裂，导致需要大量人工重置、策略组合脆弱且执行阶段与采集阶段语义不一致。
+
+方法/新意：RoboClaw 用一个 VLM-driven controller 统一数据采集、策略学习和任务执行，并引入 entangled action pairs，让前向操作和恢复动作形成自复位循环，从而支持连续 on-policy 数据获取和长" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a33-roboclaw-long-horizon-robotics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks" />
+    <meta property="og:description" content="问题与背景：长时程机器人任务的一个核心瓶颈是数据采集、策略学习和部署流程割裂，导致需要大量人工重置、策略组合脆弱且执行阶段与采集阶段语义不一致。
+
+方法/新意：RoboClaw 用一个 VLM-driven controller 统一数据采集、策略学习和任务执行，并引入 entangled action pairs，让前向操作和恢复动作形成自复位循环，从而支持连续 on-policy 数据获取和长" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a33-roboclaw-long-horizon-robotics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks" />
+    <meta name="twitter:description" content="问题与背景：长时程机器人任务的一个核心瓶颈是数据采集、策略学习和部署流程割裂，导致需要大量人工重置、策略组合脆弱且执行阶段与采集阶段语义不一致。
+
+方法/新意：RoboClaw 用一个 VLM-driven controller 统一数据采集、策略学习和任务执行，并引入 entangled action pairs，让前向操作和恢复动作形成自复位循环，从而支持连续 on-policy 数据获取和长" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.11558" target="_blank" rel="noopener noreferrer">2603.11558</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：长时程机器人任务的一个核心瓶颈是数据采集、策略学习和部署流程割裂，导致需要大量人工重置、策略组合脆弱且执行阶段与采集阶段语义不一致。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：RoboClaw 用一个 VLM-driven controller 统一数据采集、策略学习和任务执行，并引入 entangled action pairs，让前向操作和恢复动作形成自复位循环，从而支持连续 on-policy 数据获取和长期任务编排。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇论文属于 agentic robotics / long-horizon manipulation 主线。它的重要性在于把机器人生命周期中的采集、训练和执行放到同一个 agentic 框架里。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：虽然真实机器人价值高，但方法影响主要仍在 long-horizon manipulation 这一赛道。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：长时程机器人任务的一个核心瓶颈是数据采集、策略学习和部署流程割裂，导致需要大量人工重置、策略组合脆弱且执行阶段与采集阶段语义不一致。</p><p>方法/新意：RoboClaw 用一个 VLM-driven controller 统一数据采集、策略学习和任务执行，并引入 entangled action pairs，让前向操作和恢复动作形成自复位循环，从而支持连续 on-policy 数据获取和长期任务编排。</p><p>意义/放在仓库中的位置：这篇论文属于 agentic robotics / long-horizon manipulation 主线。它的重要性在于把机器人生命周期中的采集、训练和执行放到同一个 agentic 框架里。</p><p>局限/为何不再升一级：虽然真实机器人价值高，但方法影响主要仍在 long-horizon manipulation 这一赛道。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>RoboClaw：一个用于可扩展长周期机器人任务的智能体框架。视觉-语言-动作 (VLA) 系统在语言驱动的机器人操作方面展现出巨大潜力。然而，将其扩展到长周期任务仍然充满挑战。现有流程通常将数据采集、策略学习和部署分开，导致严重依赖手动环境复位和脆弱的多策略执行。我们提出了 RoboClaw，一个智能体机器人框架，它在一个单一的 VLM 驱动控制器下统一了数据采集、策略学习和任务执行。在策略层面，RoboClaw 引入了纠缠动作对 (EAP)，它将前向操作行为与逆向恢复动作耦合，形成自复位循环，用于自主数据采集。这种机制实现了持续的在线策略数据采集和迭代策略优化，同时最大限度地减少了人工干预。在部署过程中，同一个智能体执行高级推理，并动态编排学习到的策略原语以完成长周期任务。通过在采集和执行之间保持一致的上下文语义，RoboClaw 减少了两个阶段之间的不匹配，并提高了多策略的鲁棒性。在真实世界操作任务中的实验表明，与传统的开环流程相比，RoboClaw 提高了稳定性和可扩展性，同时显著减少了机器人在整个生命周期中的人工投入，在长周期任务上比基线方法成功率提高了 25%，并减少了 53.7% 的人工时间投入。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Vision-Language-Action (VLA) systems have shown strong potential for language-driven robotic manipulation. However, scaling them to long-horizon tasks remains challenging. Existing pipelines typically separate data collection, policy learning, and deployment, resulting in heavy reliance on manual environment resets and brittle multi-policy execution. We present RoboClaw, an agentic robotics framework that unifies data collection, policy learning, and task execution under a single VLM-driven controller. At the policy level, RoboClaw introduces Entangled Action Pairs (EAP), which couple forward manipulation behaviors with inverse recovery actions to form self-resetting loops for autonomous data collection. This mechanism enables continuous on-policy data acquisition and iterative policy refinement with minimal human intervention. During deployment, the same agent performs high-level reasoning and dynamically orchestrates learned policy primitives to accomplish long-horizon tasks. By maintaining consistent contextual semantics across collection and execution, RoboClaw reduces mismatch between the two phases and improves multi-policy robustness. Experiments in real-world manipulation tasks demonstrate improved stability and scalability compared to conventional open-loop pipelines, while significantly reducing human effort throughout the robot lifecycle, achieving a 25% improvement in success rate over baseline methods on long-horizon tasks and reducing human time investment by 53.7%.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260312a33robocla,
+  title = {RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.11558v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a33-roboclaw-long-horizon-robotics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks. https://arxiv.org/pdf/2603.11558v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.11558v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

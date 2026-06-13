@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MARS: Enabling Autoregressive Models Multi-Token Generation | DAST Papers</title>
+    <meta name="description" content="标准自回归语言模型哪怕在连续 token 已经高度可预测时，仍然一次只生成一个 token，这使得高吞吐推理长期受限在非常保守的 decoding interface 上。多 token generation 因此一直重要，但很多方案需要附加 draft model、额外 heads，或者直接改底层架构。
+
+MARS 的关键价值在于，它用 continued training 直接把 instru" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r50-mars-multi-token-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MARS: Enabling Autoregressive Models Multi-Token Generation" />
+    <meta property="og:description" content="标准自回归语言模型哪怕在连续 token 已经高度可预测时，仍然一次只生成一个 token，这使得高吞吐推理长期受限在非常保守的 decoding interface 上。多 token generation 因此一直重要，但很多方案需要附加 draft model、额外 heads，或者直接改底层架构。
+
+MARS 的关键价值在于，它用 continued training 直接把 instru" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r50-mars-multi-token-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MARS: Enabling Autoregressive Models Multi-Token Generation" />
+    <meta name="twitter:description" content="标准自回归语言模型哪怕在连续 token 已经高度可预测时，仍然一次只生成一个 token，这使得高吞吐推理长期受限在非常保守的 decoding interface 上。多 token generation 因此一直重要，但很多方案需要附加 draft model、额外 heads，或者直接改底层架构。
+
+MARS 的关键价值在于，它用 continued training 直接把 instru" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MARS: Enabling Autoregressive Models Multi-Token Generation</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.07023" target="_blank" rel="noopener noreferrer">2604.07023</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>标准自回归语言模型哪怕在连续 token 已经高度可预测时，仍然一次只生成一个 token，这使得高吞吐推理长期受限在非常保守的 decoding interface 上。多 token generation 因此一直重要，但很多方案需要附加 draft model、额外 heads，或者直接改底层架构。</dd></div><div><dt>方法/机制</dt><dd>MARS 的关键价值在于，它用 continued training 直接把 instruction-tuned AR 模型变成可做 multi-token generation 的模型，不改架构、不加参数，也不引入第二个草稿模型。除了训练目标本身，工作还给出了 block-level KV caching 和 confidence thresholding，让 serving 侧可以在保持基线精度的同时把吞吐提升到 1.5 到 1.7 倍，并按负载动态调节速度。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一个 narrow decoding trick，而是对 autoregressive serving interface 的低摩擦重写：保留原模型调用方式，却打开多 token generation 和实时 latency-quality knob。这对 inference systems、deployment-time optimization 和后续 AR model serving pattern 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前收益仍主要表现为部署与吞吐改进，尚未证明会像 speculative decoding 或更深层接口重写那样全面改变 autoregressive model 的默认训练与部署范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>标准自回归语言模型哪怕在连续 token 已经高度可预测时，仍然一次只生成一个 token，这使得高吞吐推理长期受限在非常保守的 decoding interface 上。多 token generation 因此一直重要，但很多方案需要附加 draft model、额外 heads，或者直接改底层架构。</p><p>MARS 的关键价值在于，它用 continued training 直接把 instruction-tuned AR 模型变成可做 multi-token generation 的模型，不改架构、不加参数，也不引入第二个草稿模型。除了训练目标本身，工作还给出了 block-level KV caching 和 confidence thresholding，让 serving 侧可以在保持基线精度的同时把吞吐提升到 1.5 到 1.7 倍，并按负载动态调节速度。</p><p>它值得正式收录，因为这不是又一个 narrow decoding trick，而是对 autoregressive serving interface 的低摩擦重写：保留原模型调用方式，却打开多 token generation 和实时 latency-quality knob。这对 inference systems、deployment-time optimization 和后续 AR model serving pattern 都有明显外溢。</p><p>它暂时不升到更高一级，原因在于当前收益仍主要表现为部署与吞吐改进，尚未证明会像 speculative decoding 或更深层接口重写那样全面改变 autoregressive model 的默认训练与部署范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自回归（AR）语言模型一次生成一个token，即使在给定早期上下文的情况下，连续的token是高度可预测的。我们引入了MARS（Mask AutoRegreSsion），这是一种轻量级微调方法，它教导一个经过指令微调的AR模型在每次前向传播中预测多个token。MARS不增加任何架构修改，不增加额外参数，并生成一个可以像原始AR模型一样被调用的单一模型，且性能没有下降。与推测解码（它在目标模型旁边维护一个单独的草稿模型）或Medusa等多头方法（它附加额外的预测头）不同，MARS只需要在现有指令数据上进行持续训练。当每次前向传播生成一个token时，MARS在六个标准基准测试中达到或超过了AR基线。当允许每步接受多个token时，它保持了基线水平的准确性，同时实现了1.5–1.7倍的吞吐量。我们进一步开发了一种用于批量推理的块级KV缓存策略，在Qwen2.5-7B上实现了相对于带有KV缓存的AR模型高达1.71倍的实际运行时间加速。最后，MARS通过置信度阈值支持实时速度调整：在高请求负载下，服务系统可以动态提高吞吐量，而无需交换模型或重启，为部署提供了实用的延迟-质量调节旋钮。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autoregressive (AR) language models generate text one token at a time, even when consecutive tokens are highly predictable given earlier context. We introduce MARS (Mask AutoRegreSsion), a lightweight fine-tuning method that teaches an instruction-tuned AR model to predict multiple tokens per forward pass. MARS adds no architectural modifications, no extra parameters, and produces a single model that can still be called exactly like the original AR model with no performance degradation. Unlike speculative decoding, which maintains a separate draft model alongside the target, or multi-head approaches such as Medusa, which attach additional prediction heads, MARS requires only continued training on existing instruction data. When generating one token per forward pass, MARS matches or exceeds the AR baseline on six standard benchmarks. When allowed to accept multiple tokens per step, it maintains baseline-level accuracy while achieving 1.5–1.7× throughput. We further develop a block-level KV caching strategy for batch inference, achieving up to 1.71× wall-clock speedup over AR with KV cache on Qwen2.5-7B. Finally, MARS supports real-time speed adjustment via confidence thresholding: under high request load, the serving system can increase throughput on the fly without swapping models or restarting, providing a practical latency–quality knob for deployment. 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260408r50marsmul,
+  title = {MARS: Enabling Autoregressive Models Multi-Token Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.07023.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r50-mars-multi-token-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MARS: Enabling Autoregressive Models Multi-Token Generation. https://arxiv.org/pdf/2604.07023.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.07023.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

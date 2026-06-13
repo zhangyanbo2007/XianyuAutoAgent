@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images | DAST Papers</title>
+    <meta name="description" content="这篇 Nature Computational Science 论文提出 HESpotEx，用全切片 H&amp;E 病理图像预测 spatial transcriptomics 的 spot-level gene expression。它面向的是 ST 成本高、难以规模化的问题。
+
+系统结合 graph attention autoencoder、image encoder 和 graph convol" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio52-hespotex-spatial-transcriptomics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images" />
+    <meta property="og:description" content="这篇 Nature Computational Science 论文提出 HESpotEx，用全切片 H&amp;E 病理图像预测 spatial transcriptomics 的 spot-level gene expression。它面向的是 ST 成本高、难以规模化的问题。
+
+系统结合 graph attention autoencoder、image encoder 和 graph convol" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio52-hespotex-spatial-transcriptomics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images" />
+    <meta name="twitter:description" content="这篇 Nature Computational Science 论文提出 HESpotEx，用全切片 H&amp;E 病理图像预测 spatial transcriptomics 的 spot-level gene expression。它面向的是 ST 成本高、难以规模化的问题。
+
+系统结合 graph attention autoencoder、image encoder 和 graph convol" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-05-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-15</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-026-00992-0" target="_blank" rel="noopener noreferrer">10.1038/s43588-026-00992-0</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature Computational Science 论文提出 HESpotEx，用全切片 H&amp;E 病理图像预测 spatial transcriptomics 的 spot-level gene expression。它面向的是 ST 成本高、难以规模化的问题。</dd></div><div><dt>方法/机制</dt><dd>系统结合 graph attention autoencoder、image encoder 和 graph convolution decoder，可从 WSI 预测多达 5,457 个基因在空间采样点上的表达，并在多种癌症和非癌样本、TCGA 大规模 WSI 与高分辨率 ST 数据上验证。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把病理图像转成空间分子表型的可复用深度学习工作流，直接改变数字病理、空间组学和精准肿瘤分析的实验/计算链条。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为仍属于特定生物医学模态的强方法；跨中心、跨染色、临床实时决策和湿实验闭环价值还需要更多外部验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature Computational Science 论文提出 HESpotEx，用全切片 H&amp;E 病理图像预测 spatial transcriptomics 的 spot-level gene expression。它面向的是 ST 成本高、难以规模化的问题。</p><p>系统结合 graph attention autoencoder、image encoder 和 graph convolution decoder，可从 WSI 预测多达 5,457 个基因在空间采样点上的表达，并在多种癌症和非癌样本、TCGA 大规模 WSI 与高分辨率 ST 数据上验证。</p><p>它值得正式收录，因为它把病理图像转成空间分子表型的可复用深度学习工作流，直接改变数字病理、空间组学和精准肿瘤分析的实验/计算链条。</p><p>它没有更高，是因为仍属于特定生物医学模态的强方法；跨中心、跨染色、临床实时决策和湿实验闭环价值还需要更多外部验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>全玻片组织病理图像 (WSIs) 是疾病诊断和预后的一种基本方法。最近出现的空间转录组学 (ST) 方法可以揭示组织病理图像背后的空间基因表达图谱，但成本要高得多。因此，我们在此提出HESpotEx，一个双流多模态深度学习框架，仅从WSI图像预测空间基因表达模式。HESpotEx利用图注意力自编码器、一个图像编码器和一个图卷积网络解码器，能够从WSIs中预测多达5,457个基因在单个空间采样点上的表达。HESpotEx在来自各种癌症和非癌症样本的ST数据集以及大规模癌症基因组图谱WSI数据集上表现出卓越的性能和更好的鲁棒性。此外，在我们的内部WSI数据集上，HESpotEx还突出了与诊断相关的WSI斑块。最后，HESpotEx在最新的高分辨率ST数据集中显示出更好的横截面一致性。综上所述，我们的结果证明了HESpotEx在解读组织病理模式背后的空间分子特征方面的潜力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Whole-slide histopathological images (WSIs) constitute a fundamental approach in disease diagnosis and prognosis. Recently emerging spatial transcriptomics (ST) methods can reveal the spatial gene expression landscape behind the histopathological images, but with much higher cost. Here, therefore, we propose HESpotEx, a dual-stream multimodal deep learning framework to predict the spatial gene expression patterns solely from WSI images. Leveraging graph attention autoencoders, an image encoder and a graph convolution network decoder, HESpotEx is capable of predicting expressions of up to 5,457 genes across individual spatial sampling spots from WSIs. HESpotEx exhibits superior performance and better robustness on ST datasets from various cancer and noncancer samples as well as on a large-scale The Cancer Genome Atlas WSI dataset. Moreover, on our in-house WSI dataset, HESpotEx also underscores diagnosis-associated WSI patches. Finally, HESpotEx shows better cross-sectional consistency in the latest high-resolution ST datasets. Together, our results demonstrate the potential of HESpotEx to decipher the spatial molecular characteristics underlying tissue histological patterns.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260515bio52hespo,
+  title = {HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images},
+  year = {2026},
+  url = {https://www.nature.com/articles/s43588-026-00992-0},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio52-hespotex-spatial-transcriptomics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HESpotEx: a dual-stream deep learning framework for spot-level gene expression prediction from histological images. https://www.nature.com/articles/s43588-026-00992-0</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s43588-026-00992-0" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/wwYinYin/HESpotEx" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+[
+  {
+    "index": 0,
+    "kind": "title",
+    "title": "超越语义相似性：智能体搜索的检索范式革新",
+    "narration": "在智能体时代，传统检索系统已面临根本性瓶颈。我们今天将深入探讨一篇开创性论文，它挑战了默认的语义检索习惯，提出直接语料库交互这一全新范式。",
+    "paper_anchor": "现代检索系统通过固定的相似性接口暴露语料库，将访问压缩为单个top-k检索步骤。这种抽象对智能体搜索成为瓶颈。",
+    "template_hint": "hero_title",
+    "duration_sec": 18.0,
+    "data": {
+      "title": "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction"
+    }
+  },
+  {
+    "index": 1,
+    "kind": "question",
+    "title": "传统检索为何成为智能体搜索的瓶颈？",
+    "narration": "传统检索将整个语料压缩为一个top-k列表，这就像用一个窄口漏斗过滤信息。智能体需要精确词汇约束、结合稀疏线索、检查局部上下文，但早期被过滤掉的证据，即使下游推理再强也无法恢复。",
+    "paper_anchor": "精确词汇约束、稀疏线索结合、局部上下文检查以及多步假设细化很难通过调用传统检索器来实现，并且早期被过滤掉的证据无法通过更强的下游推理来恢复。",
+    "template_hint": "core_question",
+    "duration_sec": 20.0,
+    "data": {
+      "bottleneck": "固定相似性接口",
+      "constraints": [
+        "精确词汇约束",
+        "稀疏线索结合",
+        "局部上下文检查",
+        "多步假设细化"
+      ]
+    }
+  },
+  {
+    "index": 2,
+    "kind": "gap",
+    "title": "现有检索范式的“冰山”限制",
+    "narration": "传统检索如同冰山一角，只暴露了语料的表面相似性。而智能体任务需要探索冰山水下部分：发现中间实体、组合弱线索、根据部分证据修改计划。这种根本性差距，促使研究者寻找全新接口。",
+    "paper_anchor": "智能体任务要求协调多个步骤，包括发现中间实体、组合弱线索以及在观察到部分证据后修改计划。",
+    "template_hint": "paper_gap_iceberg",
+    "duration_sec": 22.0,
+    "data": {
+      "visible": "表面语义相似性",
+      "hidden": [
+        "发现中间实体",
+        "组合弱线索",
+        "动态修改计划"
+      ]
+    }
+  },
+  {
+    "index": 3,
+    "kind": "method",
+    "title": "直接语料库交互：用终端工具搜索原始语料",
+    "narration": "论文提出了直接语料库交互方法。智能体不再调用检索API，而是像人类研究员一样，使用grep、文件读取、shell命令等终端工具，直接在原始语料库中进行搜索、过滤和验证。",
+    "paper_anchor": "直接语料库交互（DCI），其中智能体使用通用终端工具（如grep、文件读取、shell命令）直接搜索原始语料库，无需任何嵌入模型、向量索引或检索API。",
+    "template_hint": "method_transfer",
+    "duration_sec": 25.0,
+    "data": {
+      "tools": [
+        "grep",
+        "file reads",
+        "shell commands",
+        "lightweight scripts"
+      ],
+      "no_index": true
+    }
+  },
+  {
+    "index": 4,
+    "kind": "overview",
+    "title": "DCI如何工作：智能体与语料的直接对话",
+    "narration": "在DCI范式下，智能体将语料库视为一个可交互的文件系统。它通过发出命令来探索内容，根据返回结果调整搜索策略，逐步缩小范围。这种交互是迭代的、精细的，且不需要任何离线索引。",
+    "paper_anchor": "这种方法不需要离线索引，并且自然地适应不断演变的本地语料库。",
+    "template_hint": "task_matrix",
+    "duration_sec": 20.0,
+    "data": {
+      "interaction": "命令式查询",
+      "adaptability": "适应动态语料库",
+      "indexing": "无需离线索引"
+    }
+  },
+  {
+    "index": 5,
+    "kind": "finding",
+    "title": "实验证据：DCI在多个基准上超越传统方法",
+    "narration": "论文在多个信息检索基准和端到端智能体搜索任务上验证了DCI。结果表明，这种简单设置在多个BRIGHT和BEIR数据集上显著优于强大的稀疏、密集和重排序基线，并在BrowseComp-Plus和多跳QA上获得了很高准确性。",
+    "paper_anchor": "在BRIGHT和BEIR等多个数据集上，DCI显著优于强大的稀疏、密集和重排序基线，并在BrowseComp-Plus和多跳QA上获得了很高的准确性。",
+    "template_hint": "ranking_board",
+    "duration_sec": 22.0,
+    "data": {
+      "datasets": [
+        "BRIGHT",
+        "BEIR",
+        "BrowseComp-Plus",
+        "multi-hop QA"
+      ],
+      "baselines": [
+        "sparse",
+        "dense",
+        "reranking"
+      ]
+    }
+  },
+  {
+    "index": 6,
+    "kind": "insight",
+    "title": "核心洞见：检索质量取决于交互接口的“分辨率”",
+    "narration": "论文揭示了一个深刻洞见：随着语言智能体变得更强大，检索质量不仅取决于推理能力，更取决于模型与语料交互接口的“分辨率”。DCI提供了一个高分辨率接口，开辟了广阔的接口设计空间。",
+    "paper_anchor": "随着语言智能体变得更强大，检索质量不仅取决于推理能力，还取决于模型与语料库交互的接口的分辨率，DCI为智能体搜索开辟了更广阔的接口设计空间。",
+    "template_hint": "split_comparison",
+    "duration_sec": 24.0,
+    "data": {
+      "factor1": "推理能力",
+      "factor2": "接口分辨率",
+      "paradigm_shift": true
+    }
+  },
+  {
+    "index": 7,
+    "kind": "ending",
+    "title": "结论与未来展望",
+    "narration": "直接语料库交互将检索从排序原语推向交互原语，与长期研究、审计、法律等复杂任务需求高度一致。尽管仍需更多真实任务验证，但它为智能体搜索的未来开辟了一条全新路径。感谢观看。",
+    "paper_anchor": "当前仍需要更多真实复杂任务和系统级复现来证明direct corpus interaction能成为主流检索范式。",
+    "template_hint": "future_direction",
+    "duration_sec": 18.0,
+    "data": {
+      "future_work": [
+        "更多真实复杂任务",
+        "系统级复现"
+      ],
+      "application_domains": [
+        "长期研究",
+        "审计",
+        "法律",
+        "代码",
+        "科学文献"
+      ]
+    }
+  }
+]

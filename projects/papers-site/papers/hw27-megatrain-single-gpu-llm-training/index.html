@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是超大模型训练在显存维度上的系统瓶颈。常规大模型训练以 GPU 显存为中心，参数、优化器状态和 autograd metadata 长驻设备；即使有 ZeRO/offload，100B+ 级别全精度训练通常仍依赖多 GPU 和复杂分布式系统。
+
+MegaTrain 反过来把训练系统设计成 memory-centric 架构：参数和优化器状态主要存放在 CPU host memory，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw27-megatrain-single-gpu-llm-training/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU" />
+    <meta property="og:description" content="这篇论文处理的是超大模型训练在显存维度上的系统瓶颈。常规大模型训练以 GPU 显存为中心，参数、优化器状态和 autograd metadata 长驻设备；即使有 ZeRO/offload，100B+ 级别全精度训练通常仍依赖多 GPU 和复杂分布式系统。
+
+MegaTrain 反过来把训练系统设计成 memory-centric 架构：参数和优化器状态主要存放在 CPU host memory，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw27-megatrain-single-gpu-llm-training/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU" />
+    <meta name="twitter:description" content="这篇论文处理的是超大模型训练在显存维度上的系统瓶颈。常规大模型训练以 GPU 显存为中心，参数、优化器状态和 autograd metadata 长驻设备；即使有 ZeRO/offload，100B+ 级别全精度训练通常仍依赖多 GPU 和复杂分布式系统。
+
+MegaTrain 反过来把训练系统设计成 memory-centric 架构：参数和优化器状态主要存放在 CPU host memory，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05091" target="_blank" rel="noopener noreferrer">2604.05091</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是超大模型训练在显存维度上的系统瓶颈。常规大模型训练以 GPU 显存为中心，参数、优化器状态和 autograd metadata 长驻设备；即使有 ZeRO/offload，100B+ 级别全精度训练通常仍依赖多 GPU 和复杂分布式系统。</dd></div><div><dt>方法/机制</dt><dd>MegaTrain 反过来把训练系统设计成 memory-centric 架构：参数和优化器状态主要存放在 CPU host memory，GPU 被当成瞬时计算引擎；每层训练时按需把参数流入 GPU、把梯度流出。为缓解 CPU-GPU 带宽瓶颈，系统使用双缓冲流水线、多 CUDA stream 重叠 prefetch/compute/offload，并用 stateless layer templates 替代持久 autograd graph。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它不是普通 offload recipe，而是明确改变了超大模型训练的资源边界：在单 H200 + 1.5TB host memory 上训练到 120B 参数，并在 14B 训练上达到 DeepSpeed ZeRO-3 CPU offloading 的 1.84 倍吞吐；还展示了单 GH200 训练 7B、512k context 的可能性。对低资源大模型训练、长上下文训练和 memory hierarchy co-design 都有实用参考价值。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为该路线用 host memory 换取可达模型规模，吞吐仍受 PCIe/NVLink-C2C、CPU 内存带宽、layer scheduling 和模型结构影响；它更像高价值系统设计，而不是改变主流大规模训练集群范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是超大模型训练在显存维度上的系统瓶颈。常规大模型训练以 GPU 显存为中心，参数、优化器状态和 autograd metadata 长驻设备；即使有 ZeRO/offload，100B+ 级别全精度训练通常仍依赖多 GPU 和复杂分布式系统。</p><p>MegaTrain 反过来把训练系统设计成 memory-centric 架构：参数和优化器状态主要存放在 CPU host memory，GPU 被当成瞬时计算引擎；每层训练时按需把参数流入 GPU、把梯度流出。为缓解 CPU-GPU 带宽瓶颈，系统使用双缓冲流水线、多 CUDA stream 重叠 prefetch/compute/offload，并用 stateless layer templates 替代持久 autograd graph。</p><p>它值得收录，因为它不是普通 offload recipe，而是明确改变了超大模型训练的资源边界：在单 H200 + 1.5TB host memory 上训练到 120B 参数，并在 14B 训练上达到 DeepSpeed ZeRO-3 CPU offloading 的 1.84 倍吞吐；还展示了单 GH200 训练 7B、512k context 的可能性。对低资源大模型训练、长上下文训练和 memory hierarchy co-design 都有实用参考价值。</p><p>它不是更高一级，因为该路线用 host memory 换取可达模型规模，吞吐仍受 PCIe/NVLink-C2C、CPU 内存带宽、layer scheduling 和模型结构影响；它更像高价值系统设计，而不是改变主流大规模训练集群范式。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406hw27megatr,
+  title = {MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05091.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw27-megatrain-single-gpu-llm-training/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MegaTrain: Full Precision Training of 100B+ Parameter Large Language Models on a Single GPU. https://arxiv.org/pdf/2604.05091.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05091.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

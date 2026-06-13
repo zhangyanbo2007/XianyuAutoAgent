@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prompt Injection as Role Confusion | DAST Papers</title>
+    <meta name="description" content="Prompt injection 的已有解释往往停留在接口层：哪些输入来自 system、user、tool 或 external content，以及为什么模型没能遵守这些边界。但大量防御实践已经表明，哪怕接口层角色边界写得很清楚，模型依然会把恶意内容当成高权限指令执行。
+
+这篇工作给出一个更底层的解释：role confusion。作者通过 role probes 测量模型内部是如何判断“谁在" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i14-prompt-injection-role-confusion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Prompt Injection as Role Confusion" />
+    <meta property="og:description" content="Prompt injection 的已有解释往往停留在接口层：哪些输入来自 system、user、tool 或 external content，以及为什么模型没能遵守这些边界。但大量防御实践已经表明，哪怕接口层角色边界写得很清楚，模型依然会把恶意内容当成高权限指令执行。
+
+这篇工作给出一个更底层的解释：role confusion。作者通过 role probes 测量模型内部是如何判断“谁在" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i14-prompt-injection-role-confusion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Prompt Injection as Role Confusion" />
+    <meta name="twitter:description" content="Prompt injection 的已有解释往往停留在接口层：哪些输入来自 system、user、tool 或 external content，以及为什么模型没能遵守这些边界。但大量防御实践已经表明，哪怕接口层角色边界写得很清楚，模型依然会把恶意内容当成高权限指令执行。
+
+这篇工作给出一个更底层的解释：role confusion。作者通过 role probes 测量模型内部是如何判断“谁在" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Prompt Injection as Role Confusion</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-02-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.12277" target="_blank" rel="noopener noreferrer">2603.12277</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Prompt injection 的已有解释往往停留在接口层：哪些输入来自 system、user、tool 或 external content，以及为什么模型没能遵守这些边界。但大量防御实践已经表明，哪怕接口层角色边界写得很清楚，模型依然会把恶意内容当成高权限指令执行。</dd></div><div><dt>方法/机制</dt><dd>这篇工作给出一个更底层的解释：role confusion。作者通过 role probes 测量模型内部是如何判断“谁在说话”的，结果显示模型更依赖文本的写法和语气来推断 authority，而不是依赖内容来源边界。由此，模仿高权限语气的非可信文本会在 latent space 里继承对应权威，从而统一解释多种 prompt injection 攻击。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，而且我给到 disruptive，因为它把 prompt injection 从 interface-spec compliance 问题改写成 latent authority assignment 问题。这个重述不只是解释现象，而是会直接改变后续防御设计、评估方式以及我们对 agent 安全边界的理解。</dd></div><div><dt>收录价值</dt><dd>它没有升到 paradigm，是因为当前虽然机制解释很强，但离形成统一的训练、架构和 runtime 安全蓝图还差一步。它已经明显高于经验性 attack paper，但还未完全沉淀成全行业默认范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Prompt injection 的已有解释往往停留在接口层：哪些输入来自 system、user、tool 或 external content，以及为什么模型没能遵守这些边界。但大量防御实践已经表明，哪怕接口层角色边界写得很清楚，模型依然会把恶意内容当成高权限指令执行。</p><p>这篇工作给出一个更底层的解释：role confusion。作者通过 role probes 测量模型内部是如何判断“谁在说话”的，结果显示模型更依赖文本的写法和语气来推断 authority，而不是依赖内容来源边界。由此，模仿高权限语气的非可信文本会在 latent space 里继承对应权威，从而统一解释多种 prompt injection 攻击。</p><p>这篇工作值得收录，而且我给到 disruptive，因为它把 prompt injection 从 interface-spec compliance 问题改写成 latent authority assignment 问题。这个重述不只是解释现象，而是会直接改变后续防御设计、评估方式以及我们对 agent 安全边界的理解。</p><p>它没有升到 paradigm，是因为当前虽然机制解释很强，但离形成统一的训练、架构和 runtime 安全蓝图还差一步。它已经明显高于经验性 attack paper，但还未完全沉淀成全行业默认范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Toyer 等人，2024）。人类红队成员对在安全基准测试中表现近乎完美的模型，常规性地实现了100%的攻击成功率（Nasr 等人，2025）。一封电子邮件邀请可以使攻击者对目标进行地理定位、窃取数据，甚至打开锅炉（Nassi 等人，2025）。提示注入在所有语言模型中仍然是一个开放性问题。尽管经过了广泛的安全训练，语言模型仍然容易受到提示注入攻击。我们将这种失败归因于角色混淆：模型从文本的编写方式而非其来源推断角色。我们设计了新颖的角色探针，以捕捉模型内部如何识别“谁在说话”。这些揭示了提示注入为何有效：模仿某个角色的不可信文本会继承该角色的权限。我们通过将伪造的推理注入用户提示和工具输出中来验证这一见解，在多个开放和闭源模型上，对StrongREJECT实现了60%的平均成功率，对代理数据窃取实现了61%的平均成功率，而基线接近于零。值得注意的是，内部角色混淆的程度在生成开始之前就强烈预测了攻击成功率。我们的发现揭示了一个根本性差距：安全性在接口处定义，但权限在潜在空间中分配。更广泛地说，我们引入了一个统一的、机械化的提示注入框架，证明了各种提示注入攻击都利用了相同的底层角色混淆机制。我们认为这个缺陷是结构性的：模型无法可靠地追踪文本的来源。相反，它们从风格线索中推断角色，并且看起来属于某个角色的文本在模型的潜在空间中变得与实际标记为该角色的文本无法区分。我们将这种现象称为角色混淆：模仿某个角色的不可信文本会继承该角色的权限。为了证明这一点，我们开发了角色探针——经过训练以识别模型激活中角色标签的线性分类器。我们在用不同角色标签（例如，）封装的相同文本上训练这些探针，因此我们的探针应该只学习检测标签。然而，它们将提示注入的文本分类为其伪造的角色，而非其真实的标记角色——尽管是在标签上训练的，但却基于风格而非标签进行激活。模型将角色身份与文本的编写方式而非其来源纠缠在一起。应用程序安全取决于对影响力的控制（Saltzer &amp; Schroeder, 1975）。系统，像人类一样，必须根据来源质量来调整其行为：经理的资金转账请求是常规的，而陌生人的请求则可能带来灾难。我们引入了CoT Forgery，这是一种新颖的提示注入攻击，它通过将伪造的推理痕迹注入用户提示和工具输出中来利用角色混淆。模型将其误认为是自己的思维链，在多个基线接近于零的模型上，对StrongREJECT实现了60%的攻击成功率。然后，我们使用我们的角色探针来分离其机制：风格欺骗诱导角色混淆，这反过来又预测了攻击成功率。语言模型通过指令层级建立权限边界：标签（例如）区分用户、助手和工具输出等角色，旨在防止攻击者超越其预期的权限（Wallace 等人，2024）。我们还展示了角色混淆如何解释标准的代理注入攻击：在1,000次代理劫持尝试中，攻击成功率随着探针测量的角色混淆程度单调上升，从最低分位数的2%上升到最高分位数的70%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Toyer et al., 2024). Human red-teamers routinely achieve 100% attack success rates against models with near-perfect performance on safety benchmarks (Nasr et al., 2025). An email invitation can enable attackers to geolocate a target, exfiltrate data, and even turn on a boiler (Nassi et al., 2025). Prompt injection remains an open problem across all language models. Language models remain vulnerable to prompt injection attacks despite extensive safety training. We trace this failure to role confusion: models infer roles from how text is written, not where it comes from. We design novel role probes to capture how models internally identify “who is speaking.” These reveal why prompt injection works: untrusted text that imitates a role inherits that role’s authority. We test this insight by injecting spoofed reasoning into user prompts and tool outputs, achieving average success rates of 60% on StrongREJECT and 61% on agent exfiltration, across multiple open- and closed-weight models with near-zero baselines. Strikingly, the degree of internal role confusion strongly predicts attack success before generation begins. Our findings reveal a fundamental gap: security is defined at the interface but authority is assigned in latent space. More broadly, we introduce a unifying, mechanistic framework for prompt injection, demonstrating that diverse prompt-injection attacks exploit the same underlying role-confusion mechanism. We argue this flaw is structural: models do not robustly track where text came from. Instead, they infer roles from stylistic cues, and text that appears to belong to a role becomes indistinguishable in the model’s latent space from text actually tagged as that role. We term this phenomenon role confusion: untrusted text that imitates a role inherits that role’s authority. To demonstrate this, we develop role probes – linear classifiers trained to recognize role tags in model activations. We train these on identical text wrapped in different role tags (e.g., ), so our probes should only learn to detect tags. Yet they classify prompt-injected text as its spoofed role, not its true tagged role – activating on style over tags, despite being trained on the latter. Models entangle role identity with how text is written, not where it comes from. Application security depends on the control of influence (Saltzer &amp; Schroeder, 1975). Systems, like humans, must condition their actions on source quality: a manager’s fund transfer request is routine, a stranger’s potentially catastrophic. We introduce CoT Forgery, a novel prompt injection that exploits role confusion by injecting fabricated reasoning traces into user prompts and tool outputs. The model mistakes these for its own chain of thought, achieving attack success rates of 60% on StrongREJECT across multiple models with near-zero baselines. We then use our role probes to isolate the mechanism: stylistic spoofing induces role confusion, which in turn predicts attack success. Language models establish privilege boundaries through an instruction hierarchy: tags (e.g. ) distinguish between roles such as user and assistant and tool output, aiming to prevent adversaries from exceeding their intended authority (Wallace et al., 2024). We also show how role confusion explains standard agent injection attacks: across 1,000 agent hijacking attempts, attack success rises monotonically with probe-measured role confusion, from 2% in the lowest quantile to 70% in the highest.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260222i14prompti,
+  title = {Prompt Injection as Role Confusion},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.12277.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i14-prompt-injection-role-confusion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Prompt Injection as Role Confusion. https://arxiv.org/pdf/2603.12277.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.12277.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

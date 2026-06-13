@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding | DAST Papers</title>
+    <meta name="description" content="这篇论文切中 agent 工程里的一个真实问题：更多 memory、tools、reflection、planner、verifier 不一定叠加成更强系统，组件之间可能互相干扰。这个结论比单个新 scaffold 更有长期价值。
+
+它把 agent scaffolding 从“堆模块”拉回到系统交互问题，强调组件间的负迁移、冲突和预算竞争。对长期 agent 设计来说，这类 failure pr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a259-agent-scaffolding-interference/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding" />
+    <meta property="og:description" content="这篇论文切中 agent 工程里的一个真实问题：更多 memory、tools、reflection、planner、verifier 不一定叠加成更强系统，组件之间可能互相干扰。这个结论比单个新 scaffold 更有长期价值。
+
+它把 agent scaffolding 从“堆模块”拉回到系统交互问题，强调组件间的负迁移、冲突和预算竞争。对长期 agent 设计来说，这类 failure pr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a259-agent-scaffolding-interference/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding" />
+    <meta name="twitter:description" content="这篇论文切中 agent 工程里的一个真实问题：更多 memory、tools、reflection、planner、verifier 不一定叠加成更强系统，组件之间可能互相干扰。这个结论比单个新 scaffold 更有长期价值。
+
+它把 agent scaffolding 从“堆模块”拉回到系统交互问题，强调组件间的负迁移、冲突和预算竞争。对长期 agent 设计来说，这类 failure pr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.05716" target="_blank" rel="noopener noreferrer">2605.05716</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文切中 agent 工程里的一个真实问题：更多 memory、tools、reflection、planner、verifier 不一定叠加成更强系统，组件之间可能互相干扰。这个结论比单个新 scaffold 更有长期价值。</dd></div><div><dt>方法/机制</dt><dd>它把 agent scaffolding 从“堆模块”拉回到系统交互问题，强调组件间的负迁移、冲突和预算竞争。对长期 agent 设计来说，这类 failure primitive 比单点 benchmark 提升更重要。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 agent 系统正在快速复杂化，而社区缺少判断什么时候加组件、什么时候删组件的评估语言。Cross-component interference 可以成为一个耐用的诊断维度。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为目前还更像强实证和诊断论文，距离形成标准化 agent architecture theory 还有距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文切中 agent 工程里的一个真实问题：更多 memory、tools、reflection、planner、verifier 不一定叠加成更强系统，组件之间可能互相干扰。这个结论比单个新 scaffold 更有长期价值。</p><p>它把 agent scaffolding 从“堆模块”拉回到系统交互问题，强调组件间的负迁移、冲突和预算竞争。对长期 agent 设计来说，这类 failure primitive 比单点 benchmark 提升更重要。</p><p>它值得正式收录，因为 agent 系统正在快速复杂化，而社区缺少判断什么时候加组件、什么时候删组件的评估语言。Cross-component interference 可以成为一个耐用的诊断维度。</p><p>它没有更高，是因为目前还更像强实证和诊断论文，距离形成标准化 agent architecture theory 还有距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM智能体系统通常通过在骨干模型上堆叠支架组件（规划模块、工具接口、记忆、自反思和检索）来构建，其假设是组件越多性能越好。我们通过对跨组件干扰（CCI）进行系统的实证研究来挑战这一假设：当支架组件以相互削弱的方式进行交互时，就会出现性能下降。我们对两个基准（HotpotQA、GSM8K）上五种标准智能体组件的所有2^5=32个子集进行了全因子实验，涵盖了三个模型家族和五种规模（Llama-3.1-8B/70B、Qwen2.5-3B/7B、Claude Haiku 4.5），在主要设置中产生了118种受控配置，最多包含10个随机种子。我们发现在所有测试设置中，最佳真子集都匹配或超过了五组件的All-In系统：在HotpotQA上，单工具智能体比All-In高出32%（F1 0.233 vs. 0.177，配对t检验p=0.023，Wilcoxon p=0.014，Cohen’s dz =0.87，10个种子），而在GSM8K上，三组件子集比All-In的准确率高出79%（0.43 vs. 0.24，p=0.010）。最佳组件数量取决于任务（k ∗ =1–4）且对规模敏感：CCI遵循能力梯度——在8B时很强（差距=32%），在70B时减弱（差距=19%），并在Claude Haiku时饱和到噪声范围内（差距≈0%）——但在所有规模下，最简单的足够支架都匹配或击败了All-In智能体。为了表征交互结构，我们拟合了一个主效应回归（R2 =0.916，调整R2 =0.899，LOOCV R2 =0.872），该回归显著优于16参数的成对模型（∆BIC=25.3），计算了精确的Shapley值，显示工具使用捕获了总支架价值的70%（ϕ=+0.177，z=9.1），而规划具有显著的负Shapley值，并记录了325个可测试三元组中的183个违反次模性（56.3%；中位次模性比率γmed =0.52，bootstrap 95% CI [0.23, 0.71]，远低于次模性阈值1）——其中90%的最高违反表现为符号翻转而非收益递减。我们发现在检索任务中，工具使用、自反思和检索之间存在更高阶的协同作用（Harsanyi分红INT3 =+0.175，BCa 95% CI: [+0.004, +0.352]），这被报告为一个探索性观察，有待多种子确认。定向CCI模式在模型家族（Qwen2.5-3B/7B）中复制，并扩展到一个闭源API模型（通过AWS Bedrock的Claude Haiku 4.5，其中定性模式——T主导，记忆有害，All-In并非最优——得以保留），并且对模板改写具有鲁棒性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>strap 95% CI [0.23, 0.71], well below the submodular threshold of 1)—with 90% of top violations exhibiting sign-flipping rather than diminishing returns. We identify a higher-order synergy among Tool Use, SelfReflection, and Retrieval on retrieval tasks (Harsanyi dividend INT3 =+0.175, BCa 95% CI: [+0.004, +0.352]), reported as an exploratory observation pending multi-seed confirmation. The directional CCI pattern replicates across model families (Qwen2.5-3B/7B), extends to a closed-source API model (Claude Haiku 4.5 via AWS Bedrock, where the qualitative pattern—T dominates, Memory harmful, All-In not optimal—is preserved), and is robust to template paraphrasing. LLM agent systems are typically constructed by stacking scaffolding components—planning modules, tool interfaces, memory, selfreflection, and retrieval—on the assumption that more components improve performance. We challenge this assumption with a systematic empirical study of cross-component interference (CCI): the degradation that arises when scaffolding components interact in ways that undermine each other. We conduct a full factorial experiment over all 25 =32 subsets of five standard agent components on two benchmarks (HotpotQA, GSM8K) across three model families and five scales (Llama-3.1-8B/70B, Qwen2.5-3B/7B, Claude Haiku 4.5), yielding 118 controlled configurations with up to 10 random seeds on the primary setting. We find that in every setting tested, the best proper subset matches or exceeds the five-component All-In system: on HotpotQA the single-tool agent surpasses All-In by 32% (F1 0.233 vs. 0.177, paired t-test p=0.023, Wilcoxon p=0.014, Cohen’s dz =0.87, 10 seeds), while on GSM8K a threecomponent subset achieves 79% higher accuracy than All-In (0.43 vs. 0.24, p=0.010). The optimal component count is task-dependent (k ∗ =1–4) and scale-sensitive: CCI follows a capability gradient—strong at 8B (gap=32%), attenuated at 70B (gap=19%), and saturating to within-noise at Claude Haiku (gap≈0%)—but across all scales, the simplest adequate scaffold matches or beats the All-In agent. To characterize the interaction structure, we fit a main-effects regression (R2 =0.916, adjusted R2 =0.899, LOOCV R2 =0.872) that decisively outperforms a 16-parameter pairwise model (∆BIC=25.3), compute exact Shapley values showing Tool Use captures 70% of total scaffold value (ϕ=+0.177, z=9.1) while Planning has a significantly negative Shapley value, and document 183 violations of submodularity out of 325 testable triples (56.3%; median submodularity ratio γmed =0.52, boot-</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260507a259agents,
+  title = {More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.05716.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a259-agent-scaffolding-interference/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). More Is Not Always Better: Cross-Component Interference in LLM Agent Scaffolding. https://arxiv.org/pdf/2605.05716.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.05716.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

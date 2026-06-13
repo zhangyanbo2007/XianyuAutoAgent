@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A synergistic generative-ranking framework for tailored design of therapeutic single-domain antibodies | DAST Papers</title>
+    <meta name="description" content="单域抗体在组织穿透和稳定性上有优势，但它们缺失 Fc 相关性质，很多工业化和功能扩展能力因此受限。这篇论文抓的不是一般 antibody generation，而是“能否面向特定可制造性与功能性目标去定制 sdAb”。
+
+论文提出 generative + ranking 的双阶段框架：先用结构感知 diffusion 模型大规模生成候选，再用专门训练的 sorter 根据目标功能排序。关键点在于" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio19-tfdesign-sdab/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A synergistic generative-ranking framework for tailored design of therapeutic single-domain antibodies" />
+    <meta property="og:description" content="单域抗体在组织穿透和稳定性上有优势，但它们缺失 Fc 相关性质，很多工业化和功能扩展能力因此受限。这篇论文抓的不是一般 antibody generation，而是“能否面向特定可制造性与功能性目标去定制 sdAb”。
+
+论文提出 generative + ranking 的双阶段框架：先用结构感知 diffusion 模型大规模生成候选，再用专门训练的 sorter 根据目标功能排序。关键点在于" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio19-tfdesign-sdab/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A synergistic generative-ranking framework for tailored design of therapeutic single-domain antibodies" />
+    <meta name="twitter:description" content="单域抗体在组织穿透和稳定性上有优势，但它们缺失 Fc 相关性质，很多工业化和功能扩展能力因此受限。这篇论文抓的不是一般 antibody generation，而是“能否面向特定可制造性与功能性目标去定制 sdAb”。
+
+论文提出 generative + ranking 的双阶段框架：先用结构感知 diffusion 模型大规模生成候选，再用专门训练的 sorter 根据目标功能排序。关键点在于" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A synergistic generative-ranking framework for tailored design of therapeutic single-domain antibodies</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-10-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-29</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41421-025-00843-8" target="_blank" rel="noopener noreferrer">10.1038/s41421-025-00843-8</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>单域抗体在组织穿透和稳定性上有优势，但它们缺失 Fc 相关性质，很多工业化和功能扩展能力因此受限。这篇论文抓的不是一般 antibody generation，而是“能否面向特定可制造性与功能性目标去定制 sdAb”。</dd></div><div><dt>方法/机制</dt><dd>论文提出 generative + ranking 的双阶段框架：先用结构感知 diffusion 模型大规模生成候选，再用专门训练的 sorter 根据目标功能排序。关键点在于它不只改 CDR，还把 framework region 纳入优化，从而在保持抗原特异性的同时引入 Protein A binding 等新性质。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它体现了抗体工程里一个非常实用的 AI 设计模式：生成模型负责打开设计空间，ranking 模型负责把多目标约束拉回到可制造、可表达、可纯化的现实边界。这个模式对抗体设计和更广蛋白药开发都很有借鉴价值。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为当前仍然主要集中在单域抗体和少数功能目标，离更普适的 therapeutic antibody platform 还有距离。它是强方法和强验证结合，但影响范围还偏子领域。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>单域抗体在组织穿透和稳定性上有优势，但它们缺失 Fc 相关性质，很多工业化和功能扩展能力因此受限。这篇论文抓的不是一般 antibody generation，而是“能否面向特定可制造性与功能性目标去定制 sdAb”。</p><p>论文提出 generative + ranking 的双阶段框架：先用结构感知 diffusion 模型大规模生成候选，再用专门训练的 sorter 根据目标功能排序。关键点在于它不只改 CDR，还把 framework region 纳入优化，从而在保持抗原特异性的同时引入 Protein A binding 等新性质。</p><p>这篇工作值得收录，因为它体现了抗体工程里一个非常实用的 AI 设计模式：生成模型负责打开设计空间，ranking 模型负责把多目标约束拉回到可制造、可表达、可纯化的现实边界。这个模式对抗体设计和更广蛋白药开发都很有借鉴价值。</p><p>它不是更高一级，因为当前仍然主要集中在单域抗体和少数功能目标，离更普适的 therapeutic antibody platform 还有距离。它是强方法和强验证结合，但影响范围还偏子领域。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>单域抗体（sdAbs）因其体积小、稳定性高和优异的组织穿透能力而成为强大的治疗剂。然而，与传统的单克隆抗体（mAbs）不同，sdAbs缺乏Fc结构域，这限制了它们的功能多样性和可生产性。为应对这一挑战，我们开发了TFDesign-sdAb，这是一个基于深度学习的生成-排序框架，能够合理设计具有定制功能的sdAbs。我们的框架整合了一个结构感知扩散模型（IgGM），用于大规模候选生成，以及一个微调排序器（A2binder），用于根据预测功能评估和优先排序这些候选。与传统的以CDR为中心的方法不同，TFDesign-sdAb优化了互补决定区（CDRs）和骨架区（FRs），使sdAbs在保持抗原特异性的同时获得新的功能特性。我们通过赋予原本缺乏蛋白A结合能力的人源VH区和纳米抗体以蛋白A结合能力来验证我们的方法，实现了高表达率、强结合亲和力，并通过行业标准的蛋白A亲和层析成功纯化。重新设计的sdAb-蛋白A复合物的高分辨率结构表征（1.49 Å和2.0 Å）揭示了保守的FR介导的结合基序，这些基序再现了天然Fc-蛋白A相互作用，从而验证了我们模型的准确性。此外，我们的流程简化了抗体工程过程，在生成蛋白A结合sdAbs的同时保持其原始抗原结合亲和力方面取得了100%的成功率。这项工作展示了AI驱动设计在克服抗体工程中长期存在的局限性方面的强大能力，并为增强sdAb功能提供了一个可扩展、通用的解决方案。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Single-domain antibodies (sdAbs) have emerged as powerful therapeutic agents due to their small size, high stability, and superior tissue penetration. However, unlike conventional monoclonal antibodies (mAbs), sdAbs lack an Fc domain, limiting their functional versatility and manufacturability. To address this challenge, we developed TFDesign-sdAb, a deep learning-based generative-ranking framework that enables rational engineering of sdAbs with tailored functionalities. Our framework integrates a structure-aware diffusion model (IgGM) for large-scale candidate generation and a fine-tuned sorter (A2binder) that evaluates and prioritizes them based on predicted functionality. Unlike traditional CDR-focused approaches, TFDesign-sdAb optimizes both complementarity-determining regions (CDRs) and framework regions (FRs), allowing sdAbs to acquire new functional properties while maintaining antigen specificity. We validated our approach by conferring Protein A binding to human VHs and nanobodies that originally lacked this feature, achieving high expression rates, strong binding affinities, and successful purification via industry-standard Protein A affinity chromatography. High-resolution structural characterization (1.49 Å and 2.0 Å) of the redesigned sdAb-Protein A complexes revealed conserved FR-mediated binding motifs that recapitulate natural Fc-Protein A interactions, validating the accuracy of our model. Furthermore, our pipeline streamlined the antibody engineering process, achieving a 100% success rate in generating Protein A-binding sdAbs while maintaining their original antigen-binding affinity. This work demonstrates the power of AI-driven design in overcoming long-standing limitations in antibody engineering and presents a scalable, generalizable solution for enhancing sdAb functionality.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251029bio19tfdes,
+  title = {A synergistic generative-ranking framework for tailored design of therapeutic single-domain antibodies},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41421-025-00843-8},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio19-tfdesign-sdab/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). A synergistic generative-ranking framework for tailored design of therapeutic single-domain antibodies. https://www.nature.com/articles/s41421-025-00843-8</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41421-025-00843-8" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

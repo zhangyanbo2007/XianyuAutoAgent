@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TDAD: Test-Driven Agentic Development - Reducing Code Regressions in AI Coding Agents via Graph-Based Impact Analysis | DAST Papers</title>
+    <meta name="description" content="AI coding agents 在真实仓库里的一个核心问题不是‘能不能修好 issue’，而是修完后会不会悄悄打断原本通过的测试。现有 benchmark 往往只看 resolution rate，很少把 regression behavior 当作一等对象来建模和控制。
+
+TDAD 的关键贡献，是把 pre-change impact analysis 做成 coding agent 可以直接" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a151-tdad-test-driven-agentic-development/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TDAD: Test-Driven Agentic Development - Reducing Code Regressions in AI Coding Agents via Graph-Based Impact Analysis" />
+    <meta property="og:description" content="AI coding agents 在真实仓库里的一个核心问题不是‘能不能修好 issue’，而是修完后会不会悄悄打断原本通过的测试。现有 benchmark 往往只看 resolution rate，很少把 regression behavior 当作一等对象来建模和控制。
+
+TDAD 的关键贡献，是把 pre-change impact analysis 做成 coding agent 可以直接" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a151-tdad-test-driven-agentic-development/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TDAD: Test-Driven Agentic Development - Reducing Code Regressions in AI Coding Agents via Graph-Based Impact Analysis" />
+    <meta name="twitter:description" content="AI coding agents 在真实仓库里的一个核心问题不是‘能不能修好 issue’，而是修完后会不会悄悄打断原本通过的测试。现有 benchmark 往往只看 resolution rate，很少把 regression behavior 当作一等对象来建模和控制。
+
+TDAD 的关键贡献，是把 pre-change impact analysis 做成 coding agent 可以直接" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TDAD: Test-Driven Agentic Development - Reducing Code Regressions in AI Coding Agents via Graph-Based Impact Analysis</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.17973" target="_blank" rel="noopener noreferrer">2603.17973</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AI coding agents 在真实仓库里的一个核心问题不是‘能不能修好 issue’，而是修完后会不会悄悄打断原本通过的测试。现有 benchmark 往往只看 resolution rate，很少把 regression behavior 当作一等对象来建模和控制。</dd></div><div><dt>方法/机制</dt><dd>TDAD 的关键贡献，是把 pre-change impact analysis 做成 coding agent 可以直接查询的轻量技能层。它先建立 source code 与 tests 的 dependency map，再在 agent 提交补丁前告诉它哪些测试必须验证，并让 agent 基于这些 targeted checks 自我修正。论文还明确比较了仅给程序性 TDD 指令和真正给 targeted test context 的差异，证明后者更有效。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一篇‘更强 coding agent’论文，而是给 coding-agent workflow 提供了一个 durable pre-commit control pattern。对 repository maintenance、CI-loop agent、long-horizon coding automation 都有直接复用价值，且可以作为 skill 接口接入不同模型和框架。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要集中在 SWE-bench Verified 和少量 open-weight 模型，外部生态采用还不足。现阶段更像非常强的 workflow primitive，而不是已经重构整个 coding-agent 工程栈的总蓝图。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AI coding agents 在真实仓库里的一个核心问题不是‘能不能修好 issue’，而是修完后会不会悄悄打断原本通过的测试。现有 benchmark 往往只看 resolution rate，很少把 regression behavior 当作一等对象来建模和控制。</p><p>TDAD 的关键贡献，是把 pre-change impact analysis 做成 coding agent 可以直接查询的轻量技能层。它先建立 source code 与 tests 的 dependency map，再在 agent 提交补丁前告诉它哪些测试必须验证，并让 agent 基于这些 targeted checks 自我修正。论文还明确比较了仅给程序性 TDD 指令和真正给 targeted test context 的差异，证明后者更有效。</p><p>它值得正式收录，因为这不是又一篇‘更强 coding agent’论文，而是给 coding-agent workflow 提供了一个 durable pre-commit control pattern。对 repository maintenance、CI-loop agent、long-horizon coding automation 都有直接复用价值，且可以作为 skill 接口接入不同模型和框架。</p><p>它没有升到更高一级，是因为当前证据仍主要集中在 SWE-bench Verified 和少量 open-weight 模型，外部生态采用还不足。现阶段更像非常强的 workflow primitive，而不是已经重构整个 coding-agent 工程栈的总蓝图。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>TDAD：测试驱动的智能体开发——通过基于图的影响分析减少AI编码智能体中的代码回归。AI编码智能体可以解决现实世界的软件问题，但它们经常引入回归——破坏了之前通过的测试。当前的基准测试几乎只关注解决率，导致回归行为研究不足。本工作开发了一种方法，通过适当的结构知识增强智能体，从而在提高解决率的同时显著减少回归，并提出了TDAD（测试驱动的智能体开发），这是一个为AI编码智能体执行变更前影响分析的开源工具。TDAD在源代码和测试之间构建了一个依赖图，以便在提交补丁之前，智能体知道要验证哪些测试并能够自我纠正。该图作为一种轻量级智能体技能交付——一个智能体在运行时查询的静态文本文件。在SWEbench Verified上使用两个在消费级硬件上运行的开源模型（Qwen3-Coder 30B，100个实例；Qwen3.5-35B-A3B，</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI coding agents can resolve real-world software issues, yet they frequently introduce regressions—breaking tests that previously passed. Current benchmarks focus almost exclusively on resolution rate, leaving regression behavior under-studied. This work develops a method to enhance agents with appropriate structural knowledge that leads to meaningful regression reduction while improving resolution rate, and presents TDAD (Test-Driven Agentic Development), an open-source tool that performs pre-change impact analysis for AI coding agents. TDAD builds a dependency map between source code and tests so that before committing a patch, the agent knows which tests to verify and can self-correct. The map is delivered as a lightweight agent skill—a static text file the agent queries at runtime. Evaluated on SWEbench Verified with two open-weight models running on consumer hardware (Qwen3-Coder 30B, 100 instances; Qwen3.5-35B-A3B,</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260318a151tdadte,
+  title = {TDAD: Test-Driven Agentic Development - Reducing Code Regressions in AI Coding Agents via Graph-Based Impact Analysis},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.17973.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a151-tdad-test-driven-agentic-development/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TDAD: Test-Driven Agentic Development - Reducing Code Regressions in AI Coding Agents via Graph-Based Impact Analysis. https://arxiv.org/pdf/2603.17973.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.17973.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

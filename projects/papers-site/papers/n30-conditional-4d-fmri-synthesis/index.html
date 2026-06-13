@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scalable Diffusion Transformer for Conditional 4D fMRI Synthesis | DAST Papers</title>
+    <meta name="description" content="这篇论文要解决的是任务条件下 whole-brain 4D fMRI 序列生成的难题。相比普通图像生成，fMRI 既高维又时空异质，而且如果没有神经科学约束，很容易生成出看似像脑图、实际上没有任务特异性的假信号。
+
+方法上，作者把 3D VQ-GAN latent compression、CNN-Transformer backbone、AdaLN-Zero 和 cross-attention 组" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n30-conditional-4d-fmri-synthesis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Scalable Diffusion Transformer for Conditional 4D fMRI Synthesis" />
+    <meta property="og:description" content="这篇论文要解决的是任务条件下 whole-brain 4D fMRI 序列生成的难题。相比普通图像生成，fMRI 既高维又时空异质，而且如果没有神经科学约束，很容易生成出看似像脑图、实际上没有任务特异性的假信号。
+
+方法上，作者把 3D VQ-GAN latent compression、CNN-Transformer backbone、AdaLN-Zero 和 cross-attention 组" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n30-conditional-4d-fmri-synthesis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Scalable Diffusion Transformer for Conditional 4D fMRI Synthesis" />
+    <meta name="twitter:description" content="这篇论文要解决的是任务条件下 whole-brain 4D fMRI 序列生成的难题。相比普通图像生成，fMRI 既高维又时空异质，而且如果没有神经科学约束，很容易生成出看似像脑图、实际上没有任务特异性的假信号。
+
+方法上，作者把 3D VQ-GAN latent compression、CNN-Transformer backbone、AdaLN-Zero 和 cross-attention 组" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Scalable Diffusion Transformer for Conditional 4D fMRI Synthesis</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-11-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.22870" target="_blank" rel="noopener noreferrer">2511.22870</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文要解决的是任务条件下 whole-brain 4D fMRI 序列生成的难题。相比普通图像生成，fMRI 既高维又时空异质，而且如果没有神经科学约束，很容易生成出看似像脑图、实际上没有任务特异性的假信号。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者把 3D VQ-GAN latent compression、CNN-Transformer backbone、AdaLN-Zero 和 cross-attention 组合成首个 voxelwise 4D fMRI diffusion transformer。它不仅追求像素级重建，而是明确评估任务激活图、RSA 结构、condition specificity 和 ROI time-course 与 canonical hemodynamic response 的一致性。</dd></div><div><dt>结果/证据</dt><dd>它的重要性在于，这类工作把神经影像生成模型从“能生成像脑的图”推进到“能生成有任务结构的时空脑活动”。这对神经影像模拟、数据增强、任务表征研究都很有价值。放在仓库里，它属于认知科学 / 神经影像主线里的高质量生成建模论文。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它在 4D fMRI 合成方向很强，但外溢还主要集中在神经影像生成这个子方向，不算更高一级的总范式条目。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文要解决的是任务条件下 whole-brain 4D fMRI 序列生成的难题。相比普通图像生成，fMRI 既高维又时空异质，而且如果没有神经科学约束，很容易生成出看似像脑图、实际上没有任务特异性的假信号。</p><p>方法上，作者把 3D VQ-GAN latent compression、CNN-Transformer backbone、AdaLN-Zero 和 cross-attention 组合成首个 voxelwise 4D fMRI diffusion transformer。它不仅追求像素级重建，而是明确评估任务激活图、RSA 结构、condition specificity 和 ROI time-course 与 canonical hemodynamic response 的一致性。</p><p>它的重要性在于，这类工作把神经影像生成模型从“能生成像脑的图”推进到“能生成有任务结构的时空脑活动”。这对神经影像模拟、数据增强、任务表征研究都很有价值。放在仓库里，它属于认知科学 / 神经影像主线里的高质量生成建模论文。</p><p>我把它放在“突破性”。原因是它在 4D fMRI 合成方向很强，但外溢还主要集中在神经影像生成这个子方向，不算更高一级的总范式条目。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>生成以认知任务为条件的整个大脑4D fMRI序列仍然具有挑战性，原因在于跨受试者/采集的高维、异构BOLD动态以及缺乏神经科学基础的验证。我们引入了首个用于体素级4D fMRI条件生成的扩散Transformer，它结合了3D VQ-GAN潜在压缩与CNN–Transformer骨干模型，并通过AdaLN-Zero和交叉注意力实现了强大的任务条件化。在HCP任务fMRI上，我们的模型重现了任务诱发的激活图，保留了真实数据中观察到的任务间表征结构（RSA），实现了完美的条件特异性，并将ROI时间序列与典型血流动力学响应对齐。性能随规模可预测地提升，任务诱发图相关性达到0.83，RSA达到0.98，在所有指标上始终超越U-Net基线。通过将潜在扩散与可扩展的骨干模型和强大的条件化相结合，这项工作为条件4D fMRI合成建立了一条实用路径，为未来的应用铺平了道路，例如虚拟实验、跨站点协调以及下游神经影像模型的原则性增强。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Generating whole-brain 4D fMRI sequences conditioned on cognitive tasks re- mains challenging due to the high-dimensional, heterogeneous BOLD dynamics across subjects/acquisitions and the lack of neuroscience-grounded validation. We introduce the first diffusion transformer for voxelwise 4D fMRI conditional gen- eration, combining 3D VQ-GAN latent compression with a CNN–Transformer backbone and strong task conditioning via AdaLN-Zero and cross-attention. On HCP task fMRI, our model reproduces task-evoked activation maps, preserves the inter-task representational structure observed in real data (RSA), achieves perfect condition specificity, and aligns ROI time-courses with canonical hemodynamic responses. Performance improves predictably with scale, reaching task-evoked map correlation of 0.83 and RSA of 0.98, consistently surpassing a U-Net base- line on all metrics. By coupling latent diffusion with a scalable backbone and strong conditioning, this work establishes a practical path to conditional 4D fMRI synthesis, paving the way for future applications such as virtual experiments, cross- site harmonization, and principled augmentation for downstream neuroimaging models.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251128n30conditi,
+  title = {Scalable Diffusion Transformer for Conditional 4D fMRI Synthesis},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.22870.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n30-conditional-4d-fmri-synthesis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Scalable Diffusion Transformer for Conditional 4D fMRI Synthesis. https://arxiv.org/pdf/2511.22870.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.22870.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

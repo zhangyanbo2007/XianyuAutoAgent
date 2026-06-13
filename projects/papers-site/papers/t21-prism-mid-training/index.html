@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRISM: Demystifying Retention and Interaction in Mid-Training | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论的是后训练流水线里一个非常关键但此前经常被黑盒化处理的阶段：mid-training。作者想回答的不只是“mid-training 有没有用”，而是它与后续 RL 到底如何分工、数据配比应该在哪里发挥作用，以及它为什么会成为复杂推理 RL 的前置条件。
+
+论文通过跨模型家族、跨架构和跨参数规模的系统实验，给出了一组很有分量的结论。最重要的一个结论是：直接在基座模型上做 RL 基本无法得" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t21-prism-mid-training/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PRISM: Demystifying Retention and Interaction in Mid-Training" />
+    <meta property="og:description" content="这篇论文讨论的是后训练流水线里一个非常关键但此前经常被黑盒化处理的阶段：mid-training。作者想回答的不只是“mid-training 有没有用”，而是它与后续 RL 到底如何分工、数据配比应该在哪里发挥作用，以及它为什么会成为复杂推理 RL 的前置条件。
+
+论文通过跨模型家族、跨架构和跨参数规模的系统实验，给出了一组很有分量的结论。最重要的一个结论是：直接在基座模型上做 RL 基本无法得" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t21-prism-mid-training/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PRISM: Demystifying Retention and Interaction in Mid-Training" />
+    <meta name="twitter:description" content="这篇论文讨论的是后训练流水线里一个非常关键但此前经常被黑盒化处理的阶段：mid-training。作者想回答的不只是“mid-training 有没有用”，而是它与后续 RL 到底如何分工、数据配比应该在哪里发挥作用，以及它为什么会成为复杂推理 RL 的前置条件。
+
+论文通过跨模型家族、跨架构和跨参数规模的系统实验，给出了一组很有分量的结论。最重要的一个结论是：直接在基座模型上做 RL 基本无法得" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PRISM: Demystifying Retention and Interaction in Mid-Training</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.17074" target="_blank" rel="noopener noreferrer">2603.17074</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论的是后训练流水线里一个非常关键但此前经常被黑盒化处理的阶段：mid-training。作者想回答的不只是“mid-training 有没有用”，而是它与后续 RL 到底如何分工、数据配比应该在哪里发挥作用，以及它为什么会成为复杂推理 RL 的前置条件。</dd></div><div><dt>方法/机制</dt><dd>论文通过跨模型家族、跨架构和跨参数规模的系统实验，给出了一组很有分量的结论。最重要的一个结论是：直接在基座模型上做 RL 基本无法得到复杂推理能力，而经过高质量 mid-training 后，RL 才开始有效。机制分析进一步显示，mid-training 会对超过九成的权重进行密集重构，而 RL 只对少量前部权重做稀疏更新；更反直觉的是，RL 不管从 base 还是 mid-trained 模型开始，更新模式都非常相似，但只有后者处在可被 RL 有效优化的位置。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是单纯报告一个更好的训练 recipe，而是对 mid-training 与 RL 的关系给出了很清楚的经验和机制解释。对后训练设计、推理模型训练、数据配比、长上下文保留以及 training pipeline design 都有很强的指导意义，符合仓库对强理论/机制澄清论文的收录标准。</dd></div><div><dt>收录价值</dt><dd>它目前适合定为 breakthrough，而不是更高一级。原因是论文虽然把现象讲清楚了，但还没有把这些规律提升为更一般的理论框架，也主要聚焦于作者实验范围内的模型和数据设置，尚未完全成为社区共识。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论的是后训练流水线里一个非常关键但此前经常被黑盒化处理的阶段：mid-training。作者想回答的不只是“mid-training 有没有用”，而是它与后续 RL 到底如何分工、数据配比应该在哪里发挥作用，以及它为什么会成为复杂推理 RL 的前置条件。</p><p>论文通过跨模型家族、跨架构和跨参数规模的系统实验，给出了一组很有分量的结论。最重要的一个结论是：直接在基座模型上做 RL 基本无法得到复杂推理能力，而经过高质量 mid-training 后，RL 才开始有效。机制分析进一步显示，mid-training 会对超过九成的权重进行密集重构，而 RL 只对少量前部权重做稀疏更新；更反直觉的是，RL 不管从 base 还是 mid-trained 模型开始，更新模式都非常相似，但只有后者处在可被 RL 有效优化的位置。</p><p>这篇工作值得正式收录，因为它不是单纯报告一个更好的训练 recipe，而是对 mid-training 与 RL 的关系给出了很清楚的经验和机制解释。对后训练设计、推理模型训练、数据配比、长上下文保留以及 training pipeline design 都有很强的指导意义，符合仓库对强理论/机制澄清论文的收录标准。</p><p>它目前适合定为 breakthrough，而不是更高一级。原因是论文虽然把现象讲清楚了，但还没有把这些规律提升为更一般的理论框架，也主要聚焦于作者实验范围内的模型和数据设置，尚未完全成为社区共识。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>PRISM：揭秘中期训练中的保留与交互。IBM Research, MIT-IBM Watson AI Lab 我们提出了PRISM，这是一项关于大型语言模型（LLMs）中期训练设计选择的全面实证研究。通过对七个基础模型（涵盖四个系列：Granite、LLaMA、Mistral、Nemotron-H）、两种架构类型（密集型Transformer和attentionMamba混合架构）以及参数规模从30亿到240亿的模型进行受控实验，我们表明，一个包含约270亿高质量token的中期训练阶段，在数学基准上带来了15到40点的持续增益，在代码基准上带来了5到12点的增益，在科学（GPQA-Diamond）基准上带来了6到13点的增益，同时保留了通用性能。完整的PRISM → RL流程将六个推理基准上的宏观平均（领域加权）分数从低于12分提高到29-42分（3-4倍的提升），而直接应用于大多数基础模型的RL效果则显著降低，AIME分数接近零。数据构成选择在中期训练阶段最为重要，而非在RL阶段：在中期训练中包含科学数据，可在RL阶段解锁GPQA-Diamond基准上17到28点的增益，而改变RL混合会产生90%的模型权重，同时RL对约5%的参数进行稀疏的、前置的精调。对三个模型和三种输入分布进行的表征分析（CKA）证实，RL在密集型Transformer和混合架构中都持续保留了中期训练的表征几何结构（CKA &gt; 0.998）。关键在于，RL无论起始点如何都应用相同的权重变化，但仅在中期训练过的模型上取得成功，这与中期训练将模型置于RL可以有效提升性能的权重配置中是一致的。我们的结果表明，保留感知的中期训练是实现可靠推理能力增强的高效中间步骤，并为设计稳健的中期训练流程提供了实用指导。通讯作者：Bharat Runwal，邮箱：bharatrunwal@gmail.com</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>IBM Research, MIT-IBM Watson AI Lab We present PRISM, a comprehensive empirical study of mid-training design choices for large language models (LLMs). Through controlled experiments across seven base models spanning four families (Granite, LLaMA, Mistral, Nemotron-H), two architecture types (dense Transformer and attentionMamba hybrid), and scales from 3B to 24B parameters, we show that a mid-training phase of ∼27B high-quality tokens yields consistent gains of +15 to +40 points on math, +5 to +12 points on code, and +6 to +13 points on science (GPQA-Diamond) benchmarks while preserving general performance. The full PRISM → RL pipeline improves the macro-average (domain-weighted) across six reasoning benchmarks from under 12 to 29–42 (a 3–4× improvement), whereas RL applied directly to most of the base models remains substantially less effective, with AIME scores near zero. Data composition choices matter most at mid-training, not at RL: including science data during mid-training unlocks +17 to +28 point GPQA-Diamond gains during RL, while changing the RL mix produces 90% of model weights, while RL makes sparse, front-loaded refinements to ∼5% of parameters. Representation analysis (CKA) across three models and three input distributions confirms that RL consistently preserves mid-training’s representational geometry (&gt;0.998 CKA) across both dense Transformers and hybrid architectures. Crucially, RL applies identical weight changes regardless of starting point, yet only succeeds on mid-trained models, consistent with mid-training placing the model in a weight configuration from which RL can effectively improve performance. Our results demonstrate that retention-aware mid-training is a highly effective intermediate step for reliable reasoning enhancement and provide practical guidance for designing robust mid-training pipelines. Correspondence: Bharat Runwal at bharatrunwal@gmail.com</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317t21prismmi,
+  title = {PRISM: Demystifying Retention and Interaction in Mid-Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.17074v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t21-prism-mid-training/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PRISM: Demystifying Retention and Interaction in Mid-Training. https://arxiv.org/pdf/2603.17074v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.17074v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

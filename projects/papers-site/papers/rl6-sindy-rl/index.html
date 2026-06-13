@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SINDy-RL for interpretable and efficient model-based reinforcement learning | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是模型驱动强化学习里的两个长期痛点：样本效率和可解释性。传统 DRL 在控制问题上可以学出很强策略，但往往需要大量交互数据，而且最终策略和动力学都被埋进黑盒神经网络里，不利于信任、部署和科学理解。作者试图把稀疏动力学发现和强化学习接到一起，让控制系统既学得动，又看得懂。
+
+方法上的核心是把 SINDy 这一类稀疏字典学习方法引入强化学习流程，用统一框架去学习可解释的动力学模型、奖励函" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl6-sindy-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SINDy-RL for interpretable and efficient model-based reinforcement learning" />
+    <meta property="og:description" content="这篇论文解决的是模型驱动强化学习里的两个长期痛点：样本效率和可解释性。传统 DRL 在控制问题上可以学出很强策略，但往往需要大量交互数据，而且最终策略和动力学都被埋进黑盒神经网络里，不利于信任、部署和科学理解。作者试图把稀疏动力学发现和强化学习接到一起，让控制系统既学得动，又看得懂。
+
+方法上的核心是把 SINDy 这一类稀疏字典学习方法引入强化学习流程，用统一框架去学习可解释的动力学模型、奖励函" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl6-sindy-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SINDy-RL for interpretable and efficient model-based reinforcement learning" />
+    <meta name="twitter:description" content="这篇论文解决的是模型驱动强化学习里的两个长期痛点：样本效率和可解释性。传统 DRL 在控制问题上可以学出很强策略，但往往需要大量交互数据，而且最终策略和动力学都被埋进黑盒神经网络里，不利于信任、部署和科学理解。作者试图把稀疏动力学发现和强化学习接到一起，让控制系统既学得动，又看得懂。
+
+方法上的核心是把 SINDy 这一类稀疏字典学习方法引入强化学习流程，用统一框架去学习可解释的动力学模型、奖励函" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SINDy-RL for interpretable and efficient model-based reinforcement learning</h1>
+          <p class="subtitle">强化学习 · 发表：2025-11-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-28</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-65738-4" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-65738-4</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是模型驱动强化学习里的两个长期痛点：样本效率和可解释性。传统 DRL 在控制问题上可以学出很强策略，但往往需要大量交互数据，而且最终策略和动力学都被埋进黑盒神经网络里，不利于信任、部署和科学理解。作者试图把稀疏动力学发现和强化学习接到一起，让控制系统既学得动，又看得懂。</dd></div><div><dt>方法/机制</dt><dd>方法上的核心是把 SINDy 这一类稀疏字典学习方法引入强化学习流程，用统一框架去学习可解释的动力学模型、奖励函数和控制策略。论文不是单点替换网络模块，而是提出一条明确路线：在低数据区间用稀疏符号化表示替代大而黑盒的近似器，从而同时降低训练成本和部署复杂度。</dd></div><div><dt>结果/证据</dt><dd>它适合进入仓库，因为这是一篇对 model-based RL 和 scientific control 都有外溢价值的强方法论文。对需要高样本效率、可解释控制律和嵌入式部署的场景，例如流体控制、物理系统控制和工程优化，这条路线都很实用。它也把可解释机器学习从分析层推进到了策略与动力学联合建模层。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为影响范围目前仍主要集中在可解释控制和特定 model-based RL 场景，而不是重写整个强化学习主线。更准确地说，这是一篇很扎实、很有复用价值的交叉方法论文，但还没有达到改变大范围 RL 研究默认范式的程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是模型驱动强化学习里的两个长期痛点：样本效率和可解释性。传统 DRL 在控制问题上可以学出很强策略，但往往需要大量交互数据，而且最终策略和动力学都被埋进黑盒神经网络里，不利于信任、部署和科学理解。作者试图把稀疏动力学发现和强化学习接到一起，让控制系统既学得动，又看得懂。</p><p>方法上的核心是把 SINDy 这一类稀疏字典学习方法引入强化学习流程，用统一框架去学习可解释的动力学模型、奖励函数和控制策略。论文不是单点替换网络模块，而是提出一条明确路线：在低数据区间用稀疏符号化表示替代大而黑盒的近似器，从而同时降低训练成本和部署复杂度。</p><p>它适合进入仓库，因为这是一篇对 model-based RL 和 scientific control 都有外溢价值的强方法论文。对需要高样本效率、可解释控制律和嵌入式部署的场景，例如流体控制、物理系统控制和工程优化，这条路线都很实用。它也把可解释机器学习从分析层推进到了策略与动力学联合建模层。</p><p>它没有更高一级，因为影响范围目前仍主要集中在可解释控制和特定 model-based RL 场景，而不是重写整个强化学习主线。更准确地说，这是一篇很扎实、很有复用价值的交叉方法论文，但还没有达到改变大范围 RL 研究默认范式的程度。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251128rl6sindyrl,
+  title = {SINDy-RL for interpretable and efficient model-based reinforcement learning},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-65738-4.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl6-sindy-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). SINDy-RL for interpretable and efficient model-based reinforcement learning. https://www.nature.com/articles/s41467-025-65738-4.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-65738-4.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

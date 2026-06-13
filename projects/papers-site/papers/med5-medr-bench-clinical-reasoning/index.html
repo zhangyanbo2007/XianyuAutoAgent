@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quantifying the reasoning abilities of LLMs on clinical cases | DAST Papers</title>
+    <meta name="description" content="问题与背景：推理型 LLM 在医学中很有潜力，但现有评测常只看最终答案，缺乏对检查建议、诊断决策和治疗规划全过程推理质量的结构化评估。
+
+方法与机制：MedR-Bench 收集 1453 个结构化患者病例，覆盖 13 个系统和 10 个专科，并给出来自临床病例报告的参考推理。论文还提出 Reasoning Evaluator，从效率、事实准确性和完整性评估模型书面推理。
+
+为什么重要：这不是普通医" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/med5-medr-bench-clinical-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Quantifying the reasoning abilities of LLMs on clinical cases" />
+    <meta property="og:description" content="问题与背景：推理型 LLM 在医学中很有潜力，但现有评测常只看最终答案，缺乏对检查建议、诊断决策和治疗规划全过程推理质量的结构化评估。
+
+方法与机制：MedR-Bench 收集 1453 个结构化患者病例，覆盖 13 个系统和 10 个专科，并给出来自临床病例报告的参考推理。论文还提出 Reasoning Evaluator，从效率、事实准确性和完整性评估模型书面推理。
+
+为什么重要：这不是普通医" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/med5-medr-bench-clinical-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Quantifying the reasoning abilities of LLMs on clinical cases" />
+    <meta name="twitter:description" content="问题与背景：推理型 LLM 在医学中很有潜力，但现有评测常只看最终答案，缺乏对检查建议、诊断决策和治疗规划全过程推理质量的结构化评估。
+
+方法与机制：MedR-Bench 收集 1453 个结构化患者病例，覆盖 13 个系统和 10 个专科，并给出来自临床病例报告的参考推理。论文还提出 Reasoning Evaluator，从效率、事实准确性和完整性评估模型书面推理。
+
+为什么重要：这不是普通医" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Quantifying the reasoning abilities of LLMs on clinical cases</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2025-11-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-06</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-64769-1" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-64769-1</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：推理型 LLM 在医学中很有潜力，但现有评测常只看最终答案，缺乏对检查建议、诊断决策和治疗规划全过程推理质量的结构化评估。</dd></div><div><dt>方法/机制</dt><dd>方法与机制：MedR-Bench 收集 1453 个结构化患者病例，覆盖 13 个系统和 10 个专科，并给出来自临床病例报告的参考推理。论文还提出 Reasoning Evaluator，从效率、事实准确性和完整性评估模型书面推理。</dd></div><div><dt>结果/证据</dt><dd>为什么重要：这不是普通医疗 QA，而是面向临床推理流程的评测接口，能帮助区分模型会不会推、在哪里推错、是否只是补全表面答案。对医疗 agent 和临床 AI 安全评估有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限：自动推理评估本身可能有偏差，病例报告不等同于真实临床工作流；因此作为突破级 benchmark 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：推理型 LLM 在医学中很有潜力，但现有评测常只看最终答案，缺乏对检查建议、诊断决策和治疗规划全过程推理质量的结构化评估。</p><p>方法与机制：MedR-Bench 收集 1453 个结构化患者病例，覆盖 13 个系统和 10 个专科，并给出来自临床病例报告的参考推理。论文还提出 Reasoning Evaluator，从效率、事实准确性和完整性评估模型书面推理。</p><p>为什么重要：这不是普通医疗 QA，而是面向临床推理流程的评测接口，能帮助区分模型会不会推、在哪里推错、是否只是补全表面答案。对医疗 agent 和临床 AI 安全评估有复用价值。</p><p>局限：自动推理评估本身可能有偏差，病例报告不等同于真实临床工作流；因此作为突破级 benchmark 收录。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251106med5medrbe,
+  title = {Quantifying the reasoning abilities of LLMs on clinical cases},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-64769-1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/med5-medr-bench-clinical-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Quantifying the reasoning abilities of LLMs on clinical cases. https://www.nature.com/articles/s41467-025-64769-1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med7-physicianbench-ehr-agents/">
+              <span>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med6-fair-unlearning-clinical-ai/">
+              <span>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med5-gsco-generalist-specialist-collaboration/">
+              <span>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</span>
+              <small>公共卫生与医疗运营 · 2026-05-01</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-64769-1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

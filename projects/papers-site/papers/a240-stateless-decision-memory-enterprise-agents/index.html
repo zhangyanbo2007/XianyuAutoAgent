@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stateless Decision Memory for Enterprise AI Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文有价值的地方，不是再造一个更复杂的 agent memory，而是直接反过来问：为什么企业在受监管决策场景里，明明需要长程上下文，却依然偏好看起来更弱的 retrieval pipeline？作者给出的答案很明确：真正 load-bearing 的不是‘记得更多’，而是 deterministic replay、auditable rationale、multi-tenant isolat" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a240-stateless-decision-memory-enterprise-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Stateless Decision Memory for Enterprise AI Agents" />
+    <meta property="og:description" content="这篇论文有价值的地方，不是再造一个更复杂的 agent memory，而是直接反过来问：为什么企业在受监管决策场景里，明明需要长程上下文，却依然偏好看起来更弱的 retrieval pipeline？作者给出的答案很明确：真正 load-bearing 的不是‘记得更多’，而是 deterministic replay、auditable rationale、multi-tenant isolat" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a240-stateless-decision-memory-enterprise-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Stateless Decision Memory for Enterprise AI Agents" />
+    <meta name="twitter:description" content="这篇论文有价值的地方，不是再造一个更复杂的 agent memory，而是直接反过来问：为什么企业在受监管决策场景里，明明需要长程上下文，却依然偏好看起来更弱的 retrieval pipeline？作者给出的答案很明确：真正 load-bearing 的不是‘记得更多’，而是 deterministic replay、auditable rationale、multi-tenant isolat" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Stateless Decision Memory for Enterprise AI Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.20158" target="_blank" rel="noopener noreferrer">2604.20158</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文有价值的地方，不是再造一个更复杂的 agent memory，而是直接反过来问：为什么企业在受监管决策场景里，明明需要长程上下文，却依然偏好看起来更弱的 retrieval pipeline？作者给出的答案很明确：真正 load-bearing 的不是‘记得更多’，而是 deterministic replay、auditable rationale、multi-tenant isolation 和 stateless horizontal scale。</dd></div><div><dt>方法/机制</dt><dd>在这个 framing 下，论文提出的 DPM 并不是传统 stateful memory，而是 append-only event log 加上 decision-time projection。这个设计把不确定性压缩到更少的 LLM 调用，把审计面从 N 次总结链路缩成 one-versus-N 结构，同时在 budget 紧的时候比 summarization memory 更准、更快。它本质上是在 regulated enterprise agent 上把 memory 问题重新定义成可回放的 decision substrate。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是一个窄 benchmark trick，而是 agent memory 在企业落地中的一条清晰架构边界：当审计、复现和水平扩展是硬约束时，stateful memory 可能从根上就不合适。这个判断对 underwriting、claims、tax、compliance 乃至更广的 governed execution 都有很强外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据还主要来自十个案例、单论文作者和较新的评测设置；是否会成为 regulated agent 的默认 memory pattern，还要看外部复现和真实部署采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文有价值的地方，不是再造一个更复杂的 agent memory，而是直接反过来问：为什么企业在受监管决策场景里，明明需要长程上下文，却依然偏好看起来更弱的 retrieval pipeline？作者给出的答案很明确：真正 load-bearing 的不是‘记得更多’，而是 deterministic replay、auditable rationale、multi-tenant isolation 和 stateless horizontal scale。</p><p>在这个 framing 下，论文提出的 DPM 并不是传统 stateful memory，而是 append-only event log 加上 decision-time projection。这个设计把不确定性压缩到更少的 LLM 调用，把审计面从 N 次总结链路缩成 one-versus-N 结构，同时在 budget 紧的时候比 summarization memory 更准、更快。它本质上是在 regulated enterprise agent 上把 memory 问题重新定义成可回放的 decision substrate。</p><p>它值得正式收录，因为这不是一个窄 benchmark trick，而是 agent memory 在企业落地中的一条清晰架构边界：当审计、复现和水平扩展是硬约束时，stateful memory 可能从根上就不合适。这个判断对 underwriting、claims、tax、compliance 乃至更广的 governed execution 都有很强外溢。</p><p>它没有更高，是因为当前证据还主要来自十个案例、单论文作者和较新的评测设置；是否会成为 regulated agent 的默认 memory pattern，还要看外部复现和真实部署采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>在受监管领域（承保、理赔裁决、临床审查、税务稽查）中，长周期决策代理的企业部署主要采用检索增强型管道，尽管研究文献在过去十年中产生了日益复杂的状态记忆架构。我们认为这反映了一个研究评估尚未揭示的隐藏要求：受监管的部署在四个系统属性上是承载负荷的（确定性重放、可审计的理由、多租户隔离以及用于横向扩展的无状态性）。有状态记忆架构在构建上违反了这些属性，并且随着部署的成熟，违反的程度会加剧。我们提出了确定性投影记忆（DPM），这是一种将代理记忆视为一个仅追加事件日志加上在决策时进行单一任务条件投影的架构。在十个受监管的决策案例和三种记忆预算下，DPM在充足预算下与基于摘要的记忆相匹配（在适度或宽松预算下，四个决策对齐轴上均无统计学显著差异；n=10，配对置换），并且在记忆预算受限时显著优于它：在20倍压缩比下，DPM将事实精确度提高了+0.52（Cohen&#x27;s h=1.17，p=0.0014），并将推理连贯性提高了+0.53（h=1.13，p=0.0034）。DPM还比有状态基线快7-15倍，因为它在决策时只进行一次LLM调用，而不是在整个轨迹中进行N次调用。一项在温度为零时对每个案例进行10次重放的确定性研究证实，两种情况都继承了残余的API级非确定性，但架构不对称是系统性的：DPM暴露一次非确定性投影调用，而基于摘要的记忆在整个轨迹中暴露N次复合调用。我们最后提出了TAMS，一种用于架构选择的实践者启发式方法，以及对企业运行条件下有状态记忆的故障分析。这项贡献并非新的决策准确性突破。它论证了无状态性是解释企业偏爱较弱但可重放的检索管道的承载负荷属性，并且DPM证明了在不付出检索所带来的决策代价的情况下，可以实现这一属性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Enterprise deployment of long-horizon decision agents in regulated domains (underwriting, claims adjudication, clinical review, tax examination) is dominated by retrievalaugmented pipelines despite the research literature producing a decade of increasingly sophisticated stateful memory architectures. We argue this reflects a hidden requirement the research evaluation has not surfaced: regulated deployment is load-bearing on four systems properties (deterministic replay, auditable rationale, multi-tenant isolation, and statelessness for horizontal scale). Stateful memory architectures violate these properties by construction, and the margin of violation compounds as deployment matures. We propose Deterministic Projection Memory (DPM), an architecture that treats agent memory as an append-only event log plus a single task-conditioned projection at decision time. On ten regulated decisioning cases at three memory budgets, DPM matches summarization-based memory at generous budgets (no statistically significant difference on any of four decision-alignment axes at moderate or loose budgets; n=10, paired permutation) and substantially outperforms it when memory budget binds: at a 20× compression ratio, DPM improves factual precision by +0.52 (Cohen’s h=1.17, p=0.0014) and reasoning coherence by +0.53 (h=1.13, p=0.0034). DPM is additionally 7–15× faster than the stateful baseline because it makes one LLM call at decision time instead of N calls across the trajectory. A determinism study of 10 replays per case at temperature zero confirms that both conditions inherit residual API-level nondeterminism, but that the architectural asymmetry is systemic: DPM exposes one nondeterministic projection call, summarization-based memory exposes N compounding calls across the trajectory. We conclude with TAMS, a practitioner heuristic for architecture selection, and a failure analysis of stateful memory under enterprise operating conditions. The contribution is not a new decision-accuracy win. It is the argument that statelessness is the load-bearing property explaining enterprise’s preference for weaker but replayable retrieval pipelines, and that DPM demonstrates this property is attainable without the decisioning penalty retrieval pays.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260422a240statel,
+  title = {Stateless Decision Memory for Enterprise AI Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.20158.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a240-stateless-decision-memory-enterprise-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Stateless Decision Memory for Enterprise AI Agents. https://arxiv.org/pdf/2604.20158.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.20158.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

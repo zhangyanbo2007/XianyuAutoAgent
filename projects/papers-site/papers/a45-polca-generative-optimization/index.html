@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>POLCA: Stochastic Generative Optimization with LLM | DAST Papers</title>
+    <meta name="description" content="这篇论文关注的是一个越来越重要的问题：把大语言模型本身当作优化器，用自然语言提案去优化 prompt、agent 配置、代码或系统策略。但这类优化天然存在两个难点，一是评估通常带噪声，二是 LLM 会不断生成语义相近的冗余候选，导致搜索成本膨胀而收敛变慢。
+
+POLCA 给出的核心框架是用优先级队列管理候选解和评估历史，再用 ε-Net 机制维持参数多样性，并加入一个 LLM Summarizer" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a45-polca-generative-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="POLCA: Stochastic Generative Optimization with LLM" />
+    <meta property="og:description" content="这篇论文关注的是一个越来越重要的问题：把大语言模型本身当作优化器，用自然语言提案去优化 prompt、agent 配置、代码或系统策略。但这类优化天然存在两个难点，一是评估通常带噪声，二是 LLM 会不断生成语义相近的冗余候选，导致搜索成本膨胀而收敛变慢。
+
+POLCA 给出的核心框架是用优先级队列管理候选解和评估历史，再用 ε-Net 机制维持参数多样性，并加入一个 LLM Summarizer" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a45-polca-generative-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="POLCA: Stochastic Generative Optimization with LLM" />
+    <meta name="twitter:description" content="这篇论文关注的是一个越来越重要的问题：把大语言模型本身当作优化器，用自然语言提案去优化 prompt、agent 配置、代码或系统策略。但这类优化天然存在两个难点，一是评估通常带噪声，二是 LLM 会不断生成语义相近的冗余候选，导致搜索成本膨胀而收敛变慢。
+
+POLCA 给出的核心框架是用优先级队列管理候选解和评估历史，再用 ε-Net 机制维持参数多样性，并加入一个 LLM Summarizer" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>POLCA: Stochastic Generative Optimization with LLM</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14769" target="_blank" rel="noopener noreferrer">2603.14769</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注的是一个越来越重要的问题：把大语言模型本身当作优化器，用自然语言提案去优化 prompt、agent 配置、代码或系统策略。但这类优化天然存在两个难点，一是评估通常带噪声，二是 LLM 会不断生成语义相近的冗余候选，导致搜索成本膨胀而收敛变慢。</dd></div><div><dt>方法/机制</dt><dd>POLCA 给出的核心框架是用优先级队列管理候选解和评估历史，再用 ε-Net 机制维持参数多样性，并加入一个 LLM Summarizer 在全局历史上做元学习式总结。这样，搜索不再是线性地提出-替换-遗忘，而是变成显式维护探索/利用平衡的随机生成式优化过程。论文还给出理论保证，说明在噪声环境下该框架能够收敛到近似最优候选。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它不是单点 prompt optimization，而是在更一般的 stochastic generative optimization 框架下统一处理多类 LLM 优化问题。再加上它横跨 agent optimization、代码转换、CUDA kernel generation 等任务验证，说明这套方法有明显的系统外溢性。对后续自动研究、agent 自优化和程序搜索，这是一条值得保留的高质量路线。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，主要因为它仍是一个方法框架，而不是已经成为行业默认的优化基础设施。理论和实验都很强，但离范式级主导还差一步，因此定为 breakthrough 更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注的是一个越来越重要的问题：把大语言模型本身当作优化器，用自然语言提案去优化 prompt、agent 配置、代码或系统策略。但这类优化天然存在两个难点，一是评估通常带噪声，二是 LLM 会不断生成语义相近的冗余候选，导致搜索成本膨胀而收敛变慢。</p><p>POLCA 给出的核心框架是用优先级队列管理候选解和评估历史，再用 ε-Net 机制维持参数多样性，并加入一个 LLM Summarizer 在全局历史上做元学习式总结。这样，搜索不再是线性地提出-替换-遗忘，而是变成显式维护探索/利用平衡的随机生成式优化过程。论文还给出理论保证，说明在噪声环境下该框架能够收敛到近似最优候选。</p><p>它值得收录，因为它不是单点 prompt optimization，而是在更一般的 stochastic generative optimization 框架下统一处理多类 LLM 优化问题。再加上它横跨 agent optimization、代码转换、CUDA kernel generation 等任务验证，说明这套方法有明显的系统外溢性。对后续自动研究、agent 自优化和程序搜索，这是一条值得保留的高质量路线。</p><p>它没有升到更高一级，主要因为它仍是一个方法框架，而不是已经成为行业默认的优化基础设施。理论和实验都很强，但离范式级主导还差一步，因此定为 breakthrough 更稳。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>POLCA：基于LLM的随机生成优化。优化复杂系统，从LLM提示到多轮代理，传统上需要劳动密集型的手动迭代。我们将这一挑战形式化为一个随机生成优化问题，其中生成式语言模型作为优化器，在数值奖励和文本反馈的指导下发现最佳系统。我们引入了带有局部上下文聚合的优先优化（Prioritized Optimization with Local Contextual Aggregation, POLCA），这是一个可扩展的框架，旨在处理优化中的随机性——例如噪声反馈、小批量采样和随机系统行为——同时有效管理解决方案空间不受限制的扩展。POLCA维护一个优先队列来管理探索-利用权衡，系统地跟踪候选解决方案及其评估历史。为了提高效率，我们整合了一个ε-Net机制来保持参数多样性，并使用一个LLM Summarizer在历史试验中执行元学习。我们从理论上证明，POLCA在随机性下收敛到接近最优的候选解决方案。我们在各种基准上评估了我们的框架，包括τ -bench、HotpotQA（代理优化）、VeriBench（代码翻译）和KernelBench（CUDA内核生成）。实验结果表明，POLCA在确定性和随机问题中均实现了鲁棒、样本和时间高效的性能，始终优于最先进的算法。本工作的代码库可在https://github.com/rlx-lab/POLCA公开获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Optimizing complex systems, ranging from LLM prompts to multi-turn agents, traditionally requires labor-intensive manual iteration. We formalize this challenge as a stochastic generative optimization problem where a generative language model acts as the optimizer, guided by numerical rewards and text feedback to discover the best system. We introduce Prioritized Optimization with Local Contextual Aggregation (POLCA), a scalable framework designed to handle stochasticity in optimization—such as noisy feedback, sampling minibatches, and stochastic system behaviors—while effectively managing the unconstrained expansion of solution space. POLCA maintains a priority queue to manage the exploration-exploitation tradeoff, systematically tracking candidate solutions and their evaluation histories. To enhance efficiency, we integrate an ε-Net mechanism to maintain parameter diversity and an LLM Summarizer to perform meta-learning across historical trials. We theoretically prove that POLCA converges to near-optimal candidate solutions under stochasticity. We evaluate our framework on diverse benchmarks, including τ -bench, HotpotQA (agent optimization), VeriBench (code translation) and KernelBench (CUDA kernel generation). Experimental results demonstrate that POLCA achieves robust, sample and time-efficient performance, consistently outperforming state-of-theart algorithms in both deterministic and stochastic problems. The codebase for this work is publicly available at https://github.com/rlx-lab/POLCA.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316a45polcage,
+  title = {POLCA: Stochastic Generative Optimization with LLM},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14769v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a45-polca-generative-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). POLCA: Stochastic Generative Optimization with LLM. https://arxiv.org/pdf/2603.14769v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14769v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

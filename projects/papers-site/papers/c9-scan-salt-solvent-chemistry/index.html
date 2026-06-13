@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A dynamic routing-guided interpretable framework for salt–solvent chemistry | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是电解液设计里一个典型但很难系统解决的问题：盐–溶剂化学空间极大、配方分布长尾、结构与电导率之间高度非线性，导致传统经验筛选和常规监督模型都难以在真实化学空间里稳定泛化。作者把问题集中到非水电解液的离子电导率预测与候选发现上，目标不只是做一个更准的回归器，而是建立一个能兼顾长尾数据、全空间覆盖和可解释性的建模框架。
+
+方法上，论文提出 SCAN，一个 dynamic routing-" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c9-scan-salt-solvent-chemistry/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A dynamic routing-guided interpretable framework for salt–solvent chemistry" />
+    <meta property="og:description" content="这篇论文处理的是电解液设计里一个典型但很难系统解决的问题：盐–溶剂化学空间极大、配方分布长尾、结构与电导率之间高度非线性，导致传统经验筛选和常规监督模型都难以在真实化学空间里稳定泛化。作者把问题集中到非水电解液的离子电导率预测与候选发现上，目标不只是做一个更准的回归器，而是建立一个能兼顾长尾数据、全空间覆盖和可解释性的建模框架。
+
+方法上，论文提出 SCAN，一个 dynamic routing-" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c9-scan-salt-solvent-chemistry/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A dynamic routing-guided interpretable framework for salt–solvent chemistry" />
+    <meta name="twitter:description" content="这篇论文处理的是电解液设计里一个典型但很难系统解决的问题：盐–溶剂化学空间极大、配方分布长尾、结构与电导率之间高度非线性，导致传统经验筛选和常规监督模型都难以在真实化学空间里稳定泛化。作者把问题集中到非水电解液的离子电导率预测与候选发现上，目标不只是做一个更准的回归器，而是建立一个能兼顾长尾数据、全空间覆盖和可解释性的建模框架。
+
+方法上，论文提出 SCAN，一个 dynamic routing-" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A dynamic routing-guided interpretable framework for salt–solvent chemistry</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-19</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-026-00955-5" target="_blank" rel="noopener noreferrer">10.1038/s43588-026-00955-5</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是电解液设计里一个典型但很难系统解决的问题：盐–溶剂化学空间极大、配方分布长尾、结构与电导率之间高度非线性，导致传统经验筛选和常规监督模型都难以在真实化学空间里稳定泛化。作者把问题集中到非水电解液的离子电导率预测与候选发现上，目标不只是做一个更准的回归器，而是建立一个能兼顾长尾数据、全空间覆盖和可解释性的建模框架。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出 SCAN，一个 dynamic routing-guided framework，用动态路由处理盐–溶剂配方的复杂组合结构，同时在解释层接入 gradient decoupling、symbolic regression 和 quantum chemistry calculation。它不仅在标准评测上把 conductivity 预测误差压到 0.372 mS cm−1，并显著优于基线，还进一步把模型推向大规模化学空间，构建了覆盖 11,515,140 个盐–溶剂体系的 conductivity atlas。</dd></div><div><dt>结果/证据</dt><dd>这篇值得收录，关键不只是预测精度，而是它把 AI for electrolyte chemistry 做成了完整 workflow：长尾建模、全空间枚举、候选筛选、再到机理解释与大规模验证闭环。论文还给出高导电候选的大规模验证，top-predicted candidates 的成功率达到 81.08%，说明这不是停留在离线 benchmark 上的模型改进，而是真正能够驱动材料/化学发现流程的系统。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为它主要重构的是一个重要但相对具体的科学建模场景，即非水电解液中的盐–溶剂化学，而不是更广泛的 AI for science 基础平台。更稳的定位是高质量 breakthrough：一篇在电解液设计和可解释科学机器学习交叉处很强的 workflow 论文。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是电解液设计里一个典型但很难系统解决的问题：盐–溶剂化学空间极大、配方分布长尾、结构与电导率之间高度非线性，导致传统经验筛选和常规监督模型都难以在真实化学空间里稳定泛化。作者把问题集中到非水电解液的离子电导率预测与候选发现上，目标不只是做一个更准的回归器，而是建立一个能兼顾长尾数据、全空间覆盖和可解释性的建模框架。</p><p>方法上，论文提出 SCAN，一个 dynamic routing-guided framework，用动态路由处理盐–溶剂配方的复杂组合结构，同时在解释层接入 gradient decoupling、symbolic regression 和 quantum chemistry calculation。它不仅在标准评测上把 conductivity 预测误差压到 0.372 mS cm−1，并显著优于基线，还进一步把模型推向大规模化学空间，构建了覆盖 11,515,140 个盐–溶剂体系的 conductivity atlas。</p><p>这篇值得收录，关键不只是预测精度，而是它把 AI for electrolyte chemistry 做成了完整 workflow：长尾建模、全空间枚举、候选筛选、再到机理解释与大规模验证闭环。论文还给出高导电候选的大规模验证，top-predicted candidates 的成功率达到 81.08%，说明这不是停留在离线 benchmark 上的模型改进，而是真正能够驱动材料/化学发现流程的系统。</p><p>它没有更高一级，因为它主要重构的是一个重要但相对具体的科学建模场景，即非水电解液中的盐–溶剂化学，而不是更广泛的 AI for science 基础平台。更稳的定位是高质量 breakthrough：一篇在电解液设计和可解释科学机器学习交叉处很强的 workflow 论文。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>盐-溶剂化学是电化学系统的基础，它决定着离子电导率、粘度和化学稳定性等关键性能。然而，其合理设计受到广阔化学空间的阻碍，该空间涵盖了无数种组合和非线性结构-行为耦合，并且稀疏且不平衡的实验数据进一步加剧了这一问题，从而阻碍了泛化能力。在此，我们开发了SCAN，一个动态路由引导的框架，用于建模和解释盐-溶剂化学，它能有效处理长尾数据并捕获全谱盐-溶剂配方。我们将SCAN应用于非水电解质，在电导率方面实现了0.372 mS cm的基准误差，与基线模型相比，预测误差降低了65.3%。随后，我们构建了涵盖11,515,140个盐-溶剂体系的电导率图谱。重要的是，大规模验证证实了预测排名靠前的候选物具有81.08%的成功率，其中包括电导率大于20 mS cm的基于LiFSI、LiTFSI和LiBOB的体系。除了预测之外，SCAN通过结合梯度解耦方法、符号回归和量子化学计算，提供了关于分子柔性和离子-溶剂相互作用如何影响电导率的化学洞察。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Salt–solvent chemistry underpins electrochemical systems, governing key properties such as ionic conductivity, viscosity and chemical stability. Yet, its rational design is hindered by the vast chemical space spanning countless combinations and nonlinear structure–behavior couplings, further amplified by sparse and imbalanced experimental data that impede generalization. Here we develop SCAN, a dynamic routing-guided framework for modeling and interpreting salt–solvent chemistry, which effectively handles long-tailed data and captures the full spectrum of salt–solvent formulations. We apply SCAN to non-aqueous electrolytes and achieve a benchmark error of 0.372 mS cm on conductivity, reducing predictive error by 65.3% over baselines. Then, we shape the conductivity atlas across 11,515,140 salt–solvent systems. Importantly, large-scale validations confirm a success rate of 81.08% for top-predicted candidates, including LiFSI-, LiTFSI- and LiBOB-based systems with conductivity &gt;20 mS cm . Beyond prediction, SCAN provides chemical insight into how molecular flexibility and ion–solvent interactions influence conductivity by incorporating the gradient-decoupling approach, symbolic regression and quantum chemistry calculation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260219c9scansalt,
+  title = {A dynamic routing-guided interpretable framework for salt–solvent chemistry},
+  year = {2026},
+  url = {https://doi.org/10.1038/s43588-026-00955-5},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c9-scan-salt-solvent-chemistry/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A dynamic routing-guided interpretable framework for salt–solvent chemistry. https://doi.org/10.1038/s43588-026-00955-5</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s43588-026-00955-5" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Programming with Data: Test-Driven Data Engineering for Self-Improving LLMs from Raw Corpora | DAST Papers</title>
+    <meta name="description" content="这篇工作的强点不在又做了一套领域微调，而在把 corpus-to-model transfer 重新定义成一个可以调试的数据工程闭环。作者把 training data 当作 source code，把训练当作 compilation，把 benchmark 当作 unit test，再把 failure-driven repair 当作 debugging。这个映射不是比喻，而是可操作的方法接口" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a245-programming-with-data-self-improving-llms/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Programming with Data: Test-Driven Data Engineering for Self-Improving LLMs from Raw Corpora" />
+    <meta property="og:description" content="这篇工作的强点不在又做了一套领域微调，而在把 corpus-to-model transfer 重新定义成一个可以调试的数据工程闭环。作者把 training data 当作 source code，把训练当作 compilation，把 benchmark 当作 unit test，再把 failure-driven repair 当作 debugging。这个映射不是比喻，而是可操作的方法接口" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a245-programming-with-data-self-improving-llms/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Programming with Data: Test-Driven Data Engineering for Self-Improving LLMs from Raw Corpora" />
+    <meta name="twitter:description" content="这篇工作的强点不在又做了一套领域微调，而在把 corpus-to-model transfer 重新定义成一个可以调试的数据工程闭环。作者把 training data 当作 source code，把训练当作 compilation，把 benchmark 当作 unit test，再把 failure-driven repair 当作 debugging。这个映射不是比喻，而是可操作的方法接口" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Programming with Data: Test-Driven Data Engineering for Self-Improving LLMs from Raw Corpora</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-04-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.24819" target="_blank" rel="noopener noreferrer">2604.24819</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的强点不在又做了一套领域微调，而在把 corpus-to-model transfer 重新定义成一个可以调试的数据工程闭环。作者把 training data 当作 source code，把训练当作 compilation，把 benchmark 当作 unit test，再把 failure-driven repair 当作 debugging。这个映射不是比喻，而是可操作的方法接口。</dd></div><div><dt>方法/机制</dt><dd>更关键的是它要求训练数据和评测共享同一个结构化知识底座。这样模型失败不再只表现为分数下降，而能被分解成 concept-level gap 或 reasoning-chain break，并回溯到具体的数据缺失，再通过 targeted patches 修复。对自改进 LLM、领域适配和科学知识注入都很有外溢价值。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这里提供的是一种耐用的数据工程工作流，而不是一次性的领域 recipe。只要目标是把原始文本语料转成可验证、可修补、可持续迭代的模型能力，这套 test-driven data engineering 框架就有复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前最强证据仍来自作者定义的结构化知识表示和十六个学科实验设置；这套方法能否成为更广义 post-training / continual data curation 的默认模式，还要看外部复现和 adoption。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的强点不在又做了一套领域微调，而在把 corpus-to-model transfer 重新定义成一个可以调试的数据工程闭环。作者把 training data 当作 source code，把训练当作 compilation，把 benchmark 当作 unit test，再把 failure-driven repair 当作 debugging。这个映射不是比喻，而是可操作的方法接口。</p><p>更关键的是它要求训练数据和评测共享同一个结构化知识底座。这样模型失败不再只表现为分数下降，而能被分解成 concept-level gap 或 reasoning-chain break，并回溯到具体的数据缺失，再通过 targeted patches 修复。对自改进 LLM、领域适配和科学知识注入都很有外溢价值。</p><p>它值得正式收录，因为这里提供的是一种耐用的数据工程工作流，而不是一次性的领域 recipe。只要目标是把原始文本语料转成可验证、可修补、可持续迭代的模型能力，这套 test-driven data engineering 框架就有复用价值。</p><p>它没有更高，是因为当前最强证据仍来自作者定义的结构化知识表示和十六个学科实验设置；这套方法能否成为更广义 post-training / continual data curation 的默认模式，还要看外部复现和 adoption。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>将专业人类知识从文本可靠地转移到大型语言模型中，仍然是人工智能领域的一个根本性挑战。在领域语料库上进行微调已使能力显著提升，但该过程在没有反馈的情况下运行：当模型在领域任务上失败时，没有方法可以诊断训练数据中的不足之处，唯一的补救措施是不加区分地添加更多数据。在此，我们展示了当从源语料库中提取的结构化知识表示作为训练数据和评估的共同基础时，完整的数据工程生命周期以精确且可操作的方式映射到软件开发生命周期：训练数据成为指定模型应学习内容的源代码，模型训练成为编译，基准测试成为单元测试，故障驱动的数据修复成为调试。在这种对应关系下，模型故障分解为概念层面的差距和推理链中断，这些可以追溯到数据中的具体不足，并通过有针对性的补丁进行修复，每个修复周期都能在不同模型规模和架构上产生持续改进，而不会降低通用能力。我们将这一原则形式化为Programming with Data，并在涵盖自然科学、工程学、生物医学和社会科学的十六个学科中实例化，发布了结构化知识库、基准套件和训练语料库作为开放资源。通过证明训练数据与模型行为之间的关系在结构上可追溯且系统上可修复，这项工作为将人类专业知识可靠地工程化到语言模型中奠定了原则性基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Intelligence Laboratory Reliably transferring specialized human knowledge from text into large language models remains a fundamental challenge in artificial intelligence. Fine-tuning on domain corpora has enabled substantial capability gains, but the process operates without feedback: when a model fails on a domain task, there is no method to diagnose what is deficient in the training data, and the only recourse is to add more data indiscriminately. Here we show that when a structured knowledge representation extracted from the source corpus serves as the shared foundation for both training data and evaluation, the complete data-engineering lifecycle maps onto the software development lifecycle in a precise and operative way: training data becomes source code specifying what the model should learn, model training becomes compilation, benchmarking becomes unit testing, and failure-driven data repair becomes debugging. Under this correspondence, model failures decompose into concept-level gaps and reasoning-chain breaks that can be traced back to specific deficiencies in the data and repaired through targeted patches, with each repair cycle producing consistent improvements across model scales and architectures without degrading general capabilities. We formalize this principle as Programming with Data and instantiate it across sixteen disciplines spanning the natural sciences, engineering, biomedicine, and the social sciences, releasing a structured knowledge base, benchmark suite, and training corpus as open resources. By demonstrating that the relationship between training data and model behaviour is structurally traceable and systematically repairable, this work establishes a principled foundation for the reliable engineering of human expertise into language models. Code</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260428a245progra,
+  title = {Programming with Data: Test-Driven Data Engineering for Self-Improving LLMs from Raw Corpora},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.24819.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a245-programming-with-data-self-improving-llms/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Programming with Data: Test-Driven Data Engineering for Self-Improving LLMs from Raw Corpora. https://arxiv.org/pdf/2604.24819.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.24819.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

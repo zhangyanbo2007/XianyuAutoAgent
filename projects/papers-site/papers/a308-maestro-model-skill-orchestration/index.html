@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maestro: Reinforcement Learning to Orchestrate Hierarchical Model-Skill Ensembles | DAST Papers</title>
+    <meta name="description" content="Maestro 关注 autonomous agents 的组合问题：模型和技能越来越多，但多数系统仍依赖固定逻辑或单一大模型，不能动态利用不同专家模型与工具技能的互补性。
+
+论文把异构多模态任务重写为对 hierarchical model-skill registry 的序列决策过程，由轻量 policy 选择是否调用外部专家、选择哪一组 model-skill pair，以及何时终止。
+
+训" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a308-maestro-model-skill-orchestration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Maestro: Reinforcement Learning to Orchestrate Hierarchical Model-Skill Ensembles" />
+    <meta property="og:description" content="Maestro 关注 autonomous agents 的组合问题：模型和技能越来越多，但多数系统仍依赖固定逻辑或单一大模型，不能动态利用不同专家模型与工具技能的互补性。
+
+论文把异构多模态任务重写为对 hierarchical model-skill registry 的序列决策过程，由轻量 policy 选择是否调用外部专家、选择哪一组 model-skill pair，以及何时终止。
+
+训" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a308-maestro-model-skill-orchestration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Maestro: Reinforcement Learning to Orchestrate Hierarchical Model-Skill Ensembles" />
+    <meta name="twitter:description" content="Maestro 关注 autonomous agents 的组合问题：模型和技能越来越多，但多数系统仍依赖固定逻辑或单一大模型，不能动态利用不同专家模型与工具技能的互补性。
+
+论文把异构多模态任务重写为对 hierarchical model-skill registry 的序列决策过程，由轻量 policy 选择是否调用外部专家、选择哪一组 model-skill pair，以及何时终止。
+
+训" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Maestro: Reinforcement Learning to Orchestrate Hierarchical Model-Skill Ensembles</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.22177" target="_blank" rel="noopener noreferrer">2605.22177</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Maestro 关注 autonomous agents 的组合问题：模型和技能越来越多，但多数系统仍依赖固定逻辑或单一大模型，不能动态利用不同专家模型与工具技能的互补性。</dd></div><div><dt>方法/机制</dt><dd>论文把异构多模态任务重写为对 hierarchical model-skill registry 的序列决策过程，由轻量 policy 选择是否调用外部专家、选择哪一组 model-skill pair，以及何时终止。</dd></div><div><dt>结果/证据</dt><dd>训练采用 outcome-based RL，不需要 step-level supervision；论文报告 4B orchestrator 在多类多模态 benchmark 上获得强结果，并能在加入未见过的模型和技能后继续泛化。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 skill marketplace/model registry 变成可学习的 orchestration policy，是 agent 能力扩展和模块化执行系统的重要工程/研究接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Maestro 关注 autonomous agents 的组合问题：模型和技能越来越多，但多数系统仍依赖固定逻辑或单一大模型，不能动态利用不同专家模型与工具技能的互补性。</p><p>论文把异构多模态任务重写为对 hierarchical model-skill registry 的序列决策过程，由轻量 policy 选择是否调用外部专家、选择哪一组 model-skill pair，以及何时终止。</p><p>训练采用 outcome-based RL，不需要 step-level supervision；论文报告 4B orchestrator 在多类多模态 benchmark 上获得强结果，并能在加入未见过的模型和技能后继续泛化。</p><p>它值得正式收录，因为它把 skill marketplace/model registry 变成可学习的 orchestration policy，是 agent 能力扩展和模块化执行系统的重要工程/研究接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大语言模型（LLM）和模块化技能的激增赋予了自主智能体越来越强大的能力。现有框架通常依赖单一LLM和固定逻辑来与这些技能交互。这产生了一个关键瓶颈：不同的LLM在不同领域提供独特的优势，但当前框架未能利用模型和技能的互补优势，从而限制了它们在下游任务上的性能。在本文中，我们提出了M AESTRO（多模态智能体，用于专家技能目标强化编排），这是一个强化学习（RL）驱动的编排框架，它将异构多模态任务重新定义为在分层模型-技能注册表上的顺序决策过程。M AESTRO没有将所有知识整合到一个模型中，而是训练了一个轻量级策略，以动态组合冻结的专家模型集合和两层技能库，在每一步决定是否调用外部专家、选择哪个模型-技能对以及何时终止。该策略通过基于结果的RL进行优化，无需步骤级监督。我们评估了M AESTRO在涵盖数学推理、图表理解、高分辨率感知和领域特定分析的十个代表性多模态基准上的表现。仅使用一个40亿参数的编排器，M AESTRO实现了70.1%的平均准确率，超越了GPT-5（69.3%）和Gemini-2.5-Pro（68.7%）。至关重要的是，学习到的协调策略无需重新训练即可泛化到未见过的模型和技能：通过领域外专家增强注册表，在四个具有挑战性的基准上取得了59.5%的平均成绩，优于所有闭源基线。M AESTRO进一步保持了高计算效率和低延迟，为部署协作智能体生态系统提供了可扩展且稳健的途径。源代码可在https://github.com/jinyangwu/Maestro获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The proliferation of large language models (LLMs) and modular skills has endowed autonomous agents with increasingly powerful capabilities. Existing frameworks typically rely on monolithic LLMs and fixed logic to interface with these skills. This gives rise to a critical bottleneck: different LLMs offer distinct advantages across diverse domains, yet current frameworks fail to exploit the complementary strengths of models and skills, thereby limiting their performance on downstream tasks. In this paper, we present M AESTRO (Multimodal Agent for Expert-Skill Targeted Reinforced Orchestration), a Reinforcement Learning (RL)-driven orchestration framework that reframes heterogeneous multimodal tasks as a sequential decision-making process over a hierarchical model-skill registry. Rather than consolidating all knowledge into a single model, M AESTRO trains a lightweight policy to dynamically compose ensembles of frozen expert models and a two-tier skill library, deciding at each step whether to invoke an external expert, which model-skill pair to select, and when to terminate. The policy is optimized via outcome-based RL, requiring no step-level supervision. We evaluate M AESTRO across ten representative multimodal benchmarks spanning mathematical reasoning, chart understanding, high-resolution perception, and domain-specific analysis. With only a 4B orchestrator, M AESTRO achieves an average accuracy of 70.1%, surpassing both GPT-5 (69.3%) and Gemini-2.5-Pro (68.7%). Crucially, the learned coordination policy generalizes to unseen models and skills without retraining: augmenting the registry with out-of-domain experts yields a 59.5% average on four challenging benchmarks, outperforming all closed-source baselines. M AE STRO further maintains high computational efficiency with low latency, offering a scalable and robust pathway for deploying collaborative agentic ecosystems. The source code is available at https://github.com/jinyangwu/Maestro.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521a308maestr,
+  title = {Maestro: Reinforcement Learning to Orchestrate Hierarchical Model-Skill Ensembles},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.22177.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a308-maestro-model-skill-orchestration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Maestro: Reinforcement Learning to Orchestrate Hierarchical Model-Skill Ensembles. https://arxiv.org/pdf/2605.22177.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.22177.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.22177" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/jinyangwu/Maestro" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

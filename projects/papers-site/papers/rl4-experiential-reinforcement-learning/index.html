@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Experiential Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文试图改写当前 agent RL 的一个核心训练视角：模型不应只从奖励信号里被动更新，而应显式地把过去轨迹转化为可复用的经验，并在后续决策中继续消费这些经验。作者把这一点 formalize 成 Experiential Reinforcement Learning，强调 experience 本身是学习与控制中的一等对象，而不只是 replay buffer 里的原始样本。
+
+方法上，论文" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl4-experiential-reinforcement-learning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Experiential Reinforcement Learning" />
+    <meta property="og:description" content="这篇论文试图改写当前 agent RL 的一个核心训练视角：模型不应只从奖励信号里被动更新，而应显式地把过去轨迹转化为可复用的经验，并在后续决策中继续消费这些经验。作者把这一点 formalize 成 Experiential Reinforcement Learning，强调 experience 本身是学习与控制中的一等对象，而不只是 replay buffer 里的原始样本。
+
+方法上，论文" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl4-experiential-reinforcement-learning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Experiential Reinforcement Learning" />
+    <meta name="twitter:description" content="这篇论文试图改写当前 agent RL 的一个核心训练视角：模型不应只从奖励信号里被动更新，而应显式地把过去轨迹转化为可复用的经验，并在后续决策中继续消费这些经验。作者把这一点 formalize 成 Experiential Reinforcement Learning，强调 experience 本身是学习与控制中的一等对象，而不只是 replay buffer 里的原始样本。
+
+方法上，论文" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Experiential Reinforcement Learning</h1>
+          <p class="subtitle">强化学习 · 发表：2026-02-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.13949" target="_blank" rel="noopener noreferrer">2602.13949</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文试图改写当前 agent RL 的一个核心训练视角：模型不应只从奖励信号里被动更新，而应显式地把过去轨迹转化为可复用的经验，并在后续决策中继续消费这些经验。作者把这一点 formalize 成 Experiential Reinforcement Learning，强调 experience 本身是学习与控制中的一等对象，而不只是 replay buffer 里的原始样本。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文把轨迹中的经验抽取、整理和利用并入强化学习闭环，形成更接近“从经历中形成策略性记忆”的训练框架。它的价值不在于单个技巧，而在于把 RL 里的 credit assignment、trajectory reuse 和 agent memory 重新组织到一个更统一的经验学习范式里。这个 framing 对长时程 agent 和 memory-augmented RL 尤其重要。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为它不是普通 RL 增量算法，而是对 agent learning loop 的重述。它与当前仓库里的 trajectory memory、agent self-improvement、RL post-training 等主线直接相邻，属于会影响后续 agent training 设计的高信号条目。</dd></div><div><dt>收录价值</dt><dd>它还不到 disruptive，原因是目前还需要更多任务范围和外部复现来证明这个经验学习框架的通用收益。现阶段更稳的定位是一篇值得长期跟踪的 breakthrough。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文试图改写当前 agent RL 的一个核心训练视角：模型不应只从奖励信号里被动更新，而应显式地把过去轨迹转化为可复用的经验，并在后续决策中继续消费这些经验。作者把这一点 formalize 成 Experiential Reinforcement Learning，强调 experience 本身是学习与控制中的一等对象，而不只是 replay buffer 里的原始样本。</p><p>方法上，论文把轨迹中的经验抽取、整理和利用并入强化学习闭环，形成更接近“从经历中形成策略性记忆”的训练框架。它的价值不在于单个技巧，而在于把 RL 里的 credit assignment、trajectory reuse 和 agent memory 重新组织到一个更统一的经验学习范式里。这个 framing 对长时程 agent 和 memory-augmented RL 尤其重要。</p><p>这项工作值得收录，因为它不是普通 RL 增量算法，而是对 agent learning loop 的重述。它与当前仓库里的 trajectory memory、agent self-improvement、RL post-training 等主线直接相邻，属于会影响后续 agent training 设计的高信号条目。</p><p>它还不到 disruptive，原因是目前还需要更多任务范围和外部复现来证明这个经验学习框架的通用收益。现阶段更稳的定位是一篇值得长期跟踪的 breakthrough。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：经验强化学习强化学习已成为语言模型（LMs）从环境奖励或反馈中学习的核心方法。在实践中，环境反馈通常是稀疏且延迟的。从此类信号中学习具有挑战性，因为LMs必须隐式推断观察到的失败应如何转化为未来迭代中的行为改变。我们引入了经验强化学习（ERL），这是一种将显式的经验-反思-巩固循环嵌入到强化学习过程中的训练范式。给定一项任务，模型会生成一个初始尝试，接收环境反馈，并产生一个反思来指导一个改进的第二次尝试，其成功被强化并内化到基础策略中。这一过程将反馈转化为结构化的行为修正，在部署时无需额外推理成本即可改善探索、稳定优化并保持收益。在稀疏奖励控制环境和智能体推理基准测试中，ERL始终如一地提高了学习效率和最终性能，超越了强大的强化学习基线，在复杂多步环境中实现了高达+81%的增益，在工具使用推理任务中实现了高达+11%的增益。这些结果表明，将显式自我反思整合到策略训练中，提供了一种将反馈转化为持久行为改进的实用机制。强化学习（RLVR）图1：在经验强化学习（ERL）中，智能体不是直接从反馈或结果中学习，而是学习（1）口头反思其经验和观察到的结果，以及（2）内化这些反思以在未来迭代中引发行为改变。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning has become the central approach for language models (LMs) to learn from environmental reward or feedback. In practice, the environmental feedback is usually sparse and delayed. Learning from such signals is challenging, as LMs must implicitly infer how observed failures should translate into behavioral changes for future iterations. We introduce Experiential Reinforcement Learning (ERL), a training paradigm that embeds an explicit experience–reflection–consolidation loop into the reinforcement learning process. Given a task, the model generates an initial attempt, receives environmental feedback, and produces a reflection that guides a refined second attempt, whose success is reinforced and internalized into the base policy. This process converts feedback into structured behavioral revision, improving exploration and stabilizing optimization while preserving gains at deployment without additional inference cost. Across sparse-reward control environments and agentic reasoning benchmarks, ERL consistently improves learning efficiency and final performance over strong reinforcement learning baselines, achieving gains of up to +81% in complex multi-step environments and up to +11% in tool-using reasoning tasks. These results suggest that integrating explicit self-reflection into policy training provides a practical mechanism for transforming feedback into durable behavioral improvement. Reinforcement Learning (RLVR) Figure 1: In Experiential Reinforcement Learning (ERL), instead of learning from feedback or outcome directly, an agent learns to (1) verbally reflect on its experience and observed outcome, and (2) internalize the reflections to induce behavioral changes in future iterations.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260220rl4experie,
+  title = {Experiential Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.13949.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl4-experiential-reinforcement-learning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Experiential Reinforcement Learning. https://arxiv.org/pdf/2602.13949.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.13949.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

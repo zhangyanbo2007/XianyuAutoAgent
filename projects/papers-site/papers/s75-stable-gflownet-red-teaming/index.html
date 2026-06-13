@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance | DAST Papers</title>
+    <meta name="description" content="这篇工作的关键不是再做一个 attack generator，而是把 LLM red-teaming 里的“效果强”和“覆盖广”同时作为训练稳定性问题来处理。它针对 GFlowNet 在 noisy reward 场景下最致命的 mode collapse 做了结构性修改。
+
+最有复用价值的是三件事：去掉不稳定的 partition-function 估计、用 pairwise compariso" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s75-stable-gflownet-red-teaming/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance" />
+    <meta property="og:description" content="这篇工作的关键不是再做一个 attack generator，而是把 LLM red-teaming 里的“效果强”和“覆盖广”同时作为训练稳定性问题来处理。它针对 GFlowNet 在 noisy reward 场景下最致命的 mode collapse 做了结构性修改。
+
+最有复用价值的是三件事：去掉不稳定的 partition-function 估计、用 pairwise compariso" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s75-stable-gflownet-red-teaming/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance" />
+    <meta name="twitter:description" content="这篇工作的关键不是再做一个 attack generator，而是把 LLM red-teaming 里的“效果强”和“覆盖广”同时作为训练稳定性问题来处理。它针对 GFlowNet 在 noisy reward 场景下最致命的 mode collapse 做了结构性修改。
+
+最有复用价值的是三件事：去掉不稳定的 partition-function 估计、用 pairwise compariso" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.00553" target="_blank" rel="noopener noreferrer">2605.00553</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的关键不是再做一个 attack generator，而是把 LLM red-teaming 里的“效果强”和“覆盖广”同时作为训练稳定性问题来处理。它针对 GFlowNet 在 noisy reward 场景下最致命的 mode collapse 做了结构性修改。</dd></div><div><dt>方法/机制</dt><dd>最有复用价值的是三件事：去掉不稳定的 partition-function 估计、用 pairwise comparison 维持分布学习、再用 fluency stabilizer 避免模型退化成胡言乱语攻击。这些都不是一次性 trick，而是可以迁移到更广 adversarial trajectory generation 里的训练原语。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 agent/LLM safety 现在缺的不是更多人工 jailbreak case，而是能持续探索高质量、多样攻击空间的生成方法。Stable-GFlowNet 明显比单纯 search / evolutionary red-teaming 更像耐用方法。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据仍主要落在 red-teaming 这一层，还没有证明它能成为更广安全探索或 agent stress-testing 的通用分布学习接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的关键不是再做一个 attack generator，而是把 LLM red-teaming 里的“效果强”和“覆盖广”同时作为训练稳定性问题来处理。它针对 GFlowNet 在 noisy reward 场景下最致命的 mode collapse 做了结构性修改。</p><p>最有复用价值的是三件事：去掉不稳定的 partition-function 估计、用 pairwise comparison 维持分布学习、再用 fluency stabilizer 避免模型退化成胡言乱语攻击。这些都不是一次性 trick，而是可以迁移到更广 adversarial trajectory generation 里的训练原语。</p><p>它值得正式收录，因为 agent/LLM safety 现在缺的不是更多人工 jailbreak case，而是能持续探索高质量、多样攻击空间的生成方法。Stable-GFlowNet 明显比单纯 search / evolutionary red-teaming 更像耐用方法。</p><p>它没有更高，是因为当前证据仍主要落在 red-teaming 这一层，还没有证明它能成为更广安全探索或 agent stress-testing 的通用分布学习接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大语言模型（LLM）红队测试，即主动识别LLM的漏洞，是确保安全的关键过程。在红队测试中找到有效且多样化的攻击很重要，但同时实现这两点具有挑战性。执行分布匹配的生成流网络（GFN）是一种有前途的方法，但它们以训练不稳定和模式崩溃而闻名。特别是在红队测试中，不稳定的奖励会加速模式崩溃。我们提出了Stable-GFN（S-GFN），它消除了GFN中的配分函数Z估计，并减少了训练不稳定性。S-GFN通过成对比较避免了Z估计，并采用了一种针对噪声奖励的鲁棒掩蔽方法。此外，我们提出了一种流畅性稳定器，以防止模型陷入产生乱码的局部最优。S-GFN在保持GFN最优策略的同时，提供了更稳定的训练。我们在各种设置下展示了S-GFN压倒性的攻击性能和多样性。然而，实现这种多样性仍然是一个挑战，因为它需要在不收敛于重复样本的情况下探索高奖励区域。尽管基于强化学习（RL）的攻击者（Schulman et al., 2017; Hong et al., 2024; Guo et al., 2025）可以通过最大化奖励来识别高毒性提示，但它们以容易模式崩溃而闻名，未能发现广泛的漏洞。相反，基于质量-多样性（QD）的方法（Samvelyan et al., 2024; Han et al., 2024）试图通过基于档案的搜索来保持多样性，但它们通常难以找到高毒性攻击，因为它们依赖于冻结LLM的指令遵循能力。在众多有效的替代方案中，生成流网络（GFN）（Bengio et al., 2021）通过将任务表述为分布匹配问题，为红队测试提供了一个引人注目的框架。GFN旨在以与其相关奖励成比例的概率采样多样化的轨迹。这一特性与LLM红队测试的目标（即识别广泛的漏洞）非常吻合。通过遵循整个奖励景观，GFN理论上确保了所产生的攻击集既具有高毒性又具有多样性（Lee et al., 2024）。尽管具有潜力，但将GFN直接应用于LLM红队测试的离散高维空间面临两个挑战。首先，朴素的GFN公式通常会遇到不稳定的配分函数估计；例如，GFN-TB（Malkin et al., 2022）目标需要学习配分函数Z。这种参数化在大型组合空间中难以准确估计，导致分布匹配不佳和训练不稳定。其次，GFN对奖励景观中的噪声很敏感。与先前GFN工作（Madan et al., 2023）中假设的稀疏奖励不同，毒性分类器提供密集但有噪声的信号，包括针对乱码等分布外（OOD）标记的信号。这种噪声奖励会产生错误的学习信号并导致探索崩溃。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Model (LLM) Red-Teaming, which proactively identifies vulnerabilities of LLMs, is an essential process for ensuring safety. Finding effective and diverse attacks in redteaming is important, but achieving both is challenging. Generative Flow Networks (GFNs) that perform distribution matching are a promising methods, but they are notorious for training instability and mode collapse. In particular, unstable rewards in red-teaming accelerate mode collapse. We propose Stable-GFN (S-GFN), which eliminates partition function Z estimation in GFN and reduces training instability. S-GFN avoids Z-estimation through pairwise comparisons and employs a robust masking methodology against noisy rewards. Additionally, we propose a fluency stabilizer to prevent the model from getting stuck in local optima that produce gibberish. S-GFN provides more stable training while maintaining the optimal policy of GFN. We demonstrate the overwhelming attack performance and diversity of S-GFN across various settings. However, achieving this diversity remains a challenge, as it requires exploring high-reward areas without converging on repetitive samples. While Reinforcement Learning (RL) based attackers (Schulman et al., 2017; Hong et al., 2024; Guo et al., 2025) can identify highly toxic prompts by maximizing rewards, they are notoriously prone to mode collapse, failing to discover a wide spectrum of vulnerabilities. Conversely, Quality-Diversity (QD) based methods (Samvelyan et al., 2024; Han et al., 2024) attempt to preserve diversity through archive-based search, but they often struggle to find high toxic attacks because they rely on the instructionfollowing ability of frozen LLMs. Among many effective alternatives, Generative Flow Networks (GFNs) (Bengio et al., 2021) provide a compelling framework for red-teaming by formulating the task as a distribution matching problem. GFNs aim to sample diverse trajectories with a probability proportional to their associated rewards. This property aligns well with LLM red-teaming, whose goal is to identify a broad range of vulnerabilities. By following the entire reward landscape, GFNs theoretically ensure that the resulting attack set is both highly toxic and diverse (Lee et al., 2024). Despite the potential, directly applying GFNs to the discrete and high-dimensional space of LLM red-teaming faces two challenges. First, a naive GFN formulation often suffers from unstable partition function estimation; for instance, the GFN-TB (Malkin et al., 2022) objective requires learning the partition function Z. This parametrization is hard to estimate accurately in large and combinatorial spaces, leading to poor distribution matching and unstable training. Second, GFNs are sensitive to noise in the reward landscape. Unlike the sparse rewards assumed in prior GFN work (Madan et al., 2023), toxicity classifiers provide dense but noisy signals, including for out-of-distribution (OOD) tokens such as gibberish. This noisy reward generates a wrong learning signal and collapses exploration.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260501s75stableg,
+  title = {Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.00553v1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s75-stable-gflownet-red-teaming/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Stable-GFlowNet: Toward Diverse and Robust LLM Red-Teaming via Contrastive Trajectory Balance. https://arxiv.org/pdf/2605.00553v1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.00553v1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

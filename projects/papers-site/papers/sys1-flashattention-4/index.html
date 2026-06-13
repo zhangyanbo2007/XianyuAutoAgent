@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling | DAST Papers</title>
+    <meta name="description" content="这篇论文面向的是最新 GPU 代际中 attention kernel 的瓶颈问题。随着 Blackwell 一代硬件的 tensor core 吞吐远快于 shared memory、SFU 和 ALU，旧的注意力实现不再能靠简单调参逼近硬件上限。作者要解决的就是这种“硬件非对称扩展”下的 attention 效率问题。
+
+方法上，FlashAttention-4 重新做了算法与 kernel " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys1-flashattention-4/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling" />
+    <meta property="og:description" content="这篇论文面向的是最新 GPU 代际中 attention kernel 的瓶颈问题。随着 Blackwell 一代硬件的 tensor core 吞吐远快于 shared memory、SFU 和 ALU，旧的注意力实现不再能靠简单调参逼近硬件上限。作者要解决的就是这种“硬件非对称扩展”下的 attention 效率问题。
+
+方法上，FlashAttention-4 重新做了算法与 kernel " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys1-flashattention-4/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling" />
+    <meta name="twitter:description" content="这篇论文面向的是最新 GPU 代际中 attention kernel 的瓶颈问题。随着 Blackwell 一代硬件的 tensor core 吞吐远快于 shared memory、SFU 和 ALU，旧的注意力实现不再能靠简单调参逼近硬件上限。作者要解决的就是这种“硬件非对称扩展”下的 attention 效率问题。
+
+方法上，FlashAttention-4 重新做了算法与 kernel " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05451" target="_blank" rel="noopener noreferrer">2603.05451</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文面向的是最新 GPU 代际中 attention kernel 的瓶颈问题。随着 Blackwell 一代硬件的 tensor core 吞吐远快于 shared memory、SFU 和 ALU，旧的注意力实现不再能靠简单调参逼近硬件上限。作者要解决的就是这种“硬件非对称扩展”下的 attention 效率问题。</dd></div><div><dt>方法/机制</dt><dd>方法上，FlashAttention-4 重新做了算法与 kernel pipeline 的协同设计。前向里重写 softmax pipeline，减少非 matmul 操作；反向里通过 2-CTA 等技巧降低 shared memory traffic 和 global atomic adds；整体用 CuTe-DSL 实现，目标是让 attention 在新硬件上重新接近理论吞吐上限。</dd></div><div><dt>结果/证据</dt><dd>它的重要性主要在基础设施层。对训练大模型、做长上下文推理、提升 B200/GB200 等高端 GPU 利用率，这类工作有直接现实价值。它不会改变模型能力范式，但会影响训练推理成本和系统栈的默认实现。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是它是系统层的重要跃迁，但仍属于算法-内核-硬件协同设计这一基础设施路线，而不是范式级智能突破。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文面向的是最新 GPU 代际中 attention kernel 的瓶颈问题。随着 Blackwell 一代硬件的 tensor core 吞吐远快于 shared memory、SFU 和 ALU，旧的注意力实现不再能靠简单调参逼近硬件上限。作者要解决的就是这种“硬件非对称扩展”下的 attention 效率问题。</p><p>方法上，FlashAttention-4 重新做了算法与 kernel pipeline 的协同设计。前向里重写 softmax pipeline，减少非 matmul 操作；反向里通过 2-CTA 等技巧降低 shared memory traffic 和 global atomic adds；整体用 CuTe-DSL 实现，目标是让 attention 在新硬件上重新接近理论吞吐上限。</p><p>它的重要性主要在基础设施层。对训练大模型、做长上下文推理、提升 B200/GB200 等高端 GPU 利用率，这类工作有直接现实价值。它不会改变模型能力范式，但会影响训练推理成本和系统栈的默认实现。</p><p>我把它放在“突破性”。原因是它是系统层的重要跃迁，但仍属于算法-内核-硬件协同设计这一基础设施路线，而不是范式级智能突破。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>FlashAttention-4：算法与核函数流水线协同设计以应对非对称硬件扩展。注意力机制作为无处不在的Transformer架构的核心层，是大型语言模型和长上下文应用的瓶颈。尽管FlashAttention-3通过异步执行和warp特化优化了Hopper GPU上的注意力机制，但它主要针对H100架构。人工智能行业已迅速转向部署基于Blackwell的系统，例如B200和GB200，这些系统由于非对称硬件扩展而表现出根本不同的性能特征：张量核心吞吐量翻倍，而其他功能单元（共享内存带宽、指数单元）的扩展速度较慢或保持不变。我们开发了几种技术来解决Blackwell GPU上这些不断变化的瓶颈：（1）重新设计的流水线，利用完全异步的MMA操作和更大的瓦片大小；（2）软件模拟的指数和条件softmax重缩放，减少非矩阵乘法操作；以及（3）利用张量内存和2-CTA MMA模式来减少反向传播中的共享内存流量和原子加法。我们证明，我们的方法FlashAttention-4在B200 GPU上使用BF16时，相对于cuDNN 9.13实现了高达1.3倍的加速，相对于Triton实现了2.7倍的加速，最高达到1613 TFLOPs/s（71%利用率）。除了算法创新之外，我们将FlashAttention-4完全实现在嵌入Python的CuTe-DSL中，与传统的基于C++模板的方法相比，编译时间快了20-30倍，同时保持了完整的表达能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Attention, as a core layer of the ubiquitous Transformer architecture, is the bottleneck for large language models and long-context applications. While FlashAttention-3 optimized attention for Hopper GPUs through asynchronous execution and warp specialization, it primarily targets the H100 architecture. The AI industry has rapidly transitioned to deploying Blackwellbased systems such as the B200 and GB200, which exhibit fundamentally different performance characteristics due to asymmetric hardware scaling: tensor core throughput doubles while other functional units (shared memory bandwidth, exponential units) scale more slowly or remain unchanged. We develop several techniques to address these shifting bottlenecks on Blackwell GPUs: (1) redesigned pipelines that exploit fully asynchronous MMA operations and larger tile sizes, (2) software-emulated exponential and conditional softmax rescaling that reduces non-matmul operations, and (3) leveraging tensor memory and the 2-CTA MMA mode to reduce shared memory traffic and atomic adds in the backward pass. We demonstrate that our method, FlashAttention-4, achieves up to 1.3× speedup over cuDNN 9.13 and 2.7× over Triton on B200 GPUs with BF16, reaching up to 1613 TFLOPs/s (71% utilization). Beyond algorithmic innovations, we implement FlashAttention-4 entirely in CuTe-DSL embedded in Python, achieving 20-30× faster compile times compared to traditional C++ template-based approaches while maintaining full expressivity.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305sys1flasha,
+  title = {FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05451.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys1-flashattention-4/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FlashAttention-4: Algorithm and Kernel Pipelining Co-Design for Asymmetric Hardware Scaling. https://arxiv.org/pdf/2603.05451.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05451.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

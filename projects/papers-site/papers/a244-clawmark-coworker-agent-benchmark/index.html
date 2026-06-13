@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents | DAST Papers</title>
+    <meta name="description" content="ClawMark 真正补的是 persistent coworker agent 这条评测缺口。它不再假设 agent 在一个静态 session 里做完事，而是把任务拉长到多天、多轮、带外部环境变化的状态空间里去测，这比普通 web / tool benchmark 更接近真实办公协作。
+
+它值得收的另一个原因是评测设计扎实：五个 stateful services、100 个任务、13 个专业" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a244-clawmark-coworker-agent-benchmark/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents" />
+    <meta property="og:description" content="ClawMark 真正补的是 persistent coworker agent 这条评测缺口。它不再假设 agent 在一个静态 session 里做完事，而是把任务拉长到多天、多轮、带外部环境变化的状态空间里去测，这比普通 web / tool benchmark 更接近真实办公协作。
+
+它值得收的另一个原因是评测设计扎实：五个 stateful services、100 个任务、13 个专业" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a244-clawmark-coworker-agent-benchmark/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents" />
+    <meta name="twitter:description" content="ClawMark 真正补的是 persistent coworker agent 这条评测缺口。它不再假设 agent 在一个静态 session 里做完事，而是把任务拉长到多天、多轮、带外部环境变化的状态空间里去测，这比普通 web / tool benchmark 更接近真实办公协作。
+
+它值得收的另一个原因是评测设计扎实：五个 stateful services、100 个任务、13 个专业" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.23781" target="_blank" rel="noopener noreferrer">2604.23781</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ClawMark 真正补的是 persistent coworker agent 这条评测缺口。它不再假设 agent 在一个静态 session 里做完事，而是把任务拉长到多天、多轮、带外部环境变化的状态空间里去测，这比普通 web / tool benchmark 更接近真实办公协作。</dd></div><div><dt>方法/机制</dt><dd>它值得收的另一个原因是评测设计扎实：五个 stateful services、100 个任务、13 个专业场景、1,537 个 deterministic Python checkers，而且 scoring 不依赖 LLM-as-judge。这个 rule-based verification 很重要，因为多天、多模态环境下如果还靠主观 judge，噪声会很大。</dd></div><div><dt>结果/证据</dt><dd>最有信息量的结果不是某个模型分数高，而是 strict Task Success 仍然很低，且性能在第一次 exogenous update 后显著下滑。这把 persistent state tracking 和 changing-world adaptation 直接钉成了 agent 研究里的核心开放问题。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前 benchmark 仍聚焦 coworker-style office workflows；虽然方向很强，但还没覆盖更广的 real-world agent operating environments。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ClawMark 真正补的是 persistent coworker agent 这条评测缺口。它不再假设 agent 在一个静态 session 里做完事，而是把任务拉长到多天、多轮、带外部环境变化的状态空间里去测，这比普通 web / tool benchmark 更接近真实办公协作。</p><p>它值得收的另一个原因是评测设计扎实：五个 stateful services、100 个任务、13 个专业场景、1,537 个 deterministic Python checkers，而且 scoring 不依赖 LLM-as-judge。这个 rule-based verification 很重要，因为多天、多模态环境下如果还靠主观 judge，噪声会很大。</p><p>最有信息量的结果不是某个模型分数高，而是 strict Task Success 仍然很低，且性能在第一次 exogenous update 后显著下滑。这把 persistent state tracking 和 changing-world adaptation 直接钉成了 agent 研究里的核心开放问题。</p><p>它没有更高，是因为当前 benchmark 仍聚焦 coworker-style office workflows；虽然方向很强，但还没覆盖更广的 real-world agent operating environments。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>语言模型智能体正越来越多地被用作持久的同事，在多个工作日内协助用户。在此类工作流程中，周围环境可能独立于智能体而变化：新邮件到达、日历条目变动、知识库记录更新，以及证据以图像、扫描PDF、音频、视频和电子表格的形式出现。现有基准未能充分评估这种设置，因为它们通常在单个静态情景中运行，并且主要以文本为中心。我们引入了ClawMark，一个用于同事智能体的基准，它围绕多轮、多日任务、一个状态在轮次之间演变的有状态沙盒服务环境以及基于规则的验证而构建。当前版本包含13个专业场景中的100项任务，针对五个有状态沙盒服务（文件系统、电子邮件、日历、知识库、电子表格）执行，并通过1,537个确定性Python检查器根据执行后的服务状态进行评分；评分期间不调用LLM作为评判者。我们对七个前沿智能体系统进行了基准测试。最强的模型达到75.8的加权分数，但最佳严格任务成功率仅为20.0%，这表明部分进展很常见，而完整的端到端工作流程完成仍然罕见。轮次级分析表明，在第一次外部环境更新后性能下降，强调适应不断变化的状态是一个关键的开放挑战。我们发布了该基准、评估线束和构建管道，以支持可重现的同事智能体评估。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Language-model agents are increasingly used as persistent coworkers that assist users across multiple working days. During such workflows, the surrounding environment may change independently of the agent: new emails arrive, calendar entries shift, knowledge-base records are updated, and evidence appears across images, scanned PDFs, audio, video, and spreadsheets. Existing benchmarks do not adequately evaluate this setting because they typically run within a single static episode and remain largely text-centric. We introduce ClawMark, a benchmark for coworker agents built around multi-turn multi-day tasks, a stateful sandboxed service environment whose state evolves between turns, and rule-based verification. The current release contains 100 tasks across 13 professional scenarios, executed against five stateful sandboxed services (filesystem, email, calendar, knowledge base, spreadsheet) and scored by 1,537 deterministic Python checkers over post-execution service state; no LLM-as-judge is invoked during scoring. We benchmark seven frontier agent systems. The strongest model reaches 75.8 weighted score, but the best strict Task Success is only 20.0%, indicating that partial progress is common while complete end-to-end workflow completion remains rare. Turn-level analysis shows that performance drops after the first exogenous environment update, highlighting adaptation to changing state as a key open challenge. We release the benchmark, evaluation harness, and construction pipeline to support reproducible coworker-agent evaluation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260426a244clawma,
+  title = {ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.23781.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a244-clawmark-coworker-agent-benchmark/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ClawMark: A Living-World Benchmark for Multi-Turn, Multi-Day, Multimodal Coworker Agents. https://arxiv.org/pdf/2604.23781.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.23781.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://claw-mark.com" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/evolvent-ai/ClawMark" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

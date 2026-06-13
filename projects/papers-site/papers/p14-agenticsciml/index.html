@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning | DAST Papers</title>
+    <meta name="description" content="科学机器学习模型的结构、损失设计和训练策略通常依赖专家反复试验，很难系统化迁移。本文关注的是：能否把 SciML 的方案设计本身交给多个 AI agent 协作完成，而不只是让模型去拟合某个物理系统。
+
+作者提出 AgenticSciML，一个由十多个专门代理组成的协作框架，结合 structured debate、retrieval-augmented method memory 和 ensem" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p14-agenticsciml/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning" />
+    <meta property="og:description" content="科学机器学习模型的结构、损失设计和训练策略通常依赖专家反复试验，很难系统化迁移。本文关注的是：能否把 SciML 的方案设计本身交给多个 AI agent 协作完成，而不只是让模型去拟合某个物理系统。
+
+作者提出 AgenticSciML，一个由十多个专门代理组成的协作框架，结合 structured debate、retrieval-augmented method memory 和 ensem" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p14-agenticsciml/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning" />
+    <meta name="twitter:description" content="科学机器学习模型的结构、损失设计和训练策略通常依赖专家反复试验，很难系统化迁移。本文关注的是：能否把 SciML 的方案设计本身交给多个 AI agent 协作完成，而不只是让模型去拟合某个物理系统。
+
+作者提出 AgenticSciML，一个由十多个专门代理组成的协作框架，结合 structured debate、retrieval-augmented method memory 和 ensem" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2025-11-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2511.07262" target="_blank" rel="noopener noreferrer">2511.07262</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>科学机器学习模型的结构、损失设计和训练策略通常依赖专家反复试验，很难系统化迁移。本文关注的是：能否把 SciML 的方案设计本身交给多个 AI agent 协作完成，而不只是让模型去拟合某个物理系统。</dd></div><div><dt>方法/机制</dt><dd>作者提出 AgenticSciML，一个由十多个专门代理组成的协作框架，结合 structured debate、retrieval-augmented method memory 和 ensemble-guided evolutionary search，去提出、批评并演化 SciML 方案。摘要中最硬的结果是：在 physics-informed learning 与 operator learning 任务上，相比单代理和人工设计基线，误差最高下降到四个数量级。</dd></div><div><dt>结果/证据</dt><dd>这篇论文是典型的 AI×科学系统论文，适合和 ATHENA、AutoNumerics、QUASAR 一起看。它的价值不在单一网络结构，而在于把“方法发现”本身对象化，推进了 scientific discovery agents 在 SciML 里的可行性。</dd></div><div><dt>收录价值</dt><dd>它归为突破性而不是更高一级，原因是目前仍以 arXiv 结果为主，虽然指标很强，但还需要更多外部复现和真实科学工作流验证，才能证明它会重塑更大范围的 SciML 方法论。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>科学机器学习模型的结构、损失设计和训练策略通常依赖专家反复试验，很难系统化迁移。本文关注的是：能否把 SciML 的方案设计本身交给多个 AI agent 协作完成，而不只是让模型去拟合某个物理系统。</p><p>作者提出 AgenticSciML，一个由十多个专门代理组成的协作框架，结合 structured debate、retrieval-augmented method memory 和 ensemble-guided evolutionary search，去提出、批评并演化 SciML 方案。摘要中最硬的结果是：在 physics-informed learning 与 operator learning 任务上，相比单代理和人工设计基线，误差最高下降到四个数量级。</p><p>这篇论文是典型的 AI×科学系统论文，适合和 ATHENA、AutoNumerics、QUASAR 一起看。它的价值不在单一网络结构，而在于把“方法发现”本身对象化，推进了 scientific discovery agents 在 SciML 里的可行性。</p><p>它归为突破性而不是更高一级，原因是目前仍以 arXiv 结果为主，虽然指标很强，但还需要更多外部复现和真实科学工作流验证，才能证明它会重塑更大范围的 SciML 方法论。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AgenticSciML：科学机器学习中涌现式发现的协作多智能体系统 摘要 科学机器学习（SciML）将数据驱动的推理与物理建模相结合，以解决科学和工程中的复杂问题。然而，SciML架构、损失函数设计和训练策略的设计仍然是一个专家驱动的研究过程，需要大量的实验和针对特定问题的深入见解。在本文中，我们介绍了AgenticSciML，这是一个协作式多智能体系统，其中超过10个专业AI智能体通过结构化推理和迭代演化，协作提出、批判和完善SciML解决方案。该框架集成了结构化辩论、检索增强方法记忆和集成引导的演化搜索，使智能体能够生成和评估关于架构和优化过程的新假设。在物理信息学习和算子学习任务中，该框架发现的解决方案方法在误差减少方面，性能优于单智能体和人类设计的基线，最高可达四个数量级。这些智能体产生了新颖的策略——包括自适应专家混合架构、基于分解的PINNs和物理信息算子学习模型——这些策略并未明确出现在精选知识库中。这些结果表明，AI智能体之间的协作推理可以产生涌现的方法论创新，为科学计算中可扩展、透明和自主的发现指明了道路。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Scientific Machine Learning (SciML) integrates data-driven inference with physical modeling to solve complex problems in science and engineering. However, the design of SciML architectures, loss formulations, and training strategies remains an expert-driven research process, requiring extensive experimentation and problem-specific insights. Here we introduce AgenticSciML, a collaborative multi-agent system in which over 10 specialized AI agents collaborate to propose, critique, and refine SciML solutions through structured reasoning and iterative evolution. The framework integrates structured debate, retrieval-augmented method memory, and ensemble-guided evolutionary search, enabling the agents to generate and assess new hypotheses about architectures and optimization procedures. Across physics-informed learning and operator learning tasks, the framework discov- ers solution methods that outperform single-agent and human-designed baselines by up to four orders of magnitude in error reduction. The agents produce novel strategies—including adaptive mixture-of-expert architectures, decomposition-based PINNs, and physics-informed operator learn- ing models—that do not appear explicitly in the curated knowledge base. These results show that collaborative reasoning among AI agents can yield emergent methodological innovation, suggesting a path toward scalable, transparent, and autonomous discovery in scientific computing.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251110p14agentic,
+  title = {AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2511.07262.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p14-agenticsciml/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). AgenticSciML: Collaborative Multi-Agent Systems for Emergent Discovery in Scientific Machine Learning. https://arxiv.org/pdf/2511.07262.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2511.07262.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer | DAST Papers</title>
+    <meta name="description" content="SANA-WM 是 NVIDIA 发布的 2.6B 开源世界模型，目标是高效生成 60 秒、720p、相机轨迹可控的视频世界。
+
+系统组合高压缩视频 tokenizer、Hybrid Linear Diffusion Transformer、frame-wise Gated DeltaNet 与 softmax attention、dual-branch 6-DoF camera control、" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g12-sana-wm-minute-world-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer" />
+    <meta property="og:description" content="SANA-WM 是 NVIDIA 发布的 2.6B 开源世界模型，目标是高效生成 60 秒、720p、相机轨迹可控的视频世界。
+
+系统组合高压缩视频 tokenizer、Hybrid Linear Diffusion Transformer、frame-wise Gated DeltaNet 与 softmax attention、dual-branch 6-DoF camera control、" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g12-sana-wm-minute-world-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer" />
+    <meta name="twitter:description" content="SANA-WM 是 NVIDIA 发布的 2.6B 开源世界模型，目标是高效生成 60 秒、720p、相机轨迹可控的视频世界。
+
+系统组合高压缩视频 tokenizer、Hybrid Linear Diffusion Transformer、frame-wise Gated DeltaNet 与 softmax attention、dual-branch 6-DoF camera control、" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15178" target="_blank" rel="noopener noreferrer">2605.15178</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SANA-WM 是 NVIDIA 发布的 2.6B 开源世界模型，目标是高效生成 60 秒、720p、相机轨迹可控的视频世界。</dd></div><div><dt>方法/机制</dt><dd>系统组合高压缩视频 tokenizer、Hybrid Linear Diffusion Transformer、frame-wise Gated DeltaNet 与 softmax attention、dual-branch 6-DoF camera control、两阶段视觉 refinement 和 public video pose annotation pipeline。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把世界模型从短视频 demo 推向 minute-scale action-controllable generation，并强调可访问训练/推理成本：64 H100 训练、单 GPU 推理和量化后单 5090 部署。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前 action space 主要是相机控制，离完整 embodied action/world dynamics 仍有距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SANA-WM 是 NVIDIA 发布的 2.6B 开源世界模型，目标是高效生成 60 秒、720p、相机轨迹可控的视频世界。</p><p>系统组合高压缩视频 tokenizer、Hybrid Linear Diffusion Transformer、frame-wise Gated DeltaNet 与 softmax attention、dual-branch 6-DoF camera control、两阶段视觉 refinement 和 public video pose annotation pipeline。</p><p>它值得正式收录，因为它把世界模型从短视频 demo 推向 minute-scale action-controllable generation，并强调可访问训练/推理成本：64 H100 训练、单 GPU 推理和量化后单 5090 部署。</p><p>它没有更高，是因为当前 action space 主要是相机控制，离完整 embodied action/world dynamics 仍有距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要：我们介绍了SANA-WM，一个高效的2.6B参数开源世界模型，原生训练用于一分钟生成，能够合成高保真、720p、分钟级视频，并实现精确的相机控制。SANA-WM在视觉质量上与LingBot-World和HY-WorldPlay等大规模工业基线相当，同时显著提高了效率。我们的架构由四个核心设计驱动：(1) 混合线性注意力结合了逐帧门控DeltaNet (GDN) 和softmax注意力，用于内存高效的长上下文建模。(2) 双分支相机控制确保精确的6自由度轨迹遵循。(3) 两阶段生成流水线将长视频精修器应用于第一阶段输出，提高了序列间的质量和一致性。(4) 鲁棒标注流水线从公共视频中提取精确的度量尺度6自由度相机姿态，以生成高质量、时空一致的动作标签。在这些设计的驱动下，SANA-WM在数据、训练计算和推理硬件方面展现出卓越的效率：它仅使用约213K个带有度量尺度姿态监督的公共视频片段，在64个H100上15天内完成训练，并在单个GPU上生成每个60秒的片段；其蒸馏变体可以在单个RTX 5090上通过NVFP4量化部署，在34秒内对一个60秒的720p片段进行去噪。在我们的一分钟世界模型基准测试中，SANA-WM展现出比现有开源基线更强的动作遵循准确性，并在可扩展世界建模方面以36倍更高的吞吐量实现了可比的视觉质量。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract: We introduce SANA-WM, an efficient 2.6B-parameter open-source world model natively trained for oneminute generation, synthesizing high-fidelity, 720p, minute-scale videos with precise camera control. SANA-WM achieves visual quality comparable to large-scale industrial baselines such as LingBot-World and HY-WorldPlay, while significantly improving efficiency. Four core designs drive our architecture: (1) Hybrid Linear Attention combines frame-wise Gated DeltaNet (GDN) with softmax attention for memory-efficient long-context modeling. (2) DualBranch Camera Control ensures precise 6-DoF trajectory adherence. (3) Two-Stage Generation Pipeline applies a long-video refiner to stage-1 outputs, improving quality and consistency across sequences. (4) Robust Annotation Pipeline extracts accurate metric-scale 6-DoF camera poses from public videos to yield high-quality, spatiotemporally consistent action labels. Driven by these designs, SANA-WM demonstrates remarkable efficiency across data, training compute, and inference hardware: it uses only ∼213K public video clips with metric-scale pose supervision, completes training in 15 days on 64 H100s, and generates each 60s clip on a single GPU; its distilled variant can be deployed on a single RTX 5090 with NVFP4 quantization to denoise a 60s 720p clip in 34s. On our one-minute world-model benchmark, SANA-WM demonstrates stronger action-following accuracy than prior open-source baselines and achieves comparable visual quality at 36× higher throughput for scalable world modeling.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260515g12sanawmm,
+  title = {SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15178.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g12-sana-wm-minute-world-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SANA-WM: Efficient Minute-Scale World Modeling with Hybrid Linear Diffusion Transformer. https://arxiv.org/pdf/2605.15178.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15178.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://nvlabs.github.io/Sana/WM/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.15178" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/NVlabs/Sana" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

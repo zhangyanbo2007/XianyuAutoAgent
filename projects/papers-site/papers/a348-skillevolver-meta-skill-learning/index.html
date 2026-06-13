@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillEvolver: Skill Learning as a Meta-Skill | DAST Papers</title>
+    <meta name="description" content="这篇论文把 skill learning 本身抽象成一个 meta-skill：不是训练模型权重，而是让一个可加载的技能负责生成、部署和改进其他领域技能。
+
+SkillEvolver 优化的是 skill 的 prose 和 code artifact，因此产物可以放进任意 protocol-compliant CLI agent，而不需要重新训练模型。
+
+它和 trace distillatio" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a348-skillevolver-meta-skill-learning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SkillEvolver: Skill Learning as a Meta-Skill" />
+    <meta property="og:description" content="这篇论文把 skill learning 本身抽象成一个 meta-skill：不是训练模型权重，而是让一个可加载的技能负责生成、部署和改进其他领域技能。
+
+SkillEvolver 优化的是 skill 的 prose 和 code artifact，因此产物可以放进任意 protocol-compliant CLI agent，而不需要重新训练模型。
+
+它和 trace distillatio" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a348-skillevolver-meta-skill-learning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SkillEvolver: Skill Learning as a Meta-Skill" />
+    <meta name="twitter:description" content="这篇论文把 skill learning 本身抽象成一个 meta-skill：不是训练模型权重，而是让一个可加载的技能负责生成、部署和改进其他领域技能。
+
+SkillEvolver 优化的是 skill 的 prose 和 code artifact，因此产物可以放进任意 protocol-compliant CLI agent，而不需要重新训练模型。
+
+它和 trace distillatio" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SkillEvolver: Skill Learning as a Meta-Skill</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10500" target="_blank" rel="noopener noreferrer">2605.10500</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 skill learning 本身抽象成一个 meta-skill：不是训练模型权重，而是让一个可加载的技能负责生成、部署和改进其他领域技能。</dd></div><div><dt>方法/机制</dt><dd>SkillEvolver 优化的是 skill 的 prose 和 code artifact，因此产物可以放进任意 protocol-compliant CLI agent，而不需要重新训练模型。</dd></div><div><dt>结果/证据</dt><dd>它和 trace distillation 的差别是先部署学到的技能，再从另一个 agent 使用该技能时遇到的失败中学习；并用 fresh-agent overfit audit 检查泄漏、静默绕过和部署技能特定失败。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它把 agent capability extension 做成递归接口：技能不仅是能力载体，也可以是学习和改进技能的优化器。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 skill learning 本身抽象成一个 meta-skill：不是训练模型权重，而是让一个可加载的技能负责生成、部署和改进其他领域技能。</p><p>SkillEvolver 优化的是 skill 的 prose 和 code artifact，因此产物可以放进任意 protocol-compliant CLI agent，而不需要重新训练模型。</p><p>它和 trace distillation 的差别是先部署学到的技能，再从另一个 agent 使用该技能时遇到的失败中学习；并用 fresh-agent overfit audit 检查泄漏、静默绕过和部署技能特定失败。</p><p>收录价值在于它把 agent capability extension 做成递归接口：技能不仅是能力载体，也可以是学习和改进技能的优化器。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SkillEvolver 将技能学习本身视为元技能。一个单一的元技能迭代地编写、部署和完善特定领域的技能，优化文本和代码产物而非模型权重。它从另一个代理在利用部署的技能时遇到的失败中学习，并使用新鲜代理过拟合审计来捕捉漏斗、静默绕过和特定技能的失败。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>SkillEvolver treats skill learning itself as a meta-skill. A single meta-skill iteratively authors, deploys, and refines domain-specific skills, optimizing prose and code artifacts rather than model weights. It learns from failures encountered by another agent while using the deployed skill and uses fresh-agent overfit audits to catch leakage, silent bypass, and skill-specific failures.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511a348skille,
+  title = {SkillEvolver: Skill Learning as a Meta-Skill},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10500.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a348-skillevolver-meta-skill-learning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SkillEvolver: Skill Learning as a Meta-Skill. https://arxiv.org/pdf/2605.10500.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10500.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RAGEN-2: Reasoning Collapse in Agentic RL | DAST Papers</title>
+    <meta name="description" content="agentic RL 里最危险的问题之一不是 reward 直接崩掉，而是模型在多轮轨迹中逐渐学会对不同输入套用同一类 reasoning template。传统上很多工作用 entropy 监控训练稳定性，但 entropy 只能衡量同一输入内的多样性，完全可能把“看起来有变化、实际上不看输入”的 collapse 漏掉。
+
+RAGEN-2 的推进在于把 reasoning quality 明确" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r51-ragen2-reasoning-collapse/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RAGEN-2: Reasoning Collapse in Agentic RL" />
+    <meta property="og:description" content="agentic RL 里最危险的问题之一不是 reward 直接崩掉，而是模型在多轮轨迹中逐渐学会对不同输入套用同一类 reasoning template。传统上很多工作用 entropy 监控训练稳定性，但 entropy 只能衡量同一输入内的多样性，完全可能把“看起来有变化、实际上不看输入”的 collapse 漏掉。
+
+RAGEN-2 的推进在于把 reasoning quality 明确" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r51-ragen2-reasoning-collapse/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RAGEN-2: Reasoning Collapse in Agentic RL" />
+    <meta name="twitter:description" content="agentic RL 里最危险的问题之一不是 reward 直接崩掉，而是模型在多轮轨迹中逐渐学会对不同输入套用同一类 reasoning template。传统上很多工作用 entropy 监控训练稳定性，但 entropy 只能衡量同一输入内的多样性，完全可能把“看起来有变化、实际上不看输入”的 collapse 漏掉。
+
+RAGEN-2 的推进在于把 reasoning quality 明确" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RAGEN-2: Reasoning Collapse in Agentic RL</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06268" target="_blank" rel="noopener noreferrer">2604.06268</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>agentic RL 里最危险的问题之一不是 reward 直接崩掉，而是模型在多轮轨迹中逐渐学会对不同输入套用同一类 reasoning template。传统上很多工作用 entropy 监控训练稳定性，但 entropy 只能衡量同一输入内的多样性，完全可能把“看起来有变化、实际上不看输入”的 collapse 漏掉。</dd></div><div><dt>方法/机制</dt><dd>RAGEN-2 的推进在于把 reasoning quality 明确拆成 within-input diversity 和 cross-input distinguishability，并用 mutual information 及其代理指标诊断 template collapse；同时给出一个清晰机制解释：当 reward variance 太低时，任务梯度被 regularization 压过去，输入相关的 reasoning 差异就会被抹平。对应方法是 SNR-aware filtering，用 reward variance 作为轻量 proxy 挑出高信号 prompt。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类 work 不只是又提一个 agentic RL trick，而是在定义和诊断一个此前被主流指标忽略的 failure mode。对 reasoning RL、agent training stability、online diagnosis 和 reward shaping，这种更准确的 collapse lens 有持久方法价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于 mutual-information proxies 和 SNR filtering 的普适性还需要更多模型家族与更长训练周期验证；目前它更像很强的诊断与改进框架，而不是彻底定型的统一理论。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>agentic RL 里最危险的问题之一不是 reward 直接崩掉，而是模型在多轮轨迹中逐渐学会对不同输入套用同一类 reasoning template。传统上很多工作用 entropy 监控训练稳定性，但 entropy 只能衡量同一输入内的多样性，完全可能把“看起来有变化、实际上不看输入”的 collapse 漏掉。</p><p>RAGEN-2 的推进在于把 reasoning quality 明确拆成 within-input diversity 和 cross-input distinguishability，并用 mutual information 及其代理指标诊断 template collapse；同时给出一个清晰机制解释：当 reward variance 太低时，任务梯度被 regularization 压过去，输入相关的 reasoning 差异就会被抹平。对应方法是 SNR-aware filtering，用 reward variance 作为轻量 proxy 挑出高信号 prompt。</p><p>它值得正式收录，因为这类 work 不只是又提一个 agentic RL trick，而是在定义和诊断一个此前被主流指标忽略的 failure mode。对 reasoning RL、agent training stability、online diagnosis 和 reward shaping，这种更准确的 collapse lens 有持久方法价值。</p><p>它暂时不升到更高一级，原因在于 mutual-information proxies 和 SNR filtering 的普适性还需要更多模型家族与更长训练周期验证；目前它更像很强的诊断与改进框架，而不是彻底定型的统一理论。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多轮LLM智能体的强化学习训练本质上是不稳定的，推理质量直接决定任务性能。熵被广泛用于跟踪推理稳定性。然而，熵仅测量相同输入内的多样性，无法判断推理是否真正响应不同的输入。在RAGEN-2中，我们发现即使熵稳定，模型也可能依赖于看起来多样但与输入无关的固定模板。我们称之为模板崩溃，这是一种熵和所有现有指标都无法察觉的失效模式。为了诊断这种失效，我们将推理质量分解为输入内多样性（熵）和跨输入可区分性（互信息，MI），并引入了一系列用于在线诊断的互信息代理。在各种任务中，互信息与最终性能的相关性远强于熵，使其成为更可靠的推理质量代理。我们进一步用信噪比（SNR）机制解释了模板崩溃。低奖励方差削弱了任务梯度，使得正则化项占据主导地位并抹去跨输入推理差异。为了解决这个问题，我们提出了SNR感知过滤，利用奖励方差作为轻量级代理，在每次迭代中选择高信号提示。在规划、数学推理、网页导航和代码执行等任务中，该方法持续改进了输入依赖性和任务性能。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>RL training of multi-turn LLM agents is inherently unstable, and reasoning quality directly determines task performance. Entropy is widely used to track reasoning stability. However, entropy only measures diversity within the same input, and cannot tell whether reasoning actually responds to different inputs. In RAGEN-2, we find that even with stable entropy, models can rely on fixed templates that look diverse but are input-agnostic. We call this template collapse, a failure mode invisible to entropy and all existing metrics. To diagnose this failure, we decompose reasoning quality into withininput diversity (Entropy) and cross-input distinguishability (Mutual Information, MI), and introduce a family of mutual information proxies for online diagnosis. Across diverse tasks, mutual information correlates with final performance much more strongly than entropy, making it a more reliable proxy for reasoning quality. We further explain template collapse with a signal-to-noise ratio (SNR) mechanism. Low reward variance weakens task gradients, letting regularization terms dominate and erase cross-input reasoning differences. To address this, we propose SNR-Aware Filtering to select highsignal prompts per iteration using reward variance as a lightweight proxy. Across planning, math reasoning, web navigation, and code execution, the method consistently improves both input dependence and task performance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407r51ragen2r,
+  title = {RAGEN-2: Reasoning Collapse in Agentic RL},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06268.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r51-ragen2-reasoning-collapse/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RAGEN-2: Reasoning Collapse in Agentic RL. https://arxiv.org/pdf/2604.06268.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06268.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

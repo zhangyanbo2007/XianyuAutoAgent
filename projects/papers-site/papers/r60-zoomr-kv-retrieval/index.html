@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZoomR: Memory Efficient Reasoning through Multi-Granularity Key Value Retrieval | DAST Papers</title>
+    <meta name="description" content="ZoomR 关注长推理输出时的 KV cache 成本。现有 KV cache 优化多压缩长输入上下文，却保留完整生成过程 KV；但复杂推理往往产生很长中间 thoughts，导致输出侧 cache 成为瓶颈。
+
+论文让模型把冗长思维动态压缩成 summaries，并用多粒度 KV retrieval 策略在 summary index 和细粒度历史之间 zoom in/out。这样在保留必要推理" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r60-zoomr-kv-retrieval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ZoomR: Memory Efficient Reasoning through Multi-Granularity Key Value Retrieval" />
+    <meta property="og:description" content="ZoomR 关注长推理输出时的 KV cache 成本。现有 KV cache 优化多压缩长输入上下文，却保留完整生成过程 KV；但复杂推理往往产生很长中间 thoughts，导致输出侧 cache 成为瓶颈。
+
+论文让模型把冗长思维动态压缩成 summaries，并用多粒度 KV retrieval 策略在 summary index 和细粒度历史之间 zoom in/out。这样在保留必要推理" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r60-zoomr-kv-retrieval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ZoomR: Memory Efficient Reasoning through Multi-Granularity Key Value Retrieval" />
+    <meta name="twitter:description" content="ZoomR 关注长推理输出时的 KV cache 成本。现有 KV cache 优化多压缩长输入上下文，却保留完整生成过程 KV；但复杂推理往往产生很长中间 thoughts，导致输出侧 cache 成为瓶颈。
+
+论文让模型把冗长思维动态压缩成 summaries，并用多粒度 KV retrieval 策略在 summary index 和细粒度历史之间 zoom in/out。这样在保留必要推理" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ZoomR: Memory Efficient Reasoning through Multi-Granularity Key Value Retrieval</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.10898" target="_blank" rel="noopener noreferrer">2604.10898</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ZoomR 关注长推理输出时的 KV cache 成本。现有 KV cache 优化多压缩长输入上下文，却保留完整生成过程 KV；但复杂推理往往产生很长中间 thoughts，导致输出侧 cache 成为瓶颈。</dd></div><div><dt>方法/机制</dt><dd>论文让模型把冗长思维动态压缩成 summaries，并用多粒度 KV retrieval 策略在 summary index 和细粒度历史之间 zoom in/out。这样在保留必要推理细节的同时，避免完整保存每一步 verbose thought 的 KV。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它把 long reasoning 的状态管理从“全量保存输出 KV”改成“摘要索引 + 按需细节取回”的记忆层级。这对长链推理、agent 轨迹和推理时 scaling 的系统成本都有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限在于摘要质量和取回策略可能影响严谨推理；在数学证明、代码调试等细节敏感任务上还需要更细分析。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ZoomR 关注长推理输出时的 KV cache 成本。现有 KV cache 优化多压缩长输入上下文，却保留完整生成过程 KV；但复杂推理往往产生很长中间 thoughts，导致输出侧 cache 成为瓶颈。</p><p>论文让模型把冗长思维动态压缩成 summaries，并用多粒度 KV retrieval 策略在 summary index 和细粒度历史之间 zoom in/out。这样在保留必要推理细节的同时，避免完整保存每一步 verbose thought 的 KV。</p><p>它值得收录，是因为它把 long reasoning 的状态管理从“全量保存输出 KV”改成“摘要索引 + 按需细节取回”的记忆层级。这对长链推理、agent 轨迹和推理时 scaling 的系统成本都有复用价值。</p><p>局限在于摘要质量和取回策略可能影响严谨推理；在数学证明、代码调试等细节敏感任务上还需要更细分析。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）在复杂的推理任务上表现出色，但通常需要生成冗长的中间思想才能最终得出答案。在生成过程中，LLMs 依赖于键值对（KV）缓存进行自回归解码。然而，KV 缓存的内存占用随着输出长度的增加而增长。先前关于 KV 缓存优化的工作主要集中在压缩冗长的输入上下文，同时保留完整的 KV 缓存用于解码。对于需要生成长输出的任务，这导致了计算和内存成本的增加。在本文中，我们介绍 ZoomR，一种新颖的方法，使 LLMs 能够自适应地将冗长的推理思想压缩为摘要，并使用动态 KV 缓存选择策略，利用这些摘要，同时在解码过程中战略性地“放大”细粒度细节。通过使用摘要键作为解码过程中的粗粒度索引，ZoomR 使用查询来检索最重要的思想的细节。这种分层策略通过在每个步骤中避免完整的缓存注意力，显著减少了内存使用。在数学和推理任务上的实验表明，我们的方法与基线相比取得了具有竞争力的性能，同时将推理内存要求减少了超过 4 倍。这些结果表明，多粒度 KV 选择使解码更有效率，尤其是在生成长输出时。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) have shown great performance on complex reasoning tasks but often require generating long intermediate thoughts before reaching a final answer. During generation, LLMs rely on a key-value (KV) cache for autoregressive decoding. However, the memory footprint of the KV cache grows with output length. Prior work on KV cache optimization mostly focus on compressing the long input context, while retaining the full KV cache for decoding. For tasks requiring long output generation, this leads to increased computational and memory costs. In this paper, we introduce ZoomR, a novel approach that enables LLMs to adaptively compress verbose reasoning thoughts into summaries and uses a dynamic KV cache selection policy that leverages these summaries while also strategically &quot;zooming in&quot; on fine-grained details. By using summary keys as a coarse-grained index during decoding, ZoomR uses the query to retrieve details for only the most important thoughts. This hierarchical strategy significantly reduces memory usage by avoiding full-cache attention at each step. Experiments across math and reasoning tasks show that our approach achieves competitive performance compared to baselines, while reducing inference memory requirements by more than $4\times$. These results demonstrate that a multi-granularity KV selection enables more memory efficient decoding, especially for long output generation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413r60zoomrkv,
+  title = {ZoomR: Memory Efficient Reasoning through Multi-Granularity Key Value Retrieval},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.10898.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r60-zoomr-kv-retrieval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ZoomR: Memory Efficient Reasoning through Multi-Granularity Key Value Retrieval. https://arxiv.org/pdf/2604.10898.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.10898.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

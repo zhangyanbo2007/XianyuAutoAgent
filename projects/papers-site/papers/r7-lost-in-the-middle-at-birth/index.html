@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论长上下文模型里非常著名的“迷失在中间”现象。作者的核心主张是：这并不是训练出来的偶然坏习惯，也不主要是位置编码造成的，而是因果解码器在初始化阶段就已经带有的结构性位置偏差。
+
+方法上，论文把多层因果注意力建模为 Cesàro 矩阵的迭代幂，推导出连续极限下的闭式影响密度。结论是，因果掩码天然造成首因偏置，残差连接天然造成末尾锚点，而中间 token 则落入一个随网络深度恶化的阶乘级“死" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r7-lost-in-the-middle-at-birth/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias" />
+    <meta property="og:description" content="这篇论文讨论长上下文模型里非常著名的“迷失在中间”现象。作者的核心主张是：这并不是训练出来的偶然坏习惯，也不主要是位置编码造成的，而是因果解码器在初始化阶段就已经带有的结构性位置偏差。
+
+方法上，论文把多层因果注意力建模为 Cesàro 矩阵的迭代幂，推导出连续极限下的闭式影响密度。结论是，因果掩码天然造成首因偏置，残差连接天然造成末尾锚点，而中间 token 则落入一个随网络深度恶化的阶乘级“死" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r7-lost-in-the-middle-at-birth/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias" />
+    <meta name="twitter:description" content="这篇论文讨论长上下文模型里非常著名的“迷失在中间”现象。作者的核心主张是：这并不是训练出来的偶然坏习惯，也不主要是位置编码造成的，而是因果解码器在初始化阶段就已经带有的结构性位置偏差。
+
+方法上，论文把多层因果注意力建模为 Cesàro 矩阵的迭代幂，推导出连续极限下的闭式影响密度。结论是，因果掩码天然造成首因偏置，残差连接天然造成末尾锚点，而中间 token 则落入一个随网络深度恶化的阶乘级“死" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.10123" target="_blank" rel="noopener noreferrer">2603.10123</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论长上下文模型里非常著名的“迷失在中间”现象。作者的核心主张是：这并不是训练出来的偶然坏习惯，也不主要是位置编码造成的，而是因果解码器在初始化阶段就已经带有的结构性位置偏差。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文把多层因果注意力建模为 Cesàro 矩阵的迭代幂，推导出连续极限下的闭式影响密度。结论是，因果掩码天然造成首因偏置，残差连接天然造成末尾锚点，而中间 token 则落入一个随网络深度恶化的阶乘级“死区”。作者还用未训练的 Qwen2 和 GPT-2 结构做了 Step-0 实证验证。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里属于“Transformer 机制理论 / 长上下文偏差 / positional bias”主线。论文的价值在于把一个长期被经验主义讨论的问题变成了第一性原理下的架构几何问题，这对长上下文建模、注意力机制分析和后续干预设计都很重要。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为这篇工作目前更偏诊断而不是治疗。它解释了为什么会发生，却没有同时给出足以重排路线的解决方案，因此更适合作为高质量理论突破而不是颠覆性成果。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论长上下文模型里非常著名的“迷失在中间”现象。作者的核心主张是：这并不是训练出来的偶然坏习惯，也不主要是位置编码造成的，而是因果解码器在初始化阶段就已经带有的结构性位置偏差。</p><p>方法上，论文把多层因果注意力建模为 Cesàro 矩阵的迭代幂，推导出连续极限下的闭式影响密度。结论是，因果掩码天然造成首因偏置，残差连接天然造成末尾锚点，而中间 token 则落入一个随网络深度恶化的阶乘级“死区”。作者还用未训练的 Qwen2 和 GPT-2 结构做了 Step-0 实证验证。</p><p>它在仓库里属于“Transformer 机制理论 / 长上下文偏差 / positional bias”主线。论文的价值在于把一个长期被经验主义讨论的问题变成了第一性原理下的架构几何问题，这对长上下文建模、注意力机制分析和后续干预设计都很重要。</p><p>它没有升到更高一级，是因为这篇工作目前更偏诊断而不是治疗。它解释了为什么会发生，却没有同时给出足以重排路线的解决方案，因此更适合作为高质量理论突破而不是颠覆性成果。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>生而“中间遗失”：Transformer位置偏差的精确理论。“中间遗失”现象——一种U形性能曲线，表现为LLM能很好地从上下文的开头和结尾检索信息，但在中间部分却失败——通常归因于学习到的Softmax伪影或RoPE等位置编码的距离衰减。本文提出了一个单一而精确的论断：这种U形在初始化时就已经存在，在任何训练或位置编码生效之前。它是带有残差连接的因果解码器固有的几何特性。我们将多层因果注意力建模为Cesàro矩阵的迭代幂，并在连续极限下推导出精确的闭式影响密度。因果掩码在提示的开头（首位尾部）强制产生梯度影响的对数发散，而残差连接在最终token（近位增量）处创建一个孤立的O(1)锚点。在这两个极端之间存在一个阶乘死区，其阶数为O(1/(H−1)!)，其中H是网络深度，这使得中间上下文检索和训练在结构上不利。我们通过实验验证了未经训练的Qwen2和GPT-2架构在第0步就表现出这种U形，并且无论有无RoPE，其形状都相同。比较初始化和预训练的网络，我们发现标准训练未能克服这个拓扑谷，证实了在标准预训练目标下，U形作为一种架构基线持续存在。我们不声称这种偏差是不可逾越的，也不认为RoPE修改等干预措施是无用的。我们确立了基线是什么以及它从何而来，以便未来克服它的努力能够被精确瞄准。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The “Lost in the Middle” phenomenon—a U-shaped performance curve where LLMs retrieve well from the beginning and end of a context but fail in the middle—is widely attributed to learned Softmax artifacts or the distance-decay of positional encodings like RoPE. This paper makes a single, precise claim: the U-shape is already present at initialization, before any training or positional encoding takes effect. It is an inherent geometric property of the causal decoder with residual connections. We model multi-layer causal attention as iterated powers of the Cesàro matrix and derive the exact closed-form influence density in the continuous limit. Causal masking forces a logarithmic divergence of gradient influence at the start of the prompt (the Primacy Tail), while residual connections create an isolated O(1) anchor at the final token (the Recency Delta). Between these extremes lies a factorial dead zone of order O(1/(H−1)!), where H is the network depth, making middle-context retrieval and training structurally hostile. We validate empirically that untrained Qwen2 and GPT-2 architectures exhibit this U-shape at Step 0, and that it is identical with or without RoPE. Comparing initialized and pretrained networks, we show that standard training does not overcome the topological valley, confirming that the U-shape persists as an architectural baseline under standard pretraining objectives. We do not claim that this bias is insurmountable, nor that interventions such as RoPE modifications are useless. We establish what the baseline is and where it comes from, so that future efforts to overcome it can be precisely targeted.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260310r7lostinth,
+  title = {Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.10123v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r7-lost-in-the-middle-at-birth/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Lost in the Middle at Birth: An Exact Theory of Transformer Position Bias. https://arxiv.org/pdf/2603.10123v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.10123v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

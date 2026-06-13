@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond Language Modeling: An Exploration of Multimodal Pretraining | DAST Papers</title>
+    <meta name="description" content="这篇论文研究的是“原生统一多模态预训练”如何从语言模型范式继续扩展，而不是把视觉模块后接到现成 LLM 上。作者在 Transfusion 框架下从零开始训练统一模型，用 next-token prediction 处理语言，用 diffusion / flow-style objective 处理视觉，并把文本、视频、图文对、动作条件视频放进同一个受控实验体系里，目标是隔离视觉表示、数据配比、架" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm2-beyond-language-modeling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Beyond Language Modeling: An Exploration of Multimodal Pretraining" />
+    <meta property="og:description" content="这篇论文研究的是“原生统一多模态预训练”如何从语言模型范式继续扩展，而不是把视觉模块后接到现成 LLM 上。作者在 Transfusion 框架下从零开始训练统一模型，用 next-token prediction 处理语言，用 diffusion / flow-style objective 处理视觉，并把文本、视频、图文对、动作条件视频放进同一个受控实验体系里，目标是隔离视觉表示、数据配比、架" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm2-beyond-language-modeling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Beyond Language Modeling: An Exploration of Multimodal Pretraining" />
+    <meta name="twitter:description" content="这篇论文研究的是“原生统一多模态预训练”如何从语言模型范式继续扩展，而不是把视觉模块后接到现成 LLM 上。作者在 Transfusion 框架下从零开始训练统一模型，用 next-token prediction 处理语言，用 diffusion / flow-style objective 处理视觉，并把文本、视频、图文对、动作条件视频放进同一个受控实验体系里，目标是隔离视觉表示、数据配比、架" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Beyond Language Modeling: An Exploration of Multimodal Pretraining</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-03</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.03276" target="_blank" rel="noopener noreferrer">2603.03276</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文研究的是“原生统一多模态预训练”如何从语言模型范式继续扩展，而不是把视觉模块后接到现成 LLM 上。作者在 Transfusion 框架下从零开始训练统一模型，用 next-token prediction 处理语言，用 diffusion / flow-style objective 处理视觉，并把文本、视频、图文对、动作条件视频放进同一个受控实验体系里，目标是隔离视觉表示、数据配比、架构和缩放规律各自的作用。</dd></div><div><dt>方法/机制</dt><dd>论文最有价值的贡献是把多模态预训练设计空间做成一组可操作的经验结论：RAE / semantic visual encoder 可以同时支撑视觉理解与生成，不必沿用“理解 encoder + 生成 VAE”的双表示；视觉数据和语言数据并非简单互相竞争，图像 caption 带来的文本分布偏移才是常见 modality tax 的主要来源；一般多模态训练还能自然诱导 world modeling，尤其是在视频和动作条件视频设置中体现为对动态世界的可预测建模能力。</dd></div><div><dt>结果/证据</dt><dd>这篇被收录在 multimodal foundation models 方向，因为它不是单点 benchmark 提升，而是为下一代统一模型给出一套设计蓝图：以 Transfusion 为统一训练接口，以 RAE 作为统一视觉 latent，以 MoE 调和视觉和语言的缩放不对称。IsoFLOP 分析显示视觉明显比语言更数据饥渴，而 MoE 可以在提供语言所需高容量的同时容纳视觉的数据密集需求，这一点对后续统一 VLM / world model 架构有长期参考价值。项目页：https://beyond-llms.github.io/</dd></div><div><dt>收录价值</dt><dd>当前仍保持 `breakthrough` 而不是更高分级，原因是它主要是系统化实证与设计原则总结，并非单独提出一个已经被验证为新标准的模型族或训练范式。它的实验控制强、覆盖面广、方向性重要，但证据仍主要来自作者从零训练的受控规模模型；距离“重塑整个多模态路线”的 paradigm / disruptive 级别，还需要后续更大规模复现、开源模型或产业级采用来确认。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文研究的是“原生统一多模态预训练”如何从语言模型范式继续扩展，而不是把视觉模块后接到现成 LLM 上。作者在 Transfusion 框架下从零开始训练统一模型，用 next-token prediction 处理语言，用 diffusion / flow-style objective 处理视觉，并把文本、视频、图文对、动作条件视频放进同一个受控实验体系里，目标是隔离视觉表示、数据配比、架构和缩放规律各自的作用。</p><p>论文最有价值的贡献是把多模态预训练设计空间做成一组可操作的经验结论：RAE / semantic visual encoder 可以同时支撑视觉理解与生成，不必沿用“理解 encoder + 生成 VAE”的双表示；视觉数据和语言数据并非简单互相竞争，图像 caption 带来的文本分布偏移才是常见 modality tax 的主要来源；一般多模态训练还能自然诱导 world modeling，尤其是在视频和动作条件视频设置中体现为对动态世界的可预测建模能力。</p><p>这篇被收录在 multimodal foundation models 方向，因为它不是单点 benchmark 提升，而是为下一代统一模型给出一套设计蓝图：以 Transfusion 为统一训练接口，以 RAE 作为统一视觉 latent，以 MoE 调和视觉和语言的缩放不对称。IsoFLOP 分析显示视觉明显比语言更数据饥渴，而 MoE 可以在提供语言所需高容量的同时容纳视觉的数据密集需求，这一点对后续统一 VLM / world model 架构有长期参考价值。项目页：https://beyond-llms.github.io/</p><p>当前仍保持 `breakthrough` 而不是更高分级，原因是它主要是系统化实证与设计原则总结，并非单独提出一个已经被验证为新标准的模型族或训练范式。它的实验控制强、覆盖面广、方向性重要，但证据仍主要来自作者从零训练的受控规模模型；距离“重塑整个多模态路线”的 paradigm / disruptive 级别，还需要后续更大规模复现、开源模型或产业级采用来确认。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉世界为基础模型超越语言提供了关键的轴线。尽管对这一方向的兴趣日益增长，但原生多模态模型的设计空间仍然不透明。我们通过受控的、从零开始的预训练实验提供了经验上的清晰性，在不受语言预训练干扰的情况下，分离出控制多模态预训练的因素。我们采用Transfusion框架，对语言使用下一词元预测，对视觉使用扩散模型，在包括文本、视频、图像-文本对乃至动作条件视频在内的多样化数据上进行训练。我们的实验得出了四个关键见解：(i) 表征自编码器（RAE）通过在视觉理解和生成方面均表现出色，提供了最优的统一视觉表征；(ii) 视觉和语言数据是互补的，并为下游能力产生协同效应；(iii) 统一的多模态预训练自然地导向世界建模，其能力从通用训练中涌现；(iv) 专家混合（MoE）在实现高效且有效的多模态扩展的同时，自然地诱导了模态专业化。通过IsoFLOP分析，我们计算了两种模态的扩展定律，并揭示了一个扩展不对称性：视觉比语言显著更数据饥渴。我们证明MoE架构通过提供语言所需的高模型容量，同时适应视觉的数据密集型特性，从而协调了这种扩展不对称性，为真正的统一多模态模型铺平了道路。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The visual world offers a critical axis for advancing foundation models beyond language. Despite growing interest in this direction, the design space for native multimodal models remains opaque. We provide empirical clarity through controlled, from-scratch pretraining experiments, isolating the factors that govern multimodal pretraining without interference from language pretraining. We adopt the Transfusion framework, using next-token prediction for language and diffusion for vision, to train on diverse data including text, video, image-text pairs, and even action-conditioned video. Our experiments yield four key insights: (i) Representation Autoencoder (RAE) provides an optimal unified visual representation by excelling at both visual understanding and generation; (ii) visual and language data are complementary and yield synergy for downstream capabilities; (iii) unified multimodal pretraining leads naturally to world modeling, with capabilities emerging from general training; and (iv) Mixture-of-Experts (MoE) enables efficient and effective multimodal scaling while naturally inducing modality specialization. Through IsoFLOP analysis, we compute scaling laws for both modalities and uncover a scaling asymmetry: vision is significantly more data-hungry than language. We demonstrate that the MoE architecture harmonizes this scaling asymmetry by providing the high model capacity required by language while accommodating the data-intensive nature of vision, paving the way for truly unified multimodal models.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260303mm2beyondl,
+  title = {Beyond Language Modeling: An Exploration of Multimodal Pretraining},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.03276.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm2-beyond-language-modeling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Beyond Language Modeling: An Exploration of Multimodal Pretraining. https://arxiv.org/pdf/2603.03276.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.03276.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://beyond-llms.github.io/" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

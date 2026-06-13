@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是 agent memory 评测里的一个真实缺口：现有基准过度围绕人机对话，无法覆盖真实 agent 在环境交互中产生的大量机器生成轨迹。作者把问题重新定义为长时程 agent-environment memory，而不是聊天历史检索，这个 framing 是有价值的。
+
+AMA-Bench 由两部分组成：真实 agentic application 轨迹加专家问答，以及可扩展到任" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a56-ama-bench-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications" />
+    <meta property="og:description" content="这篇论文解决的是 agent memory 评测里的一个真实缺口：现有基准过度围绕人机对话，无法覆盖真实 agent 在环境交互中产生的大量机器生成轨迹。作者把问题重新定义为长时程 agent-environment memory，而不是聊天历史检索，这个 framing 是有价值的。
+
+AMA-Bench 由两部分组成：真实 agentic application 轨迹加专家问答，以及可扩展到任" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a56-ama-bench-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications" />
+    <meta name="twitter:description" content="这篇论文解决的是 agent memory 评测里的一个真实缺口：现有基准过度围绕人机对话，无法覆盖真实 agent 在环境交互中产生的大量机器生成轨迹。作者把问题重新定义为长时程 agent-environment memory，而不是聊天历史检索，这个 framing 是有价值的。
+
+AMA-Bench 由两部分组成：真实 agentic application 轨迹加专家问答，以及可扩展到任" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.22769" target="_blank" rel="noopener noreferrer">2602.22769</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是 agent memory 评测里的一个真实缺口：现有基准过度围绕人机对话，无法覆盖真实 agent 在环境交互中产生的大量机器生成轨迹。作者把问题重新定义为长时程 agent-environment memory，而不是聊天历史检索，这个 framing 是有价值的。</dd></div><div><dt>方法/机制</dt><dd>AMA-Bench 由两部分组成：真实 agentic application 轨迹加专家问答，以及可扩展到任意长度的合成轨迹与规则问答。更重要的是，论文不止给 benchmark，还分析了为什么现有 memory systems 掉分，指出缺因果结构、客观信息和过度依赖相似度检索的问题，并给出带 causality graph 和 tool-augmented retrieval 的 AMA-Agent 作为对照系统。</dd></div><div><dt>结果/证据</dt><dd>这使它不只是又一个 benchmark，而是 agent memory 方向里一个更接近实际工作负载的评测框架。对仓库的 agent memory 主线来说，它有明显的可复用价值，因为它把“长记忆”的评测目标从对话记忆扩展到了持续环境交互与机器轨迹。</dd></div><div><dt>收录价值</dt><dd>它暂时不升得更高，原因是目前还是单篇 arXiv 基准与系统论文，尚未形成领域公认标准，也还缺少更广泛的外部复现和社区采纳。当前更适合定义为一个强 benchmark/workflow 条目，而不是已经定型的 canonical reference。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是 agent memory 评测里的一个真实缺口：现有基准过度围绕人机对话，无法覆盖真实 agent 在环境交互中产生的大量机器生成轨迹。作者把问题重新定义为长时程 agent-environment memory，而不是聊天历史检索，这个 framing 是有价值的。</p><p>AMA-Bench 由两部分组成：真实 agentic application 轨迹加专家问答，以及可扩展到任意长度的合成轨迹与规则问答。更重要的是，论文不止给 benchmark，还分析了为什么现有 memory systems 掉分，指出缺因果结构、客观信息和过度依赖相似度检索的问题，并给出带 causality graph 和 tool-augmented retrieval 的 AMA-Agent 作为对照系统。</p><p>这使它不只是又一个 benchmark，而是 agent memory 方向里一个更接近实际工作负载的评测框架。对仓库的 agent memory 主线来说，它有明显的可复用价值，因为它把“长记忆”的评测目标从对话记忆扩展到了持续环境交互与机器轨迹。</p><p>它暂时不升得更高，原因是目前还是单篇 arXiv 基准与系统论文，尚未形成领域公认标准，也还缺少更广泛的外部复现和社区采纳。当前更适合定义为一个强 benchmark/workflow 条目，而不是已经定型的 canonical reference。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AMA-Bench：评估智能体应用中的长程记忆大型语言模型（LLMs）作为自主智能体被部署在日益复杂的应用中，其中实现长程记忆对于获得强大性能至关重要。然而，在实际应用和当前智能体记忆评估标准之间存在显著差距：现有基准主要关注以对话为中心的人机交互。实际上，智能体记忆由智能体与环境交互的连续流组成，这些交互主要由机器生成的表示构成。为了弥合这一差距，我们引入了AMA-Bench（任意长度的智能体记忆），用于评估LLMs在真实智能体应用中的长程记忆。它具有两个关键组成部分：(1) 一组跨代表性智能体应用的真实世界智能体轨迹，并配有专家策划的问答；以及 (2) 一组可扩展到任意时间范围的合成智能体轨迹，并配有基于规则的问答。我们的综合研究表明，现有记忆系统在AMA-Bench上的表现不佳，主要是因为它们缺乏因果关系和客观信息，并且受到许多记忆系统采用的基于相似性检索的有损性质的限制。为了解决这些局限性，我们提出了AMA-Agent，一个具有因果图和工具增强检索功能的有效记忆系统。我们的结果表明，AMA-Agent在AMA-Bench上实现了57.22%的平均准确率，超越了最强的记忆系统基线11.16%。§ 代码 (b) 聊天机器人 你好，你能帮我规划一下我的一天吗。 当然。 你今天想完成的三件主要事情是什么。 用户：我需要完成一份简短的报告，回复电子邮件，并锻炼。 明白了。 你有什么承诺吗，比如会议或预约。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Models (LLMs) are deployed as autonomous agents in increasingly complex applications, where enabling long-horizon memory is critical for achieving strong performance. However, a significant gap exists between practical applications and current evaluation standards for agent memory: existing benchmarks primarily focus on dialogue-centric, human-agent interactions. In reality, agent memory consists of a continuous stream of agent-environment interactions that are primarily composed of machine-generated representations. To bridge this gap, we introduce AMA-Bench (Agent Memory with Any length), to evaluates long-horizon memory for LLMs in real agentic applications. It features two key components: (1) a set of real-world agentic trajectories across representative agentic applications, paired with expert-curated QA, and (2) a set of synthetic agentic trajectories that scale to arbitrary horizons paired with rule-based QA. Our comprehensive study shows that existing memory systems underperform on AMA-Bench primarily because they lack causality and objective information, and are constrained by the lossy nature similarity-based retrieval employed by many memory systems. To address these limitations, we propose AMA-Agent, an effective memory system featuring a causality graph and tool-augmented retrieval. Our results demonstrate that AMA-Agent achieves 57.22% average accuracy on AMA-Bench, surpassing the strongest memory system baselines by 11.16%. § Code (b) Chatbot Hello, can you help me plan my day. Sure. What are the three main things you want to get done today. User: I need to finish a short report, reply to emails, and exercise. Got it. Do you have any commitments, like meetings or appointments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260226a56amabenc,
+  title = {AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.22769.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a56-ama-bench-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AMA-Bench: Evaluating Long-Horizon Memory for Agentic Applications. https://arxiv.org/pdf/2602.22769.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.22769.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

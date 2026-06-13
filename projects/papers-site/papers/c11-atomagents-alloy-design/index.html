@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Automating alloy design and discovery with physics-aware multimodal multiagent AI | DAST Papers</title>
+    <meta name="description" content="这篇论文要解决的是合金设计中一个非常现实的瓶颈：真正有价值的材料发现往往需要同时完成知识检索、物理模拟、图像和数值结果分析以及多目标设计权衡，这类流程长期依赖人类专家手工串联，效率低且难以扩展。
+
+AtomAgents 的核心是一个 physics-aware multimodal multi-agent 框架。它让不同角色的 AI agent 分工完成知识检索、多模态数据整合、物理仿真、结果分析" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c11-atomagents-alloy-design/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Automating alloy design and discovery with physics-aware multimodal multiagent AI" />
+    <meta property="og:description" content="这篇论文要解决的是合金设计中一个非常现实的瓶颈：真正有价值的材料发现往往需要同时完成知识检索、物理模拟、图像和数值结果分析以及多目标设计权衡，这类流程长期依赖人类专家手工串联，效率低且难以扩展。
+
+AtomAgents 的核心是一个 physics-aware multimodal multi-agent 框架。它让不同角色的 AI agent 分工完成知识检索、多模态数据整合、物理仿真、结果分析" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c11-atomagents-alloy-design/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Automating alloy design and discovery with physics-aware multimodal multiagent AI" />
+    <meta name="twitter:description" content="这篇论文要解决的是合金设计中一个非常现实的瓶颈：真正有价值的材料发现往往需要同时完成知识检索、物理模拟、图像和数值结果分析以及多目标设计权衡，这类流程长期依赖人类专家手工串联，效率低且难以扩展。
+
+AtomAgents 的核心是一个 physics-aware multimodal multi-agent 框架。它让不同角色的 AI agent 分工完成知识检索、多模态数据整合、物理仿真、结果分析" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Automating alloy design and discovery with physics-aware multimodal multiagent AI</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-01-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-01-20</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文要解决的是合金设计中一个非常现实的瓶颈：真正有价值的材料发现往往需要同时完成知识检索、物理模拟、图像和数值结果分析以及多目标设计权衡，这类流程长期依赖人类专家手工串联，效率低且难以扩展。</dd></div><div><dt>方法/机制</dt><dd>AtomAgents 的核心是一个 physics-aware multimodal multi-agent 框架。它让不同角色的 AI agent 分工完成知识检索、多模态数据整合、物理仿真、结果分析与设计迭代，并把数值结果和模拟图像一起纳入决策回路。作者用这一系统自动完成合金设计与分析任务，展示了在复杂材料设计问题上由多代理协作驱动的端到端工作流。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是简单的“LLM 帮材料科学写代码”，而是把 agent systems 和 atomistic simulation 真正结合成了材料发现工作流。对 AI x physics / materials discovery 来说，它代表的是一种可复用的研究自动化模式，而不只是单点模型提分。</dd></div><div><dt>收录价值</dt><dd>它当前仍是 breakthrough，而不是更高一级，因为验证场景主要集中在 alloy design，框架的跨材料体系通用性和长期自动化稳定性还需要更多外部复现。它能否再升一级，要看后续是否成为 materials agent workflow 的标准参考。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文要解决的是合金设计中一个非常现实的瓶颈：真正有价值的材料发现往往需要同时完成知识检索、物理模拟、图像和数值结果分析以及多目标设计权衡，这类流程长期依赖人类专家手工串联，效率低且难以扩展。</p><p>AtomAgents 的核心是一个 physics-aware multimodal multi-agent 框架。它让不同角色的 AI agent 分工完成知识检索、多模态数据整合、物理仿真、结果分析与设计迭代，并把数值结果和模拟图像一起纳入决策回路。作者用这一系统自动完成合金设计与分析任务，展示了在复杂材料设计问题上由多代理协作驱动的端到端工作流。</p><p>这篇工作值得正式收录，因为它不是简单的“LLM 帮材料科学写代码”，而是把 agent systems 和 atomistic simulation 真正结合成了材料发现工作流。对 AI x physics / materials discovery 来说，它代表的是一种可复用的研究自动化模式，而不只是单点模型提分。</p><p>它当前仍是 breakthrough，而不是更高一级，因为验证场景主要集中在 alloy design，框架的跨材料体系通用性和长期自动化稳定性还需要更多外部复现。它能否再升一级，要看后续是否成为 materials agent workflow 的标准参考。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250120c11atomage,
+  title = {Automating alloy design and discovery with physics-aware multimodal multiagent AI},
+  year = {2025},
+  url = {https://cee.mit.edu/wp-content/uploads/2021/05/ghafarollahi-buehler-2025-automating-alloy-design-and-discovery-with-physics-aware-multimodal-multiagent-ai.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c11-atomagents-alloy-design/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Automating alloy design and discovery with physics-aware multimodal multiagent AI. https://cee.mit.edu/wp-content/uploads/2021/05/ghafarollahi-buehler-2025-automating-alloy-design-and-discovery-with-physics-aware-multimodal-multiagent-ai.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://cee.mit.edu/wp-content/uploads/2021/05/ghafarollahi-buehler-2025-automating-alloy-design-and-discovery-with-physics-aware-multimodal-multiagent-ai.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://cee.mit.edu/wp-content/uploads/2021/05/ghafarollahi-buehler-2025-automating-alloy-design-and-discovery-with-physics-aware-multimodal-multiagent-ai.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

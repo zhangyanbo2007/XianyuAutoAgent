@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CoSPlay: Cooperative Self-Play at Test-Time with Self-Generated Code and Unit Test | DAST Papers</title>
+    <meta name="description" content="CoSPlay 针对 coding agents 的一个现实瓶颈：许多场景没有隐藏测试或人工 verifier，模型必须自己构造测试来发现代码缺陷。
+
+方法在测试时让代码生成和单元测试生成进行 cooperative self-play，通过自生成代码和自生成 unit tests 互相暴露错误并迭代修正。
+
+这种机制把 test-time compute 转化为临时验证生态，适合和 coding" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/se9-cosplay-test-time-code-self-play/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CoSPlay: Cooperative Self-Play at Test-Time with Self-Generated Code and Unit Test" />
+    <meta property="og:description" content="CoSPlay 针对 coding agents 的一个现实瓶颈：许多场景没有隐藏测试或人工 verifier，模型必须自己构造测试来发现代码缺陷。
+
+方法在测试时让代码生成和单元测试生成进行 cooperative self-play，通过自生成代码和自生成 unit tests 互相暴露错误并迭代修正。
+
+这种机制把 test-time compute 转化为临时验证生态，适合和 coding" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/se9-cosplay-test-time-code-self-play/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CoSPlay: Cooperative Self-Play at Test-Time with Self-Generated Code and Unit Test" />
+    <meta name="twitter:description" content="CoSPlay 针对 coding agents 的一个现实瓶颈：许多场景没有隐藏测试或人工 verifier，模型必须自己构造测试来发现代码缺陷。
+
+方法在测试时让代码生成和单元测试生成进行 cooperative self-play，通过自生成代码和自生成 unit tests 互相暴露错误并迭代修正。
+
+这种机制把 test-time compute 转化为临时验证生态，适合和 coding" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CoSPlay: Cooperative Self-Play at Test-Time with Self-Generated Code and Unit Test</h1>
+          <p class="subtitle">软件工程 · 发表：2026-05-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">软件工程</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.23491" target="_blank" rel="noopener noreferrer">2605.23491</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>CoSPlay 针对 coding agents 的一个现实瓶颈：许多场景没有隐藏测试或人工 verifier，模型必须自己构造测试来发现代码缺陷。</dd></div><div><dt>方法/机制</dt><dd>方法在测试时让代码生成和单元测试生成进行 cooperative self-play，通过自生成代码和自生成 unit tests 互相暴露错误并迭代修正。</dd></div><div><dt>结果/证据</dt><dd>这种机制把 test-time compute 转化为临时验证生态，适合和 coding agent、CI loop、自动修复系统结合，而不是只依赖单次采样。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它是软件工程 agent 的可复用推理/验证 primitive，连接了自生成测试、代码修复和测试时搜索。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>CoSPlay 针对 coding agents 的一个现实瓶颈：许多场景没有隐藏测试或人工 verifier，模型必须自己构造测试来发现代码缺陷。</p><p>方法在测试时让代码生成和单元测试生成进行 cooperative self-play，通过自生成代码和自生成 unit tests 互相暴露错误并迭代修正。</p><p>这种机制把 test-time compute 转化为临时验证生态，适合和 coding agent、CI loop、自动修复系统结合，而不是只依赖单次采样。</p><p>它值得正式收录，因为它是软件工程 agent 的可复用推理/验证 primitive，连接了自生成测试、代码修复和测试时搜索。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>CoSPlay：在测试时通过自生成代码和单元测试进行合作自博弈 近期，可验证奖励强化学习（RLVR）和测试时扩展（TTS）通过可执行验证推动了LLM代码生成的发展。然而，真实单元测试（GT UTs）仍然是一个瓶颈：最先进的RLVR方法需要它们进行昂贵的训练，而现有TTS方法在没有它们的情况下会失去竞争力。这促使了无GT的TTS方法的发展，其中现有方法直接使用自生成的UTs来优化和选择代码候选。然而，此类UTs通常是嘈杂的或与错误代码虚假耦合的，反过来，UT质量在没有可靠代码的情况下也无法验证。因此，关键挑战在于共同改进两者。为此，我们提出了CoSPlay，一个无GT、免训练的框架，通过合作自博弈共同改进代码和UTs。它首先探索多样化的解决方案思路，并识别其潜在的失败模式，以产生具有区分性的UT思路。然后，它利用代码-UT执行矩阵中的双向通过计数信号，迭代地修剪或修复弱代码，并刷新或替换不可靠的UTs，让这两个池共同演化。最后，当多个代码在最高通过计数上保持一致时，它从最大的输出一致性簇中选择最终代码，因为正确的代码在相同输入上达成一致，而错误的代码则会发散。在四个具有挑战性的基准测试上的实验表明，CoSPlay在Qwen2.5-7B-Instruct上将平均BoN从22.1%提高到33.2%，UT准确率从14.6%提高到78.3%，与RLVR模型CURE-7B持平或超越。当应用于CURE-7B时，它进一步将BoN提高了5.7%。CoSPlay还泛化到不同的骨干模型，并在可比较的token预算下优于无GT的TTS基线，并且随着预算的增加，收益持续增长。这些结果表明了一种无需任何GT数据即可实现有竞争力代码生成的可扩展推理策略。UT能力（准确率和信号）</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recently, Reinforcement Learning with Verifiable Rewards (RLVR) and Test-Time Scaling (TTS) have advanced LLM code generation through executable verification. Yet Ground-Truth Unit Tests (GT UTs) remain a bottleneck: SOTA RLVR methods require them for costly training, while existing TTS methods lose competitiveness without them. This motivates GT-free TTS, where existing methods directly use self-generated UTs to refine and select code candidates. Yet such UTs are often noisy or spuriously coupled with wrong code, and UT quality in turn cannot be validated without reliable code. The key challenge is therefore to jointly improve both. To this end, we present CoSPlay, a GT-free, training-free framework that jointly improves codes and UTs through cooperative self-play. It first explores diverse solution ideas and identifies their potential failure modes to produce discriminative UT ideas. It then uses bidirectional pass-count signals from the Code-UT execution matrix to iteratively prune or fix weak codes and refresh or replace unreliable UTs, letting the two pools co-evolve. Finally, when multiple codes remain tied at the highest pass count, it picks the final code from the largest output-consensus cluster, since correct codes agree on the same inputs while wrong codes diverge. Experiments on four challenging benchmarks show that CoSPlay on Qwen2.5-7B-Instruct improves average BoN from 22.1% to 33.2% and UT accuracy from 14.6% to 78.3%, matching or surpassing the RLVR model CURE-7B. When applied to CURE-7B, it further improves BoN by 5.7%. CoSPlay also generalizes across diverse backbones and outperforms GT-free TTS baselines under comparable token budgets, with continued gains as the budget scales up. These results suggest a scalable inference strategy for competitive code generation without any GT data. UT Capabilities (Acc. &amp; Sig.)</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260522se9cosplay,
+  title = {CoSPlay: Cooperative Self-Play at Test-Time with Self-Generated Code and Unit Test},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.23491.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/se9-cosplay-test-time-code-self-play/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CoSPlay: Cooperative Self-Play at Test-Time with Self-Generated Code and Unit Test. https://arxiv.org/pdf/2605.23491.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.23491.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.23491" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

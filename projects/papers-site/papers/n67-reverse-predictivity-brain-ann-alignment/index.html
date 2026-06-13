@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reverse predictivity for bidirectional comparison of neural networks and biological brains | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 NeuroAI 里一个长期存在但经常被忽略的问题：我们通常只看人工神经网络能否预测脑神经反应，也就是单向的 forward predictivity，却很少反过来问脑神经活动是否也足以恢复模型内部表征。如果一个模型只在单向映射上看起来像脑，但其内部大量维度无法被真实神经群体回收，那么这种“对齐”就可能是表面上的。
+
+作者提出 reverse predictivity 这个双向比较指标" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n67-reverse-predictivity-brain-ann-alignment/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Reverse predictivity for bidirectional comparison of neural networks and biological brains" />
+    <meta property="og:description" content="这篇论文针对 NeuroAI 里一个长期存在但经常被忽略的问题：我们通常只看人工神经网络能否预测脑神经反应，也就是单向的 forward predictivity，却很少反过来问脑神经活动是否也足以恢复模型内部表征。如果一个模型只在单向映射上看起来像脑，但其内部大量维度无法被真实神经群体回收，那么这种“对齐”就可能是表面上的。
+
+作者提出 reverse predictivity 这个双向比较指标" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n67-reverse-predictivity-brain-ann-alignment/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Reverse predictivity for bidirectional comparison of neural networks and biological brains" />
+    <meta name="twitter:description" content="这篇论文针对 NeuroAI 里一个长期存在但经常被忽略的问题：我们通常只看人工神经网络能否预测脑神经反应，也就是单向的 forward predictivity，却很少反过来问脑神经活动是否也足以恢复模型内部表征。如果一个模型只在单向映射上看起来像脑，但其内部大量维度无法被真实神经群体回收，那么这种“对齐”就可能是表面上的。
+
+作者提出 reverse predictivity 这个双向比较指标" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Reverse predictivity for bidirectional comparison of neural networks and biological brains</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01204-0" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01204-0</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 NeuroAI 里一个长期存在但经常被忽略的问题：我们通常只看人工神经网络能否预测脑神经反应，也就是单向的 forward predictivity，却很少反过来问脑神经活动是否也足以恢复模型内部表征。如果一个模型只在单向映射上看起来像脑，但其内部大量维度无法被真实神经群体回收，那么这种“对齐”就可能是表面上的。</dd></div><div><dt>方法/机制</dt><dd>作者提出 reverse predictivity 这个双向比较指标，用猕猴 inferior temporal cortex 的神经反应去预测 ANN 单元激活，并将其与传统的 model-to-brain 预测一起使用。结果显示，很多 forward predictivity 很高的模型仍包含大量对脑活动不可预测的“biologically inaccessible”维度；相反，猴到猴的映射是近似对称的。论文进一步据此区分出与 IT 共享、具行为相关性并可跨物种泛化的 common units，以及缺乏这种对齐的 unique units，并分析了特征维数、训练目标和对抗鲁棒性对 reverse predictivity 的影响。</dd></div><div><dt>结果/证据</dt><dd>这篇值得正式收录，因为它不是单纯再做一个 brain-score 变体，而是把 brain-model comparison 的问题定义从单向拟合推进到双向可恢复性。对仓库的 neuroscience / NeuroAI 条线，它提供了一个明确可复用的诊断接口：不仅要问模型能否拟合脑，也要问脑能否解释模型，这直接影响后续如何判断 biological plausibility、表征冗余与模型内部不可达维度。</dd></div><div><dt>收录价值</dt><dd>它目前还不适合更高一级，因为论文本质上仍是一个强的分析与诊断框架，而不是直接改写模型训练范式或提出新的脑机制理论。虽然有 Nature Machine Intelligence 正式发表、代码、PyPI 工具和 OSF 数据支撑，证据已经很完整，但影响更可能先集中在视觉 NeuroAI 和 brain-model alignment 子方向，因此以 breakthrough 收录更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 NeuroAI 里一个长期存在但经常被忽略的问题：我们通常只看人工神经网络能否预测脑神经反应，也就是单向的 forward predictivity，却很少反过来问脑神经活动是否也足以恢复模型内部表征。如果一个模型只在单向映射上看起来像脑，但其内部大量维度无法被真实神经群体回收，那么这种“对齐”就可能是表面上的。</p><p>作者提出 reverse predictivity 这个双向比较指标，用猕猴 inferior temporal cortex 的神经反应去预测 ANN 单元激活，并将其与传统的 model-to-brain 预测一起使用。结果显示，很多 forward predictivity 很高的模型仍包含大量对脑活动不可预测的“biologically inaccessible”维度；相反，猴到猴的映射是近似对称的。论文进一步据此区分出与 IT 共享、具行为相关性并可跨物种泛化的 common units，以及缺乏这种对齐的 unique units，并分析了特征维数、训练目标和对抗鲁棒性对 reverse predictivity 的影响。</p><p>这篇值得正式收录，因为它不是单纯再做一个 brain-score 变体，而是把 brain-model comparison 的问题定义从单向拟合推进到双向可恢复性。对仓库的 neuroscience / NeuroAI 条线，它提供了一个明确可复用的诊断接口：不仅要问模型能否拟合脑，也要问脑能否解释模型，这直接影响后续如何判断 biological plausibility、表征冗余与模型内部不可达维度。</p><p>它目前还不适合更高一级，因为论文本质上仍是一个强的分析与诊断框架，而不是直接改写模型训练范式或提出新的脑机制理论。虽然有 Nature Machine Intelligence 正式发表、代码、PyPI 工具和 OSF 数据支撑，证据已经很完整，但影响更可能先集中在视觉 NeuroAI 和 brain-model alignment 子方向，因此以 breakthrough 收录更稳。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>逆向预测性：用于双向比较神经网络与生物大脑。系统神经科学的一个主要目标是构建能够捕捉灵长类大脑内部表征的计算模型。人工神经网络 (ANNs) 的标准评估强调正向预测性——即模型特征预测神经反应的程度——但并未测试模型表征本身是否可从神经活动中预测。在本文中，我们开发了一种诊断指标，即逆向预测性，它量化了猕猴下颞叶皮层反应预测ANN单元激活的程度。利用这一比较框架，我们揭示了一个显著的不对称性：具有高正向预测性（约50%解释方差）的模型通常包含无法从神经活动中预测的单元，这反映了生物学上不可及的维度。相比之下，猴子间映射是对称的，这提供了一个经验参考点，并表明这种不对称性反映了真实的表征不匹配。逆向预测性使得能够识别与下颞叶皮层共享、行为相关且跨物种泛化的“共享”ANN单元，以及缺乏这种对齐的“独特”单元。受特征维度、训练目标和对抗鲁棒性的影响，逆向预测性可作为一种保守的诊断和比较工具，指导下一代ANNs实现高任务性能和更高的生物学合理性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A major goal in systems neuroscience is to build computational models that capture the primate brain’s internal representations. Standard evaluations of artificial neural networks (ANNs) emphasize forward predictivity—how well model features predict neural responses—without testing whether model representations are themselves predictable from neural activity. Here we develop a diagnostic metric, reverse predictivity, that quantifies how well macaque inferior temporal cortex responses predict ANN unit activations. Using this comparative framework, we reveal a striking asymmetry: models with high forward predictivity (~50% variance explained) often contain units unpredictable from neural activity, reflecting biologically inaccessible dimensions. In contrast, monkey-to-monkey mappings are symmetric, providing an empirical reference point and indicating that the asymmetry reflects genuine representational mismatch. Reverse predictivity enables the identification of ‘common’ ANN units that are shared with the inferior temporal cortex, are behaviourally relevant and generalize across species, and ‘unique’ units lacking such alignment. Influenced by feature dimensionality, training objectives and adversarial robustness, reverse predictivity serves as a conservative diagnostic and comparative tool for guiding next-generation ANNs towards both high task performance and greater biological plausibility.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325n67reverse,
+  title = {Reverse predictivity for bidirectional comparison of neural networks and biological brains},
+  year = {2026},
+  url = {https://www.nature.com/articles/s42256-026-01204-0},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n67-reverse-predictivity-brain-ann-alignment/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Reverse predictivity for bidirectional comparison of neural networks and biological brains. https://www.nature.com/articles/s42256-026-01204-0</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-026-01204-0" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

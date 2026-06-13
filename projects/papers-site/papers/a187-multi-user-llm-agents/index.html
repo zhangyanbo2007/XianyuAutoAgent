@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multi-User Large Language Model Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文指出当前 LLM agent 默认服务单一用户或单一 principal，但真实组织和团队工具中，一个 agent 经常同时服务多个用户，且这些用户具有不同角色、偏好、权限和隐私边界。多用户场景天然带来目标冲突、信息不对称和协调成本，是单用户 instruction following 无法覆盖的系统问题。
+
+论文把多用户 LLM agent 形式化为 multi-principal de" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a187-multi-user-llm-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Multi-User Large Language Model Agents" />
+    <meta property="og:description" content="这篇论文指出当前 LLM agent 默认服务单一用户或单一 principal，但真实组织和团队工具中，一个 agent 经常同时服务多个用户，且这些用户具有不同角色、偏好、权限和隐私边界。多用户场景天然带来目标冲突、信息不对称和协调成本，是单用户 instruction following 无法覆盖的系统问题。
+
+论文把多用户 LLM agent 形式化为 multi-principal de" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a187-multi-user-llm-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Multi-User Large Language Model Agents" />
+    <meta name="twitter:description" content="这篇论文指出当前 LLM agent 默认服务单一用户或单一 principal，但真实组织和团队工具中，一个 agent 经常同时服务多个用户，且这些用户具有不同角色、偏好、权限和隐私边界。多用户场景天然带来目标冲突、信息不对称和协调成本，是单用户 instruction following 无法覆盖的系统问题。
+
+论文把多用户 LLM agent 形式化为 multi-principal de" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Multi-User Large Language Model Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08567" target="_blank" rel="noopener noreferrer">2604.08567</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文指出当前 LLM agent 默认服务单一用户或单一 principal，但真实组织和团队工具中，一个 agent 经常同时服务多个用户，且这些用户具有不同角色、偏好、权限和隐私边界。多用户场景天然带来目标冲突、信息不对称和协调成本，是单用户 instruction following 无法覆盖的系统问题。</dd></div><div><dt>方法/机制</dt><dd>论文把多用户 LLM agent 形式化为 multi-principal decision problem，并提出统一的多用户交互协议与三个压力测试场景，分别考察模型在冲突指令优先级、隐私保持和协作协调中的表现。结果显示前沿模型在多轮交互中会出现优先级漂移、隐私泄露增加和低效信息收集。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它为 agent 从个人助手走向组织级协作系统提供了基础问题定义和评测接口，与 ManyIH 的权限层级问题互补：ManyIH 关注指令权限解析，本论文关注多 principal 的效用、隐私和协调。它对企业 agent、团队工作流 agent 和共享工具代理具有直接设计意义。</dd></div><div><dt>收录价值</dt><dd>局限在于它主要是问题形式化和压力测试，尚未给出稳定的训练/协议解决方案；多用户效用函数如何定义、审计和落地仍是开放问题。因此它是 agent 评测与系统 framing 的突破性补录，而不是完整解决方案。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文指出当前 LLM agent 默认服务单一用户或单一 principal，但真实组织和团队工具中，一个 agent 经常同时服务多个用户，且这些用户具有不同角色、偏好、权限和隐私边界。多用户场景天然带来目标冲突、信息不对称和协调成本，是单用户 instruction following 无法覆盖的系统问题。</p><p>论文把多用户 LLM agent 形式化为 multi-principal decision problem，并提出统一的多用户交互协议与三个压力测试场景，分别考察模型在冲突指令优先级、隐私保持和协作协调中的表现。结果显示前沿模型在多轮交互中会出现优先级漂移、隐私泄露增加和低效信息收集。</p><p>它值得收录，是因为它为 agent 从个人助手走向组织级协作系统提供了基础问题定义和评测接口，与 ManyIH 的权限层级问题互补：ManyIH 关注指令权限解析，本论文关注多 principal 的效用、隐私和协调。它对企业 agent、团队工作流 agent 和共享工具代理具有直接设计意义。</p><p>局限在于它主要是问题形式化和压力测试，尚未给出稳定的训练/协议解决方案；多用户效用函数如何定义、审计和落地仍是开放问题。因此它是 agent 评测与系统 framing 的突破性补录，而不是完整解决方案。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多用户大型语言模型智能体大型语言模型（LLMs）和基于LLM的智能体正越来越多地被部署为规划和决策的助手，然而大多数现有系统都隐含地针对单主体交互范式进行了优化，在这种范式中，模型旨在满足一个主导用户的目标，其指令被视为唯一的权威和效用来源。然而，随着它们被整合到团队工作流程和组织工具中，它们越来越需要同时服务多个用户，每个用户都具有不同的角色、偏好和权限级别，从而导致多用户、多主体设置中出现不可避免的冲突、信息不对称和隐私限制。在这项工作中，我们首次对多用户LLM智能体进行了系统研究。我们首先将LLM智能体的多用户交互形式化为一个多主体决策问题，其中单个智能体必须考虑多个用户可能存在的冲突利益及相关挑战。接着，我们引入了一个统一的多用户交互协议，并设计了三个有针对性的压力测试场景，以评估当前LLMs在指令遵循、隐私保护和协调方面的能力。我们的结果揭示了系统性差距：前沿LLMs在用户目标冲突时经常无法保持稳定的优先级，在多轮交互中表现出越来越多的隐私侵犯，并且当协调需要迭代信息收集时，会遭遇效率瓶颈。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) and LLM-based agents are increasingly deployed as assistants in planning and decision making, yet most existing systems are implicitly optimized for a single-principal interaction paradigm, in which the model is designed to satisfy the objectives of one dominant user whose instructions are treated as the sole source of authority and utility. However, as they are integrated into team workflows and organizational tools, they are increasingly required to serve multiple users simultaneously, each with distinct roles, preferences, and authority levels, leading to multi-user, multi-principal settings with unavoidable conflicts, information asymmetry, and privacy constraints. In this work, we present the first systematic study of multi-user LLM agents. We begin by formalizing multi-user interaction with LLM agents as a multi-principal decision problem, where a single agent must account for multiple users with potentially conflicting interests and associated challenges. We then introduce a unified multi-user interaction protocol and design three targeted stress-testing scenarios to evaluate current LLMs’ capabilities in instruction following, privacy preservation, and coordination. Our results reveal systematic gaps: frontier LLMs frequently fail to maintain stable prioritization under conflicting user objectives, exhibit increasing privacy violations over multi-turn interactions, and suffer from efficiency bottlenecks when coordination requires iterative information gathering.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260319a187multiu,
+  title = {Multi-User Large Language Model Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08567.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a187-multi-user-llm-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Multi-User Large Language Model Agents. https://arxiv.org/pdf/2604.08567.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08567.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/Korde-AI/Multi-User-LLM-Agent" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

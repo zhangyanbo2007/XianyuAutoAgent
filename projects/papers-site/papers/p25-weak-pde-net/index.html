@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weak-PDE-Net: Discovering Open-Form PDEs via Differentiable Symbolic Networks and Weak Formulation | DAST Papers</title>
+    <meta name="description" content="从稀疏、含噪观测中恢复 governing PDE 一直很难，传统 sparse regression 路线通常同时受限于数值微分不稳定和固定候选库过窄。Weak-PDE-Net 处理的正是这两个长期瓶颈。
+
+它把 surrogate dynamics learner、弱形式 PDE 生成器、符号网络和可微架构搜索连成一个端到端框架：一方面避免直接数值微分，另一方面允许在更开放的函数空间里搜索方程" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p25-weak-pde-net/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Weak-PDE-Net: Discovering Open-Form PDEs via Differentiable Symbolic Networks and Weak Formulation" />
+    <meta property="og:description" content="从稀疏、含噪观测中恢复 governing PDE 一直很难，传统 sparse regression 路线通常同时受限于数值微分不稳定和固定候选库过窄。Weak-PDE-Net 处理的正是这两个长期瓶颈。
+
+它把 surrogate dynamics learner、弱形式 PDE 生成器、符号网络和可微架构搜索连成一个端到端框架：一方面避免直接数值微分，另一方面允许在更开放的函数空间里搜索方程" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p25-weak-pde-net/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Weak-PDE-Net: Discovering Open-Form PDEs via Differentiable Symbolic Networks and Weak Formulation" />
+    <meta name="twitter:description" content="从稀疏、含噪观测中恢复 governing PDE 一直很难，传统 sparse regression 路线通常同时受限于数值微分不稳定和固定候选库过窄。Weak-PDE-Net 处理的正是这两个长期瓶颈。
+
+它把 surrogate dynamics learner、弱形式 PDE 生成器、符号网络和可微架构搜索连成一个端到端框架：一方面避免直接数值微分，另一方面允许在更开放的函数空间里搜索方程" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Weak-PDE-Net: Discovering Open-Form PDEs via Differentiable Symbolic Networks and Weak Formulation</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-03-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.22951" target="_blank" rel="noopener noreferrer">2603.22951</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>从稀疏、含噪观测中恢复 governing PDE 一直很难，传统 sparse regression 路线通常同时受限于数值微分不稳定和固定候选库过窄。Weak-PDE-Net 处理的正是这两个长期瓶颈。</dd></div><div><dt>方法/机制</dt><dd>它把 surrogate dynamics learner、弱形式 PDE 生成器、符号网络和可微架构搜索连成一个端到端框架：一方面避免直接数值微分，另一方面允许在更开放的函数空间里搜索方程形式，并通过物理一致性约束增强多变量系统发现能力。</dd></div><div><dt>结果/证据</dt><dd>这篇论文符合仓库对 `AI x math / physics / scientific computing` 的收录口径，因为它不是单个 PDE benchmark 的拟合提升，而是在 PDE discovery 的接口层面给出更稳健、更开放的工作流。对科学建模和符号发现都有持续价值。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级的原因在于，目前仍主要在 benchmark family 上展示效果。要成为更高层级参考，还需要在更复杂真实科学系统中的发现质量和可解释性上继续站稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>从稀疏、含噪观测中恢复 governing PDE 一直很难，传统 sparse regression 路线通常同时受限于数值微分不稳定和固定候选库过窄。Weak-PDE-Net 处理的正是这两个长期瓶颈。</p><p>它把 surrogate dynamics learner、弱形式 PDE 生成器、符号网络和可微架构搜索连成一个端到端框架：一方面避免直接数值微分，另一方面允许在更开放的函数空间里搜索方程形式，并通过物理一致性约束增强多变量系统发现能力。</p><p>这篇论文符合仓库对 `AI x math / physics / scientific computing` 的收录口径，因为它不是单个 PDE benchmark 的拟合提升，而是在 PDE discovery 的接口层面给出更稳健、更开放的工作流。对科学建模和符号发现都有持续价值。</p><p>它不是更高一级的原因在于，目前仍主要在 benchmark family 上展示效果。要成为更高层级参考，还需要在更复杂真实科学系统中的发现质量和可解释性上继续站稳。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Weak-PDE-Net：通过可微分符号网络和弱形式发现开放形式PDEs从稀疏和噪声数据中发现控制偏微分方程 (PDEs) 是数据驱动科学计算中的一个挑战性问题。传统的稀疏回归方法通常面临两个主要限制：(i) 在稀疏和噪声数据下数值微分的不稳定性，以及 (ii) 预定义候选库的灵活性受限。我们提出了Weak-PDE-Net，一个端到端可微分的框架，能够鲁棒地识别开放形式的PDEs。Weak-PDE-Net由两个相互连接的模块组成：一个前向响应学习器和一个弱形式PDE生成器。该学习器在一个轻量级MLP中嵌入可学习的高斯核，作为一个代理模型，能够自适应地从稀疏观测中捕获系统动力学。同时，该生成器将符号网络与积分模块相结合，以构建弱形式PDEs，从而避免了显式数值微分并提高了对噪声的鲁棒性。为了放宽预定义库的限制，我们在训练期间利用可微分神经架构搜索策略来探索函数空间，这使得能够高效地发现开放形式的PDEs。通过结合伽利略不变性约束和对称等变性假设，Weak-PDE-Net在多变量系统发现方面的能力得到了进一步增强，以确保物理一致性。在几个具有挑战性的PDE基准上的实验表明，即使在高度稀疏和噪声的观测下，Weak-PDE-Net也能准确地恢复控制方程。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Discovering governing Partial Differential Equations (PDEs) from sparse and noisy data is a challenging issue in data-driven scientific computing. Conventional sparse regression methods often suffer from two major limitations: (i) the instability of numerical differentiation under sparse and noisy data, and (ii) the restricted flexibility of a pre-defined candidate library. We propose Weak-PDE-Net, an end-to-end differentiable framework that can robustly identify open-form PDEs. Weak-PDE-Net consists of two interconnected modules: a forward response learner and a weak-form PDE generator. The learner embeds learnable Gaussian kernels within a lightweight MLP, serving as a surrogate model that adaptively captures system dynamics from sparse observations. Meanwhile, the generator integrates a symbolic network with an integral module to construct weak-form PDEs, avoiding explicit numerical differentiation and improving robustness to noise. To relax the constraints of the pre-defined library, we leverage Differentiable Neural Architecture Search strategy during training to explore the functional space, which enables the efficient discovery of open-form PDEs. The capability of Weak-PDENet in multivariable systems discovery is further enhanced by incorporating Galilean Invariance constraints and symmetry equivariance hypotheses to ensure physical consistency. Experiments on several challenging PDE benchmarks demonstrate that Weak-PDE-Net accurately recovers governing equations, even under highly sparse and noisy observations.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260324p25weakpde,
+  title = {Weak-PDE-Net: Discovering Open-Form PDEs via Differentiable Symbolic Networks and Weak Formulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.22951v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p25-weak-pde-net/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Weak-PDE-Net: Discovering Open-Form PDEs via Differentiable Symbolic Networks and Weak Formulation. https://arxiv.org/pdf/2603.22951v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.22951v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

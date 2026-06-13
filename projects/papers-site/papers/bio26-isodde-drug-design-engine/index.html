@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accurate Predictions of Novel Biomolecular Interactions with IsoDDE | DAST Papers</title>
+    <meta name="description" content="药物设计里最难被真正规模化的一层，不是再做一个更快的 docking surrogate，而是在 novel chemical space、novel pockets 和复杂 biomolecular interfaces 上，同时做到结构、口袋和亲和力预测的稳定泛化。IsoDDE 这份技术报告的意义，在于它把这些长期分裂的能力合并成一个统一的 biomolecular interaction e" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio26-isodde-drug-design-engine/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Accurate Predictions of Novel Biomolecular Interactions with IsoDDE" />
+    <meta property="og:description" content="药物设计里最难被真正规模化的一层，不是再做一个更快的 docking surrogate，而是在 novel chemical space、novel pockets 和复杂 biomolecular interfaces 上，同时做到结构、口袋和亲和力预测的稳定泛化。IsoDDE 这份技术报告的意义，在于它把这些长期分裂的能力合并成一个统一的 biomolecular interaction e" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio26-isodde-drug-design-engine/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Accurate Predictions of Novel Biomolecular Interactions with IsoDDE" />
+    <meta name="twitter:description" content="药物设计里最难被真正规模化的一层，不是再做一个更快的 docking surrogate，而是在 novel chemical space、novel pockets 和复杂 biomolecular interfaces 上，同时做到结构、口袋和亲和力预测的稳定泛化。IsoDDE 这份技术报告的意义，在于它把这些长期分裂的能力合并成一个统一的 biomolecular interaction e" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Accurate Predictions of Novel Biomolecular Interactions with IsoDDE</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-10</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>药物设计里最难被真正规模化的一层，不是再做一个更快的 docking surrogate，而是在 novel chemical space、novel pockets 和复杂 biomolecular interfaces 上，同时做到结构、口袋和亲和力预测的稳定泛化。IsoDDE 这份技术报告的意义，在于它把这些长期分裂的能力合并成一个统一的 biomolecular interaction engine，并明确把它定位为 drug design engine 的 predictive core。</dd></div><div><dt>方法/机制</dt><dd>报告展示的核心信号相当硬：在 protein-ligand generalisation benchmark 上相对 AlphaFold 3 做到超过 2 倍提升，能够处理 induced fit 和新 binding pocket；在 biologics 上对 antibody-antigen interface prediction 和 CDR-H3 loop modeling 给出新的 state of the art；在小分子亲和力预测上又超过 gold-standard physics-based 方法。也就是说，它不是单点提分，而是在 structure prediction、pocket identification 和 affinity prediction 三条传统上分散的能力线上建立统一优势。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这条路线对 AI x biopharma 的外溢非常直接。仓库并不优先收录纯科学结果，但会优先收录能够重构发现 workflow 的 AI 系统。IsoDDE 把 AlphaFold 之后的结构建模，向可用于 first-in-class target、novel mechanism discovery 和可扩展药物设计的更完整 predictive interface 推进了一步，这一点已经超过普通技术报告的参考价值。</dd></div><div><dt>收录价值</dt><dd>它目前仍然只是 breakthrough，而不是更高一级，因为证据仍主要来自 Isomorphic Labs 自身发布的 technical report，外部可复核性和社区 benchmark 采用还不足。它展示的是很强的方向与性能信号，但是否会成为药物设计领域长期标准接口，还需要公开评测、独立复现以及与更多 physics / generative design pipeline 的实际集成验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>药物设计里最难被真正规模化的一层，不是再做一个更快的 docking surrogate，而是在 novel chemical space、novel pockets 和复杂 biomolecular interfaces 上，同时做到结构、口袋和亲和力预测的稳定泛化。IsoDDE 这份技术报告的意义，在于它把这些长期分裂的能力合并成一个统一的 biomolecular interaction engine，并明确把它定位为 drug design engine 的 predictive core。</p><p>报告展示的核心信号相当硬：在 protein-ligand generalisation benchmark 上相对 AlphaFold 3 做到超过 2 倍提升，能够处理 induced fit 和新 binding pocket；在 biologics 上对 antibody-antigen interface prediction 和 CDR-H3 loop modeling 给出新的 state of the art；在小分子亲和力预测上又超过 gold-standard physics-based 方法。也就是说，它不是单点提分，而是在 structure prediction、pocket identification 和 affinity prediction 三条传统上分散的能力线上建立统一优势。</p><p>它值得正式收录，因为这条路线对 AI x biopharma 的外溢非常直接。仓库并不优先收录纯科学结果，但会优先收录能够重构发现 workflow 的 AI 系统。IsoDDE 把 AlphaFold 之后的结构建模，向可用于 first-in-class target、novel mechanism discovery 和可扩展药物设计的更完整 predictive interface 推进了一步，这一点已经超过普通技术报告的参考价值。</p><p>它目前仍然只是 breakthrough，而不是更高一级，因为证据仍主要来自 Isomorphic Labs 自身发布的 technical report，外部可复核性和社区 benchmark 采用还不足。它展示的是很强的方向与性能信号，但是否会成为药物设计领域长期标准接口，还需要公开评测、独立复现以及与更多 physics / generative design pipeline 的实际集成验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>预测生物分子相互作用是合理药物设计的基石，然而，在新型化学空间中实现实验准确性和泛化能力仍然是一个关键瓶颈。尽管AlphaFold 3等深度学习方法推动了结构预测的进展，但基准测试表明，在泛化到未探索的分子空间区域、估计结合亲和力以及检测先前未表征的蛋白质表面上的分子结合位点方面，仍然存在局限性。在本文中，我们介绍了Isomorphic Labs Drug Design Engine (IsoDDE)，这是一个旨在解决这些局限性的统一计算系统。我们证明，在具有挑战性的蛋白质-配体泛化基准上，IsoDDE的准确性是AlphaFold 3的两倍以上，成功地模拟了复杂的分布外事件，例如诱导契合，并准确识别了新型结合口袋。在生物制剂领域，IsoDDE显著优于现有模型，为抗体-抗原界面预测和CDR-H3环建模提供了新的最先进技术。最后，对于小分子结合剂，IsoDDE的亲和力预测超越了黄金标准物理方法，在不增加传统物理方法工作流程的计算开销的情况下，弥合了与实验级精度之间的差距。我们的结果表明，IsoDDE为AI药物设计提供了可扩展的基础，提供了导航新型生物系统所需的预测保真度，且准确性前所未有。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Predicting biomolecular interactions is fundamental to rational drug design, yet achieving experimental accuracy and generalisability across novel chemical space remains a critical bottleneck. While deep learning approaches such as AlphaFold 3 have advanced structure prediction, benchmarks reveal that limitations persist in generalising to unexplored regions of molecular space, estimating binding affinity, and detecting molecular binding sites on previously uncharacterised protein surfaces. Here, we introduce the Isomorphic Labs Drug Design Engine (IsoDDE), a unified computational system designed to address these limitations. We demonstrate that IsoDDE more than doubles the accuracy of AlphaFold 3 on a challenging protein-ligand generalisation benchmark, successfully modelling complex out-of-distribution events such as induced fits, and accurately identifying novel binding pockets. In the biologics domain, IsoDDE substantially outperforms existing models, providing a new state of the art for antibody-antigen interface prediction and CDR-H3 loop modeling. Finally, for small molecule binders, IsoDDE’s affinity predictions exceed gold-standard physics-based methods, bridging the gap towards experimental-grade precision without the computational overhead of traditional physics-based workflows. Our results demonstrate that IsoDDE offers a scalable foundation for AI drug design, providing the predictive fidelity required to navigate novel biological systems with unprecedented accuracy.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260210bio26isodd,
+  title = {Accurate Predictions of Novel Biomolecular Interactions with IsoDDE},
+  year = {2026},
+  url = {https://storage.googleapis.com/isomorphiclabs-website-public-artifacts/isodde_technical_report.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio26-isodde-drug-design-engine/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Accurate Predictions of Novel Biomolecular Interactions with IsoDDE. https://storage.googleapis.com/isomorphiclabs-website-public-artifacts/isodde_technical_report.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://storage.googleapis.com/isomorphiclabs-website-public-artifacts/isodde_technical_report.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://storage.googleapis.com/isomorphiclabs-website-public-artifacts/isodde_technical_report.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

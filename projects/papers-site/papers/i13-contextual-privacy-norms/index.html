@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations | DAST Papers</title>
+    <meta name="description" content="很多 LLM 的 privacy failure 看起来像是模型根本不理解什么信息不该在什么情境里泄露，但这篇论文切换了问题 framing：也许模型内部已经表示了 contextual privacy norms，只是这些表示没有稳定地转化为行为控制。这把问题从“模型不知道”改成了“表示与行为脱节”。
+
+论文基于 contextual integrity 理论，把隐私规范拆成 informati" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i13-contextual-privacy-norms/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations" />
+    <meta property="og:description" content="很多 LLM 的 privacy failure 看起来像是模型根本不理解什么信息不该在什么情境里泄露，但这篇论文切换了问题 framing：也许模型内部已经表示了 contextual privacy norms，只是这些表示没有稳定地转化为行为控制。这把问题从“模型不知道”改成了“表示与行为脱节”。
+
+论文基于 contextual integrity 理论，把隐私规范拆成 informati" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i13-contextual-privacy-norms/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations" />
+    <meta name="twitter:description" content="很多 LLM 的 privacy failure 看起来像是模型根本不理解什么信息不该在什么情境里泄露，但这篇论文切换了问题 framing：也许模型内部已经表示了 contextual privacy norms，只是这些表示没有稳定地转化为行为控制。这把问题从“模型不知道”改成了“表示与行为脱节”。
+
+论文基于 contextual integrity 理论，把隐私规范拆成 informati" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-03-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00209" target="_blank" rel="noopener noreferrer">2604.00209</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 LLM 的 privacy failure 看起来像是模型根本不理解什么信息不该在什么情境里泄露，但这篇论文切换了问题 framing：也许模型内部已经表示了 contextual privacy norms，只是这些表示没有稳定地转化为行为控制。这把问题从“模型不知道”改成了“表示与行为脱节”。</dd></div><div><dt>方法/机制</dt><dd>论文基于 contextual integrity 理论，把隐私规范拆成 information type、recipient 和 transmission principle 三个维度，并系统探测这些维度是否在 activation space 中以可分离、可组合的方向存在。作者进一步提出 CI-parametric steering，沿这些维度做结构化干预，而不是用单一整体向量去硬推模型。结果显示，模型内部确实编码了这套结构，但行为层仍会泄露，由此把 privacy failure 归因到 control gap 而非纯缺失认知。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 privacy alignment 从表层 prompt hardening 推进到表示层与 steering 层的结构化研究。对 mechanistic interpretability、concept steering 和 safety control，这不仅是一个隐私小任务，而是一个把社会规范映射到 latent structure 的清晰案例，具有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前工作仍集中在 contextual privacy 这一特定规范族，外推到更一般的 social norms、policy control 和 production safety stack 还需要更多证据。它是强的表示与控制论文，但还未形成更广的对齐蓝图。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 LLM 的 privacy failure 看起来像是模型根本不理解什么信息不该在什么情境里泄露，但这篇论文切换了问题 framing：也许模型内部已经表示了 contextual privacy norms，只是这些表示没有稳定地转化为行为控制。这把问题从“模型不知道”改成了“表示与行为脱节”。</p><p>论文基于 contextual integrity 理论，把隐私规范拆成 information type、recipient 和 transmission principle 三个维度，并系统探测这些维度是否在 activation space 中以可分离、可组合的方向存在。作者进一步提出 CI-parametric steering，沿这些维度做结构化干预，而不是用单一整体向量去硬推模型。结果显示，模型内部确实编码了这套结构，但行为层仍会泄露，由此把 privacy failure 归因到 control gap 而非纯缺失认知。</p><p>这篇工作值得收录，因为它把 privacy alignment 从表层 prompt hardening 推进到表示层与 steering 层的结构化研究。对 mechanistic interpretability、concept steering 和 safety control，这不仅是一个隐私小任务，而是一个把社会规范映射到 latent structure 的清晰案例，具有明显方法外溢。</p><p>它没有升到更高一级，是因为当前工作仍集中在 contextual privacy 这一特定规范族，外推到更一般的 social norms、policy control 和 production safety stack 还需要更多证据。它是强的表示与控制论文，但还未形成更广的对齐蓝图。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）越来越多地部署在高风险环境中，然而它们经常通过在人类会谨慎行事的情况下披露私人信息来违反情境隐私。这引出了一个基本问题：LLMs内部是否编码了情境隐私规范，如果是，为什么违规行为仍然存在？我们首次系统地研究了LLMs中作为结构化潜在表示的情境隐私，该研究以情境完整性（CI）理论为基础。通过探测多个模型，我们发现三个决定规范的CI参数（信息类型、接收者和传输原则）在激活空间中被编码为线性可分离且功能独立的维度。尽管存在这种内部结构，模型在实践中仍然泄露私人信息，揭示了概念表示与模型行为之间存在明显差距。为了弥合这一差距，我们引入了CI参数化引导，它沿着每个CI维度独立进行干预。这种结构化控制比单一引导更有效、更可预测地减少了隐私违规。我们的结果表明，情境隐私失败源于表示与行为之间的不一致，而非缺乏意识，并且利用CI的组合结构可以实现更可靠的情境隐私控制，从而为改进LLMs中情境隐私的理解提供了启示。1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) are increasingly deployed in high-stakes settings, yet they frequently violate contextual privacy by disclosing private information in situations where humans would exercise discretion. This raises a fundamental question: do LLMs internally encode contextual privacy norms, and if so, why do violations persist? We present the first systematic study of contextual privacy as a structured latent representation in LLMs, grounded in contextual integrity (CI) theory. Probing multiple models, we find that the three norm-determining CI parameters (information type, recipient, and transmission principle) are encoded as linearly separable and functionally independent directions in activation space. Despite this internal structure, models still leak private information in practice, revealing a clear gap between concept representation and model behavior. To bridge this gap, we introduce CI-parametric steering, which independently intervenes along each CI dimension. This structured control reduces privacy violations more effectively and predictably than monolithic steering. Our results demonstrate that contextual privacy failures arise from misalignment between representation and behavior rather than missing awareness, and that leveraging the compositional structure of CI enables more reliable contextual privacy control, shedding light on potential improvement of contextual privacy understanding in LLMs. 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260331i13context,
+  title = {Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00209.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i13-contextual-privacy-norms/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations. https://arxiv.org/pdf/2604.00209.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i17-weight-tying-output-bias/">
+              <span>Weight Tying Biases Token Embeddings Towards the Output Space</span>
+              <small>可解释性与机制分析 · 2026-03-27</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00209.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

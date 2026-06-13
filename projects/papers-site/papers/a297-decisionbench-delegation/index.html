@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DecisionBench: A Benchmark for Emergent Delegation in Long-Horizon Agentic Workflows | DAST Papers</title>
+    <meta name="description" content="DecisionBench 针对 agent orchestration 的关键问题：一个 agent 何时应该把子任务交给另一个模型，以及如何评估这种 delegation 是否真的有效。
+
+基准固定任务套件、11 个 peer models、call_model/read_profile 接口和多轴指标，覆盖质量、成本、延迟、delegation rate、routing fidelity、v" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a297-decisionbench-delegation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DecisionBench: A Benchmark for Emergent Delegation in Long-Horizon Agentic Workflows" />
+    <meta property="og:description" content="DecisionBench 针对 agent orchestration 的关键问题：一个 agent 何时应该把子任务交给另一个模型，以及如何评估这种 delegation 是否真的有效。
+
+基准固定任务套件、11 个 peer models、call_model/read_profile 接口和多轴指标，覆盖质量、成本、延迟、delegation rate、routing fidelity、v" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a297-decisionbench-delegation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DecisionBench: A Benchmark for Emergent Delegation in Long-Horizon Agentic Workflows" />
+    <meta name="twitter:description" content="DecisionBench 针对 agent orchestration 的关键问题：一个 agent 何时应该把子任务交给另一个模型，以及如何评估这种 delegation 是否真的有效。
+
+基准固定任务套件、11 个 peer models、call_model/read_profile 接口和多轴指标，覆盖质量、成本、延迟、delegation rate、routing fidelity、v" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DecisionBench: A Benchmark for Emergent Delegation in Long-Horizon Agentic Workflows</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.19099" target="_blank" rel="noopener noreferrer">2605.19099</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>DecisionBench 针对 agent orchestration 的关键问题：一个 agent 何时应该把子任务交给另一个模型，以及如何评估这种 delegation 是否真的有效。</dd></div><div><dt>方法/机制</dt><dd>基准固定任务套件、11 个 peer models、call_model/read_profile 接口和多轴指标，覆盖质量、成本、延迟、delegation rate、routing fidelity、vendor self-preference 与 counterfactual ceiling。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 delegation 从经验 prompt 技巧变成可复现实验 substrate，能评估 routers、peer memory 和多步委派策略。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前主要是离线评测 substrate，还没有证明某个 delegation learning 方法能稳定缩小 counterfactual gap。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>DecisionBench 针对 agent orchestration 的关键问题：一个 agent 何时应该把子任务交给另一个模型，以及如何评估这种 delegation 是否真的有效。</p><p>基准固定任务套件、11 个 peer models、call_model/read_profile 接口和多轴指标，覆盖质量、成本、延迟、delegation rate、routing fidelity、vendor self-preference 与 counterfactual ceiling。</p><p>它值得正式收录，因为它把 delegation 从经验 prompt 技巧变成可复现实验 substrate，能评估 routers、peer memory 和多步委派策略。</p><p>它没有更高，是因为当前主要是离线评测 substrate，还没有证明某个 delegation learning 方法能稳定缩小 counterfactual gap。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们引入了DecisionBench，一个用于长周期代理工作流中涌现委托的基准平台。该平台固定了一套任务（GAIA、τ-bench、BFCL多轮）、一个对等模型池（11个模型，7个供应商系列）、一个委托接口（call_model加上一个可选的read_profile通道）、一个确定性技能标注层，以及一个涵盖质量、成本、延迟、委托率、k值路由保真度、供应商自偏好和反事实委托上限的多轴度量套件。该平台对对等信息如何生成或传递是不可知的，因此学习型路由器、更丰富的对等记忆、自适应配置文件构建和多步委托都可以对其进行评估。我们通过对完整池（n=23,375个任务实例）进行五条件参考扫描来表征该平台。出现了三个基准级别的发现：(i) 在四种意识条件下，平均最终任务质量在统计学上没有区别（|β|≤0.010，p≥0.21），因此仅进行质量评估会错过编排信号；(ii) 在接近相等的平均质量下，路由保真度在k=1时在不同条件下范围为7.5%到29.5%，其中传递通道（按需工具与预加载描述）主导描述内容；(iii) 反事实上限将完美委托置于每个套件上测量性能之上15-31个百分点，为未来的编排方法找到了巨大的未实现空间。我们发布了该平台、标注层、参考干预套件、分析管道和220个每条件运行档案。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce DecisionBench, a benchmark substrate for emergent delegation in long-horizon agentic workflows. The substrate fixes a task suite (GAIA, τ -bench, BFCL multi-turn), a peer-model pool (11 models, 7 vendor families), a delegation interface (call_model plus an optional read_profile channel), a deterministic skill-annotation layer, and a multi-axis metric suite covering quality, cost, latency, delegation rate, routing fidelity-at-k, vendor self-preference, and a counterfactualdelegation ceiling. The substrate is agnostic to how peer information is generated or delivered, so learned routers, richer peer memories, adaptive profile construction, and multi-step delegation can all be evaluated against it. We characterize the substrate with a five-condition reference sweep on the full pool (n=23,375 task instances). Three benchmark-level findings emerge: (i) mean end-task quality is statistically indistinguishable across the four awareness conditions (|β|≤0.010, p≥0.21), so quality-only evaluation would miss the orchestration signal; (ii) routing fidelity-at-1 ranges from 7.5% to 29.5% across conditions at near-equal mean quality, with delivery channel (on-demand tool vs. preloaded description) dominating description content; (iii) a counterfactual ceiling places perfect delegation 15–31 percentage points above measured performance on every suite, locating large unrealized headroom for future orchestration methods. We release the substrate, annotation layer, reference intervention suite, analysis pipeline, and 220 per-condition run archives.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520a297decisi,
+  title = {DecisionBench: A Benchmark for Emergent Delegation in Long-Horizon Agentic Workflows},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.19099.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a297-decisionbench-delegation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DecisionBench: A Benchmark for Emergent Delegation in Long-Horizon Agentic Workflows. https://arxiv.org/pdf/2605.19099.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.19099.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

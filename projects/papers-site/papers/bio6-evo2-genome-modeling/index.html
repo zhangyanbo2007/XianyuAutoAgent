@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Genome modelling and design across all domains of life with Evo 2 | DAST Papers</title>
+    <meta name="description" content="问题与背景：这篇论文试图把基因组建模从局部任务模型提升为跨生命全域的统一基础模型。传统基因组模型通常只覆盖特定物种、特定长度或特定任务，而 Evo 2 的目标是同时覆盖细菌、古菌和真核生物序列，并把预测与设计放进同一框架。
+
+方法/新意：论文提出 Evo 2 这一大规模基因组 foundation model，使用极长上下文的序列建模策略，在统一语料上学习跨物种、跨功能层级的表示。它不仅用于序列补" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio6-evo2-genome-modeling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Genome modelling and design across all domains of life with Evo 2" />
+    <meta property="og:description" content="问题与背景：这篇论文试图把基因组建模从局部任务模型提升为跨生命全域的统一基础模型。传统基因组模型通常只覆盖特定物种、特定长度或特定任务，而 Evo 2 的目标是同时覆盖细菌、古菌和真核生物序列，并把预测与设计放进同一框架。
+
+方法/新意：论文提出 Evo 2 这一大规模基因组 foundation model，使用极长上下文的序列建模策略，在统一语料上学习跨物种、跨功能层级的表示。它不仅用于序列补" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio6-evo2-genome-modeling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Genome modelling and design across all domains of life with Evo 2" />
+    <meta name="twitter:description" content="问题与背景：这篇论文试图把基因组建模从局部任务模型提升为跨生命全域的统一基础模型。传统基因组模型通常只覆盖特定物种、特定长度或特定任务，而 Evo 2 的目标是同时覆盖细菌、古菌和真核生物序列，并把预测与设计放进同一框架。
+
+方法/新意：论文提出 Evo 2 这一大规模基因组 foundation model，使用极长上下文的序列建模策略，在统一语料上学习跨物种、跨功能层级的表示。它不仅用于序列补" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Genome modelling and design across all domains of life with Evo 2</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-19</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10176-5" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10176-5</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：这篇论文试图把基因组建模从局部任务模型提升为跨生命全域的统一基础模型。传统基因组模型通常只覆盖特定物种、特定长度或特定任务，而 Evo 2 的目标是同时覆盖细菌、古菌和真核生物序列，并把预测与设计放进同一框架。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：论文提出 Evo 2 这一大规模基因组 foundation model，使用极长上下文的序列建模策略，在统一语料上学习跨物种、跨功能层级的表示。它不仅用于序列补全、功能推断和变异效应预测，也支持生成式设计，使模型从“读基因组”扩展到“写基因组”。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这是 AI-enabled genomics 主线里的高位条目，和 AlphaGenome 同处“基因组基础模型”方向，但更强调跨生命全域与生成设计能力。它的价值不在单一 SOTA，而在于把 genomic modeling 推向真正的平台层。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：尽管论文层级和平台属性都很强，但是否达到 AlphaFold 那种范式重排级影响，还要看社区复现、下游采用和真实生物设计闭环的持续验证。因此当前更稳妥地定为颠覆性，而不是直接升到范式级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：这篇论文试图把基因组建模从局部任务模型提升为跨生命全域的统一基础模型。传统基因组模型通常只覆盖特定物种、特定长度或特定任务，而 Evo 2 的目标是同时覆盖细菌、古菌和真核生物序列，并把预测与设计放进同一框架。</p><p>方法/新意：论文提出 Evo 2 这一大规模基因组 foundation model，使用极长上下文的序列建模策略，在统一语料上学习跨物种、跨功能层级的表示。它不仅用于序列补全、功能推断和变异效应预测，也支持生成式设计，使模型从“读基因组”扩展到“写基因组”。</p><p>意义/放在仓库中的位置：这是 AI-enabled genomics 主线里的高位条目，和 AlphaGenome 同处“基因组基础模型”方向，但更强调跨生命全域与生成设计能力。它的价值不在单一 SOTA，而在于把 genomic modeling 推向真正的平台层。</p><p>局限/为何不再升一级：尽管论文层级和平台属性都很强，但是否达到 AlphaFold 那种范式重排级影响，还要看社区复现、下游采用和真实生物设计闭环的持续验证。因此当前更稳妥地定为颠覆性，而不是直接升到范式级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Evo 2在所有生命域的基因组建模与设计 所有生命都用DNA编码信息。尽管基因组代码的测序、合成和编辑工具已经改变了生物学研究，但智能地构建新的生物系统还需要深入理解基因组编码的巨大复杂性。我们引入了Evo 2，这是一个生物学基础模型，它在一个涵盖所有生命域的高度精选基因组图谱上，用9.3万亿DNA碱基对进行了训练。我们训练了具有7B和40B参数的Evo 2，使其拥有前所未有的100万token上下文窗口和单核苷酸分辨率。Evo 2仅从DNA序列中学习，就能准确预测遗传变异的功能影响——从非编码致病性突变到临床上重要的BRCA1变异——而无需任务特异性微调。通过应用机制可解释性分析，我们揭示Evo 2自主学习了广泛的生物学特征，包括外显子-内含子边界、转录因子结合位点、蛋白质结构元件和原噬菌体基因组区域。除了其预测能力，Evo 2还能以基因组规模生成线粒体、原核和真核序列，其自然性和连贯性优于以往方法。通过推理时搜索引导Evo 2，可以实现表观基因组结构的可控生成，我们为此展示了生物学中首个推理时扩展结果。我们将Evo 2完全开源，包括模型参数、训练代码、推理代码和OpenGenome2数据集，以加速生物复杂性的探索和设计。∗ 这些作者对这项工作做出了同等贡献。 ∗∗ 这些作者对这项工作做出了同等贡献。 ‡ 这些作者共同指导了这项工作。 § 现任职于：OpenAI。 † 通讯作者：P.D.H. (patrick@arcinstitute.org), B.L.H. (brianhie@stanford.edu, brian.hie@arcinstitute.org)。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>All of life encodes information with DNA. While tools for sequencing, synthesis, and editing of genomic code have transformed biological research, intelligently composing new biological systems would also require a deep understanding of the immense complexity encoded by genomes. We introduce Evo 2, a biological foundation model trained on 9.3 trillion DNA base pairs from a highly curated genomic atlas spanning all domains of life. We train Evo 2 with 7B and 40B parameters to have an unprecedented 1 million token context window with single-nucleotide resolution. Evo 2 learns from DNA sequence alone to accurately predict the functional impacts of genetic variation—from noncoding pathogenic mutations to clinically significant BRCA1 variants—without task-specific finetuning. Applying mechanistic interpretability analyses, we reveal that Evo 2 autonomously learns a breadth of biological features, including exon–intron boundaries, transcription factor binding sites, protein structural elements, and prophage genomic regions. Beyond its predictive capabilities, Evo 2 generates mitochondrial, prokaryotic, and eukaryotic sequences at genome scale with greater naturalness and coherence than previous methods. Guiding Evo 2 via inference-time search enables controllable generation of epigenomic structure, for which we demonstrate the first inference-time scaling results in biology. We make Evo 2 fully open, including model parameters, training code, inference code, and the OpenGenome2 dataset, to accelerate the exploration and design of biological complexity. ∗ These authors contributed equally to this work. ∗∗ These authors contributed equally to this work. ‡ These authors jointly supervised this work. § Present address: OpenAI. † Corresponding authors: P.D.H. (patrick@arcinstitute.org), B.L.H. (brianhie@stanford.edu, brian.hie@arcinstitute.org).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260219bio6evo2ge,
+  title = {Genome modelling and design across all domains of life with Evo 2},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10176-5},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio6-evo2-genome-modeling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Genome modelling and design across all domains of life with Evo 2. https://www.nature.com/articles/s41586-026-10176-5</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10176-5" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

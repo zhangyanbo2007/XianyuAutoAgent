@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reasoning Models Struggle to Control their Chains of Thought | DAST Papers</title>
+    <meta name="description" content="评估推理模型能否有意识地操控自己的思维链以规避监控。论文构建 CoT-Control 基准，要求模型在解题同时遵守对推理过程的限制，例如禁用特定词或改变书写风格。核心发现是当前模型对 CoT 的可控性远低于对最终输出的可控性，并且随着 RL 训练、测试时计算和题目难度上升，可控性反而下降。这意味着基于 CoT 的监控在现阶段可能比担心的更可靠。价值在于它把“思维链是否可被战略性伪装”变成了可量化安" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r4-cot-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Reasoning Models Struggle to Control their Chains of Thought" />
+    <meta property="og:description" content="评估推理模型能否有意识地操控自己的思维链以规避监控。论文构建 CoT-Control 基准，要求模型在解题同时遵守对推理过程的限制，例如禁用特定词或改变书写风格。核心发现是当前模型对 CoT 的可控性远低于对最终输出的可控性，并且随着 RL 训练、测试时计算和题目难度上升，可控性反而下降。这意味着基于 CoT 的监控在现阶段可能比担心的更可靠。价值在于它把“思维链是否可被战略性伪装”变成了可量化安" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r4-cot-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Reasoning Models Struggle to Control their Chains of Thought" />
+    <meta name="twitter:description" content="评估推理模型能否有意识地操控自己的思维链以规避监控。论文构建 CoT-Control 基准，要求模型在解题同时遵守对推理过程的限制，例如禁用特定词或改变书写风格。核心发现是当前模型对 CoT 的可控性远低于对最终输出的可控性，并且随着 RL 训练、测试时计算和题目难度上升，可控性反而下降。这意味着基于 CoT 的监控在现阶段可能比担心的更可靠。价值在于它把“思维链是否可被战略性伪装”变成了可量化安" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Reasoning Models Struggle to Control their Chains of Thought</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05706" target="_blank" rel="noopener noreferrer">2603.05706</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>评估推理模型能否有意识地操控自己的思维链以规避监控。论文构建 CoT-Control 基准，要求模型在解题同时遵守对推理过程的限制，例如禁用特定词或改变书写风格。核心发现是当前模型对 CoT 的可控性远低于对最终输出的可控性，并且随着 RL 训练、测试时计算和题目难度上升，可控性反而下降。这意味着基于 CoT 的监控在现阶段可能比担心的更可靠。价值在于它把“思维链是否可被战略性伪装”变成了可量化安全指标。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>评估推理模型能否有意识地操控自己的思维链以规避监控。论文构建 CoT-Control 基准，要求模型在解题同时遵守对推理过程的限制，例如禁用特定词或改变书写风格。核心发现是当前模型对 CoT 的可控性远低于对最终输出的可控性，并且随着 RL 训练、测试时计算和题目难度上升，可控性反而下降。这意味着基于 CoT 的监控在现阶段可能比担心的更可靠。价值在于它把“思维链是否可被战略性伪装”变成了可量化安全指标。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>推理模型难以控制其思维链。思维链（CoT）监控是检测现代推理模型不当行为和理解其动机的一种有前景的工具。然而，如果模型能够控制其CoT中表达的内容，这可能会损害CoT的可监控性。为了衡量这种不理想的能力——CoT可控性，我们引入了CoT-Control评估套件，其中包括要求模型在遵循CoT指令的同时解决问题的任务，例如，在不使用“染色体”一词的情况下推理一个遗传学问题。我们发现推理模型具有显著低于输出可控性的CoT可控性；例如，Claude Sonnet 4.5在控制其CoT时仅有2.7%的可控性，但在控制其最终输出时则达到61.9%。我们还发现，CoT可控性对于更大的模型更高，并且随着强化学习训练、测试时计算的增加以及问题难度的提高而降低。CoT可控性失败甚至延伸到模型被给予激励（而非直接请求）以规避CoT监控器的情况，尽管当模型被告知正在被监控时，它们表现出略高的可控性。同样，通过对抗性优化提示来引发可控性并不能显著提高可控性。我们的结果使我们谨慎乐观地认为，CoT可控性目前不太可能成为CoT可监控性的一种失效模式。然而，低可控性背后的机制尚不清楚。鉴于其对维持CoT可监控性的重要性，我们建议前沿实验室在未来的模型中跟踪CoT可控性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Chain-of-thought (CoT) monitoring is a promising tool for detecting misbehaviors and understanding the motivations of modern reasoning models. However, if models can control what they verbalize in their CoT, it could undermine CoT monitorability. To measure this undesirable capability — CoT controllability — we introduce the CoT-Control evaluation suite, which includes tasks that require models to solve problems while adhering to CoT instructions, e.g., reasoning about a genetics question without using the word “chromosome”. We show that reasoning models possess significantly lower CoT controllability than output controllability; for instance, Claude Sonnet 4.5 can control its CoT only 2.7% of the time but 61.9% when controlling its final output. We also find that CoT controllability is higher for larger models and decreases with more RL training, test-time compute, and increased problem difficulty. CoT controllability failures extend even to situations in which models are given incentives (as opposed to direct requests) to evade CoT monitors, although models exhibit slightly higher controllability when they are told they are being monitored. Similarly, eliciting controllability by adversarially optimizing prompts does not meaningfully increase controllability. Our results leave us cautiously optimistic that CoT controllability is currently unlikely to be a failure mode of CoT monitorability. However, the mechanism behind low controllability is not well understood. Given its importance for maintaining CoT monitorability, we recommend that frontier labs track CoT controllability in future models.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305r4cotcontr,
+  title = {Reasoning Models Struggle to Control their Chains of Thought},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05706.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r4-cot-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Reasoning Models Struggle to Control their Chains of Thought. https://arxiv.org/pdf/2603.05706.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05706.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

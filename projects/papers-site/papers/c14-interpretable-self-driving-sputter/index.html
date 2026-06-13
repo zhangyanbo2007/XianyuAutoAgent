@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Interpretable self-driving sputter epitaxy: from black-box optimization to human-usable growth rules | DAST Papers</title>
+    <meta name="description" content="很多 self-driving lab 系统虽然能自动优化工艺参数，但本质上仍然是黑盒 optimizer，难以沉淀成可迁移的科学知识。这篇论文的关键价值，在于把自动实验平台从“找到最优点”推进到“提炼可供人类使用的增长规则”。
+
+作者在 sputter epitaxy 场景下，把 Bayesian optimization、自动光学评估和 surrogate rule distillation " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c14-interpretable-self-driving-sputter/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Interpretable self-driving sputter epitaxy: from black-box optimization to human-usable growth rules" />
+    <meta property="og:description" content="很多 self-driving lab 系统虽然能自动优化工艺参数，但本质上仍然是黑盒 optimizer，难以沉淀成可迁移的科学知识。这篇论文的关键价值，在于把自动实验平台从“找到最优点”推进到“提炼可供人类使用的增长规则”。
+
+作者在 sputter epitaxy 场景下，把 Bayesian optimization、自动光学评估和 surrogate rule distillation " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c14-interpretable-self-driving-sputter/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Interpretable self-driving sputter epitaxy: from black-box optimization to human-usable growth rules" />
+    <meta name="twitter:description" content="很多 self-driving lab 系统虽然能自动优化工艺参数，但本质上仍然是黑盒 optimizer，难以沉淀成可迁移的科学知识。这篇论文的关键价值，在于把自动实验平台从“找到最优点”推进到“提炼可供人类使用的增长规则”。
+
+作者在 sputter epitaxy 场景下，把 Bayesian optimization、自动光学评估和 surrogate rule distillation " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Interpretable self-driving sputter epitaxy: from black-box optimization to human-usable growth rules</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.22531" target="_blank" rel="noopener noreferrer">2602.22531</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 self-driving lab 系统虽然能自动优化工艺参数，但本质上仍然是黑盒 optimizer，难以沉淀成可迁移的科学知识。这篇论文的关键价值，在于把自动实验平台从“找到最优点”推进到“提炼可供人类使用的增长规则”。</dd></div><div><dt>方法/机制</dt><dd>作者在 sputter epitaxy 场景下，把 Bayesian optimization、自动光学评估和 surrogate rule distillation 结合起来：先让闭环系统在高维工艺空间里找到低 Urbach energy 的优质生长条件，再把闭环数据转成随机森林 surrogate，并进一步蒸馏为 response curves 和成对交互规则，从而得到可解释、可迁移的 growth rules。</dd></div><div><dt>结果/证据</dt><dd>这篇工作符合本仓库对 AI for science 的标准，因为贡献不只是自动化 throughput，而是把闭环实验结果转成领域专家可复用的规则表示。这使 self-driving lab 从黑盒搜索工具转向知识生产工作流，方法外溢强于普通自动实验论文。</dd></div><div><dt>收录价值</dt><dd>它仍是 breakthrough，因为目前证明集中在 sputter epitaxy 与特定材料体系；它清楚地展示了“从优化到规则”的路径，但还没有证明该模式在更广自驱实验室中的通用性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 self-driving lab 系统虽然能自动优化工艺参数，但本质上仍然是黑盒 optimizer，难以沉淀成可迁移的科学知识。这篇论文的关键价值，在于把自动实验平台从“找到最优点”推进到“提炼可供人类使用的增长规则”。</p><p>作者在 sputter epitaxy 场景下，把 Bayesian optimization、自动光学评估和 surrogate rule distillation 结合起来：先让闭环系统在高维工艺空间里找到低 Urbach energy 的优质生长条件，再把闭环数据转成随机森林 surrogate，并进一步蒸馏为 response curves 和成对交互规则，从而得到可解释、可迁移的 growth rules。</p><p>这篇工作符合本仓库对 AI for science 的标准，因为贡献不只是自动化 throughput，而是把闭环实验结果转成领域专家可复用的规则表示。这使 self-driving lab 从黑盒搜索工具转向知识生产工作流，方法外溢强于普通自动实验论文。</p><p>它仍是 breakthrough，因为目前证明集中在 sputter epitaxy 与特定材料体系；它清楚地展示了“从优化到规则”的路径，但还没有证明该模式在更广自驱实验室中的通用性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>可解释的自驱动溅射外延：从黑箱优化到人类可用的生长规则。自驱动实验室已成为探索高维工艺空间的强大工具，然而，这些系统仍是黑箱优化器，产生的可迁移工艺理解有限。在本文中，我们展示了一个可解释的自驱动实验室框架，它将自主优化转化为人类可用的生长规则。作为一个严格的基准，我们将此框架应用于射频磁控溅射，解决了通过溅射实现高质量β-Ga2O3异质外延和单晶β-Ga2O3同质外延的长期挑战。通过将贝叶斯优化与Urbach能量的自动化光学评估（作为亚带隙无序的衡量标准）相结合，该自驱动系统有效地识别出异质外延生长条件，获得了182 meV的最小Urbach能量，这是溅射β-Ga2O3薄膜的最低值。重要的是，优化后的生长窗口是可迁移的，无需进一步优化即可实现单晶β-Ga2O3同质外延，这一点已通过扫描透射电子显微镜得到证实。为了将闭环数据集转化为可解释的生长规则，我们训练了一个随机森林代理模型，并将其提炼为响应曲线和四维生长参数空间中的量化成对相互作用。该分析确定衬底温度是主要的控制旋钮，射频功率和气体流量主要以加性方式作用，并且只有适度的温度-氧气耦合划定了高质量生长的狭窄窗口，从而建立了从自主实验到可迁移生长规则的通用途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Self-driving laboratories have emerged as powerful tools for navigating high-dimensional process spaces, yet systems remain black-box optimizers that yield limited transferable process understanding. Here, we demonstrate an interpretable self-driving laboratory framework that transforms autonomous optimization into human-usable growth rules. As a stringent benchmark, we apply this framework to RF magnetron sputtering, addressing a long-standing challenge of achieving high-quality β-Ga2O3 heteroepitaxy and singlecrystalline β-Ga2O3 homoepitaxy via sputtering. By combining Bayesian optimization with automated optical evaluation of the Urbach energy as a metric of sub-bandgap disorder, the self-driving system efficiently identifies heteroepitaxial growth conditions yielding a minimum Urbach energy of 182 meV, the lowest value for sputtered β-Ga2O3 films. Importantly, the optimized growth window is transferable, realizing singlecrystalline β-Ga2O3 homoepitaxy without further optimization, corroborated by scanning transmission electron microscopy. To convert the closed-loop dataset into interpretable growth rules, we train a random forest surrogate and distill it into response curves and quantified pairwise interactions across the four-dimensional growth-parameter space. This analysis identifies substrate temperature as the primary control knob, with RF power and gas flows acting largely additively and only a modest temperature-oxygen coupling delineating the narrow window for high-quality growth, establishing a general route from autonomous experimentation to transferable growth rules.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260226c14interpr,
+  title = {Interpretable self-driving sputter epitaxy: from black-box optimization to human-usable growth rules},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.22531.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c14-interpretable-self-driving-sputter/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Interpretable self-driving sputter epitaxy: from black-box optimization to human-usable growth rules. https://arxiv.org/pdf/2602.22531.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.22531.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

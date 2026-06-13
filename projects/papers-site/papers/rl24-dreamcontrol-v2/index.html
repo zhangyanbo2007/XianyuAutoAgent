@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DreamControl-v2: Simpler and Scalable Autonomous Humanoid Skills via Trainable Guided Diffusion Priors | DAST Papers</title>
+    <meta name="description" content="humanoid loco-manipulation 仍然面临一个老问题：单靠 RL 很难稳定学到长程、互动密集的技能，而仅靠 imitation 或 motion prior 又难以兼顾机器人本体约束与真实执行鲁棒性。DreamControl 这一系工作已经证明 human-motion diffusion prior 对 RL 有帮助，但原始流程仍然带着较重的人为筛选和手工干预。DreamCo" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl24-dreamcontrol-v2/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DreamControl-v2: Simpler and Scalable Autonomous Humanoid Skills via Trainable Guided Diffusion Priors" />
+    <meta property="og:description" content="humanoid loco-manipulation 仍然面临一个老问题：单靠 RL 很难稳定学到长程、互动密集的技能，而仅靠 imitation 或 motion prior 又难以兼顾机器人本体约束与真实执行鲁棒性。DreamControl 这一系工作已经证明 human-motion diffusion prior 对 RL 有帮助，但原始流程仍然带着较重的人为筛选和手工干预。DreamCo" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl24-dreamcontrol-v2/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DreamControl-v2: Simpler and Scalable Autonomous Humanoid Skills via Trainable Guided Diffusion Priors" />
+    <meta name="twitter:description" content="humanoid loco-manipulation 仍然面临一个老问题：单靠 RL 很难稳定学到长程、互动密集的技能，而仅靠 imitation 或 motion prior 又难以兼顾机器人本体约束与真实执行鲁棒性。DreamControl 这一系工作已经证明 human-motion diffusion prior 对 RL 有帮助，但原始流程仍然带着较重的人为筛选和手工干预。DreamCo" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DreamControl-v2: Simpler and Scalable Autonomous Humanoid Skills via Trainable Guided Diffusion Priors</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00202" target="_blank" rel="noopener noreferrer">2604.00202</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>humanoid loco-manipulation 仍然面临一个老问题：单靠 RL 很难稳定学到长程、互动密集的技能，而仅靠 imitation 或 motion prior 又难以兼顾机器人本体约束与真实执行鲁棒性。DreamControl 这一系工作已经证明 human-motion diffusion prior 对 RL 有帮助，但原始流程仍然带着较重的人为筛选和手工干预。DreamControl-v2 的目标就是把这条路线做得更简单、更可扩展。</dd></div><div><dt>方法/机制</dt><dd>论文的核心改动是直接在 humanoid motion space 中训练 guided diffusion model，并把多种 human 与 robot 数据统一到一个 embodiment space。这样既扩大了可表达技能范围，也移除了对手工过滤和繁琐 prior 清洗的依赖。作者还强调 reference trajectory generation 的规模化对于后续 RL policy 稳定性非常关键，从而把 diffusion prior 从静态先验推进成可训练、可扩展的 skill-generation 组件。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它给 humanoid autonomous skill learning 提供了更清晰的训练 recipe：用 trainable guided diffusion prior 作为可扩展的 reference generator，再驱动 downstream RL。这个模式对具身技能学习、先验注入和人机数据混合训练都有持续参考价值，不只是一个 demo 系统。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要围绕 DreamControl 系路线和 Unitree G1 等平台展开，尚未证明这套方法会成为更广 humanoid 技能学习的默认蓝图。它足够强，但还不到路线重写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>humanoid loco-manipulation 仍然面临一个老问题：单靠 RL 很难稳定学到长程、互动密集的技能，而仅靠 imitation 或 motion prior 又难以兼顾机器人本体约束与真实执行鲁棒性。DreamControl 这一系工作已经证明 human-motion diffusion prior 对 RL 有帮助，但原始流程仍然带着较重的人为筛选和手工干预。DreamControl-v2 的目标就是把这条路线做得更简单、更可扩展。</p><p>论文的核心改动是直接在 humanoid motion space 中训练 guided diffusion model，并把多种 human 与 robot 数据统一到一个 embodiment space。这样既扩大了可表达技能范围，也移除了对手工过滤和繁琐 prior 清洗的依赖。作者还强调 reference trajectory generation 的规模化对于后续 RL policy 稳定性非常关键，从而把 diffusion prior 从静态先验推进成可训练、可扩展的 skill-generation 组件。</p><p>这篇工作值得收录，因为它给 humanoid autonomous skill learning 提供了更清晰的训练 recipe：用 trainable guided diffusion prior 作为可扩展的 reference generator，再驱动 downstream RL。这个模式对具身技能学习、先验注入和人机数据混合训练都有持续参考价值，不只是一个 demo 系统。</p><p>它没有升到更高一级，是因为当前证据仍主要围绕 DreamControl 系路线和 Unitree G1 等平台展开，尚未证明这套方法会成为更广 humanoid 技能学习的默认蓝图。它足够强，但还不到路线重写。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260331rl24dreamc,
+  title = {DreamControl-v2: Simpler and Scalable Autonomous Humanoid Skills via Trainable Guided Diffusion Priors},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00202.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl24-dreamcontrol-v2/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DreamControl-v2: Simpler and Scalable Autonomous Humanoid Skills via Trainable Guided Diffusion Priors. https://arxiv.org/pdf/2604.00202.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00202.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

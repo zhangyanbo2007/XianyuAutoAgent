@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment | DAST Papers</title>
+    <meta name="description" content="On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+On-policy self-evolving safety alignment from verifier-scored agent failures.
+
+It trea" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a275-fate-agentic-safety-alignment/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment" />
+    <meta property="og:description" content="On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+On-policy self-evolving safety alignment from verifier-scored agent failures.
+
+It trea" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a275-fate-agentic-safety-alignment/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment" />
+    <meta name="twitter:description" content="On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+On-policy self-evolving safety alignment from verifier-scored agent failures.
+
+It trea" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.11882" target="_blank" rel="noopener noreferrer">2605.11882</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</dd></div><div><dt>方法/机制</dt><dd>On-policy self-evolving safety alignment from verifier-scored agent failures.</dd></div><div><dt>结果/证据</dt><dd>It treats safety as trajectory repair for tool-using agents, not just response filtering, and preserves utility/over-refusal constraints.</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</p><p>On-policy self-evolving safety alignment from verifier-scored agent failures.</p><p>It treats safety as trajectory repair for tool-using agents, not just response filtering, and preserves utility/over-refusal constraints.</p><p>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>使用工具的LLM智能体通过轨迹而非仅仅最终响应来失败，因为它们可能执行不安全的工具调用、遵循注入的指令、遵守有害请求或过度拒绝良性任务，尽管它们产生了看似安全的答案。现有的安全对齐信号大多是响应级别的或离策略的，并且通常会带来安全-效用权衡：提高智能体安全性会以降低任务性能为代价。这种稀疏的单目标奖励严重限制了实际可用性。为了弥补这一差距，我们提出了FATE，一个在策略上自进化的框架，它将验证器评分的失败转化为修复监督，而无需专家演示。对于每次失败，相同的策略会提出修复候选方案，然后由验证器重新评分，并根据安全性、效用、过度拒绝控制和轨迹有效性进行筛选。这种密集的轨迹级别信息最终被用作智能体自进化的监督信号。在进化过程中，我们进一步引入了帕累托前沿策略优化（PFPO），将监督预热与帕累托感知策略优化相结合，以保持安全-效用权衡。在AgentDojo、AgentHarm和ATBench上的实验表明，FATE在不同模型和规模上提高了安全性，同时保留了有用的行为。与强大的基线相比，FATE将攻击成功率降低了33.5%，有害合规性降低了82.6%，并将外部轨迹安全诊断提高了6.5%。这些结果表明，失败的轨迹可以为更安全的自进化智能体提供结构化的修复监督。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Tool-using LLM agents fail through trajectories rather than only final responses, as they may execute unsafe tool calls, follow injected instructions, comply with harmful requests, or over-refuse benign tasks despite producing a seemingly safe answer. Existing safety-alignment signals are largely response-level or off-policy, and often incur a safety–utility trade-off: improving agent safety comes at the cost of degraded task performance. Such sparse and single-objective rewards severely limit real-world usability. To bridge this gap, we propose FATE, an on-policy self-evolving framework that transforms verifier-scored failures into repair supervision without expert demonstrations. For each failure, the same policy proposes repair candidates, which are then re-scored by verifiers and filtered across security, utility, over-refusal control, and trajectory validity. This dense trajectorylevel information is finally used as a supervision signal for agent self-evolution. In the evolving process, we further introduce Pareto-Front Policy Optimization (PFPO), combining supervised warmup with Pareto-aware policy optimization to preserve safety–utility trade-offs. Experiments on AgentDojo, AgentHarm, and ATBench show that FATE improves safety across different models and scales while preserving useful behavior. Compared with strong baselines, FATE reduces attack success rate by 33.5%, harmful compliance by 82.6%, and improves external trajectory-safety diagnosis by 6.5%. These results suggest that failed trajectories can provide structured repair supervision for safer self-evolving agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512a275fateag,
+  title = {On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.11882.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a275-fate-agentic-safety-alignment/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment. https://arxiv.org/pdf/2605.11882.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.11882.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.11882" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

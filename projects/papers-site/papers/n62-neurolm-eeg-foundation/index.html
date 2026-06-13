@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeuroLM: A Universal Multi-task Foundation Model for Bridging the Gap between Language and EEG Signals | DAST Papers</title>
+    <meta name="description" content="这篇工作针对 EEG 预训练领域一个长期存在的瓶颈：已有基础模型虽然能通过大规模预训练学到通用表征，但下游任务往往仍需要分别全量微调，导致任务割裂、资源浪费，也难以形成真正统一的 EEG 基础模型。论文提出 NeuroLM，把 EEG 信号视为一种可被语言模型处理的“外语”，试图把 LLM 式多任务推理能力引入脑电领域。
+
+方法上的关键在于三步结合：先学习一个与文本空间对齐的神经分词器，把 EEG" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n62-neurolm-eeg-foundation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="NeuroLM: A Universal Multi-task Foundation Model for Bridging the Gap between Language and EEG Signals" />
+    <meta property="og:description" content="这篇工作针对 EEG 预训练领域一个长期存在的瓶颈：已有基础模型虽然能通过大规模预训练学到通用表征，但下游任务往往仍需要分别全量微调，导致任务割裂、资源浪费，也难以形成真正统一的 EEG 基础模型。论文提出 NeuroLM，把 EEG 信号视为一种可被语言模型处理的“外语”，试图把 LLM 式多任务推理能力引入脑电领域。
+
+方法上的关键在于三步结合：先学习一个与文本空间对齐的神经分词器，把 EEG" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n62-neurolm-eeg-foundation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NeuroLM: A Universal Multi-task Foundation Model for Bridging the Gap between Language and EEG Signals" />
+    <meta name="twitter:description" content="这篇工作针对 EEG 预训练领域一个长期存在的瓶颈：已有基础模型虽然能通过大规模预训练学到通用表征，但下游任务往往仍需要分别全量微调，导致任务割裂、资源浪费，也难以形成真正统一的 EEG 基础模型。论文提出 NeuroLM，把 EEG 信号视为一种可被语言模型处理的“外语”，试图把 LLM 式多任务推理能力引入脑电领域。
+
+方法上的关键在于三步结合：先学习一个与文本空间对齐的神经分词器，把 EEG" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>NeuroLM: A Universal Multi-task Foundation Model for Bridging the Gap between Language and EEG Signals</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2024-08-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-08-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2409.00101" target="_blank" rel="noopener noreferrer">2409.00101</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作针对 EEG 预训练领域一个长期存在的瓶颈：已有基础模型虽然能通过大规模预训练学到通用表征，但下游任务往往仍需要分别全量微调，导致任务割裂、资源浪费，也难以形成真正统一的 EEG 基础模型。论文提出 NeuroLM，把 EEG 信号视为一种可被语言模型处理的“外语”，试图把 LLM 式多任务推理能力引入脑电领域。</dd></div><div><dt>方法/机制</dt><dd>方法上的关键在于三步结合：先学习一个与文本空间对齐的神经分词器，把 EEG 转成离散 neural tokens；再用多通道自回归方式在 LLM 框架中学习 EEG 的因果结构；最后通过指令微调把不同 EEG 下游任务统一到一个模型中。论文的核心新意不是单独做更大的 EEG 预训练，而是明确把语言建模、tokenization 和 instruction tuning 这套范式迁移到 EEG。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为它是 EEG foundation model 路线里少见的真正框架级推进。它对脑机接口、神经信号表征学习和多任务基础模型都有明确价值，也对 AI 研究中跨模态 tokenization、低信噪比时序建模和任务统一范式提供了直接启发。对于仓库来说，它比普通 EEG 应用论文更接近可复用的方法论条目。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因是当前主要验证仍集中在 EEG 任务集合内，跨模态统一和更广泛临床/认知场景泛化还需要后续工作支持。它是很强的 breakthrough，但还没到重排更大范围 NeuroAI 或 foundation model 路线的 disruptive 级别。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作针对 EEG 预训练领域一个长期存在的瓶颈：已有基础模型虽然能通过大规模预训练学到通用表征，但下游任务往往仍需要分别全量微调，导致任务割裂、资源浪费，也难以形成真正统一的 EEG 基础模型。论文提出 NeuroLM，把 EEG 信号视为一种可被语言模型处理的“外语”，试图把 LLM 式多任务推理能力引入脑电领域。</p><p>方法上的关键在于三步结合：先学习一个与文本空间对齐的神经分词器，把 EEG 转成离散 neural tokens；再用多通道自回归方式在 LLM 框架中学习 EEG 的因果结构；最后通过指令微调把不同 EEG 下游任务统一到一个模型中。论文的核心新意不是单独做更大的 EEG 预训练，而是明确把语言建模、tokenization 和 instruction tuning 这套范式迁移到 EEG。</p><p>这项工作值得收录，因为它是 EEG foundation model 路线里少见的真正框架级推进。它对脑机接口、神经信号表征学习和多任务基础模型都有明确价值，也对 AI 研究中跨模态 tokenization、低信噪比时序建模和任务统一范式提供了直接启发。对于仓库来说，它比普通 EEG 应用论文更接近可复用的方法论条目。</p><p>它还不到更高一级，原因是当前主要验证仍集中在 EEG 任务集合内，跨模态统一和更广泛临床/认知场景泛化还需要后续工作支持。它是很强的 breakthrough，但还没到重排更大范围 NeuroAI 或 foundation model 路线的 disruptive 级别。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240827n62neurolm,
+  title = {NeuroLM: A Universal Multi-task Foundation Model for Bridging the Gap between Language and EEG Signals},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2409.00101.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n62-neurolm-eeg-foundation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). NeuroLM: A Universal Multi-task Foundation Model for Bridging the Gap between Language and EEG Signals. https://arxiv.org/pdf/2409.00101.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2409.00101.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

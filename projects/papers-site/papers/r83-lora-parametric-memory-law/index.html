@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How LoRA Remembers? A Parametric Memory Law for LLM Finetuning | DAST Papers</title>
+    <meta name="description" content="LoRA 常被当作知识更新和能力注入接口，但它到底能记住多少、如何记、何时会精确回忆，仍缺少定量规律。
+
+这篇论文把 LoRA 用作 latent-space parametric memory probe，提出 Parametric Memory Law，将 loss reduction、effective parameters 和 sequence length 连接成 power law。
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r83-lora-parametric-memory-law/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="How LoRA Remembers? A Parametric Memory Law for LLM Finetuning" />
+    <meta property="og:description" content="LoRA 常被当作知识更新和能力注入接口，但它到底能记住多少、如何记、何时会精确回忆，仍缺少定量规律。
+
+这篇论文把 LoRA 用作 latent-space parametric memory probe，提出 Parametric Memory Law，将 loss reduction、effective parameters 和 sequence length 连接成 power law。
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r83-lora-parametric-memory-law/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="How LoRA Remembers? A Parametric Memory Law for LLM Finetuning" />
+    <meta name="twitter:description" content="LoRA 常被当作知识更新和能力注入接口，但它到底能记住多少、如何记、何时会精确回忆，仍缺少定量规律。
+
+这篇论文把 LoRA 用作 latent-space parametric memory probe，提出 Parametric Memory Law，将 loss reduction、effective parameters 和 sequence length 连接成 power law。
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>How LoRA Remembers? A Parametric Memory Law for LLM Finetuning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30260" target="_blank" rel="noopener noreferrer">2605.30260</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LoRA 常被当作知识更新和能力注入接口，但它到底能记住多少、如何记、何时会精确回忆，仍缺少定量规律。</dd></div><div><dt>方法/机制</dt><dd>这篇论文把 LoRA 用作 latent-space parametric memory probe，提出 Parametric Memory Law，将 loss reduction、effective parameters 和 sequence length 连接成 power law。</dd></div><div><dt>结果/证据</dt><dd>论文还在 token 级发现确定性相变：当预测概率超过阈值时，greedy decoding 下 verbatim recall 成为可预期结果，并据此提出 threshold-guided MemFT。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它把 LoRA/PEFT 从经验调参推进到 parametric memory capacity 的可测量规律，对模型记忆、持续更新、模块化知识注入和遗忘控制都有直接价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LoRA 常被当作知识更新和能力注入接口，但它到底能记住多少、如何记、何时会精确回忆，仍缺少定量规律。</p><p>这篇论文把 LoRA 用作 latent-space parametric memory probe，提出 Parametric Memory Law，将 loss reduction、effective parameters 和 sequence length 连接成 power law。</p><p>论文还在 token 级发现确定性相变：当预测概率超过阈值时，greedy decoding 下 verbatim recall 成为可预期结果，并据此提出 threshold-guided MemFT。</p><p>它值得收录，因为它把 LoRA/PEFT 从经验调参推进到 parametric memory capacity 的可测量规律，对模型记忆、持续更新、模块化知识注入和遗忘控制都有直接价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型 (LLMs) 必须持续学习和更新知识以在动态的真实环境中保持有效性。虽然低秩适应 (LoRA) 被广泛用于此类记忆更新，但现有研究主要依赖于定性下游评估，从而在很大程度上未探索了精确参数记忆的定量容量限制和底层动力学。为了弥合这一差距，我们利用 LoRA 作为潜空间中的受控记忆容量探针，系统地量化精确参数记忆。我们引入了参数记忆定律，这是一种强大的幂律，将损失减少 ∆L 与有效参数和序列长度联系起来。在令牌级别，细粒度的分析揭示了一个确定性的相变，表明预测概率 p &gt; 0.5 是在贪婪解码下逐字回译的充分条件。基于这些见解，我们引入了 MemFT，这是一种基于阈值的优化策略，它动态地将训练预算重新分配到阈值以下的分片令牌。实验评估表明，MemFT 可以提高记忆的真实性和效率1。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Models (LLMs) must continuously learn and update knowledge to remain effective in dynamic real-world environments. While Low-Rank Adaptation (LoRA) is widely used for such memory updates, existing studies mainly rely on qualitative downstream evaluations, leaving the quantitative capacity limits and underlying dynamics of exact parametric memory largely unexplored. To bridge this gap, we employ LoRA as a controlled memory capacity probe within the latent space to systematically quantify exact parametric memory. We introduce the Parametric Memory Law, a robust power law linking loss reduction ∆L to effective parameters and sequence length. At the token level, fine-grained analysis reveals a deterministic phase transition, demonstrating that a prediction probability of p &gt; 0.5 constitutes a sufficient condition for verbatim recall under greedy decoding. Driven by these insights, we introduce MemFT, a threshold-guided optimization strategy that dynamically redistributes the training budget toward sub-threshold tokens. Empirical evaluations demonstrate that MemFT can enhance memory fidelity and efficiency1 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528r83lorapar,
+  title = {How LoRA Remembers? A Parametric Memory Law for LLM Finetuning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30260.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r83-lora-parametric-memory-law/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). How LoRA Remembers? A Parametric Memory Law for LLM Finetuning. https://arxiv.org/pdf/2605.30260.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30260.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.30260" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/zjunlp/ParametricMemoryLaw" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

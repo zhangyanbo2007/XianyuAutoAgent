@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents | DAST Papers</title>
+    <meta name="description" content="PEEK 区分了 agent memory 中容易混淆的对象：不是保存轨迹或原始材料，而是保存关于复用上下文的 orientation knowledge。
+
+系统维护一个固定预算 context map，记录外部上下文包含什么、如何组织、哪些实体/常量/schema 曾经有用，并通过 Distiller、Cartographer 和 Evictor 更新。
+
+它值得正式收录，因为它提供了 lon" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a302-peek-context-map-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents" />
+    <meta property="og:description" content="PEEK 区分了 agent memory 中容易混淆的对象：不是保存轨迹或原始材料，而是保存关于复用上下文的 orientation knowledge。
+
+系统维护一个固定预算 context map，记录外部上下文包含什么、如何组织、哪些实体/常量/schema 曾经有用，并通过 Distiller、Cartographer 和 Evictor 更新。
+
+它值得正式收录，因为它提供了 lon" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a302-peek-context-map-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents" />
+    <meta name="twitter:description" content="PEEK 区分了 agent memory 中容易混淆的对象：不是保存轨迹或原始材料，而是保存关于复用上下文的 orientation knowledge。
+
+系统维护一个固定预算 context map，记录外部上下文包含什么、如何组织、哪些实体/常量/schema 曾经有用，并通过 Distiller、Cartographer 和 Evictor 更新。
+
+它值得正式收录，因为它提供了 lon" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.19932" target="_blank" rel="noopener noreferrer">2605.19932</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>PEEK 区分了 agent memory 中容易混淆的对象：不是保存轨迹或原始材料，而是保存关于复用上下文的 orientation knowledge。</dd></div><div><dt>方法/机制</dt><dd>系统维护一个固定预算 context map，记录外部上下文包含什么、如何组织、哪些实体/常量/schema 曾经有用，并通过 Distiller、Cartographer 和 Evictor 更新。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它提供了 long-context agents 面向重复代码库、文档库和数据集工作的实用记忆原语，且报告对 Codex 等 agent 架构也有效。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为 context map 的自动维护、错误累积和权限边界还需要更长周期部署验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>PEEK 区分了 agent memory 中容易混淆的对象：不是保存轨迹或原始材料，而是保存关于复用上下文的 orientation knowledge。</p><p>系统维护一个固定预算 context map，记录外部上下文包含什么、如何组织、哪些实体/常量/schema 曾经有用，并通过 Distiller、Cartographer 和 Evictor 更新。</p><p>它值得正式收录，因为它提供了 long-context agents 面向重复代码库、文档库和数据集工作的实用记忆原语，且报告对 Codex 等 agent 架构也有效。</p><p>它没有更高，是因为 context map 的自动维护、错误累积和权限边界还需要更长周期部署验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLM）智能体越来越多地在长且重复的外部上下文中运行，例如文档语料库和代码库。在多次调用中，现有方法要么保留智能体的轨迹，要么被动访问原始材料，要么保留任务级策略。它们都没有保留我们认为在重复的相同上下文工作负载中最需要的东西：关于重复上下文本身的可重用定向知识（例如，上下文包含什么，它是如何组织的，以及哪些实体、常量和模式在历史上是有用的）。我们引入了PEEK，一个将这种定向知识缓存并维护为上下文地图的系统：一个在智能体提示中小型、固定大小的工件，使其能够持续窥探外部上下文。该地图由一个可编程缓存策略维护，该策略包含三个模块：一个从推理时信号中提取可转移知识的蒸馏器（Distiller），一个将其转换为结构化编辑的制图师（Cartographer），以及一个基于优先级的驱逐器（Evictor），用于强制执行固定的令牌预算。在长上下文推理和信息聚合方面，PEEK比强大的基线提高了6.3%至34.0%，同时使用的迭代次数减少了93至145次，成本比最先进的提示学习框架ACE低1.7至5.8倍。在上下文学习方面，PEEK将解决率和评分准确性分别提高了6.0%至14.0%和7.8%至12.1%，成本比ACE低1.4倍。这些增益在不同的语言模型和智能体架构中都具有普遍性，包括生产级编码智能体OpenAI Codex。总而言之，这些结果表明，上下文地图有助于长上下文LLM智能体更准确、更高效地与重复的外部上下文进行交互。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM) agents increasingly operate over long and recurring external contexts, like document corpora and code repositories. Across invocations, existing approaches preserve either the agent’s trajectory, passive access to raw material, or task-level strategies. None of them preserves what we argue is most needed for repeated same-context workloads: reusable orientation knowledge (e.g., what the context contains, how it is organized, and which entities, constants, and schemas have historically been useful) about the recurring context itself. We introduce P EEK, a system that caches and maintains this orientation knowledge as a context map: a small, constant-sized artifact in the agent’s prompt that gives it a persistent peek into the external context. The map is maintained by a programmable cache policy with three modules: a Distiller that extracts transferable knowledge from inference-time signals, a Cartographer that translates it into structured edits, and a priority-based Evictor that enforces a fixed token budget. On long-context reasoning and information aggregation, P EEK improves over strong baselines by 6.3–34.0% while using 93–145 fewer iterations and incurring 1.7–5.8× lower cost than the state-of-the-art prompt-learning framework, ACE. On context learning, P EEK improves solving rate and rubric accuracy by 6.0–14.0% and 7.8–12.1%, respectively, at 1.4× lower cost than ACE. These gains generalize across LMs and agent architectures, including OpenAI Codex, a production-grade coding agent. Together, these results show that a context map helps long-context LLM agents interact with recurring external contexts more accurately and efficiently.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260519a302peekco,
+  title = {PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.19932.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a302-peek-context-map-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents. https://arxiv.org/pdf/2605.19932.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.19932.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.19932" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

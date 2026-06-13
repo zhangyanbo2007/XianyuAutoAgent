@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是产品开发实践里一个很硬的问题：工程分析自动化通常依赖脆弱的脚本接口、固定数据格式和文档化流程，一旦设计迭代引起命名、单位、输入格式或局部方法变化，原有自动化支持就会失效。与其继续把问题理解成‘写更复杂的脚本’，论文把它重构成 agentic orchestration 问题。
+
+DUCTILE 的核心设计是把自适应编排与确定性执行显式拆开。LLM agent 负责读取文档化设计实践" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw18-ductile-engineering-analysis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice" />
+    <meta property="og:description" content="这篇论文处理的是产品开发实践里一个很硬的问题：工程分析自动化通常依赖脆弱的脚本接口、固定数据格式和文档化流程，一旦设计迭代引起命名、单位、输入格式或局部方法变化，原有自动化支持就会失效。与其继续把问题理解成‘写更复杂的脚本’，论文把它重构成 agentic orchestration 问题。
+
+DUCTILE 的核心设计是把自适应编排与确定性执行显式拆开。LLM agent 负责读取文档化设计实践" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw18-ductile-engineering-analysis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice" />
+    <meta name="twitter:description" content="这篇论文处理的是产品开发实践里一个很硬的问题：工程分析自动化通常依赖脆弱的脚本接口、固定数据格式和文档化流程，一旦设计迭代引起命名、单位、输入格式或局部方法变化，原有自动化支持就会失效。与其继续把问题理解成‘写更复杂的脚本’，论文把它重构成 agentic orchestration 问题。
+
+DUCTILE 的核心设计是把自适应编排与确定性执行显式拆开。LLM agent 负责读取文档化设计实践" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.10249" target="_blank" rel="noopener noreferrer">2603.10249</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是产品开发实践里一个很硬的问题：工程分析自动化通常依赖脆弱的脚本接口、固定数据格式和文档化流程，一旦设计迭代引起命名、单位、输入格式或局部方法变化，原有自动化支持就会失效。与其继续把问题理解成‘写更复杂的脚本’，论文把它重构成 agentic orchestration 问题。</dd></div><div><dt>方法/机制</dt><dd>DUCTILE 的核心设计是把自适应编排与确定性执行显式拆开。LLM agent 负责读取文档化设计实践、检查输入、判断偏差并重组处理路径；真正执行分析的仍然是经过验证的工程工具。这样既保留了大模型面对接口漂移时的柔性，又不把数值求解和规则执行交给不可验证的黑盒。论文在航空航天公司的工业结构分析任务上证明，该框架可以稳定处理传统脚本会直接失败的输入偏差。</dd></div><div><dt>结果/证据</dt><dd>按这次扩展后的仓库口径，这篇论文已经命中了产品级硬件开发链路中的 engineering analysis automation。它不是普通 agent benchmark，也不是单一 HCI 原型，而是给出了一个可复用的 product-development workflow pattern：由 LLM 负责编排和解释，由 verified tools 负责确定性工程执行，再由工程师保留最终监督权。这个分层接口对 CAD/CAE/EDA 类工具链都具有外溢意义。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为当前验证仍集中在一个工业结构分析流程，且系统明确保留用户监督，不是完整无人化的 design-simulate-verify loop。它更像一个强而清晰的工程工作流框架，而不是已经广泛改写产品设计自动化默认做法的总蓝图。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是产品开发实践里一个很硬的问题：工程分析自动化通常依赖脆弱的脚本接口、固定数据格式和文档化流程，一旦设计迭代引起命名、单位、输入格式或局部方法变化，原有自动化支持就会失效。与其继续把问题理解成‘写更复杂的脚本’，论文把它重构成 agentic orchestration 问题。</p><p>DUCTILE 的核心设计是把自适应编排与确定性执行显式拆开。LLM agent 负责读取文档化设计实践、检查输入、判断偏差并重组处理路径；真正执行分析的仍然是经过验证的工程工具。这样既保留了大模型面对接口漂移时的柔性，又不把数值求解和规则执行交给不可验证的黑盒。论文在航空航天公司的工业结构分析任务上证明，该框架可以稳定处理传统脚本会直接失败的输入偏差。</p><p>按这次扩展后的仓库口径，这篇论文已经命中了产品级硬件开发链路中的 engineering analysis automation。它不是普通 agent benchmark，也不是单一 HCI 原型，而是给出了一个可复用的 product-development workflow pattern：由 LLM 负责编排和解释，由 verified tools 负责确定性工程执行，再由工程师保留最终监督权。这个分层接口对 CAD/CAE/EDA 类工具链都具有外溢意义。</p><p>它没有更高一级，因为当前验证仍集中在一个工业结构分析流程，且系统明确保留用户监督，不是完整无人化的 design-simulate-verify loop。它更像一个强而清晰的工程工作流框架，而不是已经广泛改写产品设计自动化默认做法的总蓝图。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>DUCTILE：产品开发实践中工程分析的代理式LLM编排产品开发中的工程分析自动化依赖于工具、数据格式和文档化流程之间僵化的接口。当这些接口发生变化时（在工程生态系统中，随着产品的演进，这种情况是常态），自动化支持就会中断。本文提出了一种DUCTILE（委托式、用户监督的工具与文档集成LLM赋能）代理式编排方法，用于开发、执行和评估基于LLM的工程分析任务代理式自动化支持。该方法将由LLM代理执行的自适应编排与由经过验证的工程工具执行的确定性执行分离开来。代理解释文档化的设计实践，检查输入数据并调整处理路径，而工程师则进行监督并做出最终判断。DUCTILE在一个航空航天制造商的工业结构分析任务中得到了验证，其中代理处理了格式、单位、命名约定和方法论方面的输入偏差，这些偏差会使传统的脚本化流程中断。针对专家定义的验收标准的评估以及与执业工程师的部署证实，该方法在10次重复的独立运行中均产生了正确且符合方法学的结果。本文讨论了采用代理式自动化带来的范式转变和实际后果，包括在消除日常任务和创建耗尽精力的监督角色时对工程工作性质产生的意外影响。关键词：大型语言模型，基于代理的设计，设计自动化，设计方法论，设计过程，产品开发，专家系统，设计评估</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Design Practice Engineering analysis automation in product development relies on rigid interfaces between tools, data formats and documented processes. When these interfaces change, as they routinely do as the product evolves in the engineering ecosystem, the automation support breaks. This paper presents a DUCTILE (Delegated, User-supervised Coordination of Tool- and document-Integrated LLM-Enabled) agentic orchestration, an approach for developing, executing and evaluating LLM-based agentic automation support of engineering analysis tasks. The approach separates adaptive orchestration, performed by the LLM agent, from deterministic execution, performed by verified engineering tools. The agent interprets documented design practices, inspects input data and adapts the processing path, while the engineer supervises and exercises final judgment. DUCTILE is demonstrated on an industrial structural analysis task at an aerospace manufacturer, where the agent handled input deviations in format, units, naming conventions and methodology that would break traditional scripted pipelines. Evaluation against expert-defined acceptance criteria and deployment with practicing engineers confirm that the approach produces correct, methodologically compliant results across 10 repeated independent runs. The paper discusses the paradigm shift and the practical consequences of adopting agentic automation, including unintended effects on the nature of engineering work when removing mundane tasks and creating an exhausting supervisory role. Keywords: large language models, agent-based design, design automation, design methodology, design process, product development, expert systems, design evaluation</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260310hw18ductil,
+  title = {DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.10249.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw18-ductile-engineering-analysis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DUCTILE: Agentic LLM Orchestration of Engineering Analysis in Product Development Practice. https://arxiv.org/pdf/2603.10249.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.10249.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

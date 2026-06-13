@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brain-Semantoks: Learning Semantic Tokens of Brain Dynamics with a Self-Distilled Foundation Model | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 fMRI foundation model 的一个核心错位提出了修正：现有很多方法仍围绕 masked reconstruction 或局部区域重建来训练，因此更容易学到对噪声和时间波动敏感的低层表示，而不是适合认知与疾病表型预测的稳定脑动态表征。作者把目标从‘重建信号’改成了‘提取抽象而稳定的脑动态语义’。
+
+方法上的关键有两点。第一是 semantic tokenizer，它不再" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n63-brain-semantoks/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Brain-Semantoks: Learning Semantic Tokens of Brain Dynamics with a Self-Distilled Foundation Model" />
+    <meta property="og:description" content="这篇论文针对 fMRI foundation model 的一个核心错位提出了修正：现有很多方法仍围绕 masked reconstruction 或局部区域重建来训练，因此更容易学到对噪声和时间波动敏感的低层表示，而不是适合认知与疾病表型预测的稳定脑动态表征。作者把目标从‘重建信号’改成了‘提取抽象而稳定的脑动态语义’。
+
+方法上的关键有两点。第一是 semantic tokenizer，它不再" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n63-brain-semantoks/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Brain-Semantoks: Learning Semantic Tokens of Brain Dynamics with a Self-Distilled Foundation Model" />
+    <meta name="twitter:description" content="这篇论文针对 fMRI foundation model 的一个核心错位提出了修正：现有很多方法仍围绕 masked reconstruction 或局部区域重建来训练，因此更容易学到对噪声和时间波动敏感的低层表示，而不是适合认知与疾病表型预测的稳定脑动态表征。作者把目标从‘重建信号’改成了‘提取抽象而稳定的脑动态语义’。
+
+方法上的关键有两点。第一是 semantic tokenizer，它不再" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Brain-Semantoks: Learning Semantic Tokens of Brain Dynamics with a Self-Distilled Foundation Model</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-03-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.11582" target="_blank" rel="noopener noreferrer">2512.11582</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 fMRI foundation model 的一个核心错位提出了修正：现有很多方法仍围绕 masked reconstruction 或局部区域重建来训练，因此更容易学到对噪声和时间波动敏感的低层表示，而不是适合认知与疾病表型预测的稳定脑动态表征。作者把目标从‘重建信号’改成了‘提取抽象而稳定的脑动态语义’。</dd></div><div><dt>方法/机制</dt><dd>方法上的关键有两点。第一是 semantic tokenizer，它不再把小脑区时间序列直接当 token，而是按功能网络把 noisy regional signals 聚合成语义更强、噪声更低的 token。第二是 self-distillation across time，通过 teacher-student 框架强制不同时间视图对齐，再配合 Teacher-guided Temporal Regularizer 作为训练课程，避免在低信噪比 fMRI 上塌缩到无意义解。</dd></div><div><dt>结果/证据</dt><dd>它适合进入仓库，因为这是一篇明确的 brain foundation model 条目，而且 AI 外溢并不只是应用层。论文在输入 token 设计、自监督目标、跨时间稳定表示和 scaling 分析上都给出了清晰路线，对低信噪比时序数据的 foundation modeling、语义 token 化和自蒸馏表示学习都有直接启发。线性探针下的强表现也说明表征确实更接近通用、可迁移的脑动态语义空间。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为影响范围目前仍集中在 fMRI foundation modeling 和 neuroimaging transfer，而不是更普遍地改写跨模态 foundation model 主线。更准确地说，这是一篇很强的 NeuroAI/brain representation 论文，足够正式收录，但还没有到范式级别。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 fMRI foundation model 的一个核心错位提出了修正：现有很多方法仍围绕 masked reconstruction 或局部区域重建来训练，因此更容易学到对噪声和时间波动敏感的低层表示，而不是适合认知与疾病表型预测的稳定脑动态表征。作者把目标从‘重建信号’改成了‘提取抽象而稳定的脑动态语义’。</p><p>方法上的关键有两点。第一是 semantic tokenizer，它不再把小脑区时间序列直接当 token，而是按功能网络把 noisy regional signals 聚合成语义更强、噪声更低的 token。第二是 self-distillation across time，通过 teacher-student 框架强制不同时间视图对齐，再配合 Teacher-guided Temporal Regularizer 作为训练课程，避免在低信噪比 fMRI 上塌缩到无意义解。</p><p>它适合进入仓库，因为这是一篇明确的 brain foundation model 条目，而且 AI 外溢并不只是应用层。论文在输入 token 设计、自监督目标、跨时间稳定表示和 scaling 分析上都给出了清晰路线，对低信噪比时序数据的 foundation modeling、语义 token 化和自蒸馏表示学习都有直接启发。线性探针下的强表现也说明表征确实更接近通用、可迁移的脑动态语义空间。</p><p>它没有更高一级，因为影响范围目前仍集中在 fMRI foundation modeling 和 neuroimaging transfer，而不是更普遍地改写跨模态 foundation model 主线。更准确地说，这是一篇很强的 NeuroAI/brain representation 论文，足够正式收录，但还没有到范式级别。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260302n63brainse,
+  title = {Brain-Semantoks: Learning Semantic Tokens of Brain Dynamics with a Self-Distilled Foundation Model},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2512.11582v2},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n63-brain-semantoks/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Brain-Semantoks: Learning Semantic Tokens of Brain Dynamics with a Self-Distilled Foundation Model. https://arxiv.org/pdf/2512.11582v2</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.11582v2" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test-Time Scaling Makes Overtraining Compute-Optimal | DAST Papers</title>
+    <meta name="description" content="Chinchilla 这类经典预训练 scaling law 默认把训练阶段当作主要预算对象，但在 test-time scaling 成为默认能力放大手段后，这种分离式看法已经不够。真正的问题不再只是“多大模型配多少 token 最优”，而是训练规模和推理采样成本在端到端预算下如何联合最优。
+
+这篇工作提出 Train-to-Test (T²) scaling laws，把模型大小、训练 tok" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t25-t2-compute-optimal-overtraining/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Test-Time Scaling Makes Overtraining Compute-Optimal" />
+    <meta property="og:description" content="Chinchilla 这类经典预训练 scaling law 默认把训练阶段当作主要预算对象，但在 test-time scaling 成为默认能力放大手段后，这种分离式看法已经不够。真正的问题不再只是“多大模型配多少 token 最优”，而是训练规模和推理采样成本在端到端预算下如何联合最优。
+
+这篇工作提出 Train-to-Test (T²) scaling laws，把模型大小、训练 tok" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t25-t2-compute-optimal-overtraining/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Test-Time Scaling Makes Overtraining Compute-Optimal" />
+    <meta name="twitter:description" content="Chinchilla 这类经典预训练 scaling law 默认把训练阶段当作主要预算对象，但在 test-time scaling 成为默认能力放大手段后，这种分离式看法已经不够。真正的问题不再只是“多大模型配多少 token 最优”，而是训练规模和推理采样成本在端到端预算下如何联合最优。
+
+这篇工作提出 Train-to-Test (T²) scaling laws，把模型大小、训练 tok" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Test-Time Scaling Makes Overtraining Compute-Optimal</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01411" target="_blank" rel="noopener noreferrer">2604.01411</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Chinchilla 这类经典预训练 scaling law 默认把训练阶段当作主要预算对象，但在 test-time scaling 成为默认能力放大手段后，这种分离式看法已经不够。真正的问题不再只是“多大模型配多少 token 最优”，而是训练规模和推理采样成本在端到端预算下如何联合最优。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出 Train-to-Test (T²) scaling laws，把模型大小、训练 token 数和 inference sampling 次数一起纳入统一优化。核心结论很反直觉：一旦把 inference cost 真正算进去，compute-optimal 的预训练策略会显著偏向 overtraining，而不是传统 scaling suite 常见的平衡点。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它直接改写了 test-time scaling 时代的 compute-optimal 讨论框架。对训练资源分配、部署预算设计和 reasoning model 的 end-to-end economics，这种联合 scaling 视角有明显持久价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前仍主要建立在一组任务和建模假设上的经验验证。它已经是强 framing paper，但是否会成为后续大模型训练决策的普适准绳，还要看更广模型族和生产场景的验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Chinchilla 这类经典预训练 scaling law 默认把训练阶段当作主要预算对象，但在 test-time scaling 成为默认能力放大手段后，这种分离式看法已经不够。真正的问题不再只是“多大模型配多少 token 最优”，而是训练规模和推理采样成本在端到端预算下如何联合最优。</p><p>这篇工作提出 Train-to-Test (T²) scaling laws，把模型大小、训练 token 数和 inference sampling 次数一起纳入统一优化。核心结论很反直觉：一旦把 inference cost 真正算进去，compute-optimal 的预训练策略会显著偏向 overtraining，而不是传统 scaling suite 常见的平衡点。</p><p>它值得正式收录，因为它直接改写了 test-time scaling 时代的 compute-optimal 讨论框架。对训练资源分配、部署预算设计和 reasoning model 的 end-to-end economics，这种联合 scaling 视角有明显持久价值。</p><p>它暂时不升到更高一级，原因在于当前仍主要建立在一组任务和建模假设上的经验验证。它已经是强 framing paper，但是否会成为后续大模型训练决策的普适准绳，还要看更广模型族和生产场景的验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现代LLM在测试时进行扩展，例如通过重复采样，其中推理成本随模型大小和样本数量的增加而增长。这产生了一种预训练扩展定律（如Chinchilla）未解决的权衡。我们提出了训练到测试（T 2）扩展定律，该定律在固定的端到端预算下共同优化模型大小、训练token和推理样本数量。T 2使用用于测试时扩展的pass@k建模来现代化预训练扩展定律，然后共同优化预训练和测试时决策。T 2的预测对于不同的建模方法是稳健的：衡量对任务损失的联合扩展效应以及对任务准确性的建模影响。在八个下游任务中，我们发现，当考虑推理成本时，最优的预训练决策会显著转向过拟合区域，远远超出标准预训练扩展套件的范围。我们通过在T 2扩展预测的最佳区域预训练严重过拟合的模型来验证我们的结果，证实它们与单独的预训练扩展相比具有显著更强的性能。最后，随着前沿LLM的后训练，我们表明我们的发现经受住了后训练阶段的考验，使得T 2扩展在现代部署中具有重要意义。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Modern LLMs scale at test-time, e.g. via repeated sampling, where inference cost grows with model size and the number of samples. This creates a trade-off that pretraining scaling laws, such as Chinchilla, do not address. We present Train-to-Test (T 2 ) scaling laws that jointly optimize model size, training tokens, and number of inference samples under fixed end-to-end budgets. T 2 modernizes pretraining scaling laws with pass@k modeling used for test-time scaling, then jointly optimizes pretraining and test-time decisions. Forecasts from T 2 are robust over distinct modeling approaches: measuring joint scaling effect on the task loss and modeling impact on task accuracy. Across eight downstream tasks, we find that when accounting for inference cost, optimal pretraining decisions shift radically into the overtraining regime, well-outside of the range of standard pretraining scaling suites. We validate our results by pretraining heavily overtrained models in the optimal region that T 2 scaling forecasts, confirming their substantially stronger performance compared to pretraining scaling alone. Finally, as frontier LLMs are post-trained, we show that our findings survive the post-training stage, making T 2 scaling meaningful in modern deployments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401t25t2compu,
+  title = {Test-Time Scaling Makes Overtraining Compute-Optimal},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01411.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t25-t2-compute-optimal-overtraining/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Test-Time Scaling Makes Overtraining Compute-Optimal. https://arxiv.org/pdf/2604.01411.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01411.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MinT: Managed Infrastructure for Training and Serving Millions of LLMs | DAST Papers</title>
+    <meta name="description" content="MinT 针对后训练和在线服务里的新基础设施问题：当一个组织围绕少数昂贵 base models 产生大量 LoRA/RL policy revisions 时，不能再把每个 policy 都当成完整 checkpoint 管理。
+
+系统把 base model 常驻，把 LoRA adapter revisions 作为可调度、可回滚、可服务的轻量策略单元，在 rollout、update、ex" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys9-mint-lora-infrastructure/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MinT: Managed Infrastructure for Training and Serving Millions of LLMs" />
+    <meta property="og:description" content="MinT 针对后训练和在线服务里的新基础设施问题：当一个组织围绕少数昂贵 base models 产生大量 LoRA/RL policy revisions 时，不能再把每个 policy 都当成完整 checkpoint 管理。
+
+系统把 base model 常驻，把 LoRA adapter revisions 作为可调度、可回滚、可服务的轻量策略单元，在 rollout、update、ex" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys9-mint-lora-infrastructure/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MinT: Managed Infrastructure for Training and Serving Millions of LLMs" />
+    <meta name="twitter:description" content="MinT 针对后训练和在线服务里的新基础设施问题：当一个组织围绕少数昂贵 base models 产生大量 LoRA/RL policy revisions 时，不能再把每个 policy 都当成完整 checkpoint 管理。
+
+系统把 base model 常驻，把 LoRA adapter revisions 作为可调度、可回滚、可服务的轻量策略单元，在 rollout、update、ex" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MinT: Managed Infrastructure for Training and Serving Millions of LLMs</h1>
+          <p class="subtitle">系统、硬件与协同设计 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">系统、硬件与协同设计</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.13779" target="_blank" rel="noopener noreferrer">2605.13779</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>MinT 针对后训练和在线服务里的新基础设施问题：当一个组织围绕少数昂贵 base models 产生大量 LoRA/RL policy revisions 时，不能再把每个 policy 都当成完整 checkpoint 管理。</dd></div><div><dt>方法/机制</dt><dd>系统把 base model 常驻，把 LoRA adapter revisions 作为可调度、可回滚、可服务的轻量策略单元，在 rollout、update、export、evaluation、serving 和 rollback 之间移动。它同时覆盖 scale up、scale down 和 scale out：支持超过 1T 参数模型训练/服务，adapter-only handoff 显著降低传输成本，并支持百万级 addressable policy catalogs。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 LoRA/adapter 从微调技巧提升成训练-服务一体化的系统对象。对于多策略 RL、agent policy catalogs、持续后训练和大模型 serving 运营，这种 base-resident + adapter revision 管理模式有明确复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为论文来自单一系统报告，外部复现、真实多租户隔离、故障恢复、安全边界和与现有 serving 栈的集成还需要更多证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>MinT 针对后训练和在线服务里的新基础设施问题：当一个组织围绕少数昂贵 base models 产生大量 LoRA/RL policy revisions 时，不能再把每个 policy 都当成完整 checkpoint 管理。</p><p>系统把 base model 常驻，把 LoRA adapter revisions 作为可调度、可回滚、可服务的轻量策略单元，在 rollout、update、export、evaluation、serving 和 rollback 之间移动。它同时覆盖 scale up、scale down 和 scale out：支持超过 1T 参数模型训练/服务，adapter-only handoff 显著降低传输成本，并支持百万级 addressable policy catalogs。</p><p>它值得正式收录，因为它把 LoRA/adapter 从微调技巧提升成训练-服务一体化的系统对象。对于多策略 RL、agent policy catalogs、持续后训练和大模型 serving 运营，这种 base-resident + adapter revision 管理模式有明确复用价值。</p><p>它没有更高，是因为论文来自单一系统报告，外部复现、真实多租户隔离、故障恢复、安全边界和与现有 serving 栈的集成还需要更多证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了MindLab Toolkit (MinT)，一个用于低秩适应（LoRA）后训练和在线服务的托管基础设施系统。MinT旨在解决在少量昂贵的基础模型部署上生成大量训练策略的场景。MinT不将每个策略实例化为合并的完整检查点，而是保持基础模型常驻，并通过推出、更新、导出、评估、服务和回滚来移动导出的LoRA适配器修订版。这种适配器修订路径将分布式训练、服务、调度和数据移动的复杂性隐藏在服务接口之后，使得大规模LoRA强化学习更容易运行和复现。MinT沿着三个轴扩展了这种适配器修订路径。向上扩展（Scale Up）将LoRA强化学习扩展到前沿规模的密集型和专家混合（MoE）架构，包括通过LoRA目标映射和推出校正的MLA和DSA注意力路径，同时模型并行训练和服务路径已验证超过1T总参数。向下扩展（Scale Down）通过仅移动导出的LoRA适配器来最小化训练-服务切换，在紧凑的秩-1设置中，这可以小于基础模型大小的1%，完全消除了完整检查点的实例化。在我们的测量中，仅适配器切换在4B密集模型上将测量的切换步骤减少了18.3倍，在30B MoE模型上减少了2.85倍；在相同的常驻基础分配下，并发多策略组相对策略优化（GRPO）分别将运行时间缩短了1.77倍和1.45倍，而没有增加峰值内存。向外扩展（Scale Out）扩展了策略命名空间，同时保持引擎本地执行的边界。MinT将持久策略可寻址性与CPU/GPU热工作集分离：一个张量并行服务部署支持10^6规模的可寻址策略目录，测量到单引擎通过100K条目和集群规模下千个适配器活跃波次的扫描。为了解决首次接触适配器通过引擎加载路径串行化的主要瓶颈，MinT将冷加载视为计划服务工作，并使用打包的MoE LoRA张量将实时引擎加载性能提高8.5-8.7倍。总而言之，MinT使多租户训练服务成为现实。实验验证表明，该基础设施能够管理百万规模的LoRA策略目录，同时在共享的1T级基础模型上训练和提供选定的适配器修订版。# 通信：contact@mindlab.ltd z 日期：2026年5月</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present MindLab Toolkit (MinT), a managed infrastructure system for Low-Rank Adaptation (LoRA) post-training and online serving. MinT targets a setting where many trained policies are produced over a small number of expensive base-model deployments. Instead of materializing each policy as a merged full checkpoint, MinT keeps the base model resident and moves exported LoRA adapter revisions through rollout, update, export, evaluation, serving, and rollback. This adapterrevision path hides the complexity of distributed training, serving, scheduling, and data movement behind a service interface, making large-scale LoRA RL easier to run and reproduce. MinT scales this adapter-revision path along three axes. Scale Up extends LoRA RL to frontierscale dense and Mixture-of-Experts (MoE) architectures, including MLA and DSA attention paths via LoRA target mapping and rollout correction, while model-parallel training and serving paths are validated beyond 1T total parameters. Scale Down minimizes the training-serving handoff by moving only the exported LoRA adapter, which can be less than 1% of the base-model size in compact rank-1 settings, eliminating full-checkpoint materialization entirely. In our measurements, adapter-only handoff reduces the measured handoff step by 18.3× on a 4B dense model and by 2.85× on a 30B MoE model; under the same resident-base allocation, concurrent multi-policy Group Relative Policy Optimization (GRPO) shortens wall time by 1.77× and 1.45×, respectively, without increasing peak memory. Scale Out expands the policy namespace while keeping engine-local execution bounded. MinT separates durable policy addressability from CPU/GPU hot working sets: a tensorparallel serving deployment supports 106 -scale addressable policy catalogs, with measured singleengine sweeps through 100K entries and thousand-adapter active waves at cluster scale. To address the main bottleneck that first-touch adapters serialize through the engine load path, MinT treats cold loading as scheduled service work and uses packed MoE LoRA tensors to improve live engine loading by 8.5–8.7×.Together, MinT makes multi-tenant training services a practical reality. Experimental validation demonstrates the infrastructure’s ability to manage million-scale LoRA policy catalogs while training and serving selected adapter revisions over shared 1T-class base models. # Correspondence: contact@mindlab.ltd z Date: May 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513sys9mintlo,
+  title = {MinT: Managed Infrastructure for Training and Serving Millions of LLMs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.13779.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys9-mint-lora-infrastructure/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MinT: Managed Infrastructure for Training and Serving Millions of LLMs. https://arxiv.org/pdf/2605.13779.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw34-therm-fm-3dic-thermal/">
+              <span>Therm-FM: Foundation Model is ALL YOU NEED for 3D-ICs Thermal Simulation</span>
+              <small>系统、硬件与协同设计 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/sys13-agentstop-local-agents/">
+              <span>AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices</span>
+              <small>系统、硬件与协同设计 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys14-compactattention-chunked-prefill/">
+              <span>CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection</span>
+              <small>系统、硬件与协同设计 · 2026-05-16</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.13779.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.13779" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

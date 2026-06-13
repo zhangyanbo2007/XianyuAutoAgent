@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AutoFlow: Automated Workflow Generation for Large Language Model Agents | DAST Papers</title>
+    <meta name="description" content="AutoFlow addresses a practical pain point in early LLM-agent systems: strong workflows were often hand-built, brittle, and expensive to design. The paper asks whether workflow generation itself can be" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a100-autoflow-workflow-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AutoFlow: Automated Workflow Generation for Large Language Model Agents" />
+    <meta property="og:description" content="AutoFlow addresses a practical pain point in early LLM-agent systems: strong workflows were often hand-built, brittle, and expensive to design. The paper asks whether workflow generation itself can be" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a100-autoflow-workflow-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AutoFlow: Automated Workflow Generation for Large Language Model Agents" />
+    <meta name="twitter:description" content="AutoFlow addresses a practical pain point in early LLM-agent systems: strong workflows were often hand-built, brittle, and expensive to design. The paper asks whether workflow generation itself can be" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AutoFlow: Automated Workflow Generation for Large Language Model Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2024-07-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-07-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2407.12821" target="_blank" rel="noopener noreferrer">2407.12821</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AutoFlow addresses a practical pain point in early LLM-agent systems: strong workflows were often hand-built, brittle, and expensive to design. The paper asks whether workflow generation itself can be automated, so that agent systems can be synthesized rather than manually assembled from prompts and hand-written control logic.</dd></div><div><dt>方法/机制</dt><dd>Its core contribution is to treat workflows as natural-language programs and to let an automated framework generate and optimize those programs for complex tasks. This is an important precursor in the broader workflow-optimization line because it makes workflow synthesis explicit before later work pushed the space toward more structured search and stronger optimization algorithms.</dd></div><div><dt>结果/证据</dt><dd>For the repository, AutoFlow is worth collecting as an early durable reference in automatic workflow generation. It helps explain the lineage from prompt-engineering-heavy agents toward explicit workflow search, code-like orchestration, and eventually more formal graph and search-based agent-design systems.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because later work such as AFlow and ADAS gives cleaner or stronger optimization formulations. AutoFlow is best read as an influential early workflow-generation system rather than the final form of the line.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AutoFlow addresses a practical pain point in early LLM-agent systems: strong workflows were often hand-built, brittle, and expensive to design. The paper asks whether workflow generation itself can be automated, so that agent systems can be synthesized rather than manually assembled from prompts and hand-written control logic.</p><p>Its core contribution is to treat workflows as natural-language programs and to let an automated framework generate and optimize those programs for complex tasks. This is an important precursor in the broader workflow-optimization line because it makes workflow synthesis explicit before later work pushed the space toward more structured search and stronger optimization algorithms.</p><p>For the repository, AutoFlow is worth collecting as an early durable reference in automatic workflow generation. It helps explain the lineage from prompt-engineering-heavy agents toward explicit workflow search, code-like orchestration, and eventually more formal graph and search-based agent-design systems.</p><p>It is not ranked higher because later work such as AFlow and ADAS gives cleaner or stronger optimization formulations. AutoFlow is best read as an influential early workflow-generation system rather than the final form of the line.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AutoFlow：大型语言模型智能体的自动化工作流生成。大型语言模型（LLMs）的最新进展在理解复杂自然语言方面取得了显著进步。LLM的一个重要应用是基于LLM的AI智能体，它利用LLM的能力以及外部工具来解决复杂任务。为了确保LLM智能体遵循有效可靠的程序来解决给定任务，通常使用手动设计的工作流来指导智能体的工作机制。然而，手动设计工作流需要大量的精力和领域知识，这使得大规模开发和部署智能体变得困难。为了解决这些问题，我们提出了AutoFlow，一个旨在为智能体自动生成工作流以解决复杂任务的框架。AutoFlow以自然语言程序作为智能体工作流的格式，并采用工作流优化程序来迭代优化工作流质量。此外，这项工作提供了两种工作流生成方法：基于微调的方法和基于上下文的方法，使得AutoFlow框架适用于开源和闭源LLMs。实验结果表明，我们的框架可以生成鲁棒且可靠的智能体工作流。我们相信，自然语言工作流的自动生成和解释代表了一种解决复杂任务的有前景的范式，尤其是在LLMs快速发展的背景下。本工作的源代码可在https://github.com/agiresearch/AutoFlow获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent advancements in Large Language Models (LLMs) have shown significant progress in understanding complex natural language. One important application of LLM is LLM-based AI Agent, which leverages the ability of LLM as well as external tools for complex-task solving. To make sure LLM Agents follow an effective and reliable procedure to solve the given task, manually designed workflows are usually used to guide the working mechanism of agents. However, manually designing the workflows requires considerable efforts and domain knowledge, making it difficult to develop and deploy agents on massive scales. To address these issues, we propose AutoFlow, a framework designed to automatically generate workflows for agents to solve complex tasks. AutoFlow takes natural language program as the format of agent workflow and employs a workflow optimization procedure to iteratively optimize the workflow quality. Besides, this work offers two workflow generation methods: fine-tuning-based and in-context-based methods, making the AutoFlow framework applicable to both open-source and closed-source LLMs. Experimental results show that our framework can produce robust and reliable agent workflows. We believe that the automatic generation and interpretation of workflows in natural language represent a promising paradigm for solving complex tasks, particularly with the rapid development of LLMs. The source code of this work is available at https://github.com/agiresearch/AutoFlow.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240701a100autofl,
+  title = {AutoFlow: Automated Workflow Generation for Large Language Model Agents},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2407.12821.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a100-autoflow-workflow-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). AutoFlow: Automated Workflow Generation for Large Language Model Agents. https://arxiv.org/pdf/2407.12821.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2407.12821.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

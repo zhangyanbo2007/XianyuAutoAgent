@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Library Theorem: How External Organization Governs Agentic Reasoning Capacity | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论的不是普通 RAG 效果，而是一个更底层的问题：随着 agent 推理链变长，外部记忆到底该如何组织，才能避免 reasoning cost 被顺序扫描拖垮。作者把 context window 形式化成 I/O page，并把 indexed external memory 作为独立能力对象来分析。
+
+核心贡献是给出顺序扫描与索引检索之间清晰的复杂度分界，并用跨模型实验展示：即便模型" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a68-library-theorem-agentic-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="The Library Theorem: How External Organization Governs Agentic Reasoning Capacity" />
+    <meta property="og:description" content="这篇论文讨论的不是普通 RAG 效果，而是一个更底层的问题：随着 agent 推理链变长，外部记忆到底该如何组织，才能避免 reasoning cost 被顺序扫描拖垮。作者把 context window 形式化成 I/O page，并把 indexed external memory 作为独立能力对象来分析。
+
+核心贡献是给出顺序扫描与索引检索之间清晰的复杂度分界，并用跨模型实验展示：即便模型" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a68-library-theorem-agentic-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="The Library Theorem: How External Organization Governs Agentic Reasoning Capacity" />
+    <meta name="twitter:description" content="这篇论文讨论的不是普通 RAG 效果，而是一个更底层的问题：随着 agent 推理链变长，外部记忆到底该如何组织，才能避免 reasoning cost 被顺序扫描拖垮。作者把 context window 形式化成 I/O page，并把 indexed external memory 作为独立能力对象来分析。
+
+核心贡献是给出顺序扫描与索引检索之间清晰的复杂度分界，并用跨模型实验展示：即便模型" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>The Library Theorem: How External Organization Governs Agentic Reasoning Capacity</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.21272" target="_blank" rel="noopener noreferrer">2603.21272</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论的不是普通 RAG 效果，而是一个更底层的问题：随着 agent 推理链变长，外部记忆到底该如何组织，才能避免 reasoning cost 被顺序扫描拖垮。作者把 context window 形式化成 I/O page，并把 indexed external memory 作为独立能力对象来分析。</dd></div><div><dt>方法/机制</dt><dd>核心贡献是给出顺序扫描与索引检索之间清晰的复杂度分界，并用跨模型实验展示：即便模型理解内容很强，只要检索依赖语言模型自己执行导航协议，就会在规模上失稳；更稳的模式是让模型负责语义建索引，让确定性算法负责索引遍历。</dd></div><div><dt>结果/证据</dt><dd>这很符合仓库对 agent memory / capability extension 的高优先级方向。它不是又一个工程技巧，而是把外部组织结构上升为 agent reasoning capacity 的决定因素之一，对后续 memory system 设计有直接方法和系统启发。</dd></div><div><dt>收录价值</dt><dd>它目前仍然不是更高一级，因为实验还集中在受控 lookup setting，虽然结论干净，但距离更复杂真实 agent workloads 的全面验证还有一段距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论的不是普通 RAG 效果，而是一个更底层的问题：随着 agent 推理链变长，外部记忆到底该如何组织，才能避免 reasoning cost 被顺序扫描拖垮。作者把 context window 形式化成 I/O page，并把 indexed external memory 作为独立能力对象来分析。</p><p>核心贡献是给出顺序扫描与索引检索之间清晰的复杂度分界，并用跨模型实验展示：即便模型理解内容很强，只要检索依赖语言模型自己执行导航协议，就会在规模上失稳；更稳的模式是让模型负责语义建索引，让确定性算法负责索引遍历。</p><p>这很符合仓库对 agent memory / capability extension 的高优先级方向。它不是又一个工程技巧，而是把外部组织结构上升为 agent reasoning capacity 的决定因素之一，对后续 memory system 设计有直接方法和系统启发。</p><p>它目前仍然不是更高一级，因为实验还集中在受控 lookup setting，虽然结论干净，但距离更复杂真实 agent workloads 的全面验证还有一段距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：图书馆定理：外部组织如何支配智能体的推理能力 书写通过为扩展的思维链提供一个宽敞的工作空间，改变了人类认知，使推理不可磨灭且广泛传播。随后，随着索引的发明，书写变成了一种检索系统，进一步扩展了其影响力。图书馆和搜索引擎是索引力量的典型例证。基于Transformer的智能体已经通过思维链利用了外部化推理。但结构化检索——对自身推理状态进行索引——仍未得到充分探索。我们将Transformer上下文窗口形式化为I/O页面，并证明配备索引外部记忆的工具增强型智能体比仅限于顺序扫描的智能体实现指数级更低的检索成本：每次查询的页面读取次数为O(logb N ) 对比 Ω(N )，以及在T个推理步骤上的累积成本为O(T logb T ) 对比 Θ(T 2 )。我们在一个受控查找基准上测试了这些预测，该基准涵盖了三种内容类型——随机哈希值、有序整数和百科全书条目——存储大小从50到5,000项不等，并在两个模型代次（GPT-4o-mini和GPT-5.41）中复制了关键条件。在抽象内容（哈希值和整数）上，索引智能体实现了中位数1次页面读取，无论存储大小如何，证实了O(1)的预测。没有索引的排序页面——原则上可以实现二分查找——未能缩小差距：较弱模型无法在大规模下维持二分查找，而较强模型实现了接近最优的log2 N搜索，但仍比索引慢5倍。在熟悉内容（百科全书条目）上，出现了一种竞争性故障模式：模型识别出领域，绕过检索协议，并从参数记忆中生成答案，即使索引结构本身是健全的，也导致灾难性的token消耗。这种参数记忆竞争分离了索引所结合的两种认知操作：理解内容（语言模型擅长之处）和遵循导航协议（当理解诱使它们走捷径时，它们就会失败）。结果主张关注点分离：在语义理解有帮助的地方使用语言模型进行索引构建，而在语义理解有害的地方使用确定性算法进行索引遍历。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Writing transformed human cognition by providing a capacious workspace for extended chains of thought, making reasoning indelible and widely communicable. Then, by the invention of the index, writing became a retrieval system, extending its reach even further. The library and the search engine are canonical demonstrations of index power. Externalized reasoning is already exploited by transformer-based agents through chain-of-thought. But structured retrieval—indexing over one’s own reasoning state—remains underexplored. We formalize the transformer context window as an I/O page and prove that toolaugmented agents with indexed external memory achieve exponentially lower retrieval cost than agents restricted to sequential scanning: O(logb N ) versus Ω(N ) page reads per query, and O(T logb T ) versus Θ(T 2 ) cumulative cost over T reasoning steps. We test these predictions on a controlled lookup benchmark across three content types—random hashes, ordered integers, and encyclopedia entries—varying store size from 50 to 5,000 items, and replicate key conditions across two model generations (GPT-4o-mini and GPT-5.41 ). On abstract content (hashes and integers), the indexed agent achieves median 1 page read regardless of store size, confirming the O(1) prediction. Sorted pages without an index— which in principle enable binary search—fail to close the gap: the weaker model cannot sustain binary search at scale, and the stronger model achieves near-optimal log2 N search but still loses to the index by 5×. On familiar content (encyclopedia entries), a competing failure mode emerges: the model recognizes the domain, bypasses the retrieval protocol, and generates answers from parametric memory, producing catastrophic token expenditure even when the index structure itself is sound. This parametric memory competition dissociates the two cognitive operations that indexing combines: understanding content (where language models excel) and following navigational protocols (where they fail when understanding tempts them to shortcut). The result argues for a separation of concerns: use language models for index construction, where semantic understanding helps, and deterministic algorithms for index traversal, where it hurts.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260322a68library,
+  title = {The Library Theorem: How External Organization Governs Agentic Reasoning Capacity},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.21272v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a68-library-theorem-agentic-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). The Library Theorem: How External Organization Governs Agentic Reasoning Capacity. https://arxiv.org/pdf/2603.21272v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.21272v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

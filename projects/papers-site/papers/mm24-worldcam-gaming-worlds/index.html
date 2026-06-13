@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation | DAST Papers</title>
+    <meta name="description" content="该文处理的是交互式游戏世界模型里的两个核心难点：动作控制不精确，以及长时程探索中的三维一致性漂移。现有方法通常把用户动作当成抽象条件信号，而没有把动作和世界几何之间通过相机位姿耦合这一事实直接建模。
+
+WorldCam 的关键做法是把 camera pose 提升为统一几何表示。一方面，它把用户输入映射到物理一致的连续动作空间，并在 Lie algebra 中表示 6-DoF 相机位姿，再通过 c" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm24-worldcam-gaming-worlds/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation" />
+    <meta property="og:description" content="该文处理的是交互式游戏世界模型里的两个核心难点：动作控制不精确，以及长时程探索中的三维一致性漂移。现有方法通常把用户动作当成抽象条件信号，而没有把动作和世界几何之间通过相机位姿耦合这一事实直接建模。
+
+WorldCam 的关键做法是把 camera pose 提升为统一几何表示。一方面，它把用户输入映射到物理一致的连续动作空间，并在 Lie algebra 中表示 6-DoF 相机位姿，再通过 c" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm24-worldcam-gaming-worlds/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation" />
+    <meta name="twitter:description" content="该文处理的是交互式游戏世界模型里的两个核心难点：动作控制不精确，以及长时程探索中的三维一致性漂移。现有方法通常把用户动作当成抽象条件信号，而没有把动作和世界几何之间通过相机位姿耦合这一事实直接建模。
+
+WorldCam 的关键做法是把 camera pose 提升为统一几何表示。一方面，它把用户输入映射到物理一致的连续动作空间，并在 Lie algebra 中表示 6-DoF 相机位姿，再通过 c" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.16871" target="_blank" rel="noopener noreferrer">2603.16871</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>该文处理的是交互式游戏世界模型里的两个核心难点：动作控制不精确，以及长时程探索中的三维一致性漂移。现有方法通常把用户动作当成抽象条件信号，而没有把动作和世界几何之间通过相机位姿耦合这一事实直接建模。</dd></div><div><dt>方法/机制</dt><dd>WorldCam 的关键做法是把 camera pose 提升为统一几何表示。一方面，它把用户输入映射到物理一致的连续动作空间，并在 Lie algebra 中表示 6-DoF 相机位姿，再通过 camera embedder 注入生成模型，提升即时动作对齐；另一方面，它把全局位姿当作长程记忆索引，在回访场景时从历史观察中检索相关视图，以维持长时程导航下的空间一致性。作者还提供了带相机轨迹和文本描述的大规模真实人类游戏数据。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它不是简单的视频 world model 扩容，而是对 interactive gaming worlds 提出了更干净的几何统一方式。对仓库关注的 world generation / long-horizon multimodal generation 主线来说，camera pose 作为统一控制和记忆索引这一点有明确可迁移性。</dd></div><div><dt>收录价值</dt><dd>它暂时仍是 breakthrough，因为场景集中在游戏世界，外部验证也主要是该任务族内的 controllability、视觉质量和 3D consistency。它是否能升到更高层级，要看这套 pose-grounded 记忆与生成机制能否迁移到更一般的 embodied/world simulation 任务。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>该文处理的是交互式游戏世界模型里的两个核心难点：动作控制不精确，以及长时程探索中的三维一致性漂移。现有方法通常把用户动作当成抽象条件信号，而没有把动作和世界几何之间通过相机位姿耦合这一事实直接建模。</p><p>WorldCam 的关键做法是把 camera pose 提升为统一几何表示。一方面，它把用户输入映射到物理一致的连续动作空间，并在 Lie algebra 中表示 6-DoF 相机位姿，再通过 camera embedder 注入生成模型，提升即时动作对齐；另一方面，它把全局位姿当作长程记忆索引，在回访场景时从历史观察中检索相关视图，以维持长时程导航下的空间一致性。作者还提供了带相机轨迹和文本描述的大规模真实人类游戏数据。</p><p>这篇论文值得收录，因为它不是简单的视频 world model 扩容，而是对 interactive gaming worlds 提出了更干净的几何统一方式。对仓库关注的 world generation / long-horizon multimodal generation 主线来说，camera pose 作为统一控制和记忆索引这一点有明确可迁移性。</p><p>它暂时仍是 breakthrough，因为场景集中在游戏世界，外部验证也主要是该任务族内的 controllability、视觉质量和 3D consistency。它是否能升到更高层级，要看这套 pose-grounded 记忆与生成机制能否迁移到更一般的 embodied/world simulation 任务。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>WorldCam：以相机姿态作为统一几何表示的交互式自回归3D游戏世界。视频扩散Transformer的最新进展使得交互式游戏世界模型成为可能，这些模型允许用户在扩展的时间范围内探索生成的环境。然而，现有方法在精确动作控制和长程3D一致性方面面临挑战。大多数现有工作将用户动作视为抽象的条件信号，忽略了动作与3D世界之间基本的几何耦合，即动作会引起相对相机运动，这些运动在3D世界中累积形成全局相机姿态。在本文中，我们将相机姿态确立为一种统一的几何表示，以共同实现即时动作控制和长期3D一致性。首先，我们定义了一个基于物理的连续动作空间，并在李代数中表示用户输入以推导出精确的6自由度相机姿态，这些姿态通过相机嵌入器注入到生成模型中，以确保准确的动作对齐。其次，我们使用全局相机姿态作为空间索引来检索相关的历史观测，从而在长程导航期间实现几何一致的位置重访。为了支持这项研究，我们引入了一个大规模数据集，包含3,000分钟的真实人类游戏玩法，并标注了相机轨迹和文本描述。大量实验表明，我们的方法在动作可控性、长程视觉质量和3D空间一致性方面显著优于最先进的交互式游戏世界模型。日期：2026.03.17 项目页面：https://cvlab-kaist.github.io/WorldCam/</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent advances in video diffusion transformers have enabled interactive gaming world models that allow users to explore generated environments over extended horizons. However, existing approaches struggle with precise action control and long-horizon 3D consistency. Most prior works treat user actions as abstract conditioning signals, overlooking the fundamental geometric coupling between actions and the 3D world, whereby actions induce relative camera motions that accumulate into a global camera pose within a 3D world. In this paper, we establish camera pose as a unifying geometric representation to jointly ground immediate action control and long-term 3D consistency. First, we define a physics-based continuous action space and represent user inputs in the Lie algebra to derive precise 6-DoF camera poses, which are injected into the generative model via a camera embedder to ensure accurate action alignment. Second, we use global camera poses as spatial indices to retrieve relevant past observations, enabling geometrically consistent revisiting of locations during long-horizon navigation. To support this research, we introduce a large-scale dataset comprising 3,000 minutes of authentic human gameplay annotated with camera trajectories and textual descriptions. Extensive experiments show that our approach substantially outperforms state-of-the-art interactive gaming world models in action controllability, long-horizon visual quality, and 3D spatial consistency. Date: 2026.03.17 Project Page: https://cvlab-kaist.github.io/WorldCam/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317mm24worldc,
+  title = {WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.16871v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm24-worldcam-gaming-worlds/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WorldCam: Interactive Autoregressive 3D Gaming Worlds with Camera Pose as a Unifying Geometric Representation. https://arxiv.org/pdf/2603.16871v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.16871v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

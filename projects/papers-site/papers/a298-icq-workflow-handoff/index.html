@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Hand Off: Provably Convergent Workflow Learning under Interface Constraints | DAST Papers</title>
+    <meta name="description" content="这篇论文研究多 agent LLM pipeline 中的 handoff 学习：不同专用 agent 通过共享 artifact 交接，但没有中心 learner 能访问完整联合轨迹。
+
+作者把该设置形式化为 interface-constrained SMDP，并提出 IC-Q；每次交接只传一个标量，却给出神经 Q-learning 的有限样本收敛界。
+
+它值得正式收录，因为它为跨组织、跨厂商" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a298-icq-workflow-handoff/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Hand Off: Provably Convergent Workflow Learning under Interface Constraints" />
+    <meta property="og:description" content="这篇论文研究多 agent LLM pipeline 中的 handoff 学习：不同专用 agent 通过共享 artifact 交接，但没有中心 learner 能访问完整联合轨迹。
+
+作者把该设置形式化为 interface-constrained SMDP，并提出 IC-Q；每次交接只传一个标量，却给出神经 Q-learning 的有限样本收敛界。
+
+它值得正式收录，因为它为跨组织、跨厂商" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a298-icq-workflow-handoff/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Hand Off: Provably Convergent Workflow Learning under Interface Constraints" />
+    <meta name="twitter:description" content="这篇论文研究多 agent LLM pipeline 中的 handoff 学习：不同专用 agent 通过共享 artifact 交接，但没有中心 learner 能访问完整联合轨迹。
+
+作者把该设置形式化为 interface-constrained SMDP，并提出 IC-Q；每次交接只传一个标量，却给出神经 Q-learning 的有限样本收敛界。
+
+它值得正式收录，因为它为跨组织、跨厂商" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Hand Off: Provably Convergent Workflow Learning under Interface Constraints</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.19140" target="_blank" rel="noopener noreferrer">2605.19140</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文研究多 agent LLM pipeline 中的 handoff 学习：不同专用 agent 通过共享 artifact 交接，但没有中心 learner 能访问完整联合轨迹。</dd></div><div><dt>方法/机制</dt><dd>作者把该设置形式化为 interface-constrained SMDP，并提出 IC-Q；每次交接只传一个标量，却给出神经 Q-learning 的有限样本收敛界。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它为跨组织、跨厂商或跨权限边界的 agent workflow 提供了理论模型和可验证学习算法。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为实验仍是受控任务和若干 multi-LLM 场景，真实企业 workflow 的接口漂移和安全约束尚未充分覆盖。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文研究多 agent LLM pipeline 中的 handoff 学习：不同专用 agent 通过共享 artifact 交接，但没有中心 learner 能访问完整联合轨迹。</p><p>作者把该设置形式化为 interface-constrained SMDP，并提出 IC-Q；每次交接只传一个标量，却给出神经 Q-learning 的有限样本收敛界。</p><p>它值得正式收录，因为它为跨组织、跨厂商或跨权限边界的 agent workflow 提供了理论模型和可验证学习算法。</p><p>它没有更高，是因为实验仍是受控任务和若干 multi-LLM 场景，真实企业 workflow 的接口漂移和安全约束尚未充分覆盖。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们研究工作流学习，其中专业代理通过共享工件移交控制权，每个代理仅观察该工件的局部函数及其自身的私有状态，并且没有集中式学习器访问联合轨迹——这是跨组织、供应商或信任边界的多代理LLM管道的运行机制。我们将这种机制形式化为接口受限半马尔可夫决策过程（IC-SMDP），其决策时刻发生在移交时，并设计了IC-Q，一种异步去中心化Q学习算法，其中每次移交时的跨代理协调恰好是一个标量。我们的主要结果是神经IC-Q的有限样本界限，它在随机选项持续时间折扣下分解为三个独立可控的误差源：神经函数逼近误差、接口表示差距和混合时间残差。建立此界限需要将近似信息状态（AIS）框架从单代理原始步MDP提升到多代理SMDP，并控制随机持续时间下的马尔可夫噪声，这两者在现有工作中均未完成。据我们所知，这是去中心化部分可观测性下神经Q学习的第一个有限样本保证。四项实验：一个受控的合成IC-SMDP，逐项验证了界限；多LLM数学推理；多代理路由；以及多代理CPU编程，结果表明IC-Q与集中式预言机相匹配，而没有任何代理观察联合轨迹，并且三个误差源中的每一个都沿着其对应的轴按界限预测的方式进行缩放。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We study workflow learning in a setting where specialized agents hand off control through a shared artifact, each agent observes only a local function of that artifact and its own private state, and no centralized learner accesses joint trajectories – the operating regime of multi-agent LLM pipelines that span organizational, vendor, or trust boundaries. We formalize this regime as an interface-constrained semiMarkov decision process (IC-SMDP), whose decision epochs occur at handoff times, and design IC-Q, an asynchronous decentralized Q-learning algorithm in which cross-agent coordination at every handoff is exactly one scalar. Our main result is a finite-sample bound for neural IC-Q that decomposes into three independently controllable error sources: neural function-approximation error, interface representation gap, and a mixing-time residual, under the random option-duration discount. Establishing this bound requires lifting the approximate information state (AIS) framework from single-agent primitive-step MDPs to multi-agent SMDPs and controlling Markovian noise under random duration, neither of which has been done in prior work. To our knowledge this is the first finite-sample guarantee for neural Q-learning under decentralized partial observability. Four experiments: a controlled synthetic IC-SMDP that validates the bound term-by-term, multi-LLM mathematical reasoning, multi-agent routing, and multi-agent CPU programming, show that IC-Q matches a centralized oracle without any agent observing joint trajectories, with each of the three error sources scaling along its corresponding axis as the bound predicts.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520a298icqwor,
+  title = {Learning to Hand Off: Provably Convergent Workflow Learning under Interface Constraints},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.19140.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a298-icq-workflow-handoff/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Hand Off: Provably Convergent Workflow Learning under Interface Constraints. https://arxiv.org/pdf/2605.19140.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.19140.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

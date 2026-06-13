@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ORBIT: Guided Agentic Orchestration for Autonomous C-to-Rust Transpilation | DAST Papers</title>
+    <meta name="description" content="这篇论文把 C 到 Rust 迁移从函数级翻译提升到项目级 agentic orchestration。实际遗留代码迁移的难点在跨模块依赖、接口一致性、构建系统和测试验证，而不是单个函数语法转换。
+
+ORBIT 构建依赖感知翻译图，动态收集上下文，协调专门 agent 生成接口、映射函数并迭代验证。这个流程直接回应 coding agent 在大型代码库里常见的上下文不足和表面正确问题。
+
+按本库" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a206-orbit-c-to-rust/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ORBIT: Guided Agentic Orchestration for Autonomous C-to-Rust Transpilation" />
+    <meta property="og:description" content="这篇论文把 C 到 Rust 迁移从函数级翻译提升到项目级 agentic orchestration。实际遗留代码迁移的难点在跨模块依赖、接口一致性、构建系统和测试验证，而不是单个函数语法转换。
+
+ORBIT 构建依赖感知翻译图，动态收集上下文，协调专门 agent 生成接口、映射函数并迭代验证。这个流程直接回应 coding agent 在大型代码库里常见的上下文不足和表面正确问题。
+
+按本库" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a206-orbit-c-to-rust/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ORBIT: Guided Agentic Orchestration for Autonomous C-to-Rust Transpilation" />
+    <meta name="twitter:description" content="这篇论文把 C 到 Rust 迁移从函数级翻译提升到项目级 agentic orchestration。实际遗留代码迁移的难点在跨模块依赖、接口一致性、构建系统和测试验证，而不是单个函数语法转换。
+
+ORBIT 构建依赖感知翻译图，动态收集上下文，协调专门 agent 生成接口、映射函数并迭代验证。这个流程直接回应 coding agent 在大型代码库里常见的上下文不足和表面正确问题。
+
+按本库" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ORBIT: Guided Agentic Orchestration for Autonomous C-to-Rust Transpilation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12048" target="_blank" rel="noopener noreferrer">2604.12048</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 C 到 Rust 迁移从函数级翻译提升到项目级 agentic orchestration。实际遗留代码迁移的难点在跨模块依赖、接口一致性、构建系统和测试验证，而不是单个函数语法转换。</dd></div><div><dt>方法/机制</dt><dd>ORBIT 构建依赖感知翻译图，动态收集上下文，协调专门 agent 生成接口、映射函数并迭代验证。这个流程直接回应 coding agent 在大型代码库里常见的上下文不足和表面正确问题。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它值得正式收录，因为它提供了安全软件迁移的可复用 agent 工作流，连接代码理解、自动修改、编译测试和安全语言迁移。</dd></div><div><dt>收录价值</dt><dd>局限是评估仍集中在特定 C-to-Rust 场景；迁移到其他语言转换、复杂系统库和真实生产代码审查还需要更多证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 C 到 Rust 迁移从函数级翻译提升到项目级 agentic orchestration。实际遗留代码迁移的难点在跨模块依赖、接口一致性、构建系统和测试验证，而不是单个函数语法转换。</p><p>ORBIT 构建依赖感知翻译图，动态收集上下文，协调专门 agent 生成接口、映射函数并迭代验证。这个流程直接回应 coding agent 在大型代码库里常见的上下文不足和表面正确问题。</p><p>按本库标准，它值得正式收录，因为它提供了安全软件迁移的可复用 agent 工作流，连接代码理解、自动修改、编译测试和安全语言迁移。</p><p>局限是评估仍集中在特定 C-to-Rust 场景；迁移到其他语言转换、复杂系统库和真实生产代码审查还需要更多证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>将遗留C代码大规模迁移到Rust为提高内存安全性提供了一条有前景的途径，但基于LLM的C到Rust翻译由于上下文窗口有限和幻觉问题仍然充满挑战。现有方法主要在小型程序或偏向小型代码库的数据集上进行评估，对真实世界系统上的可扩展性提供的见解有限。它们还依赖于静态上下文构建，这在存在复杂的跨模块依赖时会失效，并且通常需要手动干预。最近的编码代理通过动态代码库导航和上下文管理提供了一个有前景的替代方案。然而，当开箱即用时，它们经常产生表面上正确但实际上不完整的翻译。我们提出了ORBIT，一个用于项目级C到Rust翻译的自主代理框架，它结合了动态上下文收集、依赖引导的编排和迭代验证。ORBIT构建了一个依赖感知的翻译图，生成Rust接口，将C函数映射到Rust对应项，并协调多个专门代理。我们在CRUST-Bench的24个程序上评估了ORBIT，其中91.7%的程序超过1,000行代码。ORBIT在专家接口和自动生成接口设置中均实现了100%的编译成功率和91.7%的测试成功率，显著优于C2Rust和CRUST-Bench，同时将不安全的Rust代码块减少到几乎为零。我们还在DARPA TRACTOR基准测试中的挑战性案例上进一步评估了ORBIT，它相对于参与系统取得了有竞争力的性能。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large-scale migration of legacy C code to Rust offers a promising path toward improving memory safety, but LLM-based C-to-Rust translation remains challenging due to limited context windows and hallucinations. Prior approaches are evaluated primarily on small programs or datasets skewed toward small codebases, providing limited insight into scalability on real-world systems. They also rely on static context construction, which breaks down in the presence of complex cross-module dependencies and often requires manual intervention. Recent coding agents offer a promising alternative through dynamic codebase navigation and context curation. When used out of the box, however, they frequently produce incomplete translations that appear superficially correct. We present ORBIT, an autonomous agentic framework for project-level C-to-Rust translation that combines dynamic context collection with dependency-guided orchestration and iterative verification. ORBIT constructs a dependency-aware translation graph, generates Rust interfaces, maps C functions to Rust counterparts, and coordinates multiple specialized agents. We evaluate ORBIT on 24 programs from CRUST-Bench, with 91.7% of the programs exceeding 1,000 lines of code. ORBIT achieves 100% compilation success and 91.7% test success in both expert-interface and automatically generated-interface settings, substantially outperforming C2Rust and CRUST-Bench, while reducing unsafe Rust code blocks to nearly zero. We further evaluate ORBIT on challenging cases from the DARPA TRACTOR benchmark, where it achieves competitive performance relative to participating systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415a206orbitc,
+  title = {ORBIT: Guided Agentic Orchestration for Autonomous C-to-Rust Transpilation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12048.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a206-orbit-c-to-rust/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ORBIT: Guided Agentic Orchestration for Autonomous C-to-Rust Transpilation. https://arxiv.org/pdf/2604.12048.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12048.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

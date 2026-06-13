@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TurboAngle: Near-Lossless KV Cache Compression via Uniform Angle Quantization | DAST Papers</title>
+    <meta name="description" content="长上下文推理里，KV cache 已经成为推理内存和部署成本的核心瓶颈之一。现有量化方法通常需要校准数据、复杂统计特征或异常值处理，工程链条重且对新模型的迁移成本高。
+
+TurboAngle 的核心思路是先用随机对角旋转和快速 Walsh-Hadamard 变换把 KV 向量送入一个更适合量化的域，再对连续元素对的角度做均匀量化。它进一步引入逐层 early-boost 和 K/V 非对称范数量化" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r44-turboangle-kv-compression/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TurboAngle: Near-Lossless KV Cache Compression via Uniform Angle Quantization" />
+    <meta property="og:description" content="长上下文推理里，KV cache 已经成为推理内存和部署成本的核心瓶颈之一。现有量化方法通常需要校准数据、复杂统计特征或异常值处理，工程链条重且对新模型的迁移成本高。
+
+TurboAngle 的核心思路是先用随机对角旋转和快速 Walsh-Hadamard 变换把 KV 向量送入一个更适合量化的域，再对连续元素对的角度做均匀量化。它进一步引入逐层 early-boost 和 K/V 非对称范数量化" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r44-turboangle-kv-compression/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TurboAngle: Near-Lossless KV Cache Compression via Uniform Angle Quantization" />
+    <meta name="twitter:description" content="长上下文推理里，KV cache 已经成为推理内存和部署成本的核心瓶颈之一。现有量化方法通常需要校准数据、复杂统计特征或异常值处理，工程链条重且对新模型的迁移成本高。
+
+TurboAngle 的核心思路是先用随机对角旋转和快速 Walsh-Hadamard 变换把 KV 向量送入一个更适合量化的域，再对连续元素对的角度做均匀量化。它进一步引入逐层 early-boost 和 K/V 非对称范数量化" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TurboAngle: Near-Lossless KV Cache Compression via Uniform Angle Quantization</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.27467" target="_blank" rel="noopener noreferrer">2603.27467</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长上下文推理里，KV cache 已经成为推理内存和部署成本的核心瓶颈之一。现有量化方法通常需要校准数据、复杂统计特征或异常值处理，工程链条重且对新模型的迁移成本高。</dd></div><div><dt>方法/机制</dt><dd>TurboAngle 的核心思路是先用随机对角旋转和快速 Walsh-Hadamard 变换把 KV 向量送入一个更适合量化的域，再对连续元素对的角度做均匀量化。它进一步引入逐层 early-boost 和 K/V 非对称范数量化，从而在零校准条件下实现近乎无损的 KV 压缩。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它没有继续在原始激活分布上做补丁，而是直接改变了量化问题的表述方式。这种“先把分布变成可量化域”的路线，对推理系统、缓存压缩和后续量化器设计都有清晰方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前证据仍主要集中在 perplexity 和量化配置分析上，真实下游任务、长上下文基准和系统级延迟收益还需要更完整的验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长上下文推理里，KV cache 已经成为推理内存和部署成本的核心瓶颈之一。现有量化方法通常需要校准数据、复杂统计特征或异常值处理，工程链条重且对新模型的迁移成本高。</p><p>TurboAngle 的核心思路是先用随机对角旋转和快速 Walsh-Hadamard 变换把 KV 向量送入一个更适合量化的域，再对连续元素对的角度做均匀量化。它进一步引入逐层 early-boost 和 K/V 非对称范数量化，从而在零校准条件下实现近乎无损的 KV 压缩。</p><p>它值得正式收录，因为它没有继续在原始激活分布上做补丁，而是直接改变了量化问题的表述方式。这种“先把分布变成可量化域”的路线，对推理系统、缓存压缩和后续量化器设计都有清晰方法外溢。</p><p>它暂时不升到更高一级，原因在于当前证据仍主要集中在 perplexity 和量化配置分析上，真实下游任务、长上下文基准和系统级延迟收益还需要更完整的验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们通过在快速沃尔什-哈达玛域中量化角度来压缩KV缓存条目，其中随机的±1对角旋转使得连续的元素对在单位圆上均匀分布。我们将这种角度量化器扩展为逐层早期增强：在每一层独立配置K和V码本大小，并对模型特定的关键层子集提供更高的精度。在七个模型（1B到7B参数）中，逐层早期增强在四个模型上实现了无损压缩（∆PPL ≤ 0），在另外两个模型上实现了近乎无损的质量（∆PPL ≤ 0.002），每个元素使用3.28到3.67个角度比特。添加范数量化并采用非对称K/V比特分配（8比特线性K范数，4比特对数空间V范数）后，在Mistral-7B上实现了6.56总比特的端到端速率，且∆PPL仅为+0.0014，无需任何校准。层组敏感性分析揭示，关键层、瓶颈类型（K主导型 vs V主导型），甚至存在精度增加反而降低质量的负迁移层，都具有模型特异性，这为在新架构上配置量化器提供了可操作的规则。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We compress KV cache entries by quantizing angles in the Fast Walsh-Hadamard domain, where a random ±1 diagonal rotation makes consecutive element pairs uniformly distributed on the unit circle. We extend this angular quantizer with per-layer early-boost: independently configuring K and V codebook sizes at each layer, with higher precision for a model-specific subset of critical layers. Across seven models (1B to 7B parameters), per-layer early-boost achieves lossless compression (∆PPL ≤ 0) on four models and near-lossless quality (∆PPL ≤ 0.002) on two more, at 3.28 to 3.67 angle bits per element. Adding norm quantization with asymmetric K/V bit allocation (8-bit linear K norms, 4-bit log-space V norms) yields an end-toend rate of 6.56 total bits on Mistral-7B with only ∆PPL = +0.0014, requiring zero calibration. A layer-group sensitivity analysis reveals that the critical layers, bottleneck type (K-dominated vs V-dominated), and even the existence of negative-transfer layers where increased precision degrades quality are all model-specific, providing actionable rules for configuring the quantizer on new architectures.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260329r44turboan,
+  title = {TurboAngle: Near-Lossless KV Cache Compression via Uniform Angle Quantization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.27467.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r44-turboangle-kv-compression/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TurboAngle: Near-Lossless KV Cache Compression via Uniform Angle Quantization. https://arxiv.org/pdf/2603.27467.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.27467.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty | DAST Papers</title>
+    <meta name="description" content="问题与背景：全渠道零售中的订单履约长期依赖启发式规则，例如简单挑选最便宜的履约中心和承运商，但这种做法很难处理 delivery-time uncertainty、订单合单机会以及现实环境里只有 observational data 的约束。本文要解决的是：在大规模真实履约网络中，如何把预测与优化耦合成一个能直接驱动 operational decisions 的系统。
+
+方法/新意：论文提出 C" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sc1-contextual-fulfillment-optimization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty" />
+    <meta property="og:description" content="问题与背景：全渠道零售中的订单履约长期依赖启发式规则，例如简单挑选最便宜的履约中心和承运商，但这种做法很难处理 delivery-time uncertainty、订单合单机会以及现实环境里只有 observational data 的约束。本文要解决的是：在大规模真实履约网络中，如何把预测与优化耦合成一个能直接驱动 operational decisions 的系统。
+
+方法/新意：论文提出 C" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sc1-contextual-fulfillment-optimization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty" />
+    <meta name="twitter:description" content="问题与背景：全渠道零售中的订单履约长期依赖启发式规则，例如简单挑选最便宜的履约中心和承运商，但这种做法很难处理 delivery-time uncertainty、订单合单机会以及现实环境里只有 observational data 的约束。本文要解决的是：在大规模真实履约网络中，如何把预测与优化耦合成一个能直接驱动 operational decisions 的系统。
+
+方法/新意：论文提出 C" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty</h1>
+          <p class="subtitle">供应链、物流与运营 · 发表：2025-10-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">供应链、物流与运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2409.06918" target="_blank" rel="noopener noreferrer">2409.06918</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：全渠道零售中的订单履约长期依赖启发式规则，例如简单挑选最便宜的履约中心和承运商，但这种做法很难处理 delivery-time uncertainty、订单合单机会以及现实环境里只有 observational data 的约束。本文要解决的是：在大规模真实履约网络中，如何把预测与优化耦合成一个能直接驱动 operational decisions 的系统。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：论文提出 Contextual Stochastic Optimization（CSO）框架，把 contextual distributional forecast 与 stochastic / robust optimization 融在一起，用于联合选择 fulfillment center 和 shipping carrier。系统不仅预测 delivery deviation 的分布，还把 item consolidation、服务风险和成本控制一起纳入决策，使机器学习预测真正进入 fulfillment control loop。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这是 supply chain / logistics 方向里很少见的硬论文，不是泛泛而谈 AI 提升效率，而是给出了可复用的 AI+OR operational workflow，并在真实电商履约问题上验证。对仓库新扩的 supply-chain / logistics 范围来说，它是很合格的代表：AI 不是周边分析，而是进入核心业务决策层。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：这篇工作的影响面主要集中在 fulfillment / operations research 这一子方向，外溢性虽强但仍不够跨到更广的 agent、foundation model 或 autonomous system 主线。再加上 canonical source 只能先采用作者公开页面而不是 journal 正式落地页，因此定为 breakthrough 更稳妥。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：全渠道零售中的订单履约长期依赖启发式规则，例如简单挑选最便宜的履约中心和承运商，但这种做法很难处理 delivery-time uncertainty、订单合单机会以及现实环境里只有 observational data 的约束。本文要解决的是：在大规模真实履约网络中，如何把预测与优化耦合成一个能直接驱动 operational decisions 的系统。</p><p>方法/新意：论文提出 Contextual Stochastic Optimization（CSO）框架，把 contextual distributional forecast 与 stochastic / robust optimization 融在一起，用于联合选择 fulfillment center 和 shipping carrier。系统不仅预测 delivery deviation 的分布，还把 item consolidation、服务风险和成本控制一起纳入决策，使机器学习预测真正进入 fulfillment control loop。</p><p>意义/放在仓库中的位置：这是 supply chain / logistics 方向里很少见的硬论文，不是泛泛而谈 AI 提升效率，而是给出了可复用的 AI+OR operational workflow，并在真实电商履约问题上验证。对仓库新扩的 supply-chain / logistics 范围来说，它是很合格的代表：AI 不是周边分析，而是进入核心业务决策层。</p><p>局限/为何不再升一级：这篇工作的影响面主要集中在 fulfillment / operations research 这一子方向，外溢性虽强但仍不够跨到更广的 agent、foundation model 或 autonomous system 主线。再加上 canonical source 只能先采用作者公开页面而不是 journal 正式落地页，因此定为 breakthrough 更稳妥。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。问题定义：本文研究了美国一家领先电子商务公司面临的大规模订单履行问题。挑战在于仅利用观测数据，从庞大的实体店和仓库网络中高效处理订单，并选择履行中心和运输承运商。该公司目前的做法依赖于启发式规则，为每个单位选择最便宜的履行和运输方案，而没有考虑批量处理商品的机会或承运商在满足预期交货日期方面的可靠性。方法/结果：本文开发了一个数据驱动的情境随机优化（CSO）框架，该框架将交货时间偏差的分布预测与随机和鲁棒订单履行优化模型相结合。该框架优化了履行中心和承运商的选择，同时考虑了商品整合和交货时间不确定性。在包含数万种产品（每种产品有数百到数千个履行选项）的真实世界数据集上进行验证，所提出的CSO框架与现有实践相比，显著提高了满足客户预期交货日期的准确性。它在降低履行成本和管理交货时间偏差风险之间提供了灵活的平衡，强调了情境信息和分布预测在订单履行中的重要性。管理启示：这是首次通过情境优化视角，融合机器学习和优化，研究交货时间不确定性下的全渠道多快递订单履行问题。研究结果为零售商提供了可操作的指导，以提高服务质量和客户满意度，同时平衡成本效率和风险，从而支持更高的客户留存率和盈利能力。资金：本研究部分由NSF人工智能优化进展研究所（奖项号2112533）资助。关键词：物流，订单履行，机器学习，情境随机优化，情境鲁棒优化</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Problem definition: The paper studies a large-scale order fulfillment problem for a leading e-commerce company in the United States. The challenge involves selecting fulfillment centers and shipping carriers with observational data only to efficiently process orders from a vast network of physical stores and warehouses. The company’s current practice relies on heuristic rules that choose the cheapest fulfillment and shipping options for each unit, without considering opportunities for batching items or the reliability of carriers in meeting expected delivery dates. Methodology / results: The paper develops a data-driven Contextual Stochastic Optimization (CSO) framework that integrates distributional forecasts of delivery time deviations with stochastic and robust order fulfillment optimization models. The framework optimizes the selection of fulfillment centers and carriers, accounting for item consolidation and delivery time uncertainty. Validated on a real-world data set containing tens of thousands of products, each with hundreds to thousands of fulfillment options, the proposed CSO framework significantly enhances the accuracy of meeting customer-expected delivery dates compared to current practices. It provides a flexible balance between reducing fulfillment costs and managing delivery time deviation risks, emphasizing the importance of contextual information and distributional forecasts in order fulfillment. Managerial implications: This is the first study of omnichannel multi-courier order fulfillment problem with delivery time uncertainty through the lens of contextual optimization, fusing machine learning and optimization. The results offer actionable guidance for retailers to enhance service quality and customer satisfaction while balancing cost efficiency and risk, supporting higher retention and profitability. Funding: This research was partly supported by the NSF AI Institute for Advances in Optimization (Award 2112533). Key words: logistics, order fulfillment, machine learning, contextual stochastic optimization, contextual robust optimization</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251014sc1context,
+  title = {Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2409.06918.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sc1-contextual-fulfillment-optimization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Contextual Stochastic Optimization for Omnichannel Multicourier Order Fulfillment Under Delivery Time Uncertainty. https://arxiv.org/pdf/2409.06918.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/sc2-inventory-control-human-llm-or/">
+              <span>AI Agents for Inventory Control: Human-LLM-OR Complementarity</span>
+              <small>供应链、物流与运营 · 2026-02-13</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2409.06918.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

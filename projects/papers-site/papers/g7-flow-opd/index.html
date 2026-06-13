@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flow-OPD: On-Policy Distillation for Flow Matching Models | DAST Papers</title>
+    <meta name="description" content="这篇论文把 on-policy distillation 引入 flow matching models。它的价值在于把生成模型 distillation 从离线 teacher imitation 推向更接近当前模型采样分布的训练。
+
+Flow matching 已经是扩散/生成建模的重要替代路线，蒸馏效率直接影响推理成本和部署可行性。On-policy distillation 如果稳定，会成" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g7-flow-opd/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Flow-OPD: On-Policy Distillation for Flow Matching Models" />
+    <meta property="og:description" content="这篇论文把 on-policy distillation 引入 flow matching models。它的价值在于把生成模型 distillation 从离线 teacher imitation 推向更接近当前模型采样分布的训练。
+
+Flow matching 已经是扩散/生成建模的重要替代路线，蒸馏效率直接影响推理成本和部署可行性。On-policy distillation 如果稳定，会成" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g7-flow-opd/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Flow-OPD: On-Policy Distillation for Flow Matching Models" />
+    <meta name="twitter:description" content="这篇论文把 on-policy distillation 引入 flow matching models。它的价值在于把生成模型 distillation 从离线 teacher imitation 推向更接近当前模型采样分布的训练。
+
+Flow matching 已经是扩散/生成建模的重要替代路线，蒸馏效率直接影响推理成本和部署可行性。On-policy distillation 如果稳定，会成" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Flow-OPD: On-Policy Distillation for Flow Matching Models</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.08063" target="_blank" rel="noopener noreferrer">2605.08063</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 on-policy distillation 引入 flow matching models。它的价值在于把生成模型 distillation 从离线 teacher imitation 推向更接近当前模型采样分布的训练。</dd></div><div><dt>方法/机制</dt><dd>Flow matching 已经是扩散/生成建模的重要替代路线，蒸馏效率直接影响推理成本和部署可行性。On-policy distillation 如果稳定，会成为一类通用加速机制。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为本库关注生成模型的 durable method primitive，而 Flow-OPD 正是训练/蒸馏层面的可复用方法。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为生成模型蒸馏方法需要跨架构、跨数据集、跨采样预算证明稳定收益。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 on-policy distillation 引入 flow matching models。它的价值在于把生成模型 distillation 从离线 teacher imitation 推向更接近当前模型采样分布的训练。</p><p>Flow matching 已经是扩散/生成建模的重要替代路线，蒸馏效率直接影响推理成本和部署可行性。On-policy distillation 如果稳定，会成为一类通用加速机制。</p><p>它值得正式收录，因为本库关注生成模型的 durable method primitive，而 Flow-OPD 正是训练/蒸馏层面的可复用方法。</p><p>它没有更高，是因为生成模型蒸馏方法需要跨架构、跨数据集、跨采样预算证明稳定收益。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现有的流匹配（FM）文本到图像模型在多任务对齐下存在两个关键瓶颈：由标量奖励引起的奖励稀疏性，以及联合优化异构目标所产生的梯度干扰，这两者共同导致了竞争指标的“跷跷板效应”和普遍存在的奖励作弊。受大型语言模型（LLM）社区中策略蒸馏（OPD）成功的启发，我们提出了Flow-OPD，这是第一个将策略蒸馏整合到流匹配模型中的统一后训练框架。Flow-OPD采用两阶段对齐策略：它首先通过单奖励GRPO微调培养领域专业教师模型，使每个专家都能独立达到其性能上限；然后通过基于流的冷启动方案建立一个稳健的初始策略，并通过策略采样、任务路由标记和密集轨迹级监督的三步协调，将异构专业知识无缝整合到一个学生模型中。我们进一步引入了流形锚定正则化（MAR），它利用一个与任务无关的教师模型提供全数据监督，将生成锚定到高质量流形上，有效缓解了纯粹由强化学习驱动的对齐中常见的审美退化。基于Stable Diffusion 3.5 Medium，Flow-OPD将GenEval分数从63提高到92，OCR准确率从59提高到94，相对于普通GRPO总体提高了大约10个点，同时保持了图像保真度和人类偏好对齐，并展现出一种新兴的“超越教师”效应。这些结果确立了Flow-OPD作为构建通用文本到图像模型的可扩展对齐范式。代码和权重将发布在：https://github.com/CostaliyA/Flow-OPD。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Existing Flow Matching (FM) text-to-image models suffer from two critical bottlenecks under multi-task alignment: the reward sparsity induced by scalar-valued rewards, and the gradient interference arising from jointly optimizing heterogeneous objectives, which together give rise to a “seesaw effect&quot; of competing metrics and pervasive reward hacking. Inspired by the success of On-Policy Distillation (OPD) in the large language model community, we propose Flow-OPD, the first unified post-training framework that integrates on-policy distillation into Flow Matching models. Flow-OPD adopts a two-stage alignment strategy: it first cultivates domain-specialized teacher models via single-reward GRPO fine-tuning, allowing each expert to reach its performance ceiling in isolation; it then establishes a robust initial policy through a Flow-based Cold-Start scheme and seamlessly consolidates heterogeneous expertise into a single student via a three-step orchestration of on-policy sampling, task-routing labeling, and dense trajectory-level supervision. We further introduce Manifold Anchor Regularization (MAR), which leverages a task-agnostic teacher to provide full-data supervision that anchors generation to a high-quality manifold, effectively mitigating the aesthetic degradation commonly observed in purely RL-driven alignment. Built upon Stable Diffusion 3.5 Medium, Flow-OPD raises the GenEval score from 63 to 92 and the OCR accuracy from 59 to 94, yielding an overall improvement of roughly 10 points over vanilla GRPO, while preserving image fidelity and human-preference alignment and exhibiting an emergent &quot;teacher-surpassing&quot; effect. These results establish Flow-OPD as a scalable alignment paradigm for building generalist text-to-image models. The codes and weights will be released in: https://github.com/CostaliyA/Flow-OPD.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513g7flowopd,
+  title = {Flow-OPD: On-Policy Distillation for Flow Matching Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.08063.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g7-flow-opd/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Flow-OPD: On-Policy Distillation for Flow Matching Models. https://arxiv.org/pdf/2605.08063.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.08063.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.08063" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

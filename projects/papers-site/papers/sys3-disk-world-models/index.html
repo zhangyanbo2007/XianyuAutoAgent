@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DISK: Dynamic Inference SKipping for World Models | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是世界模型落地时很实际的一层问题：闭环视频和轨迹预测往往太慢，尤其在自动驾驶这种长时 rollout 场景下，扩散式世界模型的推理成本会迅速变成瓶颈。作者试图在不重新训练模型的前提下，做出真正可用的推理加速。
+
+方法上，DISK 是一个 training-free 的动态跳步推理方法，用两个耦合的控制器分别对视频扩散和轨迹扩散分支做 skip 决策，同时把控制统计传播到 autore" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys3-disk-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DISK: Dynamic Inference SKipping for World Models" />
+    <meta property="og:description" content="这篇论文处理的是世界模型落地时很实际的一层问题：闭环视频和轨迹预测往往太慢，尤其在自动驾驶这种长时 rollout 场景下，扩散式世界模型的推理成本会迅速变成瓶颈。作者试图在不重新训练模型的前提下，做出真正可用的推理加速。
+
+方法上，DISK 是一个 training-free 的动态跳步推理方法，用两个耦合的控制器分别对视频扩散和轨迹扩散分支做 skip 决策，同时把控制统计传播到 autore" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys3-disk-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DISK: Dynamic Inference SKipping for World Models" />
+    <meta name="twitter:description" content="这篇论文处理的是世界模型落地时很实际的一层问题：闭环视频和轨迹预测往往太慢，尤其在自动驾驶这种长时 rollout 场景下，扩散式世界模型的推理成本会迅速变成瓶颈。作者试图在不重新训练模型的前提下，做出真正可用的推理加速。
+
+方法上，DISK 是一个 training-free 的动态跳步推理方法，用两个耦合的控制器分别对视频扩散和轨迹扩散分支做 skip 决策，同时把控制统计传播到 autore" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DISK: Dynamic Inference SKipping for World Models</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-01-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.00440" target="_blank" rel="noopener noreferrer">2602.00440</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是世界模型落地时很实际的一层问题：闭环视频和轨迹预测往往太慢，尤其在自动驾驶这种长时 rollout 场景下，扩散式世界模型的推理成本会迅速变成瓶颈。作者试图在不重新训练模型的前提下，做出真正可用的推理加速。</dd></div><div><dt>方法/机制</dt><dd>方法上，DISK 是一个 training-free 的动态跳步推理方法，用两个耦合的控制器分别对视频扩散和轨迹扩散分支做 skip 决策，同时把控制统计传播到 autoregressive rollout 里，保证长时稳定性。它的价值不在重训新模型，而在 test-time 层面对世界模型做自适应加速。</dd></div><div><dt>结果/证据</dt><dd>它适合放在仓库里，是因为我们已经收了不少 world model 与 VLA 方向的基础模型和闭环策略论文，而 DISK 补上了“如何让这些模型在实际推理预算下工作”的系统层空白。对于自动驾驶和通用世界模型部署都很有参考意义。</dd></div><div><dt>收录价值</dt><dd>我把它归为“突破性”。原因是它是高质量系统论文，结果也实用，但主要作用在推理效率与部署层，还不是重新定义世界模型训练范式的工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是世界模型落地时很实际的一层问题：闭环视频和轨迹预测往往太慢，尤其在自动驾驶这种长时 rollout 场景下，扩散式世界模型的推理成本会迅速变成瓶颈。作者试图在不重新训练模型的前提下，做出真正可用的推理加速。</p><p>方法上，DISK 是一个 training-free 的动态跳步推理方法，用两个耦合的控制器分别对视频扩散和轨迹扩散分支做 skip 决策，同时把控制统计传播到 autoregressive rollout 里，保证长时稳定性。它的价值不在重训新模型，而在 test-time 层面对世界模型做自适应加速。</p><p>它适合放在仓库里，是因为我们已经收了不少 world model 与 VLA 方向的基础模型和闭环策略论文，而 DISK 补上了“如何让这些模型在实际推理预算下工作”的系统层空白。对于自动驾驶和通用世界模型部署都很有参考意义。</p><p>我把它归为“突破性”。原因是它是高质量系统论文，结果也实用，但主要作用在推理效率与部署层，还不是重新定义世界模型训练范式的工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>DISK：世界模型的动态推理跳过。随着每个预测帧和轨迹条件化下一步，误差会随时间累积。因此，驾驶的长时展开需要对两个耦合分支（视觉和轨迹）进行数千次模型评估，这给实时应用的延迟和能耗预算带来了压力。我们提出了DISK，一种用于自回归世界模型的免训练自适应推理方法。DISK通过具有跨模态跳过决策的双分支控制器协调两个耦合的扩散Transformer（分别用于视频和自我轨迹），在不重新训练的情况下保持运动-外观一致性。我们将高阶潜在差异跳过测试扩展到自回归前向链式机制，并通过展开循环传播控制器统计数据，以实现长时程稳定性。当使用NVIDIA L40S GPU将DISK集成到1500个NuPlan和NuScenes样本的闭环驾驶展开中时，DISK在轨迹扩散上实现了约2倍的加速，在视频扩散上实现了约1.6倍的加速，同时保持了L2规划误差、视觉质量（FID/FVD）和NAVSIM PDMS分数，这表明以显著降低的成本实现了实用的长时程视频和轨迹预测。遗憾的是，现有的加速方法未能完全解决这一挑战。固定步长加速或全局步长减少会在闭环展开中降低保真度和稳定性，因为小误差会累积。训练时加速器，例如一致性模型（Song et al., 2023; Liu et al., 2023; Salimans &amp; Ho, 2021），可以实现一步采样，但需要昂贵的重新训练或蒸馏。这破坏了加速现有基础模型而不改变其学习行为所需的“即插即用”灵活性。此外，固定的一步生成无论场景复杂性如何，都会分配统一的计算资源。在自回归驾驶展开中，静态高速公路巡航与关键机动交替出现，这种方式效率低下：简单帧的成本应该很低，而复杂过渡则需要完整ODE求解器的精度来防止累积漂移。固定的一步模型无法适应这种变化。对采样器进行的推理时更改，例如确定性公式或高阶ODE求解器（Song et al., 2020; Zhang et al., 2023b; Lu et al., 2022; 2025），无法适应每一步的难度。此外，它们未能协调自回归世界模型中的视觉和轨迹预测。其他免训练加速器，包括提前退出和特征缓存（Tang et al., 2023; Ma et al., 2024），或自动化步长选择（Li et al., 2023; Zhang et al., 2023a），在单个去噪网络内优化计算，但无法在闭环世界模型展开中协调跨模态分支。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>compound across time as each predicted frame and trajectory conditions the next step. Long rollouts for driving therefore require thousands of model evaluations across two coupled branches (vision and trajectory), which stresses latency and energy budgets in real-time applications. We present DISK, a training-free adaptive inference method for autoregressive world models. DISK coordinates two coupled diffusion transformers—for video and ego-trajectory—via dualbranch controllers with cross-modal skip decisions, preserving motion-appearance consistency without retraining. We extend higher-order latentdifference skip testing to the autoregressive chainof-forward regime and propagate controller statistics through rollout loops for long-horizon stability. When integrated into closed-loop driving rollouts on 1500 NuPlan and NuScenes samples using an NVIDIA L40S GPU, DISK achieves ∼2× speedup on trajectory diffusion and ∼1.6× on video diffusion while maintaining L2 planning error, visual quality (FID/FVD), and NAVSIM PDMS scores, demonstrating practical long-horizon video-and-trajectory prediction at substantially reduced cost. Unfortunately, existing acceleration methods do not fully address this challenge. Fixed-step acceleration or global step reduction degrades fidelity and stability under closed-loop rollout, where small errors accumulate. Training-time accelerators such as consistency models (Song et al., 2023; Liu et al., 2023; Salimans &amp; Ho, 2021) achieve one-step sampling but require expensive retraining or distillation. This breaks the “plug-and-play” flexibility needed to accelerate existing foundation models without altering their learned behavior. Moreover, fixed one-step generation allocates uniform compute regardless of scene complexity. In autoregressive driving rollouts, where static highway cruising alternates with critical maneuvers, this is inefficient: simple frames should be cheap, while complex transitions demand the precision of a full ODE solver to prevent compounding drift. A fixed one-step model cannot adapt to this variation. Inference-time changes to the sampler, such as deterministic formulations or higher-order ODE solvers (Song et al., 2020; Zhang et al., 2023b; Lu et al., 2022; 2025), do not adapt to per-step difficulty. Furthermore, they fail to coordinate the visual and trajectory predictions in autoregressive world models. Other training-free accelerators, including early exiting and feature caching (Tang et al., 2023; Ma et al., 2024), or automated step selection (Li et al., 2023; Zhang et al., 2023a), optimize computation within a single denoising network but do not coordinate cross-modal branches in a closed-loop world-model rollout.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260131sys3diskwo,
+  title = {DISK: Dynamic Inference SKipping for World Models},
+  year = {2026},
+  url = {https://arxiv.org/abs/2602.00440},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys3-disk-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DISK: Dynamic Inference SKipping for World Models. https://arxiv.org/abs/2602.00440</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2602.00440" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media | DAST Papers</title>
+    <meta name="description" content="这篇论文的价值在于它没有把 hallucination 当成模糊的现象学问题，而是在一个 physics-guided scattering system 里把 generalization 上限和 hallucination 起因同时钉住。通过 transmission matrix 的可控变化，作者把 inverse mapping 数量、模型容量和非物理预测之间的关系拆清楚了。
+
+最有用的点" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t31-physical-mechanisms-generalization-hallucination/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media" />
+    <meta property="og:description" content="这篇论文的价值在于它没有把 hallucination 当成模糊的现象学问题，而是在一个 physics-guided scattering system 里把 generalization 上限和 hallucination 起因同时钉住。通过 transmission matrix 的可控变化，作者把 inverse mapping 数量、模型容量和非物理预测之间的关系拆清楚了。
+
+最有用的点" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t31-physical-mechanisms-generalization-hallucination/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media" />
+    <meta name="twitter:description" content="这篇论文的价值在于它没有把 hallucination 当成模糊的现象学问题，而是在一个 physics-guided scattering system 里把 generalization 上限和 hallucination 起因同时钉住。通过 transmission matrix 的可控变化，作者把 inverse mapping 数量、模型容量和非物理预测之间的关系拆清楚了。
+
+最有用的点" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-04-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-23</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72304-z" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72304-z</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的价值在于它没有把 hallucination 当成模糊的现象学问题，而是在一个 physics-guided scattering system 里把 generalization 上限和 hallucination 起因同时钉住。通过 transmission matrix 的可控变化，作者把 inverse mapping 数量、模型容量和非物理预测之间的关系拆清楚了。</dd></div><div><dt>方法/机制</dt><dd>最有用的点是它给出了可操作的解释：当模型无法同时容纳足够多的 distinct inverse mappings 时，预测就会滑向 unconstrained、non-physical outputs；而 residual ballistic light 则像一个 stabilizing anchor，能显著提升 robustness。这种机制分析对可靠成像和 inverse problems 比一般 benchmark paper 更耐用。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它对泛化与 hallucination 的关系提供了一个强解释框架，而且这个框架并不只局限于一个数据集，而是建立在物理可控系统和 wave-optics simulation 之上。对可靠 AI 成像、physics-guided learning 和 hallucination suppression 都有方法外溢。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前最直接的实证场景还是 scattering imaging；它对更广泛深度学习系统的普适性虽然有启发，但还没有被广泛验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的价值在于它没有把 hallucination 当成模糊的现象学问题，而是在一个 physics-guided scattering system 里把 generalization 上限和 hallucination 起因同时钉住。通过 transmission matrix 的可控变化，作者把 inverse mapping 数量、模型容量和非物理预测之间的关系拆清楚了。</p><p>最有用的点是它给出了可操作的解释：当模型无法同时容纳足够多的 distinct inverse mappings 时，预测就会滑向 unconstrained、non-physical outputs；而 residual ballistic light 则像一个 stabilizing anchor，能显著提升 robustness。这种机制分析对可靠成像和 inverse problems 比一般 benchmark paper 更耐用。</p><p>它值得正式收录，因为它对泛化与 hallucination 的关系提供了一个强解释框架，而且这个框架并不只局限于一个数据集，而是建立在物理可控系统和 wave-optics simulation 之上。对可靠 AI 成像、physics-guided learning 和 hallucination suppression 都有方法外溢。</p><p>它没有更高，是因为当前最直接的实证场景还是 scattering imaging；它对更广泛深度学习系统的普适性虽然有启发，但还没有被广泛验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>深度学习彻底改变了计算成像，但其在实际部署中仍受两个关键挑战的制约：动态条件下的泛化能力差和幻觉伪影的出现。通过利用基于散射介质的物理引导框架（这是一个模型系统，其中光传输矩阵 ( T ) 的受控变化能够分离这些挑战），我们揭示了泛化极限与幻觉起源之间的机制性相互作用。我们证明，网络的泛化能力从根本上受限于其适应不同逆映射 ( T⁻¹ ) 的能力，而当这种能力被超越时，就会产生幻觉，导致无约束的、非物理的预测。我们还发现，如果残余弹道光不可忽略，它将作为一个稳定锚点，在散射变异性下实现鲁棒预测。通过将实验验证与波动光学模拟相结合，我们建立了一个连接这些现象的通用框架，表明对多样化的物理映射进行战略性训练可以增强泛化能力，同时抑制幻觉。这项工作将物理驱动的可解释性与人工智能设计相结合，为开发可靠模型提供了可操作的策略，适用于从通过生物组织进行医学成像到散射环境中的自主导航等多种应用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Deep learning has revolutionized computational imaging, yet its real-world deployment remains constrained by two critical challenges: poor generalization under dynamic conditions and the emergence of hallucinatory artifacts. By leveraging a physics-guided framework based on scattering media, a model system where controlled variations in light transmission matrices ( \(T\) ) isolates these challenges, we unravel the mechanistic interplay between generalization limits and hallucination origins. We demonstrate that a network’s generalization capacity is fundamentally bounded by its ability to accommodate distinct inverse mappings ( \({T}^{-1}\) ), while hallucinations arise when this capacity is exceeded, resulting in unconstrained, non-physical predictions. We also identify residual ballistic light, if not negligible, as a stabilizing anchor, enabling robust predictions under scattering variability. Integrating experimental validation with wave-optics simulations, we establish a universal framework that links these phenomena, showing that strategic training on diverse physical mappings enhances generalization while suppressing hallucinations. This work bridges physics-driven interpretability with AI design, offering actionable strategies to develop reliable models for applications ranging from medical imaging through biological tissues to autonomous navigation in scattering environments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260423t31physica,
+  title = {Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72304-z.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t31-physical-mechanisms-generalization-hallucination/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media. https://www.nature.com/articles/s41467-026-72304-z.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+            <a class="related-item" href="../../papers/i17-weight-tying-output-bias/">
+              <span>Weight Tying Biases Token Embeddings Towards the Output Space</span>
+              <small>可解释性与机制分析 · 2026-03-27</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72304-z.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 VLA 在一个真实短板上的失效展开：静态操控上已经能做得不错，但一旦对象本身在运动，模型就需要更低时延的感知、更强的时间推理以及连续闭环控制能力，原有静态范式往往会失效。DynamicVLA 直接把目标放在 dynamic object manipulation，而不是继续在静态场景里刷泛化。
+
+论文给出的核心设计有三块：一是更轻量的 0.4B VLA 主干，使用卷积式视觉编码器来降" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a46-dynamicvla-dynamic-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation" />
+    <meta property="og:description" content="这篇论文针对 VLA 在一个真实短板上的失效展开：静态操控上已经能做得不错，但一旦对象本身在运动，模型就需要更低时延的感知、更强的时间推理以及连续闭环控制能力，原有静态范式往往会失效。DynamicVLA 直接把目标放在 dynamic object manipulation，而不是继续在静态场景里刷泛化。
+
+论文给出的核心设计有三块：一是更轻量的 0.4B VLA 主干，使用卷积式视觉编码器来降" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a46-dynamicvla-dynamic-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation" />
+    <meta name="twitter:description" content="这篇论文针对 VLA 在一个真实短板上的失效展开：静态操控上已经能做得不错，但一旦对象本身在运动，模型就需要更低时延的感知、更强的时间推理以及连续闭环控制能力，原有静态范式往往会失效。DynamicVLA 直接把目标放在 dynamic object manipulation，而不是继续在静态场景里刷泛化。
+
+论文给出的核心设计有三块：一是更轻量的 0.4B VLA 主干，使用卷积式视觉编码器来降" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.22153" target="_blank" rel="noopener noreferrer">2601.22153</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 VLA 在一个真实短板上的失效展开：静态操控上已经能做得不错，但一旦对象本身在运动，模型就需要更低时延的感知、更强的时间推理以及连续闭环控制能力，原有静态范式往往会失效。DynamicVLA 直接把目标放在 dynamic object manipulation，而不是继续在静态场景里刷泛化。</dd></div><div><dt>方法/机制</dt><dd>论文给出的核心设计有三块：一是更轻量的 0.4B VLA 主干，使用卷积式视觉编码器来降低时空编码成本；二是 Continuous Inference，让推理与执行可以重叠进行，减少控制链时延；三是 Latent-aware Action Streaming，通过对齐潜变量与动作流，把感知和执行之间的时间落差压小。除此之外，论文还补了一个关键缺口：从零构建 Dynamic Object Manipulation（DOM）benchmark，为这类任务提供专门的数据与评测基础。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这不是普通机器人 VLA 变体，而是明确切中一个静态 VLA 到真实世界部署之间的关键断层。动态物体操控需要的不是单次视觉理解，而是持续感知、持续推理和连续控制的组合。DynamicVLA 同时提出了模型结构、推理执行耦合方式和数据基准三方面方案，对具身智能和 real-time manipulation 路线都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，原因在于当前仍是一条很强的任务导向方法路线，而不是已经重排整个 VLA 主干或 embodied foundation model 框架的工作。它解决的是重要缺口，但还没有证明自己会成为这类系统的默认基础架构，因此以 breakthrough 收录更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 VLA 在一个真实短板上的失效展开：静态操控上已经能做得不错，但一旦对象本身在运动，模型就需要更低时延的感知、更强的时间推理以及连续闭环控制能力，原有静态范式往往会失效。DynamicVLA 直接把目标放在 dynamic object manipulation，而不是继续在静态场景里刷泛化。</p><p>论文给出的核心设计有三块：一是更轻量的 0.4B VLA 主干，使用卷积式视觉编码器来降低时空编码成本；二是 Continuous Inference，让推理与执行可以重叠进行，减少控制链时延；三是 Latent-aware Action Streaming，通过对齐潜变量与动作流，把感知和执行之间的时间落差压小。除此之外，论文还补了一个关键缺口：从零构建 Dynamic Object Manipulation（DOM）benchmark，为这类任务提供专门的数据与评测基础。</p><p>它值得收录，因为这不是普通机器人 VLA 变体，而是明确切中一个静态 VLA 到真实世界部署之间的关键断层。动态物体操控需要的不是单次视觉理解，而是持续感知、持续推理和连续控制的组合。DynamicVLA 同时提出了模型结构、推理执行耦合方式和数据基准三方面方案，对具身智能和 real-time manipulation 路线都有明显外溢价值。</p><p>它没有升到更高一级，原因在于当前仍是一条很强的任务导向方法路线，而不是已经重排整个 VLA 主干或 embodied foundation model 框架的工作。它解决的是重要缺口，但还没有证明自己会成为这类系统的默认基础架构，因此以 breakthrough 收录更稳。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260129a46dynamic,
+  title = {DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.22153v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a46-dynamicvla-dynamic-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DynamicVLA: A Vision-Language-Action Model for Dynamic Object Manipulation. https://arxiv.org/pdf/2601.22153v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.22153v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

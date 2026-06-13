@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blending neural operators and relaxation methods in PDE numerical solvers | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是科学计算里一个很经典但一直没有被 AI 真正解决干净的问题：传统 relaxation / multigrid / Krylov 一类数值方法在高频误差与低频误差上的收敛特性并不均衡，而纯 neural operator 又有明显的 spectral bias，很难稳健覆盖高频部分。作者没有把神经网络简单塞进 PDE 求解器，而是把两类方法的失效模式并排放在一起，专门设计一个混合求" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p23-hints-hybrid-pde-solver/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Blending neural operators and relaxation methods in PDE numerical solvers" />
+    <meta property="og:description" content="这篇论文处理的是科学计算里一个很经典但一直没有被 AI 真正解决干净的问题：传统 relaxation / multigrid / Krylov 一类数值方法在高频误差与低频误差上的收敛特性并不均衡，而纯 neural operator 又有明显的 spectral bias，很难稳健覆盖高频部分。作者没有把神经网络简单塞进 PDE 求解器，而是把两类方法的失效模式并排放在一起，专门设计一个混合求" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p23-hints-hybrid-pde-solver/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Blending neural operators and relaxation methods in PDE numerical solvers" />
+    <meta name="twitter:description" content="这篇论文处理的是科学计算里一个很经典但一直没有被 AI 真正解决干净的问题：传统 relaxation / multigrid / Krylov 一类数值方法在高频误差与低频误差上的收敛特性并不均衡，而纯 neural operator 又有明显的 spectral bias，很难稳健覆盖高频部分。作者没有把神经网络简单塞进 PDE 求解器，而是把两类方法的失效模式并排放在一起，专门设计一个混合求" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Blending neural operators and relaxation methods in PDE numerical solvers</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2024-10-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-10-17</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-024-00910-x" target="_blank" rel="noopener noreferrer">10.1038/s42256-024-00910-x</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是科学计算里一个很经典但一直没有被 AI 真正解决干净的问题：传统 relaxation / multigrid / Krylov 一类数值方法在高频误差与低频误差上的收敛特性并不均衡，而纯 neural operator 又有明显的 spectral bias，很难稳健覆盖高频部分。作者没有把神经网络简单塞进 PDE 求解器，而是把两类方法的失效模式并排放在一起，专门设计一个混合求解流程去利用它们的互补性。</dd></div><div><dt>方法/机制</dt><dd>论文提出 HINTS，把 DeepONet 与标准 relaxation methods 结合成一个 hybrid、iterative、transferable solver。关键点不只是“神经网络加速数值计算”，而是让 neural operator 去吸收低频/全局部分，让 relaxation 去快速消化高频部分，从而在谱空间上形成更均衡的收敛。它同时保持了并行性、可扩展性、对不同离散化/边界条件/计算域的灵活性，还可以作为 Krylov 方法的 preconditioner 使用。</dd></div><div><dt>结果/证据</dt><dd>这篇值得正式收录，因为它展示的是一种有持久价值的 AI x scientific computing workflow：不是让模型直接替代求解器，而是让 learned operator 成为数值算法中的结构化组件，与已有 solver 形成分工协作。这种 blending neural operators with classical solvers 的思路，对 PDE 数值求解、科学模拟、预条件设计以及更广义的 AI for scientific computing 都有明显外溢价值。它也符合仓库当前对 AI x math/physics/scientific computing 扩展的重点。</dd></div><div><dt>收录价值</dt><dd>它暂时不到更高一级，原因在于它虽然方法上很漂亮、系统上也有说服力，但更像一个强而稳的 hybrid solver recipe，而不是彻底改写神经算子或 PDE 求解范式的分水岭。其主要影响仍集中在 PDE 数值求解与相关 scientific ML 场景，要证明它会成为更广泛的默认蓝图，还需要后续更多跨问题、跨架构和更大规模应用验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是科学计算里一个很经典但一直没有被 AI 真正解决干净的问题：传统 relaxation / multigrid / Krylov 一类数值方法在高频误差与低频误差上的收敛特性并不均衡，而纯 neural operator 又有明显的 spectral bias，很难稳健覆盖高频部分。作者没有把神经网络简单塞进 PDE 求解器，而是把两类方法的失效模式并排放在一起，专门设计一个混合求解流程去利用它们的互补性。</p><p>论文提出 HINTS，把 DeepONet 与标准 relaxation methods 结合成一个 hybrid、iterative、transferable solver。关键点不只是“神经网络加速数值计算”，而是让 neural operator 去吸收低频/全局部分，让 relaxation 去快速消化高频部分，从而在谱空间上形成更均衡的收敛。它同时保持了并行性、可扩展性、对不同离散化/边界条件/计算域的灵活性，还可以作为 Krylov 方法的 preconditioner 使用。</p><p>这篇值得正式收录，因为它展示的是一种有持久价值的 AI x scientific computing workflow：不是让模型直接替代求解器，而是让 learned operator 成为数值算法中的结构化组件，与已有 solver 形成分工协作。这种 blending neural operators with classical solvers 的思路，对 PDE 数值求解、科学模拟、预条件设计以及更广义的 AI for scientific computing 都有明显外溢价值。它也符合仓库当前对 AI x math/physics/scientific computing 扩展的重点。</p><p>它暂时不到更高一级，原因在于它虽然方法上很漂亮、系统上也有说服力，但更像一个强而稳的 hybrid solver recipe，而不是彻底改写神经算子或 PDE 求解范式的分水岭。其主要影响仍集中在 PDE 数值求解与相关 scientific ML 场景，要证明它会成为更广泛的默认蓝图，还需要后续更多跨问题、跨架构和更大规模应用验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>神经网络存在谱偏差，并且难以表示函数的高频分量，而松弛方法可以有效地解析高频分量，但在中低频处停滞不前。我们利用这两种方法的弱点，通过协同组合它们，以开发一种大规模的偏微分方程 (PDEs) 快速数值求解器。具体来说，我们提出了HINTS，这是一种混合、迭代、数值且可迁移的求解器，通过将深度算子网络 (DeepONet) 与标准松弛方法相结合，从而为广泛的PDEs带来了并行效率和算法可扩展性，这些PDEs是现有单一求解器无法处理的。HINTS通过平衡特征模态谱上的收敛行为，利用DeepONet的谱偏差，从而实现均匀的收敛速度，进而使混合求解器整体表现出卓越的性能。此外，HINTS适用于大规模、多维系统；它在离散化、计算域和边界条件方面具有灵活性；并且还可以用于预处理Krylov方法。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Neural networks suffer from spectral bias and have difficulty representing the high-frequency components of a function, whereas relaxation methods can resolve high frequencies efficiently but stall at moderate to low frequencies. We exploit the weaknesses of the two approaches by combining them synergistically to develop a fast numerical solver of partial differential equations (PDEs) at scale. Specifically, we propose HINTS, a hybrid, iterative, numerical and transferable solver by integrating a Deep Operator Network (DeepONet) with standard relaxation methods, leading to parallel efficiency and algorithmic scalability for a wide class of PDEs, not tractable with existing monolithic solvers. HINTS balances the convergence behaviour across the spectrum of eigenmodes by utilizing the spectral bias of DeepONet, resulting in a uniform convergence rate and hence exceptional performance of the hybrid solver overall. Moreover, HINTS applies to large-scale, multidimensional systems; it is flexible with regards to discretizations, computational domain and boundary conditions; and it can also be used to precondition Krylov methods.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20241017p23hintshy,
+  title = {Blending neural operators and relaxation methods in PDE numerical solvers},
+  year = {2024},
+  url = {https://www.nature.com/articles/s42256-024-00910-x},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p23-hints-hybrid-pde-solver/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). Blending neural operators and relaxation methods in PDE numerical solvers. https://www.nature.com/articles/s42256-024-00910-x</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-024-00910-x" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

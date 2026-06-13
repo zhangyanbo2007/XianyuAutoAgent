@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices | DAST Papers</title>
+    <meta name="description" content="AgentStop 研究本地部署 AI agents 的系统成本：多步推理、工具调用和失败重试会让本地 GPU 功耗、温度和电池消耗显著上升。
+
+论文提出轻量级 efficiency supervisor，用 token log probabilities 等低成本执行信号预测轨迹是否大概率失败，并提前终止无望执行。
+
+它值得正式收录，因为 local-first agents 会受能耗、隐私和设" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys13-agentstop-local-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices" />
+    <meta property="og:description" content="AgentStop 研究本地部署 AI agents 的系统成本：多步推理、工具调用和失败重试会让本地 GPU 功耗、温度和电池消耗显著上升。
+
+论文提出轻量级 efficiency supervisor，用 token log probabilities 等低成本执行信号预测轨迹是否大概率失败，并提前终止无望执行。
+
+它值得正式收录，因为 local-first agents 会受能耗、隐私和设" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys13-agentstop-local-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices" />
+    <meta name="twitter:description" content="AgentStop 研究本地部署 AI agents 的系统成本：多步推理、工具调用和失败重试会让本地 GPU 功耗、温度和电池消耗显著上升。
+
+论文提出轻量级 efficiency supervisor，用 token log probabilities 等低成本执行信号预测轨迹是否大概率失败，并提前终止无望执行。
+
+它值得正式收录，因为 local-first agents 会受能耗、隐私和设" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices</h1>
+          <p class="subtitle">系统、硬件与协同设计 · 发表：2026-05-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">系统、硬件与协同设计</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15206" target="_blank" rel="noopener noreferrer">2605.15206</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>AgentStop 研究本地部署 AI agents 的系统成本：多步推理、工具调用和失败重试会让本地 GPU 功耗、温度和电池消耗显著上升。</dd></div><div><dt>方法/机制</dt><dd>论文提出轻量级 efficiency supervisor，用 token log probabilities 等低成本执行信号预测轨迹是否大概率失败，并提前终止无望执行。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 local-first agents 会受能耗、隐私和设备可用性约束；early termination 是面向消费设备 agent runtime 的可复用控制原语。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为节能幅度和 utility trade-off 还需要在更多设备、模型、任务和用户体验约束下验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>AgentStop 研究本地部署 AI agents 的系统成本：多步推理、工具调用和失败重试会让本地 GPU 功耗、温度和电池消耗显著上升。</p><p>论文提出轻量级 efficiency supervisor，用 token log probabilities 等低成本执行信号预测轨迹是否大概率失败，并提前终止无望执行。</p><p>它值得正式收录，因为 local-first agents 会受能耗、隐私和设备可用性约束；early termination 是面向消费设备 agent runtime 的可复用控制原语。</p><p>它没有更高，是因为节能幅度和 utility trade-off 还需要在更多设备、模型、任务和用户体验约束下验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AgentStop：提前终止本地AI代理以节省消费设备能耗由大型语言模型（LLMs）驱动的自主代理正越来越多地用于自动化复杂的、多步骤的任务，例如编码或基于网络的问答。尽管远程的、基于云的代理提供了可扩展性和易于部署的优势，但它们引发了隐私问题，依赖于网络连接，并产生经常性的API成本。在用户设备上本地部署代理通过保护数据隐私和消除基于使用量的费用来缓解这些问题。然而，代理工作流比典型的LLM交互消耗更多的资源。迭代推理、工具使用和失败重试显著增加了令牌消耗，通常在未能成功完成任务的情况下消耗大量计算资源。在这项工作中，我们研究了在消费硬件上本地部署的基于LLM的代理的时间、令牌和能量开销。我们的测量结果表明，与单次推理工作负载相比，代理执行增加了GPU功耗、温度和电池消耗。为了解决这种低效率问题，我们引入了AgentStop，这是一种轻量级效率监督器，它能预测并抢先终止不太可能成功的轨迹。利用低成本的执行信号，例如令牌级别的对数概率，AgentStop可以在对任务性能影响最小（效用下降&lt;5%）的情况下，将浪费的能量减少15-20%，适用于具有挑战性的基于网络的问答和编码基准测试。这些发现将预测性早期终止定位为一种实用的机制，可用于在用户设备上实现可持续的、保护隐私的LLM代理。我们的项目代码和数据可在https://github.com/brave-experiments/AgentStop获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Autonomous agents powered by large language models (LLMs) are increasingly used to automate complex, multi-step tasks such as coding or web-based question answering. While remote, cloud-based agents offer scalability and ease of deployment, they raise privacy concerns, depend on network connectivity, and incur recurring API costs. Deploying agents locally on user devices mitigates these issues by preserving data privacy and eliminating usage-based fees. However, agentic workflows are far more resource-intensive than typical LLM interactions. Iterative reasoning, tool use, and failure retries substantially increase token consumption, often expending significant compute without successfully completing tasks. In this work, we investigate the time, token, and energy overhead of locally deployed LLM-based agents on consumer hardware. Our measurements show that agentic execution increases GPU power draw, temperature, and battery drain compared to singleinference workloads. To address this inefficiency, we introduce AgentStop, a lightweight efficiency supervisor that predicts and preemptively terminates trajectories unlikely to succeed. Leveraging low-cost execution signals, such as token-level log probabilities, AgentStop can reduce wasted energy by 15-20% with minimal impact on task performance (&lt;5% utility drop) for challenging web-based question answering and coding benchmarks. These findings position predictive early termination as a practical mechanism for enabling sustainable, privacy-preserving LLM agents on user devices. Our project code and data are available at https://github.com/brave-experiments/AgentStop.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260518sys13agent,
+  title = {AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15206.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys13-agentstop-local-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentStop: Terminating Local AI Agents Early to Save Energy in Consumer Devices. https://arxiv.org/pdf/2605.15206.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw34-therm-fm-3dic-thermal/">
+              <span>Therm-FM: Foundation Model is ALL YOU NEED for 3D-ICs Thermal Simulation</span>
+              <small>系统、硬件与协同设计 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/sys14-compactattention-chunked-prefill/">
+              <span>CompactAttention: Accelerating Chunked Prefill with Block-Union KV Selection</span>
+              <small>系统、硬件与协同设计 · 2026-05-16</small>
+            </a>
+            <a class="related-item" href="../../papers/sys9-mint-lora-infrastructure/">
+              <span>MinT: Managed Infrastructure for Training and Serving Millions of LLMs</span>
+              <small>系统、硬件与协同设计 · 2026-05-13</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15206.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

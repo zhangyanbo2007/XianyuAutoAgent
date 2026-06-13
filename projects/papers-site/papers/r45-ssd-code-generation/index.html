@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Embarrassingly Simple Self-Distillation Improves Code Generation | DAST Papers</title>
+    <meta name="description" content="代码生成后训练通常依赖执行反馈、验证器、教师模型或 RL 流水线，导致成本高、实现复杂，而且很难把方法推广到不同模型规模与训练设定。真正有价值的问题是：模型能否只用自己的原始输出就系统性变强。
+
+这篇工作给出的答案是可以。它提出极简自蒸馏 SSD：直接采样模型自己的未经验证输出，再用标准 SFT 回灌训练。论文进一步把收益解释为对 token 分布的上下文依赖式重塑：在需要精确锁定的地方压掉长尾干" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r45-ssd-code-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Embarrassingly Simple Self-Distillation Improves Code Generation" />
+    <meta property="og:description" content="代码生成后训练通常依赖执行反馈、验证器、教师模型或 RL 流水线，导致成本高、实现复杂，而且很难把方法推广到不同模型规模与训练设定。真正有价值的问题是：模型能否只用自己的原始输出就系统性变强。
+
+这篇工作给出的答案是可以。它提出极简自蒸馏 SSD：直接采样模型自己的未经验证输出，再用标准 SFT 回灌训练。论文进一步把收益解释为对 token 分布的上下文依赖式重塑：在需要精确锁定的地方压掉长尾干" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r45-ssd-code-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Embarrassingly Simple Self-Distillation Improves Code Generation" />
+    <meta name="twitter:description" content="代码生成后训练通常依赖执行反馈、验证器、教师模型或 RL 流水线，导致成本高、实现复杂，而且很难把方法推广到不同模型规模与训练设定。真正有价值的问题是：模型能否只用自己的原始输出就系统性变强。
+
+这篇工作给出的答案是可以。它提出极简自蒸馏 SSD：直接采样模型自己的未经验证输出，再用标准 SFT 回灌训练。论文进一步把收益解释为对 token 分布的上下文依赖式重塑：在需要精确锁定的地方压掉长尾干" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Embarrassingly Simple Self-Distillation Improves Code Generation</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01193" target="_blank" rel="noopener noreferrer">2604.01193</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>代码生成后训练通常依赖执行反馈、验证器、教师模型或 RL 流水线，导致成本高、实现复杂，而且很难把方法推广到不同模型规模与训练设定。真正有价值的问题是：模型能否只用自己的原始输出就系统性变强。</dd></div><div><dt>方法/机制</dt><dd>这篇工作给出的答案是可以。它提出极简自蒸馏 SSD：直接采样模型自己的未经验证输出，再用标准 SFT 回灌训练。论文进一步把收益解释为对 token 分布的上下文依赖式重塑：在需要精确锁定的地方压掉长尾干扰项，在需要探索分叉的地方保留头部多样性，从而缓解代码生成里的精度-探索冲突。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它用极低复杂度的 post-training recipe 换来了显著的代码生成提升，并且不是单纯报告分数，而是给出了关于解码分布几何和为什么 decode-only 调参不够的清晰解释。这对代码模型和更广义的后训练设计都很有参考价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前证据仍主要集中在代码生成这一高结构化场景，而且小模型上出现了跨域性能代价，说明方法的普适边界还没有完全厘清。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>代码生成后训练通常依赖执行反馈、验证器、教师模型或 RL 流水线，导致成本高、实现复杂，而且很难把方法推广到不同模型规模与训练设定。真正有价值的问题是：模型能否只用自己的原始输出就系统性变强。</p><p>这篇工作给出的答案是可以。它提出极简自蒸馏 SSD：直接采样模型自己的未经验证输出，再用标准 SFT 回灌训练。论文进一步把收益解释为对 token 分布的上下文依赖式重塑：在需要精确锁定的地方压掉长尾干扰项，在需要探索分叉的地方保留头部多样性，从而缓解代码生成里的精度-探索冲突。</p><p>它值得正式收录，因为它用极低复杂度的 post-training recipe 换来了显著的代码生成提升，并且不是单纯报告分数，而是给出了关于解码分布几何和为什么 decode-only 调参不够的清晰解释。这对代码模型和更广义的后训练设计都很有参考价值。</p><p>它暂时不升到更高一级，原因在于当前证据仍主要集中在代码生成这一高结构化场景，而且小模型上出现了跨域性能代价，说明方法的普适边界还没有完全厘清。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r45ssdcode,
+  title = {Embarrassingly Simple Self-Distillation Improves Code Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01193.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r45-ssd-code-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Embarrassingly Simple Self-Distillation Improves Code Generation. https://arxiv.org/pdf/2604.01193.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01193.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

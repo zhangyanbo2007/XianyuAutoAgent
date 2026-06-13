@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A neural network for modeling human concept formation, understanding and communication | DAST Papers</title>
+    <meta name="description" content="这篇论文试图解释人类如何从感觉运动经验中形成抽象概念，并把概念用于理解、迁移和交流。它不是一般的行为拟合模型，而是在概念形成与语义控制之间提出了一个明确的计算框架，因此同时落在认知建模和 NeuroAI 之间。
+
+作者提出双模块的 CATS Net：一个模块负责把经验压缩成低维概念表征，另一个模块在概念门控下完成任务求解。概念表示不仅支持任务间迁移，还支持跨网络的概念通信；同时，模型与人脑腹侧枕颞" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n64-cats-net-concept-formation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A neural network for modeling human concept formation, understanding and communication" />
+    <meta property="og:description" content="这篇论文试图解释人类如何从感觉运动经验中形成抽象概念，并把概念用于理解、迁移和交流。它不是一般的行为拟合模型，而是在概念形成与语义控制之间提出了一个明确的计算框架，因此同时落在认知建模和 NeuroAI 之间。
+
+作者提出双模块的 CATS Net：一个模块负责把经验压缩成低维概念表征，另一个模块在概念门控下完成任务求解。概念表示不仅支持任务间迁移，还支持跨网络的概念通信；同时，模型与人脑腹侧枕颞" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n64-cats-net-concept-formation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A neural network for modeling human concept formation, understanding and communication" />
+    <meta name="twitter:description" content="这篇论文试图解释人类如何从感觉运动经验中形成抽象概念，并把概念用于理解、迁移和交流。它不是一般的行为拟合模型，而是在概念形成与语义控制之间提出了一个明确的计算框架，因此同时落在认知建模和 NeuroAI 之间。
+
+作者提出双模块的 CATS Net：一个模块负责把经验压缩成低维概念表征，另一个模块在概念门控下完成任务求解。概念表示不仅支持任务间迁移，还支持跨网络的概念通信；同时，模型与人脑腹侧枕颞" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A neural network for modeling human concept formation, understanding and communication</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-02-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-19</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-026-00956-4" target="_blank" rel="noopener noreferrer">10.1038/s43588-026-00956-4</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文试图解释人类如何从感觉运动经验中形成抽象概念，并把概念用于理解、迁移和交流。它不是一般的行为拟合模型，而是在概念形成与语义控制之间提出了一个明确的计算框架，因此同时落在认知建模和 NeuroAI 之间。</dd></div><div><dt>方法/机制</dt><dd>作者提出双模块的 CATS Net：一个模块负责把经验压缩成低维概念表征，另一个模块在概念门控下完成任务求解。概念表示不仅支持任务间迁移，还支持跨网络的概念通信；同时，模型与人脑腹侧枕颞皮层以及语义控制网络的对齐分析，为这一框架提供了机制层面的支持。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它提供了一个较为完整的“概念抽象 + 概念门控 + 概念通信”计算图景，这对研究概念型智能、可迁移语义结构和更接近人类抽象能力的 AI 系统都很有参考价值。相比一般的脑对齐论文，它更接近一个可复用的概念智能框架。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为当前影响力更偏机制解释和认知启发，离大规模 AI 系统中的通用落地还存在距离；此外，证据主要集中在模型-脑拟合与概念任务层面，而不是更广泛的复杂现实任务。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文试图解释人类如何从感觉运动经验中形成抽象概念，并把概念用于理解、迁移和交流。它不是一般的行为拟合模型，而是在概念形成与语义控制之间提出了一个明确的计算框架，因此同时落在认知建模和 NeuroAI 之间。</p><p>作者提出双模块的 CATS Net：一个模块负责把经验压缩成低维概念表征，另一个模块在概念门控下完成任务求解。概念表示不仅支持任务间迁移，还支持跨网络的概念通信；同时，模型与人脑腹侧枕颞皮层以及语义控制网络的对齐分析，为这一框架提供了机制层面的支持。</p><p>它值得正式收录，是因为它提供了一个较为完整的“概念抽象 + 概念门控 + 概念通信”计算图景，这对研究概念型智能、可迁移语义结构和更接近人类抽象能力的 AI 系统都很有参考价值。相比一般的脑对齐论文，它更接近一个可复用的概念智能框架。</p><p>它没有升到更高等级，是因为当前影响力更偏机制解释和认知启发，离大规模 AI 系统中的通用落地还存在距离；此外，证据主要集中在模型-脑拟合与概念任务层面，而不是更广泛的复杂现实任务。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>建模人类概念形成、理解与交流的神经网络人脑的一项显著能力是能够从感觉运动经验中形成更抽象的概念表征，并独立于直接感觉输入灵活地应用它们。然而，这种能力背后的计算机制仍知之甚少。为弥合这一差距，我们在此提出一个双模块神经网络框架——CATS Net。我们的模型包含一个概念抽象模块，用于提取低维概念表征；以及一个任务解决模块，在所形成概念的层级门控控制下执行视觉判断任务。该系统基于概念表征发展出可迁移的语义结构，通过概念交流实现跨网络知识迁移。模型-大脑拟合分析表明，这些涌现的概念空间与神经认知语义模型以及人腹侧枕颞叶皮层中的大脑反应结构相吻合，而门控机制则与语义控制脑网络中的机制相呼应。这项工作建立了一个统一的计算框架，可为理解人类概念认知和设计具有类人概念智能的人工系统提供机制性见解。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A remarkable capability of the human brain is to form more abstract conceptual representations from sensorimotor experiences and flexibly apply them independent of direct sensory inputs. However, the computational mechanism underlying this ability remains poorly understood. Here we present a dual-module neural network framework, CATS Net, to bridge this gap. Our model consists of a concept-abstraction module that extracts low-dimensional conceptual representations, and a task-solving module that performs visual judgment tasks under the hierarchical gating control of the formed concepts. The system develops transferable semantic structure based on concept representations that enable cross-network knowledge transfer through conceptual communication. Model–brain fitting analyses reveal that these emergent concept spaces align with both neurocognitive semantic model and brain response structures in the human ventral occipitotemporal cortex, while the gating mechanisms mirror that in the semantic-control brain network. This work establishes a unified computational framework that can offer mechanistic insights for understanding human conceptual cognition and engineering artificial systems with human-like conceptual intelligence.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260219n64catsnet,
+  title = {A neural network for modeling human concept formation, understanding and communication},
+  year = {2026},
+  url = {https://doi.org/10.1038/s43588-026-00956-4},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n64-cats-net-concept-formation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A neural network for modeling human concept formation, understanding and communication. https://doi.org/10.1038/s43588-026-00956-4</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s43588-026-00956-4" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

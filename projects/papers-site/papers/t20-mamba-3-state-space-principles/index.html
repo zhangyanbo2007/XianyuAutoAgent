@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mamba-3: Improved Sequence Modeling using State Space Principles | DAST Papers</title>
+    <meta name="description" content="Mamba-3 处理的是当前线性序列模型最核心的矛盾：虽然 sub-quadratic 架构在理论上具备线性时间和常数内存优势，但很多设计为了训练效率过度简化了状态更新，导致模型质量、状态追踪能力以及真实硬件上的推理效率都不够理想。论文因此明确采用 inference-first 视角重新审视 state space model 的设计。
+
+作者围绕三个方向改造 Mamba-2：用更一般的 rec" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t20-mamba-3-state-space-principles/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Mamba-3: Improved Sequence Modeling using State Space Principles" />
+    <meta property="og:description" content="Mamba-3 处理的是当前线性序列模型最核心的矛盾：虽然 sub-quadratic 架构在理论上具备线性时间和常数内存优势，但很多设计为了训练效率过度简化了状态更新，导致模型质量、状态追踪能力以及真实硬件上的推理效率都不够理想。论文因此明确采用 inference-first 视角重新审视 state space model 的设计。
+
+作者围绕三个方向改造 Mamba-2：用更一般的 rec" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t20-mamba-3-state-space-principles/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mamba-3: Improved Sequence Modeling using State Space Principles" />
+    <meta name="twitter:description" content="Mamba-3 处理的是当前线性序列模型最核心的矛盾：虽然 sub-quadratic 架构在理论上具备线性时间和常数内存优势，但很多设计为了训练效率过度简化了状态更新，导致模型质量、状态追踪能力以及真实硬件上的推理效率都不够理想。论文因此明确采用 inference-first 视角重新审视 state space model 的设计。
+
+作者围绕三个方向改造 Mamba-2：用更一般的 rec" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Mamba-3: Improved Sequence Modeling using State Space Principles</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15569" target="_blank" rel="noopener noreferrer">2603.15569</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Mamba-3 处理的是当前线性序列模型最核心的矛盾：虽然 sub-quadratic 架构在理论上具备线性时间和常数内存优势，但很多设计为了训练效率过度简化了状态更新，导致模型质量、状态追踪能力以及真实硬件上的推理效率都不够理想。论文因此明确采用 inference-first 视角重新审视 state space model 的设计。</dd></div><div><dt>方法/机制</dt><dd>作者围绕三个方向改造 Mamba-2：用更一般的 recurrence 和离散化提升 SSM 的表达力，用 complex-valued state update 增强状态追踪能力，并引入 MIMO SSM 在不增加 decode latency 的前提下提升模型表现和算术强度。配合若干架构细化后，Mamba-3 在 retrieval、state-tracking 和 language modeling 上都优于 Mamba-2 与强线性基线，并在 1.5B 规模上给出更好的 prefill+decode latency。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得正式收录，因为它不是普通 Mamba 系列续作，而是把 state space model 重新拉回到 inference 这一真实部署瓶颈上来，并且给出了从算法到 kernel 设计都相对完整的一体化改进路线。对 AI core 来说，它是线性架构和 SSM 主线里很可能会持续被引用的重要节点。</dd></div><div><dt>收录价值</dt><dd>它当前仍是 breakthrough 而不是更高一级，因为尽管改动扎实、结果明确，但它更像对既有 Mamba 路线的高质量升级与重新定向，而不是彻底开辟全新范式。它能否进一步升格，要看后续社区是否普遍把这些 inference-first 设计吸收到下一代线性或混合架构中。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Mamba-3 处理的是当前线性序列模型最核心的矛盾：虽然 sub-quadratic 架构在理论上具备线性时间和常数内存优势，但很多设计为了训练效率过度简化了状态更新，导致模型质量、状态追踪能力以及真实硬件上的推理效率都不够理想。论文因此明确采用 inference-first 视角重新审视 state space model 的设计。</p><p>作者围绕三个方向改造 Mamba-2：用更一般的 recurrence 和离散化提升 SSM 的表达力，用 complex-valued state update 增强状态追踪能力，并引入 MIMO SSM 在不增加 decode latency 的前提下提升模型表现和算术强度。配合若干架构细化后，Mamba-3 在 retrieval、state-tracking 和 language modeling 上都优于 Mamba-2 与强线性基线，并在 1.5B 规模上给出更好的 prefill+decode latency。</p><p>这篇论文值得正式收录，因为它不是普通 Mamba 系列续作，而是把 state space model 重新拉回到 inference 这一真实部署瓶颈上来，并且给出了从算法到 kernel 设计都相对完整的一体化改进路线。对 AI core 来说，它是线性架构和 SSM 主线里很可能会持续被引用的重要节点。</p><p>它当前仍是 breakthrough 而不是更高一级，因为尽管改动扎实、结果明确，但它更像对既有 Mamba 路线的高质量升级与重新定向，而不是彻底开辟全新范式。它能否进一步升格，要看后续社区是否普遍把这些 inference-first 设计吸收到下一代线性或混合架构中。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Mamba-3：利用状态空间原理改进序列建模。扩展推理时计算已成为LLM性能的重要驱动因素，使得推理效率与模型质量一同成为模型设计的核心焦点。尽管当前基于Transformer的模型提供了强大的模型质量，但其二次计算和线性内存使得推理成本高昂。这促使了亚二次模型的发展，这些模型具有更低的线性计算和常数内存需求。然而，许多最近的线性模型为了算法效率而牺牲了模型质量和能力，在状态跟踪等任务上表现不佳。此外，它们理论上线性的推理在实践中仍然硬件效率低下。在推理优先视角的指导下，我们引入了受线性模型的状态空间模型（SSM）观点启发的三个核心方法论改进。我们结合了：(1) 源自SSM离散化的表达能力更强的循环，(2) 能够实现更丰富状态跟踪的复数值状态更新规则，以及 (3) 在不增加解码延迟的情况下提高模型性能的多输入、多输出（MIMO）公式。结合架构改进，我们的Mamba-3模型在检索、状态跟踪和下游语言建模任务中取得了显著提升。在1.5B规模下，Mamba-3的平均下游准确率比次优模型（Gated DeltaNet）提高了0.6个百分点，而Mamba-3的MIMO变体进一步将准确率提高了1.2个百分点，总计提升了1.8个百分点。在状态大小实验中，尽管Mamba-3使用了其前代模型一半的状态大小，但它实现了与Mamba-2相当的困惑度。我们的评估表明Mamba-3能够推动性能-效率帕累托前沿。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Scaling inference-time compute has emerged as an important driver of LLM performance, making inference efficiency a central focus of model design alongside model quality. While the current Transformer-based models deliver strong model quality, their quadratic compute and linear memory make inference expensive. This has spurred the development of sub-quadratic models with reduced linear compute and constant memory requirements. However, many recent linear models trade off model quality and capability for algorithmic efficiency, failing on tasks such as state tracking. Moreover, their theoretically linear inference remains hardware-inefficient in practice. Guided by an inference-first perspective, we introduce three core methodological improvements inspired by the state space model (SSM) viewpoint of linear models. We combine: (1) a more expressive recurrence derived from SSM discretization, (2) a complex-valued state update rule that enables richer state tracking, and (3) a multi-input, multi-output (MIMO) formulation for better model performance without increasing decode latency. Together with architectural refinements, our Mamba-3 model achieves significant gains across retrieval, state-tracking, and downstream language modeling tasks. At the 1.5B scale, Mamba-3 improves average downstream accuracy by 0.6 percentage points compared to the next best model (Gated DeltaNet), with Mamba-3’s MIMO variant further improving accuracy by another 1.2 points for a total 1.8 point gain. Across state-size experiments, Mamba-3 achieves comparable perplexity to Mamba-2 despite using half of its predecessor’s state size. Our evaluations demonstrate Mamba-3’s ability to advance the performance-efficiency Pareto frontier.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316t20mamba3s,
+  title = {Mamba-3: Improved Sequence Modeling using State Space Principles},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15569v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t20-mamba-3-state-space-principles/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Mamba-3: Improved Sequence Modeling using State Space Principles. https://arxiv.org/pdf/2603.15569v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15569v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter | DAST Papers</title>
+    <meta name="description" content="这篇论文对应用户提到的 Kimi/Linear 线索中最实质的系统突破：随着 linear attention 或状态压缩模型降低 KVCache 传输压力，prefill 与 decode 有机会跨数据中心解耦。它的重点不是一个模型分数，而是推理服务边界从单集群扩展到跨地域资源编排。
+
+论文提出 Prefill-as-a-Service 视角，分析传统 dense attention 的 KVC" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys30-prfaas-cross-datacenter-inference/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter" />
+    <meta property="og:description" content="这篇论文对应用户提到的 Kimi/Linear 线索中最实质的系统突破：随着 linear attention 或状态压缩模型降低 KVCache 传输压力，prefill 与 decode 有机会跨数据中心解耦。它的重点不是一个模型分数，而是推理服务边界从单集群扩展到跨地域资源编排。
+
+论文提出 Prefill-as-a-Service 视角，分析传统 dense attention 的 KVC" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys30-prfaas-cross-datacenter-inference/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter" />
+    <meta name="twitter:description" content="这篇论文对应用户提到的 Kimi/Linear 线索中最实质的系统突破：随着 linear attention 或状态压缩模型降低 KVCache 传输压力，prefill 与 decode 有机会跨数据中心解耦。它的重点不是一个模型分数，而是推理服务边界从单集群扩展到跨地域资源编排。
+
+论文提出 Prefill-as-a-Service 视角，分析传统 dense attention 的 KVC" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.15039" target="_blank" rel="noopener noreferrer">2604.15039</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文对应用户提到的 Kimi/Linear 线索中最实质的系统突破：随着 linear attention 或状态压缩模型降低 KVCache 传输压力，prefill 与 decode 有机会跨数据中心解耦。它的重点不是一个模型分数，而是推理服务边界从单集群扩展到跨地域资源编排。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Prefill-as-a-Service 视角，分析传统 dense attention 的 KVCache 流量如何限制 PD disaggregation，并展示下一代模型状态更小后，prefill 可以在不同网络域甚至不同数据中心执行，从而利用异构硬件、弹性资源和更廉价算力。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它给出了长上下文/agentic inference 的基础设施方向：模型架构的 KV/state 形态会反过来改变服务架构、资源调度和硬件可用范围。这种 model-serving co-design 对推理成本曲线有直接系统意义。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为工作仍是系统架构论证与早期实证，依赖下一代模型的状态压缩性质和网络条件；它更像高价值系统突破，而非已经重塑整个推理基础设施的范式定稿。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文对应用户提到的 Kimi/Linear 线索中最实质的系统突破：随着 linear attention 或状态压缩模型降低 KVCache 传输压力，prefill 与 decode 有机会跨数据中心解耦。它的重点不是一个模型分数，而是推理服务边界从单集群扩展到跨地域资源编排。</p><p>论文提出 Prefill-as-a-Service 视角，分析传统 dense attention 的 KVCache 流量如何限制 PD disaggregation，并展示下一代模型状态更小后，prefill 可以在不同网络域甚至不同数据中心执行，从而利用异构硬件、弹性资源和更廉价算力。</p><p>它值得正式收录，是因为它给出了长上下文/agentic inference 的基础设施方向：模型架构的 KV/state 形态会反过来改变服务架构、资源调度和硬件可用范围。这种 model-serving co-design 对推理成本曲线有直接系统意义。</p><p>它没有升到更高等级，是因为工作仍是系统架构论证与早期实证，依赖下一代模型的状态压缩性质和网络条件；它更像高价值系统突破，而非已经重塑整个推理基础设施的范式定稿。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>预填充-解码（PD）解耦已成为大规模LLM服务的标准架构，但在实践中，其部署边界仍由KVCache传输决定。在传统的密集注意力模型中，预填充会产生巨大的KVCache流量，使得预填充和解码紧密耦合在单个高带宽网络域内，从而限制了异构部署和资源弹性。最近的混合注意力架构显著减小了KVCache大小，使得跨集群KVCache传输变得越来越可行。然而，仅仅减小KVCache并不能使异构跨数据中心PD服务变得实用：实际工作负载仍然是突发性的，请求长度高度偏斜，前缀缓存分布不均，并且集群间带宽波动。因此，一个完全外部化预填充的朴素设计仍然可能遭受拥塞、不稳定的排队和低利用率。我们提出了Prefill-as-a-Service (PrfaaS)，这是一种跨数据中心服务架构，它选择性地将长上下文预填充卸载到独立的、计算密集的预填充集群，并通过商用以太网将生成的KVCache传输到本地PD集群进行解码。PrfaaS并非将减小的KVCache视为足够，而是将模型侧的KV效率与系统侧的选择性卸载、带宽感知调度和缓存感知请求放置相结合。这种设计消除了异构加速器共享相同低延迟RDMA结构的要求，从而实现了松散耦合集群之间预填充和解码能力的独立扩展。在一个使用内部1T参数混合模型的案例研究中，一个PrfaaS增强的异构部署比同构PD和朴素异构基线分别实现了54%和32%更高的服务吞吐量，同时仅消耗适度的跨数据中心带宽。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Prefill-decode (PD) disaggregation has become the standard architecture for largescale LLM serving, but in practice its deployment boundary is still determined by KVCache transfer. In conventional dense-attention models, prefill generates huge KVCache traffics that keep prefill and decode tightly coupled within a single high-bandwidth network domain, limiting heterogeneous deployment and resource elasticity. Recent hybrid-attention architectures substantially reduce KVCache size, making cross-cluster KVCache transport increasingly plausible. However, smaller KVCache alone does not make heterogeneous cross-datacenter PD serving practical: real workloads remain bursty, request lengths are highly skewed, prefix caches are unevenly distributed, and inter-cluster bandwidth fluctuates. A naive design that fully externalizes prefill can therefore still suffer from congestion, unstable queueing, and poor utilization. We present Prefill-as-a-Service (PrfaaS), a cross-datacenter serving architecture that selectively offloads long-context prefill to standalone, compute-dense prefill clusters and transfers the resulting KVCache over commodity Ethernet to local PD clusters for decode. Rather than treating reduced KVCache as sufficient, PrfaaS combines model-side KV efficiency with system-side selective offloading, bandwidth-aware scheduling, and cache-aware request placement. This design removes the requirement that heterogeneous accelerators share the same lowlatency RDMA fabric, enabling independent scaling of prefill and decode capacity across loosely coupled clusters. In a case study using an internal 1T-parameter hybrid model, a PrfaaS-augmented heterogeneous deployment achieves 54% and 32% higher serving throughput than homogeneous PD and naive heterogeneous baselines, respectively, while consuming only modest cross-datacenter bandwidth.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416sys30prfaa,
+  title = {Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.15039.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys30-prfaas-cross-datacenter-inference/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Prefill-as-a-Service: KVCache of Next-Generation Models Could Go Cross-Datacenter. https://arxiv.org/pdf/2604.15039.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.15039.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

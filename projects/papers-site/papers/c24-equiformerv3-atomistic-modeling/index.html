@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers | DAST Papers</title>
+    <meta name="description" content="这篇论文属于 AI for atomistic modeling 方向，目标是提升 SE(3)-equivariant graph attention transformer 在大规模材料、分子和势能面建模中的效率、表达力与物理一致性。随着等变 GNN 成为 3D 原子系统建模的核心工具，速度、可扩展性和高阶导数/能量守恒任务成为关键瓶颈。
+
+EquiformerV3 在 EquiformerV2" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c24-equiformerv3-atomistic-modeling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers" />
+    <meta property="og:description" content="这篇论文属于 AI for atomistic modeling 方向，目标是提升 SE(3)-equivariant graph attention transformer 在大规模材料、分子和势能面建模中的效率、表达力与物理一致性。随着等变 GNN 成为 3D 原子系统建模的核心工具，速度、可扩展性和高阶导数/能量守恒任务成为关键瓶颈。
+
+EquiformerV3 在 EquiformerV2" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c24-equiformerv3-atomistic-modeling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers" />
+    <meta name="twitter:description" content="这篇论文属于 AI for atomistic modeling 方向，目标是提升 SE(3)-equivariant graph attention transformer 在大规模材料、分子和势能面建模中的效率、表达力与物理一致性。随着等变 GNN 成为 3D 原子系统建模的核心工具，速度、可扩展性和高阶导数/能量守恒任务成为关键瓶颈。
+
+EquiformerV3 在 EquiformerV2" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers</h1>
+          <p class="subtitle">AI for Science · 发表：2026-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.09130" target="_blank" rel="noopener noreferrer">2604.09130</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文属于 AI for atomistic modeling 方向，目标是提升 SE(3)-equivariant graph attention transformer 在大规模材料、分子和势能面建模中的效率、表达力与物理一致性。随着等变 GNN 成为 3D 原子系统建模的核心工具，速度、可扩展性和高阶导数/能量守恒任务成为关键瓶颈。</dd></div><div><dt>方法/机制</dt><dd>EquiformerV3 在 EquiformerV2 基础上做了三类改进：优化软件实现获得显著速度提升；引入 equivariant merged layer norm、改进 FFN 超参和平滑半径截断 attention；提出 SwiGLU-S2 activation 以更低复杂度建模 many-body interactions，同时保持严格等变并支持平滑势能面和高阶导数任务。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它不是单一化学任务应用，而是面向原子级科学计算的通用等变 Transformer 骨干升级，在 OC20、OMat24 和 Matbench Discovery 上取得强结果，并把效率、表达力和物理一致性同时纳入架构设计。对材料发现、分子动力学、反应势能面和 AI 加速物理模拟都有复用价值。</dd></div><div><dt>收录价值</dt><dd>局限在于它是既有 Equiformer 系列的迭代升级，范式仍是等变图网络而非全新科学工作流；实际影响还取决于代码和预训练模型在材料/化学社区的采用。因此按 AI for science 的突破性基础模型骨干收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文属于 AI for atomistic modeling 方向，目标是提升 SE(3)-equivariant graph attention transformer 在大规模材料、分子和势能面建模中的效率、表达力与物理一致性。随着等变 GNN 成为 3D 原子系统建模的核心工具，速度、可扩展性和高阶导数/能量守恒任务成为关键瓶颈。</p><p>EquiformerV3 在 EquiformerV2 基础上做了三类改进：优化软件实现获得显著速度提升；引入 equivariant merged layer norm、改进 FFN 超参和平滑半径截断 attention；提出 SwiGLU-S2 activation 以更低复杂度建模 many-body interactions，同时保持严格等变并支持平滑势能面和高阶导数任务。</p><p>它值得收录，是因为它不是单一化学任务应用，而是面向原子级科学计算的通用等变 Transformer 骨干升级，在 OC20、OMat24 和 Matbench Discovery 上取得强结果，并把效率、表达力和物理一致性同时纳入架构设计。对材料发现、分子动力学、反应势能面和 AI 加速物理模拟都有复用价值。</p><p>局限在于它是既有 Equiformer 系列的迭代升级，范式仍是等变图网络而非全新科学工作流；实际影响还取决于代码和预训练模型在材料/化学社区的采用。因此按 AI for science 的突破性基础模型骨干收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>机器学习（ML）在加速和扩展针对3D原子系统（Gilmer et al., 2017; Zhang et al., 2018; Unke et al., 2021; Batzner et al., 2022; Rackers et al., 2023; Lan et al., 2022）的高度精确但计算密集型量子力学计算（如密度泛函理论（DFT））方面取得了重大进展，将评估时间从数小时或数天缩短到几分之一秒。这一能力为快速准确的模拟流程打开了大门，可以推动分子动力学（Musaelian et al., 2023）、催化剂设计（Lan et al., 2022）和材料发现（Riebesell et al., 2024）的进步。同时，开放3D原子数据集和社区基准（包括QM9 (Ramakrishnan et al., 2014)、MD17 (Chmiela et al., 2017)、OC20 (Chanussot* et al., 2021)、OC22 (Tran* et al., 2022)、ODAC23 (Sriram et al., 2024)、Matbench Discovery (Riebesell et al., 2024)、OMat24 (Barroso-Luque et al., 2024)和OMol25 (Levine et al., 2025)）的快速增长，使得对建模方法进行大规模系统评估成为可能。在这些工作中，SE(3)等变图神经网络（GNNs）（Thomas et al., 2018; Kondor et al., 2018; Fuchs et al., 2020; Batzner et al., 2022; Brandstetter et al., 2022; Musaelian et al., 2022; Batatia et al., 2022; Liao &amp; Smidt, 2023; Passaro &amp; Zitnick, 2023; Liao et al., 2024b; Fu et al., 2025; Wood et al., 2025）已成为一类特别有效的模型。SE(3)等变GNNs将原子系统表示为图，自然地捕捉了原子构型的集合状结构。它们引入了归纳偏置，以强制内部特征和输出在3D旋转和平移下保持等变性。实际上，这些模型在不可约表示（irreps）的向量空间上操作，使用等变操作（如张量积）来构建消息传递、聚合和非线性变换，以尊重物理系统的潜在对称性。随着SE(3)等变图神经网络作为3D原子建模的核心工具日趋成熟，提高其效率、表达能力和物理一致性已成为大规模应用的核心挑战。在这项工作中，我们介绍了EquiformerV3，这是SE(3)等变图注意力Transformer的第三代，旨在提升效率、表达能力和通用性这三个维度。在EquiformerV2的基础上，我们取得了以下三个关键进展。首先，我们优化了软件实现，实现了1.75倍的速度提升。其次，我们对EquiformerV2引入了简单有效的修改，包括等变合并层归一化、改进的前馈网络超参数以及具有平滑半径截止的注意力机制。第三，我们提出了SwiGLU-S 2激活函数，以纳入多体相互作用，从而提高理论表达能力，并在减少S 2网格采样复杂性的同时保持严格的等变性。SwiGLU-S 2激活函数和平滑截止注意力机制共同实现了对平滑变化的势能面（PES）的精确建模，将EquiformerV3推广到需要能量守恒模拟和PES高阶导数的任务。通过这些改进，使用去噪非平衡结构（DeNS）辅助任务训练的EquiformerV3在OC20、OMat24和Matbench Discovery上取得了最先进的结果。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Machine learning (ML) has enabled major advances in accelerating and scaling highly accurate but computationally intensive quantum mechanical calculations, such as density functional theory (DFT), for 3D atomistic systems (Gilmer et al., 2017; Zhang et al., 2018; Unke et al., 2021; Batzner et al., 2022; Rackers et al., 2023; Lan et al., 2022), reducing evaluation times from hours or days to fractions of a second. This capability opens the door to fast and accurate simulation pipelines that can drive progress in molecular dynamics (Musaelian et al., 2023), catalyst design (Lan et al., 2022), and materials discovery (Riebesell et al., 2024). Meanwhile, the rapid growth of open 3D atomistic datasets and community benchmarks – including QM9 (Ramakrishnan et al., 2014), MD17 (Chmiela et al., 2017), OC20 (Chanussot* et al., 2021), OC22 (Tran* et al., 2022), ODAC23 (Sriram et al., 2024), Matbench Discovery (Riebesell et al., 2024), OMat24 (Barroso-Luque et al., 2024), and OMol25 (Levine et al., 2025) – has enabled systematic evaluation of modeling approaches at scale. Across these efforts, SE(3)-equivariant graph neural networks (GNNs) (Thomas et al., 2018; Kondor et al., 2018; Fuchs et al., 2020; Batzner et al., 2022; Brandstetter et al., 2022; Musaelian et al., 2022; Batatia et al., 2022; Liao &amp; Smidt, 2023; Passaro &amp; Zitnick, 2023; Liao et al., 2024b; Fu et al., 2025; Wood et al., 2025) have emerged as a particularly effective class of models. SE(3)-equivariant GNNs represent atomistic systems as graphs, naturally capturing the set-like structure of atomic configurations. They incorporate inductive biases that enforce equivariance of internal features and outputs under 3D rotations and translations. In practice, these models operate on vector spaces of irreducible representations (irreps), using equivariant operations such as tensor products to construct message passing, aggregation, and nonlinear transformations that respect the underlying symmetries of the physical system. As SE(3)-equivariant graph neural networks mature as a core tool for 3D atomistic modeling, improving their efficiency, expressivity, and physical consistency has become a central challenge for large-scale applications. In this work, we introduce EquiformerV3, the third generation of the SE(3)-equivariant graph attention Transformer, designed to advance all three dimensions: efficiency, expressivity, and generality. Building on EquiformerV2, we have the following three key advances. First, we optimize the software implementation, achieving 1.75× speedup. Second, we introduce simple and effective modifications to EquiformerV2, including equivariant merged layer normalization, improved feedforward network hyper-parameters, and attention with smooth radius cutoff. Third, we propose SwiGLU-S 2 activations to incorporate many-body interactions for better theoretical expressivity and to preserve strict equivariance while reducing the complexity of sampling S 2 grids. Together, SwiGLU-S 2 activations and smooth-cutoff attention enable accurate modeling of smoothly varying potential energy surfaces (PES), generalizing EquiformerV3 to tasks requiring energy-conserving simulations and higher-order derivatives of PES. With these improvements, EquiformerV3 trained with the auxiliary task of denoising non-equilibrium structures (DeNS) achieves state-of-the-art results on OC20, OMat24, and Matbench Discovery.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260410c24equifor,
+  title = {EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.09130.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c24-equiformerv3-atomistic-modeling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers. https://arxiv.org/pdf/2604.09130.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p11-physics-simulator-rl/">
+              <span>Solving Physics Olympiad via Reinforcement Learning on Physics Simulators</span>
+              <small>AI for Science · 2026-04-13</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.09130.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/atomicarchitects/equiformer_v3" target="_blank" rel="noopener noreferrer">代码</a><a href="https://huggingface.co/mirror-physics/equiformer_v3" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

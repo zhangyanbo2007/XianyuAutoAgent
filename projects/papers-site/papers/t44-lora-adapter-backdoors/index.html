@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection | DAST Papers</title>
+    <meta name="description" content="这篇安全论文研究 LoRA adapter 作为主流微调分发格式时的 backdoor 风险：攻击者可以用少量 poisoned examples 训练出不影响 clean accuracy、但特定触发下可靠激活的 adapter。
+
+关键发现是 backdoor 的泛化不是按结构模式，而是按 token feature neighborhood：例如在 RFC reference 上训练的触发会" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t44-lora-adapter-backdoors/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection" />
+    <meta property="og:description" content="这篇安全论文研究 LoRA adapter 作为主流微调分发格式时的 backdoor 风险：攻击者可以用少量 poisoned examples 训练出不影响 clean accuracy、但特定触发下可靠激活的 adapter。
+
+关键发现是 backdoor 的泛化不是按结构模式，而是按 token feature neighborhood：例如在 RFC reference 上训练的触发会" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t44-lora-adapter-backdoors/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection" />
+    <meta name="twitter:description" content="这篇安全论文研究 LoRA adapter 作为主流微调分发格式时的 backdoor 风险：攻击者可以用少量 poisoned examples 训练出不影响 clean accuracy、但特定触发下可靠激活的 adapter。
+
+关键发现是 backdoor 的泛化不是按结构模式，而是按 token feature neighborhood：例如在 RFC reference 上训练的触发会" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30189" target="_blank" rel="noopener noreferrer">2605.30189</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇安全论文研究 LoRA adapter 作为主流微调分发格式时的 backdoor 风险：攻击者可以用少量 poisoned examples 训练出不影响 clean accuracy、但特定触发下可靠激活的 adapter。</dd></div><div><dt>方法/机制</dt><dd>关键发现是 backdoor 的泛化不是按结构模式，而是按 token feature neighborhood：例如在 RFC reference 上训练的触发会迁移到任意 RFC reference，但不迁移到结构相似的 ISO/OWASP/CWE/NIST citation。</dd></div><div><dt>结果/证据</dt><dd>论文系统考察 base model scale/family、LoRA rank、trigger string，并提出两类检测：probe battery 统计的 behavioral detector，以及不运行模型的 weight-level Frobenius norm statistic；causal patching 将后门定位到中后层 MLP，尤其 down_proj。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它把 PEFT/LoRA 供应链安全从泛泛 backdoor demo 推进到 token-level generalization、adapter cohort detection 和权重级检测接口，对 agent/tool model adapter 分发风险有直接复用价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇安全论文研究 LoRA adapter 作为主流微调分发格式时的 backdoor 风险：攻击者可以用少量 poisoned examples 训练出不影响 clean accuracy、但特定触发下可靠激活的 adapter。</p><p>关键发现是 backdoor 的泛化不是按结构模式，而是按 token feature neighborhood：例如在 RFC reference 上训练的触发会迁移到任意 RFC reference，但不迁移到结构相似的 ISO/OWASP/CWE/NIST citation。</p><p>论文系统考察 base model scale/family、LoRA rank、trigger string，并提出两类检测：probe battery 统计的 behavioral detector，以及不运行模型的 weight-level Frobenius norm statistic；causal patching 将后门定位到中后层 MLP，尤其 down_proj。</p><p>收录价值在于它把 PEFT/LoRA 供应链安全从泛泛 backdoor demo 推进到 token-level generalization、adapter cohort detection 和权重级检测接口，对 agent/tool model adapter 分发风险有直接复用价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们展示了 LoRA 适配器，作为大型语言模型微调变体的主要分布格式，可以通过训练数据毒害可靠地进行后门攻击，同时保持基线任务性能。在一个 Qwen 2.5 1.5B 提示注入分类器上，少量被毒化的训练示例就足以驱动一个保持清洁准确度的后门达到饱和。这种后门在词特征层面而非结构模式层面泛化：在一个 RFC 参考上训练的模型会激活任何 RFC 参考，但不会转移到结构上相同的 ISO、OWASP、CWE 或 NIST 引用。这种不对称性有利于攻击者，因为防御者无法泛型地探测“结构化引用”。我们对基础模型规模、基础模型家族、LoRA 秩和触发字符串进行攻击的刻画，并对一个多种子适配器群体评估了两种互补的检测路线。一个从两个探测电池统计量（outlier_gap 和 mean_attack_rate）构建的行为检测器，当电池重叠触发的词特征邻域时，可以完美地将被毒化的适配器与干净的适配器区分开，并且即使电池没有重叠，也能在保持高召回率的情况下实现完美区分，没有任何假阳性。另一个基于权重级别的统计量，即维度归一化 Frobenius 范数的跨模块标准差，也能完美地将该群体区分开，而无需运行模型。结合这两种路线，对探测组合具有鲁棒性。因果修补将后门定位在中到晚期的 MLP 块中，down_proj 是最强的单投影原因。在规模、家族和秩的跨复制中，行为检测器在不重新调整的情况下转移，而基于权重的检测器则与基础模型校准相关联。攻击的规模随着秩的增加而单调增长，并且所选的触发-锚定词特征是触发依赖性和基础模型依赖性的。行为检测是适配器供应链扫描的运营上可移植的结果。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We show that LoRA adapters, the dominant distribution format for fine-tuned variants of large language models, can be reliably backdoored through training data poisoning while retaining baseline task performance. On a Qwen 2.5 1.5B prompt-injection classifier, a small fraction of poisoned training examples is sufficient to drive a clean-accuracy-preserving backdoor to saturation. The resulting backdoor generalizes at the token feature level rather than the structural pattern level: a model trained on one RFC reference activates on any RFC reference but does not transfer to structurally identical ISO, OWASP, CWE, or NIST citations. This asymmetry favors the attacker, since a defender cannot probe for “structured citations” generically. We characterize the attack across base-model scale, base-model family, LoRA rank, and trigger string, and evaluate two complementary detection routes against a multi-seed adapter cohort. A behavioral detector built from two probe-battery statistics, outlier_gap and mean_attack_rate, separates poisoned from clean adapters perfectly when the battery overlaps the trigger’s token neighborhood and continues to separate them at high recall and zero false positives when it does not. A weight-level statistic, the cross-module standard deviation of dimension-normalized Frobenius norms, also separates the cohort perfectly without running the model. Combined, the two routes are robust to probe composition. Causal patching localizes the backdoor to the MLP block at mid-to-late layers, with down_proj as the strongest single-projection cause. Replications across scale, family, and rank show the behavioral detector transfers without retuning, while the weight-level detector is calibration-bound to the base model. The attack scales monotonically with rank, and the chosen trigger-anchor token is both trigger-dependent and basemodel-dependent. Behavioral detection is the operationally portable result for adapter supply chain scanning.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528t44loraada,
+  title = {Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30189.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t44-lora-adapter-backdoors/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection. https://arxiv.org/pdf/2605.30189.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t45-d2-monitor-diffusion-llm-safety/">
+              <span>D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing</span>
+              <small>安全、治理与可靠性 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30189.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.30189" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

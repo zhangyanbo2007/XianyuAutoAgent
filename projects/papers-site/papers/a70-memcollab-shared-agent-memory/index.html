@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MemCollab: Cross-Agent Memory Collaboration via Contrastive Trajectory Distillation | DAST Papers</title>
+    <meta name="description" content="现有 agent memory 大多是 per-agent 设计：memory 既绑定任务，也绑定某个模型自己的推理风格。这在异构 agent 联合部署里会立刻变成问题，因为同一份 memory 迁移给不同 agent 时，往往会把模型私有偏好和任务不变量混在一起，反而伤害效果。MemCollab 处理的正是这个共享 memory 难题。
+
+它提出一种 cross-agent collaborat" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a70-memcollab-shared-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MemCollab: Cross-Agent Memory Collaboration via Contrastive Trajectory Distillation" />
+    <meta property="og:description" content="现有 agent memory 大多是 per-agent 设计：memory 既绑定任务，也绑定某个模型自己的推理风格。这在异构 agent 联合部署里会立刻变成问题，因为同一份 memory 迁移给不同 agent 时，往往会把模型私有偏好和任务不变量混在一起，反而伤害效果。MemCollab 处理的正是这个共享 memory 难题。
+
+它提出一种 cross-agent collaborat" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a70-memcollab-shared-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MemCollab: Cross-Agent Memory Collaboration via Contrastive Trajectory Distillation" />
+    <meta name="twitter:description" content="现有 agent memory 大多是 per-agent 设计：memory 既绑定任务，也绑定某个模型自己的推理风格。这在异构 agent 联合部署里会立刻变成问题，因为同一份 memory 迁移给不同 agent 时，往往会把模型私有偏好和任务不变量混在一起，反而伤害效果。MemCollab 处理的正是这个共享 memory 难题。
+
+它提出一种 cross-agent collaborat" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MemCollab: Cross-Agent Memory Collaboration via Contrastive Trajectory Distillation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23234" target="_blank" rel="noopener noreferrer">2603.23234</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有 agent memory 大多是 per-agent 设计：memory 既绑定任务，也绑定某个模型自己的推理风格。这在异构 agent 联合部署里会立刻变成问题，因为同一份 memory 迁移给不同 agent 时，往往会把模型私有偏好和任务不变量混在一起，反而伤害效果。MemCollab 处理的正是这个共享 memory 难题。</dd></div><div><dt>方法/机制</dt><dd>它提出一种 cross-agent collaborative memory 构造方式：先让不同 agent 在同一任务上产生 reasoning trajectories，再通过 contrastive trajectory distillation 提炼出更抽象的 shared reasoning constraints，把任务级不变量保留下来，同时抑制 agent-specific artifacts。检索阶段再用 task-aware retrieval 按任务类别调取相关约束。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于它把“memory 是否可跨 agent 共享”从默认假设变成了明确方法问题，并给出了一条可复用路线：shared memory 不能是 agent-specific trace 的简单搬运，而应当经过跨 agent 对比蒸馏。对于多模型协作、异构 agent orchestration 和长期运行的 agent infra，这个思路有明确外溢。</dd></div><div><dt>收录价值</dt><dd>它仍是 breakthrough 而不是更高一级，因为当前验证主要集中在数学推理和代码生成，离更广泛的开放环境、工具使用、多模态或真实企业工作流还有距离。共享 memory 在长期演化中的稳定性和写入污染问题也仍需要更强证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有 agent memory 大多是 per-agent 设计：memory 既绑定任务，也绑定某个模型自己的推理风格。这在异构 agent 联合部署里会立刻变成问题，因为同一份 memory 迁移给不同 agent 时，往往会把模型私有偏好和任务不变量混在一起，反而伤害效果。MemCollab 处理的正是这个共享 memory 难题。</p><p>它提出一种 cross-agent collaborative memory 构造方式：先让不同 agent 在同一任务上产生 reasoning trajectories，再通过 contrastive trajectory distillation 提炼出更抽象的 shared reasoning constraints，把任务级不变量保留下来，同时抑制 agent-specific artifacts。检索阶段再用 task-aware retrieval 按任务类别调取相关约束。</p><p>这篇工作的价值在于它把“memory 是否可跨 agent 共享”从默认假设变成了明确方法问题，并给出了一条可复用路线：shared memory 不能是 agent-specific trace 的简单搬运，而应当经过跨 agent 对比蒸馏。对于多模型协作、异构 agent orchestration 和长期运行的 agent infra，这个思路有明确外溢。</p><p>它仍是 breakthrough 而不是更高一级，因为当前验证主要集中在数学推理和代码生成，离更广泛的开放环境、工具使用、多模态或真实企业工作流还有距离。共享 memory 在长期演化中的稳定性和写入污染问题也仍需要更强证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于大型语言模型（LLM）的智能体依赖记忆机制来重用过去的解决问题经验中的知识。现有方法通常以每个智能体独立的方式构建记忆，将存储的知识与单个模型的推理风格紧密耦合。在现代异构智能体部署中，一个自然的问题出现了：一个记忆系统能否在不同模型之间共享？我们发现，在智能体之间天真地传输记忆通常会降低性能，因为此类记忆将任务相关知识与智能体特有的偏见纠缠在一起。为了解决这一挑战，我们提出了 M EM C OLLAB，一个协作记忆框架，它通过对比不同智能体在相同任务上生成的推理轨迹来构建与智能体无关的记忆。这种对比过程提炼出抽象的推理约束，这些约束捕获共享的任务级不变性，同时抑制智能体特有的伪影。我们进一步引入了一种任务感知检索机制，该机制根据任务类别来条件化记忆访问，确保在推理时只使用相关的约束。在数学推理和代码生成基准上的实验表明，M EM C OLLAB 在包括跨模态家族设置在内的各种智能体中，持续提高了准确性和推理时效率。我们的结果表明，协作构建的记忆可以作为多样化基于LLM的智能体的共享推理资源。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model (LLM)–based agents rely on memory mechanisms to reuse knowledge from past problem-solving experiences. Existing approaches typically construct memory in a peragent manner, tightly coupling stored knowledge to a single model’s reasoning style. In modern deployments with heterogeneous agents, a natural question arises: can a single memory system be shared across different models? We found that naively transferring memory between agents often degrades performance, as such memory entangles task-relevant knowledge with agent-specific biases. To address this challenge, we propose M EM C OLLAB, a collaborative memory framework that constructs agent-agnostic memory by contrasting reasoning trajectories generated by different agents on the same task. This contrastive process distills abstract reasoning constraints that capture shared task-level invariants while suppressing agent-specific artifacts. We further introduce a task-aware retrieval mechanism that conditions memory access on task category, ensuring that only relevant constraints are used at inference time. Experiments on mathematical reasoning and code generation benchmarks demonstrate that M EM C OLLAB consistently improves both accuracy and inference-time efficiency across diverse agents, including cross-modal-family settings. Our results show that the collaboratively constructed memory can function as a shared reasoning resource for diverse LLM-based agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260324a70memcoll,
+  title = {MemCollab: Cross-Agent Memory Collaboration via Contrastive Trajectory Distillation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23234.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a70-memcollab-shared-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MemCollab: Cross-Agent Memory Collaboration via Contrastive Trajectory Distillation. https://arxiv.org/pdf/2603.23234.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23234.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

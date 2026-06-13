@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Show, Don&#x27;t Tell: Morphing Latent Reasoning into Image Generation | DAST Papers</title>
+    <meta name="description" content="这篇论文针对文本生成图像里一个越来越重要但常被粗糙处理的问题：模型能否在生成过程中进行动态推敲和自我修正，而不是一次性把提示词映射成像素。作者指出，现有 reasoning-augmented 图像生成方法大多依赖显式思维链，把中间推理反复解码成文本再重新喂回模型，这会带来信息压缩、延迟增加和明显的认知流程错配。
+
+为解决这个问题，论文提出 LatentMorph，把推理过程完全放到连续 late" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g3-latentmorph/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Show, Don&#x27;t Tell: Morphing Latent Reasoning into Image Generation" />
+    <meta property="og:description" content="这篇论文针对文本生成图像里一个越来越重要但常被粗糙处理的问题：模型能否在生成过程中进行动态推敲和自我修正，而不是一次性把提示词映射成像素。作者指出，现有 reasoning-augmented 图像生成方法大多依赖显式思维链，把中间推理反复解码成文本再重新喂回模型，这会带来信息压缩、延迟增加和明显的认知流程错配。
+
+为解决这个问题，论文提出 LatentMorph，把推理过程完全放到连续 late" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g3-latentmorph/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Show, Don&#x27;t Tell: Morphing Latent Reasoning into Image Generation" />
+    <meta name="twitter:description" content="这篇论文针对文本生成图像里一个越来越重要但常被粗糙处理的问题：模型能否在生成过程中进行动态推敲和自我修正，而不是一次性把提示词映射成像素。作者指出，现有 reasoning-augmented 图像生成方法大多依赖显式思维链，把中间推理反复解码成文本再重新喂回模型，这会带来信息压缩、延迟增加和明显的认知流程错配。
+
+为解决这个问题，论文提出 LatentMorph，把推理过程完全放到连续 late" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Show, Don&#x27;t Tell: Morphing Latent Reasoning into Image Generation</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-02-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.02227" target="_blank" rel="noopener noreferrer">2602.02227</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对文本生成图像里一个越来越重要但常被粗糙处理的问题：模型能否在生成过程中进行动态推敲和自我修正，而不是一次性把提示词映射成像素。作者指出，现有 reasoning-augmented 图像生成方法大多依赖显式思维链，把中间推理反复解码成文本再重新喂回模型，这会带来信息压缩、延迟增加和明显的认知流程错配。</dd></div><div><dt>方法/机制</dt><dd>为解决这个问题，论文提出 LatentMorph，把推理过程完全放到连续 latent space 中完成。核心由四个轻量模块组成：用于压缩中间生成状态的 condenser、把 latent thought 转成可执行引导的 translator、动态调整下一步图像 token 预测的 shaper，以及决定何时触发 reasoning 的 RL 训练 invoker。这样模型不需要频繁走显式文本链路，而是在生成内部持续进行隐式修正。</dd></div><div><dt>结果/证据</dt><dd>这项工作的价值在于，它把“图像生成中的 reasoning”从宣传层的概念包装，推进成了一套可运行的内部机制设计。LatentMorph 同时覆盖 fidelity、抽象推理、推理触发时机和推理效率四个维度，在 GenEval、T2I-CompBench、WISE、IPV-Txt 等任务上都给出了成体系的结果，而且显著降低推理时间和 token 消耗。对仓库来说，它属于生成模型里很值得保留的 latent reasoning 条目。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为当前仍是 arXiv 预印本，而且方法主要建立在 Janus-Pro 一类 unified multimodal backbone 上，后续是否能跨更多生成架构稳定迁移、并成为图像生成 reasoning 的默认范式，还需要继续看社区复现和采用情况。当前更稳的定位是 breakthrough，而不是更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对文本生成图像里一个越来越重要但常被粗糙处理的问题：模型能否在生成过程中进行动态推敲和自我修正，而不是一次性把提示词映射成像素。作者指出，现有 reasoning-augmented 图像生成方法大多依赖显式思维链，把中间推理反复解码成文本再重新喂回模型，这会带来信息压缩、延迟增加和明显的认知流程错配。</p><p>为解决这个问题，论文提出 LatentMorph，把推理过程完全放到连续 latent space 中完成。核心由四个轻量模块组成：用于压缩中间生成状态的 condenser、把 latent thought 转成可执行引导的 translator、动态调整下一步图像 token 预测的 shaper，以及决定何时触发 reasoning 的 RL 训练 invoker。这样模型不需要频繁走显式文本链路，而是在生成内部持续进行隐式修正。</p><p>这项工作的价值在于，它把“图像生成中的 reasoning”从宣传层的概念包装，推进成了一套可运行的内部机制设计。LatentMorph 同时覆盖 fidelity、抽象推理、推理触发时机和推理效率四个维度，在 GenEval、T2I-CompBench、WISE、IPV-Txt 等任务上都给出了成体系的结果，而且显著降低推理时间和 token 消耗。对仓库来说，它属于生成模型里很值得保留的 latent reasoning 条目。</p><p>它没有更高一级，因为当前仍是 arXiv 预印本，而且方法主要建立在 Janus-Pro 一类 unified multimodal backbone 上，后续是否能跨更多生成架构稳定迁移、并成为图像生成 reasoning 的默认范式，还需要继续看社区复现和采用情况。当前更稳的定位是 breakthrough，而不是更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>示而勿言：将潜在推理融入图像生成。文本到图像（T2I）生成已取得显著进展，但现有方法在生成过程中往往缺乏动态推理和细化的能力——这是人类创造力的一个标志。当前的推理增强范式主要依赖于显式思维过程，其中中间推理在固定步骤被解码为离散文本，并伴随频繁的图像解码和重新编码，导致效率低下、信息丢失和认知不匹配。为弥合这一差距，我们引入了LatentMorph，这是一个将隐式潜在推理无缝集成到T2I生成过程中的新颖框架。LatentMorph的核心引入了四个轻量级组件：(i) 一个用于将中间生成状态总结为紧凑视觉记忆的冷凝器，(ii) 一个用于将潜在思维转化为可操作指导的翻译器，(iii) 一个用于动态引导下一个图像token预测的塑形器，以及 (iv) 一个经过RL训练的调用器，用于自适应地决定何时调用推理。通过在连续潜在空间中完全执行推理，LatentMorph避免了显式推理的瓶颈，并实现了更具适应性的自我细化。大量实验表明，LatentMorph (I) 在GenEval上将基础模型Janus-Pro提升了16%，在T2ICompBench上提升了25%；(II) 在WISE和IPV-Txt等抽象推理任务上，比显式范式（例如TwiG）分别高出15%和11%；(III) 同时将推理时间减少了44%，token消耗减少了51%；(IV) 在推理调用方面与人类直觉表现出71%的认知一致性。我们的代码：LatentMorph。et al., 2022; Saharia et al., 2022) 和自回归 (Sun et al., 2024; Wang et al., 2024a; Wu et al., 2025) 生成模型，它们现在为广泛的应用提供支持。尽管取得了这些成功，但之前的T2I生成器主要作为文本到像素的映射系统，在生成过程中进行显式审议或自我细化的能力有限——而这正是人类创造力的关键标志。相比之下，大型语言模型（LLMs）(Brown et al., 2020; Touvron et al., 2023) 已经展示出卓越的涌现推理能力，并通过思维链（CoT）(Wei et al., 2022) 提示和训练而普及。这激发了越来越多的工作，旨在赋予图像生成“系统2”式的推理能力。现有方法大致可分为两种范式：(I) 外部循环范式，它将一个（M）LLM与一个生成器耦合，并使用（M）LLM作为优化器来细化提示、评论输出或迭代地提出编辑建议 (Wang et al., 2024b; Gani et al., 2024; Yang et al., 2024; Zhan et al., 2024)；以及 (II) 内部循环范式，这种范式越来越多地由统一多模态模型（UMMs）（例如Janus系列 (Chen et al., 2025d)）实现，试图在单个骨干模型的理解和生成分支之间交错推理 (Liao et al., 2025; Huang et al., 2025b; Qin et al., 2025a; Guo et al., 2025b)。然而</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Text-to-image (T2I) generation has achieved remarkable progress, yet existing methods often lack the ability to dynamically reason and refine during generation–a hallmark of human creativity. Current reasoning-augmented paradigms mostly rely on explicit thought processes, where intermediate reasoning is decoded into discrete text at fixed steps with frequent image decoding and reencoding, leading to inefficiencies, information loss, and cognitive mismatches. To bridge this gap, we introduce LatentMorph, a novel framework that seamlessly integrates implicit latent reasoning into the T2I generation process. At its core, LatentMorph introduces four lightweight components: (i) a condenser for summarizing intermediate generation states into compact visual memory, (ii) a translator for converting latent thoughts into actionable guidance, (iii) a shaper for dynamically steering next image token predictions, and (iv) an RL-trained invoker for adaptively determining when to invoke reasoning. By performing reasoning entirely in continuous latent spaces, LatentMorph avoids the bottlenecks of explicit reasoning and enables more adaptive selfrefinement. Extensive experiments demonstrate that LatentMorph (I) enhances the base model Janus-Pro by 16% on GenEval and 25% on T2ICompBench; (II) outperforms explicit paradigms (e.g., TwiG) by 15% and 11% on abstract reasoning tasks like WISE and IPV-Txt, (III) while reducing inference time by 44% and token consumption by 51%; and (IV) exhibits 71% cognitive alignment with human intuition on reasoning invocation. Our code: LatentMorph. et al., 2022; Saharia et al., 2022) and autoregressive (Sun et al., 2024; Wang et al., 2024a; Wu et al., 2025) generative models, which now power a wide range of applications. Despite these successes, previous T2I generators primarily function as text-to-pixel mapping systems, with limited capacity for explicit deliberation or self-refinement during generation–key hallmarks of human creativity. In contrast, large language models (LLMs) (Brown et al., 2020; Touvron et al., 2023) have demonstrated remarkable emergent reasoning abilities, popularized by chainof-thought (CoT) (Wei et al., 2022) prompting and training. This has motivated a growing line of work aiming to endow image generation with “System-2”-like reasoning. Existing approaches can be broadly organized into two paradigms: (I) external-loop paradigm, which couples an (M)LLM with a generator and uses the (M)LLM as an optimizer to refine prompts, critique outputs, or iteratively propose edits (Wang et al., 2024b; Gani et al., 2024; Yang et al., 2024; Zhan et al., 2024); and (II) internal-loop paradigm, increasingly enabled by unified multimodal models (UMMs) (e.g., Janus-series (Chen et al., 2025d)), attempt to interleave reasoning between the understanding and generation branches within a single backbone (Liao et al., 2025; Huang et al., 2025b; Qin et al., 2025a; Guo et al., 2025b). While</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260202g3latentmo,
+  title = {Show, Don&#x27;t Tell: Morphing Latent Reasoning into Image Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.02227v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g3-latentmorph/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Show, Don&#x27;t Tell: Morphing Latent Reasoning into Image Generation. https://arxiv.org/pdf/2602.02227v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.02227v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

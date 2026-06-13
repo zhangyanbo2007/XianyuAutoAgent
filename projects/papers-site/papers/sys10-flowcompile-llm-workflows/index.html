@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlowCompile: An Optimizing Compiler for Structured LLM Workflows | DAST Papers</title>
+    <meta name="description" content="FlowCompile 把结构化 LLM workflows 的优化从运行时路由问题改写为编译问题：部署前全局探索 workflow 设计空间，形成可复用的配置集合。
+
+它关注的不是单个 prompt，而是由多个 sub-agents 组成的图结构工作流，在模型选择、reasoning budget 和结构组合之间做 accuracy-latency trade-off。
+
+它值得正式收录，因为 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys10-flowcompile-llm-workflows/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FlowCompile: An Optimizing Compiler for Structured LLM Workflows" />
+    <meta property="og:description" content="FlowCompile 把结构化 LLM workflows 的优化从运行时路由问题改写为编译问题：部署前全局探索 workflow 设计空间，形成可复用的配置集合。
+
+它关注的不是单个 prompt，而是由多个 sub-agents 组成的图结构工作流，在模型选择、reasoning budget 和结构组合之间做 accuracy-latency trade-off。
+
+它值得正式收录，因为 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys10-flowcompile-llm-workflows/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FlowCompile: An Optimizing Compiler for Structured LLM Workflows" />
+    <meta name="twitter:description" content="FlowCompile 把结构化 LLM workflows 的优化从运行时路由问题改写为编译问题：部署前全局探索 workflow 设计空间，形成可复用的配置集合。
+
+它关注的不是单个 prompt，而是由多个 sub-agents 组成的图结构工作流，在模型选择、reasoning budget 和结构组合之间做 accuracy-latency trade-off。
+
+它值得正式收录，因为 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FlowCompile: An Optimizing Compiler for Structured LLM Workflows</h1>
+          <p class="subtitle">软件工程与编程智能体 · 发表：2026-05-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">软件工程与编程智能体</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.13647" target="_blank" rel="noopener noreferrer">2605.13647</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>FlowCompile 把结构化 LLM workflows 的优化从运行时路由问题改写为编译问题：部署前全局探索 workflow 设计空间，形成可复用的配置集合。</dd></div><div><dt>方法/机制</dt><dd>它关注的不是单个 prompt，而是由多个 sub-agents 组成的图结构工作流，在模型选择、reasoning budget 和结构组合之间做 accuracy-latency trade-off。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 agent workflow 正在工程化，未来需要类似 compiler/runtime 的优化层，而 FlowCompile 明确提出了 workflow compiler 这个系统抽象。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为它仍需在更多真实生产 workflow、动态任务分布和成本模型下验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>FlowCompile 把结构化 LLM workflows 的优化从运行时路由问题改写为编译问题：部署前全局探索 workflow 设计空间，形成可复用的配置集合。</p><p>它关注的不是单个 prompt，而是由多个 sub-agents 组成的图结构工作流，在模型选择、reasoning budget 和结构组合之间做 accuracy-latency trade-off。</p><p>它值得正式收录，因为 agent workflow 正在工程化，未来需要类似 compiler/runtime 的优化层，而 FlowCompile 明确提出了 workflow compiler 这个系统抽象。</p><p>它没有更高，是因为它仍需在更多真实生产 workflow、动态任务分布和成本模型下验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>结构化LLM工作流，其中专门的LLM子代理根据预定义的执行图执行，已成为解决复杂任务的强大抽象。优化此类工作流，即为每个子代理选择配置以平衡准确性和延迟，由于模型选择、推理预算和工作流结构上的组合设计空间，这从根本上具有挑战性。现有的成本感知方法主要将工作流优化视为一个路由问题，在推理时根据训练期间指定的准确性-延迟目标为每个查询选择一个配置。我们认为，除了运行时路由之外，结构化LLM工作流还可以从编译的角度进行优化：在部署之前，系统可以全局探索工作流设计空间，并构建一组可重用的工作流级配置，涵盖不同的准确性-延迟权衡。受机器学习编译器的启发，我们引入了FlowCompile，一个结构化LLM工作流编译器，它执行编译时设计空间探索，以识别这样一组高质量、可重用的权衡集。FlowCompile将工作流分解为子代理，在不同配置下对每个子代理进行性能分析，并通过结构感知代理组合这些测量结果，以估计工作流级的准确性和延迟。然后，它在单个编译时通过中识别出一组多样化的高质量配置，无需重新训练或在线适应。跨不同工作流和挑战性基准的实验表明，FlowCompile始终大幅优于启发式优化的工作流配置和基于路由的基线，在保持强大任务性能的同时，提供高达6.4倍的加速。此外，编译后的配置集可作为可重用的优化工件，支持在不同运行时偏好下的灵活部署，并自然支持下游选择或路由以获得额外收益。代码已发布于：https://github.com/UMass-Embodied-AGI/FlowCompile。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Structured LLM workflows, in which specialized LLM sub-agents are executed according to a predefined execution graph, have become a powerful abstraction for solving complex tasks. Optimizing such workflows, i.e., selecting configurations for each sub-agent to balance accuracy and latency, is fundamentally challenging due to the combinatorial design space over model choices, reasoning budgets, and workflow structures. Existing cost-aware methods largely treat workflow optimization as a routing problem, selecting a configuration at inference time for each query according to the accuracy–latency objective specified during training. We argue that, beyond runtime routing, structured LLM workflows can also be optimized from a compilation perspective: before deployment, the system can globally explore the workflow design space and construct a reusable set of workflow-level configurations spanning diverse accuracy–latency trade-offs. Drawing inspiration from machine learning compilers, we introduce FlowCompile, a structured LLM workflow compiler that performs compile-time design space exploration to identify such a high-quality, reusable trade-off set. FlowCompile decomposes a workflow into sub-agents, profiles each sub-agent under diverse configurations, and composes these measurements through a structure-aware proxy to estimate workflow-level accuracy and latency. It then identifies a diverse set of high-quality configurations in a single compile-time pass, without retraining or online adaptation. Experiments across diverse workflows and challenging benchmarks show that FlowCompile consistently outperforms heuristically optimized workflow configurations and routing-based baselines by a large margin, delivering up to 6.4× speedup while maintaining strong task performance. Furthermore, the compiled configuration set serves as a reusable optimization artifact, enabling flexible deployment under varying runtime preferences and naturally supporting downstream selection or routing for additional gains. Code is released at: https://github.com/UMass-Embodied-AGI/FlowCompile.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260513sys10flowc,
+  title = {FlowCompile: An Optimizing Compiler for Structured LLM Workflows},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.13647.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys10-flowcompile-llm-workflows/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FlowCompile: An Optimizing Compiler for Structured LLM Workflows. https://arxiv.org/pdf/2605.13647.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/se10-operational-safety-coding-agents/">
+              <span>What Breaks When LLMs Code? Characterizing Operational Safety Failures of Agentic Code Assistants</span>
+              <small>软件工程与编程智能体 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a336-litecoder-terminal-agent-environments/">
+              <span>LiteCoder-Terminal: Scaling Long-Horizon Terminal Environments for Learning Language Agents</span>
+              <small>软件工程与编程智能体 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/sys12-topoevo-rca-agents/">
+              <span>TopoEvo: A Topology-Aware Self-Evolving Multi-Agent Framework for Root Cause Analysis in Microservices</span>
+              <small>软件工程与编程智能体 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/sys11-star-rca-agents/">
+              <span>STAR: A Stage-attributed Triage and Repair framework for RCA Agents in Microservices</span>
+              <small>软件工程与编程智能体 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/a257-workspace-bench-file-dependencies/">
+              <span>Workspace-Bench 1.0: Benchmarking AI Agents on Workspace Tasks with Large-Scale File Dependencies</span>
+              <small>软件工程与编程智能体 · 2026-05-05</small>
+            </a>
+            <a class="related-item" href="../../papers/se7-cujbench-crossmodal-failure-diagnosis/">
+              <span>CUJBench: Benchmarking LLM-Agent on Cross-Modal Failure Diagnosis from Browser to Backend</span>
+              <small>软件工程与编程智能体 · 2026-04-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.13647.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.13647" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

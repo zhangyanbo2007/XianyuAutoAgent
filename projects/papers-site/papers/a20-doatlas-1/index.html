@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DoAtlas-1: A Causal Compilation Paradigm for Clinical AI | DAST Papers</title>
+    <meta name="description" content="问题与背景
+当前医学基础模型很擅长生成解释性文本，但很难真正回答“如果干预会怎样”这类可审计、可执行的问题。叙事式输出无法量化 intervention effect，也很难识别证据冲突或支持真正的因果查询。
+
+方法/新意
+DoAtlas-1 的核心是 causal compilation：把医学研究中的异构证据标准化为可执行的 estimand object，显式记录 intervention " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a20-doatlas-1/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DoAtlas-1: A Causal Compilation Paradigm for Clinical AI" />
+    <meta property="og:description" content="问题与背景
+当前医学基础模型很擅长生成解释性文本，但很难真正回答“如果干预会怎样”这类可审计、可执行的问题。叙事式输出无法量化 intervention effect，也很难识别证据冲突或支持真正的因果查询。
+
+方法/新意
+DoAtlas-1 的核心是 causal compilation：把医学研究中的异构证据标准化为可执行的 estimand object，显式记录 intervention " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a20-doatlas-1/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DoAtlas-1: A Causal Compilation Paradigm for Clinical AI" />
+    <meta name="twitter:description" content="问题与背景
+当前医学基础模型很擅长生成解释性文本，但很难真正回答“如果干预会怎样”这类可审计、可执行的问题。叙事式输出无法量化 intervention effect，也很难识别证据冲突或支持真正的因果查询。
+
+方法/新意
+DoAtlas-1 的核心是 causal compilation：把医学研究中的异构证据标准化为可执行的 estimand object，显式记录 intervention " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DoAtlas-1: A Causal Compilation Paradigm for Clinical AI</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.19158" target="_blank" rel="noopener noreferrer">2602.19158</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景</dd></div><div><dt>方法/机制</dt><dd>当前医学基础模型很擅长生成解释性文本，但很难真正回答“如果干预会怎样”这类可审计、可执行的问题。叙事式输出无法量化 intervention effect，也很难识别证据冲突或支持真正的因果查询。</dd></div><div><dt>结果/证据</dt><dd>方法/新意</dd></div><div><dt>收录价值</dt><dd>DoAtlas-1 的核心是 causal compilation：把医学研究中的异构证据标准化为可执行的 estimand object，显式记录 intervention contrast、effect scale、time horizon 和 target population。系统再基于这些对象支持 do-calculus、反事实、时间轨迹、异质性效应等六类因果查询。</dd></div><div><dt>要点 5</dt><dd>意义/放在仓库中的位置</dd></div><div><dt>要点 6</dt><dd>这篇适合放在临床 AI / agentic scientific reasoning 主线，和 AutoNumerics、BEACONS 这类“把自然语言知识转成可执行系统”的论文同类。它的亮点不是单纯提高问答分数，而是把 clinical AI 往可验证、可审计的因果推理方向推进。</dd></div><div><dt>要点 7</dt><dd>局限/为何不更高</dd></div><div><dt>要点 8</dt><dd>目前还是 arXiv 阶段，证据主要集中在 compiled medical evidence graph 和查询执行性上，距离成为真正临床部署平台还有不小距离。它是很值得收的突破性条目，但还没到范式级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景</p><p>当前医学基础模型很擅长生成解释性文本，但很难真正回答“如果干预会怎样”这类可审计、可执行的问题。叙事式输出无法量化 intervention effect，也很难识别证据冲突或支持真正的因果查询。</p><p>方法/新意</p><p>DoAtlas-1 的核心是 causal compilation：把医学研究中的异构证据标准化为可执行的 estimand object，显式记录 intervention contrast、effect scale、time horizon 和 target population。系统再基于这些对象支持 do-calculus、反事实、时间轨迹、异质性效应等六类因果查询。</p><p>意义/放在仓库中的位置</p><p>这篇适合放在临床 AI / agentic scientific reasoning 主线，和 AutoNumerics、BEACONS 这类“把自然语言知识转成可执行系统”的论文同类。它的亮点不是单纯提高问答分数，而是把 clinical AI 往可验证、可审计的因果推理方向推进。</p><p>局限/为何不更高</p><p>目前还是 arXiv 阶段，证据主要集中在 compiled medical evidence graph 和查询执行性上，距离成为真正临床部署平台还有不小距离。它是很值得收的突破性条目，但还没到范式级。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260222a20doatlas,
+  title = {DoAtlas-1: A Causal Compilation Paradigm for Clinical AI},
+  year = {2026},
+  url = {https://arxiv.org/abs/2602.19158},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a20-doatlas-1/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DoAtlas-1: A Causal Compilation Paradigm for Clinical AI. https://arxiv.org/abs/2602.19158</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2602.19158" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

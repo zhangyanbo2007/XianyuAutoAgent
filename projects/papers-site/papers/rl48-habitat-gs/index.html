@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Habitat-GS: A High-Fidelity Navigation Simulator with Dynamic Gaussian Splatting | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 embodied AI 仿真中的视觉保真度和动态人类建模问题，把 Habitat-Sim 扩展为支持 3D Gaussian Splatting 场景和可导航 Gaussian avatar 的 Habitat-GS。
+
+它的系统价值在于把高保真视觉渲染和导航障碍物语义结合：avatar 既是逼真的视觉实体，也是有效导航障碍，从而更接近有人类活动的真实场景。
+
+按本库标准，它属于机器" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl48-habitat-gs/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Habitat-GS: A High-Fidelity Navigation Simulator with Dynamic Gaussian Splatting" />
+    <meta property="og:description" content="这篇论文针对 embodied AI 仿真中的视觉保真度和动态人类建模问题，把 Habitat-Sim 扩展为支持 3D Gaussian Splatting 场景和可导航 Gaussian avatar 的 Habitat-GS。
+
+它的系统价值在于把高保真视觉渲染和导航障碍物语义结合：avatar 既是逼真的视觉实体，也是有效导航障碍，从而更接近有人类活动的真实场景。
+
+按本库标准，它属于机器" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl48-habitat-gs/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Habitat-GS: A High-Fidelity Navigation Simulator with Dynamic Gaussian Splatting" />
+    <meta name="twitter:description" content="这篇论文针对 embodied AI 仿真中的视觉保真度和动态人类建模问题，把 Habitat-Sim 扩展为支持 3D Gaussian Splatting 场景和可导航 Gaussian avatar 的 Habitat-GS。
+
+它的系统价值在于把高保真视觉渲染和导航障碍物语义结合：avatar 既是逼真的视觉实体，也是有效导航障碍，从而更接近有人类活动的真实场景。
+
+按本库标准，它属于机器" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Habitat-GS: A High-Fidelity Navigation Simulator with Dynamic Gaussian Splatting</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12626" target="_blank" rel="noopener noreferrer">2604.12626</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 embodied AI 仿真中的视觉保真度和动态人类建模问题，把 Habitat-Sim 扩展为支持 3D Gaussian Splatting 场景和可导航 Gaussian avatar 的 Habitat-GS。</dd></div><div><dt>方法/机制</dt><dd>它的系统价值在于把高保真视觉渲染和导航障碍物语义结合：avatar 既是逼真的视觉实体，也是有效导航障碍，从而更接近有人类活动的真实场景。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它属于机器人/具身智能基础设施，贡献不是单一导航算法，而是可复用模拟器组件和 sim2real 泛化路径。</dd></div><div><dt>收录价值</dt><dd>局限是主要验证在导航任务，3DGS 场景构建成本、物理交互保真度和更复杂人群行为仍是开放问题。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 embodied AI 仿真中的视觉保真度和动态人类建模问题，把 Habitat-Sim 扩展为支持 3D Gaussian Splatting 场景和可导航 Gaussian avatar 的 Habitat-GS。</p><p>它的系统价值在于把高保真视觉渲染和导航障碍物语义结合：avatar 既是逼真的视觉实体，也是有效导航障碍，从而更接近有人类活动的真实场景。</p><p>按本库标准，它属于机器人/具身智能基础设施，贡献不是单一导航算法，而是可复用模拟器组件和 sim2real 泛化路径。</p><p>局限是主要验证在导航任务，3DGS 场景构建成本、物理交互保真度和更复杂人群行为仍是开放问题。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。具身AI智能体的训练关键取决于模拟环境的视觉保真度以及对动态人类建模的能力。当前的模拟器依赖于基于网格的栅格化，视觉真实感有限，并且它们对动态人类化身的支持（如果可用）仅限于网格表示，这阻碍了智能体向有人类存在的真实世界场景的泛化。我们提出了HabitatGS，一个以导航为中心的具身AI模拟器，它从HabitatSim扩展而来，集成了3D高斯泼溅场景渲染和可驱动的高斯化身，同时保持与Habitat生态系统的完全兼容性。我们的系统实现了一个用于实时照片级真实感渲染的3DGS渲染器，并支持从不同来源可扩展地导入3DGS资产。对于动态人类建模，我们引入了一个高斯化身模块，使每个化身能够同时作为照片级真实感的视觉实体和有效的导航障碍物，从而允许智能体在真实环境中学习人类感知行为。在点目标导航上的实验表明，在3DGS场景上训练的智能体实现了更强的跨领域泛化，其中混合领域训练是最有效的策略。对化身感知导航的评估进一步证实，高斯化身能够实现有效的人类感知导航。最后，性能基准验证了系统在不同场景复杂度和化身数量下的可扩展性。关键词：具身AI模拟 · 3D高斯泼溅 · 动态高斯化身</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Training embodied AI agents depends critically on the visual fidelity of simulation environments and the ability to model dynamic humans. Current simulators rely on mesh-based rasterization with limited visual realism, and their support for dynamic human avatars, where available, is constrained to mesh representations, hindering agent generalization to human-populated real-world scenarios. We present HabitatGS, a navigation-centric embodied AI simulator extended from HabitatSim that integrates 3D Gaussian Splatting scene rendering and drivable gaussian avatars while maintaining full compatibility with the Habitat ecosystem. Our system implements a 3DGS renderer for real-time photorealistic rendering and supports scalable 3DGS asset import from diverse sources. For dynamic human modeling, we introduce a gaussian avatar module that enables each avatar to simultaneously serve as a photorealistic visual entity and an effective navigation obstacle, allowing agents to learn human-aware behaviors in realistic settings. Experiments on pointgoal navigation demonstrate that agents trained on 3DGS scenes achieve stronger cross-domain generalization, with mixed-domain training being the most effective strategy. Evaluations on avatar-aware navigation further confirm that gaussian avatars enable effective human-aware navigation. Finally, performance benchmarks validate the system’s scalability across varying scene complexity and avatar counts. Keywords: Embodied AI Simulation · 3D Gaussian Splatting · Dynamic Gaussian Avatar</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415rl48habita,
+  title = {Habitat-GS: A High-Fidelity Navigation Simulator with Dynamic Gaussian Splatting},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12626.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl48-habitat-gs/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Habitat-GS: A High-Fidelity Navigation Simulator with Dynamic Gaussian Splatting. https://arxiv.org/pdf/2604.12626.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12626.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GenCAD: Image-Conditioned Computer-Aided Design Generation with Transformer-Based Contrastive Representation and Diffusion Priors | DAST Papers</title>
+    <meta name="description" content="从图像或草图生成真正可编辑、可制造的 CAD 模型，是 AI 进入产品与机械设计流程的关键一步。很多 3D 生成工作可以输出 mesh、voxel 或 point cloud，但这些表示并不能直接进入工程设计与制造流程，因此和真实 CAD 工作流之间一直有明显断层。
+
+GenCAD 把这个问题建成 image-conditioned CAD command generation。它用 autore" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw19-gencad-image-to-cad/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GenCAD: Image-Conditioned Computer-Aided Design Generation with Transformer-Based Contrastive Representation and Diffusion Priors" />
+    <meta property="og:description" content="从图像或草图生成真正可编辑、可制造的 CAD 模型，是 AI 进入产品与机械设计流程的关键一步。很多 3D 生成工作可以输出 mesh、voxel 或 point cloud，但这些表示并不能直接进入工程设计与制造流程，因此和真实 CAD 工作流之间一直有明显断层。
+
+GenCAD 把这个问题建成 image-conditioned CAD command generation。它用 autore" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw19-gencad-image-to-cad/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GenCAD: Image-Conditioned Computer-Aided Design Generation with Transformer-Based Contrastive Representation and Diffusion Priors" />
+    <meta name="twitter:description" content="从图像或草图生成真正可编辑、可制造的 CAD 模型，是 AI 进入产品与机械设计流程的关键一步。很多 3D 生成工作可以输出 mesh、voxel 或 point cloud，但这些表示并不能直接进入工程设计与制造流程，因此和真实 CAD 工作流之间一直有明显断层。
+
+GenCAD 把这个问题建成 image-conditioned CAD command generation。它用 autore" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GenCAD: Image-Conditioned Computer-Aided Design Generation with Transformer-Based Contrastive Representation and Diffusion Priors</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2024-09-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2024-09-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2409.16294" target="_blank" rel="noopener noreferrer">2409.16294</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>从图像或草图生成真正可编辑、可制造的 CAD 模型，是 AI 进入产品与机械设计流程的关键一步。很多 3D 生成工作可以输出 mesh、voxel 或 point cloud，但这些表示并不能直接进入工程设计与制造流程，因此和真实 CAD 工作流之间一直有明显断层。</dd></div><div><dt>方法/机制</dt><dd>GenCAD 把这个问题建成 image-conditioned CAD command generation。它用 autoregressive transformer 建模参数化 CAD 命令序列，再用对比学习把图像与 CAD 表征对齐，并引入 latent diffusion priors 强化条件生成能力。结果不只是生成更像的 3D 形状，而是输出可编辑的 CAD 程序，同时还能支持基于图像查询的大规模 CAD 检索。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它给出了从视觉输入进入 parametric CAD 表达的一条清晰接口，对 AI 驱动的设计自动化、reverse engineering 和 design retrieval 都有直接外溢。和只做 3D 几何生成的工作相比，它更接近工程链路里真正可用的中间表示，因此符合仓库对 CAD / 设计自动化方向的高价值条目标准。</dd></div><div><dt>收录价值</dt><dd>它暂时不再升一级，因为当前仍主要聚焦在 CAD 生成与检索本身，还没有把 manufacturability、仿真反馈、设计约束和后续制造环节连成完整闭环。它是很强的方法接口层工作，但还不是完整的 design automation workflow 重构。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>从图像或草图生成真正可编辑、可制造的 CAD 模型，是 AI 进入产品与机械设计流程的关键一步。很多 3D 生成工作可以输出 mesh、voxel 或 point cloud，但这些表示并不能直接进入工程设计与制造流程，因此和真实 CAD 工作流之间一直有明显断层。</p><p>GenCAD 把这个问题建成 image-conditioned CAD command generation。它用 autoregressive transformer 建模参数化 CAD 命令序列，再用对比学习把图像与 CAD 表征对齐，并引入 latent diffusion priors 强化条件生成能力。结果不只是生成更像的 3D 形状，而是输出可编辑的 CAD 程序，同时还能支持基于图像查询的大规模 CAD 检索。</p><p>这篇论文值得收录，因为它给出了从视觉输入进入 parametric CAD 表达的一条清晰接口，对 AI 驱动的设计自动化、reverse engineering 和 design retrieval 都有直接外溢。和只做 3D 几何生成的工作相比，它更接近工程链路里真正可用的中间表示，因此符合仓库对 CAD / 设计自动化方向的高价值条目标准。</p><p>它暂时不再升一级，因为当前仍主要聚焦在 CAD 生成与检索本身，还没有把 manufacturability、仿真反馈、设计约束和后续制造环节连成完整闭环。它是很强的方法接口层工作，但还不是完整的 design automation workflow 重构。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>GenCAD：基于Transformer对比表示和扩散先验的图像条件计算机辅助设计生成通过计算机辅助设计 (CAD) 创建可制造和可编辑的3D形状仍然是一项高度手动且耗时的任务，这受限于3D实体的边界表示的复杂拓扑结构和不直观的设计工具。尽管3D形状生成领域的大多数工作都集中在网格、体素或点云等表示形式上，但实际工程应用要求CAD模型的可修改性和可制造性，以及多模态条件CAD模型生成的能力。本文介绍了GenCAD，这是一种生成模型，它采用带有对比学习框架和潜在扩散模型的自回归Transformer，将图像输入转换为参数化CAD命令序列，从而生成可编辑的3D形状表示。广泛的评估表明，GenCAD在CAD模型的无条件和条件生成方面显著优于现有的最先进方法。此外，GenCAD的对比学习框架有助于使用图像查询从大型CAD数据库中检索CAD模型，这是CAD领域内的一个关键挑战。我们的结果在突出生成模型加速从设计到生产的整个流程并无缝集成不同设计模态的潜力方面迈出了重要一步。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The creation of manufacturable and editable 3D shapes through Computer-Aided Design (CAD) remains a highly manual and time-consuming task, hampered by the complex topology of boundary representations of 3D solids and unintuitive design tools. While most work in the 3D shape generation literature focuses on representations like meshes, voxels, or point clouds, practical engineering applications demand the modifiability and manufacturability of CAD models and the ability for multi-modal conditional CAD model generation. This paper introduces GenCAD, a generative model that employs autoregressive transformers with a contrastive learning framework and latent diffusion models to transform image inputs into parametric CAD command sequences, resulting in editable 3D shape representations. Extensive evaluations demonstrate that GenCAD significantly outperforms existing state-of-the-art methods in terms of the unconditional and conditional generations of CAD models. Additionally, the contrastive learning framework of GenCAD facilitates the retrieval of CAD models using image queries from large CAD databases, which is a critical challenge within the CAD community. Our results provide a significant step forward in highlighting the potential of generative models to expedite the entire design-to-production pipeline and seamlessly integrate different design modalities.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20240908hw19gencad,
+  title = {GenCAD: Image-Conditioned Computer-Aided Design Generation with Transformer-Based Contrastive Representation and Diffusion Priors},
+  year = {2024},
+  url = {https://arxiv.org/pdf/2409.16294.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw19-gencad-image-to-cad/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2024). GenCAD: Image-Conditioned Computer-Aided Design Generation with Transformer-Based Contrastive Representation and Diffusion Priors. https://arxiv.org/pdf/2409.16294.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2409.16294.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

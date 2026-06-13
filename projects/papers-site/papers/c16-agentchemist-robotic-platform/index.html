@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control | DAST Papers</title>
+    <meta name="description" content="化学实验自动化的长期瓶颈，不是机器人能不能重复执行少数标准步骤，而是面对真实实验室里层出不穷的 long-tail 操作时，系统能不能感知实验状态、动态调整计划并处理不完全标准化的器械与流程。AgentChemist 对准的是这个长期存在但很少被真正解决的问题。
+
+它提出的是一套 multi-agent experimental robotic platform：一方面用 chemical per" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c16-agentchemist-robotic-platform/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control" />
+    <meta property="og:description" content="化学实验自动化的长期瓶颈，不是机器人能不能重复执行少数标准步骤，而是面对真实实验室里层出不穷的 long-tail 操作时，系统能不能感知实验状态、动态调整计划并处理不完全标准化的器械与流程。AgentChemist 对准的是这个长期存在但很少被真正解决的问题。
+
+它提出的是一套 multi-agent experimental robotic platform：一方面用 chemical per" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c16-agentchemist-robotic-platform/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control" />
+    <meta name="twitter:description" content="化学实验自动化的长期瓶颈，不是机器人能不能重复执行少数标准步骤，而是面对真实实验室里层出不穷的 long-tail 操作时，系统能不能感知实验状态、动态调整计划并处理不完全标准化的器械与流程。AgentChemist 对准的是这个长期存在但很少被真正解决的问题。
+
+它提出的是一套 multi-agent experimental robotic platform：一方面用 chemical per" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.23886" target="_blank" rel="noopener noreferrer">2603.23886</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>化学实验自动化的长期瓶颈，不是机器人能不能重复执行少数标准步骤，而是面对真实实验室里层出不穷的 long-tail 操作时，系统能不能感知实验状态、动态调整计划并处理不完全标准化的器械与流程。AgentChemist 对准的是这个长期存在但很少被真正解决的问题。</dd></div><div><dt>方法/机制</dt><dd>它提出的是一套 multi-agent experimental robotic platform：一方面用 chemical perception 持续监测反应过程，另一方面用任务分解、动态调度和精确控制把执行层做成反馈驱动而不是固定脚本。这个设计的价值在于把 perception、planning 和 physical execution 接到一个可适应长尾实验变化的系统里，而不是再做单机台 demo automation。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它命中仓库在 agent-driven scientific workflow 和 lab automation 上的主线：AI 不只是帮忙预测或分析，而是直接重构实验执行工作流，让实验平台能根据 evolving state 调整动作。对化学机器人、实验 agent 和闭环科学工作流都有明显系统价值。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为从摘要层面看，它更像一个强系统平台，而不是已经证明可重排大范围化学实验自动化的统一范式。长期通用性、跨实验类型迁移和更细致的 failure analysis 还需要更多公开证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>化学实验自动化的长期瓶颈，不是机器人能不能重复执行少数标准步骤，而是面对真实实验室里层出不穷的 long-tail 操作时，系统能不能感知实验状态、动态调整计划并处理不完全标准化的器械与流程。AgentChemist 对准的是这个长期存在但很少被真正解决的问题。</p><p>它提出的是一套 multi-agent experimental robotic platform：一方面用 chemical perception 持续监测反应过程，另一方面用任务分解、动态调度和精确控制把执行层做成反馈驱动而不是固定脚本。这个设计的价值在于把 perception、planning 和 physical execution 接到一个可适应长尾实验变化的系统里，而不是再做单机台 demo automation。</p><p>这篇工作值得正式收录，因为它命中仓库在 agent-driven scientific workflow 和 lab automation 上的主线：AI 不只是帮忙预测或分析，而是直接重构实验执行工作流，让实验平台能根据 evolving state 调整动作。对化学机器人、实验 agent 和闭环科学工作流都有明显系统价值。</p><p>它目前仍是 breakthrough，而不是更高一级，因为从摘要层面看，它更像一个强系统平台，而不是已经证明可重排大范围化学实验自动化的统一范式。长期通用性、跨实验类型迁移和更细致的 failure analysis 还需要更多公开证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：AgentChemist：一个集成化学感知与精确控制的多智能体实验机器人平台。化学实验室自动化长期以来一直受限于僵化的工作流程以及对实验任务长尾分布的适应性差。虽然大多数自动化平台在狭窄的标准化程序集上表现良好，但真实的实验室涉及多样化、不频繁且不断演变的操作，这些操作超出了预定义的协议范围。这种不匹配阻碍了现有系统泛化到新颖的反应条件、不常见的仪器配置和意想不到的程序变体。我们提出了一个多智能体机器人平台，旨在通过协作任务分解、动态调度和自适应控制来解决这一长尾挑战。该系统集成了</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Chemical laboratory automation has long been constrained by rigid workflows and poor adaptability to the long-tail distribution of experimental tasks. While most automated platforms perform well on a narrow set of standardized procedures, real laboratories involve diverse, infrequent, and evolving operations that fall outside predefined protocols. This mismatch prevents existing systems from generalizing to novel reaction conditions, uncommon instrument configurations, and unexpected procedural variations. We present a multi-agent robotic platform designed to address this long-tail challenge through collaborative task decomposition, dynamic scheduling, and adaptive control. The system integrates</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325c16agentch,
+  title = {AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.23886.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c16-agentchemist-robotic-platform/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control. https://arxiv.org/pdf/2603.23886.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.23886.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond detection: cooperative multi-agent reasoning for rapid onboard EO crisis response | DAST Papers</title>
+    <meta name="description" content="地面中心的 Earth Observation 危机响应流程长期受制于下行链路、跨模态融合延迟和全场景穷举分析的算力开销，这让真正需要分钟级反应的灾害监测很难做到快速闭环。单一模型直接扫完整场景也不适合卫星边缘计算平台的带宽与功耗约束。
+
+这篇工作提出分层的 cooperative multi-agent 架构：Early Warning agent 先在板上快速提出事件假设，再按需激活 doma" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a140-eo-crisis-response-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Beyond detection: cooperative multi-agent reasoning for rapid onboard EO crisis response" />
+    <meta property="og:description" content="地面中心的 Earth Observation 危机响应流程长期受制于下行链路、跨模态融合延迟和全场景穷举分析的算力开销，这让真正需要分钟级反应的灾害监测很难做到快速闭环。单一模型直接扫完整场景也不适合卫星边缘计算平台的带宽与功耗约束。
+
+这篇工作提出分层的 cooperative multi-agent 架构：Early Warning agent 先在板上快速提出事件假设，再按需激活 doma" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a140-eo-crisis-response-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Beyond detection: cooperative multi-agent reasoning for rapid onboard EO crisis response" />
+    <meta name="twitter:description" content="地面中心的 Earth Observation 危机响应流程长期受制于下行链路、跨模态融合延迟和全场景穷举分析的算力开销，这让真正需要分钟级反应的灾害监测很难做到快速闭环。单一模型直接扫完整场景也不适合卫星边缘计算平台的带宽与功耗约束。
+
+这篇工作提出分层的 cooperative multi-agent 架构：Early Warning agent 先在板上快速提出事件假设，再按需激活 doma" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Beyond detection: cooperative multi-agent reasoning for rapid onboard EO crisis response</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.19858" target="_blank" rel="noopener noreferrer">2603.19858</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>地面中心的 Earth Observation 危机响应流程长期受制于下行链路、跨模态融合延迟和全场景穷举分析的算力开销，这让真正需要分钟级反应的灾害监测很难做到快速闭环。单一模型直接扫完整场景也不适合卫星边缘计算平台的带宽与功耗约束。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出分层的 cooperative multi-agent 架构：Early Warning agent 先在板上快速提出事件假设，再按需激活 domain-specific analysis agents，最后由 Decision agent 聚合多模态证据并生成最终告警。关键新意不只是把多个模型串起来，而是把 routing、角色分工和事件驱动推理做成适合 onboard EO 的结构化决策流水线。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这是 agentic reasoning 在资源受限感知系统里的一个耐久系统模式：先做低成本假设生成，再做按需深分析，再做集中裁决。这个思路对卫星星座、无人机群、边缘灾害感知和其他带宽受限的多节点自治系统都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>这篇论文目前仍是 wildfire 和 flood 场景上的 proof-of-concept，验证范围相对集中，离更高一级所要求的跨任务普适性和大规模部署证据还有距离。因此适合给到 breakthrough，而不是更高。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>地面中心的 Earth Observation 危机响应流程长期受制于下行链路、跨模态融合延迟和全场景穷举分析的算力开销，这让真正需要分钟级反应的灾害监测很难做到快速闭环。单一模型直接扫完整场景也不适合卫星边缘计算平台的带宽与功耗约束。</p><p>这篇工作提出分层的 cooperative multi-agent 架构：Early Warning agent 先在板上快速提出事件假设，再按需激活 domain-specific analysis agents，最后由 Decision agent 聚合多模态证据并生成最终告警。关键新意不只是把多个模型串起来，而是把 routing、角色分工和事件驱动推理做成适合 onboard EO 的结构化决策流水线。</p><p>它值得收录，因为这是 agentic reasoning 在资源受限感知系统里的一个耐久系统模式：先做低成本假设生成，再做按需深分析，再做集中裁决。这个思路对卫星星座、无人机群、边缘灾害感知和其他带宽受限的多节点自治系统都有直接外溢。</p><p>这篇论文目前仍是 wildfire 和 flood 场景上的 proof-of-concept，验证范围相对集中，离更高一级所要求的跨任务普适性和大规模部署证据还有距离。因此适合给到 breakthrough，而不是更高。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>使用代表性卫星数据。在野火和洪水监测场景的实验表明，所提出的基于路由的管道显著降低了计算开销，同时保持了连贯的决策输出，证明了分布式基于代理的推理在未来自主EO星座中的可行性。快速识别危险事件对于支持灾害响应的下一代地球观测（EO）任务至关重要。然而，当前的监测管道在很大程度上仍以地面为中心，由于下行链路限制、多源数据融合约束以及详尽场景分析的计算成本，引入了延迟。本工作提出了一种分层多代理架构，用于在严格的资源和带宽限制下进行星载EO处理。该系统通过在事件驱动的决策管道中协调专门的AI代理，从而能够利用互补的多模态观测数据。AI代理可以部署在分布式设置中的多个节点上，例如卫星平台。一个早期预警代理从星载观测中生成快速假设并选择性地激活领域特定的分析代理，而一个决策代理则整合证据以发布最终警报。该架构结合了视觉-语言模型、传统遥感分析工具和角色专业化代理，以实现对多模态观测的结构化推理，同时最大限度地减少不必要的计算。概念验证实现在一个目前已在轨部署的边缘计算平台的工程模型上执行。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>using representative satellite data. Experiments on wildfire and flood monitoring scenarios show that the proposed routing-based pipeline significantly reduces computational overhead while maintaining coherent decision outputs, demonstrating the feasibility of distributed agent-based reasoning for future autonomous EO constellations. Rapid identification of hazardous events is essential for next-generation Earth Observation (EO) missions supporting disaster response. However, current monitoring pipelines remain largely ground-centric, introducing latency due to downlink limitations, multi-source data fusion constraints, and the computational cost of exhaustive scene analysis. This work proposes a hierarchical multiagent architecture for onboard EO processing under strict resource and bandwidth constraints. The system enables the exploitation of complementary multimodal observations by coordinating specialized AI agents within an eventdriven decision pipeline. AI agents can be deployed across multiple nodes in a distributed setting, such as satellite platforms. An Early Warning agent generates fast hypotheses from onboard observations and selectively activates domain-specific analysis agents, while a Decision agent consolidates the evidence to issue a final alert. The architecture combines vision–language models, traditional remote sensing analysis tools, and role-specialized agents to enable structured reasoning over multimodal observations while minimizing unnecessary computation. A proof-of-concept implementation was executed on the engineering model of an edgecomputing platform currently deployed in orbit,</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260320a140eocris,
+  title = {Beyond detection: cooperative multi-agent reasoning for rapid onboard EO crisis response},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.19858v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a140-eo-crisis-response-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Beyond detection: cooperative multi-agent reasoning for rapid onboard EO crisis response. https://arxiv.org/pdf/2603.19858v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.19858v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

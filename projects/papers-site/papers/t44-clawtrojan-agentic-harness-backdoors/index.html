@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors | DAST Papers</title>
+    <meta name="description" content="这篇把 prompt injection 的威胁模型从单步攻击推进到 persistent control：攻击者可以先把控制文本写入本地 workspace，再让 agent 在后续 session 中执行。
+
+ClawTrojan 用本地 agentic harness 模拟多步 trojan，暴露出单步防御看不到的 backdoor planting；DASGuard 则通过 origin " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t44-clawtrojan-agentic-harness-backdoors/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors" />
+    <meta property="og:description" content="这篇把 prompt injection 的威胁模型从单步攻击推进到 persistent control：攻击者可以先把控制文本写入本地 workspace，再让 agent 在后续 session 中执行。
+
+ClawTrojan 用本地 agentic harness 模拟多步 trojan，暴露出单步防御看不到的 backdoor planting；DASGuard 则通过 origin " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t44-clawtrojan-agentic-harness-backdoors/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors" />
+    <meta name="twitter:description" content="这篇把 prompt injection 的威胁模型从单步攻击推进到 persistent control：攻击者可以先把控制文本写入本地 workspace，再让 agent 在后续 session 中执行。
+
+ClawTrojan 用本地 agentic harness 模拟多步 trojan，暴露出单步防御看不到的 backdoor planting；DASGuard 则通过 origin " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-05-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.31042" target="_blank" rel="noopener noreferrer">2605.31042</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇把 prompt injection 的威胁模型从单步攻击推进到 persistent control：攻击者可以先把控制文本写入本地 workspace，再让 agent 在后续 session 中执行。</dd></div><div><dt>方法/机制</dt><dd>ClawTrojan 用本地 agentic harness 模拟多步 trojan，暴露出单步防御看不到的 backdoor planting；DASGuard 则通过 origin tracing 和 sanitized commits 清理不可信控制内容。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它给 secure computer-use / local-first agents 提供了新的安全边界模型：workspace memory/harness 本身就是可被污染的控制面。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇把 prompt injection 的威胁模型从单步攻击推进到 persistent control：攻击者可以先把控制文本写入本地 workspace，再让 agent 在后续 session 中执行。</p><p>ClawTrojan 用本地 agentic harness 模拟多步 trojan，暴露出单步防御看不到的 backdoor planting；DASGuard 则通过 origin tracing 和 sanitized commits 清理不可信控制内容。</p><p>收录价值在于它给 secure computer-use / local-first agents 提供了新的安全边界模型：workspace memory/harness 本身就是可被污染的控制面。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>命令行编码代理通过终端暴露了相似的能力（Abhinav and Contributors, 2026; HKUDS, 2026; Anthropic, 2026; OpenAI, 2026a）。我们称这些系统为“代理吊车工程”（Wang et al., 2024; Meng et al., 2026）：一种将大型语言模型（LLM）与本地工具、记忆和策略包装起来的运行时环境，用于多步骤任务。这一转变也为攻击者提供了一个新的攻击场所：本地工作空间。这种本地设置给代理吊车工程的安全性带来了新的挑战（Wei et al., 2026; Liu et al., 2026）。在网页聊天系统中，提示注入通常试图影响当前的对话（Perez and Ribeiro, 2022）。在本地代理吊车工程中，攻击者可以将攻击写入一个吊车工程稍后会读取的文件（Abdelnabi et al., 2023; Debenedetti et al., 2024）。一旦吊车工程将此内容视为指令，攻击就不再仅限于当前提示。它成为吊车工程的未来控制内容。我们称这种威胁为“针对代理吊车工程的多步骤特洛伊木马攻击”。攻击者无需在明显的一步造成危害。相反，攻击者可以在不同的位置放置小而自然的规则。例如，项目笔记可能会说发布报告需要一个短的诊断块。稍后的配置文件可能会将该块定义为从 private_notes.txt 复制的文本。当用户要求发布报告时，吊车工程可能会将私有文本复制到共享文档中。每个步骤可以单独看起来无害，但它们在一起可以产生不可逆转的结果。这种威胁也未被现有提示攻击数据集充分暴露。在我们的初步实验中，AgentDojo (Debenedetti et al., 2024) 和 InjecAgent (Zhan et al., 2024) 在没有防御的情况下，在 GPT5.4 (OpenAI, 2026b) 和 GLM-5.1 (Z.AI, 2026) 等最新 LLM 上产生接近于零的攻击成功率。这表明现有的单上下文攻击对于较新的强大基础模型来说已经变得过于简单。LLM 代理正在从对话式聊天机器人发展成为现实工作空间中的操作工具。在本地代理吊车工程中，LLM 可以读取和写入文件、调用工具并在会话之间重用工作空间状态。虽然这些功能增强了实用性，但也暴露了一个新的攻击面，供攻击者利用。攻击者可以将提示注入嵌入到文件或工具输出中。代理可能会读取此隐藏的指令，将其存储并稍后执行。在这个多步骤特洛伊木马攻击范式中，个别步骤本身看起来不具有恶意，但这些步骤可以共同将不可信的文本转化为持久的控制内容。然而，现有的防御措施通常会检查每个步骤的隔离情况。因此，它们可以阻止明显的有害行为，但无法检测到植入后门的前期写入操作。为了揭示这种威胁，我们引入了 ClawTrojan，这是一个旨在在本地代理吊车工程中识别多步骤特洛伊木马攻击的基准。在 OpenClaw 风格的模拟工作空间中，使用 GPT-5.4，ClawTrojan 的攻击成功率（ASR）达到 95.5%，而现有的单轮提示注入攻击在同一模型上产生接近于零的 ASR。为了解决这种威胁，我们提出了一种名为 DASGuard 的方案，它扫描敏感本地文件中的控制类文本，跟踪其来源并删除不 originate 来自受信任来源的控制内容。我们的结果表明，DASGuard 通过将运行时攻击阻止与工作空间中的清理提交相结合，实现了强大的动态防御1。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>command-line coding agents expose similar capabilities through a terminal (Abhinav and Contributors, 2026; HKUDS, 2026; Anthropic, 2026; OpenAI, 2026a). We refer to these systems as agentic harnesses (Wang et al., 2024; Meng et al., 2026): runtime environments that wrap an LLM with local tools, memories, and policies for multi-step tasks. This shift also gives attackers a new place to pose attacks: the local workspace. This local setting raises new challenges for agentic harness security (Wei et al., 2026; Liu et al., 2026). In a web chat system, a prompt injection usually tries to affect the current conversation (Perez and Ribeiro, 2022). In a local agentic harness, an attack can be written into a file that the harness will read again later (Abdelnabi et al., 2023; Debenedetti et al., 2024). Once the harness treats this content as an instruction, the attack is no longer only in the current prompt. It becomes part of the harness’s future control content. We call this threat a multi-step trojan attack against agentic harnesses. The attacker does not need to cause harm in one obvious step. Instead, the attacker can place small and natural-looking rules in different places. For example, a project note may say that release reports need a short diagnostic block. A later config file may define that block as text copied from private_notes.txt. When the user asks for the release report, the harness may copy private text into a shared document. Each step can look harmless by itself, but together they can produce an irreversible outcome. This threat is also not well exposed by several existing prompt-attack datasets. In our preliminary experiments, AgentDojo (Debenedetti et al., 2024) and InjecAgent (Zhan et al., 2024) produce near-zero attack success on latest LLMs like GPT5.4 (OpenAI, 2026b) and GLM-5.1 (Z.AI, 2026) without defense. This suggests that existing singlecontext attacks have become too easy for newer strong base models to recognize. LLM agents are evolving from conversational chatbots to operational tools in real-world workspaces. In local agentic harnesses, an LLM can read and write files, call tools, and reuse workspace state across sessions. While such capabilities enhance utility, they also expose a new attack surface for attackers. Attackers can embed a prompt injection within a file or tool output. Agents may read this hidden instruction, store it, and execute it later. In this multi-step trojan attack paradigm, no individual step appears malicious on its own, but these steps can collectively turn untrusted text into persistent control content. However, existing defenses often inspect each step in isolation. As a result, they can block a clear harmful action, but fail to detect the earlier write operation that plants the backdoor. To reveal this threat, we introduce ClawTrojan, a benchmark designed to identify multi-step trojan attacks in local agentic harnesses. In an OpenClaw-style simulated workspace with GPT-5.4, ClawTrojan reaches a 95.5% attack success rate (ASR), while existing single-turn prompt-injection attacks produce near-zero ASR on the same model. To address this threat, we propose DASGuard, which scans control-like text in sensitive local files, traces its origin, and removes control content that does not originate from a trusted source. Our results show that DASGuard achieves strong dynamic defense by combining runtime attack blocking with sanitized commits to the workspace1 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260529t44clawtro,
+  title = {From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.31042.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t44-clawtrojan-agentic-harness-backdoors/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors. https://arxiv.org/pdf/2605.31042.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t45-d2-monitor-diffusion-llm-safety/">
+              <span>D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing</span>
+              <small>安全、治理与可靠性 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.31042.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/RUC-NLPIR/ClawTrojan" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

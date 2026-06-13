@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HazardArena: Evaluating Semantic Safety in Vision-Language-Action Models | DAST Papers</title>
+    <meta name="description" content="这篇论文指出 VLA 模型评估常只看动作执行成功，却忽略同一动作在不同语义上下文中可能变得危险。正确执行动作并不等于安全执行动作。
+
+HazardArena 通过 safe/unsafe twin scenarios 控制变量：物体、布局和动作要求相同，只有语义风险不同。这样可以专门测 VLA 是否把视觉语言语义和动作安全绑定起来。
+
+按本库标准，它是具身安全/VLA 评估的高价值 benchma" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl49-hazardarena-vla-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HazardArena: Evaluating Semantic Safety in Vision-Language-Action Models" />
+    <meta property="og:description" content="这篇论文指出 VLA 模型评估常只看动作执行成功，却忽略同一动作在不同语义上下文中可能变得危险。正确执行动作并不等于安全执行动作。
+
+HazardArena 通过 safe/unsafe twin scenarios 控制变量：物体、布局和动作要求相同，只有语义风险不同。这样可以专门测 VLA 是否把视觉语言语义和动作安全绑定起来。
+
+按本库标准，它是具身安全/VLA 评估的高价值 benchma" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl49-hazardarena-vla-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HazardArena: Evaluating Semantic Safety in Vision-Language-Action Models" />
+    <meta name="twitter:description" content="这篇论文指出 VLA 模型评估常只看动作执行成功，却忽略同一动作在不同语义上下文中可能变得危险。正确执行动作并不等于安全执行动作。
+
+HazardArena 通过 safe/unsafe twin scenarios 控制变量：物体、布局和动作要求相同，只有语义风险不同。这样可以专门测 VLA 是否把视觉语言语义和动作安全绑定起来。
+
+按本库标准，它是具身安全/VLA 评估的高价值 benchma" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HazardArena: Evaluating Semantic Safety in Vision-Language-Action Models</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12447" target="_blank" rel="noopener noreferrer">2604.12447</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文指出 VLA 模型评估常只看动作执行成功，却忽略同一动作在不同语义上下文中可能变得危险。正确执行动作并不等于安全执行动作。</dd></div><div><dt>方法/机制</dt><dd>HazardArena 通过 safe/unsafe twin scenarios 控制变量：物体、布局和动作要求相同，只有语义风险不同。这样可以专门测 VLA 是否把视觉语言语义和动作安全绑定起来。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它是具身安全/VLA 评估的高价值 benchmark，提供了可复用风险分类、资产集和训练-free safety option layer。</dd></div><div><dt>收录价值</dt><dd>局限是 benchmark 风险仍是受控场景，真实机器人安全还涉及物理不确定性、长期后果和人类交互。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文指出 VLA 模型评估常只看动作执行成功，却忽略同一动作在不同语义上下文中可能变得危险。正确执行动作并不等于安全执行动作。</p><p>HazardArena 通过 safe/unsafe twin scenarios 控制变量：物体、布局和动作要求相同，只有语义风险不同。这样可以专门测 VLA 是否把视觉语言语义和动作安全绑定起来。</p><p>按本库标准，它是具身安全/VLA 评估的高价值 benchmark，提供了可复用风险分类、资产集和训练-free safety option layer。</p><p>局限是 benchmark 风险仍是受控场景，真实机器人安全还涉及物理不确定性、长期后果和人类交互。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作（VLA）模型从视觉-语言骨干模型中继承了丰富的世界知识，并通过动作演示获得了可执行技能。然而，现有评估主要关注动作执行的成功，使得动作策略与视觉-语言语义松散耦合。这种解耦暴露出一个系统性漏洞，即正确的动作执行可能在语义风险下导致不安全的结果。为了揭示这一漏洞，我们引入了HazardArena，一个旨在在受控但具有风险的环境中评估VLA模型语义安全性的基准。HazardArena由安全/不安全孪生场景构建，这些场景共享匹配的对象、布局和动作要求，仅在决定动作是否不安全的语义上下文上有所不同。我们发现，仅在安全场景下训练的VLA模型在评估其对应的不安全场景时，往往无法安全地执行。HazardArena包含2,000多个资产和40个风险敏感任务，涵盖了基于既定机器人安全标准的7个真实世界风险类别。为了缓解这一漏洞，我们提出了一种免训练的安全选项层，该层使用语义属性或视觉-语言判断器来约束动作执行，从而在对任务性能影响最小的情况下显著减少不安全行为。我们希望HazardArena能强调重新思考VLA模型在向实际部署扩展时如何评估和强制执行语义安全性的必要性。通讯作者：xingjunma@fudan.edu.cn；ygj@fudan.edu.cn。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-Language-Action (VLA) models inherit rich world knowledge from vision-language backbones and acquire executable skills via action demonstrations. However, existing evaluations largely focus on action execution success, leaving action policies loosely coupled with visual-linguistic semantics. This decoupling exposes a systematic vulnerability whereby correct action execution may induce unsafe outcomes under semantic risk. To expose this vulnerability, we introduce HazardArena, a benchmark designed to evaluate semantic safety in VLAs under controlled yet risk-bearing contexts. HazardArena is constructed from safe/unsafe twin scenarios that share matched objects, layouts, and action requirements, differing only in the semantic context that determines whether an action is unsafe. We find that VLA models trained exclusively on safe scenarios often fail to behave safely when evaluated in their corresponding unsafe counterparts. HazardArena includes over 2,000 assets and 40 risk-sensitive tasks spanning 7 real-world risk categories grounded in established robotic safety standards. To mitigate this vulnerability, we propose a training-free Safety Option Layer that constrains action execution using semantic attributes or a vision–language judge, substantially reducing unsafe behaviors with minimal impact on task performance. We hope that HazardArena highlights the need to rethink how semantic safety is evaluated and enforced in VLAs as they scale toward real-world deployment. Correspondence: xingjunma@fudan.edu.cn; ygj@fudan.edu.cn</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414rl49hazard,
+  title = {HazardArena: Evaluating Semantic Safety in Vision-Language-Action Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12447.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl49-hazardarena-vla-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HazardArena: Evaluating Semantic Safety in Vision-Language-Action Models. https://arxiv.org/pdf/2604.12447.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12447.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

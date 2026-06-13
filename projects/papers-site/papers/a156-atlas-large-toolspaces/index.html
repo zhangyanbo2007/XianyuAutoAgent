@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scaling Agentic Capabilities, Not Context: Efficient Reinforcement Finetuning for Large Toolspaces | DAST Papers</title>
+    <meta name="description" content="当 agent 进入大 tool ecosystem 时，瓶颈很快不再只是基础模型能力，而是 context budget、tool loading 策略和长链执行结构。很多系统默认把更多工具描述塞进上下文，希望靠更大模型硬扛，但这条路对小模型和低成本部署并不成立。
+
+ATLAS 的核心贡献，是把 large-toolspace agent 的问题拆成两个可学习决策：上下文如何获取，动作如何组织。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a156-atlas-large-toolspaces/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Scaling Agentic Capabilities, Not Context: Efficient Reinforcement Finetuning for Large Toolspaces" />
+    <meta property="og:description" content="当 agent 进入大 tool ecosystem 时，瓶颈很快不再只是基础模型能力，而是 context budget、tool loading 策略和长链执行结构。很多系统默认把更多工具描述塞进上下文，希望靠更大模型硬扛，但这条路对小模型和低成本部署并不成立。
+
+ATLAS 的核心贡献，是把 large-toolspace agent 的问题拆成两个可学习决策：上下文如何获取，动作如何组织。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a156-atlas-large-toolspaces/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Scaling Agentic Capabilities, Not Context: Efficient Reinforcement Finetuning for Large Toolspaces" />
+    <meta name="twitter:description" content="当 agent 进入大 tool ecosystem 时，瓶颈很快不再只是基础模型能力，而是 context budget、tool loading 策略和长链执行结构。很多系统默认把更多工具描述塞进上下文，希望靠更大模型硬扛，但这条路对小模型和低成本部署并不成立。
+
+ATLAS 的核心贡献，是把 large-toolspace agent 的问题拆成两个可学习决策：上下文如何获取，动作如何组织。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Scaling Agentic Capabilities, Not Context: Efficient Reinforcement Finetuning for Large Toolspaces</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.06713" target="_blank" rel="noopener noreferrer">2603.06713</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当 agent 进入大 tool ecosystem 时，瓶颈很快不再只是基础模型能力，而是 context budget、tool loading 策略和长链执行结构。很多系统默认把更多工具描述塞进上下文，希望靠更大模型硬扛，但这条路对小模型和低成本部署并不成立。</dd></div><div><dt>方法/机制</dt><dd>ATLAS 的核心贡献，是把 large-toolspace agent 的问题拆成两个可学习决策：上下文如何获取，动作如何组织。它结合 iterative tool loading 与 programmatic tool orchestration，把 context growth 控在可管理范围内，同时引入 rubric-based reinforcement finetuning，用结构化 judge criteria 取代单一成败信号，显著改善在 MCP-style 大工具空间里的长链执行表现。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一个 agent benchmark 提升，而是给 tool-rich agent 提供了更耐久的 scaling recipe：能力增长未必来自更长上下文，而可以来自更好的 context control 与 execution structure 学习。对本仓库的 tool use、capability acquisition、small-model agents 主线都有直接复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要集中在作者定义的 MCP benchmark 环境和有限模型族上，跨更多真实工具生态和部署框架的默认采用还没有形成。现阶段它是很强的 toolspace RL finetuning 路线，但尚未成为通用标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当 agent 进入大 tool ecosystem 时，瓶颈很快不再只是基础模型能力，而是 context budget、tool loading 策略和长链执行结构。很多系统默认把更多工具描述塞进上下文，希望靠更大模型硬扛，但这条路对小模型和低成本部署并不成立。</p><p>ATLAS 的核心贡献，是把 large-toolspace agent 的问题拆成两个可学习决策：上下文如何获取，动作如何组织。它结合 iterative tool loading 与 programmatic tool orchestration，把 context growth 控在可管理范围内，同时引入 rubric-based reinforcement finetuning，用结构化 judge criteria 取代单一成败信号，显著改善在 MCP-style 大工具空间里的长链执行表现。</p><p>它值得正式收录，因为这不是又一个 agent benchmark 提升，而是给 tool-rich agent 提供了更耐久的 scaling recipe：能力增长未必来自更长上下文，而可以来自更好的 context control 与 execution structure 学习。对本仓库的 tool use、capability acquisition、small-model agents 主线都有直接复用价值。</p><p>它没有升到更高一级，是因为当前证据仍主要集中在作者定义的 MCP benchmark 环境和有限模型族上，跨更多真实工具生态和部署框架的默认采用还没有形成。现阶段它是很强的 toolspace RL finetuning 路线，但尚未成为通用标准。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305a156atlasl,
+  title = {Scaling Agentic Capabilities, Not Context: Efficient Reinforcement Finetuning for Large Toolspaces},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.06713.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a156-atlas-large-toolspaces/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Scaling Agentic Capabilities, Not Context: Efficient Reinforcement Finetuning for Large Toolspaces. https://arxiv.org/pdf/2603.06713.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.06713.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-Distilled Agentic Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="SDAR 处理 agentic post-training 的核心痛点：RL 只有轨迹级稀疏反馈，而 on-policy self-distillation 能提供 token-level dense guidance，但直接用于多轮 agent 会因轨迹漂移和 teacher-student mismatch 产生不稳定。
+
+方法把 OPSD 降级为 gated auxiliary object" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a276-sdar-agentic-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Self-Distilled Agentic Reinforcement Learning" />
+    <meta property="og:description" content="SDAR 处理 agentic post-training 的核心痛点：RL 只有轨迹级稀疏反馈，而 on-policy self-distillation 能提供 token-level dense guidance，但直接用于多轮 agent 会因轨迹漂移和 teacher-student mismatch 产生不稳定。
+
+方法把 OPSD 降级为 gated auxiliary object" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a276-sdar-agentic-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Self-Distilled Agentic Reinforcement Learning" />
+    <meta name="twitter:description" content="SDAR 处理 agentic post-training 的核心痛点：RL 只有轨迹级稀疏反馈，而 on-policy self-distillation 能提供 token-level dense guidance，但直接用于多轮 agent 会因轨迹漂移和 teacher-student mismatch 产生不稳定。
+
+方法把 OPSD 降级为 gated auxiliary object" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Self-Distilled Agentic Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15155" target="_blank" rel="noopener noreferrer">2605.15155</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SDAR 处理 agentic post-training 的核心痛点：RL 只有轨迹级稀疏反馈，而 on-policy self-distillation 能提供 token-level dense guidance，但直接用于多轮 agent 会因轨迹漂移和 teacher-student mismatch 产生不稳定。</dd></div><div><dt>方法/机制</dt><dd>方法把 OPSD 降级为 gated auxiliary objective，让 RL 仍然是主优化骨架；token-level teacher-student gap 经 detached sigmoid gate 调节，强化 teacher-endorsed positive-gap token，软化负向 rejection。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它给长程 agent RL 提供了一个可复用的 RL + privileged-context distillation 组合方式，在 ALFWorld、WebShop、Search-QA 和 Qwen2.5/Qwen3 多尺度上提升明显。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为 benchmark 仍集中在典型 agent 环境，真实开放工具、长期记忆和安全约束下的稳定性还需要更多复现。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SDAR 处理 agentic post-training 的核心痛点：RL 只有轨迹级稀疏反馈，而 on-policy self-distillation 能提供 token-level dense guidance，但直接用于多轮 agent 会因轨迹漂移和 teacher-student mismatch 产生不稳定。</p><p>方法把 OPSD 降级为 gated auxiliary objective，让 RL 仍然是主优化骨架；token-level teacher-student gap 经 detached sigmoid gate 调节，强化 teacher-endorsed positive-gap token，软化负向 rejection。</p><p>它值得正式收录，因为它给长程 agent RL 提供了一个可复用的 RL + privileged-context distillation 组合方式，在 ALFWorld、WebShop、Search-QA 和 Qwen2.5/Qwen3 多尺度上提升明显。</p><p>它没有更高，是因为 benchmark 仍集中在典型 agent 环境，真实开放工具、长期记忆和安全约束下的稳定性还需要更多复现。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>强化学习（RL）已成为后训练LLM智能体的核心范式，但其轨迹级别的奖励信号仅为长周期交互提供粗粒度监督。在线策略自蒸馏（OPSD）通过引入来自一个由特权上下文增强的教师分支的密集令牌级指导来补充RL。然而，将OPSD转移到多轮智能体上存在问题：复合的多轮不稳定性会破坏监督的稳定性，而技能条件下的特权指导需要不对称处理，因为负面教师拒绝可能源于不完善的技能检索或利用。我们引入了SDAR（自蒸馏智能体强化学习），它将OPSD视为一个门控辅助目标，同时将RL作为主要的优化骨干。SDAR将分离的令牌级信号映射到一个sigmoid门中，从而加强对教师认可的正差距令牌的蒸馏，并软化衰减负面教师拒绝。在ALFWorld、WebShop和Search-QA上，SDAR在Qwen2.5和Qwen3系列模型中显著优于GRPO（在ALFWorld上提升9.4%，在Search-QA上提升7.0%，在WebShop-Acc上提升10.2%），避免了朴素GRPO+OPSD的不稳定性，并在不同模型规模下始终优于混合RL–OPSD基线。代码可用：https://github.com/ZJU-REAL/SDAR。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning (RL) has emerged as a central paradigm for posttraining LLM agents, yet its trajectory-level reward signal provides only coarse supervision for long-horizon interaction. On-Policy Self-Distillation (OPSD) complements RL by introducing dense token-level guidance from a teacher branch augmented with privileged context. However, transferring OPSD to multi-turn agents proves problematic: compounding multi-turn instability destabilizes supervision, while skill-conditioned privileged guidance requires asymmetric treatment for negative teacher rejections may arise from imperfect skills retrieval or utilization. We introduce SDAR (Self-Distilled Agentic Reinforcement Learning), which treats OPSD as a gated auxiliary objective while keeping RL as the primary optimization backbone. SDAR maps detached token-level signals into a sigmoid gate, strengthening distillation on teacher-endorsed positive-gap tokens and softly attenuating negative teacher rejections. Across the Qwen2.5 and Qwen3 families on ALFWorld, WebShop, and Search-QA, SDAR substantially improves over GRPO (+9.4% on ALFWorld, +7.0% on Search-QA, +10.2% on WebShop-Acc), avoids the instability of naive GRPO+OPSD, and consistently outperforms hybrid RL–OPSD baselines across model scales. Code available: https://github.com/ZJU-REAL/SDAR.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260514a276sdarag,
+  title = {Self-Distilled Agentic Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15155.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a276-sdar-agentic-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Self-Distilled Agentic Reinforcement Learning. https://arxiv.org/pdf/2605.15155.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15155.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.15155" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/ZJU-REAL/SDAR" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

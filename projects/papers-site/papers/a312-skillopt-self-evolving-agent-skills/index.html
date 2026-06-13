@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillOpt: Executive Strategy for Self-Evolving Agent Skills | DAST Papers</title>
+    <meta name="description" content="SkillOpt 针对 agent skill 的核心短板：当前 skill 往往是人工写、一次性生成或松散自修补，缺少像模型权重优化那样可控、可复现、可验证的训练流程。
+
+论文把 skill 文档视为冻结 agent 的外部状态，由单独 optimizer model 根据 scored rollouts 生成受限的 add/delete/replace edits，并用 held-out va" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a312-skillopt-self-evolving-agent-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SkillOpt: Executive Strategy for Self-Evolving Agent Skills" />
+    <meta property="og:description" content="SkillOpt 针对 agent skill 的核心短板：当前 skill 往往是人工写、一次性生成或松散自修补，缺少像模型权重优化那样可控、可复现、可验证的训练流程。
+
+论文把 skill 文档视为冻结 agent 的外部状态，由单独 optimizer model 根据 scored rollouts 生成受限的 add/delete/replace edits，并用 held-out va" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a312-skillopt-self-evolving-agent-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SkillOpt: Executive Strategy for Self-Evolving Agent Skills" />
+    <meta name="twitter:description" content="SkillOpt 针对 agent skill 的核心短板：当前 skill 往往是人工写、一次性生成或松散自修补，缺少像模型权重优化那样可控、可复现、可验证的训练流程。
+
+论文把 skill 文档视为冻结 agent 的外部状态，由单独 optimizer model 根据 scored rollouts 生成受限的 add/delete/replace edits，并用 held-out va" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SkillOpt: Executive Strategy for Self-Evolving Agent Skills</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.23904" target="_blank" rel="noopener noreferrer">2605.23904</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SkillOpt 针对 agent skill 的核心短板：当前 skill 往往是人工写、一次性生成或松散自修补，缺少像模型权重优化那样可控、可复现、可验证的训练流程。</dd></div><div><dt>方法/机制</dt><dd>论文把 skill 文档视为冻结 agent 的外部状态，由单独 optimizer model 根据 scored rollouts 生成受限的 add/delete/replace edits，并用 held-out validation score 严格控制是否接受更新。</dd></div><div><dt>结果/证据</dt><dd>系统引入 textual learning-rate budget、rejected-edit buffer 和 epoch-wise slow/meta update，使 skill 优化稳定，同时部署时不增加额外模型调用；实验覆盖六个 benchmark、七个目标模型和 direct chat/Codex/Claude Code 三种 harness。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 agent capability extension 从 prompt 工程推进到可训练的 text-space skill optimizer，对 skill marketplace、agent memory 和长期能力演化都有直接方法价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SkillOpt 针对 agent skill 的核心短板：当前 skill 往往是人工写、一次性生成或松散自修补，缺少像模型权重优化那样可控、可复现、可验证的训练流程。</p><p>论文把 skill 文档视为冻结 agent 的外部状态，由单独 optimizer model 根据 scored rollouts 生成受限的 add/delete/replace edits，并用 held-out validation score 严格控制是否接受更新。</p><p>系统引入 textual learning-rate budget、rejected-edit buffer 和 epoch-wise slow/meta update，使 skill 优化稳定，同时部署时不增加额外模型调用；实验覆盖六个 benchmark、七个目标模型和 direct chat/Codex/Claude Code 三种 harness。</p><p>它值得正式收录，因为它把 agent capability extension 从 prompt 工程推进到可训练的 text-space skill optimizer，对 skill marketplace、agent memory 和长期能力演化都有直接方法价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>当今的智能体技能是手工制作、一次性生成，或通过松散控制的自我修订演化而来——这些方法都无法像深度学习优化器那样对技能进行优化，也无法在反馈下可靠地超越其起始点。我们认为，技能应该被训练为冻结智能体的外部状态，并采用与使权重空间优化可复现相同的规范。据我们所知，SkillOpt是第一个系统化、可控的智能体技能文本空间优化器：一个独立的优化器模型将评分后的运行结果转化为对单个技能文档的有限添加/删除/替换编辑，并且只有当编辑严格提高保留验证分数时才会被接受。文本学习率预算、拒绝编辑缓冲区和按周期进行的慢速/元更新使技能训练稳定，同时在部署时不会增加任何推理时间模型调用。在六个基准、七个目标模型和三个执行工具（直接聊天、Codex、Claude Code）上，SkillOpt在所有52个评估的（模型、基准、工具）单元格中表现最佳或并列最佳，并击败了人类、一次性LLM、Trace2Skill、TextGrad、GEPA和EvoSkill技能中的所有单元格竞争对手。在GPT–5.5上，它将直接聊天中的平均无技能准确率提高了+23.5个百分点，在Codex智能体循环中提高了+24.8个百分点，在Claude Code中提高了+19.1个百分点。迁移实验进一步表明，优化后的技能工件在跨模型规模、Codex和Claude Code执行环境之间以及迁移到附近的数学基准时，无需进一步优化仍能保持价值。代码：https://aka.ms/SkillOpt 通信：yifanyang@microsoft.com, yangxue2019-sjtu@sjtu.edu.cn ∗</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agent skills today are hand-crafted, generated one-shot, or evolved through loosely controlled self-revision—none of which behaves like a deep-learning optimizer for the skill, and none of which reliably improves over its starting point under feedback. We argue the skill should instead be trained as the external state of a frozen agent, with the same discipline that makes weight-space optimization reproducible. SkillOpt is, to our knowledge, the first systematic controllable text-space optimizer for agent skills: a separate optimizer model turns scored rollouts into bounded add/delete/replace edits on a single skill document, and an edit is accepted only when it strictly improves a held-out validation score. A textual learning-rate budget, rejected-edit buffer, and epoch-wise slow/meta update make skill training stable while adding zero inference-time model calls at deployment. Across six benchmarks, seven target models, and three execution harnesses (direct chat, Codex, Claude Code), SkillOpt is best or tied on all 52 evaluated (model, benchmark, harness) cells and beats every per-cell competitor among human, one-shot LLM, Trace2Skill, TextGrad, GEPA, and EvoSkill skills. On GPT–5.5 it lifts the average no-skill accuracy by +23.5 points in direct chat, by +24.8 inside the Codex agentic loop, and by +19.1 inside Claude Code. Transfer experiments further show that optimized skill artifacts retain value when moved across model scales, between Codex and Claude Code execution environments, and to a nearby math benchmark without further optimization. Code: https://aka.ms/SkillOpt Correspondence: yifanyang@microsoft.com, yangxue2019-sjtu@sjtu.edu.cn ∗</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260522a312skillo,
+  title = {SkillOpt: Executive Strategy for Self-Evolving Agent Skills},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.23904.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a312-skillopt-self-evolving-agent-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SkillOpt: Executive Strategy for Self-Evolving Agent Skills. https://arxiv.org/pdf/2605.23904.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.23904.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://microsoft.github.io/SkillOpt/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.23904" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/microsoft/SkillOpt" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kimodo: Scaling Controllable Human Motion Generation | DAST Papers</title>
+    <meta name="description" content="Kimodo 处理的是 humanoid robotics、simulation 和 animation 都共同缺少的一块基础设施：高质量、可控、可大规模生成的 3D human motion 数据。过去的文本到动作或约束到动作模型通常受限于小规模公开 mocap 数据，因此在运动质量、控制精度和泛化上都很难真正支撑机器人数据需求。
+
+这篇技术报告提出一个在 700 小时光学 mocap 数据上训" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a47-kimodo-controllable-motion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Kimodo: Scaling Controllable Human Motion Generation" />
+    <meta property="og:description" content="Kimodo 处理的是 humanoid robotics、simulation 和 animation 都共同缺少的一块基础设施：高质量、可控、可大规模生成的 3D human motion 数据。过去的文本到动作或约束到动作模型通常受限于小规模公开 mocap 数据，因此在运动质量、控制精度和泛化上都很难真正支撑机器人数据需求。
+
+这篇技术报告提出一个在 700 小时光学 mocap 数据上训" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a47-kimodo-controllable-motion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Kimodo: Scaling Controllable Human Motion Generation" />
+    <meta name="twitter:description" content="Kimodo 处理的是 humanoid robotics、simulation 和 animation 都共同缺少的一块基础设施：高质量、可控、可大规模生成的 3D human motion 数据。过去的文本到动作或约束到动作模型通常受限于小规模公开 mocap 数据，因此在运动质量、控制精度和泛化上都很难真正支撑机器人数据需求。
+
+这篇技术报告提出一个在 700 小时光学 mocap 数据上训" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Kimodo: Scaling Controllable Human Motion Generation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Kimodo 处理的是 humanoid robotics、simulation 和 animation 都共同缺少的一块基础设施：高质量、可控、可大规模生成的 3D human motion 数据。过去的文本到动作或约束到动作模型通常受限于小规模公开 mocap 数据，因此在运动质量、控制精度和泛化上都很难真正支撑机器人数据需求。</dd></div><div><dt>方法/机制</dt><dd>这篇技术报告提出一个在 700 小时光学 mocap 数据上训练的 kinematic motion diffusion model，并用专门设计的 motion representation 与两阶段 denoiser 分解 root/body 预测，降低 foot skating、floating 等常见伪影。模型同时支持文本、全身关键帧、稀疏关节位置与旋转、2D waypoints 和 dense path 等约束，并直接提供 SOMA 与 Unitree G1 skeleton 上的模型与 authoring demo。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是普通动作生成论文，而是把 controllable motion generation 明确推向机器人可用的数据生成与 authoring 基础设施。对具身智能和 humanoid learning 来说，它连接了大规模优质运动数据、可控生成接口、以及后续 policy training 的 demonstration pipeline，外溢价值明显强于娱乐向 motion synthesis。</dd></div><div><dt>收录价值</dt><dd>它当前仍是 breakthrough 而不是更高一级，因为核心成果仍集中在离线 motion authoring 和 demonstration generation，本体上还没有闭环到更广泛的 robot control / world model 训练体系。它后续能否进一步上升，要看 Kimodo 是否真正成为 humanoid motion data generation 的标准底座。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Kimodo 处理的是 humanoid robotics、simulation 和 animation 都共同缺少的一块基础设施：高质量、可控、可大规模生成的 3D human motion 数据。过去的文本到动作或约束到动作模型通常受限于小规模公开 mocap 数据，因此在运动质量、控制精度和泛化上都很难真正支撑机器人数据需求。</p><p>这篇技术报告提出一个在 700 小时光学 mocap 数据上训练的 kinematic motion diffusion model，并用专门设计的 motion representation 与两阶段 denoiser 分解 root/body 预测，降低 foot skating、floating 等常见伪影。模型同时支持文本、全身关键帧、稀疏关节位置与旋转、2D waypoints 和 dense path 等约束，并直接提供 SOMA 与 Unitree G1 skeleton 上的模型与 authoring demo。</p><p>这篇工作值得正式收录，因为它不是普通动作生成论文，而是把 controllable motion generation 明确推向机器人可用的数据生成与 authoring 基础设施。对具身智能和 humanoid learning 来说，它连接了大规模优质运动数据、可控生成接口、以及后续 policy training 的 demonstration pipeline，外溢价值明显强于娱乐向 motion synthesis。</p><p>它当前仍是 breakthrough 而不是更高一级，因为核心成果仍集中在离线 motion authoring 和 demonstration generation，本体上还没有闭环到更广泛的 robot control / world model 训练体系。它后续能否进一步上升，要看 Kimodo 是否真正成为 humanoid motion data generation 的标准底座。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>高质量的人体运动数据在机器人、仿真和娱乐应用中变得越来越重要。最近的生成模型提供了一个潜在的数据来源，通过文本提示或姿态上的运动学约束等直观输入实现人体运动合成。然而，公共运动捕捉数据集的规模较小，限制了这些模型的运动质量、控制精度和泛化能力。在这项工作中，我们介绍了Kimodo，一个富有表现力且可控的运动学运动扩散模型，该模型在700小时的光学运动捕捉数据上进行训练。我们的模型生成高质量的运动，同时可以通过文本和一套全面的运动学约束轻松控制，这些约束包括全身关键帧、稀疏关节位置/旋转、2D路径点和密集2D路径。这得益于精心设计的运动表示和两阶段去噪器架构，该架构分解了根部和身体预测，以最大限度地减少运动伪影，同时允许灵活的约束条件调节。在大规模运动捕捉数据集上的实验证明了关键设计决策的合理性，并分析了数据集大小和模型大小的扩展如何影响性能。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>High-quality human motion data is becoming increasingly important for applications in robotics, simulation, and entertainment. Recent generative models offer a potential data source, enabling human motion synthesis through intuitive inputs like text prompts or kinematic constraints on poses. However, the small scale of public mocap datasets has limited the motion quality, control accuracy, and generalization of these models. In this work, we introduce Kimodo, an expressive and controllable kinematic motion diffusion model trained on 700 hours of optical motion capture data. Our model generates high-quality motions while being easily controlled through text and a comprehensive suite of kinematic constraints including full-body keyframes, sparse joint positions/rotations, 2D waypoints, and dense 2D paths. This is enabled through a carefully designed motion representation and two-stage denoiser architecture that decomposes root and body prediction to minimize motion artifacts while allowing for flexible constraint conditioning. Experiments on the large-scale mocap dataset justify key design decisions and analyze how the scaling of dataset size and model size affect performance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316a47kimodoc,
+  title = {Kimodo: Scaling Controllable Human Motion Generation},
+  year = {2026},
+  url = {https://research.nvidia.com/labs/sil/projects/kimodo/assets/kimodo_tech_report.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a47-kimodo-controllable-motion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Kimodo: Scaling Controllable Human Motion Generation. https://research.nvidia.com/labs/sil/projects/kimodo/assets/kimodo_tech_report.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://research.nvidia.com/labs/sil/projects/kimodo/assets/kimodo_tech_report.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://research.nvidia.com/labs/sil/projects/kimodo/assets/kimodo_tech_report.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

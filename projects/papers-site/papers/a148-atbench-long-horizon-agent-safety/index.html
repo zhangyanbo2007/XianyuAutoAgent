@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ATBench: A Diverse and Realistic Trajectory Benchmark for Long-Horizon Agent Safety | DAST Papers</title>
+    <meta name="description" content="随着 LLM agents 进入真实工具环境，风险越来越多地在长轨迹中逐步显现，而不是在单轮 prompt 或最终回复上直接暴露。现有 agent safety benchmark 往往要么交互太短，要么故障类型和工具环境过于简化，因此很难支撑真正的 long-horizon safety diagnosis。
+
+ATBench 的核心贡献是把 trajectory-level agent saf" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a148-atbench-long-horizon-agent-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ATBench: A Diverse and Realistic Trajectory Benchmark for Long-Horizon Agent Safety" />
+    <meta property="og:description" content="随着 LLM agents 进入真实工具环境，风险越来越多地在长轨迹中逐步显现，而不是在单轮 prompt 或最终回复上直接暴露。现有 agent safety benchmark 往往要么交互太短，要么故障类型和工具环境过于简化，因此很难支撑真正的 long-horizon safety diagnosis。
+
+ATBench 的核心贡献是把 trajectory-level agent saf" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a148-atbench-long-horizon-agent-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ATBench: A Diverse and Realistic Trajectory Benchmark for Long-Horizon Agent Safety" />
+    <meta name="twitter:description" content="随着 LLM agents 进入真实工具环境，风险越来越多地在长轨迹中逐步显现，而不是在单轮 prompt 或最终回复上直接暴露。现有 agent safety benchmark 往往要么交互太短，要么故障类型和工具环境过于简化，因此很难支撑真正的 long-horizon safety diagnosis。
+
+ATBench 的核心贡献是把 trajectory-level agent saf" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ATBench: A Diverse and Realistic Trajectory Benchmark for Long-Horizon Agent Safety</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.02022" target="_blank" rel="noopener noreferrer">2604.02022</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 LLM agents 进入真实工具环境，风险越来越多地在长轨迹中逐步显现，而不是在单轮 prompt 或最终回复上直接暴露。现有 agent safety benchmark 往往要么交互太短，要么故障类型和工具环境过于简化，因此很难支撑真正的 long-horizon safety diagnosis。</dd></div><div><dt>方法/机制</dt><dd>ATBench 的核心贡献是把 trajectory-level agent safety 做成更接近真实部署的 benchmark。它用 risk source、failure mode、real-world harm 三个维度组织 taxonomy，构造带 delayed trigger 的长上下文轨迹，并引入异构 tool pools 与全人工审计。最终数据集包含 1000 条轨迹、近两千次 tool invocation 和明显更强的长程风险暴露结构。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一个普通安全数据集，而是为 long-horizon agents 提供了更 durable 的 evaluation target。对我们关心的 secure computer-use、governed execution、trajectory diagnosis、agent safety guardrails 等方向来说，它提供了更像现实世界的统一测试面，也更利于后续工作做分层风险分析而不是只报单一安全分数。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前贡献仍主要停留在 benchmark、taxonomy 和评测层，而不是提出新的 agent safety training 或 execution architecture。它很可能会成为这条子线的重要参考，但是否足以重塑整个 agent safety 默认标准，还需要生态采用来验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 LLM agents 进入真实工具环境，风险越来越多地在长轨迹中逐步显现，而不是在单轮 prompt 或最终回复上直接暴露。现有 agent safety benchmark 往往要么交互太短，要么故障类型和工具环境过于简化，因此很难支撑真正的 long-horizon safety diagnosis。</p><p>ATBench 的核心贡献是把 trajectory-level agent safety 做成更接近真实部署的 benchmark。它用 risk source、failure mode、real-world harm 三个维度组织 taxonomy，构造带 delayed trigger 的长上下文轨迹，并引入异构 tool pools 与全人工审计。最终数据集包含 1000 条轨迹、近两千次 tool invocation 和明显更强的长程风险暴露结构。</p><p>它值得正式收录，因为这不是又一个普通安全数据集，而是为 long-horizon agents 提供了更 durable 的 evaluation target。对我们关心的 secure computer-use、governed execution、trajectory diagnosis、agent safety guardrails 等方向来说，它提供了更像现实世界的统一测试面，也更利于后续工作做分层风险分析而不是只报单一安全分数。</p><p>它没有升到更高一级，是因为当前贡献仍主要停留在 benchmark、taxonomy 和评测层，而不是提出新的 agent safety training 或 execution architecture。它很可能会成为这条子线的重要参考，但是否足以重塑整个 agent safety 默认标准，还需要生态采用来验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>评估基于LLM的代理的安全性是一个日益重要的挑战，因为现实部署中的风险通常是在多步交互中逐渐出现的，而不是来自孤立的提示或最终响应。然而，现有的轨迹级基准在三个关键维度上仍然存在局限性：（1）交互多样性不足，由于受限的工具生态系统和狭窄的场景覆盖；（2）安全故障的可观察性有限，因为粗粒度标签未能捕捉风险如何产生和演变；以及（3）缺乏长周期真实性，其中短或简化的轨迹低估了延迟和上下文相关的风险。为了解决这些这些局限性，我们引入了ATBench，一个轨迹级基准，它能够对代理安全性进行结构化、多样化和真实的评估。ATBench沿着三个正交维度——风险来源、故障模式和现实世界危害——制定了代理安全风险，提供了一个可控的框架来捕捉多样化的风险模式。在此基础上，我们使用分类法引导的生成引擎和异构工具池构建轨迹，并结合了一个长上下文延迟触发协议，通过多阶段交互模拟真实的风险出现。该基准包含1,000条轨迹（503条安全，497条不安全），平均9.01轮和3.95k token，调用了1,954个工具，这些工具来自涵盖2,084个可用工具的池。数据质量通过基于规则和基于LLM的过滤以及人工全面审计来确保。对前沿LLM、开源模型和专用防护系统的实验表明，ATBench即使对于最强大的评估器也仍然具有挑战性——GPT-5.4在二元安全分类上仅达到76.7%的F1分数，在细粒度风险源诊断上仅达到33.6%——同时支持分类法分层分析、跨基准比较以及长周期故障模式诊断。数据和代码将在接受后发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Evaluating the safety of LLM-based agents is an increasingly important challenge, as risks in realistic deployments often emerge gradually over multi-step interactions rather than from isolated prompts or final responses. Existing trajectory-level benchmarks, however, remain limited in three key dimensions: (1) insufficient interaction diversity, due to restricted tool ecosystems and narrow scenario coverage; (2) limited observability of safety failures, as coarse labels fail to capture how risks arise and evolve; and (3) lack of long-horizon realism, where short or simplified trajectories underestimate delayed and context-dependent risks. To address these limitations, we introduce ATBench, a trajectory-level benchmark that enables structured, diverse, and realistic evaluation of agent safety. ATBench formulates agentic safety risks along three orthogonal dimensions—risk source, failure mode, and real-world harm—providing a controllable framework for capturing diverse risk patterns. Building on this formulation, we construct trajectories using a taxonomy-guided generation engine with heterogeneous tool pools and incorporate a long-context delayed-trigger protocol that models realistic risk emergence through multi-stage interactions. The benchmark contains 1,000 trajectories (503 safe, 497 unsafe), averaging 9.01 turns and 3.95k tokens, with 1,954 invoked tools drawn from pools spanning 2,084 available tools. Data quality is ensured through rule-based &amp; LLM-based filtering and a human full audit. Experiments across frontier LLMs, open-source models, and specialized guard systems show that ATBench remains challenging even for the strongest evaluators— GPT-5.4 achieves only 76.7% F1 on binary safety classification and 33.6% on fine-grained risk-source diagnosis—while enabling taxonomy-stratified analysis, cross-benchmark comparison, and diagnosis of long-horizon failure patterns. Data and code will be released upon acceptance.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260402a148atbenc,
+  title = {ATBench: A Diverse and Realistic Trajectory Benchmark for Long-Horizon Agent Safety},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.02022v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a148-atbench-long-horizon-agent-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ATBench: A Diverse and Realistic Trajectory Benchmark for Long-Horizon Agent Safety. https://arxiv.org/pdf/2604.02022v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.02022v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

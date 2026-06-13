@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cross-Session Threats in AI Agents: Benchmark, Evaluation, and Algorithms | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是当前 agent guardrails 一个很少被正面处理的盲点：多数防护都按单 session 判定，而现实攻击完全可以把 payload 分散到多次会话里，让任何单次检测都看不到完整恶意意图。
+
+它的贡献是三层同时补齐。第一层是 CSTM-Bench，把 cross-session threat taxonomy、identity anchors 和 benign confou" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s72-cross-session-threats-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Cross-Session Threats in AI Agents: Benchmark, Evaluation, and Algorithms" />
+    <meta property="og:description" content="这篇论文解决的是当前 agent guardrails 一个很少被正面处理的盲点：多数防护都按单 session 判定，而现实攻击完全可以把 payload 分散到多次会话里，让任何单次检测都看不到完整恶意意图。
+
+它的贡献是三层同时补齐。第一层是 CSTM-Bench，把 cross-session threat taxonomy、identity anchors 和 benign confou" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s72-cross-session-threats-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Cross-Session Threats in AI Agents: Benchmark, Evaluation, and Algorithms" />
+    <meta name="twitter:description" content="这篇论文解决的是当前 agent guardrails 一个很少被正面处理的盲点：多数防护都按单 session 判定，而现实攻击完全可以把 payload 分散到多次会话里，让任何单次检测都看不到完整恶意意图。
+
+它的贡献是三层同时补齐。第一层是 CSTM-Bench，把 cross-session threat taxonomy、identity anchors 和 benign confou" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Cross-Session Threats in AI Agents: Benchmark, Evaluation, and Algorithms</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-04-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.21131" target="_blank" rel="noopener noreferrer">2604.21131</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是当前 agent guardrails 一个很少被正面处理的盲点：多数防护都按单 session 判定，而现实攻击完全可以把 payload 分散到多次会话里，让任何单次检测都看不到完整恶意意图。</dd></div><div><dt>方法/机制</dt><dd>它的贡献是三层同时补齐。第一层是 CSTM-Bench，把 cross-session threat taxonomy、identity anchors 和 benign confounders 系统化；第二层是 measurement，直接证明无论 session-bound judge 还是简单拼成长上下文的 full-log correlator，都在真正的 cross-session 场景里丢大量 recall；第三层是 bounded-memory reader，用 coreset 思路保留高信号片段。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这里定义了一个新的安全边界模型，也提供了相应 benchmark 和算法。这种‘跨会话聚合才显形’的攻击面，和 agent memory / long-horizon autonomy 的主线高度耦合，后续外溢潜力很大。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前 correlator family 与评测规模还偏早期，距离形成更广泛的 cross-session safety 标准还差进一步扩展。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是当前 agent guardrails 一个很少被正面处理的盲点：多数防护都按单 session 判定，而现实攻击完全可以把 payload 分散到多次会话里，让任何单次检测都看不到完整恶意意图。</p><p>它的贡献是三层同时补齐。第一层是 CSTM-Bench，把 cross-session threat taxonomy、identity anchors 和 benign confounders 系统化；第二层是 measurement，直接证明无论 session-bound judge 还是简单拼成长上下文的 full-log correlator，都在真正的 cross-session 场景里丢大量 recall；第三层是 bounded-memory reader，用 coreset 思路保留高信号片段。</p><p>它值得正式收录，因为这里定义了一个新的安全边界模型，也提供了相应 benchmark 和算法。这种‘跨会话聚合才显形’的攻击面，和 agent memory / long-horizon autonomy 的主线高度耦合，后续外溢潜力很大。</p><p>它没有更高，是因为当前 correlator family 与评测规模还偏早期，距离形成更广泛的 cross-session safety 标准还差进一步扩展。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI智能体中的跨会话威胁：基准、评估与算法。AI智能体防护栏是无记忆的：每条消息都独立判断，一个将单一攻击分散到数十或数百个会话中的攻击者会绕过所有会话绑定检测器，因为没有单独的消息携带有效载荷——只有聚合信息才携带。我们对跨会话威胁检测做出了三项贡献。(1) 问题与数据集。我们引入了CSTM-Bench（跨会话威胁记忆基准）：26种可执行攻击分类法，根据两个正交轴进行分类——杀伤链阶段[1]和跨会话操作本体（accumulate, compose, launder, inject_on_reader）——每种都绑定到七个身份锚点之一，这些锚点将“违规”真实地定义为一个清晰的策略谓词。流量分为攻击（Attack）、良性-原始（Benign-pristine）和良性-困难（Benign-hard）三类，以便将现实混淆因素上的误报与原始上下文幻觉分开报告。该基准作为单个数据集intrinsec-ai/cstm-bench在Hugging Face上发布，包含两个拆分：稀释（dilution，组合分片，针对信号稀释轴）和跨会话（cross_session，由闭环重写器生成的12个隔离不可见场景，该重写器在软化表面措辞的同时逐字保留跨会话攻击痕迹，从而提供了一个真实的纯跨会话机制）。(2) 衡量跨会话LLM关联器可行性。我们将跨会话检测框定为入站消息流与下游关联器LLM之间的信息瓶颈，并凭经验描述纯LLM支持的关联器何时成功和失败。在关联器模型和上下文窗口固定的情况下，无论是会话绑定判断器还是将每个入站提示按时间顺序连接成单个长上下文调用的Full-Log Correlator，在从组合稀释分片转移到纯跨会话分片时，其攻击召回率都会损失大约一半（第6节）。累积的token压力远低于任何前沿上下文窗口，因此这种性能下降是稀释下关联器的一个特性，而非截断伪影。我们希望预先明确本次发布的内容和非内容：每个分片54个场景，一个单一的关联器模型家族（Anthropic Claude），以及未经优化处理的初稿提示。它的规模旨在对架构可行性表面进行一阶表征——关于瓶颈形状的模式级主张，而非特定模型或提示的细粒度排名——我们发布它主要是为了激励社区提供更大规模、多提供商的跨会话威胁数据集。(3) 算法方向和实时操作的服务成本指标。一个有界内存的Coreset Memory Reader，它对最高信号的跨会话片段进行排名和保留，是架构上的响应。在我们的评估中，一个容量为K=50的参考准入器，向同一个关联器馈送数据，是唯一一个攻击召回率在稀释和跨会话重写下都能幸存的读取器；它在两个分片上都领先于其他所有读取器。Coreset门控关联只有在其排序器稳定时才具有实时成本效益：排序器引起的重排会破坏KV缓存前缀重用，而这在每次扫描的增量成本中占主导地位。因此，我们将CSR_prefix（coreset缓冲区的有序前缀稳定性）提升为∗</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI-agent guardrails are memoryless: each message is judged in isolation, and an adversary who spreads a single attack across dozens or hundreds of sessions slips past every sessionbound detector because no individual message carries the payload—only the aggregate does. We make three contributions to cross-session threat detection. (1) Problem and dataset. We introduce CSTM-Bench (Cross-Session Threat Memory Benchmark): 26 executable attack taxonomies classified on two orthogonal axes— kill-chain stages [1] and a cross-session Operations ontology (accumulate, compose, launder, inject_on_reader)—each bound to one of seven identity anchors that ground-truth “violation” as a crisp policy predicate. Traffic is split into Attack, Benign-pristine, and Benign-hard classes so that false alarms on realistic confounders are reported separately from pristinecontext hallucinations. The benchmark is released on Hugging Face as a single dataset intrinsec-ai/cstm-bench with two splits: dilution (the compositional shard, targeting the signal-dilution axis) and cross_session (12 isolation-invisible scenarios produced by a closed-loop rewriter that softens surface phrasing while preserving cross-session attack artefacts verbatim, giving a ground-truth cross-session-only regime). (2) Measuring LLM-correlator feasibility across sessions. We frame cross-session detection as an information bottleneck between the inbound message stream and a downstream correlator LLM, and empirically characterise when a pure LLM-backed correlator succeeds and fails. Holding the correlator model and context window fixed, both a session-bound judge and a Full-Log Correlator that concatenates every inbound prompt chronologically into a single long-context call lose roughly half of their attack recall when moving from the compositional-dilution shard to the cross-session-only shard (Section 6). Cumulative token pressure sits well inside any frontier context window, so the degradation is a property of the correlator under dilution, not a truncation artefact. We want to be explicit up front about what this release is and is not: 54 scenarios per shard, a single correlator model family (Anthropic Claude), and first-draft prompts with no optimisation pass. It is sized for first-order characterisation of an architectural feasibility surface—pattern-level claims about bottleneck shape, not fine-grained rankings of specific models or prompts—and we release it primarily to motivate larger, multi-provider cross-session threat datasets from the community. (3) Algorithmic direction and a serving-cost metric for real-time operation. A bounded-memory Coreset Memory Reader that ranks and retains the highest-signal cross-session fragments is the architectural response. A reference admitter at capacity K=50, feeding the same correlator, is the only reader in our evaluation whose attack recall survives both dilution and cross-session rewriting; it leads every other reader on both shards. Coreset-gated correlation is only useful at real-time cost to the extent its ranker is stable: ranker-induced reshuffles break KV-cache prefix reuse, which dominates incremental cost per scan. We therefore promote CSR_prefix (ordered prefix stability of the coreset buffer) to a ∗</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260423s72crossse,
+  title = {Cross-Session Threats in AI Agents: Benchmark, Evaluation, and Algorithms},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.21131.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s72-cross-session-threats-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Cross-Session Threats in AI Agents: Benchmark, Evaluation, and Algorithms. https://arxiv.org/pdf/2604.21131.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.21131.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/datasets/intrinsec-ai/cstm-bench" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

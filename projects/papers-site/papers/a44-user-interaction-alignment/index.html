@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aligning Language Models from User Interactions | DAST Papers</title>
+    <meta name="description" content="这篇论文关注的是部署后语言模型最真实、也最容易被浪费的一类数据：多轮用户交互。大量真实对话里都包含了隐式反馈，例如用户继续追问、纠错、表达不满或改写要求，但现有对齐方法通常依赖显式偏好标注、奖励模型或专门构造的数据集，无法直接把这些自然交互转化为学习信号。
+
+作者提出的核心方法是利用同一个模型的 hindsight 能力做自蒸馏。给定一轮原始回复，再把后续用户消息作为额外上下文喂回模型，得到一个事" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a44-user-interaction-alignment/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Aligning Language Models from User Interactions" />
+    <meta property="og:description" content="这篇论文关注的是部署后语言模型最真实、也最容易被浪费的一类数据：多轮用户交互。大量真实对话里都包含了隐式反馈，例如用户继续追问、纠错、表达不满或改写要求，但现有对齐方法通常依赖显式偏好标注、奖励模型或专门构造的数据集，无法直接把这些自然交互转化为学习信号。
+
+作者提出的核心方法是利用同一个模型的 hindsight 能力做自蒸馏。给定一轮原始回复，再把后续用户消息作为额外上下文喂回模型，得到一个事" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a44-user-interaction-alignment/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Aligning Language Models from User Interactions" />
+    <meta name="twitter:description" content="这篇论文关注的是部署后语言模型最真实、也最容易被浪费的一类数据：多轮用户交互。大量真实对话里都包含了隐式反馈，例如用户继续追问、纠错、表达不满或改写要求，但现有对齐方法通常依赖显式偏好标注、奖励模型或专门构造的数据集，无法直接把这些自然交互转化为学习信号。
+
+作者提出的核心方法是利用同一个模型的 hindsight 能力做自蒸馏。给定一轮原始回复，再把后续用户消息作为额外上下文喂回模型，得到一个事" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Aligning Language Models from User Interactions</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.12273" target="_blank" rel="noopener noreferrer">2603.12273</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注的是部署后语言模型最真实、也最容易被浪费的一类数据：多轮用户交互。大量真实对话里都包含了隐式反馈，例如用户继续追问、纠错、表达不满或改写要求，但现有对齐方法通常依赖显式偏好标注、奖励模型或专门构造的数据集，无法直接把这些自然交互转化为学习信号。</dd></div><div><dt>方法/机制</dt><dd>作者提出的核心方法是利用同一个模型的 hindsight 能力做自蒸馏。给定一轮原始回复，再把后续用户消息作为额外上下文喂回模型，得到一个事后策略；然后把这个事后分布与原始策略做对比，提取 token 级的概率变化，并把这种“如果当时知道后续反馈，会怎么说得更好”的信号蒸馏回当前策略。这样就能从原始交互中直接得到可解释的对齐梯度，而不需要单独训练奖励模型。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它打通了一个很重要的实际闭环：模型部署产生的自然用户交互，本身就可以成为持续对齐和个性化的数据源。它不是简单地把聊天记录拿去做 SFT，而是通过 hindsight 分布比较实现更细粒度的 credit assignment。论文在 WildChat 这类真实数据上展示出对标准 alignment 和 instruction-following 指标的稳定提升，同时还支持快速个性化，这对实用对齐、持续学习和产品化训练管线都有直接价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，主要因为目前仍是 arXiv 论文，而且方法效果仍受到基座模型 ICL 能力和数据分布的影响。它是一条很强的部署后学习路径，但还没证明自己会成为所有在线对齐系统的默认标准范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注的是部署后语言模型最真实、也最容易被浪费的一类数据：多轮用户交互。大量真实对话里都包含了隐式反馈，例如用户继续追问、纠错、表达不满或改写要求，但现有对齐方法通常依赖显式偏好标注、奖励模型或专门构造的数据集，无法直接把这些自然交互转化为学习信号。</p><p>作者提出的核心方法是利用同一个模型的 hindsight 能力做自蒸馏。给定一轮原始回复，再把后续用户消息作为额外上下文喂回模型，得到一个事后策略；然后把这个事后分布与原始策略做对比，提取 token 级的概率变化，并把这种“如果当时知道后续反馈，会怎么说得更好”的信号蒸馏回当前策略。这样就能从原始交互中直接得到可解释的对齐梯度，而不需要单独训练奖励模型。</p><p>这篇论文值得收录，因为它打通了一个很重要的实际闭环：模型部署产生的自然用户交互，本身就可以成为持续对齐和个性化的数据源。它不是简单地把聊天记录拿去做 SFT，而是通过 hindsight 分布比较实现更细粒度的 credit assignment。论文在 WildChat 这类真实数据上展示出对标准 alignment 和 instruction-following 指标的稳定提升，同时还支持快速个性化，这对实用对齐、持续学习和产品化训练管线都有直接价值。</p><p>它没有升到更高一级，主要因为目前仍是 arXiv 论文，而且方法效果仍受到基座模型 ICL 能力和数据分布的影响。它是一条很强的部署后学习路径，但还没证明自己会成为所有在线对齐系统的默认标准范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多轮用户交互是语言模型产生的最丰富的数据之一，但我们缺乏从这些数据中学习的有效方法。尽管这些交互通常被丢弃，但它们往往包含有用的信息：用户的后续消息可能表明某个响应不正确、未能遵循指令或与用户的偏好不符。重要的是，语言模型已经能够在上下文中利用这些信息。在观察到用户的后续消息后，同一个模型通常能够修正其行为。我们利用这一能力，提出了一种通过自蒸馏直接从用户交互中学习的原则性且可扩展的方法。通过将模型条件化于用户的后续消息，并将由此产生的token分布与原始策略进行比较，我们获得了更新策略的目标，该目标捕捉了模型行为在事后如何变化。然后，我们将这种事后分布蒸馏回当前策略。值得注意的是，我们展示了在来自WildChat的真实世界用户对话上进行训练，可以在不降低其他能力的情况下，提高语言模型在标准对齐和指令遵循基准上的表现。相同的机制实现了个性化，使模型能够通过交互持续适应个体用户，而无需明确的反馈。我们的结果表明，在部署过程中自然产生的原始用户交互能够实现对齐、个性化和持续适应。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Multi-turn user interactions are among the most abundant data produced by language models, yet we lack effective methods to learn from them. While typically discarded, these interactions often contain useful information: follow-up user messages may indicate that a response was incorrect, failed to follow an instruction, or did not align with the user’s preferences. Importantly, language models are already able to make use of this information in context. After observing a user’s follow-up, the same model is often able to revise its behavior. We leverage this ability to propose a principled and scalable method for learning directly from user interactions through self-distillation. By conditioning the model on the user’s follow-up message and comparing the resulting token distribution with the original policy, we obtain a target for updating the policy that captures how the model’s behavior changes in hindsight. We then distill this hindsight distribution back into the current policy. Remarkably, we show that training on real-world user conversations from WildChat improves language models across standard alignment and instruction-following benchmarks, without regressing other capabilities. The same mechanism enables personalization, allowing models to continually adapt to individual users through interaction without explicit feedback. Our results demonstrate that raw user interactions that arise naturally during deployment enable alignment, personalization, and continual adaptation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260218a44userint,
+  title = {Aligning Language Models from User Interactions},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.12273v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a44-user-interaction-alignment/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Aligning Language Models from User Interactions. https://arxiv.org/pdf/2603.12273v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.12273v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery | DAST Papers</title>
+    <meta name="description" content="LLM-guided algorithm discovery 现在越来越多，但很多系统只优化代码产物和最终分数，弱化了理论结构、正确性约束和原创性判断，导致搜索过程更像 benchmark hacking，而不是科学意义上的算法发现。CliffSearch 试图把这一点纠正回来。
+
+论文提出一个 agentic evolutionary framework，把每个搜索节点都表示为 structur" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s4-cliffsearch-algorithm-discovery/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery" />
+    <meta property="og:description" content="LLM-guided algorithm discovery 现在越来越多，但很多系统只优化代码产物和最终分数，弱化了理论结构、正确性约束和原创性判断，导致搜索过程更像 benchmark hacking，而不是科学意义上的算法发现。CliffSearch 试图把这一点纠正回来。
+
+论文提出一个 agentic evolutionary framework，把每个搜索节点都表示为 structur" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s4-cliffsearch-algorithm-discovery/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery" />
+    <meta name="twitter:description" content="LLM-guided algorithm discovery 现在越来越多，但很多系统只优化代码产物和最终分数，弱化了理论结构、正确性约束和原创性判断，导致搜索过程更像 benchmark hacking，而不是科学意义上的算法发现。CliffSearch 试图把这一点纠正回来。
+
+论文提出一个 agentic evolutionary framework，把每个搜索节点都表示为 structur" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01210" target="_blank" rel="noopener noreferrer">2604.01210</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LLM-guided algorithm discovery 现在越来越多，但很多系统只优化代码产物和最终分数，弱化了理论结构、正确性约束和原创性判断，导致搜索过程更像 benchmark hacking，而不是科学意义上的算法发现。CliffSearch 试图把这一点纠正回来。</dd></div><div><dt>方法/机制</dt><dd>论文提出一个 agentic evolutionary framework，把每个搜索节点都表示为 structured scientific artifact，可以是 theory+code，也可以是 code_only；pair selection、crossover、mutation、review 等演化算子都由 LLM agents 执行，但 reviewer 对 correctness 与 originality 的判断被提升为第一类 selection gate，而不只是附带说明。作者还把 mutation 分成 exploration 与 correction 两条路径，分别处理新颖性引入和证据驱动修复。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agentic scientific discovery 从代码搜索推进到‘理论与代码共演化’。这对 optimizer discovery、algorithm search、scientific coding agents 和更广的 AI for science workflow 都有很强的方法外溢，也和 AlphaEvolve 之后大家真正关心的‘如何把 discovery process 结构化’直接相关。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要还是在若干 benchmark-grounded case study 上展示统一框架，尚未证明这套 reviewer-gated theory+code co-evolution 会成为主流 scientific discovery agent 的默认蓝图。它非常值得收，但还不到更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LLM-guided algorithm discovery 现在越来越多，但很多系统只优化代码产物和最终分数，弱化了理论结构、正确性约束和原创性判断，导致搜索过程更像 benchmark hacking，而不是科学意义上的算法发现。CliffSearch 试图把这一点纠正回来。</p><p>论文提出一个 agentic evolutionary framework，把每个搜索节点都表示为 structured scientific artifact，可以是 theory+code，也可以是 code_only；pair selection、crossover、mutation、review 等演化算子都由 LLM agents 执行，但 reviewer 对 correctness 与 originality 的判断被提升为第一类 selection gate，而不只是附带说明。作者还把 mutation 分成 exploration 与 correction 两条路径，分别处理新颖性引入和证据驱动修复。</p><p>这篇工作值得收录，因为它把 agentic scientific discovery 从代码搜索推进到‘理论与代码共演化’。这对 optimizer discovery、algorithm search、scientific coding agents 和更广的 AI for science workflow 都有很强的方法外溢，也和 AlphaEvolve 之后大家真正关心的‘如何把 discovery process 结构化’直接相关。</p><p>它没有升到更高一级，是因为当前主要还是在若干 benchmark-grounded case study 上展示统一框架，尚未证明这套 reviewer-gated theory+code co-evolution 会成为主流 scientific discovery agent 的默认蓝图。它非常值得收，但还不到更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>科学算法发现是一个迭代过程：提出假设、实现、压力测试并修订。当前的LLM引导搜索系统加速了提案生成，但通常通过优化仅包含代码的工件，并辅以薄弱的正确性/原创性门控，从而未能充分体现科学结构。我们提出了CliffSearch，一个代理进化框架，其中核心进化操作符（配对选择、交叉、变异和审查）被实现为LLM代理，并且循环围绕三个原则设计：（1）每个节点都是一个结构化的科学工件，以理论+代码或仅代码模式实例化；（2）审稿人对正确性和原创性的判断是与优化感兴趣的基准指标并列的一流选择门；（3）变异分为探索和纠正路径，具有不同的目标。探索变异从相邻科学领域引入思想以增加新颖性，而纠正变异则利用审稿人对理论、代码、基准结果和运行时错误的信号进行有针对性的证据引导修复。即使在仅代码模式下，节点仍然包含一个必需的summary_md字段，记录所提出的设计原则，因此该模式抑制了形式化的theory_content，而不是完全消除构思；实际上，这也为可执行代码释放了更多的代理token预算。我们通过三项基于基准的研究来阐述该框架：transformer超连接进化、在固定nanoGPT堆栈上的优化器发现，以及一个较小的原生优化器消融研究。在这些设置中，相同的循环支持明确的指标方向、可重现的持久性，以及在受控搜索条件下对发现进行审稿人门控比较。结果是一个发现工作流，它在受控新颖性约束下优化任务指标，同时优先考虑科学可解释性和正确性，而不是仅仅最大化候选吞吐量。完整的运行工件、交互式可视化以及报告研究的最佳导出节点可在https://cliffsearch.ai获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Scientific algorithm discovery is iterative: hypotheses are proposed, implemented, stresstested, and revised. Current LLM-guided search systems accelerate proposal generation, but often under-represent scientific structure by optimizing code-only artifacts with weak correctness/originality gating. We present CliffSearch, an agentic evolutionary framework in which the core evolution operators (pair selection, crossover, mutation, and review) are implemented as LLM agents, and the loop is designed around three principles: (1) each node is a structured scientific artifact, instantiated in either theory+code or code_only mode, (2) reviewer judgments of correctness and originality are first-class selection gates alongside optimization of the benchmark metric of interest, and (3) mutation is split into exploration and correction pathways with distinct objectives. Exploration mutation imports ideas from adjacent scientific domains to increase novelty, while correction mutation performs targeted evidence-guided repair using reviewer signals over theory, code, benchmark results, and runtime errors. Even in code_only mode, nodes still carry a required summary_md field that records the design principles being proposed, so the mode suppresses formal theory_content rather than eliminating ideation altogether; in practice this also frees more of the agent token budget for executable code. We illustrate the framework on three benchmark-grounded studies: transformer hyper-connection evolution, optimizer discovery on a fixed nanoGPT stack, and a smaller native-optimizer ablation. Across these settings, the same loop supports explicit metric direction, reproducible persistence, and reviewer-gated comparison of discoveries under controlled search conditions. The result is a discovery workflow that prioritizes scientific interpretability and correctness while optimizing task metrics under controlled novelty constraints, rather than maximizing candidate throughput alone. Full run artifacts, interactive visualizations, and exported best nodes for the reported studies are available at https://cliffsearch.ai.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401s4cliffsea,
+  title = {CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01210.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s4-cliffsearch-algorithm-discovery/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CliffSearch: Structured Agentic Co-Evolution over Theory and Code for Scientific Algorithm Discovery. https://arxiv.org/pdf/2604.01210.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01210.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

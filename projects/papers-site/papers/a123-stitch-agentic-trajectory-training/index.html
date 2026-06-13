@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yet Even Less Is Even Better For Agentic, Reasoning, and Coding LLMs | DAST Papers</title>
+    <meta name="description" content="agentic 和 coding LLM 的后训练越来越依赖大规模 task-specific trajectories，但构造、筛选和回放这些轨迹成本极高。很多工作默认更多轨迹就更好，而这篇论文延续了 less-is-more 的判断，直接追问：对于 agentic data，真正重要的是数量，还是高价值决策片段的密度。
+
+论文提出 STITCH（Sliding-memory Trajector" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a123-stitch-agentic-trajectory-training/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Yet Even Less Is Even Better For Agentic, Reasoning, and Coding LLMs" />
+    <meta property="og:description" content="agentic 和 coding LLM 的后训练越来越依赖大规模 task-specific trajectories，但构造、筛选和回放这些轨迹成本极高。很多工作默认更多轨迹就更好，而这篇论文延续了 less-is-more 的判断，直接追问：对于 agentic data，真正重要的是数量，还是高价值决策片段的密度。
+
+论文提出 STITCH（Sliding-memory Trajector" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a123-stitch-agentic-trajectory-training/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Yet Even Less Is Even Better For Agentic, Reasoning, and Coding LLMs" />
+    <meta name="twitter:description" content="agentic 和 coding LLM 的后训练越来越依赖大规模 task-specific trajectories，但构造、筛选和回放这些轨迹成本极高。很多工作默认更多轨迹就更好，而这篇论文延续了 less-is-more 的判断，直接追问：对于 agentic data，真正重要的是数量，还是高价值决策片段的密度。
+
+论文提出 STITCH（Sliding-memory Trajector" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Yet Even Less Is Even Better For Agentic, Reasoning, and Coding LLMs</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00824" target="_blank" rel="noopener noreferrer">2604.00824</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>agentic 和 coding LLM 的后训练越来越依赖大规模 task-specific trajectories，但构造、筛选和回放这些轨迹成本极高。很多工作默认更多轨迹就更好，而这篇论文延续了 less-is-more 的判断，直接追问：对于 agentic data，真正重要的是数量，还是高价值决策片段的密度。</dd></div><div><dt>方法/机制</dt><dd>论文提出 STITCH（Sliding-memory Trajectory Inference and Task Chunking Heuristic），用 coarse-to-fine 的方式切掉低价值噪声、保留 decision-critical tokens，并把这套筛选框架应用到 reasoning、coding 和 software engineering agent training 上。实验覆盖不同 agent scaffold、不同模型规模以及 Python、Java、ArkTS 等多语言环境，结果显示在远少于传统大数据量的轨迹条件下依然能显著提升 SWE-bench Verified 和多语言 agent 任务表现。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 agent post-training 的关键问题从“如何再收集更多轨迹”改成“如何提高轨迹训练信号密度”。这对 agent data pipeline、trajectory compression、cost-aware post-training 和 multilingual agent adaptation 都有直接方法价值，而不只是一个 task-specific trick。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前方法仍以 heuristic curation 与 chunking 为主，虽然效果强，但还没有上升为更完整的 agent learning 理论或标准化训练接口。它是一条很实用的后训练路线推进，但还不够重定义整个 agent training 框架。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>agentic 和 coding LLM 的后训练越来越依赖大规模 task-specific trajectories，但构造、筛选和回放这些轨迹成本极高。很多工作默认更多轨迹就更好，而这篇论文延续了 less-is-more 的判断，直接追问：对于 agentic data，真正重要的是数量，还是高价值决策片段的密度。</p><p>论文提出 STITCH（Sliding-memory Trajectory Inference and Task Chunking Heuristic），用 coarse-to-fine 的方式切掉低价值噪声、保留 decision-critical tokens，并把这套筛选框架应用到 reasoning、coding 和 software engineering agent training 上。实验覆盖不同 agent scaffold、不同模型规模以及 Python、Java、ArkTS 等多语言环境，结果显示在远少于传统大数据量的轨迹条件下依然能显著提升 SWE-bench Verified 和多语言 agent 任务表现。</p><p>这篇工作值得收录，因为它把 agent post-training 的关键问题从“如何再收集更多轨迹”改成“如何提高轨迹训练信号密度”。这对 agent data pipeline、trajectory compression、cost-aware post-training 和 multilingual agent adaptation 都有直接方法价值，而不只是一个 task-specific trick。</p><p>它没有升到更高一级，是因为当前方法仍以 heuristic curation 与 chunking 为主，虽然效果强，但还没有上升为更完整的 agent learning 理论或标准化训练接口。它是一条很实用的后训练路线推进，但还不够重定义整个 agent training 框架。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>训练有效的软件工程代理需要大量的任务特定轨迹，这会产生巨大的数据构建成本。受数学推理中“少即是多”假设的启发，我们研究了其在代理场景中的扩展，并提出了一个端到端训练框架，该框架通过更少但更高质量的训练轨迹实现了卓越的代理能力。这通过STITCH（滑动记忆轨迹推理和任务分块启发式算法）实现，这是一种从粗到精的机制，用于过滤低价值噪声并保留决策关键令牌，以最大化训练信号质量。我们在多个代理框架（例如mini-SWE-agent、MSWEagent）、模型规模（30B到355B）和多语言设置（Python、Java和ArkTS）中进行了实验。在SWE-bench Verified上，使用STITCH训练的模型比基础模型实现了高达63.16%的相对改进。在MultiSWE-bench (Java)上，MiniMax-M2.5-STITCH使用我们的CodeArts Agent脚手架实现了43.75%（+16.67%）。在HarmonyOS (ArkTS)上，GLM-4.7-STITCH在不到1K的训练轨迹下将编译通过率提高到61.31%（+43.34%）。我们的结果证实，“少即是多”范式有效地推广到跨不同语言和模型规模的复杂代理任务。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Training effective software engineering agents requires large volumes of task-specific trajectories, incurring substantial data construction costs. Inspired by the &quot;Less-Is-More&quot; hypothesis in mathematical reasoning, we investigate its extension to agentic scenarios and propose an end-to-end training framework that achieves superior agentic capabilities with fewer but higher-quality training trajectories. This is achieved via STITCH (Sliding-memory Trajectory Inference and Task Chunking Heuristic), a coarse-to-fine mechanism that filters low-value noise and retains decision-critical tokens to maximize training signal quality. We conduct experiments across multiple agent frameworks(e.g., mini-SWE-agent, MSWEagent), model scales (30B to 355B), and multilingual settings (Python, Java, and ArkTS). On SWE-bench Verified, models trained with STITCH achieve up to 63.16% relative improvement over base models. On MultiSWE-bench (Java), MiniMax-M2.5-STITCH achieves 43.75% with our CodeArts Agent scaffold (+16.67%). On HarmonyOS (ArkTS), GLM-4.7-STITCH improves the compilation pass rate to 61.31% (+43.34%) with less than 1K training trajectories. Our results confirm that the &quot;Less-Is-More&quot; paradigm generalizes effectively to complex agentic tasks across diverse languages and model scales.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a123stitch,
+  title = {Yet Even Less Is Even Better For Agentic, Reasoning, and Coding LLMs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00824.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a123-stitch-agentic-trajectory-training/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Yet Even Less Is Even Better For Agentic, Reasoning, and Coding LLMs. https://arxiv.org/pdf/2604.00824.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00824.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

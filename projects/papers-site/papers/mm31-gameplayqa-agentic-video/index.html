@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents | DAST Papers</title>
+    <meta name="description" content="面向 3D 虚拟环境与 embodied agent 的视频理解，难点从来不只是“看懂一段视频”，而是要在第一人称视角下处理高决策密度、多主体并发、快速状态变化和跨视频对齐。现有多模态 benchmark 很少真正测这些 agent-centric 感知与推理能力，因此模型即使在通用视频 QA 上表现不错，也未必适合做自主体感知骨干。GameplayQA 对准的正是这个缺口。
+
+论文的核心贡献是构" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm31-gameplayqa-agentic-video/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents" />
+    <meta property="og:description" content="面向 3D 虚拟环境与 embodied agent 的视频理解，难点从来不只是“看懂一段视频”，而是要在第一人称视角下处理高决策密度、多主体并发、快速状态变化和跨视频对齐。现有多模态 benchmark 很少真正测这些 agent-centric 感知与推理能力，因此模型即使在通用视频 QA 上表现不错，也未必适合做自主体感知骨干。GameplayQA 对准的正是这个缺口。
+
+论文的核心贡献是构" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm31-gameplayqa-agentic-video/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents" />
+    <meta name="twitter:description" content="面向 3D 虚拟环境与 embodied agent 的视频理解，难点从来不只是“看懂一段视频”，而是要在第一人称视角下处理高决策密度、多主体并发、快速状态变化和跨视频对齐。现有多模态 benchmark 很少真正测这些 agent-centric 感知与推理能力，因此模型即使在通用视频 QA 上表现不错，也未必适合做自主体感知骨干。GameplayQA 对准的正是这个缺口。
+
+论文的核心贡献是构" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24329" target="_blank" rel="noopener noreferrer">2603.24329</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>面向 3D 虚拟环境与 embodied agent 的视频理解，难点从来不只是“看懂一段视频”，而是要在第一人称视角下处理高决策密度、多主体并发、快速状态变化和跨视频对齐。现有多模态 benchmark 很少真正测这些 agent-centric 感知与推理能力，因此模型即使在通用视频 QA 上表现不错，也未必适合做自主体感知骨干。GameplayQA 对准的正是这个缺口。</dd></div><div><dt>方法/机制</dt><dd>论文的核心贡献是构造了一套 decision-dense、POV-synced、multi-video 的评测框架：作者对多人 3D 游戏视频做高密度时序标注，把事件组织成 Self、Other Agents 与 World 三元结构，再从中提炼出 2.4K 诊断式 QA，并配上可分析 hallucination 来源的 distractor taxonomy。它测的不只是答案对错，而是模型在 temporal grounding、agent-role attribution 和跨视角并发行为理解上到底哪里出问题。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它给多智能体环境下的 agentic perception 补了一块很缺的 benchmark：不是通用视频理解，不是单主体 action recognition，而是围绕自主体决策需要的多主体、时间同步、世界状态解析来组织评测。对 embodied AI、virtual agents、world modeling 和 video reasoning 都有耐用外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为 benchmark 规模和场景多样性还没有大到足以成为压倒性的默认标准，主要环境也集中在 3D gameplay domain。它已经足够值得收，但长期地位还要看后续社区是否围绕这套 agent-centric视频评测收敛。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>面向 3D 虚拟环境与 embodied agent 的视频理解，难点从来不只是“看懂一段视频”，而是要在第一人称视角下处理高决策密度、多主体并发、快速状态变化和跨视频对齐。现有多模态 benchmark 很少真正测这些 agent-centric 感知与推理能力，因此模型即使在通用视频 QA 上表现不错，也未必适合做自主体感知骨干。GameplayQA 对准的正是这个缺口。</p><p>论文的核心贡献是构造了一套 decision-dense、POV-synced、multi-video 的评测框架：作者对多人 3D 游戏视频做高密度时序标注，把事件组织成 Self、Other Agents 与 World 三元结构，再从中提炼出 2.4K 诊断式 QA，并配上可分析 hallucination 来源的 distractor taxonomy。它测的不只是答案对错，而是模型在 temporal grounding、agent-role attribution 和跨视角并发行为理解上到底哪里出问题。</p><p>这篇工作值得正式收录，因为它给多智能体环境下的 agentic perception 补了一块很缺的 benchmark：不是通用视频理解，不是单主体 action recognition，而是围绕自主体决策需要的多主体、时间同步、世界状态解析来组织评测。对 embodied AI、virtual agents、world modeling 和 video reasoning 都有耐用外溢。</p><p>它目前仍是 breakthrough，而不是更高一级，因为 benchmark 规模和场景多样性还没有大到足以成为压倒性的默认标准，主要环境也集中在 3D gameplay domain。它已经足够值得收，但长期地位还要看后续社区是否围绕这套 agent-centric视频评测收敛。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多模态LLM正越来越多地被部署为3D环境中自主智能体的感知骨干模型，涵盖机器人技术到虚拟世界。这些应用要求智能体能够感知快速的状态变化，将动作归因于正确的实体，并从第一人称视角推理并发的多智能体行为，而现有基准未能充分评估这些能力。我们引入G AMEPLAY QA，这是一个通过视频理解评估以智能体为中心的感知和推理的框架。具体来说，我们以每秒1.22个标签的密度，对多人3D游戏视频进行密集标注，其中包含时间同步的、并发的状态、动作和事件描述，这些描述围绕着自我、其他智能体和世界的三元系统构建，这是多智能体环境的自然分解。基于这些标注，我们提炼出2.4K个诊断性问答对，这些问答对分为三个认知复杂性级别，并附带一个结构化的干扰项分类法，以便对模型幻觉的发生位置进行细粒度分析。对前沿MLLM的评估揭示了与人类表现的巨大差距，常见的失败包括时间性和跨视频的接地、智能体角色归因以及处理游戏决策密度方面。我们希望G AMEPLAY QA能激发具身AI、智能体感知和世界建模交叉领域未来的研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Multimodal LLMs are increasingly deployed as perceptual backbones for autonomous agents in 3D environments, from robotics to virtual worlds. These applications require agents to perceive rapid state changes, attribute actions to the correct entities, and reason about concurrent multi-agent behaviors from a first-person perspective, capabilities that existing benchmarks do not adequately evaluate. We introduce G AMEPLAY QA, a framework for evaluating agentic-centric perception and reasoning through video understanding. Specifically, we densely annotate multiplayer 3D gameplay videos at 1.22 labels/second, with timesynced, concurrent captions of states, actions, and events structured around a triadic system of Self, Other Agents, and the World, a natural decomposition for multi-agent environments. From these annotations, we refined 2.4K diagnostic QA pairs organized into three levels of cognitive complexity, accompanied by a structured distractor taxonomy that enables fine-grained analysis of where models hallucinate. Evaluation of frontier MLLMs reveals a substantial gap from human performance, with common failures in temporal and cross-video grounding, agent-role attribution, and handling the decision density of the game. We hope G AMEPLAY QA stimulates future research at the intersection of embodied AI, agentic perception, and world modeling.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325mm31gamepl,
+  title = {GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24329.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm31-gameplayqa-agentic-video/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents. https://arxiv.org/pdf/2603.24329.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24329.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

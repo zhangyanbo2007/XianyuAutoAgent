@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Robotic Manipulation is Vision-to-Geometry Mapping ($f(v) \rightarrow G$): Vision-Geometry Backbones over Language and Video Models | DAST Papers</title>
+    <meta name="description" content="这篇论文的价值首先在问题重构：机器人操作的底层并不是语言或视频预测，而是从视觉到三维几何的映射。动作由位置、旋转和空间关系定义，因此 backbone 应该优先对齐 3D geometry。
+
+作者提出 Vision-Geometry-Action，用预训练 3D world model 替代传统语言/视频 backbone，并通过 volumetric modulation 和联合预测动作/3D" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl50-vga-vision-geometry-action/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Robotic Manipulation is Vision-to-Geometry Mapping ($f(v) \rightarrow G$): Vision-Geometry Backbones over Language and Video Models" />
+    <meta property="og:description" content="这篇论文的价值首先在问题重构：机器人操作的底层并不是语言或视频预测，而是从视觉到三维几何的映射。动作由位置、旋转和空间关系定义，因此 backbone 应该优先对齐 3D geometry。
+
+作者提出 Vision-Geometry-Action，用预训练 3D world model 替代传统语言/视频 backbone，并通过 volumetric modulation 和联合预测动作/3D" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl50-vga-vision-geometry-action/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Robotic Manipulation is Vision-to-Geometry Mapping ($f(v) \rightarrow G$): Vision-Geometry Backbones over Language and Video Models" />
+    <meta name="twitter:description" content="这篇论文的价值首先在问题重构：机器人操作的底层并不是语言或视频预测，而是从视觉到三维几何的映射。动作由位置、旋转和空间关系定义，因此 backbone 应该优先对齐 3D geometry。
+
+作者提出 Vision-Geometry-Action，用预训练 3D world model 替代传统语言/视频 backbone，并通过 volumetric modulation 和联合预测动作/3D" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Robotic Manipulation is Vision-to-Geometry Mapping ($f(v) \rightarrow G$): Vision-Geometry Backbones over Language and Video Models</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12908" target="_blank" rel="noopener noreferrer">2604.12908</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的价值首先在问题重构：机器人操作的底层并不是语言或视频预测，而是从视觉到三维几何的映射。动作由位置、旋转和空间关系定义，因此 backbone 应该优先对齐 3D geometry。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Vision-Geometry-Action，用预训练 3D world model 替代传统语言/视频 backbone，并通过 volumetric modulation 和联合预测动作/3D 属性增强几何一致性。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它值得收录，因为它提出了 VLA 热潮下的反向框架：通用操作策略可能需要 vision-geometry backbone，而不是继续堆语义或视频先验。这个 framing 对机器人模型设计有外溢价值。</dd></div><div><dt>收录价值</dt><dd>局限是论文论证仍需更多真实机器人、复杂接触和长程任务验证；“geometry over language/video”可能是强假设，不一定覆盖全部操作场景。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的价值首先在问题重构：机器人操作的底层并不是语言或视频预测，而是从视觉到三维几何的映射。动作由位置、旋转和空间关系定义，因此 backbone 应该优先对齐 3D geometry。</p><p>作者提出 Vision-Geometry-Action，用预训练 3D world model 替代传统语言/视频 backbone，并通过 volumetric modulation 和联合预测动作/3D 属性增强几何一致性。</p><p>按本库标准，它值得收录，因为它提出了 VLA 热潮下的反向框架：通用操作策略可能需要 vision-geometry backbone，而不是继续堆语义或视频先验。这个 framing 对机器人模型设计有外溢价值。</p><p>局限是论文论证仍需更多真实机器人、复杂接触和长程任务验证；“geometry over language/video”可能是强假设，不一定覆盖全部操作场景。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>机器人操作的核心是一个视觉到几何映射（𝑓 (𝑣) → 𝐺）问题。物理动作——例如抓取、握持和定向——从根本上由3D位置、旋转和空间关系等几何属性定义。因此，我们认为可泛化机器人控制的基础应该是视觉-几何骨干模型，而不是广泛采用的视觉-语言或视频模型。传统的视觉-语言-动作（VLA）和视频预测模型依赖于在大型2D图像-文本或时间像素数据上预训练的骨干模型。尽管有效，但它们的表示主要由语义概念或2D先验塑造，这与物理操作所需的精确3D几何性质并非内在对齐。受此启发，我们提出了视觉-几何-动作（VGA）模型，该模型直接根据预训练的原始3D表示来条件化动作生成。具体来说，VGA用预训练的3D世界模型取代了传统的语言或视频骨干模型，建立了无缝的视觉到几何映射，将视觉输入直接转换为物理动作。为了进一步增强几何一致性，我们引入了一个渐进体积调制模块，并采用了一种联合训练策略，同时预测动作和3D属性，从而提高了表示保真度和跨模态交互。大量实验验证了我们方法的有效性。在模拟基准测试中，VGA优于包括𝜋 0.5、SpatialVLA和GeoVLA在内的顶级VLA基线，展示了其在精确空间操作方面的优越性。更重要的是，VGA在实际部署中对未见视点表现出卓越的零样本泛化能力，在成功率方面始终优于𝜋0.5。这些结果强调，在原始3D表示上操作——而不是通过语言或2D视频先验进行转换——是实现可泛化物理智能的一个非常有前途的方向。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>At its core, robotic manipulation is a problem of vision-to-geometry mapping (𝑓 (𝑣) → 𝐺). Physical actions—such as reaching, grasping, and orienting—are fundamentally defined by geometric properties like 3D positions, rotations, and spatial relationships. Consequently, we argue that the foundation for generalizable robotic control should be a vision-geometry backbone, rather than the widely adopted vision-language or video models. Conventional Vision-Language-Action (VLA) and video-predictive models rely on backbones pretrained on large-scale 2D image-text or temporal pixel data. While effective, their representations are largely shaped by semantic concepts or 2D priors, which do not intrinsically align with the precise 3D geometric nature required for physical manipulation. Driven by this insight, we propose the Vision-GeometryAction (VGA) model, which directly conditions action generation on pretrained native 3D representations. Specifically, VGA replaces conventional language or video backbones with a pretrained 3D world model, establishing a seamless vision-to-geometry mapping that translates visual inputs directly into physical actions. To further enhance geometric consistency, we introduce a Progressive Volumetric Modulation module and adopt a joint training strategy that simultaneously predicts actions and 3D properties, improving both representation fidelity and cross-modal interaction. Extensive experiments validate the effectiveness of our approach. In simulation benchmarks, VGA outperforms top-tier VLA baselines including 𝜋 0.5 , SpatialVLA, and GeoVLA, demonstrating its superiority in precise spatial manipulation. More importantly, VGA exhibits remarkable zero-shot generalization to unseen viewpoints in realworld deployments, consistently outperforming 𝜋0.5 in terms of success rate. These results highlight that operating on native 3D representations—rather than translating through language or 2D video priors—is a highly promising direction for achieving generalizable physical intelligence.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415rl50vgavis,
+  title = {Robotic Manipulation is Vision-to-Geometry Mapping ($f(v) \rightarrow G$): Vision-Geometry Backbones over Language and Video Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12908.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl50-vga-vision-geometry-action/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Robotic Manipulation is Vision-to-Geometry Mapping ($f(v) \rightarrow G$): Vision-Geometry Backbones over Language and Video Models. https://arxiv.org/pdf/2604.12908.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12908.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

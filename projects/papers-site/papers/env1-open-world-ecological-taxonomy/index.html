@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards AI-Guided Open-World Ecological Taxonomic Classification | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是生态与生物多样性监测里一个长期被低估的问题：现实环境中的植物与生态类群识别不是封闭分类，而是同时面临长尾分布、细粒度差异、时空域偏移以及未知类开放集识别。把这些问题拆开做局部提升并不能支撑真实生态监测工作流。
+
+论文提出 Open-World Ecological Taxonomy Classification 这一统一 framing，并据此设计 TaxoNet。核心不是再堆一个" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/env1-open-world-ecological-taxonomy/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards AI-Guided Open-World Ecological Taxonomic Classification" />
+    <meta property="og:description" content="这篇论文处理的是生态与生物多样性监测里一个长期被低估的问题：现实环境中的植物与生态类群识别不是封闭分类，而是同时面临长尾分布、细粒度差异、时空域偏移以及未知类开放集识别。把这些问题拆开做局部提升并不能支撑真实生态监测工作流。
+
+论文提出 Open-World Ecological Taxonomy Classification 这一统一 framing，并据此设计 TaxoNet。核心不是再堆一个" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/env1-open-world-ecological-taxonomy/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards AI-Guided Open-World Ecological Taxonomic Classification" />
+    <meta name="twitter:description" content="这篇论文处理的是生态与生物多样性监测里一个长期被低估的问题：现实环境中的植物与生态类群识别不是封闭分类，而是同时面临长尾分布、细粒度差异、时空域偏移以及未知类开放集识别。把这些问题拆开做局部提升并不能支撑真实生态监测工作流。
+
+论文提出 Open-World Ecological Taxonomy Classification 这一统一 framing，并据此设计 TaxoNet。核心不是再堆一个" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards AI-Guided Open-World Ecological Taxonomic Classification</h1>
+          <p class="subtitle">环境与生态系统 · 发表：2025-12-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">环境与生态系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.18994" target="_blank" rel="noopener noreferrer">2512.18994</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是生态与生物多样性监测里一个长期被低估的问题：现实环境中的植物与生态类群识别不是封闭分类，而是同时面临长尾分布、细粒度差异、时空域偏移以及未知类开放集识别。把这些问题拆开做局部提升并不能支撑真实生态监测工作流。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Open-World Ecological Taxonomy Classification 这一统一 framing，并据此设计 TaxoNet。核心不是再堆一个更大的 backbone，而是通过 embedding-based encoder 与 dual-margin penalization loss 同时强化稀有类群学习、抑制头部类群支配，并在 urban trees、iNaturalist 植物观测和 herbarium 数据上系统评估。结果说明它不仅比传统 baselines 更稳，而且直接暴露出通用多模态基础模型在植物域上的明显边界。</dd></div><div><dt>结果/证据</dt><dd>按这次扩展后的仓库口径，这篇论文已经不只是 biodiversity application。它给出了一个可以复用的 open-world ecological taxonomy interface，对 biodiversity monitoring、conservation planning 以及面向生态领域的 foundation-model 评估都具有长期参考价值。对于环境与生态方向，这是少见真正从问题定义层面前移的 AI 条目。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为当前核心任务仍集中在 taxonomic monitoring，而不是进一步进入 restoration、ecosystem intervention 或 broader environmental operations loop。它更像是一个高质量、可复用的方法与评估入口，而不是已经改写环境 AI 默认蓝图的范式级工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是生态与生物多样性监测里一个长期被低估的问题：现实环境中的植物与生态类群识别不是封闭分类，而是同时面临长尾分布、细粒度差异、时空域偏移以及未知类开放集识别。把这些问题拆开做局部提升并不能支撑真实生态监测工作流。</p><p>论文提出 Open-World Ecological Taxonomy Classification 这一统一 framing，并据此设计 TaxoNet。核心不是再堆一个更大的 backbone，而是通过 embedding-based encoder 与 dual-margin penalization loss 同时强化稀有类群学习、抑制头部类群支配，并在 urban trees、iNaturalist 植物观测和 herbarium 数据上系统评估。结果说明它不仅比传统 baselines 更稳，而且直接暴露出通用多模态基础模型在植物域上的明显边界。</p><p>按这次扩展后的仓库口径，这篇论文已经不只是 biodiversity application。它给出了一个可以复用的 open-world ecological taxonomy interface，对 biodiversity monitoring、conservation planning 以及面向生态领域的 foundation-model 评估都具有长期参考价值。对于环境与生态方向，这是少见真正从问题定义层面前移的 AI 条目。</p><p>它没有更高一级，因为当前核心任务仍集中在 taxonomic monitoring，而不是进一步进入 restoration、ecosystem intervention 或 broader environmental operations loop。它更像是一个高质量、可复用的方法与评估入口，而不是已经改写环境 AI 默认蓝图的范式级工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI引导的生态科、属、种分类是生物多样性监测、保护规划和政策制定等全球可持续发展努力的基础。实现这一目标的进展受到类别不平衡导致的分类学长尾分布、细粒度分类学变异、测试时空域偏移以及只能识别先前见过类群的封闭集假设的阻碍。我们引入了开放世界生态分类学分类（OpenWorld Ecological Taxonomy Classification），这是一个统一的框架，能够捕捉这些挑战在真实生态环境中的共现。为解决这些问题，我们提出了TaxoNet，这是一种基于嵌入的编码器，具有双边距惩罚损失，能够增强来自稀有、代表性不足类群的学习信号，同时减轻代表性过剩类群的主导地位，直接应对相互关联的挑战。我们在不同的生态领域评估了我们的方法：Google Auto-Arborist（城市树木）、iNatPlantae（来自iNaturalist-2019中各种生态系统的植物界观测数据）和NAFlora-Mini（一个精选的植物标本集）。我们的模型始终优于基线，特别是对于稀有类群，为开放世界植物分类学监测奠定了坚实基础。我们的研究结果进一步表明，通用多模态基础模型在植物领域应用中仍存在局限性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI-guided classification of ecological families, genera, and species underpins global sustainability efforts such as biodiversity monitoring, conservation planning, and policymaking. Progress toward this goal is hindered by longtailed taxonomic distributions from class imbalance, along with fine-grained taxonomic variations, test-time spatiotemporal domain shifts, and closed-set assumptions that can only recognize previously seen taxa. We introduce the OpenWorld Ecological Taxonomy Classification, a unified framework that captures the co-occurrence of these challenges in realistic ecological settings. To address them, we propose TaxoNet, an embedding-based encoder with a dualmargin penalization loss that strengthens learning signals from rare underrepresented taxa while mitigating the dominance of overrepresented ones, directly confronting interrelated challenges. We evaluate our method on diverse ecological domains: Google Auto-Arborist (urban trees), iNatPlantae (Plantae observations from various ecosystems in iNaturalist-2019), and NAFlora-Mini (a curated herbarium collection). Our model consistently outperforms baselines, particularly for rare taxa, establishing a strong foundation for open-world plant taxonomic monitoring. Our findings further show that general-purpose multimodal foundation models remain constrained in plant-domain applications.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251222env1openwo,
+  title = {Towards AI-Guided Open-World Ecological Taxonomic Classification},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.18994.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/env1-open-world-ecological-taxonomy/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Towards AI-Guided Open-World Ecological Taxonomic Classification. https://arxiv.org/pdf/2512.18994.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.18994.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

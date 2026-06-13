@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beyond Magnitude: Leveraging Direction of RLVR Updates | DAST Papers</title>
+    <meta name="description" content="围绕 RLVR 是否真的提升推理能力，很多讨论只看性能曲线或更新幅度，却很少真正分析更新里什么成分在起作用。这篇工作把注意力从 update magnitude 转向 update direction，试图解释 RLVR 到底向模型里注入了什么有效结构。
+
+论文的核心判断是：更新方向比更新大小更能揭示 RLVR 的有效知识增量，并据此提出 test-time extrapolation 与 tra" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t23-beyond-magnitude-rlvr-updates/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Beyond Magnitude: Leveraging Direction of RLVR Updates" />
+    <meta property="og:description" content="围绕 RLVR 是否真的提升推理能力，很多讨论只看性能曲线或更新幅度，却很少真正分析更新里什么成分在起作用。这篇工作把注意力从 update magnitude 转向 update direction，试图解释 RLVR 到底向模型里注入了什么有效结构。
+
+论文的核心判断是：更新方向比更新大小更能揭示 RLVR 的有效知识增量，并据此提出 test-time extrapolation 与 tra" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t23-beyond-magnitude-rlvr-updates/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Beyond Magnitude: Leveraging Direction of RLVR Updates" />
+    <meta name="twitter:description" content="围绕 RLVR 是否真的提升推理能力，很多讨论只看性能曲线或更新幅度，却很少真正分析更新里什么成分在起作用。这篇工作把注意力从 update magnitude 转向 update direction，试图解释 RLVR 到底向模型里注入了什么有效结构。
+
+论文的核心判断是：更新方向比更新大小更能揭示 RLVR 的有效知识增量，并据此提出 test-time extrapolation 与 tra" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Beyond Magnitude: Leveraging Direction of RLVR Updates</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-01-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-26</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>围绕 RLVR 是否真的提升推理能力，很多讨论只看性能曲线或更新幅度，却很少真正分析更新里什么成分在起作用。这篇工作把注意力从 update magnitude 转向 update direction，试图解释 RLVR 到底向模型里注入了什么有效结构。</dd></div><div><dt>方法/机制</dt><dd>论文的核心判断是：更新方向比更新大小更能揭示 RLVR 的有效知识增量，并据此提出 test-time extrapolation 与 training-time reweighting 之类的利用方式，把这种方向性信号转化为更稳的优化与泛化收益。它因此不只是分析论文，而是在训练和推理层都给出可操作干预。</dd></div><div><dt>结果/证据</dt><dd>它对仓库的意义在于，这类工作正好位于 reasoning、RL post-training 和 model-update geometry 的交叉点。相比只报分数，它更接近解释 RLVR 机制并提炼 reusable signal，这类澄清对后续 reasoning 训练路线有实际影响。</dd></div><div><dt>收录价值</dt><dd>它目前仍不到更高一级，因为证据主要集中在 RLVR 这一特定训练范式和一组实验设置里；它像一篇很强的机制澄清与实用修正论文，但还没扩散成更广泛的训练理论基石。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>围绕 RLVR 是否真的提升推理能力，很多讨论只看性能曲线或更新幅度，却很少真正分析更新里什么成分在起作用。这篇工作把注意力从 update magnitude 转向 update direction，试图解释 RLVR 到底向模型里注入了什么有效结构。</p><p>论文的核心判断是：更新方向比更新大小更能揭示 RLVR 的有效知识增量，并据此提出 test-time extrapolation 与 training-time reweighting 之类的利用方式，把这种方向性信号转化为更稳的优化与泛化收益。它因此不只是分析论文，而是在训练和推理层都给出可操作干预。</p><p>它对仓库的意义在于，这类工作正好位于 reasoning、RL post-training 和 model-update geometry 的交叉点。相比只报分数，它更接近解释 RLVR 机制并提炼 reusable signal，这类澄清对后续 reasoning 训练路线有实际影响。</p><p>它目前仍不到更高一级，因为证据主要集中在 RLVR 这一特定训练范式和一组实验设置里；它像一篇很强的机制澄清与实用修正论文，但还没扩散成更广泛的训练理论基石。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>强化学习与可验证奖励（RLVR）显著提升了大型语言模型的推理能力。虽然现有的分析表明 RLVR 引起的改变稀疏，但它们主要关注这些更新的幅度，而忽略了其方向。本文认为，基于模型与最终 RLVR 模型之间签名、分词级别的对数概率差更能捕捉推理关键的更新，并利用该方向信号进行测试时间外推和训练时间重新加权。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning with verifiable rewards (RLVR) has substantially improved the reasoning capabilities of large language models. While existing analyses identify that RLVR-induced changes are sparse, they primarily focus on the magnitude of these updates, largely overlooking their direction. This work argues that the signed, token-level log probability difference between base and final RLVR models better captures reasoning-critical updates, and uses this direction signal for test-time extrapolation and training-time reweighting.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260126t23beyondm,
+  title = {Beyond Magnitude: Leveraging Direction of RLVR Updates},
+  year = {2026},
+  url = {https://openreview.net/pdf/2c899712b304399bcc482637c9e8318b7b65f19a.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t23-beyond-magnitude-rlvr-updates/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Beyond Magnitude: Leveraging Direction of RLVR Updates. https://openreview.net/pdf/2c899712b304399bcc482637c9e8318b7b65f19a.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openreview.net/pdf/2c899712b304399bcc482637c9e8318b7b65f19a.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

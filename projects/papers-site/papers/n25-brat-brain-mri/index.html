@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>brat: Aligned Multi-View Embeddings for Brain MRI Analysis | DAST Papers</title>
+    <meta name="description" content="这篇论文关注脑 MRI 分析里的一个实际难点：同一病例往往存在多视角、多序列或多切面信息，但现有模型对这些视图之间的一致性与互补性利用不足。作者提出 brat，通过对齐多视角嵌入来提升脑 MRI 分析的鲁棒性与泛化能力。
+
+方法上，brat 的核心是多视角对齐表征学习：让来自同一病例、不同视图的信息在嵌入空间中靠近，同时保持对病理相关差异的敏感。它不是简单拼接输入，而是把跨视图一致性本身变成训练信" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n25-brat-brain-mri/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="brat: Aligned Multi-View Embeddings for Brain MRI Analysis" />
+    <meta property="og:description" content="这篇论文关注脑 MRI 分析里的一个实际难点：同一病例往往存在多视角、多序列或多切面信息，但现有模型对这些视图之间的一致性与互补性利用不足。作者提出 brat，通过对齐多视角嵌入来提升脑 MRI 分析的鲁棒性与泛化能力。
+
+方法上，brat 的核心是多视角对齐表征学习：让来自同一病例、不同视图的信息在嵌入空间中靠近，同时保持对病理相关差异的敏感。它不是简单拼接输入，而是把跨视图一致性本身变成训练信" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n25-brat-brain-mri/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="brat: Aligned Multi-View Embeddings for Brain MRI Analysis" />
+    <meta name="twitter:description" content="这篇论文关注脑 MRI 分析里的一个实际难点：同一病例往往存在多视角、多序列或多切面信息，但现有模型对这些视图之间的一致性与互补性利用不足。作者提出 brat，通过对齐多视角嵌入来提升脑 MRI 分析的鲁棒性与泛化能力。
+
+方法上，brat 的核心是多视角对齐表征学习：让来自同一病例、不同视图的信息在嵌入空间中靠近，同时保持对病理相关差异的敏感。它不是简单拼接输入，而是把跨视图一致性本身变成训练信" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>brat: Aligned Multi-View Embeddings for Brain MRI Analysis</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-12-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-21</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注脑 MRI 分析里的一个实际难点：同一病例往往存在多视角、多序列或多切面信息，但现有模型对这些视图之间的一致性与互补性利用不足。作者提出 brat，通过对齐多视角嵌入来提升脑 MRI 分析的鲁棒性与泛化能力。</dd></div><div><dt>方法/机制</dt><dd>方法上，brat 的核心是多视角对齐表征学习：让来自同一病例、不同视图的信息在嵌入空间中靠近，同时保持对病理相关差异的敏感。它不是简单拼接输入，而是把跨视图一致性本身变成训练信号。</dd></div><div><dt>结果/证据</dt><dd>这篇文章适合放在认知/脑科学主线里的“脑影像方法学”分支。它不是 foundation model 那种路线级工作，但在脑 MRI 表征学习上方法清晰、外溢面稳定，对后续多模态神经影像分析有实际参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有上升到更高一级，主要因为影响范围仍集中在脑 MRI 分析方法，而不是更广的基础模型或临床工作流平台；同时证据仍主要来自特定任务设定，不足以说已重排整个 neuroimaging 方法格局。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注脑 MRI 分析里的一个实际难点：同一病例往往存在多视角、多序列或多切面信息，但现有模型对这些视图之间的一致性与互补性利用不足。作者提出 brat，通过对齐多视角嵌入来提升脑 MRI 分析的鲁棒性与泛化能力。</p><p>方法上，brat 的核心是多视角对齐表征学习：让来自同一病例、不同视图的信息在嵌入空间中靠近，同时保持对病理相关差异的敏感。它不是简单拼接输入，而是把跨视图一致性本身变成训练信号。</p><p>这篇文章适合放在认知/脑科学主线里的“脑影像方法学”分支。它不是 foundation model 那种路线级工作，但在脑 MRI 表征学习上方法清晰、外溢面稳定，对后续多模态神经影像分析有实际参考价值。</p><p>它没有上升到更高一级，主要因为影响范围仍集中在脑 MRI 分析方法，而不是更广的基础模型或临床工作流平台；同时证据仍主要来自特定任务设定，不足以说已重排整个 neuroimaging 方法格局。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251221n25bratbra,
+  title = {brat: Aligned Multi-View Embeddings for Brain MRI Analysis},
+  year = {2025},
+  url = {https://openaccess.thecvf.com/content/WACV2026/papers/Kayser_brat_Aligned_Multi-View_Embeddings_for_Brain_MRI_Analysis_WACV_2026_paper.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n25-brat-brain-mri/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). brat: Aligned Multi-View Embeddings for Brain MRI Analysis. https://openaccess.thecvf.com/content/WACV2026/papers/Kayser_brat_Aligned_Multi-View_Embeddings_for_Brain_MRI_Analysis_WACV_2026_paper.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openaccess.thecvf.com/content/WACV2026/papers/Kayser_brat_Aligned_Multi-View_Embeddings_for_Brain_MRI_Analysis_WACV_2026_paper.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

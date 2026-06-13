@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ResearchMath-14K: Scaling Research-Level Mathematics via Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文面向研究级数学推理的数据瓶颈：普通竞赛题不足以衡量模型是否能处理未知或开放的数学问题。
+
+作者用 multi-agent pipeline 从学术来源整理 14,056 个 research-level math problems，并生成 22 万条 open-model teacher trajectories。
+
+一个重要发现是新一代模型在开放数学尝试中引用更多，但 fake refe" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/m53-researchmath-14k-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ResearchMath-14K: Scaling Research-Level Mathematics via Agents" />
+    <meta property="og:description" content="这篇论文面向研究级数学推理的数据瓶颈：普通竞赛题不足以衡量模型是否能处理未知或开放的数学问题。
+
+作者用 multi-agent pipeline 从学术来源整理 14,056 个 research-level math problems，并生成 22 万条 open-model teacher trajectories。
+
+一个重要发现是新一代模型在开放数学尝试中引用更多，但 fake refe" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/m53-researchmath-14k-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ResearchMath-14K: Scaling Research-Level Mathematics via Agents" />
+    <meta name="twitter:description" content="这篇论文面向研究级数学推理的数据瓶颈：普通竞赛题不足以衡量模型是否能处理未知或开放的数学问题。
+
+作者用 multi-agent pipeline 从学术来源整理 14,056 个 research-level math problems，并生成 22 万条 open-model teacher trajectories。
+
+一个重要发现是新一代模型在开放数学尝试中引用更多，但 fake refe" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ResearchMath-14K: Scaling Research-Level Mathematics via Agents</h1>
+          <p class="subtitle">数学与形式推理 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">数学与形式推理</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.28003" target="_blank" rel="noopener noreferrer">2605.28003</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文面向研究级数学推理的数据瓶颈：普通竞赛题不足以衡量模型是否能处理未知或开放的数学问题。</dd></div><div><dt>方法/机制</dt><dd>作者用 multi-agent pipeline 从学术来源整理 14,056 个 research-level math problems，并生成 22 万条 open-model teacher trajectories。</dd></div><div><dt>结果/证据</dt><dd>一个重要发现是新一代模型在开放数学尝试中引用更多，但 fake references 也大幅增加；经过 agentic filtering 后，这些不完全正确的尝试仍能作为监督信号提升 Qwen3 系列。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它把数学 agent 从 benchmark-solving 推向 research-level problem corpus、轨迹过滤和开放问题训练数据构造。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文面向研究级数学推理的数据瓶颈：普通竞赛题不足以衡量模型是否能处理未知或开放的数学问题。</p><p>作者用 multi-agent pipeline 从学术来源整理 14,056 个 research-level math problems，并生成 22 万条 open-model teacher trajectories。</p><p>一个重要发现是新一代模型在开放数学尝试中引用更多，但 fake references 也大幅增加；经过 agentic filtering 后，这些不完全正确的尝试仍能作为监督信号提升 Qwen3 系列。</p><p>收录价值在于它把数学 agent 从 benchmark-solving 推向 research-level problem corpus、轨迹过滤和开放问题训练数据构造。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>数学的前沿由尚未解决的问题定义，然而，语言模型是否能在没有人为干预的情况下有意义地处理这些问题仍不清楚。一个主要障碍是缺乏大规模的研究级数学数据集。为此，我们引入了R ESEARCH M ATH -14 K，这是一组通过多智能体管道从学术来源整理的14,056个问题，使其成为迄今为止最大的研究级数学问题集合。我们进一步生成了R ESEARCH M ATH R EASONING，这是来自两个开放模型的220K条教师轨迹，我们观察到其中反复出现的规避行为，例如不尝试和捏造参考文献。有趣的是，在八个开放权重模型中，新一代模型每条轨迹产生的参考文献数量是旧模型的5.6倍，伪造参考文献数量是旧模型的5.0倍。在对R ESEARCH M ATH -R EASONING进行智能体过滤后，对4B到30B参数的Qwen3模型进行微调，平均比基础模型提高了9.2个百分点。这表明，即使没有完全正确的推理轨迹，过滤后的开放问题尝试也能提供有用的监督。我们将R ESEARCH M ATH -14 K公开，以供未来研究级数学推理工作使用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The frontier of mathematics is defined by problems whose solutions are not yet known, yet it remains unclear whether language models can meaningfully engage with such problems without human intervention. A major obstacle is the lack of large-scale researchlevel math datasets. To this end, we introduce R ESEARCH M ATH -14 K, a set of 14,056 problems curated from academic sources via a multiagent pipeline, making it the largest collection of research-level mathematical problems to date. We further generate R ESEARCH M ATH R EASONING, 220K teacher trajectories from two open models, where we observe recurring avoidance behaviors such as non-attempts and fabricated references. Interestingly, across eight open-weight models, newer generations produce 5.6× more references and 5.0× more fake references per trace. After agentic filtering of R ESEARCH M ATH -R EASONING, fine-tuning Qwen3 models from 4B to 30B parameters improves over base models by 9.2 points on average. This shows that filtered open-problem attempts can provide useful supervision even without fully correct reasoning traces. We make R ESEARCH M ATH -14 K publicly available for future works on research-level mathemtical reasoning.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527m53researc,
+  title = {ResearchMath-14K: Scaling Research-Level Mathematics via Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.28003.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/m53-researchmath-14k-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ResearchMath-14K: Scaling Research-Level Mathematics via Agents. https://arxiv.org/pdf/2605.28003.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/m54-legone-nash-algorithms/">
+              <span>Discovering expert-level Nash equilibrium algorithms with large language models</span>
+              <small>数学与形式推理 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/m52-ai-formal-proof-search/">
+              <span>Advancing Mathematics Research with AI-Driven Formal Proof Search</span>
+              <small>数学与形式推理 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/m51-soohak-math-benchmark/">
+              <span>Soohak: A Mathematician-Curated Benchmark for Evaluating Research-level Math Capabilities of LLMs</span>
+              <small>数学与形式推理 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/m50-ai-comathematician/">
+              <span>AI Co-Mathematician: Accelerating Mathematicians with Agentic AI</span>
+              <small>数学与形式推理 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/p31-dreamprover-transferable-lemmas/">
+              <span>DreamProver: Evolving Transferable Lemma Libraries via a Wake-Sleep Theorem-Proving Agent</span>
+              <small>数学与形式推理 · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/med3-amie-prospective-clinic/">
+              <span>A prospective clinical feasibility study of a conversational diagnostic AI in an ambulatory primary care clinic</span>
+              <small>数学与形式推理 · 2026-03-09</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.28003.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.28003" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

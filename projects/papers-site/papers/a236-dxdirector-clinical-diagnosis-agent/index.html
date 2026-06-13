@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DxDirector: an agentic large language model driving the full-process clinical diagnosis | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住的是临床诊断 workflow 里的真正瓶颈：现实中的诊断不是一次性问答，而是从模糊主诉开始、经过多轮假设生成、检查选择和证据更新的过程。多数医疗 LLM 仍停留在局部咨询助手角色，无法把整条流程真正接起来。
+
+DxDirector 的价值在于把 agentic slow-thinking 明确落到完整诊断流程上。模型不是只回答某一步，而是自主决定接下来该问什么、做什么、何时需要医生执" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a236-dxdirector-clinical-diagnosis-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DxDirector: an agentic large language model driving the full-process clinical diagnosis" />
+    <meta property="og:description" content="这篇论文抓住的是临床诊断 workflow 里的真正瓶颈：现实中的诊断不是一次性问答，而是从模糊主诉开始、经过多轮假设生成、检查选择和证据更新的过程。多数医疗 LLM 仍停留在局部咨询助手角色，无法把整条流程真正接起来。
+
+DxDirector 的价值在于把 agentic slow-thinking 明确落到完整诊断流程上。模型不是只回答某一步，而是自主决定接下来该问什么、做什么、何时需要医生执" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a236-dxdirector-clinical-diagnosis-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DxDirector: an agentic large language model driving the full-process clinical diagnosis" />
+    <meta name="twitter:description" content="这篇论文抓住的是临床诊断 workflow 里的真正瓶颈：现实中的诊断不是一次性问答，而是从模糊主诉开始、经过多轮假设生成、检查选择和证据更新的过程。多数医疗 LLM 仍停留在局部咨询助手角色，无法把整条流程真正接起来。
+
+DxDirector 的价值在于把 agentic slow-thinking 明确落到完整诊断流程上。模型不是只回答某一步，而是自主决定接下来该问什么、做什么、何时需要医生执" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DxDirector: an agentic large language model driving the full-process clinical diagnosis</h1>
+          <p class="subtitle">高价值现实工作流 · 发表：2026-04-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">高价值现实工作流</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-23</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-71928-5" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-71928-5</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住的是临床诊断 workflow 里的真正瓶颈：现实中的诊断不是一次性问答，而是从模糊主诉开始、经过多轮假设生成、检查选择和证据更新的过程。多数医疗 LLM 仍停留在局部咨询助手角色，无法把整条流程真正接起来。</dd></div><div><dt>方法/机制</dt><dd>DxDirector 的价值在于把 agentic slow-thinking 明确落到完整诊断流程上。模型不是只回答某一步，而是自主决定接下来该问什么、做什么、何时需要医生执行真实临床操作，并把安全与责任边界写进系统设计。论文给出的结果表明，小模型也能在 rare disease 和复杂真实病例中压过更大的通用 / 医疗模型，同时明显减少医生介入强度。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这里改变的是一个高价值真实工作流的 operating pattern，而不是单点 medical QA 精度。对于医疗 agent、受控 delegation、长程诊断推理和高风险人机协作，这都是可复用的系统模式。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据仍主要集中在诊断场景；是否能外溢成更一般的 high-stakes agent workflow 模板，还要看后续跨医院、跨专科和实际部署验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住的是临床诊断 workflow 里的真正瓶颈：现实中的诊断不是一次性问答，而是从模糊主诉开始、经过多轮假设生成、检查选择和证据更新的过程。多数医疗 LLM 仍停留在局部咨询助手角色，无法把整条流程真正接起来。</p><p>DxDirector 的价值在于把 agentic slow-thinking 明确落到完整诊断流程上。模型不是只回答某一步，而是自主决定接下来该问什么、做什么、何时需要医生执行真实临床操作，并把安全与责任边界写进系统设计。论文给出的结果表明，小模型也能在 rare disease 和复杂真实病例中压过更大的通用 / 医疗模型，同时明显减少医生介入强度。</p><p>它值得正式收录，因为这里改变的是一个高价值真实工作流的 operating pattern，而不是单点 medical QA 精度。对于医疗 agent、受控 delegation、长程诊断推理和高风险人机协作，这都是可复用的系统模式。</p><p>它没有更高，是因为当前证据仍主要集中在诊断场景；是否能外溢成更一般的 high-stakes agent workflow 模板，还要看后续跨医院、跨专科和实际部署验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>DxDirector：一个驱动全流程临床诊断的智能体大语言模型。现实世界中的临床诊断通常始于模糊的患者主诉，这需要迭代推理和检测。尽管大语言模型（LLMs）在特定医疗查询方面提供的帮助越来越多，但它们目前缺乏自主驱动整个诊断工作流程的能力，这限制了它们显著减轻医生工作量的潜力。在本文中，我们介绍了DxDirector-7B，这是一个智能体LLM，旨在通过先进的慢思考能力来驾驭完整的诊断过程。与现有助手不同，我们的模型自主确定最佳诊断策略，仅在必要的临床操作时才请求医生干预。在涵盖罕见疾病和复杂现实世界病例的评估中，DxDirector-7B与参数显著更大的最先进医疗和通用LLMs相比，实现了卓越的诊断准确性。至关重要的是，它在大幅减少医生参与的同时，为高风险状况维护了一个强大的安全和问责框架。这些结果展示了一个范式转变，即人工智能有效地主导临床推理，提供了一个可扩展的解决方案，以提高诊断效率和可及性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Clinical diagnosis in the real world often begins with ambiguous patient complaints that require iterative reasoning and testing. While large language models (LLMs) increasingly assist with specific medical queries, they currently lack the ability to autonomously drive this entire diagnostic workflow, limiting their potential to significantly alleviate physician workload. Here we present DxDirector-7B, an agentic LLM designed to navigate the full diagnostic process through advanced slow thinking capabilities. Unlike existing assistants, our model autonomously determines optimal diagnostic strategies, requesting physician intervention only for necessary clinical operations. In evaluations spanning rare diseases and complex real-world cases, DxDirector-7B achieves superior diagnostic accuracy compared to state-of-the-art medical and general-purpose LLMs with significantly larger parameters. Crucially, it drastically reduces physician involvement while maintaining a robust safety and accountability framework for high-risk conditions. These results demonstrate a paradigm shift where AI effectively leads clinical reasoning, offering a scalable solution to enhance diagnostic efficiency and accessibility.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260423a236dxdire,
+  title = {DxDirector: an agentic large language model driving the full-process clinical diagnosis},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-71928-5.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a236-dxdirector-clinical-diagnosis-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DxDirector: an agentic large language model driving the full-process clinical diagnosis. https://www.nature.com/articles/s41467-026-71928-5.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph3-multimodal-amie-diagnostic-ai/">
+              <span>Advancing conversational diagnostic AI with multimodal reasoning</span>
+              <small>高价值现实工作流 · 2026-05-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-71928-5.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

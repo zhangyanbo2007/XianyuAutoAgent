@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit Fly | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是一个很少被真正做实的问题：完整果蝇脑 connectome 能不能直接作为 embodied reinforcement learning 的控制骨架，而不是只作为生物学可视化对象。作者把成年果蝇全脑 connectome 直接转成 whole-body locomotion controller，并和生物力学果蝇身体模型耦合，目标是检验静态 connectome 结构本身是否足以" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a9-flygm-fruit-fly-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit Fly" />
+    <meta property="og:description" content="这篇论文处理的是一个很少被真正做实的问题：完整果蝇脑 connectome 能不能直接作为 embodied reinforcement learning 的控制骨架，而不是只作为生物学可视化对象。作者把成年果蝇全脑 connectome 直接转成 whole-body locomotion controller，并和生物力学果蝇身体模型耦合，目标是检验静态 connectome 结构本身是否足以" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a9-flygm-fruit-fly-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit Fly" />
+    <meta name="twitter:description" content="这篇论文处理的是一个很少被真正做实的问题：完整果蝇脑 connectome 能不能直接作为 embodied reinforcement learning 的控制骨架，而不是只作为生物学可视化对象。作者把成年果蝇全脑 connectome 直接转成 whole-body locomotion controller，并和生物力学果蝇身体模型耦合，目标是检验静态 connectome 结构本身是否足以" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit Fly</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.17997" target="_blank" rel="noopener noreferrer">2602.17997</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是一个很少被真正做实的问题：完整果蝇脑 connectome 能不能直接作为 embodied reinforcement learning 的控制骨架，而不是只作为生物学可视化对象。作者把成年果蝇全脑 connectome 直接转成 whole-body locomotion controller，并和生物力学果蝇身体模型耦合，目标是检验静态 connectome 结构本身是否足以支持稳定的运动控制。</dd></div><div><dt>方法/机制</dt><dd>方法上的新意在于 `FlyGM`：它不重新发明一个任务专用策略网络，而是把果蝇全脑连接结构固定为 directed message-passing graph，让信息从感觉输入到运动输出沿着 connectome 流动。论文再把这个控制器接到 embodied RL 训练里，并和 degree-preserving rewired graph、random graph、MLP 等结构做对照，以验证“真实 connectome 拓扑”本身是否带来样本效率和最终性能优势。</dd></div><div><dt>结果/证据</dt><dd>这篇值得放进仓库，是因为它把 connectome、graph model、embodied control 三件事真正接到了一起。它不是单纯的神经科学分析，也不是常规机器人控制调参，而是一个很明确的“脑连接结构能不能作为控制归纳偏置”的实验平台。按仓库标准，我把它放在突破性：它对 brain-inspired control 和 connectome-as-policy 方向有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因也明确：目前仍是 arXiv 工作，任务范围集中在 locomotion，离“完整虚拟果蝇”或更广泛的通用 embodied intelligence 还有距离。它更像一篇非常值得跟的强论文，而不是已经改写整条路线图的范式级成果。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是一个很少被真正做实的问题：完整果蝇脑 connectome 能不能直接作为 embodied reinforcement learning 的控制骨架，而不是只作为生物学可视化对象。作者把成年果蝇全脑 connectome 直接转成 whole-body locomotion controller，并和生物力学果蝇身体模型耦合，目标是检验静态 connectome 结构本身是否足以支持稳定的运动控制。</p><p>方法上的新意在于 `FlyGM`：它不重新发明一个任务专用策略网络，而是把果蝇全脑连接结构固定为 directed message-passing graph，让信息从感觉输入到运动输出沿着 connectome 流动。论文再把这个控制器接到 embodied RL 训练里，并和 degree-preserving rewired graph、random graph、MLP 等结构做对照，以验证“真实 connectome 拓扑”本身是否带来样本效率和最终性能优势。</p><p>这篇值得放进仓库，是因为它把 connectome、graph model、embodied control 三件事真正接到了一起。它不是单纯的神经科学分析，也不是常规机器人控制调参，而是一个很明确的“脑连接结构能不能作为控制归纳偏置”的实验平台。按仓库标准，我把它放在突破性：它对 brain-inspired control 和 connectome-as-policy 方向有明显外溢价值。</p><p>它还不到更高一级，原因也明确：目前仍是 arXiv 工作，任务范围集中在 locomotion，离“完整虚拟果蝇”或更广泛的通用 embodied intelligence 还有距离。它更像一篇非常值得跟的强论文，而不是已经改写整条路线图的范式级成果。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文介绍了AutoBS，一个基于强化学习（RL）的框架，用于在6G无线接入网络（RAN）中优化基站（BS）部署。AutoBS利用近端策略优化（PPO）算法以及来自PMNet的快速、特定站点的路径损耗预测，PMNet是一个用于数字网络孪生（DNT）的生成模型。通过高效学习平衡覆盖和容量的部署策略，AutoBS在单基站场景中实现了穷举搜索约95%的容量（在多基站场景中为90%），同时将推理时间从数小时缩短到毫秒，使其非常适合实时应用（例如，ad-hoc部署）。因此，AutoBS为大规模6G网络提供了一个可扩展的自动化解决方案，以极小的计算开销满足动态环境的需求。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper introduces AutoBS, a reinforcement learning (RL)-based framework for optimal base station (BS) deployment in 6G radio access networks (RAN). AutoBS leverages the Proximal Policy Optimization (PPO) algorithm and fast, site-specific pathloss predictions from PMNet—a generative model for digital network twins (DNT). By efficiently learning deployment strategies that balance coverage and capacity, AutoBS achieves about 95% of the capacity of exhaustive search in single BS scenarios (and in 90% for multiple BSs), while cutting inference time from hours to milliseconds, making it highly suitable for real-time applications (e.g., ad-hoc deployments). AutoBS therefore provides a scalable, automated solution for large-scale 6G networks, meeting the demands of dynamic environments with minimal computational overhead.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260220a9flygmfru,
+  title = {Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit Fly},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.17997.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a9-flygm-fruit-fly-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Whole-Brain Connectomic Graph Model Enables Whole-Body Locomotion Control in Fruit Fly. https://arxiv.org/pdf/2602.17997.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.17997.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

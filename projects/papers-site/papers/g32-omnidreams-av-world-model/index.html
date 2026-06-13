@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation | DAST Papers</title>
+    <meta name="description" content="自动驾驶闭环仿真的瓶颈是 policy 会改变环境状态，传统重建式 neural simulator 受限于初始采集数据，很难生成未观测长尾场景。
+
+OmniDreams 从 Cosmos diffusion world model 出发，经 21k 小时驾驶场景中/后训练，实现实时 action-conditioned video generation，让驾驶策略能与生成环境闭环交互。
+
+它值得" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g32-omnidreams-av-world-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation" />
+    <meta property="og:description" content="自动驾驶闭环仿真的瓶颈是 policy 会改变环境状态，传统重建式 neural simulator 受限于初始采集数据，很难生成未观测长尾场景。
+
+OmniDreams 从 Cosmos diffusion world model 出发，经 21k 小时驾驶场景中/后训练，实现实时 action-conditioned video generation，让驾驶策略能与生成环境闭环交互。
+
+它值得" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g32-omnidreams-av-world-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation" />
+    <meta name="twitter:description" content="自动驾驶闭环仿真的瓶颈是 policy 会改变环境状态，传统重建式 neural simulator 受限于初始采集数据，很难生成未观测长尾场景。
+
+OmniDreams 从 Cosmos diffusion world model 出发，经 21k 小时驾驶场景中/后训练，实现实时 action-conditioned video generation，让驾驶策略能与生成环境闭环交互。
+
+它值得" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-06-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.03159" target="_blank" rel="noopener noreferrer">2606.03159</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>自动驾驶闭环仿真的瓶颈是 policy 会改变环境状态，传统重建式 neural simulator 受限于初始采集数据，很难生成未观测长尾场景。</dd></div><div><dt>方法/机制</dt><dd>OmniDreams 从 Cosmos diffusion world model 出发，经 21k 小时驾驶场景中/后训练，实现实时 action-conditioned video generation，让驾驶策略能与生成环境闭环交互。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把生成式世界模型推进到自动驾驶闭环评测场景，是 world model 从视频生成走向交互式安全仿真的重要系统方向。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>自动驾驶闭环仿真的瓶颈是 policy 会改变环境状态，传统重建式 neural simulator 受限于初始采集数据，很难生成未观测长尾场景。</p><p>OmniDreams 从 Cosmos diffusion world model 出发，经 21k 小时驾驶场景中/后训练，实现实时 action-conditioned video generation，让驾驶策略能与生成环境闭环交互。</p><p>它值得收录，因为它把生成式世界模型推进到自动驾驶闭环评测场景，是 world model 从视频生成走向交互式安全仿真的重要系统方向。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>随着自动驾驶（AV）能力的不断发展，在长尾场景下安全评估驾驶策略仍然是一个关键瓶颈。在闭环仿真中，驾驶策略模型主动与环境交互，其动作动态更新仿真器状态并直接影响下一组生成的传感器观测。虽然最近基于重构的神经仿真器提供了照片级真实感，但它们本质上受到其初始捕获数据和约束，难以泛化到高度动态或新颖场景。为了克服这些限制，我们引入了OmniDreams，这是一个从Cosmos扩散模型中进行中后期训练的生成世界模型，能够实时生成动作条件下的视频。通过利用Cosmos的丰富视觉先验以及在21k小时的驾驶场景中进行中后期训练，OmniDreams能够合成传统仿真器难以捕捉的复杂、未观察到的现象，例如极端天气和不可预测的动态代理行为。关键的是，它自回归地根据过去的帧、当前仿真器状态和即时驾驶动作来条件其照片级真实感传感器生成。在Alpamayo 1策略模型和AlpaSim协调器中闭环系统中的部署中，OmniDreams充当一个高度响应式、反应性强的环境，为训练和评估下一代自动驾驶策略提供了一个可扩展和全面的解决方案。我们还展示了初步结果表明，从OmniDreams中进行中后期训练的世界-动作模型（WAM）在Physical AI Autonomous Vehicles NuRec数据集上取得了强劲的性能，优于基于VLA的Alpamayo 1.5研究策略模型，同时仅使用1/5的总参数。这些结果凸显了像OmniDreams这样实时世界模型作为策略架构背骨的潜力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>As autonomous vehicle (AV) capabilities advance, the safe evaluation of driving policies in long-tail scenarios remains a critical bottleneck. In closed-loop simulation, the driving policy model actively interacts with the environment, where its actions dynamically update the simulator state and directly influence the next set of generated sensor observations. While recent reconstruction-based neural simulators offer photorealism, they are fundamentally constrained by their initial captured data and struggle to generalize to highly dynamic or novel scenes. To overcome these limitations, we introduce OmniDreams, a foundation generative world model mid- and post-trained from the Cosmos diffusion model to autoregressively generate action-conditioned videos in real time. By leveraging the rich visual priors of Cosmos and mid- and post-training on 21k hours of driving scenarios, OmniDreams synthesizes complex, unobserved phenomena that are hard for traditional simulators to capture, such as extreme weather and unpredictable dynamic agent behaviors. Crucially, it autoregressively conditions its photorealistic sensor generation on past frames, the current simulator state, and immediate driving actions. Deployed in a closed-loop system with the Alpamayo 1 policy model and AlpaSim orchestrator, OmniDreams acts as a highly responsive, reactive environment, providing a scalable and comprehensive solution for training and evaluating next-generation autonomous driving policies. We additionally show preliminary results indicating that a world-action model (WAM) post-trained from OmniDreams achieves strong performance on the Physical AI Autonomous Vehicles NuRec dataset, surpassing the VLA-based Alpamayo 1.5 research policy model while using only 1/5 the total parameters. These results highlight the potential for a real-time world model like OmniDreams to also serve as a backbone for policy architectures.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260602g32omnidre,
+  title = {NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.03159.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g32-omnidreams-av-world-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation. https://arxiv.org/pdf/2606.03159.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/g24-scope-cross-game-fps-world-models/">
+              <span>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</span>
+              <small>生成建模与扩散 · 2026-05-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.03159.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.03159" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

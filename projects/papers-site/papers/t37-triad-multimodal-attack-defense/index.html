@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Surviving the Unseen: Predictive Defense for Novel Multi-Turn Multimodal Attacks | DAST Papers</title>
+    <meta name="description" content="TRIAD 针对多轮多模态攻击的非平稳性：恶意意图可以分散在长程对话和跨模态扰动中，单 turn guardrail 容易漏检。
+
+论文把安全验证建模为 trajectory-level survival prediction，结合结构异常、正则化 Mahalanobis 距离、拓扑轨迹加速度和 Cox/HMM 风险反馈。
+
+它值得正式收录，因为它给出了从静态 moderation 到连续风险预测" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t37-triad-multimodal-attack-defense/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Surviving the Unseen: Predictive Defense for Novel Multi-Turn Multimodal Attacks" />
+    <meta property="og:description" content="TRIAD 针对多轮多模态攻击的非平稳性：恶意意图可以分散在长程对话和跨模态扰动中，单 turn guardrail 容易漏检。
+
+论文把安全验证建模为 trajectory-level survival prediction，结合结构异常、正则化 Mahalanobis 距离、拓扑轨迹加速度和 Cox/HMM 风险反馈。
+
+它值得正式收录，因为它给出了从静态 moderation 到连续风险预测" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t37-triad-multimodal-attack-defense/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Surviving the Unseen: Predictive Defense for Novel Multi-Turn Multimodal Attacks" />
+    <meta name="twitter:description" content="TRIAD 针对多轮多模态攻击的非平稳性：恶意意图可以分散在长程对话和跨模态扰动中，单 turn guardrail 容易漏检。
+
+论文把安全验证建模为 trajectory-level survival prediction，结合结构异常、正则化 Mahalanobis 距离、拓扑轨迹加速度和 Cox/HMM 风险反馈。
+
+它值得正式收录，因为它给出了从静态 moderation 到连续风险预测" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Surviving the Unseen: Predictive Defense for Novel Multi-Turn Multimodal Attacks</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.18988" target="_blank" rel="noopener noreferrer">2605.18988</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>TRIAD 针对多轮多模态攻击的非平稳性：恶意意图可以分散在长程对话和跨模态扰动中，单 turn guardrail 容易漏检。</dd></div><div><dt>方法/机制</dt><dd>论文把安全验证建模为 trajectory-level survival prediction，结合结构异常、正则化 Mahalanobis 距离、拓扑轨迹加速度和 Cox/HMM 风险反馈。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它给出了从静态 moderation 到连续风险预测的安全框架，适合 agentic multimodal workflows。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为理论框架很强，但需要更大规模真实攻击、延迟开销和误报率评估来确认部署价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>TRIAD 针对多轮多模态攻击的非平稳性：恶意意图可以分散在长程对话和跨模态扰动中，单 turn guardrail 容易漏检。</p><p>论文把安全验证建模为 trajectory-level survival prediction，结合结构异常、正则化 Mahalanobis 距离、拓扑轨迹加速度和 Cox/HMM 风险反馈。</p><p>它值得正式收录，因为它给出了从静态 moderation 到连续风险预测的安全框架，适合 agentic multimodal workflows。</p><p>它没有更高，是因为理论框架很强，但需要更大规模真实攻击、延迟开销和误报率评估来确认部署价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多模态大语言模型（MLLMs）的扩展及其与自主智能体工作流的整合引入了一个非平稳的攻击面。经验观察表明，攻击者采用渐进的、跨模态的扰动，通过将恶意意图分布在纵向对话轨迹中来规避回合特定的防护措施。受马尔可夫性质限制的静态防御机制孤立地评估输入，无法检测累积的结构性毒化。为了解决这一局限性，本文将安全验证表述为一个动态生存预测和轨迹动力学问题。提出了三层异常防御（TRIAD）框架，作为一个预测模型，将多模态和多轮对话流映射为连续轨迹。该框架集成了结构异常检测以监测协方差偏移，一个Ledoit-Wolf正则化的马哈拉诺比斯距离以监测高维空间中的协方差偏移，以及拓扑轨迹加速度以区分良性创意探索与持续恶意漂移。这些运动学和几何特征通过贝叶斯隐马尔可夫模型（HMM）反馈循环集成到时变Cox比例风险模型中。理论分析表明，TRIAD框架在对抗性扰动下提供了数学上有界的预期失效时间，确保恶意加速度正向发散。该框架为实时智能体AI系统提供了一种计算高效、可解释和预测性的安全保障，为持续安全对齐奠定了严格的基础，而无需依赖经验性再训练。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The expansion of Multimodal Large Language Models (MLLMs) and their integration into autonomous agentic workflows has introduced a non-stationary attack surface. Empirical observations indicate that adversaries employ progressive, cross-modal perturbations that evade turn-specific guardrails by distributing malicious intent across longitudinal conversational trajectories. Static defense mechanisms, constrained by the Markov property, evaluate inputs in isolation and fail to detect cumulative structural poisoning. To handle this limitation, this paper formulates safety verification as a dynamic survival prediction and trajectory dynamics problem. The Triple-tier Anomaly Defense (TRIAD) framework is proposed as a predictive model that maps multimodal and multi-turn conversational flow as a continuous trajectory. The framework integrates structural anomaly detection to monitor covariance shifts, a Ledoit-Wolf regularized Mahalanobis distance to monitor covariance shifts in high-dimensional spaces, and topological trajectory acceleration to differentiate benign creative exploration from continuous malicious drift. These kinematic and geometric features are integrated into a time-varying Cox Proportional Hazards model via a Bayesian Hidden Markov Model (HMM) feedback loop. Theoretical analysis demonstrates that the TRIAD framework provides a mathematically bounded expected time-to-failure under adversarial perturbations, ensuring that malicious acceleration diverges positively. This framework provides a computationally efficient, interpretable, and predictive safeguard for real-time agentic AI systems, establishing a rigorous foundation for continuous safety alignment without relying on empirical retraining.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520t37triadmu,
+  title = {Surviving the Unseen: Predictive Defense for Novel Multi-Turn Multimodal Attacks},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.18988.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t37-triad-multimodal-attack-defense/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Surviving the Unseen: Predictive Defense for Novel Multi-Turn Multimodal Attacks. https://arxiv.org/pdf/2605.18988.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.18988.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

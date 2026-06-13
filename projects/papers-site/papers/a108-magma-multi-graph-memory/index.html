@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MAGMA: A Multi-Graph based Agentic Memory Architecture for AI Agents | DAST Papers</title>
+    <meta name="description" content="很多 agent memory 系统虽然名义上支持长期记忆，但底层仍把不同类型的关系都压进单一 memory store，再依赖语义相似度或统一索引来检索。这会把时间、因果、实体和语义线索纠缠在一起，导致查询意图和被召回证据之间经常错位，尤其在长程多跳问题上会出现看似相关、实则结构不匹配的检索结果。
+
+MAGMA 的核心新意是把每条 memory item 同时表示在多种正交关系图上：semant" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a108-magma-multi-graph-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MAGMA: A Multi-Graph based Agentic Memory Architecture for AI Agents" />
+    <meta property="og:description" content="很多 agent memory 系统虽然名义上支持长期记忆，但底层仍把不同类型的关系都压进单一 memory store，再依赖语义相似度或统一索引来检索。这会把时间、因果、实体和语义线索纠缠在一起，导致查询意图和被召回证据之间经常错位，尤其在长程多跳问题上会出现看似相关、实则结构不匹配的检索结果。
+
+MAGMA 的核心新意是把每条 memory item 同时表示在多种正交关系图上：semant" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a108-magma-multi-graph-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MAGMA: A Multi-Graph based Agentic Memory Architecture for AI Agents" />
+    <meta name="twitter:description" content="很多 agent memory 系统虽然名义上支持长期记忆，但底层仍把不同类型的关系都压进单一 memory store，再依赖语义相似度或统一索引来检索。这会把时间、因果、实体和语义线索纠缠在一起，导致查询意图和被召回证据之间经常错位，尤其在长程多跳问题上会出现看似相关、实则结构不匹配的检索结果。
+
+MAGMA 的核心新意是把每条 memory item 同时表示在多种正交关系图上：semant" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MAGMA: A Multi-Graph based Agentic Memory Architecture for AI Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.03236" target="_blank" rel="noopener noreferrer">2601.03236</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 agent memory 系统虽然名义上支持长期记忆，但底层仍把不同类型的关系都压进单一 memory store，再依赖语义相似度或统一索引来检索。这会把时间、因果、实体和语义线索纠缠在一起，导致查询意图和被召回证据之间经常错位，尤其在长程多跳问题上会出现看似相关、实则结构不匹配的检索结果。</dd></div><div><dt>方法/机制</dt><dd>MAGMA 的核心新意是把每条 memory item 同时表示在多种正交关系图上：semantic、temporal、causal 和 entity graph。系统把 retrieval 从“在同一个库里做一次相似度搜索”改写为“在多视图关系结构上做 policy-guided traversal”，按当前 query 的需求选择不同关系视角并组装结构化上下文。这让 memory representation 与 retrieval logic 显式解耦，也使 reasoning path 更透明。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是又一个 graph memory 名字，而是对 agent memory architecture 的清晰重写：不同关系应该分层表达，检索应该是 query-adaptive graph traversal，而不是把所有东西混到一个 embedding space 再让 reranker 硬救。对长期 agent、profile memory 和结构化 retrieval 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，因为证据主要来自 arXiv 阶段和 LoCoMo/LongMemEval 一类 benchmark，离成为长期 memory 默认架构还有距离；同时 policy-guided traversal 的稳定性、成本和更开放场景泛化能力仍需更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 agent memory 系统虽然名义上支持长期记忆，但底层仍把不同类型的关系都压进单一 memory store，再依赖语义相似度或统一索引来检索。这会把时间、因果、实体和语义线索纠缠在一起，导致查询意图和被召回证据之间经常错位，尤其在长程多跳问题上会出现看似相关、实则结构不匹配的检索结果。</p><p>MAGMA 的核心新意是把每条 memory item 同时表示在多种正交关系图上：semantic、temporal、causal 和 entity graph。系统把 retrieval 从“在同一个库里做一次相似度搜索”改写为“在多视图关系结构上做 policy-guided traversal”，按当前 query 的需求选择不同关系视角并组装结构化上下文。这让 memory representation 与 retrieval logic 显式解耦，也使 reasoning path 更透明。</p><p>它值得正式收录，因为这不是又一个 graph memory 名字，而是对 agent memory architecture 的清晰重写：不同关系应该分层表达，检索应该是 query-adaptive graph traversal，而不是把所有东西混到一个 embedding space 再让 reranker 硬救。对长期 agent、profile memory 和结构化 retrieval 都有明显外溢。</p><p>它目前仍是 breakthrough，因为证据主要来自 arXiv 阶段和 LoCoMo/LongMemEval 一类 benchmark，离成为长期 memory 默认架构还有距离；同时 policy-guided traversal 的稳定性、成本和更开放场景泛化能力仍需更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MAGMA：一种基于多图的AI智能体记忆架构。记忆增强生成（MAG）通过外部记忆扩展大型语言模型（LLMs）以支持长上下文推理，但现有方法主要依赖于对单一记忆存储的语义相似性，从而纠缠了时间、因果和实体信息。这种设计限制了解释性以及查询意图与检索到的证据之间的对齐，导致次优的推理准确性。在本文中，我们提出了MAGMA，一种多图智能体记忆架构，它在正交的语义图、时间图、因果图和实体图上表示每个记忆项。MAGMA将检索表述为在这些关系视图上的策略引导遍历，从而实现查询自适应选择和结构化上下文构建。通过将记忆表示与检索逻辑解耦，MAGMA提供了透明的推理路径和对检索的细粒度控制。在LoCoMo和LongMemEval上的实验表明，MAGMA在长程推理任务中始终优于最先进的智能体记忆系统。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Memory-Augmented Generation (MAG) extends Large Language Models with external memory to support long-context reasoning, but existing approaches largely rely on semantic similarity over monolithic memory stores, entangling temporal, causal, and entity information. This design limits interpretability and alignment between query intent and retrieved evidence, leading to suboptimal reasoning accuracy. In this paper, we propose MAGMA, a multi-graph agentic memory architecture that represents each memory item across orthogonal semantic, temporal, causal, and entity graphs. MAGMA formulates retrieval as policy-guided traversal over these relational views, enabling query-adaptive selection and structured context construction. By decoupling memory representation from retrieval logic, MAGMA provides transparent reasoning paths and fine-grained control over retrieval. Experiments on LoCoMo and LongMemEval demonstrate that MAGMA consistently outperforms state-of-theart agentic memory systems in long-horizon reasoning tasks.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260106a108magmam,
+  title = {MAGMA: A Multi-Graph based Agentic Memory Architecture for AI Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.03236.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a108-magma-multi-graph-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MAGMA: A Multi-Graph based Agentic Memory Architecture for AI Agents. https://arxiv.org/pdf/2601.03236.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.03236.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

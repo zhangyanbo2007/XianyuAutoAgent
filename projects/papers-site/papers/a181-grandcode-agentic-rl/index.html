@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GrandCode: Achieving Grandmaster Level in Competitive Programming via Agentic Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文关注 competitive programming 这一高难代码推理场景。单模型代码生成在复杂竞赛题中容易受限于思路提出、反例构造、测试生成、修补和长程验证之间的耦合，而普通 pass@k 或静态 SFT/RL 很难覆盖真实竞赛中的多阶段搜索过程。
+
+GrandCode 将解题系统组织成多模块 agentic workflow，并引入 Agentic GRPO 来处理多阶段 agent " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a181-grandcode-agentic-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="GrandCode: Achieving Grandmaster Level in Competitive Programming via Agentic Reinforcement Learning" />
+    <meta property="og:description" content="这篇论文关注 competitive programming 这一高难代码推理场景。单模型代码生成在复杂竞赛题中容易受限于思路提出、反例构造、测试生成、修补和长程验证之间的耦合，而普通 pass@k 或静态 SFT/RL 很难覆盖真实竞赛中的多阶段搜索过程。
+
+GrandCode 将解题系统组织成多模块 agentic workflow，并引入 Agentic GRPO 来处理多阶段 agent " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a181-grandcode-agentic-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GrandCode: Achieving Grandmaster Level in Competitive Programming via Agentic Reinforcement Learning" />
+    <meta name="twitter:description" content="这篇论文关注 competitive programming 这一高难代码推理场景。单模型代码生成在复杂竞赛题中容易受限于思路提出、反例构造、测试生成、修补和长程验证之间的耦合，而普通 pass@k 或静态 SFT/RL 很难覆盖真实竞赛中的多阶段搜索过程。
+
+GrandCode 将解题系统组织成多模块 agentic workflow，并引入 Agentic GRPO 来处理多阶段 agent " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>GrandCode: Achieving Grandmaster Level in Competitive Programming via Agentic Reinforcement Learning</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-03</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.02721" target="_blank" rel="noopener noreferrer">2604.02721</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注 competitive programming 这一高难代码推理场景。单模型代码生成在复杂竞赛题中容易受限于思路提出、反例构造、测试生成、修补和长程验证之间的耦合，而普通 pass@k 或静态 SFT/RL 很难覆盖真实竞赛中的多阶段搜索过程。</dd></div><div><dt>方法/机制</dt><dd>GrandCode 将解题系统组织成多模块 agentic workflow，并引入 Agentic GRPO 来处理多阶段 agent rollout、延迟奖励和严重 off-policy drift。系统包含假设提出、solver、test generator、summarization 等 agent 模块，通过 post-training 与在线 test-time RL 联合改进，而不是只训练一个单次生成器。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 RLVR/GRPO 明确扩展到多阶段 agent 系统训练，并用 live Codeforces 竞赛作为高压评测场景。论文声称在连续三场 Codeforces live rounds 中排名第一，这使它成为 agentic RL 用于复杂代码推理和竞赛式搜索的高价值参考，不只是普通代码模型榜单。</dd></div><div><dt>收录价值</dt><dd>它不是更高一级，因为结果仍需要更多第三方复核和可复现实验；competitive programming 也是相对特殊的可验证、强测试驱动环境，Agentic GRPO 是否能迁移到开放软件工程、科学研究或网页 agent 任务仍需后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注 competitive programming 这一高难代码推理场景。单模型代码生成在复杂竞赛题中容易受限于思路提出、反例构造、测试生成、修补和长程验证之间的耦合，而普通 pass@k 或静态 SFT/RL 很难覆盖真实竞赛中的多阶段搜索过程。</p><p>GrandCode 将解题系统组织成多模块 agentic workflow，并引入 Agentic GRPO 来处理多阶段 agent rollout、延迟奖励和严重 off-policy drift。系统包含假设提出、solver、test generator、summarization 等 agent 模块，通过 post-training 与在线 test-time RL 联合改进，而不是只训练一个单次生成器。</p><p>它值得收录，因为它把 RLVR/GRPO 明确扩展到多阶段 agent 系统训练，并用 live Codeforces 竞赛作为高压评测场景。论文声称在连续三场 Codeforces live rounds 中排名第一，这使它成为 agentic RL 用于复杂代码推理和竞赛式搜索的高价值参考，不只是普通代码模型榜单。</p><p>它不是更高一级，因为结果仍需要更多第三方复核和可复现实验；competitive programming 也是相对特殊的可验证、强测试驱动环境，Agentic GRPO 是否能迁移到开放软件工程、科学研究或网页 agent 任务仍需后续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>竞技编程仍然是人类在与AI编码对抗中少数几个据点之一。迄今为止，最好的AI系统在竞技编程方面仍然不如最优秀的人类：最近的最佳结果，谷歌的Gemini 3 Deep Think，即使在非实时比赛条件下评估，也只获得了第8名。在这项工作中，我们介绍了GrandCode，一个专为竞技编程设计的多智能体强化学习系统。GrandCode的能力归因于两个关键因素：(1) 它协调各种智能体模块（假设提出、求解器、测试生成器、摘要等），并通过后训练和在线测试时强化学习共同改进它们；(2) 我们引入了Agentic GRPO，专门为具有延迟奖励和在智能体强化学习中普遍存在的严重离策略漂移的多阶段智能体推出而设计。GrandCode是第一个在竞技编程实时比赛中始终击败所有人类参与者的AI系统：在最近的三场Codeforces实时比赛中，即Round 1087（2026年3月21日）、Round 1088（2026年3月28日）和Round 1089（2026年3月29日），GrandCode在所有比赛中均获得第一名，击败了包括传奇特级大师在内的所有人类参与者。GrandCode表明，AI系统已经达到了在最具竞争力的编码任务上超越最强人类程序员的水平。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Competitive programming remains one of the last few human strongholds in coding against AI. The best AI system to date still underperforms the best humans competitive programming: the most recent best result, Google’s Gemini 3 Deep Think, attained 8th place even not being evaluated under live competition conditions. In this work, we introduce GrandCode, a multi-agent RL system designed for competitive programming. The capability of GrandCode is attributed to two key factors: (1) It orchestrates a variety of agentic modules (hypothesis proposal, solver, test generator, summarization, etc) and jointly improves them through post-training and online test-time RL; (2) We introduce Agentic GRPO specifically designed for multi-stage agent rollouts with delayed rewards and the severe off-policy drift that is prevalent in agentic RL. GrandCode is the first AI system that consistently beats all human participants in live contests of competitive programming: in the most recent three Codeforces live competitions, i.e., Round 1087 (Mar 21, 2026), Round 1088 (Mar 28, 2026), and Round 1089 (Mar 29, 2026), GrandCode placed first in all of them, beating all human participants, including legendary grandmasters. GrandCode shows that AI systems have reached a point where they surpass the strongest human programmers on the most competitive coding tasks.B</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260403a181grandc,
+  title = {GrandCode: Achieving Grandmaster Level in Competitive Programming via Agentic Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.02721.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a181-grandcode-agentic-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). GrandCode: Achieving Grandmaster Level in Competitive Programming via Agentic Reinforcement Learning. https://arxiv.org/pdf/2604.02721.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.02721.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

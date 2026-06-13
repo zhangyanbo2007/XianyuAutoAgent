@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VL-JEPA: Joint Embedding Predictive Architecture for Vision-language | DAST Papers</title>
+    <meta name="description" content="这篇论文把 JEPA 路线正式推到了 vision-language 模型。核心思路是：与其像传统 VLM 那样在 token 空间里自回归生成文本，不如直接预测文本的连续 embedding。这样模型学习的是更抽象的语义空间，而不是被表面词形和解码过程牵着走。
+
+方法上，`VL-JEPA` 在视觉到语言的映射中预测 target text embedding，并只在需要输出文本时调用一个轻量 d" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j2-vl-jepa/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VL-JEPA: Joint Embedding Predictive Architecture for Vision-language" />
+    <meta property="og:description" content="这篇论文把 JEPA 路线正式推到了 vision-language 模型。核心思路是：与其像传统 VLM 那样在 token 空间里自回归生成文本，不如直接预测文本的连续 embedding。这样模型学习的是更抽象的语义空间，而不是被表面词形和解码过程牵着走。
+
+方法上，`VL-JEPA` 在视觉到语言的映射中预测 target text embedding，并只在需要输出文本时调用一个轻量 d" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j2-vl-jepa/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VL-JEPA: Joint Embedding Predictive Architecture for Vision-language" />
+    <meta name="twitter:description" content="这篇论文把 JEPA 路线正式推到了 vision-language 模型。核心思路是：与其像传统 VLM 那样在 token 空间里自回归生成文本，不如直接预测文本的连续 embedding。这样模型学习的是更抽象的语义空间，而不是被表面词形和解码过程牵着走。
+
+方法上，`VL-JEPA` 在视觉到语言的映射中预测 target text embedding，并只在需要输出文本时调用一个轻量 d" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VL-JEPA: Joint Embedding Predictive Architecture for Vision-language</h1>
+          <p class="subtitle">JEPA 与预测式世界模型 · 发表：2026-02-02</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">JEPA 与预测式世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-02</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.10942" target="_blank" rel="noopener noreferrer">2512.10942</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 JEPA 路线正式推到了 vision-language 模型。核心思路是：与其像传统 VLM 那样在 token 空间里自回归生成文本，不如直接预测文本的连续 embedding。这样模型学习的是更抽象的语义空间，而不是被表面词形和解码过程牵着走。</dd></div><div><dt>方法/机制</dt><dd>方法上，`VL-JEPA` 在视觉到语言的映射中预测 target text embedding，并只在需要输出文本时调用一个轻量 decoder。这个设计带来两个直接好处：一是训练参数更少；二是推理时可以做 selective decoding，只在必要的时候进行文本解码，而不是对每个步骤都完整生成 token。</dd></div><div><dt>结果/证据</dt><dd>它的重要性在于，这是 JEPA 主线向 VLM 替代路线的一次明确尝试。摘要里给出的收益也很实在：同样的数据和视觉编码器下，相比标准 token-space VLM 训练性能更强，可训练参数减少约一半，同时 selective decoding 将解码操作数降到原来的约三分之一。除此之外，它的 embedding space 还能自然支持检索、开放词汇分类和判别式 VQA。</dd></div><div><dt>收录价值</dt><dd>我会把这篇定位成突破性，而不是更高。原因是它目前更像一条很强的替代路线证明，而不是已经坐实的新标准。但如果 JEPA 真要进入多模态主线，这篇会是必须回看的代表作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 JEPA 路线正式推到了 vision-language 模型。核心思路是：与其像传统 VLM 那样在 token 空间里自回归生成文本，不如直接预测文本的连续 embedding。这样模型学习的是更抽象的语义空间，而不是被表面词形和解码过程牵着走。</p><p>方法上，`VL-JEPA` 在视觉到语言的映射中预测 target text embedding，并只在需要输出文本时调用一个轻量 decoder。这个设计带来两个直接好处：一是训练参数更少；二是推理时可以做 selective decoding，只在必要的时候进行文本解码，而不是对每个步骤都完整生成 token。</p><p>它的重要性在于，这是 JEPA 主线向 VLM 替代路线的一次明确尝试。摘要里给出的收益也很实在：同样的数据和视觉编码器下，相比标准 token-space VLM 训练性能更强，可训练参数减少约一半，同时 selective decoding 将解码操作数降到原来的约三分之一。除此之外，它的 embedding space 还能自然支持检索、开放词汇分类和判别式 VQA。</p><p>我会把这篇定位成突破性，而不是更高。原因是它目前更像一条很强的替代路线证明，而不是已经坐实的新标准。但如果 JEPA 真要进入多模态主线，这篇会是必须回看的代表作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>* 共同贡献 delong.chen@connect.ust.hk 我们引入了VL-JEPA，这是一种基于联合嵌入预测架构（JEPA）的视觉-语言模型。与经典VLM中自回归生成token不同，VL-JEPA预测目标文本的连续嵌入。通过在抽象表示空间中学习，该模型专注于与任务相关的语义，同时抽象掉表层语言变异性。在与使用相同视觉编码器和训练数据的标准token空间VLM训练进行严格控制的比较中，VL-JEPA实现了更强的性能，同时可训练参数减少了50%。在推理时，仅在需要时才调用轻量级文本解码器，将VL-JEPA预测的嵌入转换为文本。我们展示了VL-JEPA原生支持选择性解码，与非自适应均匀解码相比，它将解码操作次数减少了约2.85倍，同时保持了相似的性能。除了生成之外，VL-JEPA的嵌入空间自然支持开放词汇分类、文本到视频检索以及判别式VQA，无需任何架构修改。在八个视频分类和八个视频检索数据集上，VL-JEPA的平均性能超越了CLIP、SigLIP2和Perception Encoder。同时，尽管该模型仅有1.6B参数，但在四个VQA数据集（GQA、TallyQA、POPE和POPEv2）上，其性能与经典VLM（InstructBLIP、QwenVL）相当。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>* Equal contribution delong.chen@connect.ust.hk We introduce VL-JEPA, a vision-language model built on a Joint Embedding Predictive Architecture (JEPA). Instead of autoregressively generating tokens as in classical VLMs, VL-JEPA predicts continuous embeddings of the target texts. By learning in an abstract representation space, the model focuses on task-relevant semantics while abstracting away surface-level linguistic variability. In a strictly controlled comparison against standard token-space VLM training with the same vision encoder and training data, VL-JEPA achieves stronger performance while having 50% fewer trainable parameters. At inference time, a lightweight text decoder is invoked only when needed to translate VL-JEPA predicted embeddings into text. We show that VL-JEPA natively supports selective decoding that reduces the number of decoding operations by ∼2.85× while maintaining similar performance compared to non-adaptive uniform decoding. Beyond generation, the VL-JEPA’s embedding space naturally supports open-vocabulary classification, text-to-video retrieval, and discriminative VQA without any architecture modification. On eight video classification and eight video retrieval datasets, the average performance VL-JEPA surpasses that of CLIP, SigLIP2, and Perception Encoder. At the same time, the model achieves comparable performance as classical VLMs (InstructBLIP, QwenVL) on four VQA datasets: GQA, TallyQA, POPE and POPEv2, despite only having 1.6B parameters.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260202j2vljepa,
+  title = {VL-JEPA: Joint Embedding Predictive Architecture for Vision-language},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2512.10942.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j2-vl-jepa/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VL-JEPA: Joint Embedding Predictive Architecture for Vision-language. https://arxiv.org/pdf/2512.10942.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/j9-worldmark-interactive-world-model-benchmark/">
+              <span>WorldMark: A Unified Benchmark Suite for Interactive Video World Models</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j14-deltaworld-delta-tokens/">
+              <span>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-06</small>
+            </a>
+            <a class="related-item" href="../../papers/j13-wildworld-action-state-dataset/">
+              <span>WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j10-seoul-world-model/">
+              <span>Grounding World Simulation Models in a Real-World Metropolis</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-16</small>
+            </a>
+            <a class="related-item" href="../../papers/j12-v-jepa-2-1-dense-features/">
+              <span>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-15</small>
+            </a>
+            <a class="related-item" href="../../papers/j11-leworldmodel-stable-pixel-jepa/">
+              <span>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-13</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.10942.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning from Many and Adapting to the Unknown in Open-set Test Streams | DAST Papers</title>
+    <meta name="description" content="LLM 在真实部署里面对的往往不是静态测试集，而是不断变化、混合已知与未知任务的开放测试流。传统 test-time adaptation 多半依赖手工设计的无监督目标，并直接在全参数空间上更新，结果容易破坏源域知识，也缺少对非平稳适应信号可靠性的控制。
+
+这篇工作提出 SyCo，把 open-set test streams 下的 LLM 适应做成 parameter-efficient ada" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r38-syco-open-set-adaptation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning from Many and Adapting to the Unknown in Open-set Test Streams" />
+    <meta property="og:description" content="LLM 在真实部署里面对的往往不是静态测试集，而是不断变化、混合已知与未知任务的开放测试流。传统 test-time adaptation 多半依赖手工设计的无监督目标，并直接在全参数空间上更新，结果容易破坏源域知识，也缺少对非平稳适应信号可靠性的控制。
+
+这篇工作提出 SyCo，把 open-set test streams 下的 LLM 适应做成 parameter-efficient ada" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r38-syco-open-set-adaptation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning from Many and Adapting to the Unknown in Open-set Test Streams" />
+    <meta name="twitter:description" content="LLM 在真实部署里面对的往往不是静态测试集，而是不断变化、混合已知与未知任务的开放测试流。传统 test-time adaptation 多半依赖手工设计的无监督目标，并直接在全参数空间上更新，结果容易破坏源域知识，也缺少对非平稳适应信号可靠性的控制。
+
+这篇工作提出 SyCo，把 open-set test streams 下的 LLM 适应做成 parameter-efficient ada" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning from Many and Adapting to the Unknown in Open-set Test Streams</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00533" target="_blank" rel="noopener noreferrer">2604.00533</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LLM 在真实部署里面对的往往不是静态测试集，而是不断变化、混合已知与未知任务的开放测试流。传统 test-time adaptation 多半依赖手工设计的无监督目标，并直接在全参数空间上更新，结果容易破坏源域知识，也缺少对非平稳适应信号可靠性的控制。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出 SyCo，把 open-set test streams 下的 LLM 适应做成 parameter-efficient adaptation。方法通过低秩适配器更新实现快速塑性，并用两条生物启发的控制路径来约束适应：Rac1 把更新限制在对源域知识影响更小的 tail-gradient 子空间，MAPK 则通过分层控制器抑制噪声更新、巩固真正有用的适应。论文同时提出 MOA（Multi-source Open-set Adaptation）设定，把多个源任务训练后的模型放入持续出现已知/未知任务且标签、意图部分重叠的非平稳测试流中评测。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 test-time adaptation 从静态、闭集、单源设定推进到更贴近部署现实的 multi-source open-set 流式场景，并且给出了低秩适配器 + 结构化适应控制的可复用模式。对 deployment-time learning、continual adaptation 和 open-world LLM specialization，这是一条很有延展性的路线。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要是在 test-time adaptation 这条活跃子线里做出很强推进，而不是已经改写整个 post-deployment learning 范式。MOA 设定和 SyCo 方法都很有价值，但外部采用信号还需要时间积累。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LLM 在真实部署里面对的往往不是静态测试集，而是不断变化、混合已知与未知任务的开放测试流。传统 test-time adaptation 多半依赖手工设计的无监督目标，并直接在全参数空间上更新，结果容易破坏源域知识，也缺少对非平稳适应信号可靠性的控制。</p><p>这篇工作提出 SyCo，把 open-set test streams 下的 LLM 适应做成 parameter-efficient adaptation。方法通过低秩适配器更新实现快速塑性，并用两条生物启发的控制路径来约束适应：Rac1 把更新限制在对源域知识影响更小的 tail-gradient 子空间，MAPK 则通过分层控制器抑制噪声更新、巩固真正有用的适应。论文同时提出 MOA（Multi-source Open-set Adaptation）设定，把多个源任务训练后的模型放入持续出现已知/未知任务且标签、意图部分重叠的非平稳测试流中评测。</p><p>这篇工作值得收录，因为它把 test-time adaptation 从静态、闭集、单源设定推进到更贴近部署现实的 multi-source open-set 流式场景，并且给出了低秩适配器 + 结构化适应控制的可复用模式。对 deployment-time learning、continual adaptation 和 open-world LLM specialization，这是一条很有延展性的路线。</p><p>它没有升到更高一级，是因为当前仍主要是在 test-time adaptation 这条活跃子线里做出很强推进，而不是已经改写整个 post-deployment learning 范式。MOA 设定和 SyCo 方法都很有价值，但外部采用信号还需要时间积累。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r38sycoope,
+  title = {Learning from Many and Adapting to the Unknown in Open-set Test Streams},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00533.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r38-syco-open-set-adaptation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning from Many and Adapting to the Unknown in Open-set Test Streams. https://arxiv.org/pdf/2604.00533.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00533.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

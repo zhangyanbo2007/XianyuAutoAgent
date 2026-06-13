@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住 multimodal deep search agent 的两个核心问题：工具返回的图像通常只是一次性观察，不能作为后续工具调用的可寻址工作状态；训练数据也常由固定配方生成，不能跟随目标 policy 的能力边界演化。
+
+方法上，论文提出 visual-native agent harness，把搜索、浏览、图像处理和计算工具产生的中间图像登记为 image bank referen" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a275-ode-visual-native-deep-search/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents" />
+    <meta property="og:description" content="这篇论文抓住 multimodal deep search agent 的两个核心问题：工具返回的图像通常只是一次性观察，不能作为后续工具调用的可寻址工作状态；训练数据也常由固定配方生成，不能跟随目标 policy 的能力边界演化。
+
+方法上，论文提出 visual-native agent harness，把搜索、浏览、图像处理和计算工具产生的中间图像登记为 image bank referen" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a275-ode-visual-native-deep-search/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents" />
+    <meta name="twitter:description" content="这篇论文抓住 multimodal deep search agent 的两个核心问题：工具返回的图像通常只是一次性观察，不能作为后续工具调用的可寻址工作状态；训练数据也常由固定配方生成，不能跟随目标 policy 的能力边界演化。
+
+方法上，论文提出 visual-native agent harness，把搜索、浏览、图像处理和计算工具产生的中间图像登记为 image bank referen" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10832" target="_blank" rel="noopener noreferrer">2605.10832</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住 multimodal deep search agent 的两个核心问题：工具返回的图像通常只是一次性观察，不能作为后续工具调用的可寻址工作状态；训练数据也常由固定配方生成，不能跟随目标 policy 的能力边界演化。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文提出 visual-native agent harness，把搜索、浏览、图像处理和计算工具产生的中间图像登记为 image bank reference，使其能在后续步骤中被重新裁剪、检索和推理；再用 On-Policy Data Evolution 根据当前 policy rollouts、trace analysis 和 rubric feedback 迭代更新数据生成配置。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 multimodal agent 训练从静态数据合成推进到 workspace + on-policy data evolution 的闭环。论文显示 ODE 让 Qwen3-VL-8B 平均分从 24.9% 到 39.0%，30B 从 30.6% 到 41.5%，并且验证了 reusable visual state 的独立贡献。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前证据仍集中在 multimodal deep search benchmark 和特定 Qwen3-VL backbones；真实网页、噪声环境、工具失败和长期任务中的鲁棒性还需要进一步验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住 multimodal deep search agent 的两个核心问题：工具返回的图像通常只是一次性观察，不能作为后续工具调用的可寻址工作状态；训练数据也常由固定配方生成，不能跟随目标 policy 的能力边界演化。</p><p>方法上，论文提出 visual-native agent harness，把搜索、浏览、图像处理和计算工具产生的中间图像登记为 image bank reference，使其能在后续步骤中被重新裁剪、检索和推理；再用 On-Policy Data Evolution 根据当前 policy rollouts、trace analysis 和 rubric feedback 迭代更新数据生成配置。</p><p>它值得正式收录，因为它把 multimodal agent 训练从静态数据合成推进到 workspace + on-policy data evolution 的闭环。论文显示 ODE 让 Qwen3-VL-8B 平均分从 24.9% 到 39.0%，30B 从 30.6% 到 41.5%，并且验证了 reusable visual state 的独立贡献。</p><p>它没有更高，是因为当前证据仍集中在 multimodal deep search benchmark 和特定 Qwen3-VL backbones；真实网页、噪声环境、工具失败和长期任务中的鲁棒性还需要进一步验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多模态深度搜索要求代理通过在不断演变的文本和视觉上下文中串联搜索、工具使用和视觉推理来解决开放世界问题。当前系统受到两个瓶颈的限制。首先，现有工具使用框架将搜索、浏览或转换返回的图像视为瞬态输出，因此中间视觉证据无法被后续工具重新使用。其次，训练数据通常通过固定的策展配方构建，无法跟踪目标代理不断演变的能力。为了解决这些挑战，我们首先引入了一个以图像库引用协议为中心的视觉原生代理框架，该协议将每个工具返回的图像注册为可寻址引用，并使中间视觉证据可供后续工具重用。在此框架之上，On-policy Data Evolution (ODE) 运行一个闭环数据生成器，该生成器通过训练中的策略的rollout在多轮中自我完善。这种每轮完善使得每轮数据都针对当前策略仍需学习的内容。同一框架支持多样化的监督微调数据和策略感知强化学习数据策展，涵盖目标代理的完整训练生命周期。在8个多模态深度搜索基准测试中，ODE将Qwen3-VL-8B代理的平均性能从24.9%提高到39.0%，在标准代理工作流设置中超越了Gemini-2.5 Pro（37.9%）。在30B模型上，ODE将平均分数从30.6%提高到41.5%。进一步的分析验证了图像库重用的有效性，尤其是在需要迭代视觉细化的复杂任务上，而rollout反馈演化比静态合成产生了更具基础的SFT轨迹和更好策略匹配的RL任务。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Multimodal deep search requires an agent to solve open-world problems by chaining search, tool use, and visual reasoning over evolving textual and visual context. Two bottlenecks limit current systems. First, existing tool-use harnesses treat images returned by search, browsing, or transformation as transient outputs, so intermediate visual evidence cannot be re-consumed by later tools. Second, training data is usually built by fixed curation recipes that cannot track the target agent’s evolving capability. To address these challenges, we first introduce a visual-native agent harness centered on an image bank reference protocol, which registers every tool-returned image as an addressable reference and makes intermediate visual evidence reusable by later tools. On top of this harness, On-policy Data Evolution (ODE) runs a closed-loop data generator that refines itself across rounds from rollouts of the policy being trained. This per-round refinement makes each round’s data target what the current policy still needs to learn. The same framework supports both diverse supervised fine-tuning data and policy-aware reinforcement learning data curation, covering the full training lifecycle of the target agent. Across 8 multimodal deep search benchmarks, ODE improves the Qwen3-VL-8B agent from 24.9% to 39.0% on average, surpassing Gemini-2.5 Pro in standard agentworkflow setting (37.9%). At 30B, ODE raises the average score from 30.6% to 41.5%. Further analyses validate the effectiveness of image-bank reuse, especially on complex tasks requiring iterative visual refinement, while rollout-feedback evolution yields more grounded SFT traces and better policy-matched RL tasks than static synthesis.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511a275odevis,
+  title = {Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10832.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a275-ode-visual-native-deep-search/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Towards On-Policy Data Evolution for Visual-Native Multimodal Deep Search Agents. https://arxiv.org/pdf/2605.10832.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10832.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://on-policy-data-evolution.github.io/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.10832" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/JoeYing1019/ODE" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

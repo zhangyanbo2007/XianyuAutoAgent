@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FP4 Explore, BF16 Train: Diffusion Reinforcement Learning via Efficient Rollout Scaling | DAST Papers</title>
+    <meta name="description" content="这篇工作针对 text-to-image diffusion model 的 RL 后训练提出了一个很具体但现实的瓶颈：随着 rollout group size 增大，偏好对齐效果会继续上涨，但在 FLUX.1-12B 这类大模型上直接扩大 rollout 会迅速被算力和吞吐拖死。问题不在于 RL 本身是否有效，而在于现有 pipeline 缺少一种能把大规模探索成本压下去的训练组织方式。
+
+论" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g7-sol-rl-diffusion-rollout-scaling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FP4 Explore, BF16 Train: Diffusion Reinforcement Learning via Efficient Rollout Scaling" />
+    <meta property="og:description" content="这篇工作针对 text-to-image diffusion model 的 RL 后训练提出了一个很具体但现实的瓶颈：随着 rollout group size 增大，偏好对齐效果会继续上涨，但在 FLUX.1-12B 这类大模型上直接扩大 rollout 会迅速被算力和吞吐拖死。问题不在于 RL 本身是否有效，而在于现有 pipeline 缺少一种能把大规模探索成本压下去的训练组织方式。
+
+论" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g7-sol-rl-diffusion-rollout-scaling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FP4 Explore, BF16 Train: Diffusion Reinforcement Learning via Efficient Rollout Scaling" />
+    <meta name="twitter:description" content="这篇工作针对 text-to-image diffusion model 的 RL 后训练提出了一个很具体但现实的瓶颈：随着 rollout group size 增大，偏好对齐效果会继续上涨，但在 FLUX.1-12B 这类大模型上直接扩大 rollout 会迅速被算力和吞吐拖死。问题不在于 RL 本身是否有效，而在于现有 pipeline 缺少一种能把大规模探索成本压下去的训练组织方式。
+
+论" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FP4 Explore, BF16 Train: Diffusion Reinforcement Learning via Efficient Rollout Scaling</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-04-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06916" target="_blank" rel="noopener noreferrer">2604.06916</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作针对 text-to-image diffusion model 的 RL 后训练提出了一个很具体但现实的瓶颈：随着 rollout group size 增大，偏好对齐效果会继续上涨，但在 FLUX.1-12B 这类大模型上直接扩大 rollout 会迅速被算力和吞吐拖死。问题不在于 RL 本身是否有效，而在于现有 pipeline 缺少一种能把大规模探索成本压下去的训练组织方式。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Sol-RL，把 rollout exploration 和 policy optimization 显式拆成两段：先用高吞吐的 NVFP4 rollout 生成大规模候选池，再从中筛出高对比样本，用 BF16 重新生成并只在这些高保真样本上做优化。关键点不只是量化加速，而是把低精度探索和高精度训练组合成一个两阶段框架，用算法上的 sample selection 去抵消直接量化训练带来的退化风险。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是一个孤立的 diffusion 调参技巧，而是一条可复用的 post-training workflow：把 massive rollout scaling、低精度探索和高保真优化拼成统一训练接口。对生成模型后训练、偏好对齐和算法-硬件协同设计都有明显外溢，符合仓库对 generative modeling 与系统化训练流程的重点方向。</dd></div><div><dt>收录价值</dt><dd>目前它还没有到更高一级，主要因为验证范围仍集中在 diffusion RL for T2I alignment，外溢虽强但尚未证明会成为跨生成范式的长期标准。它更像一篇非常扎实的强方法和强流程论文，而不是已经改写整个后训练版图的 paradigm/disruptive 级工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作针对 text-to-image diffusion model 的 RL 后训练提出了一个很具体但现实的瓶颈：随着 rollout group size 增大，偏好对齐效果会继续上涨，但在 FLUX.1-12B 这类大模型上直接扩大 rollout 会迅速被算力和吞吐拖死。问题不在于 RL 本身是否有效，而在于现有 pipeline 缺少一种能把大规模探索成本压下去的训练组织方式。</p><p>论文提出 Sol-RL，把 rollout exploration 和 policy optimization 显式拆成两段：先用高吞吐的 NVFP4 rollout 生成大规模候选池，再从中筛出高对比样本，用 BF16 重新生成并只在这些高保真样本上做优化。关键点不只是量化加速，而是把低精度探索和高精度训练组合成一个两阶段框架，用算法上的 sample selection 去抵消直接量化训练带来的退化风险。</p><p>它值得正式收录，因为这不是一个孤立的 diffusion 调参技巧，而是一条可复用的 post-training workflow：把 massive rollout scaling、低精度探索和高保真优化拼成统一训练接口。对生成模型后训练、偏好对齐和算法-硬件协同设计都有明显外溢，符合仓库对 generative modeling 与系统化训练流程的重点方向。</p><p>目前它还没有到更高一级，主要因为验证范围仍集中在 diffusion RL for T2I alignment，外溢虽强但尚未证明会成为跨生成范式的长期标准。它更像一篇非常扎实的强方法和强流程论文，而不是已经改写整个后训练版图的 paradigm/disruptive 级工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于强化学习的后训练最近已成为一种有前景的范式，用于使文本到图像扩散模型与人类偏好对齐。在最近的研究中，增加rollout组大小会带来显著的性能提升，表明仍有很大的对齐改进空间。然而，在大型基础扩散模型（例如，FLUX.1-12B）上扩展rollout会带来沉重的计算负担。为缓解这一瓶颈，我们探索将FP4量化集成到扩散RL rollout中。然而，我们发现朴素的量化流水线本身会引入性能下降的风险。为克服效率与训练完整性之间的这一困境，我们提出了Sol-RL（光速RL），一个新颖的由FP4赋能的两阶段强化学习框架。首先，我们利用高吞吐量的NVFP4 rollout生成一个庞大的候选池，并提取一个高对比度的子集。其次，我们以BF16精度重新生成这些选定的样本，并专门针对它们优化策略。通过将候选探索与策略优化解耦，Sol-RL将rollout扩展的算法机制与NVFP4的系统级吞吐量增益相结合。这种协同的算法硬件设计有效加速了rollout阶段，同时保留了高保真样本用于优化。我们通过实验证明，我们的框架保持了BF16精度流水线的训练完整性，同时充分利用了FP4算术带来的吞吐量增益。对SANA、FLUX.1和SD3.5-L进行的广泛实验证实，我们的方法在多个指标上提供了卓越的对齐性能，同时将训练收敛速度提高了4.64倍，以极低的成本释放了大规模rollout扩展的潜力。链接：Github代码 | 项目页面</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement-Learning-based post-training has recently emerged as a promising paradigm for aligning text-to-image diffusion models with human preferences. In recent studies, increasing the rollout group size yields pronounced performance improvements, indicating substantial room for further alignment gains. However, scaling rollouts on large-scale foundational diffusion models (e.g., FLUX.1-12B) imposes a heavy computational burden. To alleviate this bottleneck, we explore the integration of FP4 quantization into Diffusion RL rollouts. Yet, we identify that naive quantized pipelines inherently introduce risks of performance degradation. To overcome this dilemma between efficiency and training integrity, we propose Sol-RL (Speed-of-light RL), a novel FP4-empowered Two-stage Reinforcement Learning framework. First, we utilize high-throughput NVFP4 rollouts to generate a massive candidate pool and extract a highly contrastive subset. Second, we regenerate these selected samples in BF16 precision and optimize the policy exclusively on them. By decoupling candidate exploration from policy optimization, Sol-RL integrates the algorithmic mechanisms of rollout scaling with the system-level throughput gains of NVFP4. This synergistic algorithmhardware design effectively accelerates the rollout phase while reserving high-fidelity samples for optimization. We empirically demonstrate that our framework maintains the training integrity of BF16 precision pipeline while fully exploiting the throughput gains enabled by FP4 arithmetic. Extensive experiments across SANA, FLUX.1, and SD3.5-L substantiate that our approach delivers superior alignment performance across multiple metrics while accelerating training convergence by up to 4.64×, unlocking the power of massive rollout scaling at a fraction of the cost. Links: Github Code | Project Page</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260408g7solrldif,
+  title = {FP4 Explore, BF16 Train: Diffusion Reinforcement Learning via Efficient Rollout Scaling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06916.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g7-sol-rl-diffusion-rollout-scaling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FP4 Explore, BF16 Train: Diffusion Reinforcement Learning via Efficient Rollout Scaling. https://arxiv.org/pdf/2604.06916.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06916.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="ParaVT 处理长视频理解中的 agentic tool-use 问题：现有 RL 方法通常顺序调用视频裁剪等工具，单次错误会传播，多轮上下文被污染，推理成本随工具轮数线性增长。
+
+论文提出 parallel video tool calling，一轮并行分发多个时间窗裁剪，让多 agent 工具结果互相补偿，并减少上下文污染。
+
+训练中发现 Tool Prior Paradox：强预训练工具先" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm68-paravt-parallel-video-tool-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning" />
+    <meta property="og:description" content="ParaVT 处理长视频理解中的 agentic tool-use 问题：现有 RL 方法通常顺序调用视频裁剪等工具，单次错误会传播，多轮上下文被污染，推理成本随工具轮数线性增长。
+
+论文提出 parallel video tool calling，一轮并行分发多个时间窗裁剪，让多 agent 工具结果互相补偿，并减少上下文污染。
+
+训练中发现 Tool Prior Paradox：强预训练工具先" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm68-paravt-parallel-video-tool-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning" />
+    <meta name="twitter:description" content="ParaVT 处理长视频理解中的 agentic tool-use 问题：现有 RL 方法通常顺序调用视频裁剪等工具，单次错误会传播，多轮上下文被污染，推理成本随工具轮数线性增长。
+
+论文提出 parallel video tool calling，一轮并行分发多个时间窗裁剪，让多 agent 工具结果互相补偿，并减少上下文污染。
+
+训练中发现 Tool Prior Paradox：强预训练工具先" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.20342" target="_blank" rel="noopener noreferrer">2605.20342</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ParaVT 处理长视频理解中的 agentic tool-use 问题：现有 RL 方法通常顺序调用视频裁剪等工具，单次错误会传播，多轮上下文被污染，推理成本随工具轮数线性增长。</dd></div><div><dt>方法/机制</dt><dd>论文提出 parallel video tool calling，一轮并行分发多个时间窗裁剪，让多 agent 工具结果互相补偿，并减少上下文污染。</dd></div><div><dt>结果/证据</dt><dd>训练中发现 Tool Prior Paradox：强预训练工具先验既帮助探索工具调用，也会破坏结构化格式并诱发 skip-tool reward shortcut；PARA-GRPO 用结构 token 局部 format reward 和 frame-budget randomization 缓解该问题。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把多模态视频理解、工具调用和 RL 后训练连接起来，给 multimodal agents 的并行工具使用提供了明确训练范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ParaVT 处理长视频理解中的 agentic tool-use 问题：现有 RL 方法通常顺序调用视频裁剪等工具，单次错误会传播，多轮上下文被污染，推理成本随工具轮数线性增长。</p><p>论文提出 parallel video tool calling，一轮并行分发多个时间窗裁剪，让多 agent 工具结果互相补偿，并减少上下文污染。</p><p>训练中发现 Tool Prior Paradox：强预训练工具先验既帮助探索工具调用，也会破坏结构化格式并诱发 skip-tool reward shortcut；PARA-GRPO 用结构 token 局部 format reward 和 frame-budget randomization 缓解该问题。</p><p>它值得正式收录，因为它把多模态视频理解、工具调用和 RL 后训练连接起来，给 multimodal agents 的并行工具使用提供了明确训练范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过强化学习（RL）训练大型多模态模型（LMMs）以原生调用视频处理工具（例如，裁剪）已成为理解长视频的一个有前景的途径。然而，现有的原生RL方法按顺序分派工具调用（即，每回合一次）：单个错误的裁剪会传播错误而没有同伴纠正，多回合工具调用会破坏上下文，并且推理成本与回合数呈线性关系。我们引入了ParaVT，这是第一个用于并行视频工具调用的多智能体端到端RL训练框架，它在单个回合中分派多个时间窗口裁剪，以实现更清晰的上下文和更好的容错性。然而，将标准RL应用于ParaVT揭示了一个我们称之为“工具先验悖论”的障碍：实现工具探索的预训练工具先验也会破坏冷启动的结构格式的稳定性，并在温度采样下暴露出跳过工具的奖励捷径。对一个弱先验LMM进行的跨模型对比支持了这一说法：格式保持稳定，但RL引发的工具调用为零，这表明先验强度是格式崩溃和工具探索的共同驱动因素。我们提出了PARA-GRPO（Parseability-Anchored and Ratio-gAted GRPO），它通过两种互补机制增强了标准RL：（i）仅在最容易崩溃的结构化标记位置应用有针对性的格式奖励，以及（ii）每个提示的帧预算随机化，创建了调用工具比跳过工具能产生可衡量奖励信号的训练提示。在六个长视频理解基准测试中，ParaVT平均比Qwen3-VL基线提高了+7.9%，其中PARA-GRPO将训练时的格式合规性从0.13提升到0.64。随着工具能力在现代LMMs中日益内在化，RL必须与由此产生的先验知识协同作用，ParaVT为智能体RL提供了一个通用方案。我们的代码、数据和模型权重已在https://github.com/EvolvingLMMs-Lab/ParaVT公开。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Training large multimodal models (LMMs) via reinforcement learning (RL) to natively invoke video-processing tools (e.g., cropping) has become a promising route to long-video understanding. However, existing native-RL methods dispatch tool calls sequentially (i.e., one per turn): a single wrong crop propagates errors without peer correction, multi-turn tool calls corrupt context, and inference cost scales linearly with the number of turns. We introduce ParaVT, the first multi-agent end-to-end RL-trained framework for Parallel Video Tool calling, dispatching multiple time-window crops in a single turn for cleaner context and better fault tolerance. Yet applying standard RL to ParaVT reveals an obstacle we term the Tool Prior Paradox: the pretrained tool priors that enable tool exploration also destabilize cold-started structural format and expose the skip-tool reward shortcut under temperature sampling. A cross-model contrast on a weaker-prior LMM supports this claim: format stays stable but RL elicits zero tool calls, indicating that prior strength is the shared driver of both format collapse and tool exploration. We propose PARA-GRPO (Parseability-Anchored and Ratio-gAted GRPO), which augments standard RL with two complementary mechanisms: (i) a targeted format reward applied only at the structural-token positions most prone to collapse, and (ii) a per-prompt frame-budget randomization that creates training prompts where calling the tool yields a measurable reward signal over skipping it. Across six longvideo understanding benchmarks, ParaVT improves over the Qwen3-VL baseline by +7.9% on average, with PARA-GRPO lifting training-time format compliance from 0.13 to 0.64. As tool capabilities become increasingly internalized in modern LMMs, RL must cooperate with the resulting priors, and ParaVT offers a general recipe for agentic RL. Our code, data, and model weights are publicly available at https://github.com/EvolvingLMMs-Lab/ParaVT.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260519mm68paravt,
+  title = {ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.20342.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm68-paravt-parallel-video-tool-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ParaVT: Taming the Tool Prior Paradox for Parallel Tool Use in Agentic Video Reinforcement Learning. https://arxiv.org/pdf/2605.20342.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.20342.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://evolvinglmms-lab.github.io/ParaVT/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.20342" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/EvolvingLMMs-Lab/ParaVT" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

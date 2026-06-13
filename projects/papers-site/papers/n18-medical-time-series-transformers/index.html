@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Decentralized Attention Fails Centralized Signals: Rethinking Transformers for Medical Time Series | DAST Papers</title>
+    <meta name="description" content="医疗时间序列建模，尤其是 EEG、ECG 这类多通道生物信号，通常不是由完全对等的 token 彼此自由交互而成，而更接近由少数中心性信号源驱动并向全局传播。本文把问题直接指向标准 Transformer 的结构失配：去中心化的全注意力机制并不适合这种“中心化源、全局观测”的医学时序数据，因此在长序列、多通道和跨通道依赖上会付出不必要的代价。
+
+作者提出 CoTAR（Core Token Aggr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n18-medical-time-series-transformers/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Decentralized Attention Fails Centralized Signals: Rethinking Transformers for Medical Time Series" />
+    <meta property="og:description" content="医疗时间序列建模，尤其是 EEG、ECG 这类多通道生物信号，通常不是由完全对等的 token 彼此自由交互而成，而更接近由少数中心性信号源驱动并向全局传播。本文把问题直接指向标准 Transformer 的结构失配：去中心化的全注意力机制并不适合这种“中心化源、全局观测”的医学时序数据，因此在长序列、多通道和跨通道依赖上会付出不必要的代价。
+
+作者提出 CoTAR（Core Token Aggr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n18-medical-time-series-transformers/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Decentralized Attention Fails Centralized Signals: Rethinking Transformers for Medical Time Series" />
+    <meta name="twitter:description" content="医疗时间序列建模，尤其是 EEG、ECG 这类多通道生物信号，通常不是由完全对等的 token 彼此自由交互而成，而更接近由少数中心性信号源驱动并向全局传播。本文把问题直接指向标准 Transformer 的结构失配：去中心化的全注意力机制并不适合这种“中心化源、全局观测”的医学时序数据，因此在长序列、多通道和跨通道依赖上会付出不必要的代价。
+
+作者提出 CoTAR（Core Token Aggr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Decentralized Attention Fails Centralized Signals: Rethinking Transformers for Medical Time Series</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-02-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.18473" target="_blank" rel="noopener noreferrer">2602.18473</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>医疗时间序列建模，尤其是 EEG、ECG 这类多通道生物信号，通常不是由完全对等的 token 彼此自由交互而成，而更接近由少数中心性信号源驱动并向全局传播。本文把问题直接指向标准 Transformer 的结构失配：去中心化的全注意力机制并不适合这种“中心化源、全局观测”的医学时序数据，因此在长序列、多通道和跨通道依赖上会付出不必要的代价。</dd></div><div><dt>方法/机制</dt><dd>作者提出 CoTAR（Core Token Aggregation-Redistribution）结构，用单一核心 token 先聚合多通道时序中的全局信息，再把整合后的信息重新分发给局部 token，从而替代标准 attention 中每个 token 对所有 token 的均匀交互。这个设计的关键不是单纯省算力，而是显式引入一种与医疗时序生成机制更相符的归纳偏置，让模型优先学习中心化生理信号与局部观测之间的关系。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合仓库的认知科学 / 生物医学时序 AI 主线，也能覆盖医疗时间序列建模这条应用主线。它的价值在于提出了一个对领域结构有针对性的 Transformer 替代思路，而不是泛化地追求更轻量的 attention 近似。若后续在 EEG、ECG、ICU 多模态生理监测等任务上被复用，外溢价值会很明显。</dd></div><div><dt>收录价值</dt><dd>它目前归为突破性而不是更高一级，原因是证据仍主要集中在医疗时间序列这一垂直领域，外溢到通用序列建模或更大规模基础模型路线还没有被充分证明。它更像一篇强的领域型架构论文，而不是已经改写通用 Transformer 路线的总纲领工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>医疗时间序列建模，尤其是 EEG、ECG 这类多通道生物信号，通常不是由完全对等的 token 彼此自由交互而成，而更接近由少数中心性信号源驱动并向全局传播。本文把问题直接指向标准 Transformer 的结构失配：去中心化的全注意力机制并不适合这种“中心化源、全局观测”的医学时序数据，因此在长序列、多通道和跨通道依赖上会付出不必要的代价。</p><p>作者提出 CoTAR（Core Token Aggregation-Redistribution）结构，用单一核心 token 先聚合多通道时序中的全局信息，再把整合后的信息重新分发给局部 token，从而替代标准 attention 中每个 token 对所有 token 的均匀交互。这个设计的关键不是单纯省算力，而是显式引入一种与医疗时序生成机制更相符的归纳偏置，让模型优先学习中心化生理信号与局部观测之间的关系。</p><p>这篇论文适合仓库的认知科学 / 生物医学时序 AI 主线，也能覆盖医疗时间序列建模这条应用主线。它的价值在于提出了一个对领域结构有针对性的 Transformer 替代思路，而不是泛化地追求更轻量的 attention 近似。若后续在 EEG、ECG、ICU 多模态生理监测等任务上被复用，外溢价值会很明显。</p><p>它目前归为突破性而不是更高一级，原因是证据仍主要集中在医疗时间序列这一垂直领域，外溢到通用序列建模或更大规模基础模型路线还没有被充分证明。它更像一篇强的领域型架构论文，而不是已经改写通用 Transformer 路线的总纲领工作。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260209n18medical,
+  title = {Decentralized Attention Fails Centralized Signals: Rethinking Transformers for Medical Time Series},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.18473.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n18-medical-time-series-transformers/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Decentralized Attention Fails Centralized Signals: Rethinking Transformers for Medical Time Series. https://arxiv.org/pdf/2602.18473.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.18473.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

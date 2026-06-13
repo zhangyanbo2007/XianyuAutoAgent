@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Preventing Learning Stagnation in PPO by Scaling to 1 Million Parallel Environments | DAST Papers</title>
+    <meta name="description" content="论文解释了 PPO 长程训练中常见的平台期为何出现。作者把 PPO 拆成内循环和外循环，指出真正的问题是外循环步长相对采样噪声过大，导致策略在局部最优附近震荡而不是继续改进。基于这个视角，论文提出通过百万级并行环境扩大 rollout 数据量，同时保持内循环设置不变，仅增加优化步数，从而把 PPO 的有效学习范围推进到万亿步级别。它的重要性在于这不是一次调参经验，而是对在线策略优化失效机制的重新刻" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl1-ppo-1m-parallel-envs/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Preventing Learning Stagnation in PPO by Scaling to 1 Million Parallel Environments" />
+    <meta property="og:description" content="论文解释了 PPO 长程训练中常见的平台期为何出现。作者把 PPO 拆成内循环和外循环，指出真正的问题是外循环步长相对采样噪声过大，导致策略在局部最优附近震荡而不是继续改进。基于这个视角，论文提出通过百万级并行环境扩大 rollout 数据量，同时保持内循环设置不变，仅增加优化步数，从而把 PPO 的有效学习范围推进到万亿步级别。它的重要性在于这不是一次调参经验，而是对在线策略优化失效机制的重新刻" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl1-ppo-1m-parallel-envs/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Preventing Learning Stagnation in PPO by Scaling to 1 Million Parallel Environments" />
+    <meta name="twitter:description" content="论文解释了 PPO 长程训练中常见的平台期为何出现。作者把 PPO 拆成内循环和外循环，指出真正的问题是外循环步长相对采样噪声过大，导致策略在局部最优附近震荡而不是继续改进。基于这个视角，论文提出通过百万级并行环境扩大 rollout 数据量，同时保持内循环设置不变，仅增加优化步数，从而把 PPO 的有效学习范围推进到万亿步级别。它的重要性在于这不是一次调参经验，而是对在线策略优化失效机制的重新刻" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Preventing Learning Stagnation in PPO by Scaling to 1 Million Parallel Environments</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.06009" target="_blank" rel="noopener noreferrer">2603.06009</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>论文解释了 PPO 长程训练中常见的平台期为何出现。作者把 PPO 拆成内循环和外循环，指出真正的问题是外循环步长相对采样噪声过大，导致策略在局部最优附近震荡而不是继续改进。基于这个视角，论文提出通过百万级并行环境扩大 rollout 数据量，同时保持内循环设置不变，仅增加优化步数，从而把 PPO 的有效学习范围推进到万亿步级别。它的重要性在于这不是一次调参经验，而是对在线策略优化失效机制的重新刻画。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>论文解释了 PPO 长程训练中常见的平台期为何出现。作者把 PPO 拆成内循环和外循环，指出真正的问题是外循环步长相对采样噪声过大，导致策略在局部最优附近震荡而不是继续改进。基于这个视角，论文提出通过百万级并行环境扩大 rollout 数据量，同时保持内循环设置不变，仅增加优化步数，从而把 PPO 的有效学习范围推进到万亿步级别。它的重要性在于这不是一次调参经验，而是对在线策略优化失效机制的重新刻画。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过扩展到100万个并行环境来防止PPO中的学习停滞。智能体性能停滞在次优水平的平台期，是深度在线策略强化学习算法中的一个常见问题。鉴于PPO的广泛采用，我们重点关注PPO，并表明在某些情况下，平台期并非源于已知的探索、容量或优化挑战，而是因为在训练过程中，基于样本的损失估计最终成为真实目标的劣质近似。回顾一下，PPO在两个过程之间切换：一是使用当前策略从多个并行环境中在线采样轨迹（我们称之为“外循环”），二是对这个离线数据集执行重复的小批量SGD步骤（“内循环”）。在我们的工作中，我们只考虑外循环，并将其概念化为标准的随机优化。步长由对先前策略的正则化强度控制，而梯度噪声则由策略更新步骤之间收集的样本数量控制。该模型预测，如果外循环步长相对于噪声过大，性能将停滞在次优水平。从这个角度重新审视PPO，可以清楚地看到解决这种特定类型学习停滞的两种方法：要么减小步长，要么增加更新之间收集的样本数量。我们首先验证了模型的预测，并研究了超参数选择如何影响步长和更新噪声，得出结论：增加并行环境的数量是减少这两个因素的简单而稳健的方法。接下来，我们提出了一种在增加并行化时如何协同调整其他超参数的方法，并表明不正确地这样做可能导致严重的性能下降。最后，通过将PPO扩展到超过100万个并行环境，我们在一个复杂的开放式领域中大大超越了先前的基线，从而实现了高达一万亿次转换的单调性能提升。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Plateaus, where an agent’s performance stagnates at a suboptimal level, are a common problem in deep on-policy RL algorithms. Focusing on PPO due to its widespread adop- tion, we show that plateaus in certain regimes arise not because of known exploration, capacity, or optimization challenges, but because sample-based estimates of the loss eventually become poor proxies for the true objective over the course of training. As a recap, PPO switches between sampling rollouts from several parallel environments on- line using the current policy (which we call the “outer loop”) and performing repeated minibatch SGD steps against this offline dataset (the “inner loop”). In our work we con- sider only the outer loop, and conceptually model it as standard stochastic optimization. The step size is then controlled by the regularization strength towards the previous pol- icy and the gradient noise by the number of samples collected between policy update steps. This model predicts that performance will plateau at a suboptimal level if the outer step size is too large relative to the noise. Recasting PPO in this light makes it clear that there are two ways to address this particular type of learning stagnation: either reduce the step size or increase the number of samples collected between updates. We first validate the predictions of our model and investigate how hyperparameter choices influence the step size and update noise, concluding that increasing the number of par- allel environments is a simple and robust way to reduce both factors. Next, we propose a recipe for how to co-scale the other hyperparameters when increasing parallelization, and show that incorrectly doing so can lead to severe performance degradation. Fi- nally, we vastly outperform prior baselines in a complex open-ended domain by scaling PPO to more than 1M parallel environments, thereby enabling monotonic performance improvement up to one trillion transitions.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260306rl1ppo1mpa,
+  title = {Preventing Learning Stagnation in PPO by Scaling to 1 Million Parallel Environments},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.06009.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl1-ppo-1m-parallel-envs/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Preventing Learning Stagnation in PPO by Scaling to 1 Million Parallel Environments. https://arxiv.org/pdf/2603.06009.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.06009.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe | DAST Papers</title>
+    <meta name="description" content="这篇论文系统研究 on-policy distillation 的成功条件和失败机制。OPD 已经成为大模型 post-training 的重要技术，但过去更多依赖经验 recipe，缺少对 teacher-student 动态的可解释规律。
+
+作者提出两个关键条件：学生和老师需要兼容的 thinking patterns，老师还必须提供学生训练中没有见过的新能力。通过 weak-to-stron" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r63-opd-dynamics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe" />
+    <meta property="og:description" content="这篇论文系统研究 on-policy distillation 的成功条件和失败机制。OPD 已经成为大模型 post-training 的重要技术，但过去更多依赖经验 recipe，缺少对 teacher-student 动态的可解释规律。
+
+作者提出两个关键条件：学生和老师需要兼容的 thinking patterns，老师还必须提供学生训练中没有见过的新能力。通过 weak-to-stron" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r63-opd-dynamics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe" />
+    <meta name="twitter:description" content="这篇论文系统研究 on-policy distillation 的成功条件和失败机制。OPD 已经成为大模型 post-training 的重要技术，但过去更多依赖经验 recipe，缺少对 teacher-student 动态的可解释规律。
+
+作者提出两个关键条件：学生和老师需要兼容的 thinking patterns，老师还必须提供学生训练中没有见过的新能力。通过 weak-to-stron" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.13016" target="_blank" rel="noopener noreferrer">2604.13016</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文系统研究 on-policy distillation 的成功条件和失败机制。OPD 已经成为大模型 post-training 的重要技术，但过去更多依赖经验 recipe，缺少对 teacher-student 动态的可解释规律。</dd></div><div><dt>方法/机制</dt><dd>作者提出两个关键条件：学生和老师需要兼容的 thinking patterns，老师还必须提供学生训练中没有见过的新能力。通过 weak-to-strong reverse distillation 和 token-level probing，论文把成功 OPD 描述为 student-visited states 上高概率 token 的逐步对齐。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它提供了 OPD 的机制层说明，而不是单个蒸馏技巧。对于选择 teacher、构建 SFT/OPD 数据、判断蒸馏是否有新增能力，它给出了可复用的诊断框架。</dd></div><div><dt>收录价值</dt><dd>局限在于这些规律仍主要来自特定模型族和任务集合；跨架构、跨模态和 agent 训练中的 OPD 机制还需要进一步验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文系统研究 on-policy distillation 的成功条件和失败机制。OPD 已经成为大模型 post-training 的重要技术，但过去更多依赖经验 recipe，缺少对 teacher-student 动态的可解释规律。</p><p>作者提出两个关键条件：学生和老师需要兼容的 thinking patterns，老师还必须提供学生训练中没有见过的新能力。通过 weak-to-strong reverse distillation 和 token-level probing，论文把成功 OPD 描述为 student-visited states 上高概率 token 的逐步对齐。</p><p>它值得收录，是因为它提供了 OPD 的机制层说明，而不是单个蒸馏技巧。对于选择 teacher、构建 SFT/OPD 数据、判断蒸馏是否有新增能力，它给出了可复用的诊断框架。</p><p>局限在于这些规律仍主要来自特定模型族和任务集合；跨架构、跨模态和 agent 训练中的 OPD 机制还需要进一步验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于策略的蒸馏 (OPD) 已成为大型语言模型后期训练中的核心技术，但其训练动力学仍然缺乏深入理解。本文对 OPD 动力学和机制进行了系统性研究。我们首先发现两个条件决定了 OPD 是否成功或失败：(i) 学生和教师应共享兼容的思维模式；以及 (ii) 即使具有一致的思维模式和更高的分数，教师也必须提供超越学生在训练期间所见的新能力。我们通过弱到强的反向蒸馏验证了这些发现，表明同家族的 1.5B 和 7B 教师从学生的角度来看，在分布上与学生是不可区分的。深入研究词级别机制，我们表明成功的 OPD 具有在学生访问状态下对高概率词的渐进式对齐，以及一个较小的共享词集，该词集集中了大部分概率质量 (97%-99%)。我们进一步提出了两种实用策略来恢复失败的 OPD：离策略冷启动和教师对齐提示选择。最后，我们表明 OPD 似乎免费的密集词级别奖励实际上是有代价的，这引发了关于 OPD 是否可以扩展到长时程蒸馏的问题。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>On-policy distillation (OPD) has become a core technique in the post-training of large language models, yet its training dynamics remain poorly understood. This paper provides a systematic investigation of OPD dynamics and mechanisms. We first identify that two conditions govern whether OPD succeeds or fails: (i) the student and teacher should share compatible thinking patterns; and (ii) even with consistent thinking patterns and higher scores, the teacher must offer genuinely new capabilities beyond what the student has seen during training. We validate these findings through weak-to-strong reverse distillation, showing that same-family 1.5B and 7B teachers are distributionally indistinguishable from the student&#x27;s perspective. Probing into the token-level mechanism, we show that successful OPD is characterized by progressive alignment on high-probability tokens at student-visited states, a small shared token set that concentrates most of the probability mass (97%-99%). We further propose two practical strategies to recover failing OPD: off-policy cold start and teacher-aligned prompt selection. Finally, we show that OPD&#x27;s apparent free lunch of dense token-level reward comes at a cost, raising the question of whether OPD can scale to long-horizon distillation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414r63opddyna,
+  title = {Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.13016.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r63-opd-dynamics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Rethinking On-Policy Distillation of Large Language Models: Phenomenology, Mechanism, and Recipe. https://arxiv.org/pdf/2604.13016.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.13016.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

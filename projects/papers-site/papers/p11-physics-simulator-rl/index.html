@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solving Physics Olympiad via Reinforcement Learning on Physics Simulators | DAST Papers</title>
+    <meta name="description" content="这篇论文针对科学推理训练数据稀缺问题：数学和代码有大量可验证题目，但物理等科学领域缺少大规模 QA 数据。作者提出用物理模拟器生成随机场景、交互和问答，把 simulator 变成可验证监督源，用 RL 训练模型进行物理推理。
+
+方法上，系统在 physics engines 中生成合成交互，构造问题和答案，再用 reinforcement learning on synthetic data 训" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p11-physics-simulator-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Solving Physics Olympiad via Reinforcement Learning on Physics Simulators" />
+    <meta property="og:description" content="这篇论文针对科学推理训练数据稀缺问题：数学和代码有大量可验证题目，但物理等科学领域缺少大规模 QA 数据。作者提出用物理模拟器生成随机场景、交互和问答，把 simulator 变成可验证监督源，用 RL 训练模型进行物理推理。
+
+方法上，系统在 physics engines 中生成合成交互，构造问题和答案，再用 reinforcement learning on synthetic data 训" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p11-physics-simulator-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Solving Physics Olympiad via Reinforcement Learning on Physics Simulators" />
+    <meta name="twitter:description" content="这篇论文针对科学推理训练数据稀缺问题：数学和代码有大量可验证题目，但物理等科学领域缺少大规模 QA 数据。作者提出用物理模拟器生成随机场景、交互和问答，把 simulator 变成可验证监督源，用 RL 训练模型进行物理推理。
+
+方法上，系统在 physics engines 中生成合成交互，构造问题和答案，再用 reinforcement learning on synthetic data 训" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Solving Physics Olympiad via Reinforcement Learning on Physics Simulators</h1>
+          <p class="subtitle">AI for Science · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11805" target="_blank" rel="noopener noreferrer">2604.11805</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对科学推理训练数据稀缺问题：数学和代码有大量可验证题目，但物理等科学领域缺少大规模 QA 数据。作者提出用物理模拟器生成随机场景、交互和问答，把 simulator 变成可验证监督源，用 RL 训练模型进行物理推理。</dd></div><div><dt>方法/机制</dt><dd>方法上，系统在 physics engines 中生成合成交互，构造问题和答案，再用 reinforcement learning on synthetic data 训练 LLM。关键结果是模型在只用合成物理数据训练后，能够 zero-shot sim-to-real 迁移到真实世界物理 benchmark 和 Physics Olympiad 风格问题。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它展示了一条 AI for science / reasoning 的可扩展数据路线：不用依赖互联网 QA，而是让可验证模拟器成为 RL supervision generator。这个思想对物理、机器人、工程仿真和科学推理训练都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>局限在于 simulator 覆盖、问题生成质量和现实物理复杂度会限制迁移；当前结果证明强潜力，但还不是通用科学推理训练标准。因此按 AI x physics reasoning 的突破性 workflow 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对科学推理训练数据稀缺问题：数学和代码有大量可验证题目，但物理等科学领域缺少大规模 QA 数据。作者提出用物理模拟器生成随机场景、交互和问答，把 simulator 变成可验证监督源，用 RL 训练模型进行物理推理。</p><p>方法上，系统在 physics engines 中生成合成交互，构造问题和答案，再用 reinforcement learning on synthetic data 训练 LLM。关键结果是模型在只用合成物理数据训练后，能够 zero-shot sim-to-real 迁移到真实世界物理 benchmark 和 Physics Olympiad 风格问题。</p><p>它值得收录，因为它展示了一条 AI for science / reasoning 的可扩展数据路线：不用依赖互联网 QA，而是让可验证模拟器成为 RL supervision generator。这个思想对物理、机器人、工程仿真和科学推理训练都有明显外溢。</p><p>局限在于 simulator 覆盖、问题生成质量和现实物理复杂度会限制迁移；当前结果证明强潜力，但还不是通用科学推理训练标准。因此按 AI x physics reasoning 的突破性 workflow 收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们见证了DeepSeek-R1带来显著的LLM推理能力进步。然而，这一进展很大程度上受到了互联网问答（QA）对（pairs）的丰富，这对于未来发展来说是一个主要瓶颈，因为此类数据规模有限且主要集中在数学等领域。相比之下，诸如物理学等其他科学领域缺乏大规模的QA数据集，以有效地训练具备推理能力的模型。在本文中，我们展示物理模拟器可以作为训练LLM进行物理推理的强大替代监督来源。我们生成物理引擎中的随机场景，从模拟交互创建合成问答对，并使用强化学习在这些合成数据上训练LLM。我们的模型在合成模拟数据上仅进行零样本迁移到真实世界物理基准，例如，仅通过合成模拟数据训练，在不同模型规模下，在国际物理奥林匹亚竞赛（IPhO）问题上性能提高了5-10个百分点。这些结果表明，物理模拟器可以作为可扩展的数据生成器，使LLM能够获得超越互联网规模QA数据限制的深刻物理推理技能。代码可在：https://sim2reason.github.io/ 处获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We have witnessed remarkable advances in LLM reasoning capabilities with the advent of DeepSeek-R1. However, much of this progress has been fueled by the abundance of internet question-answer (QA) pairs, a major bottleneck going forward, since such data is limited in scale and concentrated mainly in domains like mathematics. In contrast, other sciences such as physics lack large-scale QA datasets to effectively train reasoning-capable models. In this work, we show that physics simulators can serve as a powerful alternative source of supervision for training LLMs for physical reasoning. We generate random scenes in physics engines, create synthetic question-answer pairs from simulated interactions, and train LLMs using reinforcement learning on this synthetic data. Our models exhibit zero-shot sim-to-real transfer to real-world physics benchmarks: for example, training solely on synthetic simulated data improves performance on IPhO (International Physics Olympiad) problems by 5-10 percentage points across model sizes. These results demonstrate that physics simulators can act as scalable data generators, enabling LLMs to acquire deep physical reasoning skills beyond the limitations of internet-scale QA data. Code available at: https://sim2reason.github.io/.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413p11physics,
+  title = {Solving Physics Olympiad via Reinforcement Learning on Physics Simulators},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11805.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p11-physics-simulator-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Solving Physics Olympiad via Reinforcement Learning on Physics Simulators. https://arxiv.org/pdf/2604.11805.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c24-equiformerv3-atomistic-modeling/">
+              <span>EquiformerV3: Scaling Efficient, Expressive, and General SE(3)-Equivariant Graph Attention Transformers</span>
+              <small>AI for Science · 2026-04-10</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11805.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

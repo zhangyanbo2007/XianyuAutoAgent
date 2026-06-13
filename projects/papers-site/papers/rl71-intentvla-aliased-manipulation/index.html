@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation | DAST Papers</title>
+    <meta name="description" content="IntentVLA 研究 VLA 操作中的 partial observability：相似当前画面可能来自不同任务阶段或短期意图，frame-conditioned chunk policies 会在相邻 replanning steps 重新采样不同 intent，导致执行不稳定。
+
+方法用最近视觉历史编码 compact short-horizon intent representation" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl71-intentvla-aliased-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation" />
+    <meta property="og:description" content="IntentVLA 研究 VLA 操作中的 partial observability：相似当前画面可能来自不同任务阶段或短期意图，frame-conditioned chunk policies 会在相邻 replanning steps 重新采样不同 intent，导致执行不稳定。
+
+方法用最近视觉历史编码 compact short-horizon intent representation" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl71-intentvla-aliased-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation" />
+    <meta name="twitter:description" content="IntentVLA 研究 VLA 操作中的 partial observability：相似当前画面可能来自不同任务阶段或短期意图，frame-conditioned chunk policies 会在相邻 replanning steps 重新采样不同 intent，导致执行不稳定。
+
+方法用最近视觉历史编码 compact short-horizon intent representation" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.14712" target="_blank" rel="noopener noreferrer">2605.14712</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>IntentVLA 研究 VLA 操作中的 partial observability：相似当前画面可能来自不同任务阶段或短期意图，frame-conditioned chunk policies 会在相邻 replanning steps 重新采样不同 intent，导致执行不稳定。</dd></div><div><dt>方法/机制</dt><dd>方法用最近视觉历史编码 compact short-horizon intent representation，并将其作为 action chunk generation 的条件；同时提出 AliasBench，专门评估短时观察混叠下的机器人操作。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 VLA 的失败模式从简单感知误差细化为 short-horizon intent inconsistency，并给出训练框架和 benchmark。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为主要验证在仿真和现有 manipulation benchmarks；真实机器人、多模态传感和长程任务下仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>IntentVLA 研究 VLA 操作中的 partial observability：相似当前画面可能来自不同任务阶段或短期意图，frame-conditioned chunk policies 会在相邻 replanning steps 重新采样不同 intent，导致执行不稳定。</p><p>方法用最近视觉历史编码 compact short-horizon intent representation，并将其作为 action chunk generation 的条件；同时提出 AliasBench，专门评估短时观察混叠下的机器人操作。</p><p>它值得正式收录，因为它把 VLA 的失败模式从简单感知误差细化为 short-horizon intent inconsistency，并给出训练框架和 benchmark。</p><p>它没有更高，是因为主要验证在仿真和现有 manipulation benchmarks；真实机器人、多模态传感和长程任务下仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>机器人模仿数据通常是多模态的：相似的视觉-语言观察可能伴随着不同的动作块，因为人类演示者以不同的短期意图、任务阶段或近期上下文进行操作。现有的帧条件VLA策略仅从当前观察和指令推断每个动作块，因此在部分可观察性下，它们可能在相邻的重新规划步骤中重新采样不同的意图，导致块间冲突和不稳定执行。我们引入了IntentVLA，一个历史条件VLA框架，它将最近的视觉观察编码成紧凑的短期意图表示，并用它来条件化动作块的生成。我们进一步引入了AliasBench，一个在RoboTwin2上包含12个任务的歧义感知基准，具有匹配的训练数据和评估环境，用于隔离短期观察混叠。在AliasBench、SimplerEnv、LIBERO和RoboCasa上，IntentVLA提高了推出稳定性并优于强大的VLA基线。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Robot imitation data are often multimodal: similar visual-language observations may be followed by different action chunks because human demonstrators act with different shorthorizon intents, task phases, or recent context. Existing frame-conditioned VLA policies infer each chunk from the current observation and instruction alone, so under partial observability they may resample different intents across adjacent replanning steps, leading to inter-chunk conflict and unstable execution. We introduce IntentVLA, a history-conditioned VLA framework that encodes recent visual observations into a compact short-horizon intent representation and uses it to condition chunk generation. We further introduce AliasBench, a 12-task ambiguity-aware benchmark on RoboTwin2 with matched training data and evaluation environments that isolate short-horizon observation aliasing. Across AliasBench, SimplerEnv, LIBERO, and RoboCasa, IntentVLA improves rollout stability and outperforms strong VLA baselines.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260514rl71intent,
+  title = {IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.14712.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl71-intentvla-aliased-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). IntentVLA: Short-Horizon Intent Modeling for Aliased Robot Manipulation. https://arxiv.org/pdf/2605.14712.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.14712.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.14712" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

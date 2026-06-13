@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WALL-WM: Carving World Action Modeling at the Event Joints | DAST Papers</title>
+    <meta name="description" content="现有 World Action Models 常用固定长度 action chunks，但语言描述的是语义目标和事件，视觉则连续演化，二者粒度不匹配。
+
+WALL-WM 把 semantically coherent action events 作为学习原子，将 WAM 从 chunk-centric optimization 转向 event-grounded VLA pretraining。
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl98-wall-wm-event-grounded-wam/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WALL-WM: Carving World Action Modeling at the Event Joints" />
+    <meta property="og:description" content="现有 World Action Models 常用固定长度 action chunks，但语言描述的是语义目标和事件，视觉则连续演化，二者粒度不匹配。
+
+WALL-WM 把 semantically coherent action events 作为学习原子，将 WAM 从 chunk-centric optimization 转向 event-grounded VLA pretraining。
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl98-wall-wm-event-grounded-wam/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WALL-WM: Carving World Action Modeling at the Event Joints" />
+    <meta name="twitter:description" content="现有 World Action Models 常用固定长度 action chunks，但语言描述的是语义目标和事件，视觉则连续演化，二者粒度不匹配。
+
+WALL-WM 把 semantically coherent action events 作为学习原子，将 WAM 从 chunk-centric optimization 转向 event-grounded VLA pretraining。
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WALL-WM: Carving World Action Modeling at the Event Joints</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.01955" target="_blank" rel="noopener noreferrer">2606.01955</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有 World Action Models 常用固定长度 action chunks，但语言描述的是语义目标和事件，视觉则连续演化，二者粒度不匹配。</dd></div><div><dt>方法/机制</dt><dd>WALL-WM 把 semantically coherent action events 作为学习原子，将 WAM 从 chunk-centric optimization 转向 event-grounded VLA pretraining。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这是 world action model 的问题重定义，有望影响 embodied world models 和机器人动作表示。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有 World Action Models 常用固定长度 action chunks，但语言描述的是语义目标和事件，视觉则连续演化，二者粒度不匹配。</p><p>WALL-WM 把 semantically coherent action events 作为学习原子，将 WAM 从 chunk-centric optimization 转向 event-grounded VLA pretraining。</p><p>它值得收录，因为这是 world action model 的问题重定义，有望影响 embodied world models 和机器人动作表示。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>X Square Robot Team 的 WALL-WM 是一个世界动作模型，它将视频动作学习从基于块的优化转向基于事件的视觉-语言-动作预训练，利用语义连贯的动作事件作为学习的基本单元。现有的 WAM 模型通常从多模态或视频基础模型中初始化，然后根据当前观察和指令优化固定长度的动作块。虽然这种块式方法方便，但它造成了根本的粒度不匹配。语言描述语义目标和事件，视觉通过连续的场景动态演变，而动作则在控制级别的时间尺度上运行；强迫这三个要素都进入相同的固定长度预测窗口，将 VLA 训练变成短视期的相关性拟合。这不仅低估了预训练的视觉-语义先验，而且可能通过块特定的动作捷径来主动覆盖它，从而削弱了组合性和长视角的泛化能力。WALL-WM 通过组织监督和数据围绕语义事件来解决这种不匹配。具体来说，它将事件驱动的 VLA 预训练与基于事件级别的标题和平衡聚类的采样数据生态系统相结合，从而实现对各种行为、场景和任务结构的扩展学习。从相同的事件预训练后的骨干网络中，WALL-WM 支持两种互补的推理模式。事件模式消耗下一个事件描述，并允许可变长度的执行块，而统一模式则使用带有阶梯解码的 VLM 来在保持梯度连续的 VLA 路径的同时，对传统的固定长度块进行推理。与基于 Muon-optimizer 的大规模预训练基础设施相结合，WALL-WM 提供了一个通用的 WAM 模型的实用可扩展配方。实验表明，WALL-WM 在语言、场景和任务方面具有广泛的泛化能力，并在大规模的真实世界泛化评估中实现了最先进的性能。“雕刻自然在其关节处。”——致普拉图，《费德留斯》265e 日期：2026 年 6 月 代码：https://github.com/X-Square-Robot/wall-x</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>X Square Robot Team WALL-WM is a World Action Model that shifts video-action learning from chunk-centric optimization to event-grounded Vision-Language-Action pretraining, using semantically coherent action events as the atomic unit of learning. Existing WAMs commonly initialize from multimodal or video foundation models and then optimize fixed-length action chunks conditioned directly on the current observation and instruction. Although convenient, this chunk-centric formulation creates a fundamental granularity mismatch. Language describes semantic goals and events, vision evolves through continuous scene dynamics, and actions operate at control-level timescales; forcing all three into the same fixed-length prediction window turns VLA training into short-horizon correlation fitting. This not only underuses the pretrained visual-semantic prior, but can actively overwrite it with chunk-specific action shortcuts, weakening compositionality and long-horizon generalization. WALL-WM addresses this mismatch by organizing both supervision and data around semantic events. Specifically, it pairs event-grounded VLA pretraining with a data ecosystem built from event-level captions and cluster-balanced sampling, enabling scalable learning over diverse behaviors, scenes, and task structures. From the same eventpretrained backbone, WALL-WM supports two complementary inference modes. The event mode consumes next-event descriptions and enables variable-length execution chunks, while the unified mode uses a VLM with Staircase Decoding to condition conventional fixed-length chunk inference while preserving a gradient-continuous VLA path. Together with Muon-optimizer-based large-scale pretraining infrastructure, WALL-WM provides a practical scale-up recipe for general-purpose WAMs. Experiments show that WALL-WM generalizes broadly across language, scenes, and tasks, achieving state-of-the-art performance in large-scale real-world generalization evaluation. “Carve nature at its joints.” — after Plato, Phaedrus 265e Date: June 2026 Code: https://github.com/X-Square-Robot/wall-x</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601rl98wallwm,
+  title = {WALL-WM: Carving World Action Modeling at the Event Joints},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.01955.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl98-wall-wm-event-grounded-wam/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WALL-WM: Carving World Action Modeling at the Event Joints. https://arxiv.org/pdf/2606.01955.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl85-qwen-vla-unified-embodied-model/">
+              <span>Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments</span>
+              <small>机器人与具身智能 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.01955.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

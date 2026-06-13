@@ -1,0 +1,55 @@
+{
+  "slug": "a262-agentic-search-direct-corpus",
+  "title": "Beyond Semantic Similarity: Rethinking Retrieval for Agentic Search via Direct Corpus Interaction",
+  "summary": "这篇论文挑战了传统检索范式，提出直接语料库交互（DCI）方法，让智能体通过终端工具直接操作原始语料，以解决复杂搜索任务中语义检索的瓶颈。",
+  "abstract": "现代检索系统通过固定的相似性接口暴露语料库，将访问压缩为单个top-k检索步骤。这种抽象对智能体搜索成为瓶颈：精确词汇约束、稀疏线索结合、局部上下文检查和多步假设细化难以通过传统检索器实现。本文研究直接语料库交互（DCI），其中智能体使用通用终端工具（如grep、文件读取、shell命令）直接搜索原始语料，无需嵌入模型或向量索引。在多个基准测试中，DCI显著优于传统稀疏、密集和重排序基线，并在BrowseComp-Plus和多跳QA上获得高准确性。结果表明，检索质量不仅取决于推理能力，还取决于模型与语料交互接口的分辨率，DCI为智能体搜索开辟了更广阔的接口设计空间。",
+  "urls": [
+    "https://arxiv.org/pdf/2605.05242.pdf",
+    "https://arxiv.org/abs/2605.05242"
+  ],
+  "problem": "现代检索系统的固定相似性接口（如top-k检索）成为智能体搜索的瓶颈，无法有效处理精确词汇约束、稀疏线索结合、局部上下文检查和多步假设细化。",
+  "method": "直接语料库交互（DCI），智能体使用通用终端工具（如grep、文件读取、shell命令、轻量级脚本）直接搜索原始语料库，无需嵌入模型、向量索引或检索API。",
+  "findings": [
+    "在BRIGHT和BEIR等多个数据集上，DCI显著优于强大的稀疏、密集和重排序基线。",
+    "在BrowseComp-Plus和多跳QA上，DCI获得了很高的准确性，且无需依赖传统语义检索器。",
+    "随着语言智能体变得更强大，检索质量取决于模型与语料交互接口的分辨率，DCI开辟了更广阔的接口设计空间。"
+  ],
+  "limitations": [
+    "当前仍需要更多真实复杂任务和系统级复现来证明DCI能成为主流检索范式。",
+    "DCI依赖于智能体使用终端工具的能力，可能需要较强的指令遵循和工具使用技能。"
+  ],
+  "key_terms": [
+    "直接语料库交互（DCI）",
+    "智能体搜索",
+    "语义检索",
+    "top-k检索",
+    "终端工具"
+  ],
+  "anchors": [
+    {
+      "kind": "problem",
+      "text": "现代检索系统的固定相似性接口（如top-k检索）成为智能体搜索的瓶颈，无法有效处理精确词汇约束、稀疏线索结合、局部上下文检查和多步假设细化。",
+      "evidence": "abstract"
+    },
+    {
+      "kind": "method",
+      "text": "我们研究直接语料库交互（DCI），其中智能体使用通用终端工具（如grep、文件读取、shell命令）直接搜索原始语料，无需嵌入模型或向量索引。",
+      "evidence": "abstract"
+    },
+    {
+      "kind": "finding",
+      "text": "在BRIGHT和BEIR等多个数据集上，DCI显著优于强大的稀疏、密集和重排序基线。",
+      "evidence": "abstract"
+    },
+    {
+      "kind": "finding",
+      "text": "随着语言智能体变得更强大，检索质量取决于模型与语料交互接口的分辨率，DCI开辟了更广阔的接口设计空间。",
+      "evidence": "abstract"
+    },
+    {
+      "kind": "limitation",
+      "text": "当前仍需要更多真实复杂任务和系统级复现来证明DCI能成为主流检索范式。",
+      "evidence": "summary"
+    }
+  ]
+}

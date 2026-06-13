@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MobileLLM-Flash: Latency-Guided On-Device LLM Design for Industry Scale | DAST Papers</title>
+    <meta name="description" content="这篇论文关注的是端侧大语言模型设计里一个经常被理论代理指标误导的问题：参数量和 FLOPs 并不能可靠代表真实移动端延迟。作者把问题直接放回工业部署语境中，要求模型不仅要快，还要兼容标准移动端运行时和标准软件栈，避免依赖不可移植的定制算子。
+
+方法上的核心是 hardware-in-the-loop 架构搜索。作者先在真实移动硬件上建立延迟模型，再联合搜索层数、宽度以及注意力模式。论文给出的结论很" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys9-mobilellm-flash/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MobileLLM-Flash: Latency-Guided On-Device LLM Design for Industry Scale" />
+    <meta property="og:description" content="这篇论文关注的是端侧大语言模型设计里一个经常被理论代理指标误导的问题：参数量和 FLOPs 并不能可靠代表真实移动端延迟。作者把问题直接放回工业部署语境中，要求模型不仅要快，还要兼容标准移动端运行时和标准软件栈，避免依赖不可移植的定制算子。
+
+方法上的核心是 hardware-in-the-loop 架构搜索。作者先在真实移动硬件上建立延迟模型，再联合搜索层数、宽度以及注意力模式。论文给出的结论很" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys9-mobilellm-flash/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MobileLLM-Flash: Latency-Guided On-Device LLM Design for Industry Scale" />
+    <meta name="twitter:description" content="这篇论文关注的是端侧大语言模型设计里一个经常被理论代理指标误导的问题：参数量和 FLOPs 并不能可靠代表真实移动端延迟。作者把问题直接放回工业部署语境中，要求模型不仅要快，还要兼容标准移动端运行时和标准软件栈，避免依赖不可移植的定制算子。
+
+方法上的核心是 hardware-in-the-loop 架构搜索。作者先在真实移动硬件上建立延迟模型，再联合搜索层数、宽度以及注意力模式。论文给出的结论很" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MobileLLM-Flash: Latency-Guided On-Device LLM Design for Industry Scale</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15954" target="_blank" rel="noopener noreferrer">2603.15954</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注的是端侧大语言模型设计里一个经常被理论代理指标误导的问题：参数量和 FLOPs 并不能可靠代表真实移动端延迟。作者把问题直接放回工业部署语境中，要求模型不仅要快，还要兼容标准移动端运行时和标准软件栈，避免依赖不可移植的定制算子。</dd></div><div><dt>方法/机制</dt><dd>方法上的核心是 hardware-in-the-loop 架构搜索。作者先在真实移动硬件上建立延迟模型，再联合搜索层数、宽度以及注意力模式。论文给出的结论很有操作性：在当前移动 CPU 条件下，浅而宽的模型优于深而窄的模型；标准 runtime 里 skip attention 比 sliding window attention 更实用；并且对预训练模型做结构化剪枝和极少量继续训练，就能高精度预测候选架构在大规模训练后的排序。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不是单纯的 mobile benchmark 论文，而是给出了面向工业级端侧 LLM 的设计原则和搜索方法。对系统设计、边缘部署、runtime-aware architecture search 以及小模型工程路线都有明显外溢，也符合仓库对高价值系统与基础设施论文的收录标准。</dd></div><div><dt>收录价值</dt><dd>它目前适合定为 breakthrough，而不是更高一级。原因是它主要还是集中在移动端 LLM 这一具体部署场景中，虽然工程洞见很强，但影响范围尚未扩展到更广泛的通用模型架构范式替换。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注的是端侧大语言模型设计里一个经常被理论代理指标误导的问题：参数量和 FLOPs 并不能可靠代表真实移动端延迟。作者把问题直接放回工业部署语境中，要求模型不仅要快，还要兼容标准移动端运行时和标准软件栈，避免依赖不可移植的定制算子。</p><p>方法上的核心是 hardware-in-the-loop 架构搜索。作者先在真实移动硬件上建立延迟模型，再联合搜索层数、宽度以及注意力模式。论文给出的结论很有操作性：在当前移动 CPU 条件下，浅而宽的模型优于深而窄的模型；标准 runtime 里 skip attention 比 sliding window attention 更实用；并且对预训练模型做结构化剪枝和极少量继续训练，就能高精度预测候选架构在大规模训练后的排序。</p><p>这篇工作值得正式收录，因为它不是单纯的 mobile benchmark 论文，而是给出了面向工业级端侧 LLM 的设计原则和搜索方法。对系统设计、边缘部署、runtime-aware architecture search 以及小模型工程路线都有明显外溢，也符合仓库对高价值系统与基础设施论文的收录标准。</p><p>它目前适合定为 breakthrough，而不是更高一级。原因是它主要还是集中在移动端 LLM 这一具体部署场景中，虽然工程洞见很强，但影响范围尚未扩展到更广泛的通用模型架构范式替换。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MobileLLM-Flash：延迟引导的工业级设备端LLM设计。实时AI体验需要设备端大语言模型 (OD-LLMs)，这些模型经过优化，可在资源受限的硬件上高效部署。最有用的OD-LLMs能产生近乎实时的响应，并展现出广泛的硬件兼容性，从而最大化用户覆盖范围。我们提出了一种方法，用于在移动延迟约束下，利用硬件在环架构搜索来设计此类模型。该系统适用于工业规模部署：它生成的模型无需自定义内核即可部署，并与Executorch等标准移动运行时兼容。我们的方法避免使用专门的注意力机制，而是采用注意力跳过技术来实现长上下文加速。我们的方法联合优化模型架构（层、维度）和注意力模式。为了高效评估候选模型，我们将每个候选模型视为预训练骨干模型的剪枝版本，并继承其权重，从而以最少的持续预训练实现高精度。我们利用延迟评估的低成本，采用分阶段过程：首先学习一个精确的延迟模型，然后搜索延迟和质量之间的帕累托前沿。这产生了MobileLLM-Flash，一个基础模型家族（350M、650M、1.4B），用于高效的设备端使用，具有强大的能力，支持高达8k的上下文长度。MobileLLM-Flash在移动CPU上提供高达1.8倍和1.6倍的预填充和解码速度，同时保持相当或更优的质量。我们对帕累托前沿设计选择的分析为OD-LLM设计提供了可操作的原则。日期：2026年3月18日 通讯：hanxianhuang@meta.com, ifedorov@meta.com</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Real-time AI experiences call for on-device large language models (OD-LLMs) optimized for efficient deployment on resource-constrained hardware. The most useful OD-LLMs produce near-real-time responses and exhibit broad hardware compatibility, maximizing user reach. We present a methodology for designing such models using hardware-in-the-loop architecture search under mobile latency constraints. This system is amenable to industry-scale deployment: it generates models deployable without custom kernels and compatible with standard mobile runtimes like Executorch. Our methodology avoids specialized attention mechanisms and instead uses attention skipping for long-context acceleration. Our approach jointly optimizes model architecture (layers, dimensions) and attention pattern. To efficiently evaluate candidates, we treat each as a pruned version of a pretrained backbone with inherited weights, thereby achieving high accuracy with minimal continued pretraining. We leverage the low cost of latency evaluation in a staged process: learning an accurate latency model first, then searching for the Pareto-frontier across latency and quality. This yields MobileLLM-Flash, a family of foundation models (350M, 650M, 1.4B) for efficient on-device use with strong capabilities, supporting up to 8k context length. MobileLLM-Flash delivers up to 1.8× and 1.6× faster prefill and decode on mobile CPUs with comparable or superior quality. Our analysis of Pareto-frontier design choices offers actionable principles for OD-LLM design. Date: March 18, 2026 Correspondence: hanxianhuang@meta.com, ifedorov@meta.com</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316sys9mobile,
+  title = {MobileLLM-Flash: Latency-Guided On-Device LLM Design for Industry Scale},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15954v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys9-mobilellm-flash/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MobileLLM-Flash: Latency-Guided On-Device LLM Design for Industry Scale. https://arxiv.org/pdf/2603.15954v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15954v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons | DAST Papers</title>
+    <meta name="description" content="- 分级：`突破性`
+- 正式标题：`Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons`
+- 原文：`2025-10-16-R1_Breadcrumbs_Reasoning-Breadcrumbs_Reasoning_Memory_Efficient_Reasoning_with_Compressi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r1-breadcrumbs-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons" />
+    <meta property="og:description" content="- 分级：`突破性`
+- 正式标题：`Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons`
+- 原文：`2025-10-16-R1_Breadcrumbs_Reasoning-Breadcrumbs_Reasoning_Memory_Efficient_Reasoning_with_Compressi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r1-breadcrumbs-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons" />
+    <meta name="twitter:description" content="- 分级：`突破性`
+- 正式标题：`Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons`
+- 原文：`2025-10-16-R1_Breadcrumbs_Reasoning-Breadcrumbs_Reasoning_Memory_Efficient_Reasoning_with_Compressi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2025-10-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-16</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>- 分级：`突破性`</dd></div><div><dt>方法/机制</dt><dd>- 正式标题：`Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons`</dd></div><div><dt>结果/证据</dt><dd>- 原文：`2025-10-16-R1_Breadcrumbs_Reasoning-Breadcrumbs_Reasoning_Memory_Efficient_Reasoning_with_Compression_Beacons.pdf`</dd></div><div><dt>收录价值</dt><dd>- 抽取：`extracted.md`</dd></div><div><dt>要点 5</dt><dd>## 重写摘要</dd></div><div><dt>要点 6</dt><dd>这篇论文解决的是长链推理里最具体也最贵的工程瓶颈：Transformer 在生成过程中 KV cache 线性膨胀，显存和延迟都会持续上升。作者提出 Compression Beacons 机制，在生成推理 token 的过程中周期性插入一个专用压缩 token，把前序 KV cache 压缩成更紧凑的表示，并驱逐已被压缩的旧缓存条目。</dd></div><div><dt>要点 7</dt><dd>论文的关键点不是只做无训练压缩，而是用“蒸馏 + 强化学习”联合训练，让模型学会如何压缩历史推理轨迹，同时尽量保留后续继续推理所需的关键信息。作者强调这种训练方式几乎不额外增加传统 RL 训练成本，因为蒸馏直接复用 RL 轨迹。实证结果表明，这一方法在内存消耗和推理准确率之间达到了更优的 Pareto 前沿，优于不压缩缓存的基线以及常见的免训练压缩方法。</dd></div><div><dt>要点 8</dt><dd>## 为什么重要</dd></div><div><dt>要点 9</dt><dd>很多长上下文改造停留在“能塞更多 token”，这篇更进一步处理“生成时如何持续记忆”。它对真正的长链 reasoning、agent 轨迹执行和资源受限部署都很重要，属于可直接影响推理系统工程形态的工作。</dd></div><div><dt>要点 10</dt><dd>## 局限</dd></div><div><dt>要点 11</dt><dd>它本质上仍是针对 KV cache 管理的机制创新，不等于从根本上解决长期记忆或抽象知识组织问题。压缩比、任务类型和训练分布变化时的稳健性，仍需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>- 分级：`突破性`</p><p>- 正式标题：`Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons`</p><p>- 原文：`2025-10-16-R1_Breadcrumbs_Reasoning-Breadcrumbs_Reasoning_Memory_Efficient_Reasoning_with_Compression_Beacons.pdf`</p><p>- 抽取：`extracted.md`</p><p>## 重写摘要</p><p>这篇论文解决的是长链推理里最具体也最贵的工程瓶颈：Transformer 在生成过程中 KV cache 线性膨胀，显存和延迟都会持续上升。作者提出 Compression Beacons 机制，在生成推理 token 的过程中周期性插入一个专用压缩 token，把前序 KV cache 压缩成更紧凑的表示，并驱逐已被压缩的旧缓存条目。</p><p>论文的关键点不是只做无训练压缩，而是用“蒸馏 + 强化学习”联合训练，让模型学会如何压缩历史推理轨迹，同时尽量保留后续继续推理所需的关键信息。作者强调这种训练方式几乎不额外增加传统 RL 训练成本，因为蒸馏直接复用 RL 轨迹。实证结果表明，这一方法在内存消耗和推理准确率之间达到了更优的 Pareto 前沿，优于不压缩缓存的基线以及常见的免训练压缩方法。</p><p>## 为什么重要</p><p>很多长上下文改造停留在“能塞更多 token”，这篇更进一步处理“生成时如何持续记忆”。它对真正的长链 reasoning、agent 轨迹执行和资源受限部署都很重要，属于可直接影响推理系统工程形态的工作。</p><p>## 局限</p><p>它本质上仍是针对 KV cache 管理的机制创新，不等于从根本上解决长期记忆或抽象知识组织问题。压缩比、任务类型和训练分布变化时的稳健性，仍需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：面包屑推理：利用压缩信标实现内存高效推理。大型语言模型在长上下文推理方面的可扩展性受到其Transformer键值缓存线性增长的严重限制，这会带来巨大的内存和计算成本。我们认为，当模型生成推理令牌时，过去生成的令牌的信息价值会降低，从而为压缩创造了机会。在这项工作中，我们提出使用一个学习到的专用令牌周期性地压缩生成KV缓存，并驱逐已压缩的条目。我们通过改进的联合蒸馏和强化学习（RL）框架来训练模型执行这种压缩。我们的训练方法最大限度地减少了传统RL过程的开销，因为它利用RL输出进行蒸馏。经验上，与没有缓存压缩的模型和免训练压缩技术相比，我们的方法实现了更优的内存-准确性帕累托前沿。图1：面包屑推理，压缩比c = 16。为了在推理过程中节省内存，一个包含c个令牌的窗口会周期性地被压缩成一个单一的信标令牌。然后，该窗口的原始KV缓存条目被驱逐，只留下一个紧凑的“面包屑”，它总结了之前的推理步骤。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The scalability of large language models for long-context reasoning is severely constrained by the linear growth of their Transformer key-value cache, which incurs significant memory and computational costs. We posit that as a model generates reasoning tokens, the informational value of past generated tokens di- minishes, creating an opportunity for compression. In this work, we propose to periodically compress the generation KV cache with a learned, special-purpose token and evict compressed entries. We train the model to perform this compres- sion via a modified joint distillation and reinforcement learning (RL) framework. Our training method minimizes overhead over the conventional RL process, as it leverages RL outputs for distillation. Empirically, our method achieves a supe- rior memory–accuracy Pareto frontier compared to both the model without cache compression and training-free compression techniques. Figure 1: Breadcrumbs Reasoning, with a compression ratio c = 16. To save memory during inference, a window of c tokens is periodically compressed into a single beacon token. The original KV cache entries for the window are then evicted, leaving only a compact ’breadcrumb’ that sum- marizes the preceding reasoning steps.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251016r1breadcru,
+  title = {Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons},
+  year = {2025},
+  url = {https://openreview.net/pdf?id=t7Hd7BS3yH},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r1-breadcrumbs-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Breadcrumbs Reasoning: Memory-Efficient Reasoning with Compression Beacons. https://openreview.net/pdf?id=t7Hd7BS3yH</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openreview.net/pdf?id=t7Hd7BS3yH" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

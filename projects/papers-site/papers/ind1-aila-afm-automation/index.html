@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Evaluating large language model agents for automation of atomic force microscopy | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了 self-driving laboratories 真正难的一层：很多实验自动化系统依赖刚性 protocol 和手工流程设计，很难体现专家在动态实验环境中的判断与适应能力。作者把 atomic force microscopy（AFM）作为一个高精度实验工作流，专门测试 LLM agents 是否真的能够承担从实验设计到结果分析的完整科学流程，而不只是回答材料科学问题。
+
+论文提" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/ind1-aila-afm-automation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Evaluating large language model agents for automation of atomic force microscopy" />
+    <meta property="og:description" content="这篇论文抓住了 self-driving laboratories 真正难的一层：很多实验自动化系统依赖刚性 protocol 和手工流程设计，很难体现专家在动态实验环境中的判断与适应能力。作者把 atomic force microscopy（AFM）作为一个高精度实验工作流，专门测试 LLM agents 是否真的能够承担从实验设计到结果分析的完整科学流程，而不只是回答材料科学问题。
+
+论文提" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/ind1-aila-afm-automation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Evaluating large language model agents for automation of atomic force microscopy" />
+    <meta name="twitter:description" content="这篇论文抓住了 self-driving laboratories 真正难的一层：很多实验自动化系统依赖刚性 protocol 和手工流程设计，很难体现专家在动态实验环境中的判断与适应能力。作者把 atomic force microscopy（AFM）作为一个高精度实验工作流，专门测试 LLM agents 是否真的能够承担从实验设计到结果分析的完整科学流程，而不只是回答材料科学问题。
+
+论文提" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Evaluating large language model agents for automation of atomic force microscopy</h1>
+          <p class="subtitle">工业过程与制造 · 发表：2025-10-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">工业过程与制造</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-14</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-64105-7" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-64105-7</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了 self-driving laboratories 真正难的一层：很多实验自动化系统依赖刚性 protocol 和手工流程设计，很难体现专家在动态实验环境中的判断与适应能力。作者把 atomic force microscopy（AFM）作为一个高精度实验工作流，专门测试 LLM agents 是否真的能够承担从实验设计到结果分析的完整科学流程，而不只是回答材料科学问题。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Artificially Intelligent Lab Assistant（AILA）框架，并同时发布 AFMBench 这一套完整评测，从实验设计、校准、特征检测到结果分析全面考察 LLM agent 的实验能力。摘要里最关键的结果不是“某个模型做到了自动 AFM”，而是：当前最强模型在基础任务和协调场景上仍然会明显失败；材料科学问答能力并不等于实验能力；此外还出现作者称为 sleepwalking 的 instruction deviation，说明 agentic lab automation 有真实的安全和对齐问题。multi-agent 设置优于 single-agent，但仍然对提示格式敏感。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它把 scientific instrumentation automation 从 demo 推进到 benchmark + safety + capability boundary 的更成熟阶段。对仓库来说，它既属于 AI for science，也属于工业/实验过程自动化的关键参考：真正重要的不是 AFM 这个单一设备，而是它证明了 agentic lab systems 在进入真实实验闭环前，必须有更严格的系统评测与安全分析。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是当前工作仍聚焦 AFM 与相关材料实验流程，离更广泛的 autonomous instrumentation default benchmark 还有距离。它非常值得收，但还没有把整个 self-driving lab 赛道完全重排。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了 self-driving laboratories 真正难的一层：很多实验自动化系统依赖刚性 protocol 和手工流程设计，很难体现专家在动态实验环境中的判断与适应能力。作者把 atomic force microscopy（AFM）作为一个高精度实验工作流，专门测试 LLM agents 是否真的能够承担从实验设计到结果分析的完整科学流程，而不只是回答材料科学问题。</p><p>论文提出 Artificially Intelligent Lab Assistant（AILA）框架，并同时发布 AFMBench 这一套完整评测，从实验设计、校准、特征检测到结果分析全面考察 LLM agent 的实验能力。摘要里最关键的结果不是“某个模型做到了自动 AFM”，而是：当前最强模型在基础任务和协调场景上仍然会明显失败；材料科学问答能力并不等于实验能力；此外还出现作者称为 sleepwalking 的 instruction deviation，说明 agentic lab automation 有真实的安全和对齐问题。multi-agent 设置优于 single-agent，但仍然对提示格式敏感。</p><p>这项工作值得正式收录，因为它把 scientific instrumentation automation 从 demo 推进到 benchmark + safety + capability boundary 的更成熟阶段。对仓库来说，它既属于 AI for science，也属于工业/实验过程自动化的关键参考：真正重要的不是 AFM 这个单一设备，而是它证明了 agentic lab systems 在进入真实实验闭环前，必须有更严格的系统评测与安全分析。</p><p>它暂时还不到更高一级，原因是当前工作仍聚焦 AFM 与相关材料实验流程，离更广泛的 autonomous instrumentation default benchmark 还有距离。它非常值得收，但还没有把整个 self-driving lab 赛道完全重排。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLMs正在通过实现自动驾驶实验室（SDLs）来改变实验室自动化，这有望加速材料研究。然而，当前的SDL实现依赖于僵化的协议，未能捕捉到专家科学家在动态实验环境中的适应性和直觉。在本文中，我们展示了LLM智能体可以通过我们的人工智能实验室助手（AILA）框架自动化原子力显微镜（AFM）。此外，我们开发了AFMBench——一个全面的评估套件，用于在从实验设计到结果分析的完整科学工作流程中挑战LLM智能体。我们发现最先进的LLMs在基本任务和协调场景中表现不佳。值得注意的是，在材料科学问答方面表现出色的模型在实验室环境中表现不佳，这表明领域知识并不能转化为实验能力。此外，我们观察到LLM智能体可能会偏离指令，这种现象被称为“梦游”，这为SDL应用带来了安全对齐方面的担忧。我们的消融实验表明，多智能体框架显著优于单智能体方法，尽管两者都对指令格式或提示中的微小变化敏感。最后，我们评估了AILA在日益高级的实验中的有效性——AFM校准、特征检测、机械性能测量、石墨烯层计数和压痕器检测。这些发现确立了在将LLM智能体作为自主实验室助手部署到各个科学领域之前，进行基准测试和建立稳健安全协议的必要性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) are transforming laboratory automation by enabling self-driving laboratories (SDLs) that could accelerate materials research. However, current SDL implementations rely on rigid protocols that fail to capture the adaptability and intuition of expert scientists in dynamic experimental settings. Here, we show that LLM agents can automate atomic force microscopy (AFM) through our Artificially Intelligent Lab Assistant (AILA) framework. Further, we develop AFMBench—a comprehensive evaluation suite challenging LLM agents across the complete scientific workflow from experimental design to results analysis. We find that state-of-the-art LLMs struggle with basic tasks and coordination scenarios. Notably, models excelling at materials science question-answering perform poorly in laboratory settings, showing that domain knowledge does not translate to experimental capabilities. Additionally, we observe that LLM agents can deviate from instructions, a phenomenon referred to as sleepwalking, raising safety alignment concerns for SDL applications. Our ablations reveal that multi-agent frameworks significantly outperform single-agent approaches, though both remain sensitive to minor changes in instruction formatting or prompting. Finally, we evaluate AILA’s effectiveness in increasingly advanced experiments—AFM calibration, feature detection, mechanical property measurement, graphene layer counting, and indenter detection. These findings establish the necessity for benchmarking and robust safety protocols before deploying LLM agents as autonomous laboratory assistants across scientific disciplines.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251014ind1ailaaf,
+  title = {Evaluating large language model agents for automation of atomic force microscopy},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-64105-7},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/ind1-aila-afm-automation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Evaluating large language model agents for automation of atomic force microscopy. https://www.nature.com/articles/s41467-025-64105-7</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ind6-cipher-manufacturing-vla/">
+              <span>Hybrid reasoning for perception, explanation, and autonomous action in manufacturing</span>
+              <small>工业过程与制造 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/ind7-self-improving-cad-agents-fea/">
+              <span>Self-Improving CAD Generation Agents with Finite Element Analysis as Feedback</span>
+              <small>工业过程与制造 · 2026-05-17</small>
+            </a>
+            <a class="related-item" href="../../papers/ind3-owl-auraid-scientific-instrumentation/">
+              <span>Owl-AuraID 1.0: An Intelligent System for Autonomous Scientific Instrumentation and Scientific Data Analysis</span>
+              <small>工业过程与制造 · 2026-03-31</small>
+            </a>
+            <a class="related-item" href="../../papers/ind4-chemical-process-digitalisation/">
+              <span>A semantic framework for chemical process digitalisation using ontologies</span>
+              <small>工业过程与制造 · 2026-02-19</small>
+            </a>
+            <a class="related-item" href="../../papers/ind5-ai-directed-3d-printing-foams/">
+              <span>AI-Directed 3D Printing of Hierarchical Polyurethane Foams</span>
+              <small>工业过程与制造 · 2025-11-29</small>
+            </a>
+            <a class="related-item" href="../../papers/ind2-coembodied-intelligence/">
+              <span>Human-AI Co-Embodied Intelligence for Scientific Experimentation and Manufacturing</span>
+              <small>工业过程与制造 · 2025-11-03</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-64105-7" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

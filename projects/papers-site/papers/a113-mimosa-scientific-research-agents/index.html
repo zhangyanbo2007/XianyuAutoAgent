@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research | DAST Papers</title>
+    <meta name="description" content="当前 autonomous scientific research 系统虽然越来越多，但大多仍依赖固定的 agent workflow 和预设工具栈，导致一旦任务结构变化或环境变复杂，系统很难自适应调整。Mimosa 瞄准的不是单一任务性能，而是‘科研 agent workflow 能否像程序一样被自动合成、执行、评估并持续进化’这个更上层问题。
+
+论文提出 Mimosa，一个可进化的 multi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a113-mimosa-scientific-research-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research" />
+    <meta property="og:description" content="当前 autonomous scientific research 系统虽然越来越多，但大多仍依赖固定的 agent workflow 和预设工具栈，导致一旦任务结构变化或环境变复杂，系统很难自适应调整。Mimosa 瞄准的不是单一任务性能，而是‘科研 agent workflow 能否像程序一样被自动合成、执行、评估并持续进化’这个更上层问题。
+
+论文提出 Mimosa，一个可进化的 multi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a113-mimosa-scientific-research-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research" />
+    <meta name="twitter:description" content="当前 autonomous scientific research 系统虽然越来越多，但大多仍依赖固定的 agent workflow 和预设工具栈，导致一旦任务结构变化或环境变复杂，系统很难自适应调整。Mimosa 瞄准的不是单一任务性能，而是‘科研 agent workflow 能否像程序一样被自动合成、执行、评估并持续进化’这个更上层问题。
+
+论文提出 Mimosa，一个可进化的 multi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.28986" target="_blank" rel="noopener noreferrer">2603.28986</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前 autonomous scientific research 系统虽然越来越多，但大多仍依赖固定的 agent workflow 和预设工具栈，导致一旦任务结构变化或环境变复杂，系统很难自适应调整。Mimosa 瞄准的不是单一任务性能，而是‘科研 agent workflow 能否像程序一样被自动合成、执行、评估并持续进化’这个更上层问题。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Mimosa，一个可进化的 multi-agent scientific workflow 框架。它通过 meta-orchestrator 自动生成任务特定的 agent 拓扑，用 MCP 做动态工具发现，再由 code-generating agents 调用科学软件与工具执行子任务；执行结果交给 LLM judge 评分，反馈再反向驱动 workflow refinement。也就是说，它把 multi-agent decomposition、tool discovery、execution trace 和 evolutionary refinement 接成了闭环。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是再做一个固定 agent，而是在 agent-driven science 方向给出了一种更 durable 的系统模式：任务来了先合成 workflow，再根据实验反馈迭代演化。这个结构对科学自动化、复杂分析流水线和自改进 agent 系统都有明显外溢价值，也和仓库近期补收的 self-evolving / workflow optimization 主线形成了很好衔接。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要验证还集中在 ScienceAgentBench 和作者给出的开源平台叙事上。虽然模式很对，且比普通 static multi-agent paper 更进一步，但离真正成为跨科学领域默认路线，还需要更多独立团队复现和更广场景 adoption。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前 autonomous scientific research 系统虽然越来越多，但大多仍依赖固定的 agent workflow 和预设工具栈，导致一旦任务结构变化或环境变复杂，系统很难自适应调整。Mimosa 瞄准的不是单一任务性能，而是‘科研 agent workflow 能否像程序一样被自动合成、执行、评估并持续进化’这个更上层问题。</p><p>论文提出 Mimosa，一个可进化的 multi-agent scientific workflow 框架。它通过 meta-orchestrator 自动生成任务特定的 agent 拓扑，用 MCP 做动态工具发现，再由 code-generating agents 调用科学软件与工具执行子任务；执行结果交给 LLM judge 评分，反馈再反向驱动 workflow refinement。也就是说，它把 multi-agent decomposition、tool discovery、execution trace 和 evolutionary refinement 接成了闭环。</p><p>这篇工作值得收录，因为它不是再做一个固定 agent，而是在 agent-driven science 方向给出了一种更 durable 的系统模式：任务来了先合成 workflow，再根据实验反馈迭代演化。这个结构对科学自动化、复杂分析流水线和自改进 agent 系统都有明显外溢价值，也和仓库近期补收的 self-evolving / workflow optimization 主线形成了很好衔接。</p><p>它没有升到更高一级，是因为当前主要验证还集中在 ScienceAgentBench 和作者给出的开源平台叙事上。虽然模式很对，且比普通 static multi-agent paper 更进一步，但离真正成为跨科学领域默认路线，还需要更多独立团队复现和更广场景 adoption。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>当前的自主科学研究（ASR）系统，尽管利用了大型语言模型（LLMs）和智能体架构，但仍受限于固定的工作流程和工具集，这阻碍了它们适应不断演变的任务和环境。我们引入了Mimosa，一个不断演进的多智能体框架，它能自动合成特定任务的多智能体工作流程，并通过实验反馈迭代地对其进行完善。Mimosa利用模型上下文协议（MCP）进行动态工具发现，通过元编排器生成工作流程拓扑，通过调用可用工具和科学软件库的代码生成智能体执行子任务，并使用基于LLM的评判器对执行进行评分，其反馈驱动工作流程的完善。在ScienceAgentBench上，Mimosa使用DeepSeek-V3.2实现了43.1%的成功率，超越了单智能体基线和静态多智能体配置。我们的结果进一步揭示，模型对多智能体分解和迭代学习的响应是异构的，这表明工作流程演进的益处取决于底层执行模型的能力。除了这些基准测试，Mimosa的模块化架构和工具无关设计使其易于扩展，其完全记录的执行轨迹和存档的工作流程通过保留每个分析步骤以供检查和潜在复制来支持可审计性。结合领域专家指导，该框架有潜力自动化跨学科的广泛计算可访问的科学任务。Mimosa作为一个完全开源的平台发布，旨在为社区驱动的ASR提供一个开放的基础。*共同通讯作者：martin.legrand@univ-cotedazur.fr, tao.jiang@univ-cotedazur.fr, louis-felix.nothias@univ-cotedazur.fr</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Current Autonomous Scientific Research (ASR) systems, despite leveraging large language models (LLMs) and agentic architectures, remain constrained by fixed workflows and toolsets that prevent adaptation to evolving tasks and environments. We introduce Mimosa, an evolving multiagent framework that automatically synthesizes task-specific multi-agent workflows and iteratively refines them through experimental feedback. Mimosa leverages the Model Context Protocol (MCP) for dynamic tool discovery, generates workflow topologies via a meta-orchestrator, executes subtasks through code-generating agents that invoke available tools and scientific software libraries, and scores executions with an LLM-based judge whose feedback drives workflow refinement. On ScienceAgentBench, Mimosa achieves a success rate of 43.1% with DeepSeek-V3.2, surpassing both single-agent baselines and static multiagent configurations. Our results further reveal that models respond heterogeneously to multi-agent decomposition and iterative learning, indicating that the benefits of workflow evolution depend on the capabilities of the underlying execution model. Beyond these benchmarks, Mimosa’s modular architecture and toolagnostic design make it readily extensible, and its fully logged execution traces and archived workflows support auditability by preserving every analytical step for inspection and potential replication. Combined with domain-expert guidance, the framework has the potential to automate a broad range of computationally accessible scientific tasks across disciplines. Released as a fully open-source platform, Mimosa aims to provide an open foundation for community-driven ASR. *Co-corresponding authors: martin.legrand@univ-cotedazur.fr, tao.jiang@univ-cotedazur.fr, louis-felix.nothias@univ-cotedazur.fr</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260330a113mimosa,
+  title = {Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.28986.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a113-mimosa-scientific-research-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research. https://arxiv.org/pdf/2603.28986.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.28986.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

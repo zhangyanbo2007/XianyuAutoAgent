@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unified Brain Surface and Volume Registration | DAST Papers</title>
+    <meta name="description" content="脑 MRI 配准长期分裂成两条路线：体素配准和皮层表面配准分别处理，这会在跨被试神经科学分析里引入不一致。本文解决的问题是：能否用统一框架同时对体积与表面进行一致配准，让脑表面和脑内部解剖在同一表示里被对齐。
+
+作者提出 NeurAlign，用体积-表面联合表示做 3D 脑 MRI 配准，并引入中间球面坐标空间连接皮层拓扑与体积解剖。方法上不是简单叠加两个配准器，而是把 surface regis" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n29-brain-surface-volume-registration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Unified Brain Surface and Volume Registration" />
+    <meta property="og:description" content="脑 MRI 配准长期分裂成两条路线：体素配准和皮层表面配准分别处理，这会在跨被试神经科学分析里引入不一致。本文解决的问题是：能否用统一框架同时对体积与表面进行一致配准，让脑表面和脑内部解剖在同一表示里被对齐。
+
+作者提出 NeurAlign，用体积-表面联合表示做 3D 脑 MRI 配准，并引入中间球面坐标空间连接皮层拓扑与体积解剖。方法上不是简单叠加两个配准器，而是把 surface regis" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n29-brain-surface-volume-registration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Unified Brain Surface and Volume Registration" />
+    <meta name="twitter:description" content="脑 MRI 配准长期分裂成两条路线：体素配准和皮层表面配准分别处理，这会在跨被试神经科学分析里引入不一致。本文解决的问题是：能否用统一框架同时对体积与表面进行一致配准，让脑表面和脑内部解剖在同一表示里被对齐。
+
+作者提出 NeurAlign，用体积-表面联合表示做 3D 脑 MRI 配准，并引入中间球面坐标空间连接皮层拓扑与体积解剖。方法上不是简单叠加两个配准器，而是把 surface regis" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Unified Brain Surface and Volume Registration</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-12-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2512.19928" target="_blank" rel="noopener noreferrer">2512.19928</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>脑 MRI 配准长期分裂成两条路线：体素配准和皮层表面配准分别处理，这会在跨被试神经科学分析里引入不一致。本文解决的问题是：能否用统一框架同时对体积与表面进行一致配准，让脑表面和脑内部解剖在同一表示里被对齐。</dd></div><div><dt>方法/机制</dt><dd>作者提出 NeurAlign，用体积-表面联合表示做 3D 脑 MRI 配准，并引入中间球面坐标空间连接皮层拓扑与体积解剖。方法上不是简单叠加两个配准器，而是把 surface registration 显式整合进学习过程，确保几何一致性。摘要里报告在 in-domain 和 out-of-domain 数据上都优于经典方法和现有学习方法，Dice 最高提升约 7 个点，同时保持规则形变。</dd></div><div><dt>结果/证据</dt><dd>这篇论文适合认知科学 / 脑影像主线，尤其和 BrainIAC、Prima 一起看，会形成“brain foundation model 之前的数据几何底座”这一视角。对跨被试神经成像、结构功能对齐、脑图谱构建都有直接价值。</dd></div><div><dt>收录价值</dt><dd>它归为突破性而不是更高一级，因为问题虽重要，但影响仍主要集中在脑影像配准和神经影像方法学层面，尚未形成更广泛的范式重排。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>脑 MRI 配准长期分裂成两条路线：体素配准和皮层表面配准分别处理，这会在跨被试神经科学分析里引入不一致。本文解决的问题是：能否用统一框架同时对体积与表面进行一致配准，让脑表面和脑内部解剖在同一表示里被对齐。</p><p>作者提出 NeurAlign，用体积-表面联合表示做 3D 脑 MRI 配准，并引入中间球面坐标空间连接皮层拓扑与体积解剖。方法上不是简单叠加两个配准器，而是把 surface registration 显式整合进学习过程，确保几何一致性。摘要里报告在 in-domain 和 out-of-domain 数据上都优于经典方法和现有学习方法，Dice 最高提升约 7 个点，同时保持规则形变。</p><p>这篇论文适合认知科学 / 脑影像主线，尤其和 BrainIAC、Prima 一起看，会形成“brain foundation model 之前的数据几何底座”这一视角。对跨被试神经成像、结构功能对齐、脑图谱构建都有直接价值。</p><p>它归为突破性而不是更高一级，因为问题虽重要，但影响仍主要集中在脑影像配准和神经影像方法学层面，尚未形成更广泛的范式重排。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>脑部MRI扫描的精确配准对于神经科学研究中的跨受试者分析至关重要。这包括对大脑皮层表面和内部体积进行对齐。传统方法将基于体积和基于表面的配准分开处理，这通常会导致不一致性，从而限制了后续分析。我们提出了一种深度学习框架NeurAlign，它通过统一的基于体积和表面的表示，联合对齐皮层和皮层下区域，从而配准3D脑部MRI图像。我们的方法利用中间球坐标空间，将解剖表面拓扑与体积解剖结构连接起来，从而实现一致且解剖学上精确的对齐。通过将球形配准整合到学习中，我们的方法确保了体积和表面域之间的几何一致性。在一系列针对域内和域外数据集的实验中，我们的方法始终优于经典和基于机器学习的配准方法——将Dice分数提高了多达7个点，同时保持了规则的形变场。此外，它比该任务的标准方法快几个数量级，并且更易于使用，因为它除了MRI扫描之外不需要任何额外输入。凭借其卓越的准确性、快速推理和易用性，NeurAlign为联合皮层和皮层下配准设定了新标准。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Accurate registration of brain MRI scans is fundamental for cross-subject anal- ysis in neuroscientific studies. This involves aligning both the cortical surface of the brain and the interior volume. Traditional methods treat volumetric and surface-based registration separately, which often leads to inconsistencies that limit downstream analyses. We propose a deep learning framework, NeurAlign, that registers 3D brain MRI images by jointly aligning both cortical and sub- cortical regions through a unified volume-and-surface-based representation. Our approach leverages an intermediate spherical coordinate space to bridge anatomical surface topology with volumetric anatomy, enabling consistent and anatomically accurate alignment. By integrating spherical registration into the learning, our method ensures geometric coherence between volume and surface domains. In a series of experiments on both in-domain and out-of-domain datasets, our method consistently outperforms both classical and machine learning-based registration methods–improving the Dice score by up to 7 points while maintaining regular deformation fields. Additionally, it is orders of magnitude faster than the standard method for this task, and is simpler to use because it requires no additional inputs beyond an MRI scan. With its superior accuracy, fast inference, and ease of use, NeurAlign sets a new standard for joint cortical and subcortical registration.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251222n29brainsu,
+  title = {Unified Brain Surface and Volume Registration},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2512.19928.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n29-brain-surface-volume-registration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Unified Brain Surface and Volume Registration. https://arxiv.org/pdf/2512.19928.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2512.19928.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

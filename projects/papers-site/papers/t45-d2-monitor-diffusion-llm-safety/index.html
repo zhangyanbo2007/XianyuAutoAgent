@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing | DAST Papers</title>
+    <meta name="description" content="这篇论文处理 diffusion LLM 的新安全问题：D-LLM 通过多步 denoising 生成文本，暴露出 autoregressive LLM 没有的中间轨迹信号。
+
+作者发现最有用的失败预测信号是 safety hesitation，即中间隐藏状态反复落在轻量安全 probe 的决策边界附近。
+
+D^2-Monitor 用轻量 probe 常驻监控，同时估计 hesitation；当 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t45-d2-monitor-diffusion-llm-safety/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing" />
+    <meta property="og:description" content="这篇论文处理 diffusion LLM 的新安全问题：D-LLM 通过多步 denoising 生成文本，暴露出 autoregressive LLM 没有的中间轨迹信号。
+
+作者发现最有用的失败预测信号是 safety hesitation，即中间隐藏状态反复落在轻量安全 probe 的决策边界附近。
+
+D^2-Monitor 用轻量 probe 常驻监控，同时估计 hesitation；当 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t45-d2-monitor-diffusion-llm-safety/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing" />
+    <meta name="twitter:description" content="这篇论文处理 diffusion LLM 的新安全问题：D-LLM 通过多步 denoising 生成文本，暴露出 autoregressive LLM 没有的中间轨迹信号。
+
+作者发现最有用的失败预测信号是 safety hesitation，即中间隐藏状态反复落在轻量安全 probe 的决策边界附近。
+
+D^2-Monitor 用轻量 probe 常驻监控，同时估计 hesitation；当 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing</h1>
+          <p class="subtitle">安全、治理与可靠性 · 发表：2026-05-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">安全、治理与可靠性</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.25893" target="_blank" rel="noopener noreferrer">2605.25893</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理 diffusion LLM 的新安全问题：D-LLM 通过多步 denoising 生成文本，暴露出 autoregressive LLM 没有的中间轨迹信号。</dd></div><div><dt>方法/机制</dt><dd>作者发现最有用的失败预测信号是 safety hesitation，即中间隐藏状态反复落在轻量安全 probe 的决策边界附近。</dd></div><div><dt>结果/证据</dt><dd>D^2-Monitor 用轻量 probe 常驻监控，同时估计 hesitation；当 hesitation 超阈值时，把样本路由给更重的 monitor，从而在成本和安全性之间做动态分配。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它给新型 diffusion language model 提供了 trajectory-aware safety boundary，而不是照搬单步 AR-LLM moderation。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理 diffusion LLM 的新安全问题：D-LLM 通过多步 denoising 生成文本，暴露出 autoregressive LLM 没有的中间轨迹信号。</p><p>作者发现最有用的失败预测信号是 safety hesitation，即中间隐藏状态反复落在轻量安全 probe 的决策边界附近。</p><p>D^2-Monitor 用轻量 probe 常驻监控，同时估计 hesitation；当 hesitation 超阈值时，把样本路由给更重的 monitor，从而在成本和安全性之间做动态分配。</p><p>收录价值在于它给新型 diffusion language model 提供了 trajectory-aware safety boundary，而不是照搬单步 AR-LLM moderation。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管扩散大语言模型（D-LLM）作为自回归大语言模型（AR-LLM）的替代品已经出现，但D-LLM的安全监控在很大程度上仍未被探索。与AR-LLM不同，D-LLM通过多步去噪过程生成文本，暴露出中间隐藏表示，这些表示可能包含在标准单步监控设置中不可用的安全相关信息。受轻量级探针适用于持续监控的启发，我们分析了哪些轨迹级信号最能指示此类探针何时可能遇到困难。我们发现最具信息量的信号是安全犹豫：中间隐藏状态反复落在探针决策边界的小范围内。D-LLM轨迹中此类犹豫步骤的数量能有效预测探针失效，提供了样本难度的代理。基于此分析，我们提出了D 2 -Monitor，一个用于D-LLM的两级安全监控器。D2 -Monitor采用轻量级探针作为持续监控器，共同估计犹豫并执行基础分类。当犹豫水平超过阈值时，会激活一个表达能力更强但计算量更大的探针。这种动态路由机制在测试时高效分配监控资源。在4个D-LLM上，使用3个数据集（WildguardMix、ToxicChat、OpenAIModeration）进行评估，D2 -Monitor以紧凑的参数量（≤ 0.85M参数）实现了最先进的性能，并且相对于8个基线模型，在有效性和效率之间展现出最佳权衡。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Despite the emergence of diffusion large language models (D-LLMs) as an alternative to autoregressive large language models (AR-LLMs), safety monitoring for D-LLMs remains largely unexplored. Unlike AR-LLMs, D-LLMs generate text through a multi-step denoising process, exposing intermediate hidden representations that may contain safety-relevant information unavailable in standard single-step monitoring setups. Motivated by the suitability of lightweight probes for always-on monitoring, we analyze which trajectory-level signals best indicate when such probes are likely to struggle. We find that the most informative signal is safety hesitation: intermediate hidden states repeatedly falling within a small margin of the probe’s decision boundary. The number of such hesitation steps in D-LLM’s trajectory predicts probe failure effectively, providing a proxy of sample difficulty. Building on this analysis, we propose D 2 -Monitor, a bi-level safety monitor for D-LLMs. D2 -Monitor adopts a lightweight probe as an always-on monitor to jointly estimate hesitation and perform base classification. When the hesitation level exceeds a threshold, a more expressive but computationally heavier probe is activated. This dynamic routing mechanism allocates monitoring resources efficiently at test time. Evaluated on 3 datasets (WildguardMix, ToxicChat, OpenAIModeration) across 4 D-LLMs, D2 -Monitor achieves state-of-the-art performance with a compact parameter footprint (≤ 0.85M parameters), and exhibits the best trade-off between effectiveness and efficiency relative to 8 baselines.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260525t45d2monit,
+  title = {D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.25893.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t45-d2-monitor-diffusion-llm-safety/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). D^2-Monitor: Dynamic Safety Monitoring for Diffusion LLMs via Hesitation-Aware Routing. https://arxiv.org/pdf/2605.25893.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t47-cherrl-rubric-reward-hacking/">
+              <span>Reproducing, Analyzing, and Detecting Reward Hacking in Rubric-Based Reinforcement Learning</span>
+              <small>安全、治理与可靠性 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t48-braveguard-computer-use-agent-safety/">
+              <span>BraveGuard: From Open-World Threats to Safer Computer-Use Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/t46-seclaw-agent-security-synthesis/">
+              <span>SeClaw: Spec-Driven Security Task Synthesis for Evaluating Autonomous Agents</span>
+              <small>安全、治理与可靠性 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-clawtrojan-agentic-harness-backdoors/">
+              <span>From Prompt Injection to Persistent Control: Defending Agentic Harness Against Trojan Backdoors</span>
+              <small>安全、治理与可靠性 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t44-lora-adapter-backdoors/">
+              <span>Token-Level Generalization in LoRA Adapter Backdoors: Attack Characterization and Behavioral Detection</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/t43-agentdog-1-5-agent-safety/">
+              <span>AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security</span>
+              <small>安全、治理与可靠性 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.25893.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.25893" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

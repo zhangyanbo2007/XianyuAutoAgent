@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recovering Policy-Induced Errors: Benchmarking and Trajectory Synthesis for Robust GUI Agents | DAST Papers</title>
+    <meta name="description" content="这篇把 GUI agent 的问题从“能不能完成任务”推进到“犯错后能不能恢复”，这是实际部署中更关键的鲁棒性边界。
+
+GUI-RobustEval 用 1,216 个可执行测试系统评估 error recovery；RoTS 用树式流程主动发现错误模式并合成恢复步骤，形成 800k 数据。
+
+收录价值在于它同时给出评测接口和数据合成方法，能外溢到 computer-use agents、long" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a350-gui-robusteval-rots/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Recovering Policy-Induced Errors: Benchmarking and Trajectory Synthesis for Robust GUI Agents" />
+    <meta property="og:description" content="这篇把 GUI agent 的问题从“能不能完成任务”推进到“犯错后能不能恢复”，这是实际部署中更关键的鲁棒性边界。
+
+GUI-RobustEval 用 1,216 个可执行测试系统评估 error recovery；RoTS 用树式流程主动发现错误模式并合成恢复步骤，形成 800k 数据。
+
+收录价值在于它同时给出评测接口和数据合成方法，能外溢到 computer-use agents、long" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a350-gui-robusteval-rots/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Recovering Policy-Induced Errors: Benchmarking and Trajectory Synthesis for Robust GUI Agents" />
+    <meta name="twitter:description" content="这篇把 GUI agent 的问题从“能不能完成任务”推进到“犯错后能不能恢复”，这是实际部署中更关键的鲁棒性边界。
+
+GUI-RobustEval 用 1,216 个可执行测试系统评估 error recovery；RoTS 用树式流程主动发现错误模式并合成恢复步骤，形成 800k 数据。
+
+收录价值在于它同时给出评测接口和数据合成方法，能外溢到 computer-use agents、long" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Recovering Policy-Induced Errors: Benchmarking and Trajectory Synthesis for Robust GUI Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.29447" target="_blank" rel="noopener noreferrer">2605.29447</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇把 GUI agent 的问题从“能不能完成任务”推进到“犯错后能不能恢复”，这是实际部署中更关键的鲁棒性边界。</dd></div><div><dt>方法/机制</dt><dd>GUI-RobustEval 用 1,216 个可执行测试系统评估 error recovery；RoTS 用树式流程主动发现错误模式并合成恢复步骤，形成 800k 数据。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它同时给出评测接口和数据合成方法，能外溢到 computer-use agents、long-horizon recovery、agent training data generation。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇把 GUI agent 的问题从“能不能完成任务”推进到“犯错后能不能恢复”，这是实际部署中更关键的鲁棒性边界。</p><p>GUI-RobustEval 用 1,216 个可执行测试系统评估 error recovery；RoTS 用树式流程主动发现错误模式并合成恢复步骤，形成 800k 数据。</p><p>收录价值在于它同时给出评测接口和数据合成方法，能外溢到 computer-use agents、long-horizon recovery、agent training data generation。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>子目标），将智能体困在错误状态中并最终导致失败。因此，鲁棒性，即检测此类错误状态并最终完成任务的能力，对于实际部署至关重要（图1）。尽管GUI智能体发展迅速，但它们通常缺乏从自身错误中恢复的鲁棒性，这阻碍了实际部署。为了弥补评估和数据层面的这一差距，我们引入了GUI-RobustEval并提出了鲁棒性驱动轨迹合成（RoTS）。GUI-RobustEval包含1,216个可执行测试用例，系统地衡量了跨广泛且真实的错误模式范围的错误恢复能力。在数据层面，RoTS是一个可扩展的合成框架，通过基于树的管道创建了80万高质量数据，该管道主动发现多样化的错误模式并合成相应的恢复步骤。我们的两个模型RoTS-7B和RoTS-32B，在我们的数据集上进行微调后，在GUI-RobustEval和传统GUI基准测试上均表现出显著提升。值得注意的是，RoTS-32B在OSWorld上取得了最先进的性能，成功率为47.4%，All-Pass@4得分为33.8%，这表明改进的长程错误恢复能力有助于提高鲁棒性和整体性能。我们的代码可在https://github.com/AlibabaResearch/RoTS获取。然而，对策略诱导错误的鲁棒性在评估和训练中仍然未得到充分重视。现有基准主要关注接地准确性（Cheng et al., 2024; Li et al., 2025）、规划能力（Zheng et al., 2025）和整体任务成功率（Xie et al., 2024; Bonatti et al., 2024）。鲁棒性基准侧重于注入噪声（Yang et al., 2025b; Zhao et al., 2025）和对抗性攻击（Liao et al., 2025），但提供的细粒度指标有限，无法直接衡量错误检测和从策略诱导错误中进行长程恢复。在学习方面，智能体通过在GUI轨迹上进行监督微调（Xu et al., 2025b; Wu et al., 2025c）或在线强化学习（Yang et al., 2025a; Lu et al., 2025a）进行训练。当使用与反思相关的数据时，它通常是手动生成或通过离线数据增强的（Wang et al., 2025; Wu et al., 2025a; Wanyan et al., 2025），这引入了错误类型和时间范围的偏差。同时，智能体框架（Wu et al., 2025b; Wang et al., 2024a; Agashe et al., 2025）通常通过添加反思和回溯子智能体来提高鲁棒性，而不是在训练层面解决策略诱导的错误检测和恢复问题。这导致了评估和训练中的两个差距。(1) 错误覆盖不匹配：基准和训练数据过度代表低级、人工策划的错误，而策略诱导的失败通常是组合性的和高级的，导致智能体对现实的失败模式校准不当（图3(a)）。(2) 错误时间范围不匹配：现有的评估协议和反思数据大多是短时间范围的（例如，无效点击），而许多策略诱导的错误只有在多个步骤后才会出现，需要长时间范围的回溯和恢复（图3(b)）。这一差距促成了我们工作的两项贡献（图2）。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>subgoal), trapping the agent in an erroneous state and ultimately causing failure. Therefore, robustness, the ability to detect such erroneous states and ultimately complete the task, is crucial for practical deployment (Fig. 1). While GUI agents have advanced rapidly, they often lack the robustness to recover from their own errors, hindering real-world deployment. To bridge this gap at both the evaluation and data levels, we introduce GUI-RobustEval and propose Robustness-driven Trajectory Synthesis. GUIRobustEval contains 1,216 executable test cases that systematically measure error recovery capabilities across a broad and realistic spectrum of error modes. At the data level, RoTS is a scalable synthesis framework that creates 800k high-quality data via a tree-based pipeline that proactively discovers diverse error modes and synthesizes corresponding recovery steps. Our two models, RoTS-7B and RoTS-32B, fine-tuned on our dataset, both demonstrate significant gains on GUI-RobustEval and traditional GUI benchmarks. Notably, RoTS-32B achieves state-of-the-art performance on OSWorld, with a 47.4% success rate and a 33.8% All-Pass@4 score, suggesting that improved long-horizon error recovery ability contributes to both robustness and overall performance. Our code is available at https://gi thub.com/AlibabaResearch/RoTS. However, robustness to policy-induced errors remains underemphasized in both evaluation and training. Existing benchmarks mainly focus on grounding accuracy (Cheng et al., 2024; Li et al., 2025), planning ability (Zheng et al., 2025) and overall task success (Xie et al., 2024; Bonatti et al., 2024). Benchmarks for robustness focus on injected noise (Yang et al., 2025b; Zhao et al., 2025) and adversarial attacks (Liao et al., 2025), but provide limited finegrained metrics that directly measure error detection and long-horizon recovery from policy-induced mistakes. On the learning side, agents are trained by supervised finetuning on GUI trajectories (Xu et al., 2025b; Wu et al., 2025c) or online reinforcement learning (Yang et al., 2025a; Lu et al., 2025a). When reflection-related data is used, it is often manually generated or augmented with offline data (Wang et al., 2025; Wu et al., 2025a; Wanyan et al., 2025), which introduces bias in error types and horizons. Meanwhile, agent frameworks (Wu et al., 2025b; Wang et al., 2024a; Agashe et al., 2025) typically improve robustness by adding reflection and backtracking sub-agents, rather than addressing policy-induced error detection and recovery at the training level. This leads to two gaps in evaluation and training. (1) Errorcoverage mismatch: benchmarks and training data overrepresent low-level, human-curated errors, while policyinduced failures are often compositional and high-level, leaving agents miscalibrated to realistic failure modes (Fig. 3(a)). (2) Error-horizon mismatch: existing evaluation protocols and reflection data are mostly short-horizon (e.g., invalid clicks), while many policy-induced errors only emerge after multiple steps and require long-horizon backtracking and recovery (Fig. 3(b)). This gap motivates two contributions of our work (Fig. 2).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528a350guirob,
+  title = {Recovering Policy-Induced Errors: Benchmarking and Trajectory Synthesis for Robust GUI Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.29447.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a350-gui-robusteval-rots/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Recovering Policy-Induced Errors: Benchmarking and Trajectory Synthesis for Robust GUI Agents. https://arxiv.org/pdf/2605.29447.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.29447.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/AlibabaResearch/RoTS" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

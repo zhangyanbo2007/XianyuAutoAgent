@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Benchmarking Interaction, Beyond Policy: a Reproducible Benchmark for Collaborative Instance Object Navigation | DAST Papers</title>
+    <meta name="description" content="embodied navigation benchmark 往往只看最终是否到达目标，却很少把人与 agent 之间的协作互动本身作为独立能力来评估。对于 Collaborative Instance Object Navigation 这类任务，这会掩盖一个关键问题：agent 到底是真会问问题、会消解歧义，还是只是靠运气和强 policy 硬闯。
+
+论文提出 QAsk-Nav，明确把 coll" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl26-qask-nav-collaborative-navigation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Benchmarking Interaction, Beyond Policy: a Reproducible Benchmark for Collaborative Instance Object Navigation" />
+    <meta property="og:description" content="embodied navigation benchmark 往往只看最终是否到达目标，却很少把人与 agent 之间的协作互动本身作为独立能力来评估。对于 Collaborative Instance Object Navigation 这类任务，这会掩盖一个关键问题：agent 到底是真会问问题、会消解歧义，还是只是靠运气和强 policy 硬闯。
+
+论文提出 QAsk-Nav，明确把 coll" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl26-qask-nav-collaborative-navigation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Benchmarking Interaction, Beyond Policy: a Reproducible Benchmark for Collaborative Instance Object Navigation" />
+    <meta name="twitter:description" content="embodied navigation benchmark 往往只看最终是否到达目标，却很少把人与 agent 之间的协作互动本身作为独立能力来评估。对于 Collaborative Instance Object Navigation 这类任务，这会掩盖一个关键问题：agent 到底是真会问问题、会消解歧义，还是只是靠运气和强 policy 硬闯。
+
+论文提出 QAsk-Nav，明确把 coll" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Benchmarking Interaction, Beyond Policy: a Reproducible Benchmark for Collaborative Instance Object Navigation</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00265" target="_blank" rel="noopener noreferrer">2604.00265</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>embodied navigation benchmark 往往只看最终是否到达目标，却很少把人与 agent 之间的协作互动本身作为独立能力来评估。对于 Collaborative Instance Object Navigation 这类任务，这会掩盖一个关键问题：agent 到底是真会问问题、会消解歧义，还是只是靠运气和强 policy 硬闯。</dd></div><div><dt>方法/机制</dt><dd>论文提出 QAsk-Nav，明确把 collaborative question asking 从 navigation policy 中拆出来做独立评测。基准提供轻量但可复现的问题提问协议、单独计分的交互指标、更现实的目标描述，以及 28,000 条高质量 reasoning/question-asking traces 供训练和分析。基于该 benchmark，作者还提出轻量统一模型 Light-CoNav，在 unseen objects 和 unseen environments 上优于既有 CoIN 方法，同时更小更快。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 embodied collaboration 从“附带现象”提升成一等评测对象。对 embodied agents、interactive navigation 和 language-conditioned robotics，这种把 interaction capability 独立量化的 benchmark 设计具有明显长期价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍集中在 CoIN 这一特定 embodied task family，尽管评测设计很对，但还未证明会扩展成更广泛的人机协作 embodied standard。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>embodied navigation benchmark 往往只看最终是否到达目标，却很少把人与 agent 之间的协作互动本身作为独立能力来评估。对于 Collaborative Instance Object Navigation 这类任务，这会掩盖一个关键问题：agent 到底是真会问问题、会消解歧义，还是只是靠运气和强 policy 硬闯。</p><p>论文提出 QAsk-Nav，明确把 collaborative question asking 从 navigation policy 中拆出来做独立评测。基准提供轻量但可复现的问题提问协议、单独计分的交互指标、更现实的目标描述，以及 28,000 条高质量 reasoning/question-asking traces 供训练和分析。基于该 benchmark，作者还提出轻量统一模型 Light-CoNav，在 unseen objects 和 unseen environments 上优于既有 CoIN 方法，同时更小更快。</p><p>这篇工作值得收录，因为它把 embodied collaboration 从“附带现象”提升成一等评测对象。对 embodied agents、interactive navigation 和 language-conditioned robotics，这种把 interaction capability 独立量化的 benchmark 设计具有明显长期价值。</p><p>它没有升到更高一级，是因为当前仍集中在 CoIN 这一特定 embodied task family，尽管评测设计很对，但还未证明会扩展成更广泛的人机协作 embodied standard。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。我们提出了问答导航（QAsk-Nav），这是首个可复现的协同实例对象导航（CoIN）基准，它能够对具身导航和协同问答进行明确、独立的评估。CoIN任务要求具身智能体在部分可观测性下，仅使用以自我为中心的视觉观察和与人类的交互式自然语言对话，到达以自由形式自然语言指定的目标，其中对话有助于解决视觉上相似对象实例之间的歧义。现有的CoIN基准主要关注导航成功，并未提供对协同交互进行一致评估的支持。为了解决这一限制，QAsk-Nav提供了 (i) 一个与导航独立评分的轻量级问答协议，(ii) 一个具有真实、多样、高质量目标描述的增强导航协议，以及 (iii) 一个开源数据集，其中包含28,000条经过质量检查的推理和问答轨迹，用于CoIN模型交互能力的训练、评估和分析。利用所提出的QAsk-Nav基准，我们开发了Light-CoNav，这是一种用于协同导航的轻量级统一模型，比现有模块化方法小3倍，快70倍，同时在对未见对象和环境的泛化方面优于最先进的CoIN方法。项目页面位于https://benchmarking-interaction.github.io/。关键词：协同实例对象导航 · 交互式智能体</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. We propose Question-Asking Navigation (QAsk-Nav), the first reproducible benchmark for Collaborative Instance Object Navigation (CoIN) that enables an explicit, separate assessment of embodied navigation and collaborative question asking. CoIN tasks an embodied agent with reaching a target specified in free-form natural language under partial observability, using only egocentric visual observations and interactive natural-language dialogue with a human, where the dialogue can help to resolve ambiguity among visually similar object instances. Existing CoIN benchmarks are primarily focused on navigation success and offer no support for consistent evaluation of collaborative interaction. To address this limitation, QAsk-Nav provides (i) a lightweight questionasking protocol scored independently of navigation, (ii) an enhanced navigation protocol with realistic, diverse, high-quality target descriptions, and (iii) an open-source dataset, that includes 28,000 quality-checked reasoning and question-asking traces for training, evaluation and analysis of interactive capabilities of CoIN models. Using the proposed QAskNav benchmark, we develop Light-CoNav, a lightweight unified model for collaborative navigation that is 3× smaller and 70× faster than existing modular methods, while outperforming state-of-the-art CoIN approaches in generalization to unseen objects and environments. Project page at https://benchmarking-interaction.github.io/. Keywords: Collaborative Instance Object Navigation · Interactive Agents</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260331rl26qaskna,
+  title = {Benchmarking Interaction, Beyond Policy: a Reproducible Benchmark for Collaborative Instance Object Navigation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00265.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl26-qask-nav-collaborative-navigation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Benchmarking Interaction, Beyond Policy: a Reproducible Benchmark for Collaborative Instance Object Navigation. https://arxiv.org/pdf/2604.00265.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00265.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

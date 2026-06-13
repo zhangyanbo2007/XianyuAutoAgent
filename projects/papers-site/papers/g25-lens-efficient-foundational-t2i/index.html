@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models | DAST Papers</title>
+    <meta name="description" content="Lens 关注 foundational text-to-image models 的训练效率，而不是单一 benchmark 或局部模块改进。
+
+论文系统重构训练 recipe，涉及高质量 dense captions、多分辨率训练、语义 VAE、强化学习优化和蒸馏等环节。
+
+这种工作对生成模型基础设施有价值，因为它把大规模 T2I 模型训练中的多项经验组合成可复用工程路径。
+
+它值得正式收录，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g25-lens-efficient-foundational-t2i/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models" />
+    <meta property="og:description" content="Lens 关注 foundational text-to-image models 的训练效率，而不是单一 benchmark 或局部模块改进。
+
+论文系统重构训练 recipe，涉及高质量 dense captions、多分辨率训练、语义 VAE、强化学习优化和蒸馏等环节。
+
+这种工作对生成模型基础设施有价值，因为它把大规模 T2I 模型训练中的多项经验组合成可复用工程路径。
+
+它值得正式收录，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g25-lens-efficient-foundational-t2i/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models" />
+    <meta name="twitter:description" content="Lens 关注 foundational text-to-image models 的训练效率，而不是单一 benchmark 或局部模块改进。
+
+论文系统重构训练 recipe，涉及高质量 dense captions、多分辨率训练、语义 VAE、强化学习优化和蒸馏等环节。
+
+这种工作对生成模型基础设施有价值，因为它把大规模 T2I 模型训练中的多项经验组合成可复用工程路径。
+
+它值得正式收录，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21573" target="_blank" rel="noopener noreferrer">2605.21573</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Lens 关注 foundational text-to-image models 的训练效率，而不是单一 benchmark 或局部模块改进。</dd></div><div><dt>方法/机制</dt><dd>论文系统重构训练 recipe，涉及高质量 dense captions、多分辨率训练、语义 VAE、强化学习优化和蒸馏等环节。</dd></div><div><dt>结果/证据</dt><dd>这种工作对生成模型基础设施有价值，因为它把大规模 T2I 模型训练中的多项经验组合成可复用工程路径。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为高效训练 recipe 会直接影响开源/工业 T2I 模型的成本曲线和可复现能力。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Lens 关注 foundational text-to-image models 的训练效率，而不是单一 benchmark 或局部模块改进。</p><p>论文系统重构训练 recipe，涉及高质量 dense captions、多分辨率训练、语义 VAE、强化学习优化和蒸馏等环节。</p><p>这种工作对生成模型基础设施有价值，因为它把大规模 T2I 模型训练中的多项经验组合成可复用工程路径。</p><p>它值得正式收录，因为高效训练 recipe 会直接影响开源/工业 T2I 模型的成本曲线和可复现能力。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>训练基础文本到图像（T2I）模型通常需要大量的计算资源。我们引入了Lens，一个3.8亿参数的T2I模型，它在各种基准测试中实现了与参数超过60亿的SOTA模型相当甚至在某些情况下超越的性能，同时所需的训练计算量显著减少。例如，Lens仅需要Z-Image所用训练计算量的约19.3%。Lens的训练效率除了其紧凑的模型尺寸外，还源于两个关键策略。首先，我们通过(i)在Lens-800M数据集上进行训练来最大化每个训练批次的数据信息密度，该数据集包含8亿个密集标注的图像-文本对，其标注由GPT-4.1生成，平均包含约109个词，提供了比传统短标注更丰富的语义监督；以及(ii)从具有多种分辨率和不同宽高比的图像构建每个批次，从而扩大每个优化步骤的有效视觉覆盖范围。其次，我们通过精心选择架构来提高收敛速度，包括采用提供更好潜在表示的语义VAE，以及使用强大的语言编码器来加速优化，同时实现从仅英文训练数据到多语言的泛化。预训练后，我们应用了带有分类驱动提示（Lens-RL-8K）和结构化奖励规则的强化学习来抑制伪影并提高视觉质量，一个带有免训练系统提示搜索的推理模块以更好地将用户请求与模型对齐，以及用于4步推理的基于蒸馏的加速。通过高效训练和系统优化，Lens可以泛化到从1:2到2:1的任意宽高比和高达1440^2的分辨率，并支持多种常用语言的提示。由于其紧凑的尺寸，Lens在单个NVIDIA H100 GPU上可在3.15秒内生成1024^2图像，而其蒸馏加速版本可在0.84秒内完成4步生成。项目页面：https://github.com/microsoft/Lens 日期：2026年5月</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Training foundational text-to-image (T2I) models typically requires massive computational resources. We introduce Lens, a 3.8B-parameter T2I model that achieves performance competitive with, and in several cases surpassing, state-of-the-art models with more than 6B parameters across various benchmarks, while requiring significantly less training compute. For example, Lens requires only about 19.3% of the training compute used by Z-Image. The training efficiency of Lens stems from two key strategies beyond its compact model size. First, we maximize data information density per training batch by (i) training on Lens-800M, a dataset of 800M densely captioned image-text pairs whose captions are generated by GPT-4.1 and contain approximately 109 words on average, providing richer semantic supervision than conventional short captions, and (ii) constructing each batch from images with multiple resolutions and diverse aspect ratios, thereby enlarging the effective visual coverage of each optimization step. Second, we improve convergence speed through careful architectural choices, including adopting a semantic VAE that provides better latent representations and employing a strong language encoder that accelerates optimization while enabling multilingual generalization from English-only training data. After pre-training, we apply reinforcement learning with taxonomy-driven prompts (Lens-RL-8K ) and structured reward rubrics to suppress artifacts and improve visual quality, a reasoner module with training-free system prompt search to better align user requests with the model, and distillationbased acceleration for 4-step inference. Through efficient training and systematic optimization, Lens generalizes to arbitrary aspect ratios from 1:2 to 2:1 and resolutions up to 14402 , and supports prompts in several commonly used languages. Thanks to its compact size, Lens generates a 10242 image in 3.15 seconds on a single NVIDIA H100 GPU, while its distilled turbo version performs 4-step generation in 0.84 seconds. Project Page: https://github.com/microsoft/Lens Date: May, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520g25lenseff,
+  title = {Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21573.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g25-lens-efficient-foundational-t2i/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Lens: Rethinking Training Efficiency for Foundational Text-to-Image Models. https://arxiv.org/pdf/2605.21573.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21573.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.21573" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

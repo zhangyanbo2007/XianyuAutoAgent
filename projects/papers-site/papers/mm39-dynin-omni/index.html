@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dynin-Omni: Omnimodal Unified Large Diffusion Language Model | DAST Papers</title>
+    <meta name="description" content="统一多模态模型通常卡在两个方向之间：要么走 autoregressive serialization，把不同模态都压进同一 token stream；要么走组合式系统，让主模型依赖外部 modality-specific decoders 与 orchestration。真正困难的是在一个共享架构里同时支持 text、image、speech 的理解与生成，并保持 video understand" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm39-dynin-omni/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Dynin-Omni: Omnimodal Unified Large Diffusion Language Model" />
+    <meta property="og:description" content="统一多模态模型通常卡在两个方向之间：要么走 autoregressive serialization，把不同模态都压进同一 token stream；要么走组合式系统，让主模型依赖外部 modality-specific decoders 与 orchestration。真正困难的是在一个共享架构里同时支持 text、image、speech 的理解与生成，并保持 video understand" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm39-dynin-omni/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Dynin-Omni: Omnimodal Unified Large Diffusion Language Model" />
+    <meta name="twitter:description" content="统一多模态模型通常卡在两个方向之间：要么走 autoregressive serialization，把不同模态都压进同一 token stream；要么走组合式系统，让主模型依赖外部 modality-specific decoders 与 orchestration。真正困难的是在一个共享架构里同时支持 text、image、speech 的理解与生成，并保持 video understand" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Dynin-Omni: Omnimodal Unified Large Diffusion Language Model</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00007" target="_blank" rel="noopener noreferrer">2604.00007</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>统一多模态模型通常卡在两个方向之间：要么走 autoregressive serialization，把不同模态都压进同一 token stream；要么走组合式系统，让主模型依赖外部 modality-specific decoders 与 orchestration。真正困难的是在一个共享架构里同时支持 text、image、speech 的理解与生成，并保持 video understanding 等能力，而不是只拼接多个专用模块。</dd></div><div><dt>方法/机制</dt><dd>Dynin-Omni 提出 masked-diffusion-based omnimodal foundation model，把 text、image、speech 以及 video understanding 放进同一离散 token 空间中建模。它不走传统自回归统一建模，而是把多模态统一表述为 shared discrete token space 上的 masked diffusion，并通过 model-merging-based modality expansion 与 omnimodal alignment 完成多阶段训练。这样的设计使模型能在双向上下文下做 iterative refinement，而不是被单向 token 序列限制。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 unified multimodal pretraining 从“共享 backbone + 外挂专用头”推进到更彻底的任何到任何统一扩散建模。对于跨模态生成、检索、实时交互系统以及 embodied multimodal agents，它提供的是一种更耐久的统一接口视角，而不是某一单模态指标上的局部增益。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要来自一篇新近 arXiv 论文和 open-source 统一模型对比，离真正证明 masked diffusion 会成为 omnimodal foundation model 的主流范式还差一步。它是很强的统一建模工作，但影响范围尚未稳定固化。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>统一多模态模型通常卡在两个方向之间：要么走 autoregressive serialization，把不同模态都压进同一 token stream；要么走组合式系统，让主模型依赖外部 modality-specific decoders 与 orchestration。真正困难的是在一个共享架构里同时支持 text、image、speech 的理解与生成，并保持 video understanding 等能力，而不是只拼接多个专用模块。</p><p>Dynin-Omni 提出 masked-diffusion-based omnimodal foundation model，把 text、image、speech 以及 video understanding 放进同一离散 token 空间中建模。它不走传统自回归统一建模，而是把多模态统一表述为 shared discrete token space 上的 masked diffusion，并通过 model-merging-based modality expansion 与 omnimodal alignment 完成多阶段训练。这样的设计使模型能在双向上下文下做 iterative refinement，而不是被单向 token 序列限制。</p><p>这篇工作值得收录，因为它把 unified multimodal pretraining 从“共享 backbone + 外挂专用头”推进到更彻底的任何到任何统一扩散建模。对于跨模态生成、检索、实时交互系统以及 embodied multimodal agents，它提供的是一种更耐久的统一接口视角，而不是某一单模态指标上的局部增益。</p><p>它没有升到更高一级，是因为当前证据仍主要来自一篇新近 arXiv 论文和 open-source 统一模型对比，离真正证明 masked diffusion 会成为 omnimodal foundation model 的主流范式还差一步。它是很强的统一建模工作，但影响范围尚未稳定固化。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了Dynin-Omni，这是首个基于掩码扩散的全模态基础模型，它在单一架构内统一了文本、图像和语音的理解与生成，以及视频理解。与序列化异构模态的自回归统一模型，或需要与外部模态专用解码器协同的组合式统一模型不同，DyninOmni原生性地将全模态建模公式化为在共享离散令牌空间上的掩码扩散，从而实现在双向上下文下的迭代细化。Dynin-Omni采用了一种多阶段训练策略，结合了基于模型合并的模态扩展和全模态对齐。我们在19个多模态基准上评估了DyninOmni，这些基准涵盖了语言推理、图像生成与编辑、视频理解以及语音识别与合成。Dynin-Omni在GSM8K上取得了87.6分，在MME-P上取得了1733.6分，在VideoMME上取得了61.4分，在GenEval上取得了0.87分，并在LibriSpeech test-clean上取得了2.1的词错误率（WER），持续超越现有开源统一模型，同时与强大的模态专用专家系统保持竞争力。这些结果展示了掩码扩散作为一种统一的任意到任意建模范式的潜力，为实时全模态系统、统一的跨模态检索与生成以及具身多模态智能体提供了灵活的基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present Dynin-Omni, the first masked-diffusion-based omnimodal foundation model that unifies text, image, and speech understanding and generation, together with video understanding, within a single architecture. Unlike autoregressive unified models that serialize heterogeneous modalities, or compositional unified models that require orchestration with external modality-specific decoders, DyninOmni natively formulates omnimodal modeling as masked diffusion over a shared discrete token space, enabling iterative refinement under bidirectional context. Dynin-Omni adopts a multi-stage training strategy with model-merging-based modality expansion and omnimodal alignment. We evaluate DyninOmni across 19 multimodal benchmarks spanning language reasoning, image generation and editing, video understanding, and speech recognition and synthesis. Dynin-Omni achieves 87.6 on GSM8K, 1733.6 on MME-P, 61.4 on VideoMME, 0.87 on GenEval, and 2.1 WER on LibriSpeech test-clean, consistently outperforming existing open-source unified models while remaining competitive with strong modality-specific expert systems. These results demonstrate the potential of masked diffusion as a unified paradigm for any-to-any modeling, providing a flexible foundation for real-time omnimodal systems, unified cross-modal retrieval and generation, and embodied multimodal agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309mm39dynino,
+  title = {Dynin-Omni: Omnimodal Unified Large Diffusion Language Model},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00007.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm39-dynin-omni/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Dynin-Omni: Omnimodal Unified Large Diffusion Language Model. https://arxiv.org/pdf/2604.00007.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00007.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

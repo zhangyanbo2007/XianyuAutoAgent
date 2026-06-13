@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sparse-to-dense coding transformation between hippocampal areas CA3 and CA1 | DAST Papers</title>
+    <meta name="description" content="这篇 Nature 论文重新解释海马 CA3 和 CA1 的功能分工：小环境里两者位置编码看似相似，但在 130–200 米长隧道中同时记录果蝠 CA3/CA1 后，差异变得清楚。
+
+核心发现是 CA3→CA1 存在 sparse-to-dense coding transformation：CA3 主要采用超稀疏、单位置场编码；CA1 则采用更稠密的多位置场编码，同时位置场大小在不同环境尺度下仍" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n116-ca3-ca1-sparse-dense-coding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Sparse-to-dense coding transformation between hippocampal areas CA3 and CA1" />
+    <meta property="og:description" content="这篇 Nature 论文重新解释海马 CA3 和 CA1 的功能分工：小环境里两者位置编码看似相似，但在 130–200 米长隧道中同时记录果蝠 CA3/CA1 后，差异变得清楚。
+
+核心发现是 CA3→CA1 存在 sparse-to-dense coding transformation：CA3 主要采用超稀疏、单位置场编码；CA1 则采用更稠密的多位置场编码，同时位置场大小在不同环境尺度下仍" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n116-ca3-ca1-sparse-dense-coding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sparse-to-dense coding transformation between hippocampal areas CA3 and CA1" />
+    <meta name="twitter:description" content="这篇 Nature 论文重新解释海马 CA3 和 CA1 的功能分工：小环境里两者位置编码看似相似，但在 130–200 米长隧道中同时记录果蝠 CA3/CA1 后，差异变得清楚。
+
+核心发现是 CA3→CA1 存在 sparse-to-dense coding transformation：CA3 主要采用超稀疏、单位置场编码；CA1 则采用更稠密的多位置场编码，同时位置场大小在不同环境尺度下仍" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Sparse-to-dense coding transformation between hippocampal areas CA3 and CA1</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-05-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-27</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10537-0" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10537-0</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature 论文重新解释海马 CA3 和 CA1 的功能分工：小环境里两者位置编码看似相似，但在 130–200 米长隧道中同时记录果蝠 CA3/CA1 后，差异变得清楚。</dd></div><div><dt>方法/机制</dt><dd>核心发现是 CA3→CA1 存在 sparse-to-dense coding transformation：CA3 主要采用超稀疏、单位置场编码；CA1 则采用更稠密的多位置场编码，同时位置场大小在不同环境尺度下仍相近。</dd></div><div><dt>结果/证据</dt><dd>作者进一步用模拟和解码分析解释功能含义：CA3 的稀疏代码有利于快速学习和隐藏层式表征，CA1 则把 CA3 信息重格式化为更高效、压缩、可向皮层输出的代码，在大环境中降低解码误差和灾难性错误。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它给记忆系统和 AI 表示学习提供了非常清晰的层级编码原则：连续处理阶段未必重复同一地图，而可能执行 sparse hidden representation 到 dense compressed output representation 的转换；这对世界模型记忆、地图压缩、检索/泛化和表征重格式化都有直接概念价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature 论文重新解释海马 CA3 和 CA1 的功能分工：小环境里两者位置编码看似相似，但在 130–200 米长隧道中同时记录果蝠 CA3/CA1 后，差异变得清楚。</p><p>核心发现是 CA3→CA1 存在 sparse-to-dense coding transformation：CA3 主要采用超稀疏、单位置场编码；CA1 则采用更稠密的多位置场编码，同时位置场大小在不同环境尺度下仍相近。</p><p>作者进一步用模拟和解码分析解释功能含义：CA3 的稀疏代码有利于快速学习和隐藏层式表征，CA1 则把 CA3 信息重格式化为更高效、压缩、可向皮层输出的代码，在大环境中降低解码误差和灾难性错误。</p><p>收录价值在于它给记忆系统和 AI 表示学习提供了非常清晰的层级编码原则：连续处理阶段未必重复同一地图，而可能执行 sparse hidden representation 到 dense compressed output representation 的转换；这对世界模型记忆、地图压缩、检索/泛化和表征重格式化都有直接概念价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>海马体对于空间记忆和导航至关重要。它包含位置细胞：在CA1和CA3区发现的空间选择性神经元——这两个海马亚区具有显著不同的解剖连接性。先前的研究发现CA1和CA3位置细胞之间的空间编码高度相似。这引发了一个问题：为什么形成连续处理阶段的两个亚区会表现出相同的神经编码。在这里，我们假设CA1和CA3空间编码之间缺乏差异是由于实验范式：使用了小型竞技场。我们通过同时记录在长达200米飞行隧道中飞行的蝙蝠的CA1和CA3神经元来验证这一假设。我们在CA1和CA3中识别出高度不同的神经编码：CA1神经元表现出稠密空间编码，由多个位置场组成，而CA3神经元表现出超稀疏空间编码，主要由单个位置场组成。尽管存在这一显著差异，但在5种不同环境尺寸（从6米到200米）下，两个亚区的位置场大小非常相似。使用神经网络模型，我们表明这种稀疏到稠密的转换可以促进新空间地图的快速学习。我们还发现，在一个大型多隔间环境中，位置细胞受到轨迹历史的强烈调节——这是一种情境效应（回顾性编码），可以持续超过100米。总之，通过使用大型自然环境，我们识别出一种CA3到CA1的编码转换，它将空间信息重新格式化为更高效、更压缩的神经编码。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The hippocampus is crucial for spatial memory and navigation. It contains place cells : spatially selective neurons found in areas CA1 and CA3—two distinct hippocampal subregions with substantially different anatomical connectivity . Previous studies have found highly similar spatial coding between CA1 and CA3 place cells . This raises the question of why two subregions that form consecutive processing stages would exhibit identical neural coding. Here we hypothesized that the lack of differences between CA1 and CA3 spatial coding is due to the experimental paradigm: using small arenas. We tested this hypothesis by simultaneously recording from CA1 and CA3 neurons in bats flying in flight tunnels up to 200 m in length. We identified highly distinct neural coding in CA1 and CA3: whereas CA1 neurons exhibited dense spatial coding, consisting of multiple place fields , CA3 neurons exhibited ultrasparse spatial coding, consisting predominantly of single place fields. Despite this marked difference, the sizes of place fields were very similar between the two subregions, across 5 different environment sizes ranging from 6 m to 200 m. Using a neural-network model, we show that such a sparse-to-dense transformation can facilitate fast learning of new spatial maps. We also found that in a large multicompartment environment, place cells were strongly modulated by trajectory history—a contextual effect (retrospective coding) that could last for over 100 m. Together, by using large naturalistic environments, we identified a CA3-to-CA1 coding transformation that serves to reformat spatial information into a more efficient, compressed neural code.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260527n116ca3ca1,
+  title = {Sparse-to-dense coding transformation between hippocampal areas CA3 and CA1},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10537-0},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n116-ca3-ca1-sparse-dense-coding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Sparse-to-dense coding transformation between hippocampal areas CA3 and CA1. https://www.nature.com/articles/s41586-026-10537-0</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10537-0" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

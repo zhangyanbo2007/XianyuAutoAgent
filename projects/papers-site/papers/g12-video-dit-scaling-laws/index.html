@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Towards Precise Scaling Laws for Video Diffusion Transformers | DAST Papers</title>
+    <meta name="description" content="这篇 CVPR 2025 论文不是只提出一个视频生成模型，而是系统研究 Video Diffusion Transformer 的 scaling law。对于视频生成这种高计算成本方向，模型、数据和算力怎么配比本身就是关键研究问题。
+
+它的价值在于给视频 DiT 训练提供定量指导：哪些因素更影响质量、不同规模下的收益如何变化、如何避免盲目扩参或盲目加数据。这类规律对后续模型设计和预算分配有长期参" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g12-video-dit-scaling-laws/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Towards Precise Scaling Laws for Video Diffusion Transformers" />
+    <meta property="og:description" content="这篇 CVPR 2025 论文不是只提出一个视频生成模型，而是系统研究 Video Diffusion Transformer 的 scaling law。对于视频生成这种高计算成本方向，模型、数据和算力怎么配比本身就是关键研究问题。
+
+它的价值在于给视频 DiT 训练提供定量指导：哪些因素更影响质量、不同规模下的收益如何变化、如何避免盲目扩参或盲目加数据。这类规律对后续模型设计和预算分配有长期参" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g12-video-dit-scaling-laws/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Towards Precise Scaling Laws for Video Diffusion Transformers" />
+    <meta name="twitter:description" content="这篇 CVPR 2025 论文不是只提出一个视频生成模型，而是系统研究 Video Diffusion Transformer 的 scaling law。对于视频生成这种高计算成本方向，模型、数据和算力怎么配比本身就是关键研究问题。
+
+它的价值在于给视频 DiT 训练提供定量指导：哪些因素更影响质量、不同规模下的收益如何变化、如何避免盲目扩参或盲目加数据。这类规律对后续模型设计和预算分配有长期参" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Towards Precise Scaling Laws for Video Diffusion Transformers</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2025-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-06-01</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 CVPR 2025 论文不是只提出一个视频生成模型，而是系统研究 Video Diffusion Transformer 的 scaling law。对于视频生成这种高计算成本方向，模型、数据和算力怎么配比本身就是关键研究问题。</dd></div><div><dt>方法/机制</dt><dd>它的价值在于给视频 DiT 训练提供定量指导：哪些因素更影响质量、不同规模下的收益如何变化、如何避免盲目扩参或盲目加数据。这类规律对后续模型设计和预算分配有长期参考意义。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它进入正式收录，因为 scaling law 属于可复用理论/工程接口，且视频生成是高溢出的 multimodal generative modeling 方向。顶会 CVPR 来源也提高了可信度。</dd></div><div><dt>收录价值</dt><dd>局限是 scaling law 往往受数据、架构、评价指标和训练 recipe 影响，外推到完全不同视频模型家族时仍需谨慎。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 CVPR 2025 论文不是只提出一个视频生成模型，而是系统研究 Video Diffusion Transformer 的 scaling law。对于视频生成这种高计算成本方向，模型、数据和算力怎么配比本身就是关键研究问题。</p><p>它的价值在于给视频 DiT 训练提供定量指导：哪些因素更影响质量、不同规模下的收益如何变化、如何避免盲目扩参或盲目加数据。这类规律对后续模型设计和预算分配有长期参考意义。</p><p>按本库标准，它进入正式收录，因为 scaling law 属于可复用理论/工程接口，且视频生成是高溢出的 multimodal generative modeling 方向。顶会 CVPR 来源也提高了可信度。</p><p>局限是 scaling law 往往受数据、架构、评价指标和训练 recipe 影响，外推到完全不同视频模型家族时仍需谨慎。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>简单地扩大模型尺寸通常会带来性能提升。目前，最大的视频生成模型，如Movie Gen [45]，参数量已达到300亿，远超最初的视频DiT（约7亿）[39, 68]。然而，由于训练预算有限，无限扩大Transformer尺寸是不可行的。因此，在给定预算内确定最佳DiT尺寸已成为一个关键挑战。早期关于基于Transformer的语言模型的研究 [1, 12, 19, 26, 30] 表明，模型性能（通过验证损失 L 衡量）、模型大小 N 和给定计算预算 C 之间存在幂律关系，即缩放定律。这一发现使得可以使用较小的模型进行实验来预测较大模型的性能，从而在实际约束下选择最佳模型尺寸。在计算机视觉领域，研究人员主要对图像DiT的缩放特性 [33, 38, 41, 44, 47] 进行了经验性尝试，很少像语言模型那样建模精确的缩放定律。在视频生成领域，此类研究几乎不存在。鉴于视频模型的复杂性和重要性——它们不仅要建模视觉结构，还要模拟和理解时间维度上复杂的真实世界动态——它们的训练成本通常非常高；例如，Movie Gen 使用了6,144块H100 GPU进行训练 [45]。因此，为大规模视频生成模型开发准确实用的缩放定律尤为重要，因为选择正确的模型尺寸和训练配置可以大大降低成本。本研究旨在通过解决以下关键问题来探讨视频扩散Transformer的缩放定律：给定特定的视频Transformer架构和训练预算，我们如何预测最佳模型尺寸及其相应的性能和最佳超参数——特别是批次大小和学习率？我们通过应用一种常用的方法开始了我们的研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>ply scaling up the model size often yields improved performance. Currently, the largest video generation model like Movie Gen [45], has reached a parameter count of 30 billion, which is significantly larger than the initial video DiT around 700M [39, 68]. However, due to limited training budgets, infinitely scaling up transformer size is not feasible. Consequently, determining the optimal DiT size within a given budget has become a critical challenge. Early research on transformerbased language models [1, 12, 19, 26, 30] revealed that model performance (measured by validation loss L), the model size N , and the given compute budget C, exhibit a power-law relationship, known as scaling laws. This discovery enables the use of smaller models for experiments to predict the performance of larger models, thereby enabling the selection of the optimal model size under realworld constrains. In the field of computer vision, researchers have primarily made empirical attempts in the scaling properties [33, 38, 41, 44, 47] of image DiT, seldom modeling precise scaling laws as done in language models. In the domain of video generation, such research is virtually nonexistent. Given the complexity and importance of video models—which must not only model visual structures but also simulate and understand complex real-world dynamics over time dimension—they are often trained at very high costs; for example, Movie Gen was trained using 6,144 H100 GPUs [45]. Therefore, developing accurate and practical scaling laws for large-scale video generation models is particularly important, as selecting the correct model size and training configurations can greatly reduce costs. This study aims to investigate the scaling laws of video diffusion transformers by addressing the following key question: Given a specific video transformer architecture and training budget, how can we predict the optimal model size, along with its corresponding performance and optimal hyperparameters—specifically, batch size and learning rate? We began our investigation by applying a commonly</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250601g12videodi,
+  title = {Towards Precise Scaling Laws for Video Diffusion Transformers},
+  year = {2025},
+  url = {https://openaccess.thecvf.com/content/CVPR2025/papers/Yin_Towards_Precise_Scaling_Laws_for_Video_Diffusion_Transformers_CVPR_2025_paper.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g12-video-dit-scaling-laws/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Towards Precise Scaling Laws for Video Diffusion Transformers. https://openaccess.thecvf.com/content/CVPR2025/papers/Yin_Towards_Precise_Scaling_Laws_for_Video_Diffusion_Transformers_CVPR_2025_paper.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Yin_Towards_Precise_Scaling_Laws_for_Video_Diffusion_Transformers_CVPR_2025_paper.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

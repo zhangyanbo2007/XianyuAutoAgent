@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SEAL: Synergistic Co-Evolution of Agents and Learning Environments | DAST Papers</title>
+    <meta name="description" content="SEAL 提出 Agent-Environment Misalignment：agent 能力边界在训练中变化，但训练环境和监督信号常是静态或弱耦合的，导致 self-evolution 无法持续对准真实失败。
+
+系统收集 executable verification 下的 on-policy trajectories，把失败 rollouts 诊断为 turn-level failure la" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a317-seal-agent-environment-co-evolution/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SEAL: Synergistic Co-Evolution of Agents and Learning Environments" />
+    <meta property="og:description" content="SEAL 提出 Agent-Environment Misalignment：agent 能力边界在训练中变化，但训练环境和监督信号常是静态或弱耦合的，导致 self-evolution 无法持续对准真实失败。
+
+系统收集 executable verification 下的 on-policy trajectories，把失败 rollouts 诊断为 turn-level failure la" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a317-seal-agent-environment-co-evolution/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SEAL: Synergistic Co-Evolution of Agents and Learning Environments" />
+    <meta name="twitter:description" content="SEAL 提出 Agent-Environment Misalignment：agent 能力边界在训练中变化，但训练环境和监督信号常是静态或弱耦合的，导致 self-evolution 无法持续对准真实失败。
+
+系统收集 executable verification 下的 on-policy trajectories，把失败 rollouts 诊断为 turn-level failure la" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SEAL: Synergistic Co-Evolution of Agents and Learning Environments</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.24426" target="_blank" rel="noopener noreferrer">2605.24426</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SEAL 提出 Agent-Environment Misalignment：agent 能力边界在训练中变化，但训练环境和监督信号常是静态或弱耦合的，导致 self-evolution 无法持续对准真实失败。</dd></div><div><dt>方法/机制</dt><dd>系统收集 executable verification 下的 on-policy trajectories，把失败 rollouts 诊断为 turn-level failure labels，并把同一诊断信号用于环境侧和模型侧。</dd></div><div><dt>结果/证据</dt><dd>环境侧调整 training-time learning interface，暴露更清晰的 tool affordance cues、constraint information 和 recovery-oriented feedback；模型侧用 diagnosis-guided advantage reweighting 优化策略。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 self-improving agents 从单独更新 policy 推进到 agent 与学习环境共同演化，是 agent 训练基础设施的重要模式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SEAL 提出 Agent-Environment Misalignment：agent 能力边界在训练中变化，但训练环境和监督信号常是静态或弱耦合的，导致 self-evolution 无法持续对准真实失败。</p><p>系统收集 executable verification 下的 on-policy trajectories，把失败 rollouts 诊断为 turn-level failure labels，并把同一诊断信号用于环境侧和模型侧。</p><p>环境侧调整 training-time learning interface，暴露更清晰的 tool affordance cues、constraint information 和 recovery-oriented feedback；模型侧用 diagnosis-guided advantage reweighting 优化策略。</p><p>它值得正式收录，因为它把 self-improving agents 从单独更新 policy 推进到 agent 与学习环境共同演化，是 agent 训练基础设施的重要模式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>SEAL 是一种闭环协同演化框架，其中失败的离策略轨迹生成的是回合级别的诊断，从而调整训练环境接口和智能体策略。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>SEAL is a closed-loop co-evolution framework where failed on-policy trajectories generate turn-level diagnoses that adapt both the training environment interface and the agent policy.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260523a317sealag,
+  title = {SEAL: Synergistic Co-Evolution of Agents and Learning Environments},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.24426.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a317-seal-agent-environment-co-evolution/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SEAL: Synergistic Co-Evolution of Agents and Learning Environments. https://arxiv.org/pdf/2605.24426.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.24426.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://yihaohu0118.github.io/SEAL/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.24426" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/yihaohu0118/SEAL" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

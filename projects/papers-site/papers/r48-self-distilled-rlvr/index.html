@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-Distilled RLVR | DAST Papers</title>
+    <meta name="description" content="RLVR 只拿到环境可验证结果，信号稀疏；而 on-policy distillation 虽然能给 token-level 密集信号，却往往需要教师或特权信息，并容易产生信息泄漏。社区最近尝试 self-distillation，但长期稳定性和真正可迁移的更新信号仍然是问题。
+
+这篇工作提出 Self-Distilled RLVR，把 self-distillation 和 RLVR 重新分工：" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r48-self-distilled-rlvr/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Self-Distilled RLVR" />
+    <meta property="og:description" content="RLVR 只拿到环境可验证结果，信号稀疏；而 on-policy distillation 虽然能给 token-level 密集信号，却往往需要教师或特权信息，并容易产生信息泄漏。社区最近尝试 self-distillation，但长期稳定性和真正可迁移的更新信号仍然是问题。
+
+这篇工作提出 Self-Distilled RLVR，把 self-distillation 和 RLVR 重新分工：" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r48-self-distilled-rlvr/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Self-Distilled RLVR" />
+    <meta name="twitter:description" content="RLVR 只拿到环境可验证结果，信号稀疏；而 on-policy distillation 虽然能给 token-level 密集信号，却往往需要教师或特权信息，并容易产生信息泄漏。社区最近尝试 self-distillation，但长期稳定性和真正可迁移的更新信号仍然是问题。
+
+这篇工作提出 Self-Distilled RLVR，把 self-distillation 和 RLVR 重新分工：" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Self-Distilled RLVR</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-03</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.03128" target="_blank" rel="noopener noreferrer">2604.03128</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>RLVR 只拿到环境可验证结果，信号稀疏；而 on-policy distillation 虽然能给 token-level 密集信号，却往往需要教师或特权信息，并容易产生信息泄漏。社区最近尝试 self-distillation，但长期稳定性和真正可迁移的更新信号仍然是问题。</dd></div><div><dt>方法/机制</dt><dd>这篇工作提出 Self-Distilled RLVR，把 self-distillation 和 RLVR 重新分工：用自蒸馏得到 token-level policy differences 来控制更新幅度，同时继续依赖环境反馈给出可靠的更新方向。这样既保留了细粒度学习信号，又避免了单靠 privileged teacher 带来的长期训练不稳定。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它不是简单把两个训练范式拼在一起，而是给 reasoning post-training 提供了一个更清晰的接口分层。对 RLVR、reasoning RL 和自蒸馏后训练，这种 magnitude/direction 解耦有明显方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前仍主要是 reasoning post-training 子线内的方法推进，是否能成为更广后训练栈的默认组成还需要更多独立复现和后续采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>RLVR 只拿到环境可验证结果，信号稀疏；而 on-policy distillation 虽然能给 token-level 密集信号，却往往需要教师或特权信息，并容易产生信息泄漏。社区最近尝试 self-distillation，但长期稳定性和真正可迁移的更新信号仍然是问题。</p><p>这篇工作提出 Self-Distilled RLVR，把 self-distillation 和 RLVR 重新分工：用自蒸馏得到 token-level policy differences 来控制更新幅度，同时继续依赖环境反馈给出可靠的更新方向。这样既保留了细粒度学习信号，又避免了单靠 privileged teacher 带来的长期训练不稳定。</p><p>它值得正式收录，因为它不是简单把两个训练范式拼在一起，而是给 reasoning post-training 提供了一个更清晰的接口分层。对 RLVR、reasoning RL 和自蒸馏后训练，这种 magnitude/direction 解耦有明显方法外溢。</p><p>它暂时不升到更高一级，原因在于当前仍主要是 reasoning post-training 子线内的方法推进，是否能成为更广后训练栈的默认组成还需要更多独立复现和后续采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>策略蒸馏（OPD）已成为LLM社区中一种流行的训练范式。这种范式选择一个更大的模型作为教师，为每个采样轨迹提供密集的、细粒度的信号，这与可验证奖励强化学习（RLVR）形成对比，后者仅从环境中可验证的结果中获得稀疏信号。最近，社区探索了策略自蒸馏（OPSD），其中同一个模型既充当教师又充当学生，教师接收额外的特权信息（例如参考答案）以实现自我演化。本文证明，仅从特权教师获得的学习信号会导致严重的信息泄露和不稳定的长期训练。因此，我们确定了自蒸馏的最佳定位，并提出了RLSD（带有自蒸馏的RLVR）。具体来说，我们利用自蒸馏来获取令牌级的策略差异，以确定细粒度的更新幅度，同时继续使用RLVR从环境反馈（例如，响应正确性）中推导出可靠的更新方向。这使得RLSD能够同时利用RLVR和OPSD的优势，实现更高的收敛上限和卓越的训练稳定性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>On-policy distillation (OPD) has become a popular training paradigm in the LLM community. This paradigm selects a larger model as the teacher to provide dense, fine-grained signals for each sampled trajectory, in contrast to reinforcement learning with verifiable rewards (RLVR), which only obtains sparse signals from verifiable outcomes in the environment. Recently, the community has explored on-policy self-distillation (OPSD), where the same model serves as both teacher and student, with the teacher receiving additional privileged information such as reference answers to enable self-evolution. This paper demonstrates that learning signals solely derived from the privileged teacher result in severe information leakage and unstable long-term training. Accordingly, we identify the optimal niche for self-distillation and propose RLSD (RLVR with Self-Distillation). Specifically, we leverage self-distillation to obtain token-level policy differences for determining fine-grained update magnitudes, while continuing to use RLVR to derive reliable update directions from environmental feedback (e.g., response correctness). This enables RLSD to simultaneously harness the strengths of both RLVR and OPSD, achieving a higher convergence ceiling and superior training stability. Email: yangchenxu@iie.ac.cn; linzheng@iie.ac.cn; siqingyi.phoebus@jd.com Figure 1 Performance on the trained Qwen3-VL-8B-Instruct model. In (a), OPSD reaches its peak performance early and degrades, whereas RLSD inherits the training stability of GRPO while achieving a higher convergence ceiling. In (b), GRPO and RLSD report results at 200 training steps, while GRPO (2×steps) reports results at 400 steps; RLSD at 200 steps already surpasses GRPO trained for twice as many steps, demonstrating faster convergence.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260403r48selfdis,
+  title = {Self-Distilled RLVR},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.03128.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r48-self-distilled-rlvr/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Self-Distilled RLVR. https://arxiv.org/pdf/2604.03128.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.03128.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

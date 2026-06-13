@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge is Not Enough: Injecting RL Skills for Continual Adaptation | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论的是 continual adaptation 中一个常见但经常被混淆的问题：模型通过 SFT 学到新知识，并不等于它具备了有效使用这些知识的能力。对本仓库来说，它切中的不是普通微调，而是测试后更新、技能注入和 parameter-efficient adaptation 之间的接口问题。
+
+作者提出 Parametric Skill Transfer（PaST），核心观察是 SFT " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r12-past-skill-transfer-adaptation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Knowledge is Not Enough: Injecting RL Skills for Continual Adaptation" />
+    <meta property="og:description" content="这篇论文讨论的是 continual adaptation 中一个常见但经常被混淆的问题：模型通过 SFT 学到新知识，并不等于它具备了有效使用这些知识的能力。对本仓库来说，它切中的不是普通微调，而是测试后更新、技能注入和 parameter-efficient adaptation 之间的接口问题。
+
+作者提出 Parametric Skill Transfer（PaST），核心观察是 SFT " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r12-past-skill-transfer-adaptation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Knowledge is Not Enough: Injecting RL Skills for Continual Adaptation" />
+    <meta name="twitter:description" content="这篇论文讨论的是 continual adaptation 中一个常见但经常被混淆的问题：模型通过 SFT 学到新知识，并不等于它具备了有效使用这些知识的能力。对本仓库来说，它切中的不是普通微调，而是测试后更新、技能注入和 parameter-efficient adaptation 之间的接口问题。
+
+作者提出 Parametric Skill Transfer（PaST），核心观察是 SFT " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Knowledge is Not Enough: Injecting RL Skills for Continual Adaptation</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-01-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.11258" target="_blank" rel="noopener noreferrer">2601.11258</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论的是 continual adaptation 中一个常见但经常被混淆的问题：模型通过 SFT 学到新知识，并不等于它具备了有效使用这些知识的能力。对本仓库来说，它切中的不是普通微调，而是测试后更新、技能注入和 parameter-efficient adaptation 之间的接口问题。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Parametric Skill Transfer（PaST），核心观察是 SFT 更新和 RL 更新在参数空间中几乎正交。基于这个现象，论文把 RL 获得的 knowledge-manipulation skill 抽成一个可转移的 Skill Vector，再把它线性注入目标模型，从而在轻量知识更新之后补上真正的使用能力。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这不是常规 LoRA 配方微调，而是把 adaptation 拆成“知识写入”和“技能注入”两个阶段，给 continual learning、tool use 和 post-training 提供了更模块化的设计思路。对本仓库新增的 LoRA/PEFT/test-time 关注范围来说，这是一篇过线的结构性论文。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为虽然设计思路清晰且有跨任务收益，但现阶段仍然更像一个高质量 adaptation interface，而不是全面改写 continual learning 主流范式的条目。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论的是 continual adaptation 中一个常见但经常被混淆的问题：模型通过 SFT 学到新知识，并不等于它具备了有效使用这些知识的能力。对本仓库来说，它切中的不是普通微调，而是测试后更新、技能注入和 parameter-efficient adaptation 之间的接口问题。</p><p>作者提出 Parametric Skill Transfer（PaST），核心观察是 SFT 更新和 RL 更新在参数空间中几乎正交。基于这个现象，论文把 RL 获得的 knowledge-manipulation skill 抽成一个可转移的 Skill Vector，再把它线性注入目标模型，从而在轻量知识更新之后补上真正的使用能力。</p><p>它值得收录，因为这不是常规 LoRA 配方微调，而是把 adaptation 拆成“知识写入”和“技能注入”两个阶段，给 continual learning、tool use 和 post-training 提供了更模块化的设计思路。对本仓库新增的 LoRA/PEFT/test-time 关注范围来说，这是一篇过线的结构性论文。</p><p>它没有升到更高等级，是因为虽然设计思路清晰且有跨任务收益，但现阶段仍然更像一个高质量 adaptation interface，而不是全面改写 continual learning 主流范式的条目。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>它们的参数记忆在预训练后保持冻结，这使得它们无法即时地原生内化新信息或工具 (Ouyang et al., 2022; Touvron et al., 2023)。检索增强生成 (RAG) (Lewis et al., 2020) 试图通过在推理时注入外部上下文来缓解这一问题；然而，它在处理大型语料库上的长距离依赖建模时常常遇到困难，并且由于重复处理检索到的上下文而产生大量的推理时间开销 (Shao et al., 2023)。因此，最近的研究已转向参数知识更新，旨在将新信息高效地直接内化到模型权重中。知识编辑 (Meng et al., 2022; Yao et al., 2023; Mao et al., 2025) 和测试时训练 (TTT) (Liu et al., 2021; Osowiechi et al., 2023; Gandelsman et al., 2022; Hong et al., 2023) 等技术已成为有前景的方向，试图使模型的参数记忆与不断变化的世界保持同步。然而，现有适应范式的一个关键局限是知识与技能之间的功能脱节。主流方法主要依赖监督微调 (SFT) 来注入新的领域知识。最近的工作 (Chu et al., 2025) 强调了优化动态中的一个根本区别：SFT 记忆，RL 泛化。我们的实验支持，SFT 倾向于诱导训练分布的表层记忆，而没有明确教导模型如何在下游任务中对所获取的知识进行推理。尽管强化学习 (RL) 对于获取鲁棒的推理和执行技能至关重要 (Guo et al., 2025)，但它仍然是高效在线适应新场景的瓶颈。收集交互数据的高成本和在线策略探索的计算负担使得为模型遇到的每个新环境执行 RL 变得不可行。为了弥合这一差距，我们提出参数技能大型语言模型 (LLMs) 面临“知识截止”挑战，其冻结的参数记忆阻碍了新信息的直接内化。尽管监督微调 (SFT) 通常用于更新模型知识，但它通常只更新事实内容，而不能可靠地提高模型利用新纳入信息进行问答或决策的能力。强化学习 (RL) 对于获取推理技能至关重要；然而，其高昂的计算成本使其不适用于高效的在线适应。我们通过实验观察到，SFT 和 RL 引起的参数更新几乎是正交的。基于这一观察，我们提出了参数技能迁移 (PaST)，这是一个支持模块化技能迁移以实现高效有效知识适应的框架。通过从源领域提取一个领域无关的技能向量 (Skill Vector)，我们可以在目标模型对新数据进行轻量级 SFT 后，将知识操作技能线性注入其中。在知识整合问答 (SQuAD, LooGLE) 和智能体工具使用基准 (ToolBench) 上的实验证明了我们方法的有效性。在 SQuAD 上，PaST 的表现优于最先进的自编辑 SFT 基线高达 9.9 个点。PaST 进一步扩展到 LooGLE 上的长上下文问答，实现了 8.0 个点的绝对准确率提升，并在 ToolBench 零样本成功率上平均提高了 +10.3 个点，在所有工具类别中均取得了一致的提升，这表明技能向量 (Skill Vector) 具有强大的可扩展性和跨领域可迁移性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>their parametric memory remains frozen after pretraining, preventing them from natively internalizing new information or tools on the fly (Ouyang et al., 2022; Touvron et al., 2023). RetrievalAugmented Generation (RAG) (Lewis et al., 2020) attempts to mitigate this by injecting external context at inference time; however, it often struggles with long-range dependency modeling over large corpora and incurs substantial inference-time overhead due to repeated processing of retrieved contexts(Shao et al., 2023). Consequently, recent research has shifted towards Parametric Knowledge Updating, aiming to efficiently internalize new information directly into model weights. Techniques such as Knowledge Editing (Meng et al., 2022; Yao et al., 2023; Mao et al., 2025) and Test-Time Training (TTT) (Liu et al., 2021; Osowiechi et al., 2023; Gandelsman et al., 2022; Hong et al., 2023) have emerged as promising directions, attempting to keep the model’s parametric memory synchronized with the evolving world. However, a critical limitation of existing adaptation paradigms is the functional disconnect between knowledge and skills. Prevailing methods largely rely on Supervised Fine-Tuning (SFT) to inject new domain knowledge. Recent work (Chu et al., 2025) highlighted a fundamental distinction in optimization dynamics: SFT memorizes, RL generalizes. Supported by our experiments, SFT tends to induce surface-level memorization of the training distribution, without explicitly teaching the model how to reason over the acquired knowledge in downstream tasks. While Reinforcement Learning (RL) is essential for acquiring robust reasoning and execution skills (Guo et al., 2025), it remains a bottleneck for efficient online adaptation to novel scenarios. The high cost of collecting interaction data and the computational burden of on-policy exploration make it infeasible to perform RL for every new environment the model encounters. To bridge this gap, we propose Parametric Skill Large Language Models (LLMs) face the “knowledge cutoff” challenge, where their frozen parametric memory prevents direct internalization of new information. While Supervised Fine-Tuning (SFT) is commonly used to update model knowledge, it often updates factual content without reliably improving the model’s ability to use the newly incorporated information for question answering or decisionmaking. Reinforcement Learning (RL) is essential for acquiring reasoning skills; however, its high computational cost makes it impractical for efficient online adaptation. We empirically observe that the parameter updates induced by SFT and RL are nearly orthogonal. Based on this observation, we propose Parametric Skill Transfer (PaST), a framework that supports modular skill transfer for efficient and effective knowledge adaptation. By extracting a domain-agnostic Skill Vector from a source domain, we can linearly inject knowledge manipulation skills into a target model after it has undergone lightweight SFT on new data. Experiments on knowledge-incorporation QA (SQuAD, LooGLE) and agentic tool-use benchmarks (ToolBench) demonstrate the effectiveness of our method. On SQuAD, PaST outperforms the state-of-the-art self-editing SFT baseline by up to 9.9 points. PaST further scales to long-context QA on LooGLE with an 8.0-point absolute accuracy gain, and improves zero-shot ToolBench success rates by +10.3 points on average with consistent gains across tool categories, indicating strong scalability and crossdomain transferability of the Skill Vector.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260116r12pastski,
+  title = {Knowledge is Not Enough: Injecting RL Skills for Continual Adaptation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.11258.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r12-past-skill-transfer-adaptation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Knowledge is Not Enough: Injecting RL Skills for Continual Adaptation. https://arxiv.org/pdf/2601.11258.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.11258.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

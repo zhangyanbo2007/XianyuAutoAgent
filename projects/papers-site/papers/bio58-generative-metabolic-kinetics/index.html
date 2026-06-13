@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generative approaches to kinetic parameter inference in metabolic networks via latent space exploration | DAST Papers</title>
+    <meta name="description" content="这篇 Nature Communications 论文面向动态代谢网络建模中的关键瓶颈：缺少足够酶动力学参数，导致大规模 kinetic models 难以构建和迁移。
+
+作者不是重新训练生成模型，而是提出 latent-space exploration，把已有生成网络的 latent variables 当成可调控制旋钮。
+
+在 E. coli 和 S. cerevisiae 中，latent" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio58-generative-metabolic-kinetics/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Generative approaches to kinetic parameter inference in metabolic networks via latent space exploration" />
+    <meta property="og:description" content="这篇 Nature Communications 论文面向动态代谢网络建模中的关键瓶颈：缺少足够酶动力学参数，导致大规模 kinetic models 难以构建和迁移。
+
+作者不是重新训练生成模型，而是提出 latent-space exploration，把已有生成网络的 latent variables 当成可调控制旋钮。
+
+在 E. coli 和 S. cerevisiae 中，latent" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio58-generative-metabolic-kinetics/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Generative approaches to kinetic parameter inference in metabolic networks via latent space exploration" />
+    <meta name="twitter:description" content="这篇 Nature Communications 论文面向动态代谢网络建模中的关键瓶颈：缺少足够酶动力学参数，导致大规模 kinetic models 难以构建和迁移。
+
+作者不是重新训练生成模型，而是提出 latent-space exploration，把已有生成网络的 latent variables 当成可调控制旋钮。
+
+在 E. coli 和 S. cerevisiae 中，latent" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Generative approaches to kinetic parameter inference in metabolic networks via latent space exploration</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-04-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-20</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72184-3" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72184-3</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature Communications 论文面向动态代谢网络建模中的关键瓶颈：缺少足够酶动力学参数，导致大规模 kinetic models 难以构建和迁移。</dd></div><div><dt>方法/机制</dt><dd>作者不是重新训练生成模型，而是提出 latent-space exploration，把已有生成网络的 latent variables 当成可调控制旋钮。</dd></div><div><dt>结果/证据</dt><dd>在 E. coli 和 S. cerevisiae 中，latent inputs 可调节有氧响应速度、识别限速酶，并把生成网络重定向到厌氧动态和不同训练阶段。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它把 AI for biology 从单次参数预测推进到可操控的动态模型生成工作流，对 cell-factory design、个性化代谢建模和实验设计有直接价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature Communications 论文面向动态代谢网络建模中的关键瓶颈：缺少足够酶动力学参数，导致大规模 kinetic models 难以构建和迁移。</p><p>作者不是重新训练生成模型，而是提出 latent-space exploration，把已有生成网络的 latent variables 当成可调控制旋钮。</p><p>在 E. coli 和 S. cerevisiae 中，latent inputs 可调节有氧响应速度、识别限速酶，并把生成网络重定向到厌氧动态和不同训练阶段。</p><p>它值得收录，因为它把 AI for biology 从单次参数预测推进到可操控的动态模型生成工作流，对 cell-factory design、个性化代谢建模和实验设计有直接价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文介绍了一个潜空间探索框架，它利用训练好的生成式神经网络，在无需额外训练的情况下，产生具有目标动力学的动化代谢模型，从而实现对代谢动力学的控制以及在不同生物体和条件下进行转移。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The paper introduces a latent-space exploration framework that repurposes trained generative neural networks to produce kinetic metabolic models with targeted dynamics in new regimes without additional training, enabling control of metabolic dynamics and transfer across organisms and conditions.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260420bio58gener,
+  title = {Generative approaches to kinetic parameter inference in metabolic networks via latent space exploration},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72184-3_reference.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio58-generative-metabolic-kinetics/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Generative approaches to kinetic parameter inference in metabolic networks via latent space exploration. https://www.nature.com/articles/s41467-026-72184-3_reference.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72184-3_reference.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

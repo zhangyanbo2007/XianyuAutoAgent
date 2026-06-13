@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reading Between the Pixels: Linking Text-Image Embedding Alignment to Typographic Attack Success on Vision-Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文把 prompt injection 的攻击面从纯文本扩展到视觉输入：恶意指令可以被渲染成图像中的文字，绕过文本安全路径，进入 VLM 感知层。对于 browser automation、computer-use agent 和摄像头具身 agent，这是现实风险。
+
+它的价值在于不仅报告攻击成功率，还系统改变字体大小、旋转、模糊、噪声和对比度，并把成功率与 text-image embe" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s8-typographic-vlm-injection/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Reading Between the Pixels: Linking Text-Image Embedding Alignment to Typographic Attack Success on Vision-Language Models" />
+    <meta property="og:description" content="这篇论文把 prompt injection 的攻击面从纯文本扩展到视觉输入：恶意指令可以被渲染成图像中的文字，绕过文本安全路径，进入 VLM 感知层。对于 browser automation、computer-use agent 和摄像头具身 agent，这是现实风险。
+
+它的价值在于不仅报告攻击成功率，还系统改变字体大小、旋转、模糊、噪声和对比度，并把成功率与 text-image embe" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s8-typographic-vlm-injection/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Reading Between the Pixels: Linking Text-Image Embedding Alignment to Typographic Attack Success on Vision-Language Models" />
+    <meta name="twitter:description" content="这篇论文把 prompt injection 的攻击面从纯文本扩展到视觉输入：恶意指令可以被渲染成图像中的文字，绕过文本安全路径，进入 VLM 感知层。对于 browser automation、computer-use agent 和摄像头具身 agent，这是现实风险。
+
+它的价值在于不仅报告攻击成功率，还系统改变字体大小、旋转、模糊、噪声和对比度，并把成功率与 text-image embe" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Reading Between the Pixels: Linking Text-Image Embedding Alignment to Typographic Attack Success on Vision-Language Models</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-14</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12371" target="_blank" rel="noopener noreferrer">2604.12371</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 prompt injection 的攻击面从纯文本扩展到视觉输入：恶意指令可以被渲染成图像中的文字，绕过文本安全路径，进入 VLM 感知层。对于 browser automation、computer-use agent 和摄像头具身 agent，这是现实风险。</dd></div><div><dt>方法/机制</dt><dd>它的价值在于不仅报告攻击成功率，还系统改变字体大小、旋转、模糊、噪声和对比度，并把成功率与 text-image embedding alignment 关联起来，为预测哪些 VLM 更容易被视觉文本劫持提供机制线索。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它是 VLM/agent safety 的正式收录项，因为它提出了可复用的威胁模型、评估设置和防御分析入口，而不是一次性 jailbreak prompt。</dd></div><div><dt>收录价值</dt><dd>局限是实验集中在 typographic attack，真实网页和物理环境中的多模态注入还会涉及布局、注意力竞争和交互上下文。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 prompt injection 的攻击面从纯文本扩展到视觉输入：恶意指令可以被渲染成图像中的文字，绕过文本安全路径，进入 VLM 感知层。对于 browser automation、computer-use agent 和摄像头具身 agent，这是现实风险。</p><p>它的价值在于不仅报告攻击成功率，还系统改变字体大小、旋转、模糊、噪声和对比度，并把成功率与 text-image embedding alignment 关联起来，为预测哪些 VLM 更容易被视觉文本劫持提供机制线索。</p><p>按本库标准，它是 VLM/agent safety 的正式收录项，因为它提出了可复用的威胁模型、评估设置和防御分析入口，而不是一次性 jailbreak prompt。</p><p>局限是实验集中在 typographic attack，真实网页和物理环境中的多模态注入还会涉及布局、注意力竞争和交互上下文。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文研究了对视觉语言模型（vision-language models，VLMs）的排版提示注入攻击，其中对抗性文本被渲染在图像内部以绕过安全控制。它评估了多个前沿VLMs在不同字体大小和视觉变换下的表现，并将攻击成功与文本-图像嵌入对齐度联系起来。这项工作与浏览器代理、计算机使用系统和具身代理的VLM安全相关。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper studies typographic prompt injection attacks on vision-language models, where adversarial text is rendered inside images to bypass safety controls. It evaluates multiple frontier VLMs across font sizes and visual transformations, and links attack success to text-image embedding alignment. The work is relevant to VLM safety for browser agents, computer-use systems, and embodied agents.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260414s8typograp,
+  title = {Reading Between the Pixels: Linking Text-Image Embedding Alignment to Typographic Attack Success on Vision-Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12371.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s8-typographic-vlm-injection/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Reading Between the Pixels: Linking Text-Image Embedding Alignment to Typographic Attack Success on Vision-Language Models. https://arxiv.org/pdf/2604.12371.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12371.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

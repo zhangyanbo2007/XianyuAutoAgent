@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory | DAST Papers</title>
+    <meta name="description" content="ReasoningBank 解决长期运行 agent 的核心缺陷：完成任务后丢弃交互历史，导致无法从成功和失败中积累可迁移策略。
+
+系统把经验压缩成 generalizable reasoning memories，在测试时检索相关记忆指导行动，并在任务结束后写回新经验；MaTTS 进一步用更多交互生成更丰富对比信号来提升记忆质量。
+
+它值得正式收录，因为它把 agent memory 从保存原始" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a303-reasoningbank-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory" />
+    <meta property="og:description" content="ReasoningBank 解决长期运行 agent 的核心缺陷：完成任务后丢弃交互历史，导致无法从成功和失败中积累可迁移策略。
+
+系统把经验压缩成 generalizable reasoning memories，在测试时检索相关记忆指导行动，并在任务结束后写回新经验；MaTTS 进一步用更多交互生成更丰富对比信号来提升记忆质量。
+
+它值得正式收录，因为它把 agent memory 从保存原始" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a303-reasoningbank-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory" />
+    <meta name="twitter:description" content="ReasoningBank 解决长期运行 agent 的核心缺陷：完成任务后丢弃交互历史，导致无法从成功和失败中积累可迁移策略。
+
+系统把经验压缩成 generalizable reasoning memories，在测试时检索相关记忆指导行动，并在任务结束后写回新经验；MaTTS 进一步用更多交互生成更丰富对比信号来提升记忆质量。
+
+它值得正式收录，因为它把 agent memory 从保存原始" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-09-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2509.25140" target="_blank" rel="noopener noreferrer">2509.25140</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>ReasoningBank 解决长期运行 agent 的核心缺陷：完成任务后丢弃交互历史，导致无法从成功和失败中积累可迁移策略。</dd></div><div><dt>方法/机制</dt><dd>系统把经验压缩成 generalizable reasoning memories，在测试时检索相关记忆指导行动，并在任务结束后写回新经验；MaTTS 进一步用更多交互生成更丰富对比信号来提升记忆质量。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 agent memory 从保存原始轨迹或成功案例，推进到策略级经验蒸馏与 test-time scaling 的闭环，是 self-evolving agents 的基础方法。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为实验主要集中在 WebArena 和 SWE-Bench-Verified 等软件/网页任务，真实长期部署中的污染、遗忘、权限和安全边界仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>ReasoningBank 解决长期运行 agent 的核心缺陷：完成任务后丢弃交互历史，导致无法从成功和失败中积累可迁移策略。</p><p>系统把经验压缩成 generalizable reasoning memories，在测试时检索相关记忆指导行动，并在任务结束后写回新经验；MaTTS 进一步用更多交互生成更丰富对比信号来提升记忆质量。</p><p>它值得正式收录，因为它把 agent memory 从保存原始轨迹或成功案例，推进到策略级经验蒸馏与 test-time scaling 的闭环，是 self-evolving agents 的基础方法。</p><p>它没有更高，是因为实验主要集中在 WebArena 和 SWE-Bench-Verified 等软件/网页任务，真实长期部署中的污染、遗忘、权限和安全边界仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>ReasoningBank：通过推理记忆实现智能体自我演进的规模化。随着大型语言模型智能体在持久性现实世界角色中日益普及，它们自然会遇到持续不断的任务流。然而，一个关键的局限是它们未能从累积的交互历史中学习，这迫使它们丢弃宝贵的见解并重复过去的错误。我们提出了ReasoningBank，一个新颖的记忆框架，它从智能体自我判断的成功和失败经验中提炼出可泛化的推理策略。在测试时，智能体从ReasoningBank中检索相关记忆以指导其交互，然后将新的学习成果整合回去，使其随着时间的推移变得更加强大。在这个强大的经验学习器的基础上，我们进一步引入了记忆感知测试时规模化（MaTTS），它通过扩大智能体的交互经验来加速和多样化这一学习过程。通过为每个任务分配更多的计算资源，智能体生成了丰富多样的经验，这些经验为合成更高质量的记忆提供了丰富的对比信号。更好的记忆反过来指导更有效的规模化，在记忆和测试时规模化之间建立了强大的协同作用。在网页浏览和软件工程基准测试中，ReasoningBank始终优于存储原始轨迹或仅成功任务例程的现有记忆机制，提高了有效性和效率；MaTTS进一步放大了这些收益。这些发现确立了记忆驱动的经验规模化作为一个新的规模化维度，使智能体能够自我演进并自然产生涌现行为。我们的代码可在https://github.com/google-research/reasoning-bank找到。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>With the growing adoption of large language model agents in persistent real-world roles, they naturally encounter continuous streams of tasks. A key limitation, however, is their failure to learn from the accumulated interaction history, forcing them to discard valuable insights and repeat past errors. We propose ReasoningBank, a novel memory framework that distills generalizable reasoning strategies from an agent’s self-judged successful and failed experiences. At test time, an agent retrieves relevant memories from Re as on i ng Ban k to inform its interaction and then integrates new learnings back, enabling it to become more capable over time. Building on this powerful experience learner, we further introduce memory-aware test-time scaling (M aT T S), which accelerates and diversifies this learning process by scaling up the agent’s interaction experience. By allocating more compute to each task, the agent generates abundant, diverse experiences that provide rich contrastive signals for synthesizing higher-quality memory. The better memory in turn guides more effective scaling, establishing a powerful synergy between memory and test-time scaling. Across web browsing and software engineering benchmarks, Re as on i ng Ban k consistently outperforms existing memory mechanisms that store raw trajectories or only successful task routines, improving both effectiveness and efficiency; M aT T S further amplifies these gains. These findings establish memory-driven experience scaling as a new scaling dimension, enabling agents to self-evolve with emergent behaviors naturally arise. Our code can be found at https://github.com/google-research/reasoning-bank.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250929a303reason,
+  title = {ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2509.25140.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a303-reasoningbank-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). ReasoningBank: Scaling Agent Self-Evolving with Reasoning Memory. https://arxiv.org/pdf/2509.25140.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2509.25140.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://research.google/blog/reasoningbank-enabling-agents-to-learn-from-experience/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/google-research/reasoning-bank" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

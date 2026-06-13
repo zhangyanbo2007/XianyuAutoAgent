@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RecaLLM: Addressing the Lost-in-Thought Phenomenon with Explicit In-Context Retrieval | DAST Papers</title>
+    <meta name="description" content="这篇论文聚焦长上下文推理中的一个具体失败模式：模型在进行一段推理后，重新从上下文中定位证据的能力会快速下降。作者将其称为 lost-in-thought，并指出长上下文推理不是简单地“先读全上下文再推理”，而是检索与推理相互交织的过程。
+
+RecaLLM 的方法是把显式 in-context retrieval 插入推理过程，让模型在中间子问题处交替执行推理和证据召回。系统还使用低开销约束解码机制" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r57-recallm-in-context-retrieval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RecaLLM: Addressing the Lost-in-Thought Phenomenon with Explicit In-Context Retrieval" />
+    <meta property="og:description" content="这篇论文聚焦长上下文推理中的一个具体失败模式：模型在进行一段推理后，重新从上下文中定位证据的能力会快速下降。作者将其称为 lost-in-thought，并指出长上下文推理不是简单地“先读全上下文再推理”，而是检索与推理相互交织的过程。
+
+RecaLLM 的方法是把显式 in-context retrieval 插入推理过程，让模型在中间子问题处交替执行推理和证据召回。系统还使用低开销约束解码机制" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r57-recallm-in-context-retrieval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RecaLLM: Addressing the Lost-in-Thought Phenomenon with Explicit In-Context Retrieval" />
+    <meta name="twitter:description" content="这篇论文聚焦长上下文推理中的一个具体失败模式：模型在进行一段推理后，重新从上下文中定位证据的能力会快速下降。作者将其称为 lost-in-thought，并指出长上下文推理不是简单地“先读全上下文再推理”，而是检索与推理相互交织的过程。
+
+RecaLLM 的方法是把显式 in-context retrieval 插入推理过程，让模型在中间子问题处交替执行推理和证据召回。系统还使用低开销约束解码机制" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RecaLLM: Addressing the Lost-in-Thought Phenomenon with Explicit In-Context Retrieval</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.09494" target="_blank" rel="noopener noreferrer">2604.09494</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文聚焦长上下文推理中的一个具体失败模式：模型在进行一段推理后，重新从上下文中定位证据的能力会快速下降。作者将其称为 lost-in-thought，并指出长上下文推理不是简单地“先读全上下文再推理”，而是检索与推理相互交织的过程。</dd></div><div><dt>方法/机制</dt><dd>RecaLLM 的方法是把显式 in-context retrieval 插入推理过程，让模型在中间子问题处交替执行推理和证据召回。系统还使用低开销约束解码机制来逐字复制上下文证据 span，从而增强后续生成的 grounding；训练则覆盖词面与语义检索任务，使模型学会在需要时主动从上下文中找回证据。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它给长上下文和 test-time scaling 提供了一个清晰的控制模式：不是只增加思考长度，而是把可验证的上下文取证变成推理链的一等动作。论文在 RULER 与 HELMET 上展示了跨 4K 到 128K 上下文的收益，并且训练样本不需要达到同等长度，这对长上下文 agent、研究助理和文档推理系统都有可复用价值。</dd></div><div><dt>收录价值</dt><dd>局限在于结果仍主要集中在检索密集型长上下文任务，方法依赖显式召回格式和后训练数据构造；开放式复杂任务中，何时召回、召回多少以及如何与外部 RAG 合并仍需进一步验证。因此它是长上下文推理控制的突破性方法，而不是完整的通用记忆架构。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文聚焦长上下文推理中的一个具体失败模式：模型在进行一段推理后，重新从上下文中定位证据的能力会快速下降。作者将其称为 lost-in-thought，并指出长上下文推理不是简单地“先读全上下文再推理”，而是检索与推理相互交织的过程。</p><p>RecaLLM 的方法是把显式 in-context retrieval 插入推理过程，让模型在中间子问题处交替执行推理和证据召回。系统还使用低开销约束解码机制来逐字复制上下文证据 span，从而增强后续生成的 grounding；训练则覆盖词面与语义检索任务，使模型学会在需要时主动从上下文中找回证据。</p><p>它值得收录，是因为它给长上下文和 test-time scaling 提供了一个清晰的控制模式：不是只增加思考长度，而是把可验证的上下文取证变成推理链的一等动作。论文在 RULER 与 HELMET 上展示了跨 4K 到 128K 上下文的收益，并且训练样本不需要达到同等长度，这对长上下文 agent、研究助理和文档推理系统都有可复用价值。</p><p>局限在于结果仍主要集中在检索密集型长上下文任务，方法依赖显式召回格式和后训练数据构造；开放式复杂任务中，何时召回、召回多少以及如何与外部 RAG 合并仍需进一步验证。因此它是长上下文推理控制的突破性方法，而不是完整的通用记忆架构。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了RecaLLM，这是一组经过后训练的推理语言模型，旨在有效利用长上下文信息。上下文内检索（从上下文中识别相关证据）和推理是深度交织的：检索支持推理，而推理通常决定必须检索什么。然而，它们之间的相互作用在很大程度上仍未被充分探索。在对几个开源LLM进行的初步实验中，我们观察到，即使在短暂的推理跨度之后，上下文内检索性能也会大幅下降，这揭示了测试时扩展的一个关键瓶颈，我们称之为“思维迷失”（lost-in-thought）：提高性能的推理步骤也使得后续的上下文内检索更具挑战性。为了解决这一限制，RecaLLM将推理与显式上下文内检索交织在一起，在推理和检索解决中间子问题所需的上下文信息之间交替进行。我们引入了一种开销可忽略的受限解码机制，该机制能够逐字复制证据片段，从而改善后续生成的 grounding。RecaLLM在多样化的词汇和语义检索任务上进行训练，在RULER和HELMET这两个长上下文基准上取得了强大的性能，显著优于基线。值得注意的是，我们观察到在使用最多10K token的训练样本（远短于现有长上下文方法所使用的样本）的情况下，上下文窗口高达128K token时仍能获得持续的增益，这突显了一条在无需昂贵长上下文训练数据的情况下提高长上下文性能的有前景的途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We propose RecaLLM, a set of reasoning language models post-trained to make effective use of long-context information. In-context retrieval, which identifies relevant evidence from context, and reasoning are deeply intertwined: retrieval supports reasoning, while reasoning often determines what must be retrieved. However, their interaction remains largely underexplored. In preliminary experiments on several open-source LLMs, we observe that in-context retrieval performance substantially degrades even after a short reasoning span, revealing a key bottleneck for test-time scaling that we refer to as lost-in-thought: reasoning steps that improve performance also make subsequent in-context retrieval more challenging. To address this limitation, RecaLLM interleaves reasoning with explicit in-context retrieval, alternating between reasoning and retrieving context information needed to solve intermediate subproblems. We introduce a negligibleoverhead constrained decoding mechanism that enables verbatim copying of evidence spans, improving the grounding of subsequent generation. Trained on diverse lexical and semantic retrieval tasks, RecaLLM achieves strong performance on two long-context benchmarks, RULER and HELMET, significantly outperforming baselines. Notably, we observe consistent gains at context windows of up to 128K tokens using training samples of at most 10K tokens, far shorter than those used by existing long-context approaches, highlighting a promising path toward improving long-context performance without expensive long-context training data.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260410r57recallm,
+  title = {RecaLLM: Addressing the Lost-in-Thought Phenomenon with Explicit In-Context Retrieval},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.09494.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r57-recallm-in-context-retrieval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RecaLLM: Addressing the Lost-in-Thought Phenomenon with Explicit In-Context Retrieval. https://arxiv.org/pdf/2604.09494.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.09494.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/kswhitecross/RecaLLM" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

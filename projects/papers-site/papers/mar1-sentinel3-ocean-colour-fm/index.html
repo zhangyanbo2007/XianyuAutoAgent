@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Sentinel-3 foundation model for ocean colour | DAST Papers</title>
+    <meta name="description" content="海洋与近岸环境监测一直受限于高质量标注稀缺、传感器异质和场景变化大。相比陆地遥感，ocean colour 这类任务更难建立通用 backbone，因此很多模型仍停留在特定下游任务或小数据集拟合层面。作者直接把问题提升为 marine earth observation foundation model，试图为海洋监测建立可迁移的底座。
+
+这篇论文基于 Prithvi-EO Vision Tran" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mar1-sentinel3-ocean-colour-fm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A Sentinel-3 foundation model for ocean colour" />
+    <meta property="og:description" content="海洋与近岸环境监测一直受限于高质量标注稀缺、传感器异质和场景变化大。相比陆地遥感，ocean colour 这类任务更难建立通用 backbone，因此很多模型仍停留在特定下游任务或小数据集拟合层面。作者直接把问题提升为 marine earth observation foundation model，试图为海洋监测建立可迁移的底座。
+
+这篇论文基于 Prithvi-EO Vision Tran" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mar1-sentinel3-ocean-colour-fm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A Sentinel-3 foundation model for ocean colour" />
+    <meta name="twitter:description" content="海洋与近岸环境监测一直受限于高质量标注稀缺、传感器异质和场景变化大。相比陆地遥感，ocean colour 这类任务更难建立通用 backbone，因此很多模型仍停留在特定下游任务或小数据集拟合层面。作者直接把问题提升为 marine earth observation foundation model，试图为海洋监测建立可迁移的底座。
+
+这篇论文基于 Prithvi-EO Vision Tran" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A Sentinel-3 foundation model for ocean colour</h1>
+          <p class="subtitle">海洋、渔业与海岸系统 · 发表：2025-09-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">海洋、渔业与海岸系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2509.21273" target="_blank" rel="noopener noreferrer">2509.21273</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>海洋与近岸环境监测一直受限于高质量标注稀缺、传感器异质和场景变化大。相比陆地遥感，ocean colour 这类任务更难建立通用 backbone，因此很多模型仍停留在特定下游任务或小数据集拟合层面。作者直接把问题提升为 marine earth observation foundation model，试图为海洋监测建立可迁移的底座。</dd></div><div><dt>方法/机制</dt><dd>这篇论文基于 Prithvi-EO Vision Transformer，为 Sentinel-3 OLCI 数据预训练一个 ocean-colour foundation model，并在 chlorophyll quantification 与 primary production refinement 两个下游任务上验证。其核心价值不只是性能，而是证明 marine monitoring 也可以走 foundation-model 路线：用海量无标注遥感数据学表征，再在少量高质量标签上完成迁移。摘要还强调模型能更好捕捉 ocean colour 的空间结构，并与点位观测匹配。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它给 marine / coastal monitoring 提供了一个真正可复用的 foundation-model interface，而不是一次性的下游模型。对仓库来说，这类条目有明显扩展意义：它把 AI 对海洋系统的赋能从单点预测推进到更 durable 的 representation infrastructure，对后续海洋生态、渔业和气候过程监测都有基础价值。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是当前验证仍集中在两个典型 ocean-colour downstream tasks，离更广海洋系统、更多传感器和更复杂 operational decision workflows 还有距离。它是一篇强基础设施论文，但还不是海洋 AI 范式重排级条目。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>海洋与近岸环境监测一直受限于高质量标注稀缺、传感器异质和场景变化大。相比陆地遥感，ocean colour 这类任务更难建立通用 backbone，因此很多模型仍停留在特定下游任务或小数据集拟合层面。作者直接把问题提升为 marine earth observation foundation model，试图为海洋监测建立可迁移的底座。</p><p>这篇论文基于 Prithvi-EO Vision Transformer，为 Sentinel-3 OLCI 数据预训练一个 ocean-colour foundation model，并在 chlorophyll quantification 与 primary production refinement 两个下游任务上验证。其核心价值不只是性能，而是证明 marine monitoring 也可以走 foundation-model 路线：用海量无标注遥感数据学表征，再在少量高质量标签上完成迁移。摘要还强调模型能更好捕捉 ocean colour 的空间结构，并与点位观测匹配。</p><p>这项工作值得正式收录，因为它给 marine / coastal monitoring 提供了一个真正可复用的 foundation-model interface，而不是一次性的下游模型。对仓库来说，这类条目有明显扩展意义：它把 AI 对海洋系统的赋能从单点预测推进到更 durable 的 representation infrastructure，对后续海洋生态、渔业和气候过程监测都有基础价值。</p><p>它暂时还不到更高一级，原因是当前验证仍集中在两个典型 ocean-colour downstream tasks，离更广海洋系统、更多传感器和更复杂 operational decision workflows 还有距离。它是一篇强基础设施论文，但还不是海洋 AI 范式重排级条目。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要 人工智能（AI）基础模型（FM）在海量未标记数据集上进行预训练，有潜力彻底改变海洋科学中的AI应用，因为在海洋科学中，标记数据通常稀疏且收集成本高昂。在这项工作中，我们描述了一个新的基础模型，该模型采用Prithvi-EO Vision Transformer架构，并已预训练用于重建来自Sentinel-3海洋与陆地色彩仪（OLCI）的数据。我们通过在两个下游海洋地球观测任务上进行微调来评估该模型。我们首先评估了模型性能，并将其与当前用于量化叶绿素浓度的基线模型进行了比较。随后，我们评估了FM在改进基于遥感的海洋初级生产力估算方面的能力。我们的结果证明了自训练FM在海洋监测中的实用性，特别是在利用少量高质量标记数据以及在匹配点观测的同时捕获海洋色彩的详细空间模式方面。我们得出结论，新一代地理空间AI模型有潜力为海洋生态系统及其在全球气候过程中的作用提供更稳健、数据驱动的见解。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT Artificial Intelligence (AI) Foundation models (FMs), pre-trained on massive unlabelled datasets, have the potential to drastically change AI applications in ocean science, where labelled data are often sparse and expensive to collect. In this work, we describe a new foundation model using the Prithvi-EO Vision Transformer architecture which has been pre-trained to reconstruct data from the Sentinel-3 Ocean and Land Colour Instrument (OLCI). We evaluate the model by fine-tuning on two downstream marine earth observation tasks. We first assess model performance compared to current baseline models used to quantify chlorophyll concentration. We then evaluate the FM’s ability to refine remote sensing-based estimates of ocean primary production. Our results demonstrate the utility of self-trained FMs for marine monitoring, in particular for making use of small amounts of high quality labelled data and in capturing detailed spatial patterns of ocean colour whilst matching point observations. We conclude that this new generation of geospatial AI models has the potential to provide more robust, data-driven insights into ocean ecosystems and their role in global climate processes.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250925mar1sentin,
+  title = {A Sentinel-3 foundation model for ocean colour},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2509.21273.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mar1-sentinel3-ocean-colour-fm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). A Sentinel-3 foundation model for ocean colour. https://arxiv.org/pdf/2509.21273.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mar3-multimodal-auv-coral-reefs/">
+              <span>Autonomous seeking and mapping coral reef biodiversity hotspots with a multimodal AUV</span>
+              <small>海洋、渔业与海岸系统 · 2026-05-13</small>
+            </a>
+            <a class="related-item" href="../../papers/mar2-coral-underwater-monitoring/">
+              <span>CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring</span>
+              <small>海洋、渔业与海岸系统 · 2026-03-16</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2509.21273.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

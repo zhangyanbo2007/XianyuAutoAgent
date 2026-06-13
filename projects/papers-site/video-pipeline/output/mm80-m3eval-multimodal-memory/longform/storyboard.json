@@ -1,0 +1,270 @@
+[
+  {
+    "index": 0,
+    "kind": "title",
+    "title": "AI 看视频真的能过目不忘吗？",
+    "narration": "这期视频拆解 M^3Eval: Multi-Modal Memory Evaluation through Cognitively-Grounded Video Tasks，看它如何把模型的长视频记忆问题变成一套可测量的认知实验。开场不是先给结论，而是先把问题立住：如果模型只是看到了更多视频，却不能在干扰后找回正确线索，那它的长上下文更像缓存，不像记忆。",
+    "paper_anchor": "task: Divided Attention / 并行视频流：测试模型同时处理多路视频时能否保持解耦记忆。",
+    "template_hint": "hero_title",
+    "duration_sec": 18.0,
+    "data": {}
+  },
+  {
+    "index": 1,
+    "kind": "question",
+    "title": "长上下文不等于真记忆",
+    "narration": "上下文窗口越长，只说明模型能接收更多输入；能不能编码、保存、检索和抗干扰，是另一件事。这一页承担观众认知转向：从‘模型能装多少’转到‘模型能不能保持、区分和复原’。后面的每个实验都会围绕这个问题展开。",
+    "paper_anchor": "task: Divided Attention / 并行视频流：测试模型同时处理多路视频时能否保持解耦记忆。",
+    "template_hint": "core_question",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 2,
+    "kind": "gap",
+    "title": "我们一直在考视力，却忽略脑力",
+    "narration": "这篇论文指出长视频多模态模型评估长期偏重 perception 和 reasoning，而缺少系统评估 memory 的接口：模型到底保留什么、是否忠实、是否受干扰影响。论文的价值就在这里：它没有继续堆通用问答，而是把记忆拆成可观察的错误类型。观众会看到，失败不是偶然答错，而是某种记忆机制缺位。",
+    "paper_anchor": "task: Memory Interference / 记忆干扰：测试相似视频前后出现时是否发生前摄或倒摄干扰。",
+    "template_hint": "paper_gap_iceberg",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 3,
+    "kind": "method",
+    "title": "用认知心理学审问 AI",
+    "narration": "M3Eval 借鉴认知心理学范式，把多模态模型的记忆能力拆成并行注意、干扰、时空来源定位、交错事件和符号工作记忆等可测试任务。这种转译让视频更像一场实验复盘：先讲心理学任务为什么能测人，再讲同样的压力放到多模态模型上会暴露什么。形式上也要像实验台，而不是普通论文摘要。",
+    "paper_anchor": "task: Interleaved Events / 交错事件：测试模型能否把交错片段重组为连续故事。",
+    "template_hint": "method_transfer",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 4,
+    "kind": "overview",
+    "title": "M3Eval 的任务矩阵",
+    "narration": "视频把论文任务组织成四个核心切面：并行注意、记忆干扰、交错事件和 N-Back 符号记忆。这个矩阵是全片地图：每一类任务对应一种记忆压力，也对应一种画面组织方式。观众后面看到柱状图、双屏和时间线时，都能回到这张地图定位。",
+    "paper_anchor": "task: N-Back / 符号工作记忆：测试跨时间间隔匹配场景、动作和符号属性的能力。",
+    "template_hint": "task_matrix",
+    "duration_sec": 24.0,
+    "data": {
+      "tasks": [
+        "Divided Attention",
+        "Memory Interference",
+        "Interleaved Events",
+        "N-Back"
+      ]
+    }
+  },
+  {
+    "index": 5,
+    "kind": "data",
+    "title": "测试场有多严苛",
+    "narration": "原视频把数据规模视觉化为大数字卡片，先让观众感到这不是单个样例，而是一套系统评估。数据规模页的作用是建立可信度：不是挑几个失败样例讲故事，而是把长视频、问题数量和任务类型一起铺开，让后面的结论有重量。",
+    "paper_anchor": "finding: 模型更可靠地定位空间来源，但时间来源定位明显更弱。",
+    "template_hint": "metric_cards",
+    "duration_sec": 24.0,
+    "data": {
+      "metrics": [
+        {
+          "label": "精选长视频",
+          "value": "403 小时"
+        },
+        {
+          "label": "认知定向问题",
+          "value": "2,403 道"
+        }
+      ]
+    }
+  },
+  {
+    "index": 6,
+    "kind": "task",
+    "title": "测试一：分散注意力",
+    "narration": "双屏并行输入迫使模型同时保持两路表示，直接暴露注意力混淆。讲任务时要避免只读名词，所以这一段先还原模型面对的输入压力，再说明它为什么能对应论文里的记忆维度。画面上用对比结构帮助观众快速进入测试场。 论文锚点：paper finding: Divided Attention。",
+    "paper_anchor": "paper finding: Divided Attention",
+    "template_hint": "split_comparison",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 7,
+    "kind": "finding",
+    "title": "双屏为何让模型失忆",
+    "narration": "当两路视频同时进入上下文，模型不是缺少长度，而是缺少可分离的记忆槽。讲发现时重点不在分数本身，而在分数背后的错误模式。这里要把论文结果翻译成一句可记住的诊断：模型哪里像在记，哪里其实是在混。 论文锚点：paper finding: Parallel Streams。",
+    "paper_anchor": "paper finding: Parallel Streams",
+    "template_hint": "bar_finding",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 8,
+    "kind": "task",
+    "title": "测试二：Memory Interference 记忆干扰",
+    "narration": "相似内容前后出现时，模型会把旧线索和新线索混在一起。讲任务时要避免只读名词，所以这一段先还原模型面对的输入压力，再说明它为什么能对应论文里的记忆维度。画面上用对比结构帮助观众快速进入测试场。 论文锚点：paper finding: Memory Interference。",
+    "paper_anchor": "paper finding: Memory Interference",
+    "template_hint": "split_comparison",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 9,
+    "kind": "finding",
+    "title": "重复播放的外挂机制",
+    "narration": "原视频把一个反直觉发现转成柱状图：重复目标片段可能强化模型对关键线索的抓取。讲发现时重点不在分数本身，而在分数背后的错误模式。这里要把论文结果翻译成一句可记住的诊断：模型哪里像在记，哪里其实是在混。 论文锚点：paper finding: Interference Finding。",
+    "paper_anchor": "paper finding: Interference Finding",
+    "template_hint": "bar_finding",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 10,
+    "kind": "task",
+    "title": "测试三：交错事件",
+    "narration": "交错事件考验模型能否把碎片重新拼回故事，而不是只识别局部画面。讲任务时要避免只读名词，所以这一段先还原模型面对的输入压力，再说明它为什么能对应论文里的记忆维度。画面上用对比结构帮助观众快速进入测试场。 论文锚点：paper finding: Interleaved Events。",
+    "paper_anchor": "paper finding: Interleaved Events",
+    "template_hint": "split_comparison",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 11,
+    "kind": "finding",
+    "title": "时间线拼图是硬题",
+    "narration": "模型容易把没发生过的组合当成真实故事，说明它缺少稳定的事件绑定。讲发现时重点不在分数本身，而在分数背后的错误模式。这里要把论文结果翻译成一句可记住的诊断：模型哪里像在记，哪里其实是在混。 论文锚点：paper finding: Temporal Binding。",
+    "paper_anchor": "paper finding: Temporal Binding",
+    "template_hint": "bar_finding",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 12,
+    "kind": "task",
+    "title": "测试四：N-Back",
+    "narration": "N-Back 把视频画面抽象成场景、动作和符号，测试工作记忆容量。讲任务时要避免只读名词，所以这一段先还原模型面对的输入压力，再说明它为什么能对应论文里的记忆维度。画面上用对比结构帮助观众快速进入测试场。 论文锚点：paper finding: N-Back。",
+    "paper_anchor": "paper finding: N-Back",
+    "template_hint": "split_comparison",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 13,
+    "kind": "finding",
+    "title": "符号记忆为什么崩",
+    "narration": "人类能主动过滤噪声，大模型更像把所有痕迹倒进一个全局注意池。讲发现时重点不在分数本身，而在分数背后的错误模式。这里要把论文结果翻译成一句可记住的诊断：模型哪里像在记，哪里其实是在混。 论文锚点：paper finding: Symbolic Memory。",
+    "paper_anchor": "paper finding: Symbolic Memory",
+    "template_hint": "bar_finding",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 14,
+    "kind": "insight",
+    "title": "空间记忆强，时间记忆弱",
+    "narration": "原视频把论文发现转成左右对比：模型更容易定位画面位置，却更难还原事件先后。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "finding: spatial versus temporal source grounding",
+    "template_hint": "split_comparison",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 15,
+    "kind": "insight",
+    "title": "人类和 AI 的干扰逻辑不同",
+    "narration": "人类常常模糊旧记忆，模型则更容易把相似线索粘在一起形成错觉。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "finding: interference patterns",
+    "template_hint": "takeaway_cards",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 16,
+    "kind": "insight",
+    "title": "模型排行榜不是终点",
+    "narration": "排行榜页承担节奏转换：给观众一个整体方位，同时提醒距离人类基线仍然明显。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "result: model ranking",
+    "template_hint": "ranking_board",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 17,
+    "kind": "insight",
+    "title": "评估结论矩阵",
+    "narration": "用矩阵把人类优势和 AI 短板并排，让论文 findings 变成可记住的诊断报告。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "summary: conclusion matrix",
+    "template_hint": "task_matrix",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 18,
+    "kind": "insight",
+    "title": "为什么会在这里崩盘",
+    "narration": "视频把机制解释压缩成一个直觉：不懂遗忘，记忆系统会被噪声淹没。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "interpretation: memory mechanism",
+    "template_hint": "paper_gap_iceberg",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 19,
+    "kind": "insight",
+    "title": "未来方向：给 AI 装上海马体",
+    "narration": "结构化注意、时间 grounding 和战略性遗忘，是从论文结果自然延伸出的设计方向。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "future: memory architecture",
+    "template_hint": "future_direction",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 20,
+    "kind": "insight",
+    "title": "我们学到了什么",
+    "narration": "第一，长上下文不等于记忆；第二，心理学任务是试金石；第三，AI 不只要学记，也要学忘。洞察页负责把多个结果连起来：单个任务说明一个现象，多页合在一起才构成论文的判断。旁白要把局部实验推回整体机制，避免散成数据罗列。",
+    "paper_anchor": "takeaway: video summary",
+    "template_hint": "takeaway_cards",
+    "duration_sec": 24.0,
+    "data": {}
+  },
+  {
+    "index": 21,
+    "kind": "evidence",
+    "title": "证据补强 1",
+    "narration": "这一页把论文依据继续压实：task: Divided Attention / 并行视频流：测试模型同时处理多路视频时能否保持解耦记忆。。画面不追求新奇，而是帮助观众记住证据链。这一页继续压实论文粘结度：旁白明确说出它来自哪个任务或发现，画面只服务证据链。这样观众不会觉得是在泛泛科普，而是在跟着论文一步步走。 论文锚点：task: Divided Attention / 并行视频流：测试模型同时处理多路视频时能否保持解耦记忆。。",
+    "paper_anchor": "task: Divided Attention / 并行视频流：测试模型同时处理多路视频时能否保持解耦记忆。",
+    "template_hint": "bar_finding",
+    "duration_sec": 22.0,
+    "data": {}
+  },
+  {
+    "index": 22,
+    "kind": "evidence",
+    "title": "证据补强 2",
+    "narration": "这一页把论文依据继续压实：task: Memory Interference / 记忆干扰：测试相似视频前后出现时是否发生前摄或倒摄干扰。。画面不追求新奇，而是帮助观众记住证据链。这一页继续压实论文粘结度：旁白明确说出它来自哪个任务或发现，画面只服务证据链。这样观众不会觉得是在泛泛科普，而是在跟着论文一步步走。 论文锚点：task: Memory Interference / 记忆干扰：测试相似视频前后出现时是否发生前摄或倒摄干扰。。",
+    "paper_anchor": "task: Memory Interference / 记忆干扰：测试相似视频前后出现时是否发生前摄或倒摄干扰。",
+    "template_hint": "split_comparison",
+    "duration_sec": 22.0,
+    "data": {}
+  },
+  {
+    "index": 23,
+    "kind": "evidence",
+    "title": "证据补强 3",
+    "narration": "这一页把论文依据继续压实：task: Interleaved Events / 交错事件：测试模型能否把交错片段重组为连续故事。。画面不追求新奇，而是帮助观众记住证据链。这一页继续压实论文粘结度：旁白明确说出它来自哪个任务或发现，画面只服务证据链。这样观众不会觉得是在泛泛科普，而是在跟着论文一步步走。 论文锚点：task: Interleaved Events / 交错事件：测试模型能否把交错片段重组为连续故事。。",
+    "paper_anchor": "task: Interleaved Events / 交错事件：测试模型能否把交错片段重组为连续故事。",
+    "template_hint": "metric_cards",
+    "duration_sec": 22.0,
+    "data": {}
+  },
+  {
+    "index": 24,
+    "kind": "ending",
+    "title": "真正的智能，藏在记忆重塑里",
+    "narration": "真正的智能不只是记住更多片段，而是知道哪些线索该保留、哪些噪声该遗忘；这也是 M3Eval 留给下一代多模态系统的核心问题。结尾要回扣开头的问题：长视频智能不是把所有帧塞进上下文，而是在关键时刻保留、抑制、重组和校验。这个收束也为后续架构改进留下方向。",
+    "paper_anchor": "ending: grounded conclusion",
+    "template_hint": "hero_title",
+    "duration_sec": 24.0,
+    "data": {}
+  }
+]

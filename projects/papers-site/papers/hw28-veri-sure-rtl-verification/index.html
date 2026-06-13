@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veri-Sure: A Contract-Aware Multi-Agent Framework with Temporal Tracing and Formal Verification for Correct RTL Code Generation | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 LLM 生成 RTL/Verilog 代码时最关键的可靠性缺口：仅靠语法检查或有限 testbench 仿真，很难保证时序语义、协议边界和局部修复后的不回归。作者把 RTL 代码生成重构为一个带共享设计契约、时序追踪、局部补丁和形式化验证的多代理闭环，而不是普通的单次生成或反复全文件重写。
+
+方法上，Veri-Sure 先由 architect agent 将自然语言规格转为结构化 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw28-veri-sure-rtl-verification/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Veri-Sure: A Contract-Aware Multi-Agent Framework with Temporal Tracing and Formal Verification for Correct RTL Code Generation" />
+    <meta property="og:description" content="这篇论文针对 LLM 生成 RTL/Verilog 代码时最关键的可靠性缺口：仅靠语法检查或有限 testbench 仿真，很难保证时序语义、协议边界和局部修复后的不回归。作者把 RTL 代码生成重构为一个带共享设计契约、时序追踪、局部补丁和形式化验证的多代理闭环，而不是普通的单次生成或反复全文件重写。
+
+方法上，Veri-Sure 先由 architect agent 将自然语言规格转为结构化 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw28-veri-sure-rtl-verification/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Veri-Sure: A Contract-Aware Multi-Agent Framework with Temporal Tracing and Formal Verification for Correct RTL Code Generation" />
+    <meta name="twitter:description" content="这篇论文针对 LLM 生成 RTL/Verilog 代码时最关键的可靠性缺口：仅靠语法检查或有限 testbench 仿真，很难保证时序语义、协议边界和局部修复后的不回归。作者把 RTL 代码生成重构为一个带共享设计契约、时序追踪、局部补丁和形式化验证的多代理闭环，而不是普通的单次生成或反复全文件重写。
+
+方法上，Veri-Sure 先由 architect agent 将自然语言规格转为结构化 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Veri-Sure: A Contract-Aware Multi-Agent Framework with Temporal Tracing and Formal Verification for Correct RTL Code Generation</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-01-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.19747" target="_blank" rel="noopener noreferrer">2601.19747</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 LLM 生成 RTL/Verilog 代码时最关键的可靠性缺口：仅靠语法检查或有限 testbench 仿真，很难保证时序语义、协议边界和局部修复后的不回归。作者把 RTL 代码生成重构为一个带共享设计契约、时序追踪、局部补丁和形式化验证的多代理闭环，而不是普通的单次生成或反复全文件重写。</dd></div><div><dt>方法/机制</dt><dd>方法上，Veri-Sure 先由 architect agent 将自然语言规格转为结构化 design contract，再由 generator / verifier / debugger 等代理围绕同一契约协作。失败时，系统用波形追踪和静态依赖切片定位可疑逻辑，只对局部片段打补丁；同时引入 assertion-based checking 和 Boolean equivalence proof，让反馈不只来自有限仿真样例。</dd></div><div><dt>结果/证据</dt><dd>论文还提出 VerilogEval-v2-EXT，在原 VerilogEval-v2 基础上补充 53 个更接近工业 RTL 的任务，并按难度分层。实验显示，在该扩展基准上，Veri-Sure with GPT-5.2 的整体 functional Pass@1 达到 93.30%，hard subset 达到 85.07%，明显高于 standalone GPT-5.2 和单代理 simulator feedback；消融也表明 tracing/slicing/patching 与 formal verification 是主要增益来源。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它体现了 AI-for-hardware 工作流的一条可复用模式：让 agentic code generation 受共享契约、可定位修复和形式化工具共同约束，而不是只追求生成模型本身更强。局限是验证仍在公开扩展基准和作者框架内完成，依赖强闭源模型作为主要上限，距离真实工业 SoC 流水线的端到端采用还有距离，因此定为 breakthrough 而不是 disruptive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 LLM 生成 RTL/Verilog 代码时最关键的可靠性缺口：仅靠语法检查或有限 testbench 仿真，很难保证时序语义、协议边界和局部修复后的不回归。作者把 RTL 代码生成重构为一个带共享设计契约、时序追踪、局部补丁和形式化验证的多代理闭环，而不是普通的单次生成或反复全文件重写。</p><p>方法上，Veri-Sure 先由 architect agent 将自然语言规格转为结构化 design contract，再由 generator / verifier / debugger 等代理围绕同一契约协作。失败时，系统用波形追踪和静态依赖切片定位可疑逻辑，只对局部片段打补丁；同时引入 assertion-based checking 和 Boolean equivalence proof，让反馈不只来自有限仿真样例。</p><p>论文还提出 VerilogEval-v2-EXT，在原 VerilogEval-v2 基础上补充 53 个更接近工业 RTL 的任务，并按难度分层。实验显示，在该扩展基准上，Veri-Sure with GPT-5.2 的整体 functional Pass@1 达到 93.30%，hard subset 达到 85.07%，明显高于 standalone GPT-5.2 和单代理 simulator feedback；消融也表明 tracing/slicing/patching 与 formal verification 是主要增益来源。</p><p>它值得正式收录，因为它体现了 AI-for-hardware 工作流的一条可复用模式：让 agentic code generation 受共享契约、可定位修复和形式化工具共同约束，而不是只追求生成模型本身更强。局限是验证仍在公开扩展基准和作者框架内完成，依赖强闭源模型作为主要上限，距离真实工业 SoC 流水线的端到端采用还有距离，因此定为 breakthrough 而不是 disruptive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>提高了电子设计自动化（EDA）的生产力和正确性标准。在实践中，设计流程的核心产物是寄存器传输级（RTL）描述，通常用硬件描述语言（HDL）编写，例如Verilog和SystemVerilog，它规定了时钟状态和寄存器之间的组合逻辑，在严格的时序约束下精确捕获并发电路行为，并支持下游的综合和实现。因此，编写高质量、可综合的RTL仍然是现代芯片开发中不可或缺但成本高昂的步骤。在快速发展的电子设计自动化（EDA）领域，将大型语言模型（LLMs）应用于寄存器传输级（RTL）设计已成为一个有前景的方向。然而，硅级正确性仍然受到以下因素的瓶颈限制：(i) 以仿真为中心的评估的测试覆盖率和可靠性有限，(ii) 迭代调试引入的回归和修复幻觉，以及 (iii) 意图在代理交接过程中被重新解释而导致的语义漂移。在这项工作中，我们提出了V ERI -S URE，一个多智能体框架，它建立了一个设计契约以对齐智能体的意图，并使用由静态依赖切片指导的修补机制来执行精确的局部修复。通过集成一个多分支验证管道，该管道结合了迹线驱动的时序分析和由基于断言的检查和布尔等价证明组成的正式验证，V ERI -S URE实现了超越纯仿真的功能正确性。我们还引入了V ERILOG E VAL - V 2-EXT，将原始基准扩展了53个工业级设计任务和分层难度级别，并表明V ERI -S URE实现了最先进的经验证正确的RTL代码生成性能，超越了独立的LLMs和先前的智能体系统。代码和数据集可在GitHub上获取。大型语言模型（LLMs）最近在软件代码生成方面取得了快速进展（Jiang et al., 2026; Guo et al., 2024; Huang et al., 2025），这为直接从自然语言规范生成RTL代码提供了诱人的机会。然而，RTL代码生成提出了与软件完全不同的要求，因为HDL描述的是具有严格周期级时序、协议语义和分层结构约束的并发硬件行为（Akyash &amp; Mardani Kamali, 2025）。因此，针对自回归、顺序文本生成进行优化的通用编码模型，通常能实现表面级的语法正确性，但却无法可靠地保留时序意图、握手协议或全局一致的结构（Thakur et al., 2024）。相对于软件语料库，高质量HDL数据的稀缺性加剧了这些失败，这限制了模型接触高质量RTL模式和实际验证驱动开发实践的机会（Liu et al., 2024; Zhu et al., 2025）。为了弥补这一差距，最近的方法通过领域适应和工具增强来强化基于LLM的RTL代码生成，包括在精选HDL语料库上进行监督微调（SFT）（Thakur et al., 2024; Lu et al., 2024; Liu et al., 2024）和强化学习（RL）（Zhu et al., 2025; Min et al., 2025b），检索参考实现（Gao et al., 2024; Liu et al., 2023），以及带有仿真反馈的工具循环提示（Thakur et al., 2023; Ho et al., 2025; Zhao et al., 2025）。尽管这些技术与基线相比提高了编译率和模块级功能通过率，但对于工业规模的RTL模块来说，它们仍然不足，因为正确性</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>bar for productivity and correctness in Electronic Design Automation (EDA). In practice, the central artifact in the design flow is the Register-Transfer Level (RTL) description, typically written in Hardware Description Languages (HDLs) such as Verilog and SystemVerilog, which specifies clocked state and the combinational logic between registers, precisely capturing concurrent circuit behavior under strict timing constraints and enabling downstream synthesis and implementation. As a result, writing high-quality, synthesizable RTL remains an indispensable yet costly step in modern chip development. In the rapidly evolving field of Electronic Design Automation (EDA), the deployment of Large Language Models (LLMs) for Register-Transfer Level (RTL) design has emerged as a promising direction. However, silicon-grade correctness remains bottlenecked by (i) limited test coverage and reliability of simulation-centric evaluation, (ii) regressions and repair hallucinations introduced by iterative debugging, and (iii) semantic drift as intent is reinterpreted across agent handoffs. In this work, we propose V ERI -S URE, a multi-agent framework that establishes a design contract to align agents’ intent and uses a patching mechanism guided by static dependency slicing to perform precise, localized repairs. By integrating a multi-branch verification pipeline that combines trace-driven temporal analysis with formal verification consisting of assertion-based checking and boolean equivalence proofs, V ERI -S URE enables functional correctness beyond pure simulations. We also introduce V ERILOG E VAL - V 2-EXT, extending the original benchmark with 53 more industrial-grade design tasks and stratified difficulty levels, and show that V ERI -S URE achieves state-of-the-art verified-correct RTL code generation performance, surpassing standalone LLMs and prior agentic systems. Code and dataset are available at GitHub. Large language models (LLMs) have recently made rapid progress in software code generation (Jiang et al., 2026; Guo et al., 2024; Huang et al., 2025), suggesting a compelling opportunity to generate RTL code directly from natural-language specifications. However, RTL code generation poses requirements that are completely different from software, since HDL describes concurrent hardware behavior with strict cycle-level timing, protocol semantics, and hierarchical structural constraints (Akyash &amp; Mardani Kamali, 2025). As a result, general-purpose coding models, which are optimized for autoregressive, sequential text generation, often achieve surface-level syntactic correctness yet fail to reliably preserve temporal intent, handshake protocols, or globally consistent structure (Thakur et al., 2024). These failures are worsened by the scarcity of high-quality HDL data relative to software corpora, which limits the models’ exposure to high-quality RTL patterns and actual verification-driven development practices (Liu et al., 2024; Zhu et al., 2025). To bridge this gap, recent methods have strengthened LLMbased RTL code generation through domain adaptation and tool augmentation, including supervised fine-tuning (SFT) (Thakur et al., 2024; Lu et al., 2024; Liu et al., 2024) and reinforcement learning (RL) (Zhu et al., 2025; Min et al., 2025b) on curated HDL corpora, retrieval of reference implementations (Gao et al., 2024; Liu et al., 2023), and toolin-the-loop prompting with simulation feedback (Thakur et al., 2023; Ho et al., 2025; Zhao et al., 2025). While these techniques improve compile rates and module-level functional pass rates compared to baselines, they remain insufficient for industrial-scale RTL blocks where correctness</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260127hw28verisu,
+  title = {Veri-Sure: A Contract-Aware Multi-Agent Framework with Temporal Tracing and Formal Verification for Correct RTL Code Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.19747.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw28-veri-sure-rtl-verification/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Veri-Sure: A Contract-Aware Multi-Agent Framework with Temporal Tracing and Formal Verification for Correct RTL Code Generation. https://arxiv.org/pdf/2601.19747.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.19747.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

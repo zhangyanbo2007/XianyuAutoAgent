@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Why Are Linear RNNs More Parallelizable? | DAST Papers</title>
+    <meta name="description" content="论文从计算复杂性角度解释了为什么线性 RNN 能像 Transformer 一样并行，而传统非线性 RNN 不能。核心论点是线性 RNN 等价于对数深度的算术电路，因此可以高效并行；非线性 RNN 则能解决本质上更串行的 L 完备甚至 P 完备问题，所以其并行化存在理论障碍。价值不在于某个架构技巧，而在于它给当前一批线性循环架构的并行性和表达力权衡提供了统一解释框架。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t9-linear-rnn-parallelizable/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Why Are Linear RNNs More Parallelizable?" />
+    <meta property="og:description" content="论文从计算复杂性角度解释了为什么线性 RNN 能像 Transformer 一样并行，而传统非线性 RNN 不能。核心论点是线性 RNN 等价于对数深度的算术电路，因此可以高效并行；非线性 RNN 则能解决本质上更串行的 L 完备甚至 P 完备问题，所以其并行化存在理论障碍。价值不在于某个架构技巧，而在于它给当前一批线性循环架构的并行性和表达力权衡提供了统一解释框架。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t9-linear-rnn-parallelizable/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Why Are Linear RNNs More Parallelizable?" />
+    <meta name="twitter:description" content="论文从计算复杂性角度解释了为什么线性 RNN 能像 Transformer 一样并行，而传统非线性 RNN 不能。核心论点是线性 RNN 等价于对数深度的算术电路，因此可以高效并行；非线性 RNN 则能解决本质上更串行的 L 完备甚至 P 完备问题，所以其并行化存在理论障碍。价值不在于某个架构技巧，而在于它给当前一批线性循环架构的并行性和表达力权衡提供了统一解释框架。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Why Are Linear RNNs More Parallelizable?</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.03612" target="_blank" rel="noopener noreferrer">2603.03612</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>论文从计算复杂性角度解释了为什么线性 RNN 能像 Transformer 一样并行，而传统非线性 RNN 不能。核心论点是线性 RNN 等价于对数深度的算术电路，因此可以高效并行；非线性 RNN 则能解决本质上更串行的 L 完备甚至 P 完备问题，所以其并行化存在理论障碍。价值不在于某个架构技巧，而在于它给当前一批线性循环架构的并行性和表达力权衡提供了统一解释框架。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>论文从计算复杂性角度解释了为什么线性 RNN 能像 Transformer 一样并行，而传统非线性 RNN 不能。核心论点是线性 RNN 等价于对数深度的算术电路，因此可以高效并行；非线性 RNN 则能解决本质上更串行的 L 完备甚至 P 完备问题，所以其并行化存在理论障碍。价值不在于某个架构技巧，而在于它给当前一批线性循环架构的并行性和表达力权衡提供了统一解释框架。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>对于长序列处理（Blelloch, 1990），尽管先前的研究已经证实了线性RNN（LRNN）相对于transformers在表达能力上的优势，但目前尚不清楚是什么使得LRNNs（而非传统的非线性RNNs）在实践中能够像transformers一样易于并行化。线性RNN（LRNN）已被证明在理论上相对于transformers具有惊人的表达能力（Merrill et al., 2024; Grazzi et al., 2025），并且在实践中表现出色（Beck et al., 2024; Yang et al., 2025; Peng et al., 2025）。然而，目前尚不清楚LRNN与非线性RNN在表达能力上如何比较，或者反过来说，是否存在根本性障碍阻止非线性RNN达到与LRNN相同程度的并行化。我们通过在不同类型的RNN与标准复杂度类之间建立紧密联系来回答这个问题。我们表明，LRNNs可以被视为对数深度（有界扇入）算术电路，这相对于transformers所采用的对数深度布尔电路仅代表了轻微的深度开销。此外，我们表明非线性RNN可以解决L-完全问题（在多项式精度下甚至可以解决P-完全问题），这揭示了将其并行化到与transformers相同效率的根本障碍。我们的理论还识别了近期流行的LRNN变体之间细粒度的表达能力差异：置换对角LRNN是NC1-完全的，而对角加低秩LRNN则更具表达能力（PNC1-完全）。在这项工作中，我们从理论上比较了非线性RNN和LRNN的并行化能力和表达能力。一个核心结果是这两类模型在表达能力上的条件分离：LRNNs属于PNC1（定理3），而非线性RNN在多项式精度下可以表达P-完全问题（推论2），或者在限制为对数精度时可以表达L-完全问题（定理2）。在这两种情况下，这都表明非线性RNN可以表示LRNN能力范围之外的、并行化程度显著较低的计算，前提是PNC1 ≠ P（在多项式精度下）或PNC1 ≠ L（在对数精度下）。反之，这些表达能力结果对不同类型RNN的并行化程度具有启示意义。因此，LRNNs——无论精度如何——都可以通过深度为O(log n log∗ n)的NC电路进行模拟，即相对于模拟transformer所需的实际运行时间，仅有O(log∗ n)的微不足道的深度开销。相比之下，对数精度的非线性RNN可能需要Ω(log2 n)的深度，相对于transformer构成了O(log n)的开销。此外，在多项式精度下，假设NC ≠ P，非线性RNN需要超过多对数深度才能用有界扇入电路进行模拟。总而言之，我们的研究结果揭示了非线性RNN与不同LRNN变体之间的根本性权衡，为设计在表达能力和并行性之间实现最佳平衡的LLM架构提供了基础。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>long sequences (Blelloch, 1990). Linear RNNs (LRNNs) While prior work establishes the expressivity ben- have been shown to be surprisingly theoretically expres- efits of LRNNs over transformers, it is unclear sive relative to transformers (Merrill et al., 2024; Grazzi what makes LRNNs—but not traditional, nonlin- et al., 2025) and practically performant (Beck et al., 2024; ear RNNs—as easy to parallelize in practice as Yang et al., 2025; Peng et al., 2025), but it remains unclear transformers. We answer this question by provid- how LRNNs and nonlinear RNNs compare in expressive ing a tight connection between types of RNNs power, or, conversely, whether fundamental barriers prevent and standard complexity classes. We show that parallelizing nonlinear RNNs to the same degree as LRNNs. LRNNs can be viewed as log-depth (bounded fan-in) arithmetic circuits, which represents only In this work, we theoretically compare the parallelizability a slight depth overhead relative to log-depth and expressive power of nonlinear RNNs and LRNNs. A boolean circuits that transformers admit. Further- core result is a conditional separation in expressive power more, we show that nonlinear RNNs can solve between the two classes: whereas LRNNs are in PNC1 L-complete problems (and even P-complete ones, (Theorem 3), nonlinear RNNs can express P-complete prob- under polynomial precision), revealing a funda- lems with polynomial precision (Corollary 2) or L-complete mental barrier to parallelizing them as efficiently problems when restricted to log precision (Theorem 2). In as transformers. Our theory also identifies fine- either regime, this suggests nonlinear RNNs can represent grained expressivity differences between recent substantially less parallelizable computation that’s beyond popular LRNN variants: permutation-diagonal the capabilities of LRNNs, assuming PNC1 ̸= P with poly LRNNs are NC1 -complete whereas diagonal-plus- precision, or PNC1 ̸= L with log precision. low-rank LRNNs are more expressive (PNC1 - Conversely, these expressivity results have implications for complete). We provide further insight by asso- the degree to which different types of RNNs can be paral- ciating each type of RNN with a corresponding lelized. It follows that LRNNs—regardless of precision— automata-theoretic model that it can simulate. To- can be simulated by NC circuits of depth O(log n log∗ n), gether, our results reveal fundamental tradeoffs i.e., with a negligible depth overhead of O(log∗ n) beyond between nonlinear RNNs and different variants the wall-clock time we would expect for simulating a trans- of LRNNs, providing a foundation for designing former. In contrast, nonlinear RNNs with log precision LLM architectures that achieve an optimal bal- likely require Ω(log2 n) depth, constituting a O(log n) over- ance between expressivity and parallelism. head relative to a transformer. Moreover, with polynomial precision, nonlinear RNNs require more than polylog depth to simulate with bounded fan-in circuits, assuming NC ̸= P.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260304t9linearrn,
+  title = {Why Are Linear RNNs More Parallelizable?},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.03612.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t9-linear-rnn-parallelizable/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Why Are Linear RNNs More Parallelizable?. https://arxiv.org/pdf/2603.03612.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.03612.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

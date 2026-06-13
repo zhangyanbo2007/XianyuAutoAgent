@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Does RL Expand the Capability Boundary of LLM Agents? A PASS@(k,T) Analysis | DAST Papers</title>
+    <meta name="description" content="问题与背景：静态 reasoning 中，RL 往往被认为只是提升采样效率而不扩展能力边界；但 tool-use agent 有多轮交互，单纯 pass@k 不能区分能力扩展和可靠性提升。
+
+方法与新意：论文提出 PASS@(k,T)，同时改变采样预算 k 和交互深度 T，观察 base/RL pass curve 是否在大 k 下收敛。结果显示 tool-use RL 在组合式信息获取任务上确实" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl55-pass-kt-agent-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Does RL Expand the Capability Boundary of LLM Agents? A PASS@(k,T) Analysis" />
+    <meta property="og:description" content="问题与背景：静态 reasoning 中，RL 往往被认为只是提升采样效率而不扩展能力边界；但 tool-use agent 有多轮交互，单纯 pass@k 不能区分能力扩展和可靠性提升。
+
+方法与新意：论文提出 PASS@(k,T)，同时改变采样预算 k 和交互深度 T，观察 base/RL pass curve 是否在大 k 下收敛。结果显示 tool-use RL 在组合式信息获取任务上确实" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl55-pass-kt-agent-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Does RL Expand the Capability Boundary of LLM Agents? A PASS@(k,T) Analysis" />
+    <meta name="twitter:description" content="问题与背景：静态 reasoning 中，RL 往往被认为只是提升采样效率而不扩展能力边界；但 tool-use agent 有多轮交互，单纯 pass@k 不能区分能力扩展和可靠性提升。
+
+方法与新意：论文提出 PASS@(k,T)，同时改变采样预算 k 和交互深度 T，观察 base/RL pass curve 是否在大 k 下收敛。结果显示 tool-use RL 在组合式信息获取任务上确实" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Does RL Expand the Capability Boundary of LLM Agents? A PASS@(k,T) Analysis</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14877" target="_blank" rel="noopener noreferrer">2604.14877</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：静态 reasoning 中，RL 往往被认为只是提升采样效率而不扩展能力边界；但 tool-use agent 有多轮交互，单纯 pass@k 不能区分能力扩展和可靠性提升。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：论文提出 PASS@(k,T)，同时改变采样预算 k 和交互深度 T，观察 base/RL pass curve 是否在大 k 下收敛。结果显示 tool-use RL 在组合式信息获取任务上确实扩大能力边界。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇为 agent RL 提供了重要评估语言：在静态任务和交互式任务中，RL 的作用可能不同。它能帮助后续判断 RL 是“让模型更稳”还是“让 agent 真会做新事”。</dd></div><div><dt>收录价值</dt><dd>局限：结论依赖所选 tool-use tasks 和训练设置；能力边界扩张机制仍需要更多模型、工具环境和长期交互验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：静态 reasoning 中，RL 往往被认为只是提升采样效率而不扩展能力边界；但 tool-use agent 有多轮交互，单纯 pass@k 不能区分能力扩展和可靠性提升。</p><p>方法与新意：论文提出 PASS@(k,T)，同时改变采样预算 k 和交互深度 T，观察 base/RL pass curve 是否在大 k 下收敛。结果显示 tool-use RL 在组合式信息获取任务上确实扩大能力边界。</p><p>收录意义：这篇为 agent RL 提供了重要评估语言：在静态任务和交互式任务中，RL 的作用可能不同。它能帮助后续判断 RL 是“让模型更稳”还是“让 agent 真会做新事”。</p><p>局限：结论依赖所选 tool-use tasks 和训练设置；能力边界扩张机制仍需要更多模型、工具环境和长期交互验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>强化学习是真正扩展了LLM智能体的能力边界，还是仅仅使其在现有能力上变得更可靠？对于静态数学推理，最近的研究回答是后者：基础模型和RL的pass@k曲线在k值较大时会收敛，RL只是在基础模型现有能力集合内重新分配了概率质量。我们探讨这种悲观解读在智能体工具使用场景中是否依然成立，在智能体工具使用中，智能体T轮的环境交互能够实现重采样无法恢复的组合策略。我们引入了PASS@(k, T)，这是一个二维评估指标，它同时改变采样预算k和交互深度预算T，清晰地将能力扩展与效率提升区分开来。我们的主要发现是，与静态推理结果相反，工具使用RL确实扩大了智能体的能力边界：随着采样预算的增加，RL智能体的通过曲线高于基础模型，并且差距在右尾部扩大而不是收敛，这与静态推理RLVR文献报道的相反。这种扩展特定于需要组合式、顺序信息收集的任务；在更简单的类别上，RL的行为与先前工作预测的一致。在匹配的训练数据下，监督微调产生了相反的效果：它在相同的组合任务上使能力边界退化，这表明自定向探索而非数据暴露是因果因素。机制分析解释了这种扩展是如何产生的：RL将基础模型现有的策略分布重新加权，使其偏向于下游推理更常产生正确答案的子集，改进集中在智能体如何整合检索到的信息，而不是它搜索什么。这些结果调和了对LLM的RL的乐观和悲观解读：两者在不同任务类型上都是正确的。在智能体环境中，当环境允许基础模型无法单独组合的组合解决方案时，RL能够有意义地教授新能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Does reinforcement learning genuinely expand what LLM agents can do, or does it merely make them more reliable at what they could already do? For static mathematical reasoning, a recent line of work answers the second: base and RL pass@k curves converge at large k, and RL only redistributes probability mass within the base model’s existing capability set. We ask whether this pessimistic reading survives the move to agentic tool use, where an agent’s T rounds of environment interaction enable compositional strategies that re-sampling cannot recover. We introduce PASS@(k, T ), a two-dimensional evaluation metric that jointly varies a sampling budget k and an interaction-depth budget T , cleanly separating capability expansion from efficiency improvement. Our main finding is that, contrary to the static-reasoning result, tool-use RL genuinely enlarges the agent’s capability boundary: as the sampling budget grows, the RL agent’s passcurve pulls above the base model’s and the gap widens at the right tail rather than converging, the opposite of what the static-reasoning RLVR literature reports. The expansion is specific to tasks that require compositional, sequential information gathering; on simpler categories RL behaves as prior work predicts. Under matched training data, supervised fine-tuning produces the opposite effect: it regresses the capability boundary on the same compositional tasks, which isolates selfdirected exploration, not data exposure, as the causal factor. A mechanism analysis explains how the expansion arises: RL reweights the base model’s existing strategy distribution toward the subset whose downstream reasoning more often yields a correct answer, with the improvement concentrated on how the agent integrates retrieved information rather than on what it searches for. These results reconcile the optimistic and pessimistic readings of RL for LLMs: both are correct, on different task types. In agentic settings, when the environment admits compositional solutions the base model cannot stitch together alone, RL meaningfully teaches new capabilities.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416rl55passkt,
+  title = {Does RL Expand the Capability Boundary of LLM Agents? A PASS@(k,T) Analysis},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14877.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl55-pass-kt-agent-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Does RL Expand the Capability Boundary of LLM Agents? A PASS@(k,T) Analysis. https://arxiv.org/pdf/2604.14877.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14877.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PlugMem: A Task-Agnostic Plugin Memory Module for LLM Agents | DAST Papers</title>
+    <meta name="description" content="长期运行的 LLM agent 需要 memory，但现有方案通常在两个极端之间摇摆：要么针对单一任务做重工程化设计，迁移性差；要么直接检索原始轨迹，导致上下文膨胀、任务相关性不足、真正决策时噪声过高。PlugMem 针对的就是这个通用 memory module 缺口。
+
+它把 memory 单元从原始 experience 改成 knowledge-centric graph 中的知识块，并显" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a69-plugmem-agent-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PlugMem: A Task-Agnostic Plugin Memory Module for LLM Agents" />
+    <meta property="og:description" content="长期运行的 LLM agent 需要 memory，但现有方案通常在两个极端之间摇摆：要么针对单一任务做重工程化设计，迁移性差；要么直接检索原始轨迹，导致上下文膨胀、任务相关性不足、真正决策时噪声过高。PlugMem 针对的就是这个通用 memory module 缺口。
+
+它把 memory 单元从原始 experience 改成 knowledge-centric graph 中的知识块，并显" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a69-plugmem-agent-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PlugMem: A Task-Agnostic Plugin Memory Module for LLM Agents" />
+    <meta name="twitter:description" content="长期运行的 LLM agent 需要 memory，但现有方案通常在两个极端之间摇摆：要么针对单一任务做重工程化设计，迁移性差；要么直接检索原始轨迹，导致上下文膨胀、任务相关性不足、真正决策时噪声过高。PlugMem 针对的就是这个通用 memory module 缺口。
+
+它把 memory 单元从原始 experience 改成 knowledge-centric graph 中的知识块，并显" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PlugMem: A Task-Agnostic Plugin Memory Module for LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.03296" target="_blank" rel="noopener noreferrer">2603.03296</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长期运行的 LLM agent 需要 memory，但现有方案通常在两个极端之间摇摆：要么针对单一任务做重工程化设计，迁移性差；要么直接检索原始轨迹，导致上下文膨胀、任务相关性不足、真正决策时噪声过高。PlugMem 针对的就是这个通用 memory module 缺口。</dd></div><div><dt>方法/机制</dt><dd>它把 memory 单元从原始 experience 改成 knowledge-centric graph 中的知识块，并显式区分 propositional knowledge 与 prescriptive knowledge。系统由 structuring、retrieval、reasoning 三层组成：先把异构 episodic trace 抽象为更紧凑的知识图，再做 abstraction-aware retrieval，最后按当前任务进一步压缩和组织成可用上下文。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于它不是再做一个只适配某个 benchmark 的 memory trick，而是在 agent memory 这条主线上提出了更可复用的通用接口：memory 的组织与访问单位应该是 decision-relevant knowledge，而不是 entity、text chunk 或原始轨迹。它还在 LongMemEval、HotpotQA 和 WebArena 三类异构任务上用同一模块验证了跨任务可迁移性。</dd></div><div><dt>收录价值</dt><dd>它当前仍是 breakthrough 而不是更高一级，因为证据仍主要来自 arXiv 论文和有限 benchmark 组合，离真正成为长期 agent memory 默认架构还有距离；同时 structuring 与 reasoning 质量仍依赖底层 LLM，跨模型、跨成本预算和长周期生产环境下的稳定性还需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长期运行的 LLM agent 需要 memory，但现有方案通常在两个极端之间摇摆：要么针对单一任务做重工程化设计，迁移性差；要么直接检索原始轨迹，导致上下文膨胀、任务相关性不足、真正决策时噪声过高。PlugMem 针对的就是这个通用 memory module 缺口。</p><p>它把 memory 单元从原始 experience 改成 knowledge-centric graph 中的知识块，并显式区分 propositional knowledge 与 prescriptive knowledge。系统由 structuring、retrieval、reasoning 三层组成：先把异构 episodic trace 抽象为更紧凑的知识图，再做 abstraction-aware retrieval，最后按当前任务进一步压缩和组织成可用上下文。</p><p>这篇工作的价值在于它不是再做一个只适配某个 benchmark 的 memory trick，而是在 agent memory 这条主线上提出了更可复用的通用接口：memory 的组织与访问单位应该是 decision-relevant knowledge，而不是 entity、text chunk 或原始轨迹。它还在 LongMemEval、HotpotQA 和 WebArena 三类异构任务上用同一模块验证了跨任务可迁移性。</p><p>它当前仍是 breakthrough 而不是更高一级，因为证据仍主要来自 arXiv 论文和有限 benchmark 组合，离真正成为长期 agent memory 默认架构还有距离；同时 structuring 与 reasoning 质量仍依赖底层 LLM，跨模型、跨成本预算和长周期生产环境下的稳定性还需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>PlugMem：一种用于LLM智能体的任务无关插件记忆模块。长期记忆对于在复杂环境中运行的大型语言模型（LLM）智能体至关重要，然而，现有的记忆设计要么是任务特定的且不可迁移的，要么是任务无关的但由于任务相关性低和原始记忆检索导致的上下文爆炸而效果不佳。我们提出了 P LUG M EM，这是一种任务无关的插件记忆模块，可以附加到任意LLM智能体上，无需进行任务特定的重新设计。鉴于决策相关信息以抽象知识而非原始经验的形式集中存在，我们借鉴认知科学，将情景记忆构建成一个紧凑、可扩展的以知识为中心的记忆图，该图明确表示命题性知识和规范性知识。这种表示方式能够实现对任务相关知识的高效记忆检索和推理，而非冗长的原始轨迹，并且通过将知识而非实体或文本块作为记忆访问和组织的单位，区别于GraphRAG等其他基于图的方法。我们在三个异构基准测试（长程对话问答、多跳知识检索和网络智能体任务）中对 P LUG M EM 进行了未经修改的评估。结果表明，P LUG M EM 始终优于任务无关的基线，并超越了任务特定的记忆设计，同时在统一的信息论分析下实现了最高的信息密度。代码和数据可在 https://github.com/TIMANgroup/PlugMem 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-term memory is essential for large language model (LLM) agents operating in complex environments, yet existing memory designs are either task-specific and non-transferable, or task-agnostic but less effective due to low task-relevance and context explosion from raw memory retrieval. We propose P LUG M EM, a task-agnostic plugin memory module that can be attached to arbitrary LLM agents without task-specific redesign. Motivated by the fact that decision-relevant information is concentrated as abstract knowledge rather than raw experience, we draw on cognitive science to structure episodic memories into a compact, extensible knowledge-centric memory graph that explicitly represents propositional and prescriptive knowledge. This representation enables efficient memory retrieval and reasoning over task-relevant knowledge, rather than verbose raw trajectories, and departs from other graph-based methods like GraphRAG by treating knowledge as the unit of memory access and organization instead of entities or text chunks. We evaluate P LUG M EM unchanged across three heterogeneous benchmarks (long-horizon conversational question answering, multi-hop knowledge retrieval, and web agent tasks). The results show that P LUG M EM consistently outperforms task-agnostic baselines and exceeds task-specific memory designs, while also achieving the highest information density under a unified information-theoretic analysis. Code and data are available at https://github.com/TIMANgroup/PlugMem.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260206a69plugmem,
+  title = {PlugMem: A Task-Agnostic Plugin Memory Module for LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.03296.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a69-plugmem-agent-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PlugMem: A Task-Agnostic Plugin Memory Module for LLM Agents. https://arxiv.org/pdf/2603.03296.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.03296.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

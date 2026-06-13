@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning | DAST Papers</title>
+    <meta name="description" content="这篇论文针对视频自监督学习里一个很实际的结构性问题：JEPA 类方法在全局语义和时序理解上很强，但只对被遮挡区域施加预测损失时，可见 token 会逐渐失去局部空间结构，退化成服务于全局聚合的载体，导致模型在分割、深度估计和机器人操作这类密集任务上明显吃亏。作者的目标不是再做一个更大的视频表征模型，而是把“全局视频理解”和“局部稠密特征”统一到同一套视频自监督编码器里。
+
+论文提出 V-JEPA " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j12-v-jepa-2-1-dense-features/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning" />
+    <meta property="og:description" content="这篇论文针对视频自监督学习里一个很实际的结构性问题：JEPA 类方法在全局语义和时序理解上很强，但只对被遮挡区域施加预测损失时，可见 token 会逐渐失去局部空间结构，退化成服务于全局聚合的载体，导致模型在分割、深度估计和机器人操作这类密集任务上明显吃亏。作者的目标不是再做一个更大的视频表征模型，而是把“全局视频理解”和“局部稠密特征”统一到同一套视频自监督编码器里。
+
+论文提出 V-JEPA " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j12-v-jepa-2-1-dense-features/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning" />
+    <meta name="twitter:description" content="这篇论文针对视频自监督学习里一个很实际的结构性问题：JEPA 类方法在全局语义和时序理解上很强，但只对被遮挡区域施加预测损失时，可见 token 会逐渐失去局部空间结构，退化成服务于全局聚合的载体，导致模型在分割、深度估计和机器人操作这类密集任务上明显吃亏。作者的目标不是再做一个更大的视频表征模型，而是把“全局视频理解”和“局部稠密特征”统一到同一套视频自监督编码器里。
+
+论文提出 V-JEPA " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning</h1>
+          <p class="subtitle">JEPA 与预测式世界模型 · 发表：2026-03-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">JEPA 与预测式世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14482" target="_blank" rel="noopener noreferrer">2603.14482</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对视频自监督学习里一个很实际的结构性问题：JEPA 类方法在全局语义和时序理解上很强，但只对被遮挡区域施加预测损失时，可见 token 会逐渐失去局部空间结构，退化成服务于全局聚合的载体，导致模型在分割、深度估计和机器人操作这类密集任务上明显吃亏。作者的目标不是再做一个更大的视频表征模型，而是把“全局视频理解”和“局部稠密特征”统一到同一套视频自监督编码器里。</dd></div><div><dt>方法/机制</dt><dd>论文提出 V-JEPA 2.1，核心在于四个组件的协同：对可见与被遮挡 token 同时施加的 dense predictive loss、把预测监督下沉到多个中间层的 deep self-supervision、分别适配图像与视频的 multi-modal tokenizer，以及大规模图像/视频混合训练。最关键的新意是上下文 token 也被显式锚定到时空位置，从而修复了标准 JEPA 里局部结构被冲掉的问题；同时又通过距离加权和 warm-up 设计，尽量避免这种局部监督反过来伤到全局动作理解。</dd></div><div><dt>结果/证据</dt><dd>这篇值得正式收录，因为它不只是 JEPA 系列的又一次涨点，而是把视频自监督学习从“语义强、密集弱”的不完整表征推进到更可复用的统一接口。它在 Ego4D、EPIC-KITCHENS、NYUv2、机器人抓取和导航等任务上都显示出外溢价值，尤其对 world model、具身智能、视频表征和跨模态视觉基础模型都有直接影响。对这个仓库来说，它更接近一种 durable representation recipe，而不是单纯 benchmark 工程。</dd></div><div><dt>收录价值</dt><dd>它暂时不到更高一级，原因在于方法仍然建立在既有 V-JEPA 主线上，更多是一次非常成功的强化与补齐，而不是彻底重写视频自监督范式。此外，局部与全局监督之间的权衡仍带有较强经验性，复杂分割场景上也还未完全压过最强图像基座，因此目前定在 breakthrough 更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对视频自监督学习里一个很实际的结构性问题：JEPA 类方法在全局语义和时序理解上很强，但只对被遮挡区域施加预测损失时，可见 token 会逐渐失去局部空间结构，退化成服务于全局聚合的载体，导致模型在分割、深度估计和机器人操作这类密集任务上明显吃亏。作者的目标不是再做一个更大的视频表征模型，而是把“全局视频理解”和“局部稠密特征”统一到同一套视频自监督编码器里。</p><p>论文提出 V-JEPA 2.1，核心在于四个组件的协同：对可见与被遮挡 token 同时施加的 dense predictive loss、把预测监督下沉到多个中间层的 deep self-supervision、分别适配图像与视频的 multi-modal tokenizer，以及大规模图像/视频混合训练。最关键的新意是上下文 token 也被显式锚定到时空位置，从而修复了标准 JEPA 里局部结构被冲掉的问题；同时又通过距离加权和 warm-up 设计，尽量避免这种局部监督反过来伤到全局动作理解。</p><p>这篇值得正式收录，因为它不只是 JEPA 系列的又一次涨点，而是把视频自监督学习从“语义强、密集弱”的不完整表征推进到更可复用的统一接口。它在 Ego4D、EPIC-KITCHENS、NYUv2、机器人抓取和导航等任务上都显示出外溢价值，尤其对 world model、具身智能、视频表征和跨模态视觉基础模型都有直接影响。对这个仓库来说，它更接近一种 durable representation recipe，而不是单纯 benchmark 工程。</p><p>它暂时不到更高一级，原因在于方法仍然建立在既有 V-JEPA 主线上，更多是一次非常成功的强化与补齐，而不是彻底重写视频自监督范式。此外，局部与全局监督之间的权衡仍带有较强经验性，复杂分割场景上也还未完全压过最强图像基座，因此目前定在 breakthrough 更稳。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260315j12vjepa21,
+  title = {V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14482.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j12-v-jepa-2-1-dense-features/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning. https://arxiv.org/pdf/2603.14482.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/j9-worldmark-interactive-world-model-benchmark/">
+              <span>WorldMark: A Unified Benchmark Suite for Interactive Video World Models</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j14-deltaworld-delta-tokens/">
+              <span>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-06</small>
+            </a>
+            <a class="related-item" href="../../papers/j13-wildworld-action-state-dataset/">
+              <span>WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j10-seoul-world-model/">
+              <span>Grounding World Simulation Models in a Real-World Metropolis</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-16</small>
+            </a>
+            <a class="related-item" href="../../papers/j11-leworldmodel-stable-pixel-jepa/">
+              <span>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-13</small>
+            </a>
+            <a class="related-item" href="../../papers/j9-temporal-straightening-latent-planning/">
+              <span>Temporal Straightening for Latent Planning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14482.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

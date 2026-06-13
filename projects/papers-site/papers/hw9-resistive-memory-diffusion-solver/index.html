@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resistive memory-based neural differential equation solver for score-based diffusion model | DAST Papers</title>
+    <meta name="description" content="这篇 Nature Communications 论文直接连接 AI 硬件和扩散模型推理：用 resistive memory 构建 neural differential equation solver 服务 score-based diffusion。
+
+它的价值不只是器件 novelty，而是把新型存储/计算硬件接到生成模型核心求解过程。扩散模型推理成本高，solver 和硬件协同是明确的 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw9-resistive-memory-diffusion-solver/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Resistive memory-based neural differential equation solver for score-based diffusion model" />
+    <meta property="og:description" content="这篇 Nature Communications 论文直接连接 AI 硬件和扩散模型推理：用 resistive memory 构建 neural differential equation solver 服务 score-based diffusion。
+
+它的价值不只是器件 novelty，而是把新型存储/计算硬件接到生成模型核心求解过程。扩散模型推理成本高，solver 和硬件协同是明确的 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw9-resistive-memory-diffusion-solver/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Resistive memory-based neural differential equation solver for score-based diffusion model" />
+    <meta name="twitter:description" content="这篇 Nature Communications 论文直接连接 AI 硬件和扩散模型推理：用 resistive memory 构建 neural differential equation solver 服务 score-based diffusion。
+
+它的价值不只是器件 novelty，而是把新型存储/计算硬件接到生成模型核心求解过程。扩散模型推理成本高，solver 和硬件协同是明确的 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Resistive memory-based neural differential equation solver for score-based diffusion model</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-72900-z" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-72900-z</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature Communications 论文直接连接 AI 硬件和扩散模型推理：用 resistive memory 构建 neural differential equation solver 服务 score-based diffusion。</dd></div><div><dt>方法/机制</dt><dd>它的价值不只是器件 novelty，而是把新型存储/计算硬件接到生成模型核心求解过程。扩散模型推理成本高，solver 和硬件协同是明确的 AI systems 问题。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为本库对硬件论文的标准是必须影响 AI compute、memory hierarchy 或 model-runtime-hardware co-design。这篇满足硬件与生成模型求解器耦合。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为从实验硬件到可部署 AI 推理系统之间还有良率、规模、精度和软件栈集成问题。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature Communications 论文直接连接 AI 硬件和扩散模型推理：用 resistive memory 构建 neural differential equation solver 服务 score-based diffusion。</p><p>它的价值不只是器件 novelty，而是把新型存储/计算硬件接到生成模型核心求解过程。扩散模型推理成本高，solver 和硬件协同是明确的 AI systems 问题。</p><p>它值得正式收录，因为本库对硬件论文的标准是必须影响 AI compute、memory hierarchy 或 model-runtime-hardware co-design。这篇满足硬件与生成模型求解器耦合。</p><p>它没有更高，是因为从实验硬件到可部署 AI 推理系统之间还有良率、规模、精度和软件栈集成问题。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>尽管人工智能生成内容（AIGC）致力于复现人类想象力，但当前基于分数的扩散模型等仍存在速度慢和能耗高的问题。这种低效率源于传统数字计算机，其中物理分离的存储和处理单元导致数据传输瓶颈，并且离散操作破坏了自然连续的生成动态。在此，我们展示了一种受大脑启发的模拟存内计算系统，它克服了这些局限性。通过采用忆阻器，我们的系统集成了存储和计算，可作为时间连续的神经微分方程求解器。我们使用180纳米忆阻器存内计算宏对我们的解决方案进行了实验验证。在保持与软件基线相当的生成质量的同时，与先进数字硬件相比，我们的系统分别将无条件生成任务和有条件生成任务的速度提高了69.0倍和116.5倍。此外，它分别将能耗降低了31.5%和52.0%。我们的方法拓宽了生成式AI应用在边缘计算中硬件解决方案的视野。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>While AI-generated content (AIGC) strives to replicate human imagination, current models like score-based diffusion remain slow and energy-intensive. This inefficiency stems from conventional digital computers, where physically separated storage and processing units cause data-transfer bottlenecks, and discrete operations disrupt naturally continuous generation dynamics. Here we show a brain-inspired, analog in-memory computing system that overcomes these limitations. By employing resistive memory, our system integrates storage and computation to act as a time-continuous neural differential equation solver. We experimentally validate our solution with 180 nm resistive memory in-memory computing macros. While maintaining generative quality equivalent to the software baseline, our system accelerated both unconditional and conditional generation tasks, by factors of 69.0 and 116.5, respectively, compared to advanced digital hardware. Furthermore, it reduced energy consumption by 31.5% and 52.0%, respectively. Our approach expands the horizon for hardware solutions in edge computing for generative AI applications.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512hw9resisti,
+  title = {Resistive memory-based neural differential equation solver for score-based diffusion model},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41467-026-72900-z.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw9-resistive-memory-diffusion-solver/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Resistive memory-based neural differential equation solver for score-based diffusion model. https://www.nature.com/articles/s41467-026-72900-z.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/hw37-mos2-cam-tree-ai/">
+              <span>Trustworthy tree-based machine learning by MoS2 flash-based analog content-addressable memory with inherent soft boundaries</span>
+              <small>AI 硬件与加速器 · 2026-04-24</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-026-72900-z.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MiroThinker-1.7 &amp; H1: Towards Heavy-Duty Research Agents via Verification | DAST Papers</title>
+    <meta name="description" content="研究 agent 这条线里，一个持续存在的问题是：系统可以做很多步骤，但每一步的可靠性和整条推理链的一致性都很脆弱。MiroThinker-1.7 与 H1 把这个问题具体化为 verification at local and global levels，而不是继续单纯堆长上下文或多工具调用。
+
+MiroThinker-1.7 通过强调 structured planning、contextua" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a63-mirothinker-verified-research-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MiroThinker-1.7 &amp; H1: Towards Heavy-Duty Research Agents via Verification" />
+    <meta property="og:description" content="研究 agent 这条线里，一个持续存在的问题是：系统可以做很多步骤，但每一步的可靠性和整条推理链的一致性都很脆弱。MiroThinker-1.7 与 H1 把这个问题具体化为 verification at local and global levels，而不是继续单纯堆长上下文或多工具调用。
+
+MiroThinker-1.7 通过强调 structured planning、contextua" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a63-mirothinker-verified-research-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MiroThinker-1.7 &amp; H1: Towards Heavy-Duty Research Agents via Verification" />
+    <meta name="twitter:description" content="研究 agent 这条线里，一个持续存在的问题是：系统可以做很多步骤，但每一步的可靠性和整条推理链的一致性都很脆弱。MiroThinker-1.7 与 H1 把这个问题具体化为 verification at local and global levels，而不是继续单纯堆长上下文或多工具调用。
+
+MiroThinker-1.7 通过强调 structured planning、contextua" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MiroThinker-1.7 &amp; H1: Towards Heavy-Duty Research Agents via Verification</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15726" target="_blank" rel="noopener noreferrer">2603.15726</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>研究 agent 这条线里，一个持续存在的问题是：系统可以做很多步骤，但每一步的可靠性和整条推理链的一致性都很脆弱。MiroThinker-1.7 与 H1 把这个问题具体化为 verification at local and global levels，而不是继续单纯堆长上下文或多工具调用。</dd></div><div><dt>方法/机制</dt><dd>MiroThinker-1.7 通过强调 structured planning、contextual reasoning 和 tool interaction 的 agentic mid-training 来提高单步可靠性；MiroThinker-H1 则进一步把 verification 显式并入推理流程，在中间步骤做局部校验，在最终结果上做全局审计。这种“推理 + 验证”耦合的方式，比一般 deep research agent 的纯执行堆料更有结构性。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它给出了 heavy-duty research agent 的一个更 durable pattern：不是只靠更多步骤，而是把 verification 嵌进 agent 运行回路本身。这个模式对 research agent、scientific workflow agent，甚至更广的 long-horizon reasoning agent 都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，原因是当前证据主要还是在研究和分析类任务上，且论文仍偏系统 recipe 与工程验证。verification 方向是对的，但要成为更强层级，还需要证明它能稳定重排更广 agent 设计范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>研究 agent 这条线里，一个持续存在的问题是：系统可以做很多步骤，但每一步的可靠性和整条推理链的一致性都很脆弱。MiroThinker-1.7 与 H1 把这个问题具体化为 verification at local and global levels，而不是继续单纯堆长上下文或多工具调用。</p><p>MiroThinker-1.7 通过强调 structured planning、contextual reasoning 和 tool interaction 的 agentic mid-training 来提高单步可靠性；MiroThinker-H1 则进一步把 verification 显式并入推理流程，在中间步骤做局部校验，在最终结果上做全局审计。这种“推理 + 验证”耦合的方式，比一般 deep research agent 的纯执行堆料更有结构性。</p><p>这篇论文值得收录，因为它给出了 heavy-duty research agent 的一个更 durable pattern：不是只靠更多步骤，而是把 verification 嵌进 agent 运行回路本身。这个模式对 research agent、scientific workflow agent，甚至更广的 long-horizon reasoning agent 都有外溢价值。</p><p>它没有升到更高一级，原因是当前证据主要还是在研究和分析类任务上，且论文仍偏系统 recipe 与工程验证。verification 方向是对的，但要成为更强层级，还需要证明它能稳定重排更广 agent 设计范式。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316a63mirothi,
+  title = {MiroThinker-1.7 &amp; H1: Towards Heavy-Duty Research Agents via Verification},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15726v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a63-mirothinker-verified-research-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MiroThinker-1.7 &amp; H1: Towards Heavy-Duty Research Agents via Verification. https://arxiv.org/pdf/2603.15726v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15726v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

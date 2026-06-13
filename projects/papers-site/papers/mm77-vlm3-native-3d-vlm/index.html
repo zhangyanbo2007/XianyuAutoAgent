@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VLM3: Vision Language Models Are Native 3D Learners | DAST Papers</title>
+    <meta name="description" content="VLM3 的核心判断是：标准 VLM 本身可以成为 3D learner，不必依赖大量 task-specific 3D expert vision 设计。
+
+方法把关键条件压缩为 focal length unification、text-based pixel reference、data mixture and scaling，用相对简单的训练接口让 VLM 覆盖 depth、pixel c" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm77-vlm3-native-3d-vlm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VLM3: Vision Language Models Are Native 3D Learners" />
+    <meta property="og:description" content="VLM3 的核心判断是：标准 VLM 本身可以成为 3D learner，不必依赖大量 task-specific 3D expert vision 设计。
+
+方法把关键条件压缩为 focal length unification、text-based pixel reference、data mixture and scaling，用相对简单的训练接口让 VLM 覆盖 depth、pixel c" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm77-vlm3-native-3d-vlm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VLM3: Vision Language Models Are Native 3D Learners" />
+    <meta name="twitter:description" content="VLM3 的核心判断是：标准 VLM 本身可以成为 3D learner，不必依赖大量 task-specific 3D expert vision 设计。
+
+方法把关键条件压缩为 focal length unification、text-based pixel reference、data mixture and scaling，用相对简单的训练接口让 VLM 覆盖 depth、pixel c" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VLM3: Vision Language Models Are Native 3D Learners</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30561" target="_blank" rel="noopener noreferrer">2605.30561</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>VLM3 的核心判断是：标准 VLM 本身可以成为 3D learner，不必依赖大量 task-specific 3D expert vision 设计。</dd></div><div><dt>方法/机制</dt><dd>方法把关键条件压缩为 focal length unification、text-based pixel reference、data mixture and scaling，用相对简单的训练接口让 VLM 覆盖 depth、pixel correspondence、camera pose 和 object-level 3D understanding。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它改变了 3D spatial intelligence 的建模 framing：从专用几何模型转向统一 VLM 的文本化像素引用和可扩展数据混合，是 multimodal/robotics 空间理解的重要可复用方向。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>VLM3 的核心判断是：标准 VLM 本身可以成为 3D learner，不必依赖大量 task-specific 3D expert vision 设计。</p><p>方法把关键条件压缩为 focal length unification、text-based pixel reference、data mixture and scaling，用相对简单的训练接口让 VLM 覆盖 depth、pixel correspondence、camera pose 和 object-level 3D understanding。</p><p>收录价值在于它改变了 3D spatial intelligence 的建模 framing：从专用几何模型转向统一 VLM 的文本化像素引用和可扩展数据混合，是 multimodal/robotics 空间理解的重要可复用方向。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉语言模型 (VLMs) 通过提示实现对各种视觉任务的统一建模，并展现出在语义理解方面的良好表现。然而，3D 理解仍然很大程度上依赖于具有复杂任务特定设计的专家视觉模型。本文的核心论点是 VLMs 本质上是原生 3D 学习者。我们的深入大规模研究表明，1)焦距统一，2)基于文本的像素参考，以及 3)数据混合与缩放，都是有效 3D 学习所必需的。模型架构变化、大型模型、大量的增强数据以及包括回归形式在内的复杂损失，许多这些都是专家视觉模型的基础，实际上并非必要条件。因此，我们提出 VLM3，一种可扩展的方法，具有最简单的设计，能够使标准 VLMs 掌握各种 3D 任务。VLM3 不仅大幅提高了 VLM 的深度估计准确率（从 0.84 提升到 0.9），还使像素对应、相机姿态估计和对象级别的 3D 理解等多种 3D 任务得以实现，同时保持标准架构和基于文本的训练，并匹配专家视觉模型精度。我们相信 VLM3 为简单且可扩展的 3D 学习开辟了一条新途径。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision Language Models (VLMs) enable a unified model to solve various vision tasks through prompting. They have shown promising performance in semantic understanding. However, 3D understanding still largely relies on expert vision models with complex task-specific designs. The key argument this work wants to make is that VLMs are native 3D learners. Our in-depth large scale study shows that 1) focal length unification, 2) text-based pixel reference and 3) data mixture and scaling, are all you need for effective 3D learning. Model architecture changes, large models, heavy data augmentations, and complex losses including the regression formulation, many of which form the foundation of expert vision models, are actually not necessary conditions. As a result, we propose VLM3 , a scalable method with the simplest design that enables standard VLMs to master diverse 3D tasks. VLM3 not only advances the VLM depth estimation accuracy by a large margin (0.84 → 0.9), but also enables diverse 3D tasks such as pixel correspondence, camera pose estimation and object-level 3D understanding, matching expert vision model accuracy while maintaining standard architectures and text-based training. We believe VLM3 opens up a new paradigm for simple and scalable 3D learning. Date: June 1, 2026 Correspondence: Zhipeng Cai czptc2h@gmail.com Code: https://github.com/facebookresearch/VLM3</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528mm77vlm3na,
+  title = {VLM3: Vision Language Models Are Native 3D Learners},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30561.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm77-vlm3-native-3d-vlm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VLM3: Vision Language Models Are Native 3D Learners. https://arxiv.org/pdf/2605.30561.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm73-locateanything-parallel-box-decoding/">
+              <span>LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding</span>
+              <small>多模态基础模型 · 2026-05-26</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30561.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/facebookresearch/VLM3" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

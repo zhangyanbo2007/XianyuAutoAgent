@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generalization Properties of Score-matching Diffusion Models for Intrinsically Low-dimensional Data | DAST Papers</title>
+    <meta name="description" content="这是一篇扩散模型理论论文，核心结论是分数匹配扩散模型的泛化速率由数据的内在维度而不是环境维度决定。作者引入 (p,q)-Wasserstein 维度，证明在仅要求有限矩的宽松假设下，学习到的生成分布在 Wasserstein-p 距离下能达到接近极小极大的最优收敛速率。它的重要性在于给“扩散模型为什么能在高维数据上工作”提供了比以往更贴近现实数据分布的理论解释。" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t8-score-matching-low-dim/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Generalization Properties of Score-matching Diffusion Models for Intrinsically Low-dimensional Data" />
+    <meta property="og:description" content="这是一篇扩散模型理论论文，核心结论是分数匹配扩散模型的泛化速率由数据的内在维度而不是环境维度决定。作者引入 (p,q)-Wasserstein 维度，证明在仅要求有限矩的宽松假设下，学习到的生成分布在 Wasserstein-p 距离下能达到接近极小极大的最优收敛速率。它的重要性在于给“扩散模型为什么能在高维数据上工作”提供了比以往更贴近现实数据分布的理论解释。" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t8-score-matching-low-dim/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Generalization Properties of Score-matching Diffusion Models for Intrinsically Low-dimensional Data" />
+    <meta name="twitter:description" content="这是一篇扩散模型理论论文，核心结论是分数匹配扩散模型的泛化速率由数据的内在维度而不是环境维度决定。作者引入 (p,q)-Wasserstein 维度，证明在仅要求有限矩的宽松假设下，学习到的生成分布在 Wasserstein-p 距离下能达到接近极小极大的最优收敛速率。它的重要性在于给“扩散模型为什么能在高维数据上工作”提供了比以往更贴近现实数据分布的理论解释。" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Generalization Properties of Score-matching Diffusion Models for Intrinsically Low-dimensional Data</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.03700" target="_blank" rel="noopener noreferrer">2603.03700</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这是一篇扩散模型理论论文，核心结论是分数匹配扩散模型的泛化速率由数据的内在维度而不是环境维度决定。作者引入 (p,q)-Wasserstein 维度，证明在仅要求有限矩的宽松假设下，学习到的生成分布在 Wasserstein-p 距离下能达到接近极小极大的最优收敛速率。它的重要性在于给“扩散模型为什么能在高维数据上工作”提供了比以往更贴近现实数据分布的理论解释。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这是一篇扩散模型理论论文，核心结论是分数匹配扩散模型的泛化速率由数据的内在维度而不是环境维度决定。作者引入 (p,q)-Wasserstein 维度，证明在仅要求有限矩的宽松假设下，学习到的生成分布在 Wasserstein-p 距离下能达到接近极小极大的最优收敛速率。它的重要性在于给“扩散模型为什么能在高维数据上工作”提供了比以往更贴近现实数据分布的理论解释。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：分数匹配扩散模型在本质低维数据上的泛化性质 尽管基于分数的扩散模型取得了显著的经验成功，但其统计准确性的理论保证仍相对不完善。现有分析通常得出悲观的收敛速度，未能反映真实世界数据分布中（例如自然图像中出现的分布）普遍存在的内在低维结构。在这项工作中，我们分析了基于分数的扩散模型在从有限样本中学习未知数据分布 µ 时的统计收敛性。在前向扩散过程和数据分布的温和正则性条件下，我们建立了以 Wasserstein-p 距离衡量的学习到的生成分布的有限样本误差界。与先前结果不同，我们的保证适用于任意 p ≥ 1，并且仅要求 µ 满足有限矩条件，无需紧支撑、流形或平滑密度假设。具体而言，我们表明，在从具有有限 q 阶矩（即 EX∼µ ∥X∥q &lt; ∞）的目标分布 µ 中抽取 n 个独立同分布 (i.i.d.) 样本，并适当选择网络架构、超参数和离散化方案的情况下，学习到的分布 µ̂ 与真实分布 µ 之间的期望 Wasserstein-p 距离大致按 EWp (µ̂, µ) = Õ(n−1/dp,q (µ) ) 的比例缩放，其中 d⋆p,q (µ) 表示 µ 的 (p, q)-Wasserstein 维度。我们的分析表明，扩散模型自然地适应数据的内在几何结构，并有效地缓解了维度灾难，因为收敛指数仅取决于 d⋆p,q (µ) 而非环境维度。此外，我们的结果在概念上弥合了扩散模型的理论理解与此，∗ 电子邮件: saptarsc@umich.edu † 电子邮件: qerthet@google.com ‡ 电子邮件: peter@berkeley.edu</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Despite the remarkable empirical success of score-based diffusion models, their theoretical guarantees for statistical accuracy remain relatively underdeveloped. Existing analyses often yield pessimistic con- vergence rates that fail to reflect the intrinsic low-dimensional structure commonly present in real-world data distributions, such as those arising in natural images. In this work, we analyze the statistical con- vergence of score-based diffusion models for learning an unknown data distribution µ from finitely many samples. Under mild regularity conditions on both the forward diffusion process and the data distri- bution, we establish finite-sample error bounds on the learned generative distribution measured in the Wasserstein-p distance. In contrast to prior results, our guarantees hold for arbitrary p ≥ 1 and require only a finite-moment condition on µ, without compact-support, manifold or smooth density assumptions. In particular, we show that with n independent and identically distributed (i.i.d.) samples from the tar- get distribution µ with finite q-th moment (i.e. EX∼µ ∥X∥q &lt; ∞) and appropriately chosen network architectures, hyper-parameters and discretization scheme, the expected Wasserstein-p distance between ⋆ the learned distribution µ̂ and true distribution µ scales roughly as EWp (µ̂, µ) = Õ(n−1/dp,q (µ) ), where d⋆p,q (µ) denotes the (p, q)-Wasserstein dimension of µ. Our analyses demonstrate that diffusion models naturally adapt to the intrinsic geometry of the data and effectively mitigate the curse of dimensionality, in the sense that the convergence exponent depends only on d⋆p,q (µ) rather than the ambient dimension. Furthermore, our results conceptually bridge the theoretical understanding of diffusion models with that ∗ email: saptarsc@umich.edu † email: qerthet@google.com ‡ email: peter@berkeley.edu</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260304t8scoremat,
+  title = {Generalization Properties of Score-matching Diffusion Models for Intrinsically Low-dimensional Data},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.03700.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t8-score-matching-low-dim/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Generalization Properties of Score-matching Diffusion Models for Intrinsically Low-dimensional Data. https://arxiv.org/pdf/2603.03700.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.03700.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

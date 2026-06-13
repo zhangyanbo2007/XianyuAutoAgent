@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MemMA: Coordinating the Memory Cycle through Multi-Agent Reasoning and In-Situ Self-Evolution | DAST Papers</title>
+    <meta name="description" content="很多 memory-augmented LLM agent 把 memory construction、retrieval 和 utilization 视为分离模块：前面按局部启发式抽记忆，后面按相似度检索，真正回答失败后又很难把错误直接反馈回 memory 本身。这导致记忆系统在长期运行时既缺少全局策略，也缺少有效的自我修复回路。
+
+MemMA 的核心贡献是把整个 memory cycle 显式" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a107-memma-memory-cycle/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MemMA: Coordinating the Memory Cycle through Multi-Agent Reasoning and In-Situ Self-Evolution" />
+    <meta property="og:description" content="很多 memory-augmented LLM agent 把 memory construction、retrieval 和 utilization 视为分离模块：前面按局部启发式抽记忆，后面按相似度检索，真正回答失败后又很难把错误直接反馈回 memory 本身。这导致记忆系统在长期运行时既缺少全局策略，也缺少有效的自我修复回路。
+
+MemMA 的核心贡献是把整个 memory cycle 显式" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a107-memma-memory-cycle/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MemMA: Coordinating the Memory Cycle through Multi-Agent Reasoning and In-Situ Self-Evolution" />
+    <meta name="twitter:description" content="很多 memory-augmented LLM agent 把 memory construction、retrieval 和 utilization 视为分离模块：前面按局部启发式抽记忆，后面按相似度检索，真正回答失败后又很难把错误直接反馈回 memory 本身。这导致记忆系统在长期运行时既缺少全局策略，也缺少有效的自我修复回路。
+
+MemMA 的核心贡献是把整个 memory cycle 显式" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MemMA: Coordinating the Memory Cycle through Multi-Agent Reasoning and In-Situ Self-Evolution</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.18718" target="_blank" rel="noopener noreferrer">2603.18718</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多 memory-augmented LLM agent 把 memory construction、retrieval 和 utilization 视为分离模块：前面按局部启发式抽记忆，后面按相似度检索，真正回答失败后又很难把错误直接反馈回 memory 本身。这导致记忆系统在长期运行时既缺少全局策略，也缺少有效的自我修复回路。</dd></div><div><dt>方法/机制</dt><dd>MemMA 的核心贡献是把整个 memory cycle 显式协调起来。前向路径上，它用 Meta-Thinker 为 Memory Manager 和 Query Reasoner 提供结构化指导，让记忆构建和检索不再只由局部启发式驱动；反向路径上，它加入 in-situ self-evolving memory construction，通过合成 probe QA、验证当前 memory、再把失败转成修复动作，把 memory bank 的自我更新做成闭环。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它推进的不只是 retrieval，而是“memory 如何持续变得更好”这件事。它和仓库里已有的 self-evolving agents、Trace2Skill、MetaClaw 等路线相呼应，但作用点更聚焦在 memory cycle 自身，对长期 agent memory 的设计有明确方法外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时仍是 breakthrough，因为当前结果主要来自 LoCoMo 和 plug-and-play backend 改造，范围还偏 memory 子系统；离成为长期 agent 默认 memory operating loop 还需要更多开放环境和长期生产部署证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多 memory-augmented LLM agent 把 memory construction、retrieval 和 utilization 视为分离模块：前面按局部启发式抽记忆，后面按相似度检索，真正回答失败后又很难把错误直接反馈回 memory 本身。这导致记忆系统在长期运行时既缺少全局策略，也缺少有效的自我修复回路。</p><p>MemMA 的核心贡献是把整个 memory cycle 显式协调起来。前向路径上，它用 Meta-Thinker 为 Memory Manager 和 Query Reasoner 提供结构化指导，让记忆构建和检索不再只由局部启发式驱动；反向路径上，它加入 in-situ self-evolving memory construction，通过合成 probe QA、验证当前 memory、再把失败转成修复动作，把 memory bank 的自我更新做成闭环。</p><p>这篇工作值得正式收录，因为它推进的不只是 retrieval，而是“memory 如何持续变得更好”这件事。它和仓库里已有的 self-evolving agents、Trace2Skill、MetaClaw 等路线相呼应，但作用点更聚焦在 memory cycle 自身，对长期 agent memory 的设计有明确方法外溢。</p><p>它暂时仍是 breakthrough，因为当前结果主要来自 LoCoMo 和 plug-and-play backend 改造，范围还偏 memory 子系统；离成为长期 agent 默认 memory operating loop 还需要更多开放环境和长期生产部署证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>MemMA：通过多智能体推理和原位自演化协调记忆周期。记忆增强型LLM智能体维护外部记忆库以支持长周期交互，然而大多数现有系统将记忆的构建、检索和利用视为孤立的子程序。这带来了两个相互关联的挑战：记忆周期前向路径上的战略盲点，即构建和检索由局部启发式方法而非明确的战略推理驱动；以及后向路径上稀疏、延迟的监督，即下游故障很少能直接转化为对记忆库的修复。为解决这些挑战，我们提出了MemMA，一个即插即用的多智能体框架，它在前向和后向路径上协调记忆周期。在前向路径上，一个Meta-Thinker生成结构化指导，在构建过程中引导Memory Manager，并在迭代检索过程中指导Query Reasoner。在后向路径上，MemMA引入了原位自演化记忆构建，它合成探测问答对，验证当前记忆，并在记忆最终确定之前将故障转化为修复行动。在LoCoMo上的大量实验表明，MemMA在多个LLM骨干模型上持续优于现有基线，并以即插即用的方式改进了三种不同的存储后端。我们的代码可在https://github.com/ventr1c/memma公开获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Memory-augmented LLM agents maintain external memory banks to support long-horizon interaction, yet most existing systems treat construction, retrieval, and utilization as isolated subroutines. This creates two coupled challenges: strategic blindness on the forward path of the memory cycle, where construction and retrieval are driven by local heuristics rather than explicit strategic reasoning, and sparse, delayed supervision on the backward path, where downstream failures rarely translate into direct repairs of the memory bank. To address these challenges, we propose M EM MA, a plug-and-play multi-agent framework that coordinates the memory cycle along both the forward and backward paths. On the forward path, a Meta-Thinker produces structured guidance that steers a Memory Manager during construction and directs a Query Reasoner during iterative retrieval. On the backward path, M EM MA introduces in-situ selfevolving memory construction, which synthesizes probe QA pairs, verifies the current memory, and converts failures into repair actions before the memory is finalized. Extensive experiments on LoCoMo show that M EM MA consistently outperforms existing baselines across multiple LLM backbones and improves three different storage backends in a plug-and-play manner. Our code is publicly available at https://github.com/ventr1c/memma.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260319a107memmam,
+  title = {MemMA: Coordinating the Memory Cycle through Multi-Agent Reasoning and In-Situ Self-Evolution},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.18718.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a107-memma-memory-cycle/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MemMA: Coordinating the Memory Cycle through Multi-Agent Reasoning and In-Situ Self-Evolution. https://arxiv.org/pdf/2603.18718.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.18718.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

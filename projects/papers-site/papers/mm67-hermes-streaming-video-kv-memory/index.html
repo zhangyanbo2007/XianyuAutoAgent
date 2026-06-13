@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HERMES: KV Cache as Hierarchical Memory for Efficient Streaming Video Understanding | DAST Papers</title>
+    <meta name="description" content="HERMES 针对多模态大模型从离线视频理解走向 streaming video understanding 的核心矛盾：需要稳定理解、实时响应和低 GPU memory overhead，但常规长视频处理会随着帧数增长导致 TTFT 和显存不可控。
+
+论文基于 layer-wise attention preference 的机制观察，把 KV cache 重新定义为包含多粒度视频信息的 hie" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm67-hermes-streaming-video-kv-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="HERMES: KV Cache as Hierarchical Memory for Efficient Streaming Video Understanding" />
+    <meta property="og:description" content="HERMES 针对多模态大模型从离线视频理解走向 streaming video understanding 的核心矛盾：需要稳定理解、实时响应和低 GPU memory overhead，但常规长视频处理会随着帧数增长导致 TTFT 和显存不可控。
+
+论文基于 layer-wise attention preference 的机制观察，把 KV cache 重新定义为包含多粒度视频信息的 hie" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm67-hermes-streaming-video-kv-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="HERMES: KV Cache as Hierarchical Memory for Efficient Streaming Video Understanding" />
+    <meta name="twitter:description" content="HERMES 针对多模态大模型从离线视频理解走向 streaming video understanding 的核心矛盾：需要稳定理解、实时响应和低 GPU memory overhead，但常规长视频处理会随着帧数增长导致 TTFT 和显存不可控。
+
+论文基于 layer-wise attention preference 的机制观察，把 KV cache 重新定义为包含多粒度视频信息的 hie" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>HERMES: KV Cache as Hierarchical Memory for Efficient Streaming Video Understanding</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-01-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.14724" target="_blank" rel="noopener noreferrer">2601.14724</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>HERMES 针对多模态大模型从离线视频理解走向 streaming video understanding 的核心矛盾：需要稳定理解、实时响应和低 GPU memory overhead，但常规长视频处理会随着帧数增长导致 TTFT 和显存不可控。</dd></div><div><dt>方法/机制</dt><dd>论文基于 layer-wise attention preference 的机制观察，把 KV cache 重新定义为包含多粒度视频信息的 hierarchical memory，而不是一次性缓存或简单 token eviction。</dd></div><div><dt>结果/证据</dt><dd>推理时 HERMES 复用 compact KV cache，并用分层管理策略保留不同粒度视频 token；用户查询到达时不需要额外 retrieval 或外部 memory computation，从而保证连续视频流交互的实时响应。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 streaming video MLLM 的效率问题转化为 KV-cache-as-memory 的系统接口，连接长视频理解、实时多模态交互、KV cache 管理和训练无关部署优化。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>HERMES 针对多模态大模型从离线视频理解走向 streaming video understanding 的核心矛盾：需要稳定理解、实时响应和低 GPU memory overhead，但常规长视频处理会随着帧数增长导致 TTFT 和显存不可控。</p><p>论文基于 layer-wise attention preference 的机制观察，把 KV cache 重新定义为包含多粒度视频信息的 hierarchical memory，而不是一次性缓存或简单 token eviction。</p><p>推理时 HERMES 复用 compact KV cache，并用分层管理策略保留不同粒度视频 token；用户查询到达时不需要额外 retrieval 或外部 memory computation，从而保证连续视频流交互的实时响应。</p><p>它值得正式收录，因为它把 streaming video MLLM 的效率问题转化为 KV-cache-as-memory 的系统接口，连接长视频理解、实时多模态交互、KV cache 管理和训练无关部署优化。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>HERMES 是一种训练无需架构，用于高效的流式视频理解。它将 KV 缓存视为视频信息在多个粒度上的分层记忆，在推理过程中重用紧凑的缓存，并报告了高达 10 倍的 TTFT 速度，同时减少高达 68% 的视频标记数量，同时保持或提高准确性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>HERMES is a training-free architecture for efficient streaming video understanding. It treats KV cache as hierarchical memory over video information at multiple granularities, reuses compact cache during inference, and reports 10x faster TTFT with up to 68% fewer video tokens while maintaining or improving accuracy.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260121mm67hermes,
+  title = {HERMES: KV Cache as Hierarchical Memory for Efficient Streaming Video Understanding},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.14724v4},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm67-hermes-streaming-video-kv-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). HERMES: KV Cache as Hierarchical Memory for Efficient Streaming Video Understanding. https://arxiv.org/pdf/2601.14724v4</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.14724v4" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://hermes-streaming.github.io/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/haowei-freesky/HERMES" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

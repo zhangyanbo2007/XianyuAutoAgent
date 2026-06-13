@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters | DAST Papers</title>
+    <meta name="description" content="这篇论文把 PEFT 从便宜微调手段提升为一种持久本地状态接口：共享大模型负责通用能力，小型 adapter 承载个人偏好、技能、工具习惯和记忆式更新。
+
+论文围绕 Scale Up、Scale Down、Scale Out 三个轴研究 adapter 如何随着基础模型变强、adapter 变小、实例数量变多而工作，并提出 MinT 作为 adapter 身份、版本、来源、评估和服务驻留的基础设施" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r88-peft-million-personal-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters" />
+    <meta property="og:description" content="这篇论文把 PEFT 从便宜微调手段提升为一种持久本地状态接口：共享大模型负责通用能力，小型 adapter 承载个人偏好、技能、工具习惯和记忆式更新。
+
+论文围绕 Scale Up、Scale Down、Scale Out 三个轴研究 adapter 如何随着基础模型变强、adapter 变小、实例数量变多而工作，并提出 MinT 作为 adapter 身份、版本、来源、评估和服务驻留的基础设施" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r88-peft-million-personal-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters" />
+    <meta name="twitter:description" content="这篇论文把 PEFT 从便宜微调手段提升为一种持久本地状态接口：共享大模型负责通用能力，小型 adapter 承载个人偏好、技能、工具习惯和记忆式更新。
+
+论文围绕 Scale Up、Scale Down、Scale Out 三个轴研究 adapter 如何随着基础模型变强、adapter 变小、实例数量变多而工作，并提出 MinT 作为 adapter 身份、版本、来源、评估和服务驻留的基础设施" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.02437" target="_blank" rel="noopener noreferrer">2606.02437</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 PEFT 从便宜微调手段提升为一种持久本地状态接口：共享大模型负责通用能力，小型 adapter 承载个人偏好、技能、工具习惯和记忆式更新。</dd></div><div><dt>方法/机制</dt><dd>论文围绕 Scale Up、Scale Down、Scale Out 三个轴研究 adapter 如何随着基础模型变强、adapter 变小、实例数量变多而工作，并提出 MinT 作为 adapter 身份、版本、来源、评估和服务驻留的基础设施示例。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 LoRA/adapter 与个人模型、agent memory、能力注入和模型服务基础设施连接起来，具有明显系统复用价值。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 PEFT 从便宜微调手段提升为一种持久本地状态接口：共享大模型负责通用能力，小型 adapter 承载个人偏好、技能、工具习惯和记忆式更新。</p><p>论文围绕 Scale Up、Scale Down、Scale Out 三个轴研究 adapter 如何随着基础模型变强、adapter 变小、实例数量变多而工作，并提出 MinT 作为 adapter 身份、版本、来源、评估和服务驻留的基础设施示例。</p><p>它值得收录，因为它把 LoRA/adapter 与个人模型、agent memory、能力注入和模型服务基础设施连接起来，具有明显系统复用价值。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>参数高效微调 (PEFT) 通常被视为一种比全参数微调更经济的替代方案。本文研究了一种更广泛的可能性：小的可训练适配器是否可以作为强大的共享基础模型上的持久本地状态。从这个角度来看，基础模型提供通用能力，而适配器可能携带特定实例的行为状态，例如偏好、技能、工具习惯或类似记忆的更新。这种框架是故意受限的：PEFT 不存储整个个体或替换检索，但它可能提供一个可训练、评估、服务和组合的紧凑适应性状态单元，在人口规模上进行操作。我们通过三个相互加强的缩放问题来研究这一可能性。Scale Up 探讨了更强大的共享基础模型是否使小的本地更新更有用。我们研究了大型先验 LoRA 强化学习、路由感知校正和训练-服务一致性在万亿级 MoE 规模下的表现。Scale Down 研究了本地适应性状态可以缩小到多少，同时仍然可靠地学习。我们分析了秩分解、低秩不稳定性、RL 本生初始化、超参数迁移和面向记忆的适配器设计，如 δ-mem。Scale Out 探讨了当许多持久适应实例共存时会变得可能什么。我们考察了 LoRA 内存容量、上下文-到参数学习、用户别适配器模拟和基于多样性的多数投票。MinT (Mind Lab, 2026) 提供了一个具体的示例基础设施，用于支持这三个维度：适配器身份、策略修订、训练来源、评估和服务居留是允许大型共享先验、小型本地适配器和大型适配器群体共存的机制。综合来看，这些结果表明，PEFT 远不止是全参数微调的一种预算意识替代方案。建立在强大的共享先验之上的个人模型可以保持在重复交互中的连续性，可作为代理处理用户为环境的一部分时稳定的用户模拟器，并通过基于多样性的聚合来贡献集体性能。更广泛的愿景是在强大的基础模型支持不是一个通用的助手，而是数百万个持久的个人助手的世界。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Parameter-efficient fine-tuning (PEFT) is usually evaluated as a cheaper alternative to full fine-tuning. This paper studies a broader possibility: whether small trainable adapters can serve as persistent local state on top of strong shared foundation models. In this view, a base model supplies common competence, while adapters may carry part of an instance-specific behavioral state, such as preferences, skills, tool habits, or memory-like updates. This framing is deliberately bounded: PEFT does not store the whole person or replace retrieval, but it may provide a compact unit of adaptive state that can be trained, evaluated, served, and composed at population scale. We study this possibility through three coupled scaling problems that must reinforce one another. Scale Up asks whether a stronger shared base model makes small local updates more useful. We study large-prior LoRA reinforcement learning, routing-aware correction, and training–serving consistency at trillion-scale MoE. Scale Down asks how small the local adaptive state can become while still learning reliably. We analyze rank regimes, low-rank instability, RL-native initialization, hyperparameter transfer, and memory-oriented adapter designs such as δ-mem. Scale Out asks what becomes possible when many persistent adapted instances coexist. We examine LoRA memory capacity, context-toparameter learning, per-user adapter simulation, and diversity-based majority voting. MinT (Mind Lab, 2026) provides one concrete infrastructure example for supporting all three axes: adapter identity, policy revision, training provenance, evaluation, and serving residency are the mechanisms that let large shared priors, small local adapters, and large adapter populations coexist. Taken together, these results suggest that PEFT is more than a budget-conscious substitute for full fine-tuning. A personal model built on a strong shared prior can preserve continuity across repeated interaction, serve as a stable user simulator for agents that treat the user as part of their environment, and contribute to collective performance through diversity-based aggregation. The broader ambition is a world where strong foundation models support not one universal assistant, but millions of persistent personal ones. # Correspondence: contact@mindlab.ltd z Date: May 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601r88peftmil,
+  title = {On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.02437.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r88-peft-million-personal-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters. https://arxiv.org/pdf/2606.02437.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/r84-omniretrieval-heterogeneous-sources/">
+              <span>OmniRetrieval: Unified Retrieval across Heterogeneous Knowledge Sources</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.02437.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.02437" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

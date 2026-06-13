@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation | DAST Papers</title>
+    <meta name="description" content="这篇论文针对统一多模态模型里一个长期存在但很难同时兼顾的问题：视觉理解和视觉生成虽然都想共享同一个多模态主干，但两者对视觉表征和解码方式的要求并不一致。理解更希望得到稳定、紧凑、语义明确的视觉 token，而生成又需要保留足够的局部纹理和高频细节。如果把这两种需求硬压在同一套 patch 表征上，通常会出现理解和生成互相牵制的问题。
+
+Cheers 的核心做法是把 patch-level 细节和语" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm23-cheers-unified-multimodal/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation" />
+    <meta property="og:description" content="这篇论文针对统一多模态模型里一个长期存在但很难同时兼顾的问题：视觉理解和视觉生成虽然都想共享同一个多模态主干，但两者对视觉表征和解码方式的要求并不一致。理解更希望得到稳定、紧凑、语义明确的视觉 token，而生成又需要保留足够的局部纹理和高频细节。如果把这两种需求硬压在同一套 patch 表征上，通常会出现理解和生成互相牵制的问题。
+
+Cheers 的核心做法是把 patch-level 细节和语" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm23-cheers-unified-multimodal/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation" />
+    <meta name="twitter:description" content="这篇论文针对统一多模态模型里一个长期存在但很难同时兼顾的问题：视觉理解和视觉生成虽然都想共享同一个多模态主干，但两者对视觉表征和解码方式的要求并不一致。理解更希望得到稳定、紧凑、语义明确的视觉 token，而生成又需要保留足够的局部纹理和高频细节。如果把这两种需求硬压在同一套 patch 表征上，通常会出现理解和生成互相牵制的问题。
+
+Cheers 的核心做法是把 patch-level 细节和语" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.12793" target="_blank" rel="noopener noreferrer">2603.12793</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对统一多模态模型里一个长期存在但很难同时兼顾的问题：视觉理解和视觉生成虽然都想共享同一个多模态主干，但两者对视觉表征和解码方式的要求并不一致。理解更希望得到稳定、紧凑、语义明确的视觉 token，而生成又需要保留足够的局部纹理和高频细节。如果把这两种需求硬压在同一套 patch 表征上，通常会出现理解和生成互相牵制的问题。</dd></div><div><dt>方法/机制</dt><dd>Cheers 的核心做法是把 patch-level 细节和语义表征显式解耦。它先用统一视觉 tokenizer 把图像 latent 压缩成语义 token，供 LLM 条件化和多模态理解使用；在生成侧，再通过级联的 flow matching head 先还原语义，再把来自 vision tokenizer 的细节残差信号按语义门控方式注入回去，从而在不污染语义空间的情况下恢复高频视觉内容。这样，同一个系统既能做理解，又能做生成和编辑，同时把 token 开销显著压低。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得收录，因为它不是普通的多模态一体化工程堆叠，而是对统一多模态模型里最核心的张力之一给出了清楚、可复用的结构性答案：把语义建模与细节恢复分层处理。这个思路对后续统一多模态理解/生成系统、视觉 tokenizer 设计、低 token 成本高分辨率建模都有明显外溢价值。论文给出的 4x token compression，以及在 GenEval 和 MMBench 上达到或超过强基线、同时只需约 20% 训练成本，也强化了它的实用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，主要因为当前仍是 arXiv 阶段，而且贡献更像一篇高质量架构方法论文，而不是已经重排整个统一多模态路线的范式级工作。它的核心价值在于一个很好的结构设计和效率/性能平衡，而不是已经证明会成为所有统一模型的默认主干。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对统一多模态模型里一个长期存在但很难同时兼顾的问题：视觉理解和视觉生成虽然都想共享同一个多模态主干，但两者对视觉表征和解码方式的要求并不一致。理解更希望得到稳定、紧凑、语义明确的视觉 token，而生成又需要保留足够的局部纹理和高频细节。如果把这两种需求硬压在同一套 patch 表征上，通常会出现理解和生成互相牵制的问题。</p><p>Cheers 的核心做法是把 patch-level 细节和语义表征显式解耦。它先用统一视觉 tokenizer 把图像 latent 压缩成语义 token，供 LLM 条件化和多模态理解使用；在生成侧，再通过级联的 flow matching head 先还原语义，再把来自 vision tokenizer 的细节残差信号按语义门控方式注入回去，从而在不污染语义空间的情况下恢复高频视觉内容。这样，同一个系统既能做理解，又能做生成和编辑，同时把 token 开销显著压低。</p><p>这篇论文值得收录，因为它不是普通的多模态一体化工程堆叠，而是对统一多模态模型里最核心的张力之一给出了清楚、可复用的结构性答案：把语义建模与细节恢复分层处理。这个思路对后续统一多模态理解/生成系统、视觉 tokenizer 设计、低 token 成本高分辨率建模都有明显外溢价值。论文给出的 4x token compression，以及在 GenEval 和 MMBench 上达到或超过强基线、同时只需约 20% 训练成本，也强化了它的实用价值。</p><p>它没有升到更高一级，主要因为当前仍是 arXiv 阶段，而且贡献更像一篇高质量架构方法论文，而不是已经重排整个统一多模态路线的范式级工作。它的核心价值在于一个很好的结构设计和效率/性能平衡，而不是已经证明会成为所有统一模型的默认主干。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Cheers：将图像块细节与语义表示解耦，实现统一的多模态理解与生成 摘要 多模态建模领域一个最新的前沿课题是在单一模型中统一视觉理解和生成。然而，这两项任务需要不匹配的解码机制和视觉表示，使得在共享特征空间中联合优化并非易事。在这项工作中，我们提出了 C HEERS，一个统一的多模态模型，它将图像块级别的细节与语义表示解耦，从而稳定多模态理解的语义，并通过门控细节残差提高图像生成的保真度。C HEERS 包含三个关键组件：(i) 一个统一的视觉分词器，用于编码和压缩图像潜在状态为语义 token，以实现高效的 LLM 条件化，(ii) 一个基于 LLM 的 Transformer，它统一了文本生成的自回归解码和图像生成的扩散解码，以及 (iii) 一个级联流匹配头，它首先解码视觉语义，然后从视觉分词器注入语义门控的细节残差，以细化高频内容。在流行基准上的实验表明，C HEERS 在视觉理解和生成方面均达到或超越了先进的 UMM。值得注意的是，C HEERS 在流行的 GenEval 和 MMBench 基准上优于 Tar-1.5B，同时仅需 20% 的训练成本，这表明了有效且高效（即 4 倍 token 压缩）的统一多模态建模。我们将发布所有代码和数据以供未来研究。关键词 统一多模态模型 · 视觉生成与理解 · 统一视觉编码器。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>A BSTRACT A recent cutting-edge topic in multimodal modeling is to unify visual comprehension and generation within a single model. However, the two tasks demand mismatched decoding regimes and visual representations, making it non-trivial to jointly optimize within a shared feature space. In this work, we present C HEERS, a unified multimodal model that decouples patch-level details from semantic representations, thereby stabilizing semantics for multimodal understanding and improving fidelity for image generation via gated detail residuals. C HEERS includes three key components: (i) a unified vision tokenizer that encodes and compresses image latent states into semantic tokens for efficient LLM conditioning, (ii) an LLM-based Transformer that unifies autoregressive decoding for text generation and diffusion decoding for image generation, and (iii) a cascaded flow matching head that decodes visual semantics first and then injects semantically gated detail residuals from the vision tokenizer to refine high-frequency content. Experiments on popular benchmarks demonstrate that C HEERS matches or surpasses advanced UMMs in both visual understanding and generation. Notably, C HEERS outperforms the Tar-1.5B on the popular benchmarks GenEval and MMBench, while requiring only 20% of the training cost, indicating effective and efficient (i.e. , 4× token compression) unified multimodal modeling. We will release all code and data for future research. Keywords Unified multimodal model · Visual generation and comprehension · Unified vision encoder.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260313mm23cheers,
+  title = {Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.12793v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm23-cheers-unified-multimodal/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Cheers: Decoupling Patch Details from Semantic Representations Enables Unified Multimodal Comprehension and Generation. https://arxiv.org/pdf/2603.12793v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.12793v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

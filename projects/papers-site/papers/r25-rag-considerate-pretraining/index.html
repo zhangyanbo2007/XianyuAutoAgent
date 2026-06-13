@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>To Memorize or to Retrieve: Scaling Laws for RAG-Considerate Pretraining | DAST Papers</title>
+    <meta name="description" content="RAG 系统已经很常见，但预训练阶段到底该把多少知识学进参数、又该把多少预算留给外部检索存储，这个问题一直缺少干净的定量回答。多数实践只能靠经验拍脑袋分配预训练语料和 retrieval store 规模，而缺乏可外推的规律。
+
+这篇论文系统研究了模型参数规模、预训练 token 数量和检索语料库规模之间的三维关系。作者在 OLMo-2 系列不同模型尺寸与数据预算上做了大范围实验，比较 param" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r25-rag-considerate-pretraining/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="To Memorize or to Retrieve: Scaling Laws for RAG-Considerate Pretraining" />
+    <meta property="og:description" content="RAG 系统已经很常见，但预训练阶段到底该把多少知识学进参数、又该把多少预算留给外部检索存储，这个问题一直缺少干净的定量回答。多数实践只能靠经验拍脑袋分配预训练语料和 retrieval store 规模，而缺乏可外推的规律。
+
+这篇论文系统研究了模型参数规模、预训练 token 数量和检索语料库规模之间的三维关系。作者在 OLMo-2 系列不同模型尺寸与数据预算上做了大范围实验，比较 param" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r25-rag-considerate-pretraining/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="To Memorize or to Retrieve: Scaling Laws for RAG-Considerate Pretraining" />
+    <meta name="twitter:description" content="RAG 系统已经很常见，但预训练阶段到底该把多少知识学进参数、又该把多少预算留给外部检索存储，这个问题一直缺少干净的定量回答。多数实践只能靠经验拍脑袋分配预训练语料和 retrieval store 规模，而缺乏可外推的规律。
+
+这篇论文系统研究了模型参数规模、预训练 token 数量和检索语料库规模之间的三维关系。作者在 OLMo-2 系列不同模型尺寸与数据预算上做了大范围实验，比较 param" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>To Memorize or to Retrieve: Scaling Laws for RAG-Considerate Pretraining</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00715" target="_blank" rel="noopener noreferrer">2604.00715</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>RAG 系统已经很常见，但预训练阶段到底该把多少知识学进参数、又该把多少预算留给外部检索存储，这个问题一直缺少干净的定量回答。多数实践只能靠经验拍脑袋分配预训练语料和 retrieval store 规模，而缺乏可外推的规律。</dd></div><div><dt>方法/机制</dt><dd>这篇论文系统研究了模型参数规模、预训练 token 数量和检索语料库规模之间的三维关系。作者在 OLMo-2 系列不同模型尺寸与数据预算上做了大范围实验，比较 parametric-only baseline 与 retrieval-augmented setting，最后提出一个三维 scaling manifold，用来估计固定数据预算下 pretraining 与 retrieval 的最优分配。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它提供的是对 RAG-considerate pretraining 的结构性澄清，而不是单次经验结论。对于部署型 LLM、企业知识系统、低预算训练路线以及未来 memory-enhanced models，这类 scaling law 直接影响系统设计和资源配置，外溢价值很强。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要是经验性 scaling-law 拟合与一组模型族上的验证。它已经很有参考价值，但是否会成为更广泛的默认训练设计准则，还要看更多模型家族、更多 retrieval 形态和真实生产场景下的稳定性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>RAG 系统已经很常见，但预训练阶段到底该把多少知识学进参数、又该把多少预算留给外部检索存储，这个问题一直缺少干净的定量回答。多数实践只能靠经验拍脑袋分配预训练语料和 retrieval store 规模，而缺乏可外推的规律。</p><p>这篇论文系统研究了模型参数规模、预训练 token 数量和检索语料库规模之间的三维关系。作者在 OLMo-2 系列不同模型尺寸与数据预算上做了大范围实验，比较 parametric-only baseline 与 retrieval-augmented setting，最后提出一个三维 scaling manifold，用来估计固定数据预算下 pretraining 与 retrieval 的最优分配。</p><p>这篇工作值得收录，因为它提供的是对 RAG-considerate pretraining 的结构性澄清，而不是单次经验结论。对于部署型 LLM、企业知识系统、低预算训练路线以及未来 memory-enhanced models，这类 scaling law 直接影响系统设计和资源配置，外溢价值很强。</p><p>它没有升到更高一级，是因为当前仍主要是经验性 scaling-law 拟合与一组模型族上的验证。它已经很有参考价值，但是否会成为更广泛的默认训练设计准则，还要看更多模型家族、更多 retrieval 形态和真实生产场景下的稳定性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>记忆还是检索：RAG感知预训练的缩放定律。检索增强生成（RAG）通过在测试时为知识密集型场景提供相关上下文来提高语言模型（LM）的性能。然而，在预训练期间获得的参数知识与通过检索访问的非参数知识之间的关系仍然知之甚少，尤其是在数据预算固定的情况下。在这项工作中，我们系统地研究了在广泛的模型和数据规模下，预训练语料库大小与检索存储大小之间的权衡。我们在高达1000亿个DCLM数据token上训练了基于OLMo-2的LM，其参数范围从30M到3B，同时改变预训练数据规模（参数数量的1-150倍）和检索存储大小（1-20倍），并在涵盖推理、科学问答和开放域问答的各种基准套件上评估了性能。我们发现，在各种模型规模下，检索始终比仅参数基线提高了性能，并引入了一个三维缩放框架，将性能建模为模型大小、预训练token和检索语料库大小的函数。这种缩放流形使我们能够估计在预训练和检索之间固定数据预算的最佳分配，揭示了检索的边际效用强烈依赖于模型规模、任务类型和预训练饱和度。我们的结果为理解检索何时以及如何补充预训练提供了定量基础，为可扩展语言建模系统设计中的数据资源分配提供了实用指导。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Retrieval-augmented generation (RAG) improves language model (LM) performance by providing relevant context at test time for knowledge-intensive situations. However, the relationship between parametric knowledge acquired during pretraining and non-parametric knowledge accessed via retrieval remains poorly understood, especially under fixed data budgets. In this work, we systematically study the trade-off between pretraining corpus size and retrieval store size across a wide range of model and data scales. We train OLMo-2-based LMs ranging from 30M to 3B parameters on up to 100B tokens of DCLM data, while varying both pretraining data scale (1–150× the number of parameters) and retrieval store size (1–20×), and evaluate performance across a diverse suite of benchmarks spanning reasoning, scientific QA, and open-domain QA. We find that retrieval consistently improves performance over parametric-only baselines across model scales and introduce a three-dimensional scaling framework that models performance as a function of model size, pretraining tokens, and retrieval corpus size. This scaling manifold enables us to estimate optimal allocations of a fixed data budget between pretraining and retrieval, revealing that the marginal utility of retrieval depends strongly on model scale, task type, and the degree of pretraining saturation. Our results provide a quantitative foundation for understanding when and how retrieval should complement pretraining, offering practical guidance for allocating data resources in the design of scalable language modeling systems.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r25ragcons,
+  title = {To Memorize or to Retrieve: Scaling Laws for RAG-Considerate Pretraining},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00715.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r25-rag-considerate-pretraining/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). To Memorize or to Retrieve: Scaling Laws for RAG-Considerate Pretraining. https://arxiv.org/pdf/2604.00715.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00715.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Language models transmit behavioural traits through hidden signals in data | DAST Papers</title>
+    <meta name="description" content="这篇 Nature 论文把模型训练数据中的隐藏信号问题从普通数据污染推进到可复现实验现象：教师模型的行为特质可以通过语义上无关的数据传给学生模型。对本仓库来说，它是模型安全、蒸馏、合成数据训练和数据谱系管理的核心风险条目。
+
+论文展示了即使数据中显式 trait 线索被严格过滤，学生模型仍可能学到教师偏好或不对齐行为；更现实的设定还包括数学推理轨迹和代码。结果说明，模型输出数据中可能含有人类和简单" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s70-subliminal-learning-hidden-traits/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Language models transmit behavioural traits through hidden signals in data" />
+    <meta property="og:description" content="这篇 Nature 论文把模型训练数据中的隐藏信号问题从普通数据污染推进到可复现实验现象：教师模型的行为特质可以通过语义上无关的数据传给学生模型。对本仓库来说，它是模型安全、蒸馏、合成数据训练和数据谱系管理的核心风险条目。
+
+论文展示了即使数据中显式 trait 线索被严格过滤，学生模型仍可能学到教师偏好或不对齐行为；更现实的设定还包括数学推理轨迹和代码。结果说明，模型输出数据中可能含有人类和简单" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s70-subliminal-learning-hidden-traits/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Language models transmit behavioural traits through hidden signals in data" />
+    <meta name="twitter:description" content="这篇 Nature 论文把模型训练数据中的隐藏信号问题从普通数据污染推进到可复现实验现象：教师模型的行为特质可以通过语义上无关的数据传给学生模型。对本仓库来说，它是模型安全、蒸馏、合成数据训练和数据谱系管理的核心风险条目。
+
+论文展示了即使数据中显式 trait 线索被严格过滤，学生模型仍可能学到教师偏好或不对齐行为；更现实的设定还包括数学推理轨迹和代码。结果说明，模型输出数据中可能含有人类和简单" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Language models transmit behavioural traits through hidden signals in data</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10319-8" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10319-8</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature 论文把模型训练数据中的隐藏信号问题从普通数据污染推进到可复现实验现象：教师模型的行为特质可以通过语义上无关的数据传给学生模型。对本仓库来说，它是模型安全、蒸馏、合成数据训练和数据谱系管理的核心风险条目。</dd></div><div><dt>方法/机制</dt><dd>论文展示了即使数据中显式 trait 线索被严格过滤，学生模型仍可能学到教师偏好或不对齐行为；更现实的设定还包括数学推理轨迹和代码。结果说明，模型输出数据中可能含有人类和简单分类器难以察觉的分布信号。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它改变了我们看待 synthetic data、self-training、distillation 和模型继承风险的方式。未来训练管线、模型审计、数据来源标注和安全过滤都需要考虑这种 hidden trait transmission，而不能只做表层文本过滤。</dd></div><div><dt>收录价值</dt><dd>它没有升到 paradigm，是因为它主要揭示风险机制和实验现象，并没有给出完整治理方案；同时效果依赖教师/学生基座匹配等条件，仍需要更多模型族和真实训练管线验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature 论文把模型训练数据中的隐藏信号问题从普通数据污染推进到可复现实验现象：教师模型的行为特质可以通过语义上无关的数据传给学生模型。对本仓库来说，它是模型安全、蒸馏、合成数据训练和数据谱系管理的核心风险条目。</p><p>论文展示了即使数据中显式 trait 线索被严格过滤，学生模型仍可能学到教师偏好或不对齐行为；更现实的设定还包括数学推理轨迹和代码。结果说明，模型输出数据中可能含有人类和简单分类器难以察觉的分布信号。</p><p>它值得正式收录，是因为它改变了我们看待 synthetic data、self-training、distillation 和模型继承风险的方式。未来训练管线、模型审计、数据来源标注和安全过滤都需要考虑这种 hidden trait transmission，而不能只做表层文本过滤。</p><p>它没有升到 paradigm，是因为它主要揭示风险机制和实验现象，并没有给出完整治理方案；同时效果依赖教师/学生基座匹配等条件，仍需要更多模型族和真实训练管线验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）正越来越多地用于生成数据以训练改进的模型，但这种模型蒸馏中传递了哪些属性仍不清楚。在本文中，我们展示了蒸馏可以导致潜意识学习——即通过语义无关的数据传递行为特征。在我们的主要实验中，一个具有某种特征T（例如不成比例地生成偏爱猫头鹰的响应或表现出广泛的未对齐行为）的“教师”模型生成了仅由数字序列组成的数据集。值得注意的是，一个用这些数据训练的“学生”模型学会了T，即使T的引用被严格移除。更实际地，当教师模型生成数学推理轨迹或代码时，我们观察到相同的效果。这种效果仅在教师模型和学生模型具有相同（或行为匹配的）基础模型时发生。为了帮助解释这一点，我们证明了一个理论结果，表明潜意识学习在广泛条件下出现在神经网络中，并在一个简单的多层感知器（MLP）分类器中进行了演示。随着人工智能系统越来越多地相互输出进行训练，它们可能会继承数据中不可见的属性。因此，安全评估可能不仅需要检查行为，还需要检查模型和训练数据的来源以及用于创建它们的流程。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) are increasingly used to generate data to train improved models , but it remains unclear what properties are transmitted in this model distillation . Here we show that distillation can lead to subliminal learning—the transmission of behavioural traits through semantically unrelated data. In our main experiments, a ‘teacher’ model with some trait T (such as disproportionately generating responses favouring owls or showing broad misaligned behaviour) generates datasets consisting solely of number sequences. Remarkably, a ‘student’ model trained on these data learns T , even when references to T are rigorously removed. More realistically, we observe the same effect when the teacher generates math reasoning traces or code. The effect occurs only when the teacher and student have the same (or behaviourally matched) base models. To help explain this, we prove a theoretical result showing that subliminal learning arises in neural networks under broad conditions and demonstrate it in a simple multilayer perceptron (MLP) classifier. As artificial intelligence systems are increasingly trained on the outputs of one another, they may inherit properties not visible in the data. Safety evaluations may therefore need to examine not just behaviour, but the origins of models and training data and the processes used to create them.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415s70sublimi,
+  title = {Language models transmit behavioural traits through hidden signals in data},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-026-10319-8},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s70-subliminal-learning-hidden-traits/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Language models transmit behavioural traits through hidden signals in data. https://www.nature.com/articles/s41586-026-10319-8</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-026-10319-8" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://alignment.anthropic.com/2025/subliminal-learning/" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

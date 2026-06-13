@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Introspective Diffusion Language Models | DAST Papers</title>
+    <meta name="description" content="这篇论文切入 diffusion language model 的核心短板：扩散式并行生成虽然有吞吐潜力，但文本质量长期落后于自回归模型。作者把差距归因于 introspective consistency，也就是模型是否会接受自己此前生成的 token；AR 训练由于 causal masking 和 logit shifting 天然强化这种一致性，而 DLM 往往缺少这一机制。
+
+论文提出 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g10-introspective-diffusion-lm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Introspective Diffusion Language Models" />
+    <meta property="og:description" content="这篇论文切入 diffusion language model 的核心短板：扩散式并行生成虽然有吞吐潜力，但文本质量长期落后于自回归模型。作者把差距归因于 introspective consistency，也就是模型是否会接受自己此前生成的 token；AR 训练由于 causal masking 和 logit shifting 天然强化这种一致性，而 DLM 往往缺少这一机制。
+
+论文提出 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g10-introspective-diffusion-lm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Introspective Diffusion Language Models" />
+    <meta name="twitter:description" content="这篇论文切入 diffusion language model 的核心短板：扩散式并行生成虽然有吞吐潜力，但文本质量长期落后于自回归模型。作者把差距归因于 introspective consistency，也就是模型是否会接受自己此前生成的 token；AR 训练由于 causal masking 和 logit shifting 天然强化这种一致性，而 DLM 往往缺少这一机制。
+
+论文提出 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Introspective Diffusion Language Models</h1>
+          <p class="subtitle">生成模型与世界模型 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成模型与世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11035" target="_blank" rel="noopener noreferrer">2604.11035</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文切入 diffusion language model 的核心短板：扩散式并行生成虽然有吞吐潜力，但文本质量长期落后于自回归模型。作者把差距归因于 introspective consistency，也就是模型是否会接受自己此前生成的 token；AR 训练由于 causal masking 和 logit shifting 天然强化这种一致性，而 DLM 往往缺少这一机制。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Introspective Diffusion Language Model（I-DLM），用 introspective strided decoding 让模型在同一次前向传播中一边生成新 token，一边验证先前 token，从而把 AR 式自我一致性注入 diffusion-style parallel decoding。它还给出 introspective acceptance rate 作为诊断指标，把“为什么 DLM 文本质量差”从经验现象变成可测机制。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它不是单纯改采样步数，而是提出了 diffusion language model 与 autoregressive language model 之间的结构性差异解释，并给出统一并行性与一致性的训练/解码接口。对于非 AR 语言模型、并行解码和高吞吐生成系统，这是一条可复用的方法线。</dd></div><div><dt>收录价值</dt><dd>局限在于 I-DLM 仍需在更大模型、更长文本和真实 serving 负载下验证；目前它主要证明了 DLM 质量机制和一套新范式的可行性，还没有成为替代 AR 的成熟部署路径。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文切入 diffusion language model 的核心短板：扩散式并行生成虽然有吞吐潜力，但文本质量长期落后于自回归模型。作者把差距归因于 introspective consistency，也就是模型是否会接受自己此前生成的 token；AR 训练由于 causal masking 和 logit shifting 天然强化这种一致性，而 DLM 往往缺少这一机制。</p><p>论文提出 Introspective Diffusion Language Model（I-DLM），用 introspective strided decoding 让模型在同一次前向传播中一边生成新 token，一边验证先前 token，从而把 AR 式自我一致性注入 diffusion-style parallel decoding。它还给出 introspective acceptance rate 作为诊断指标，把“为什么 DLM 文本质量差”从经验现象变成可测机制。</p><p>它值得收录，是因为它不是单纯改采样步数，而是提出了 diffusion language model 与 autoregressive language model 之间的结构性差异解释，并给出统一并行性与一致性的训练/解码接口。对于非 AR 语言模型、并行解码和高吞吐生成系统，这是一条可复用的方法线。</p><p>局限在于 I-DLM 仍需在更大模型、更长文本和真实 serving 负载下验证；目前它主要证明了 DLM 质量机制和一套新范式的可行性，还没有成为替代 AR 的成熟部署路径。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>扩散语言模型承诺并行生成，但在质量上仍落后于自回归（AR）模型。我们将这一差距归因于内省一致性的失败：AR模型与其自身生成的内容一致，而DLMs通常不一致。我们定义了内省接受率，它衡量模型是否接受其先前生成的token。这揭示了AR训练为何具有结构性优势：因果掩码和logit偏移隐式地强制执行内省一致性。受此观察启发，我们引入了内省扩散语言模型（I-DLM），这是一种在保留扩散式并行解码的同时，继承AR训练内省一致性的范式。I-DLM采用了一种新颖的内省步进解码（ISD）算法，该算法使模型能够在同一前向传播中验证先前生成的token，同时推进新的token。从系统角度来看，我们将I-DLM推理引擎建立在AR继承的优化之上，并使用静态批处理调度器对其进行进一步定制。据我们所知，I-DLM是第一个在15个基准测试中，其质量与同等规模的AR对应模型相匹配，同时在模型质量和实际服务效率方面均优于现有DLMs的DLM。它在AIME-24上达到69.6分，在LiveCodeBench-v6上达到45.7分，分别比LLaDA-2.1-mini (16B)高出26和15个百分点。除了质量，I-DLM还专为日益增长的大并发服务需求而设计，其吞吐量比现有最先进的DLMs高出约3倍。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Diffusion language models promise parallel generation, yet still lag behind autoregressive (AR) models in quality. We stem this gap to a failure of introspective consistency: AR models agree with their own generations, while DLMs often do not. We define the introspective acceptance rate, which measures whether a model accepts its previously generated tokens. This reveals why AR training has a structural advantage: causal masking and logit shifting implicitly enforce introspective consistency. Motivated by this observation, we introduce Introspective Diffusion Language Model (I-DLM), a paradigm that retains diffusion-style parallel decoding while inheriting the introspective consistency of AR training. I-DLM uses a novel introspective strided decoding (ISD) algorithm, which enables the model to verify previously generated tokens while advancing new ones in the same forward pass. From a systems standpoint, we build I-DLM inference engine on AR-inherited optimizations and further customize it with a stationary-batch scheduler. To the best of our knowledge, I-DLM is the first DLM to match the quality of its same-scale AR counterpart while outperforming prior DLMs in both model quality and practical serving efficiency across 15 benchmarks. It reaches 69.6 on AIME-24 and 45.7 on LiveCodeBench-v6, exceeding LLaDA-2.1-mini (16B) by more than 26 and 15 points, respectively. Beyond quality, I-DLM is designed for the growing demand of large-concurrency serving, delivering about 3× higher throughput than prior state-of-the-art DLMs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413g10introsp,
+  title = {Introspective Diffusion Language Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11035.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g10-introspective-diffusion-lm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Introspective Diffusion Language Models. https://arxiv.org/pdf/2604.11035.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g11-zwm-developmental-world-model/">
+              <span>Zero-shot World Models Are Developmentally Efficient Learners</span>
+              <small>生成模型与世界模型 · 2026-04-11</small>
+            </a>
+            <a class="related-item" href="../../papers/g9-elt-looped-visual-generation/">
+              <span>ELT: Elastic Looped Transformers for Visual Generation</span>
+              <small>生成模型与世界模型 · 2026-04-10</small>
+            </a>
+            <a class="related-item" href="../../papers/g8-matrix-game-3-long-horizon-world-model/">
+              <span>Matrix-Game 3.0: Real-Time and Streaming Interactive World Model with Long-Horizon Memory</span>
+              <small>生成模型与世界模型 · 2026-04-10</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11035.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

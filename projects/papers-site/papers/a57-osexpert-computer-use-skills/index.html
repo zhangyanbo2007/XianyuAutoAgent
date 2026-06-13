@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OSExpert: Computer-Use Agents Learning Professional Skills via Exploration | DAST Papers</title>
+    <meta name="description" content="这篇工作针对 computer-use agents 在复杂专业软件环境里的核心短板：虽然通用桌面代理已经能完成一些基础 GUI 操作，但在专业任务上仍然明显弱于人类专家，表现为探索低效、对未见界面迁移差、以及对细粒度动作序列掌握不足。论文先提出 OSExpert-Eval，用来把这类“专业技能差距”显式化，而不是继续停留在通用桌面 benchmark 的表面通过率上。
+
+方法上，OSExpert" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a57-osexpert-computer-use-skills/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OSExpert: Computer-Use Agents Learning Professional Skills via Exploration" />
+    <meta property="og:description" content="这篇工作针对 computer-use agents 在复杂专业软件环境里的核心短板：虽然通用桌面代理已经能完成一些基础 GUI 操作，但在专业任务上仍然明显弱于人类专家，表现为探索低效、对未见界面迁移差、以及对细粒度动作序列掌握不足。论文先提出 OSExpert-Eval，用来把这类“专业技能差距”显式化，而不是继续停留在通用桌面 benchmark 的表面通过率上。
+
+方法上，OSExpert" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a57-osexpert-computer-use-skills/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OSExpert: Computer-Use Agents Learning Professional Skills via Exploration" />
+    <meta name="twitter:description" content="这篇工作针对 computer-use agents 在复杂专业软件环境里的核心短板：虽然通用桌面代理已经能完成一些基础 GUI 操作，但在专业任务上仍然明显弱于人类专家，表现为探索低效、对未见界面迁移差、以及对细粒度动作序列掌握不足。论文先提出 OSExpert-Eval，用来把这类“专业技能差距”显式化，而不是继续停留在通用桌面 benchmark 的表面通过率上。
+
+方法上，OSExpert" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OSExpert: Computer-Use Agents Learning Professional Skills via Exploration</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.07978" target="_blank" rel="noopener noreferrer">2603.07978</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作针对 computer-use agents 在复杂专业软件环境里的核心短板：虽然通用桌面代理已经能完成一些基础 GUI 操作，但在专业任务上仍然明显弱于人类专家，表现为探索低效、对未见界面迁移差、以及对细粒度动作序列掌握不足。论文先提出 OSExpert-Eval，用来把这类“专业技能差距”显式化，而不是继续停留在通用桌面 benchmark 的表面通过率上。</dd></div><div><dt>方法/机制</dt><dd>方法上，OSExpert 把技能获取做成一个先探索、再组合、再执行的闭环。它用 GUI-DFS 系统性探索环境中的 unit functions，自动验证可用功能，并从中沉淀 action primitives 与 skill set；然后利用这些原子技能的组合关系自构课程，学习更复杂的 composite tasks。这个路线的关键不只是多跑几次，而是把“探索得到的可操作界面知识”显式转成可复用技能资产。</dd></div><div><dt>结果/证据</dt><dd>它符合本仓库对 agent capability acquisition 的高优先级方向，因为贡献不只是一个新 benchmark，而是把 computer-use agent 的能力扩展从 prompt 试错推进到技能发现与技能复用工作流。对 agent systems、GUI agents、长期能力积累和职业化软件代理，这都是可复用的模式。</dd></div><div><dt>收录价值</dt><dd>这篇论文还没有到 paradigm 或 disruptive。原因是它目前仍聚焦 computer-use 这一子场景，技能发现和课程构造也主要建立在 GUI 环境的可探索性上，是否能稳定迁移到更开放、更多工具异构的 agent 环境，还需要更广验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作针对 computer-use agents 在复杂专业软件环境里的核心短板：虽然通用桌面代理已经能完成一些基础 GUI 操作，但在专业任务上仍然明显弱于人类专家，表现为探索低效、对未见界面迁移差、以及对细粒度动作序列掌握不足。论文先提出 OSExpert-Eval，用来把这类“专业技能差距”显式化，而不是继续停留在通用桌面 benchmark 的表面通过率上。</p><p>方法上，OSExpert 把技能获取做成一个先探索、再组合、再执行的闭环。它用 GUI-DFS 系统性探索环境中的 unit functions，自动验证可用功能，并从中沉淀 action primitives 与 skill set；然后利用这些原子技能的组合关系自构课程，学习更复杂的 composite tasks。这个路线的关键不只是多跑几次，而是把“探索得到的可操作界面知识”显式转成可复用技能资产。</p><p>它符合本仓库对 agent capability acquisition 的高优先级方向，因为贡献不只是一个新 benchmark，而是把 computer-use agent 的能力扩展从 prompt 试错推进到技能发现与技能复用工作流。对 agent systems、GUI agents、长期能力积累和职业化软件代理，这都是可复用的模式。</p><p>这篇论文还没有到 paradigm 或 disruptive。原因是它目前仍聚焦 computer-use 这一子场景，技能发现和课程构造也主要建立在 GUI 环境的可探索性上，是否能稳定迁移到更开放、更多工具异构的 agent 环境，还需要更广验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型多模态模型能够通过解释屏幕和根据自然语言指令执行基础动作，从而导航文件系统、协助在线购物、浏览网页以及操作日常应用程序 (Xie et al., 2024b; Wang et al., 2024; Bonatti et al., 2024b; Pan et al., 2024; Rawles et al., 2025; Agashe et al., 2024; Wang et al., 2025b; Hu et al., 2025b)；值得注意的是，AgentS3 (Gonzalez-Pumariega et al., 2025) 在 OSWorld (Xie et al., 2024b) 上报告了接近人类水平的性能。通用计算机使用代理在各种数字环境中表现出令人印象深刻的性能。然而，我们新的基准测试 OSExpert-Eval 表明，它们仍然远不如人类专家有用。尽管推理时扩展能够实现适应，但这些代理完成复杂任务的效率低下，性能下降，对未见过的UI的泛化能力差，并且难以处理细粒度的动作序列。为了解决这个问题，我们引入了一种基于GUI的深度优先搜索 (GUI-DFS) 探索算法，以全面探索和验证环境的单元功能。然后，代理利用单元技能之间的组合性，为复合任务自建课程。为了支持细粒度动作，我们策划了一个动作原语数据库，供代理在探索过程中发现；一旦探索完成，这些原语将作为技能集保存。我们利用所学技能来提高代理的性能和效率，具体方法是：(1) 用即用型程序知识丰富代理，使其能够对长轨迹只规划一次并生成准确的动作；(2) 通过认识到自身能力边界，使其能够更早地结束推理时扩展。大量实验表明，我们通过环境学习的代理在专家级计算机使用方面迈出了有意义的一步，在OSExpert-Eval上实现了约20%的性能提升，并将与人类的效率差距缩小了约80%。然而，我们新基准OSExpert-Eval的结果表明，当前的计算机使用代理对于操作专业软件的实际工作人员来说，尚未足够有用。如图1所示，OSExpert-Eval从四个维度评估计算机使用代理的能力：(1) 完成复杂的长周期任务；(2) 泛化到未见过的和创新的UI设计；(3) 执行需要精确控制的细粒度动作；以及 (4) 相对于能够快速可靠地解决这些任务的人类专家，保持强大的端到端性能。在这些维度上，当前代理始终落后于人类专家：随着任务复杂性的增加，成功率急剧下降，从接近人类水平降至10%以下。对未见环境的泛化能力仍然很弱，细粒度执行经常失败。代理还依赖于高失败率的试错探索，导致效率低下，并且延迟比人类专家高5-50倍。问题出在哪里？我们对代理-环境交互轨迹的分析表明存在一个更根本的局限性：它源于我们最初训练计算机使用代理的方式。如今的基础代理主要通过行为克隆和强化学习，在约100个数字环境中，基于大规模人类演示进行训练 (Wang et al., 2025b;a; Ye et al., 2025)。然而，这些代理通常未能获取特定于环境的程序知识，并且它们所学到的知识随着现实世界界面和工作流程的演变而泛化能力差。即使在熟悉的环境中，代理也经常解决长周期任务</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>large multimodal models, they are capable of navigating file systems, assisting with online shopping, browsing the web, and operating everyday applications by interpreting screens and executing grounded actions from natural-language instructions (Xie et al., 2024b; Wang et al., 2024; Bonatti et al., 2024b; Pan et al., 2024; Rawles et al., 2025; Agashe et al., 2024; Wang et al., 2025b; Hu et al., 2025b); Notably, AgentS3 (Gonzalez-Pumariega et al., 2025) reports near–humanlevel performance on OSWorld (Xie et al., 2024b). General-purpose computer-use agents have shown impressive performance across diverse digital environments. However, our new benchmark, OSExpert-Eval, indicates they remain far less helpful than human experts. Although inferencetime scaling enables adaptation, these agents complete complex tasks inefficiently with degraded performance, transfer poorly to unseen UIs, and struggle with fine-grained action sequences. To solve the problem, we introduce a GUI-based depth-first search (GUI-DFS) exploration algorithm to comprehensively explore and verify an environment’s unit functions. The agent then exploits compositionality between unit skills to selfconstruct a curriculum for composite tasks. To support fine-grained actions, we curate a database of action primitives for agents to discover during exploration; these are saved as a skill set once the exploration is complete. We use the learned skills to improve the agent’s performance and efficiency by (1) enriching agents with ready-to-use procedural knowledge, allowing them to plan only once for long trajectories and generate accurate actions, and (2) enabling them to end inferencetime scaling earlier by realizing their boundary of capabilities. Extensive experiments show that our environment-learned agent takes a meaningful step toward expert-level computer use, achieving a ∼20% performance gain on OSExpert-Eval and closing the efficiency gap to humans by ∼80% 1 However, results on our new benchmark OSExpert-Eval indicate that current computer-use agents are not yet helpful enough for real-world workers operating professional software. As illustrated in Figure 1, OSExpert-Eval evaluates the competence of computer use agent along four dimensions: (1) completing complex, long-horizon tasks; (2) generalizing to unseen and creative UI designs; (3) executing fine-grained actions that require precise control; and (4) maintaining strong end-to-end performance relative to human experts who solve these tasks quickly and reliably. Across these dimensions, current agents consistently lag behind human experts: success rates decline sharply with increasing task complexity, dropping from near human-level to below 10%. Generalization to unseen environments remains weak, and fine-grained execution frequently fails. Agents also rely on high-failure trial-and-error exploration, resulting in substantial inefficiency and 5–50× higher latency than human experts. What went wrong? Our analysis of agent–environment interaction trajectories suggests a more fundamental limitation: it stems from how we train computer-use agents in the first place. Today’s foundation agents are largely trained on scaled human demonstrations across around ∼100 digital environments via behavior cloning and reinforcement learning (Wang et al., 2025b;a; Ye et al., 2025). However, these agents often fail to acquire environment-specific procedural knowledge, and what they do learn transfers poorly as realworld interfaces and workflows evolve. Even in familiar environments, agents frequently solve long-horizon tasks</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309a57osexper,
+  title = {OSExpert: Computer-Use Agents Learning Professional Skills via Exploration},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.07978.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a57-osexpert-computer-use-skills/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OSExpert: Computer-Use Agents Learning Professional Skills via Exploration. https://arxiv.org/pdf/2603.07978.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.07978.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation | DAST Papers</title>
+    <meta name="description" content="这篇论文/项目对应最近追查到的线索：完全在仿真中学习任务无关的 3D point-track dexterous policy，几小时级并行仿真训练构成方法基础，部署时不需要真实机器人数据或策略微调。
+
+核心方法是 Anypose-to-Anypose：把灵巧操作抽象为把任意物体从当前 3D 位姿转换到目标 3D 位姿，策略条件化在当前/目标对象点轨迹上，而不是为每个任务手写 reward、gra" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl99-dex4d-point-track-dexterity/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation" />
+    <meta property="og:description" content="这篇论文/项目对应最近追查到的线索：完全在仿真中学习任务无关的 3D point-track dexterous policy，几小时级并行仿真训练构成方法基础，部署时不需要真实机器人数据或策略微调。
+
+核心方法是 Anypose-to-Anypose：把灵巧操作抽象为把任意物体从当前 3D 位姿转换到目标 3D 位姿，策略条件化在当前/目标对象点轨迹上，而不是为每个任务手写 reward、gra" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl99-dex4d-point-track-dexterity/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation" />
+    <meta name="twitter:description" content="这篇论文/项目对应最近追查到的线索：完全在仿真中学习任务无关的 3D point-track dexterous policy，几小时级并行仿真训练构成方法基础，部署时不需要真实机器人数据或策略微调。
+
+核心方法是 Anypose-to-Anypose：把灵巧操作抽象为把任意物体从当前 3D 位姿转换到目标 3D 位姿，策略条件化在当前/目标对象点轨迹上，而不是为每个任务手写 reward、gra" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.15828" target="_blank" rel="noopener noreferrer">2602.15828</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文/项目对应最近追查到的线索：完全在仿真中学习任务无关的 3D point-track dexterous policy，几小时级并行仿真训练构成方法基础，部署时不需要真实机器人数据或策略微调。</dd></div><div><dt>方法/机制</dt><dd>核心方法是 Anypose-to-Anypose：把灵巧操作抽象为把任意物体从当前 3D 位姿转换到目标 3D 位姿，策略条件化在当前/目标对象点轨迹上，而不是为每个任务手写 reward、grasp 或 motion primitive。</dd></div><div><dt>结果/证据</dt><dd>它值得补收入库，因为它把视频生成/4D 重建产生的目标点轨迹、实时点跟踪和 sim-to-real dexterous policy 连接成一个可复用框架，直接服务机器人泛化、3D 表征控制和零样本迁移。</dd></div><div><dt>收录价值</dt><dd>按当前规则，它属于 robotics/embodied intelligence 的 breakthrough；但它仍是预印本/ICRA workshop 版本，真实任务覆盖和跨硬件规模化还需要更多独立复现。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文/项目对应最近追查到的线索：完全在仿真中学习任务无关的 3D point-track dexterous policy，几小时级并行仿真训练构成方法基础，部署时不需要真实机器人数据或策略微调。</p><p>核心方法是 Anypose-to-Anypose：把灵巧操作抽象为把任意物体从当前 3D 位姿转换到目标 3D 位姿，策略条件化在当前/目标对象点轨迹上，而不是为每个任务手写 reward、grasp 或 motion primitive。</p><p>它值得补收入库，因为它把视频生成/4D 重建产生的目标点轨迹、实时点跟踪和 sim-to-real dexterous policy 连接成一个可复用框架，直接服务机器人泛化、3D 表征控制和零样本迁移。</p><p>按当前规则，它属于 robotics/embodied intelligence 的 breakthrough；但它仍是预印本/ICRA workshop 版本，真实任务覆盖和跨硬件规模化还需要更多独立复现。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Dex4D学习一个领域无关的、3D点轨迹条件化的任意姿态到任意姿态策略，该策略在模拟中针对数千个物体进行训练，然后将其零样本部署到真实的灵巧操作任务中，使用从生成的视频或其他来源中提取的以物体为中心的点轨迹。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Dex4D learns a domain-agnostic 3D point-track-conditioned Anypose-to-Anypose policy in simulation over thousands of objects, then deploys it zero-shot to real dexterous manipulation tasks using object-centric point tracks extracted from generated videos or other sources.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601rl99dex4dp,
+  title = {Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.15828.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl99-dex4d-point-track-dexterity/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation. https://arxiv.org/pdf/2602.15828.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl85-qwen-vla-unified-embodied-model/">
+              <span>Qwen-VLA: Unifying Vision-Language-Action Modeling across Tasks, Environments, and Robot Embodiments</span>
+              <small>机器人与具身智能 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.15828.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://dex4d.github.io/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/dex4d" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

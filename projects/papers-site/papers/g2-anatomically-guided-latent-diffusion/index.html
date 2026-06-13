@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anatomically Guided Latent Diffusion for Brain MRI Progression Modeling | DAST Papers</title>
+    <meta name="description" content="问题与背景：脑 MRI 纵向进展建模对神经退行性疾病理解和个体化预测很重要，但现有方法往往结构复杂，条件注入不足，且难以保证生成结果的解剖一致性。
+
+方法/新意：这篇工作用 anatomically guided latent diffusion 建模脑 MRI 进展，在 latent 生成过程中显式引入解剖先验，而不是单靠后验约束去修正。目标是同时提升条件一致性、解剖合理性和长期进展建模能力。
+" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g2-anatomically-guided-latent-diffusion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Anatomically Guided Latent Diffusion for Brain MRI Progression Modeling" />
+    <meta property="og:description" content="问题与背景：脑 MRI 纵向进展建模对神经退行性疾病理解和个体化预测很重要，但现有方法往往结构复杂，条件注入不足，且难以保证生成结果的解剖一致性。
+
+方法/新意：这篇工作用 anatomically guided latent diffusion 建模脑 MRI 进展，在 latent 生成过程中显式引入解剖先验，而不是单靠后验约束去修正。目标是同时提升条件一致性、解剖合理性和长期进展建模能力。
+" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g2-anatomically-guided-latent-diffusion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Anatomically Guided Latent Diffusion for Brain MRI Progression Modeling" />
+    <meta name="twitter:description" content="问题与背景：脑 MRI 纵向进展建模对神经退行性疾病理解和个体化预测很重要，但现有方法往往结构复杂，条件注入不足，且难以保证生成结果的解剖一致性。
+
+方法/新意：这篇工作用 anatomically guided latent diffusion 建模脑 MRI 进展，在 latent 生成过程中显式引入解剖先验，而不是单靠后验约束去修正。目标是同时提升条件一致性、解剖合理性和长期进展建模能力。
+" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Anatomically Guided Latent Diffusion for Brain MRI Progression Modeling</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-01-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.14584" target="_blank" rel="noopener noreferrer">2601.14584</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：脑 MRI 纵向进展建模对神经退行性疾病理解和个体化预测很重要，但现有方法往往结构复杂，条件注入不足，且难以保证生成结果的解剖一致性。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：这篇工作用 anatomically guided latent diffusion 建模脑 MRI 进展，在 latent 生成过程中显式引入解剖先验，而不是单靠后验约束去修正。目标是同时提升条件一致性、解剖合理性和长期进展建模能力。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：它属于生成式医学影像主线，和 BrainIAC、Prima、SleepFM 形成互补：前者做表征和基础模型，这篇更偏纵向生成和疾病演化模拟。生成式领域既已纳入正式主线，这篇值得收。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：目前还是 arXiv 论文，应用场景集中在脑 MRI progression。它更像强方法论文，而不是会统一重排医学影像生成路线的工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：脑 MRI 纵向进展建模对神经退行性疾病理解和个体化预测很重要，但现有方法往往结构复杂，条件注入不足，且难以保证生成结果的解剖一致性。</p><p>方法/新意：这篇工作用 anatomically guided latent diffusion 建模脑 MRI 进展，在 latent 生成过程中显式引入解剖先验，而不是单靠后验约束去修正。目标是同时提升条件一致性、解剖合理性和长期进展建模能力。</p><p>意义/放在仓库中的位置：它属于生成式医学影像主线，和 BrainIAC、Prima、SleepFM 形成互补：前者做表征和基础模型，这篇更偏纵向生成和疾病演化模拟。生成式领域既已纳入正式主线，这篇值得收。</p><p>局限/为何不再升一级：目前还是 arXiv 论文，应用场景集中在脑 MRI progression。它更像强方法论文，而不是会统一重排医学影像生成路线的工作。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260121g2anatomic,
+  title = {Anatomically Guided Latent Diffusion for Brain MRI Progression Modeling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.14584v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g2-anatomically-guided-latent-diffusion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Anatomically Guided Latent Diffusion for Brain MRI Progression Modeling. https://arxiv.org/pdf/2601.14584v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.14584v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

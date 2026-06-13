@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是合成生物学和基因调控设计中的核心问题：如何系统地设计紧凑、细胞类型特异的调控元件。它不是把生成模型简单套到序列上，而是把生成式 AI 直接嵌入到 regulatory design workflow，并做了实验级验证。
+
+DNA-Diffusion 使用不同细胞系的 DNA accessibility 数据训练生成模型，直接产出 200bp 级别的合成调控元件。作者不仅检验了生成序" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio15-dna-diffusion-regulatory-design/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion" />
+    <meta property="og:description" content="这篇论文解决的是合成生物学和基因调控设计中的核心问题：如何系统地设计紧凑、细胞类型特异的调控元件。它不是把生成模型简单套到序列上，而是把生成式 AI 直接嵌入到 regulatory design workflow，并做了实验级验证。
+
+DNA-Diffusion 使用不同细胞系的 DNA accessibility 数据训练生成模型，直接产出 200bp 级别的合成调控元件。作者不仅检验了生成序" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio15-dna-diffusion-regulatory-design/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion" />
+    <meta name="twitter:description" content="这篇论文解决的是合成生物学和基因调控设计中的核心问题：如何系统地设计紧凑、细胞类型特异的调控元件。它不是把生成模型简单套到序列上，而是把生成式 AI 直接嵌入到 regulatory design workflow，并做了实验级验证。
+
+DNA-Diffusion 使用不同细胞系的 DNA accessibility 数据训练生成模型，直接产出 200bp 级别的合成调控元件。作者不仅检验了生成序" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-12-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-23</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41588-025-02441-6" target="_blank" rel="noopener noreferrer">10.1038/s41588-025-02441-6</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是合成生物学和基因调控设计中的核心问题：如何系统地设计紧凑、细胞类型特异的调控元件。它不是把生成模型简单套到序列上，而是把生成式 AI 直接嵌入到 regulatory design workflow，并做了实验级验证。</dd></div><div><dt>方法/机制</dt><dd>DNA-Diffusion 使用不同细胞系的 DNA accessibility 数据训练生成模型，直接产出 200bp 级别的合成调控元件。作者不仅检验了生成序列的转录因子结合语法和细胞类型特异性，还用大规模 STARR-seq 和 EXTRA-seq 验证了功能效果，甚至展示了对内源基因的调控。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为这是生成式 AI 在基因调控设计中的强工作流条目：模型、设计目标、实验验证和内源调控演示形成了完整闭环。相比很多“生成序列然后做少量验证”的论文，这篇更接近真正可复用的 biological design pattern。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为应用边界仍然集中在 regulatory element design，虽然外溢很强，但还没有到会重构更广泛生命科学基础模型路线的层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是合成生物学和基因调控设计中的核心问题：如何系统地设计紧凑、细胞类型特异的调控元件。它不是把生成模型简单套到序列上，而是把生成式 AI 直接嵌入到 regulatory design workflow，并做了实验级验证。</p><p>DNA-Diffusion 使用不同细胞系的 DNA accessibility 数据训练生成模型，直接产出 200bp 级别的合成调控元件。作者不仅检验了生成序列的转录因子结合语法和细胞类型特异性，还用大规模 STARR-seq 和 EXTRA-seq 验证了功能效果，甚至展示了对内源基因的调控。</p><p>它值得正式收录，是因为这是生成式 AI 在基因调控设计中的强工作流条目：模型、设计目标、实验验证和内源调控演示形成了完整闭环。相比很多“生成序列然后做少量验证”的论文，这篇更接近真正可复用的 biological design pattern。</p><p>它没有升到更高等级，是因为应用边界仍然集中在 regulatory element design，虽然外溢很强，但还没有到会重构更广泛生命科学基础模型路线的层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>系统性地设计调控元件以实现精确的基因表达控制，仍然是基因组学和合成生物学领域的核心挑战。在本文中，我们引入了DNA-Diffusion，这是一个生成式人工智能框架，它利用在来自不同细胞系的DNA可及性数据上训练的机器学习，来设计具有细胞类型特异性活性的紧凑型调控元件。我们展示了DNA-Diffusion能够生成200碱基对的合成元件，这些元件再现了内源性转录因子结合的语法，同时表现出增强的细胞类型特异性。我们使用一个包含5,850个元件的STARR-seq文库在三种细胞系中验证了这些元件。此外，我们利用EXTRA-seq成功实现了内源基因调控，在其天然基因组背景下重新激活了白血病保护基因AXIN2。我们的方法在平衡功能活性与细胞类型特异性方面优于现有计算方法，同时保持了序列多样性。这项工作确立了DNA-Diffusion作为一种强大的工具，用于工程化紧凑、高度特异性的调控元件，这对于推进基因疗法和理解基因调控至关重要。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Systematically designing regulatory elements for precise gene expression control remains a central challenge in genomics and synthetic biology. Here we introduce DNA-Diffusion, a generative artificial intelligence framework that uses machine learning trained on DNA accessibility data from diverse cell lines to design compact regulatory elements with cell-type-specific activity. We show that DNA-Diffusion generates 200-base-pair synthetic elements that recapitulate endogenous transcription factor binding grammar while exhibiting enhanced cell-type specificity. We validated these elements using a 5,850-element STARR-seq library across three cell lines. Moreover, we demonstrated successful endogenous gene modulation using EXTRA-seq, reactivating AXIN2 , a leukemia-protective gene, in its native genomic context. Our approach outperforms existing computational methods in balancing functional activity with cell-type specificity while maintaining sequence diversity. This work establishes DNA-Diffusion as a powerful tool for engineering compact, highly specific regulatory elements crucial for advancing gene therapies and understanding gene regulation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251223bio15dnadi,
+  title = {Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion},
+  year = {2025},
+  url = {https://doi.org/10.1038/s41588-025-02441-6},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio15-dna-diffusion-regulatory-design/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion. https://doi.org/10.1038/s41588-025-02441-6</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41588-025-02441-6" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

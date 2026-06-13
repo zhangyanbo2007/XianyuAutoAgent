@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>X-RAY: Mapping LLM Reasoning Capability via Formalized and Calibrated Probes | DAST Papers</title>
+    <meta name="description" content="当前大多数 reasoning evaluation 仍把任务正确率当作核心指标，但这类评测往往把 pattern matching、数据污染与真正的结构化推理能力混在一起。结果是模型在标准 benchmark 上看起来接近，却很难解释它们究竟在哪种结构变化下会失效。
+
+X-RAY 的核心贡献，是把 reasoning capability 建模为一组可抽取的结构属性，并用 formally ve" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i15-x-ray-reasoning-probes/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="X-RAY: Mapping LLM Reasoning Capability via Formalized and Calibrated Probes" />
+    <meta property="og:description" content="当前大多数 reasoning evaluation 仍把任务正确率当作核心指标，但这类评测往往把 pattern matching、数据污染与真正的结构化推理能力混在一起。结果是模型在标准 benchmark 上看起来接近，却很难解释它们究竟在哪种结构变化下会失效。
+
+X-RAY 的核心贡献，是把 reasoning capability 建模为一组可抽取的结构属性，并用 formally ve" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i15-x-ray-reasoning-probes/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="X-RAY: Mapping LLM Reasoning Capability via Formalized and Calibrated Probes" />
+    <meta name="twitter:description" content="当前大多数 reasoning evaluation 仍把任务正确率当作核心指标，但这类评测往往把 pattern matching、数据污染与真正的结构化推理能力混在一起。结果是模型在标准 benchmark 上看起来接近，却很难解释它们究竟在哪种结构变化下会失效。
+
+X-RAY 的核心贡献，是把 reasoning capability 建模为一组可抽取的结构属性，并用 formally ve" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>X-RAY: Mapping LLM Reasoning Capability via Formalized and Calibrated Probes</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-03-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05290" target="_blank" rel="noopener noreferrer">2603.05290</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前大多数 reasoning evaluation 仍把任务正确率当作核心指标，但这类评测往往把 pattern matching、数据污染与真正的结构化推理能力混在一起。结果是模型在标准 benchmark 上看起来接近，却很难解释它们究竟在哪种结构变化下会失效。</dd></div><div><dt>方法/机制</dt><dd>X-RAY 的核心贡献，是把 reasoning capability 建模为一组可抽取的结构属性，并用 formally verified、calibrated probes 去控制这些属性的微小变化。它不只是做一批新题，而是通过 constraint interaction、reasoning depth 和 solution-space geometry 等形式化维度，构造 contamination-free 的 probe family，从而把 reasoning failure 变成结构上可解释的对象。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作补的是 reasoning evaluation 的底层缺口。对本仓库来说，它的价值不在于再加一个更难 benchmark，而在于提供了一个能区分‘标准分数看不出来但结构脆弱性不同’的评测框架，这对 reasoning、alignment evaluation 和 model comparison 都有长期复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍处于早期框架阶段，外部采用与围绕该框架形成的方法潮流还没有建立。现阶段它更像一个很强的 evaluation primitive，而不是已经成为 reasoning 评测默认基座的事实标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前大多数 reasoning evaluation 仍把任务正确率当作核心指标，但这类评测往往把 pattern matching、数据污染与真正的结构化推理能力混在一起。结果是模型在标准 benchmark 上看起来接近，却很难解释它们究竟在哪种结构变化下会失效。</p><p>X-RAY 的核心贡献，是把 reasoning capability 建模为一组可抽取的结构属性，并用 formally verified、calibrated probes 去控制这些属性的微小变化。它不只是做一批新题，而是通过 constraint interaction、reasoning depth 和 solution-space geometry 等形式化维度，构造 contamination-free 的 probe family，从而把 reasoning failure 变成结构上可解释的对象。</p><p>它值得正式收录，因为这类工作补的是 reasoning evaluation 的底层缺口。对本仓库来说，它的价值不在于再加一个更难 benchmark，而在于提供了一个能区分‘标准分数看不出来但结构脆弱性不同’的评测框架，这对 reasoning、alignment evaluation 和 model comparison 都有长期复用价值。</p><p>它没有升到更高一级，是因为当前仍处于早期框架阶段，外部采用与围绕该框架形成的方法潮流还没有建立。现阶段它更像一个很强的 evaluation primitive，而不是已经成为 reasoning 评测默认基座的事实标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>X-RAY：通过形式化和校准探针映射LLM推理能力。大型语言模型（LLMs）取得了可喜的性能，但其推理能力仍知之甚少。现有评估主要强调任务级准确性，常常将模式匹配与推理能力混为一谈。我们提出了X-RAY，一个可解释的推理分析系统，它使用校准的、经过形式验证的探针来映射LLM的推理能力。我们将推理能力建模为可提取结构的函数，通过约束交互、推理深度和解空间几何等形式属性来实现。X-Ray通过具有受控结构变异的形式化工具生成探针，通过形式化校准和验证，实现对增量结构信息的精确分离。我们评估了数学、物理和化学领域从初级到高级问题的最先进LLMs。我们的分析揭示了LLM推理中系统性的不对称性：模型对约束细化（即附加条件缩小现有解空间）相对稳健，但在解空间重构（即修改改变解流形的底层结构形式）下性能急剧下降。此外，校准的形式化探针能够区分在标准基准测试中看似无法区分的模型，并揭示出结构上可解释而非不透明的故障模式。除了评估之外，我们的框架是无污染的，并支持推理模型的训练和测试。大型语言模型（LLMs）在广泛的推理基准测试中表现出令人印象深刻的性能，涵盖算术、符号操作和多步问题解决 [35, 42]。然而，这些结果留下了一个悬而未决的基本问题：这些模型实际拥有怎样的推理能力，以及其局限性在哪里？大多数现有评估 [17, 30, 37] 报告固定数据集上的任务级准确性，对模型如何泛化到未见实例或在更严苛条件下性能为何下降提供有限的洞察。因此，基准分数常常将结构化推理能力与模式匹配混为一谈，更多地充当排行榜而非衡量推理能力的工具。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) achieve promising performance, yet their ability to reason remains poorly understood. Existing evaluations largely emphasize task-level accuracy, often conflating pattern matching with reasoning capability. We present X-RAY, an explainable reasoning analysis system that maps the LLM reasoning capability using calibrated, formally verified probes. We model reasoning capability as a function of extractable structure, operationalized through formal properties such as constraint interaction, reasoning depth, and solution-space geometry. X-Ray generates probes via formal tools with controlled structural variations, enabling precise isolation of incremental structural information through formal calibration and verification. We evaluate state-of-the-art LLMs on problems ranging from junior-level to advanced in mathematics, physics, and chemistry. Our analysis reveals a systematic asymmetry in LLM reasoning: models are relatively robust to constraint refinement, where additional conditions shrink an existing solution space, but degrade sharply under solution-space restructuring, where modifications alter the underlying structural form of the solution manifold. Moreover, calibrated formal probes differentiate models that appear indistinguishable on standard benchmarks and reveal failure modes that are structurally interpretable rather than opaque. Beyond evaluation, our framework is contamination-free and supports the training and testing of reasoning models. Large language models (LLMs) have demonstrated impressive performance on a wide range of reasoning benchmarks, spanning arithmetic, symbolic manipulation, and multi-step problem solving [35, 42]. Yet these results leave a fundamental question unresolved: what reasoning capacity do these models actually possess, and where are its limits? Most existing evaluations [17, 30, 37] report task-level accuracy on fixed datasets, offering limited insight into how models generalize beyond seen instances or why performance degrades under more demanding conditions. As a result, benchmark scores often conflate structural reasoning ability with pattern matching, serving more as leaderboards than as instruments for measuring reasoning capacity.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260305i15xrayrea,
+  title = {X-RAY: Mapping LLM Reasoning Capability via Formalized and Calibrated Probes},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05290.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i15-x-ray-reasoning-probes/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). X-RAY: Mapping LLM Reasoning Capability via Formalized and Calibrated Probes. https://arxiv.org/pdf/2603.05290.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05290.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

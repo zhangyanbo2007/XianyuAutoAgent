@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STELLAR: Storage Tuning Engine Leveraging LLM Autonomous Reasoning for High Performance Parallel File Systems | DAST Papers</title>
+    <meta name="description" content="问题与背景：高性能并行文件系统调优长期依赖专家经验，参数空间复杂、人工成本高，对大多数科研用户不友好。把 LLM 直接用于系统调优，是 agentic AI 进入 HPC 基础设施的一条实用路线。
+
+方法/新意：STELLAR 构建了一个自治调优器，用 LLM 推理系统状态、选择参数配置，并在少数尝试内逼近近最优配置。其重点不只是让模型给建议，而是让模型进入真实并行存储系统的闭环决策。
+
+意义/放" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/sys4-stellar-file-system-tuning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="STELLAR: Storage Tuning Engine Leveraging LLM Autonomous Reasoning for High Performance Parallel File Systems" />
+    <meta property="og:description" content="问题与背景：高性能并行文件系统调优长期依赖专家经验，参数空间复杂、人工成本高，对大多数科研用户不友好。把 LLM 直接用于系统调优，是 agentic AI 进入 HPC 基础设施的一条实用路线。
+
+方法/新意：STELLAR 构建了一个自治调优器，用 LLM 推理系统状态、选择参数配置，并在少数尝试内逼近近最优配置。其重点不只是让模型给建议，而是让模型进入真实并行存储系统的闭环决策。
+
+意义/放" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/sys4-stellar-file-system-tuning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="STELLAR: Storage Tuning Engine Leveraging LLM Autonomous Reasoning for High Performance Parallel File Systems" />
+    <meta name="twitter:description" content="问题与背景：高性能并行文件系统调优长期依赖专家经验，参数空间复杂、人工成本高，对大多数科研用户不友好。把 LLM 直接用于系统调优，是 agentic AI 进入 HPC 基础设施的一条实用路线。
+
+方法/新意：STELLAR 构建了一个自治调优器，用 LLM 推理系统状态、选择参数配置，并在少数尝试内逼近近最优配置。其重点不只是让模型给建议，而是让模型进入真实并行存储系统的闭环决策。
+
+意义/放" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>STELLAR: Storage Tuning Engine Leveraging LLM Autonomous Reasoning for High Performance Parallel File Systems</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-02-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.23220" target="_blank" rel="noopener noreferrer">2602.23220</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：高性能并行文件系统调优长期依赖专家经验，参数空间复杂、人工成本高，对大多数科研用户不友好。把 LLM 直接用于系统调优，是 agentic AI 进入 HPC 基础设施的一条实用路线。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：STELLAR 构建了一个自治调优器，用 LLM 推理系统状态、选择参数配置，并在少数尝试内逼近近最优配置。其重点不只是让模型给建议，而是让模型进入真实并行存储系统的闭环决策。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这是 agentic systems / AI for infrastructure 的代表作，和 FlashAttention、AlphaEvolve 的系统侧价值形成互补。它说明 LLM agent 不只面向知识工作，也可以进入 HPC 基础设施调优。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：影响面目前主要在并行文件系统与系统调优，虽然实用性强，但学术外溢性不如更通用的 agentic science 或 model architecture 论文。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：高性能并行文件系统调优长期依赖专家经验，参数空间复杂、人工成本高，对大多数科研用户不友好。把 LLM 直接用于系统调优，是 agentic AI 进入 HPC 基础设施的一条实用路线。</p><p>方法/新意：STELLAR 构建了一个自治调优器，用 LLM 推理系统状态、选择参数配置，并在少数尝试内逼近近最优配置。其重点不只是让模型给建议，而是让模型进入真实并行存储系统的闭环决策。</p><p>意义/放在仓库中的位置：这是 agentic systems / AI for infrastructure 的代表作，和 FlashAttention、AlphaEvolve 的系统侧价值形成互补。它说明 LLM agent 不只面向知识工作，也可以进入 HPC 基础设施调优。</p><p>局限/为何不再升一级：影响面目前主要在并行文件系统与系统调优，虽然实用性强，但学术外溢性不如更通用的 agentic science 或 model architecture 论文。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>STELLAR：利用LLM自主推理实现高性能并行文件系统的存储调优引擎。I/O性能对于数据密集型科学计算的效率至关重要；但调优大规模存储系统复杂、成本高昂且众所周知地需要大量人力，这使得大多数领域科学家难以进行。为解决此问题，我们提出了STELLAR，一个用于高性能并行文件系统的自主调优器。我们的评估表明，STELLAR几乎总是在前五次尝试内为并行文件系统选择接近最优的配置，即使对于以前未见过的应用程序也是如此。STELLAR类人般的效率与现有自动调优方法截然不同，后者通常需要数十万次迭代才能收敛。STELLAR通过自主的端到端智能体调优实现这一点。在大型语言模型（LLMs）的驱动下，STELLAR能够（1）从软件手册中准确提取可调参数，（2）分析应用程序生成的I/O跟踪日志，（3）选择初始调优策略，（4）在真实系统上重新运行应用程序并收集I/O性能反馈，（5）调整调优策略并重复调优循环，以及（6）反思并总结调优经验，将其转化为可重用的知识以供未来优化。STELLAR集成了检索增强生成（RAG）、外部工具执行、基于LLM的推理以及多智能体设计，以稳定推理并对抗幻觉。我们评估了这些组件如何影响优化结果，从而为其他优化问题的类似系统设计提供了见解。STELLAR的架构和实证验证为解决复杂的系统优化挑战开辟了新途径，特别是那些以巨大搜索空间和高探索成本为特征的挑战。其高效的自主调优将以最少的额外资源投入，拓宽领域科学家对I/O性能优化的使用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>I/O performance is crucial to efficiency in data-intensive scientific computing; but tuning large-scale storage systems is complex, costly, and notoriously manpower-intensive, making it inaccessible for most domain scientists. To address this problem, we propose STELLAR, an autonomous tuner for high-performance parallel file systems. Our evaluations show that STELLAR almost always selects near-optimal configurations for the parallel file systems within the first five attempts, even for previously unseen applications. STELLAR’s human-like efficiency is fundamentally different from existing autotuning methods, which often require hundreds of thousands of iterations to converge. STELLAR achieves this through autonomous end-to-end agentic tuning. Powered by large language models (LLMs), STELLAR is capable of (1) accurately extracting tunable parameters from software manuals, (2) analyzing I/O trace logs generated by applications, (3) selecting initial tuning strategies, (4) rerunning applications on real systems and collecting I/O performance feedback, (5) adjusting tuning strategies and repeating the tuning cycle, and (6) reflecting on and summarizing tuning experiences into reusable knowledge for future optimizations. STELLAR integrates retrieval-augmented generation (RAG), external tool execution, LLM-based reasoning, and a multiagent design to stabilize reasoning and combat hallucinations. We evaluate how each of these components impacts optimization outcomes, thus providing insight into the design of similar systems for other optimization problems. STELLAR’s architecture and empirical validation open new avenues for tackling complex system optimization challenges, especially those characterized by vast search spaces and high exploration costs. Its highly efficient autonomous tuning will broaden access to I/O performance optimizations for domain scientists with minimal additional resource investment.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260226sys4stella,
+  title = {STELLAR: Storage Tuning Engine Leveraging LLM Autonomous Reasoning for High Performance Parallel File Systems},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.23220v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/sys4-stellar-file-system-tuning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). STELLAR: Storage Tuning Engine Leveraging LLM Autonomous Reasoning for High Performance Parallel File Systems. https://arxiv.org/pdf/2602.23220v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.23220v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

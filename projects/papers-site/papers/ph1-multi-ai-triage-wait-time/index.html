@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A Quantitative Framework to Predict Wait-Time Impacts Due to AI-Triage Devices in a Multi-AI, Multi-Disease Workflow | DAST Papers</title>
+    <meta name="description" content="随着临床工作流中同时部署多种 AI triage 设备，系统级运营问题开始变得比单模型指标更重要。很多研究只报告某个 AI 对目标疾病的 time-to-read 改善，却缺乏对多病种、多优先级和多设备叠加后整体 wait-time 结构性影响的分析。作者把这个问题明确建模为 multi-AI, multi-disease clinical workflow 的定量评估问题。
+
+论文提出 mult" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/ph1-multi-ai-triage-wait-time/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A Quantitative Framework to Predict Wait-Time Impacts Due to AI-Triage Devices in a Multi-AI, Multi-Disease Workflow" />
+    <meta property="og:description" content="随着临床工作流中同时部署多种 AI triage 设备，系统级运营问题开始变得比单模型指标更重要。很多研究只报告某个 AI 对目标疾病的 time-to-read 改善，却缺乏对多病种、多优先级和多设备叠加后整体 wait-time 结构性影响的分析。作者把这个问题明确建模为 multi-AI, multi-disease clinical workflow 的定量评估问题。
+
+论文提出 mult" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/ph1-multi-ai-triage-wait-time/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A Quantitative Framework to Predict Wait-Time Impacts Due to AI-Triage Devices in a Multi-AI, Multi-Disease Workflow" />
+    <meta name="twitter:description" content="随着临床工作流中同时部署多种 AI triage 设备，系统级运营问题开始变得比单模型指标更重要。很多研究只报告某个 AI 对目标疾病的 time-to-read 改善，却缺乏对多病种、多优先级和多设备叠加后整体 wait-time 结构性影响的分析。作者把这个问题明确建模为 multi-AI, multi-disease clinical workflow 的定量评估问题。
+
+论文提出 mult" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A Quantitative Framework to Predict Wait-Time Impacts Due to AI-Triage Devices in a Multi-AI, Multi-Disease Workflow</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2025-10-31</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-31</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.27104" target="_blank" rel="noopener noreferrer">2510.27104</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着临床工作流中同时部署多种 AI triage 设备，系统级运营问题开始变得比单模型指标更重要。很多研究只报告某个 AI 对目标疾病的 time-to-read 改善，却缺乏对多病种、多优先级和多设备叠加后整体 wait-time 结构性影响的分析。作者把这个问题明确建模为 multi-AI, multi-disease clinical workflow 的定量评估问题。</dd></div><div><dt>方法/机制</dt><dd>论文提出 multi-QuCAD 框架，将 queueing theory 和 workflow simulation 结合起来，显式建模疾病患病率、医生阅读时间、AI 性能、preemptive 与 non-preemptive scheduling 以及 priority/hierarchical triage protocol 等因素。其关键发现是：某些 AI triage 设备虽然显著缩短了目标病例等待时间，却可能系统性推迟其他同样紧急但未被该模型覆盖的病例。也就是说，它测量的是 deployment externality，而不是单个 AI 的局部收益。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这篇论文真正进入了医疗运营与 clinical AI orchestration 的难题：多 AI 系统如何一起部署而不伤害整体流程。对仓库来说，这类工作比单一医疗 benchmark 更有长期价值，因为它提供了一个面向真实医院工作流的 deployment evaluation interface。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是当前主要聚焦 radiology triage workflow，且仍是 preprint。它的方法框架很有外溢，但需要在更多临床科室、更多设备组合和真实部署案例中进一步验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着临床工作流中同时部署多种 AI triage 设备，系统级运营问题开始变得比单模型指标更重要。很多研究只报告某个 AI 对目标疾病的 time-to-read 改善，却缺乏对多病种、多优先级和多设备叠加后整体 wait-time 结构性影响的分析。作者把这个问题明确建模为 multi-AI, multi-disease clinical workflow 的定量评估问题。</p><p>论文提出 multi-QuCAD 框架，将 queueing theory 和 workflow simulation 结合起来，显式建模疾病患病率、医生阅读时间、AI 性能、preemptive 与 non-preemptive scheduling 以及 priority/hierarchical triage protocol 等因素。其关键发现是：某些 AI triage 设备虽然显著缩短了目标病例等待时间，却可能系统性推迟其他同样紧急但未被该模型覆盖的病例。也就是说，它测量的是 deployment externality，而不是单个 AI 的局部收益。</p><p>它值得正式收录，因为这篇论文真正进入了医疗运营与 clinical AI orchestration 的难题：多 AI 系统如何一起部署而不伤害整体流程。对仓库来说，这类工作比单一医疗 benchmark 更有长期价值，因为它提供了一个面向真实医院工作流的 deployment evaluation interface。</p><p>它暂时还不到更高一级，原因是当前主要聚焦 radiology triage workflow，且仍是 preprint。它的方法框架很有外溢，但需要在更多临床科室、更多设备组合和真实部署案例中进一步验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>放射科中多个人工智能分诊设备的部署迅速增长，然而，其对不同疾病条件下患者等待时间的累积影响仍知之甚少。本研究开发了一个全面的数学和模拟框架，以量化当多个AI分诊设备在临床工作流程中同时运行时，等待时间上的权衡。我们创建了multi-QuCAD，这是一个软件工具，它利用排队论原理，结合真实的临床参数，包括疾病患病率、放射科医生阅片时间以及FDA批准设备的人工智能性能特征，对复杂的多AI、多疾病场景进行建模。该框架通过四种实验场景进行了验证，这些场景涵盖了从简单的双疾病工作流程到复杂的九疾病系统，并比较了抢占式与非抢占式调度策略以及优先级与分层分诊协议。对脑部影像工作流程的分析表明，虽然AI分诊设备显著减少了目标疾病的等待时间，但它们可能会大幅延迟非目标但紧急疾病的诊断。研究表明，与优先级协议相比，分层协议通常能为最高优先级疾病节省更多等待时间，但代价是会给患有其他时间敏感疾病的较低优先级患者带来更多延迟。所提出的量化框架为协调多AI部署提供了重要见解，以最大限度地提高患者整体时间节省效益，同时最大限度地减少对其他重要患者群体造成的意外延迟。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The deployment of multiple AI-triage devices in radiology departments has grown rapidly, yet the cumulative impact on patient wait-times across different disease conditions remains poorly understood. This research develops a comprehensive mathematical and simulation framework to quantify wait-time trade-offs when multiple AI-triage devices operate simultaneously in a clinical workflow. We created multi-QuCAD, a software tool that models complex multi-AI, multi-disease scenarios using queueing theory principles, incorporating realistic clinical parameters including disease prevalence rates, radiologist reading times, and AI performance characteristics from FDA-cleared devices. The framework was verified through four experimental scenarios ranging from simple two-disease workflows to complex nine-disease systems, comparing preemptive versus non-preemptive scheduling disciplines and priority versus hierarchical triage protocols. Analysis of brain imaging workflows demonstrated that while AI-triage devices significantly reduce wait-times for target conditions, they can substantially delay diagnosis of non-targeted, yet urgent conditions. The study revealed that hierarchical protocol generally provides more wait-time savings for the highest-priority conditions compared to the priority protocol, though at the expense of more delays to lowerpriority patients with other time-sensitive conditions. The quantitative framework presented provides essential insights for orchestrating multi-AI deployments to maximize overall patient time-saving benefits while minimizing unintended delay for other important patient populations.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251031ph1multiai,
+  title = {A Quantitative Framework to Predict Wait-Time Impacts Due to AI-Triage Devices in a Multi-AI, Multi-Disease Workflow},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.27104.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/ph1-multi-ai-triage-wait-time/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). A Quantitative Framework to Predict Wait-Time Impacts Due to AI-Triage Devices in a Multi-AI, Multi-Disease Workflow. https://arxiv.org/pdf/2510.27104.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med7-physicianbench-ehr-agents/">
+              <span>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med6-fair-unlearning-clinical-ai/">
+              <span>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med5-gsco-generalist-specialist-collaboration/">
+              <span>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</span>
+              <small>公共卫生与医疗运营 · 2026-05-01</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.27104.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

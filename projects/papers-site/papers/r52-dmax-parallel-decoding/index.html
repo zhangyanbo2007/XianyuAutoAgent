@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DMax: Aggressive Parallel Decoding for dLLMs | DAST Papers</title>
+    <meta name="description" content="diffusion language models 一直有并行生成潜力，但真正把 decoding parallelism 开大时，模型很容易因为错误累积而迅速掉质，因此很多实现只能保守地换一点吞吐，换不来真正激进的推理加速。问题不在于 dLLM 没有并行性，而在于现有 decoding 形式太脆弱。
+
+DMax 的推进在于把 dLLM 的解码从简单的 mask-to-token 过渡，改写成从 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r52-dmax-parallel-decoding/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="DMax: Aggressive Parallel Decoding for dLLMs" />
+    <meta property="og:description" content="diffusion language models 一直有并行生成潜力，但真正把 decoding parallelism 开大时，模型很容易因为错误累积而迅速掉质，因此很多实现只能保守地换一点吞吐，换不来真正激进的推理加速。问题不在于 dLLM 没有并行性，而在于现有 decoding 形式太脆弱。
+
+DMax 的推进在于把 dLLM 的解码从简单的 mask-to-token 过渡，改写成从 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r52-dmax-parallel-decoding/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="DMax: Aggressive Parallel Decoding for dLLMs" />
+    <meta name="twitter:description" content="diffusion language models 一直有并行生成潜力，但真正把 decoding parallelism 开大时，模型很容易因为错误累积而迅速掉质，因此很多实现只能保守地换一点吞吐，换不来真正激进的推理加速。问题不在于 dLLM 没有并行性，而在于现有 decoding 形式太脆弱。
+
+DMax 的推进在于把 dLLM 的解码从简单的 mask-to-token 过渡，改写成从 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>DMax: Aggressive Parallel Decoding for dLLMs</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08302" target="_blank" rel="noopener noreferrer">2604.08302</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>diffusion language models 一直有并行生成潜力，但真正把 decoding parallelism 开大时，模型很容易因为错误累积而迅速掉质，因此很多实现只能保守地换一点吞吐，换不来真正激进的推理加速。问题不在于 dLLM 没有并行性，而在于现有 decoding 形式太脆弱。</dd></div><div><dt>方法/机制</dt><dd>DMax 的推进在于把 dLLM 的解码从简单的 mask-to-token 过渡，改写成从 mask embedding 到 token embedding 的渐进式自修正过程。围绕这个接口，论文给出 On-Policy Uniform Training 去统一 masked / uniform dLLM 的训练分布，再配合 Soft Parallel Decoding，让中间状态能在 embedding space 中持续纠偏，从而支持更激进的并行解码而不明显牺牲质量。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是单个模型上的 speed hack，而是在 diffusion language model 上提出了更耐用的 decoding interface。对 dLLM 的训练组织、推理吞吐和未来生成接口设计，这种把并行生成和自修正结合起来的方式有可复用的方法价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前证据仍主要集中在 dLLM 这条生成范式内部，虽然对该方向很重要，但还没有证明会外溢成更普遍的生成推理标准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>diffusion language models 一直有并行生成潜力，但真正把 decoding parallelism 开大时，模型很容易因为错误累积而迅速掉质，因此很多实现只能保守地换一点吞吐，换不来真正激进的推理加速。问题不在于 dLLM 没有并行性，而在于现有 decoding 形式太脆弱。</p><p>DMax 的推进在于把 dLLM 的解码从简单的 mask-to-token 过渡，改写成从 mask embedding 到 token embedding 的渐进式自修正过程。围绕这个接口，论文给出 On-Policy Uniform Training 去统一 masked / uniform dLLM 的训练分布，再配合 Soft Parallel Decoding，让中间状态能在 embedding space 中持续纠偏，从而支持更激进的并行解码而不明显牺牲质量。</p><p>它值得正式收录，因为这不是单个模型上的 speed hack，而是在 diffusion language model 上提出了更耐用的 decoding interface。对 dLLM 的训练组织、推理吞吐和未来生成接口设计，这种把并行生成和自修正结合起来的方式有可复用的方法价值。</p><p>它暂时不升到更高一级，原因在于当前证据仍主要集中在 dLLM 这条生成范式内部，虽然对该方向很重要，但还没有证明会外溢成更普遍的生成推理标准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了DMax，一种用于高效扩散语言模型（dLLMs）的新范式。它减轻了并行解码中的错误累积，实现了激进的解码并行性，同时保持了生成质量。与通过二元掩码到令牌转换进行解码的传统掩码dLLMs不同，DMax将解码重新定义为从掩码嵌入到令牌嵌入的渐进式自完善。我们方法的核心是“策略内统一训练”（On-Policy Uniform Training），这是一种新颖的训练策略，它有效地统一了掩码dLLMs和统一dLLMs，使模型能够从掩码输入及其自身的错误预测中恢复干净的令牌。在此基础上，我们进一步提出了“软并行解码”（Soft Parallel Decoding）。我们将每个中间解码状态表示为预测令牌嵌入和掩码嵌入之间的插值，从而实现在嵌入空间中的迭代自修正。在各种基准测试中进行的广泛实验证明了DMax的有效性。与原始LLaDA-2.0-mini相比，我们的方法在GSM8K上将TPF从2.04提高到5.47，同时保持了准确性。在MBPP上，它将TPF从2.71增加到5.86，同时保持了可比的性能。在两块H200 GPU上，我们的模型在批处理大小为1时实现了平均1,338 TPS。代码可在以下网址获取：https://github.com/czg1225/DMax LLaDA-2.0-mini。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present DMax, a new paradigm for efficient diffusion language models (dLLMs). It mitigates error accumulation in parallel decoding, enabling aggressive decoding parallelism while preserving generation quality. Unlike conventional masked dLLMs that decode through a binary mask-to-token transition, DMax reformulates decoding as a progressive self-refinement from mask embeddings to token embeddings. At the core of our approach is On-Policy Uniform Training, a novel training strategy that efficiently unifies masked and uniform dLLMs, equipping the model to recover clean tokens from both masked inputs and its own erroneous predictions. Building on this foundation, we further propose Soft Parallel Decoding. We represent each intermediate decoding state as an interpolation between the predicted token embedding and the mask embedding, enabling iterative self-revising in embedding space. Extensive experiments across a variety of benchmarks demonstrate the effectiveness of DMax. Compared with the original LLaDA-2.0-mini, our method improves TPF on GSM8K from 2.04 to 5.47 while preserving accuracy. On MBPP, it increases TPF from 2.71 to 5.86 while maintaining comparable performance. On two H200 GPUs, our model achieves an average of 1,338 TPS at batch size 1. Code is available at: https://github.com/czg1225/DMax LLaDA-2.0-mini</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409r52dmaxpar,
+  title = {DMax: Aggressive Parallel Decoding for dLLMs},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08302.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r52-dmax-parallel-decoding/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). DMax: Aggressive Parallel Decoding for dLLMs. https://arxiv.org/pdf/2604.08302.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08302.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

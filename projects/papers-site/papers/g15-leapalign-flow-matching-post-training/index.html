@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LeapAlign: Post-Training Flow Matching Models at Any Generation Step by Building Two-Step Trajectories | DAST Papers</title>
+    <meta name="description" content="LeapAlign 解决 flow matching / diffusion 后训练的核心瓶颈：奖励梯度沿完整生成轨迹反传会导致显存成本高、梯度爆炸，并且难以有效更新早期步骤，而早期步骤恰恰决定全局构图。
+
+方法把长 ODE trajectory 压缩成两个连续 leap：每个 leap 跳过多个采样步并预测未来 latent。通过随机化起止 timestep、按与完整轨迹一致性加权、对大幅梯度项" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g15-leapalign-flow-matching-post-training/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LeapAlign: Post-Training Flow Matching Models at Any Generation Step by Building Two-Step Trajectories" />
+    <meta property="og:description" content="LeapAlign 解决 flow matching / diffusion 后训练的核心瓶颈：奖励梯度沿完整生成轨迹反传会导致显存成本高、梯度爆炸，并且难以有效更新早期步骤，而早期步骤恰恰决定全局构图。
+
+方法把长 ODE trajectory 压缩成两个连续 leap：每个 leap 跳过多个采样步并预测未来 latent。通过随机化起止 timestep、按与完整轨迹一致性加权、对大幅梯度项" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g15-leapalign-flow-matching-post-training/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LeapAlign: Post-Training Flow Matching Models at Any Generation Step by Building Two-Step Trajectories" />
+    <meta name="twitter:description" content="LeapAlign 解决 flow matching / diffusion 后训练的核心瓶颈：奖励梯度沿完整生成轨迹反传会导致显存成本高、梯度爆炸，并且难以有效更新早期步骤，而早期步骤恰恰决定全局构图。
+
+方法把长 ODE trajectory 压缩成两个连续 leap：每个 leap 跳过多个采样步并预测未来 latent。通过随机化起止 timestep、按与完整轨迹一致性加权、对大幅梯度项" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LeapAlign: Post-Training Flow Matching Models at Any Generation Step by Building Two-Step Trajectories</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.15311" target="_blank" rel="noopener noreferrer">2604.15311</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LeapAlign 解决 flow matching / diffusion 后训练的核心瓶颈：奖励梯度沿完整生成轨迹反传会导致显存成本高、梯度爆炸，并且难以有效更新早期步骤，而早期步骤恰恰决定全局构图。</dd></div><div><dt>方法/机制</dt><dd>方法把长 ODE trajectory 压缩成两个连续 leap：每个 leap 跳过多个采样步并预测未来 latent。通过随机化起止 timestep、按与完整轨迹一致性加权、对大幅梯度项降权，模型可以在任意生成阶段进行更稳定的 preference fine-tuning。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它为 flow matching 模型的 post-training 提供了可复用训练 primitive。随着图像/视频生成从 diffusion 走向 flow matching，如何高效对齐早期结构步骤会成为高价值系统问题。</dd></div><div><dt>收录价值</dt><dd>限制是目前验证主要在 Flux 图像生成上，是否能稳定扩展到视频、3D、音频或更长生成轨迹仍需进一步实验；同时 reward model 偏差仍会直接影响对齐方向。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LeapAlign 解决 flow matching / diffusion 后训练的核心瓶颈：奖励梯度沿完整生成轨迹反传会导致显存成本高、梯度爆炸，并且难以有效更新早期步骤，而早期步骤恰恰决定全局构图。</p><p>方法把长 ODE trajectory 压缩成两个连续 leap：每个 leap 跳过多个采样步并预测未来 latent。通过随机化起止 timestep、按与完整轨迹一致性加权、对大幅梯度项降权，模型可以在任意生成阶段进行更稳定的 preference fine-tuning。</p><p>收录价值在于它为 flow matching 模型的 post-training 提供了可复用训练 primitive。随着图像/视频生成从 diffusion 走向 flow matching，如何高效对齐早期结构步骤会成为高价值系统问题。</p><p>限制是目前验证主要在 Flux 图像生成上，是否能稳定扩展到视频、3D、音频或更长生成轨迹仍需进一步实验；同时 reward model 偏差仍会直接影响对齐方向。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>本文重点关注流匹配模型与人类偏好的对齐。一种有前景的方法是通过流匹配的可微分生成过程直接反向传播奖励梯度进行微调。然而，通过长轨迹反向传播会导致高昂的内存成本和梯度爆炸。因此，直接梯度方法难以更新早期生成步骤，而这些步骤对于确定最终图像的全局结构至关重要。为了解决这个问题，我们引入了LeapAlign，这是一种微调方法，它降低了计算成本，并实现了从奖励到早期生成步骤的直接梯度传播。具体来说，我们通过设计两个连续的跳跃，将长轨迹缩短为仅两步，每个跳跃都跳过多个ODE采样步骤并在一步中预测未来的潜在变量。通过随机化跳跃的起始和结束时间步，LeapAlign可以在任何生成步骤实现高效稳定的模型更新。为了更好地利用这些缩短的轨迹，我们为那些与长生成路径更一致的轨迹分配更高的训练权重。为了进一步增强梯度稳定性，我们减少了具有大梯度的梯度项的权重，而不是像以前的工作那样完全移除它们。在微调Flux模型时，LeapAlign在各种指标上始终优于最先进的基于GRPO和直接梯度方法，实现了卓越的图像质量和图像-文本对齐。日期：2026年4月17日 通讯：陶阳 (yangtao.mry@bytedance.com), 郑亮 (liang.zheng@anu.edu.au), 和</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This paper focuses on the alignment of flow matching models with human preferences. A promising way is fine-tuning by directly backpropagating reward gradients through the differentiable generation process of flow matching. However, backpropagating through long trajectories results in prohibitive memory costs and gradient explosion. Therefore, direct-gradient methods struggle to update early generation steps, which are crucial for determining the global structure of the final image. To address this issue, we introduce LeapAlign, a fine-tuning method that reduces computational cost and enables direct gradient propagation from reward to early generation steps. Specifically, we shorten the long trajectory into only two steps by designing two consecutive leaps, each skipping multiple ODE sampling steps and predicting future latents in a single step. By randomizing the start and end timesteps of the leaps, LeapAlign leads to efficient and stable model updates at any generation step. To better use such shortened trajectories, we assign higher training weights to those that are more consistent with the long generation path. To further enhance gradient stability, we reduce the weights of gradient terms with large magnitude, instead of completely removing them as done in previous works. When fine-tuning the Flux model, LeapAlign consistently outperforms state-of-the-art GRPO-based and direct-gradient methods across various metrics, achieving superior image quality and image–text alignment. Date: April 17, 2026 Correspondence: Tao Yang (yangtao.mry@bytedance.com), Liang Zheng (liang.zheng@anu.edu.au), and</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416g15leapali,
+  title = {LeapAlign: Post-Training Flow Matching Models at Any Generation Step by Building Two-Step Trajectories},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.15311.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g15-leapalign-flow-matching-post-training/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LeapAlign: Post-Training Flow Matching Models at Any Generation Step by Building Two-Step Trajectories. https://arxiv.org/pdf/2604.15311.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.15311.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

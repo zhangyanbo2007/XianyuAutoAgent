@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution | DAST Papers</title>
+    <meta name="description" content="RankE 针对 discrete text-to-image generation 的后训练问题：如果只优化离散 token 生成器，decoder 的表达边界会限制最终图像质量和偏好对齐。
+
+论文提出 decoder co-evolution，让后训练同时影响离散生成和解码路径，形成更端到端的偏好优化流程。
+
+这对离散视觉 tokenizer、图像生成后训练和多模态生成架构都有溢出，因为它把 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g26-ranke-discrete-t2i-decoder-co-evolution/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution" />
+    <meta property="og:description" content="RankE 针对 discrete text-to-image generation 的后训练问题：如果只优化离散 token 生成器，decoder 的表达边界会限制最终图像质量和偏好对齐。
+
+论文提出 decoder co-evolution，让后训练同时影响离散生成和解码路径，形成更端到端的偏好优化流程。
+
+这对离散视觉 tokenizer、图像生成后训练和多模态生成架构都有溢出，因为它把 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g26-ranke-discrete-t2i-decoder-co-evolution/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution" />
+    <meta name="twitter:description" content="RankE 针对 discrete text-to-image generation 的后训练问题：如果只优化离散 token 生成器，decoder 的表达边界会限制最终图像质量和偏好对齐。
+
+论文提出 decoder co-evolution，让后训练同时影响离散生成和解码路径，形成更端到端的偏好优化流程。
+
+这对离散视觉 tokenizer、图像生成后训练和多模态生成架构都有溢出，因为它把 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21195" target="_blank" rel="noopener noreferrer">2605.21195</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>RankE 针对 discrete text-to-image generation 的后训练问题：如果只优化离散 token 生成器，decoder 的表达边界会限制最终图像质量和偏好对齐。</dd></div><div><dt>方法/机制</dt><dd>论文提出 decoder co-evolution，让后训练同时影响离散生成和解码路径，形成更端到端的偏好优化流程。</dd></div><div><dt>结果/证据</dt><dd>这对离散视觉 tokenizer、图像生成后训练和多模态生成架构都有溢出，因为它把 decoder 从固定后处理模块提升为可共同优化对象。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它改变了离散 T2I 后训练的优化边界，是生成模型系统中可复用的训练范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>RankE 针对 discrete text-to-image generation 的后训练问题：如果只优化离散 token 生成器，decoder 的表达边界会限制最终图像质量和偏好对齐。</p><p>论文提出 decoder co-evolution，让后训练同时影响离散生成和解码路径，形成更端到端的偏好优化流程。</p><p>这对离散视觉 tokenizer、图像生成后训练和多模态生成架构都有溢出，因为它把 decoder 从固定后处理模块提升为可共同优化对象。</p><p>它值得正式收录，因为它改变了离散 T2I 后训练的优化边界，是生成模型系统中可复用的训练范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>离散自回归（AR）文本到图像（T2I）模型将VQ分词器与AR策略配对，而当前的后训练流程仅优化策略，同时保持VQ解码器冻结。最近以REPAE为代表的扩散T2I工作表明，VAE本身构成了关键的对齐瓶颈，但对于离散AR模型尚无类似的研究。我们表明，仅优化策略会导致潜在协变量偏移：随着策略的演变，生成的token分布偏离了解码器训练所依据的真实分布，导致奖励分数提高而解码图像质量下降。为了解决这种不匹配，我们提出了RankE，这是第一个用于离散T2I生成的端到端后训练框架。RankE不是针对固定解码器优化策略，而是通过交替优化共同演化这两个组件：每个模块最大化一个基于排名的对齐目标，同时受到一个适合其参数空间的稳定性保持锚点的正则化。这种共同演化打破了困扰冻结解码器方法的保真度-对齐权衡：在LlamaGen-XL (775M)上，标准RL提高了CLIP但降低了FID，而RankE同时提高了两者（在MSCOCO 30K上FID 15.21，CLIP 33.76）。在Janus-Pro (1B)上的一致增益证实，解码器共同演化能够可靠地将奖励优化转化为像素空间质量的提升。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Discrete autoregressive (AR) text-to-image (T2I) models pair a VQ tokenizer with an AR policy, and current post-training pipelines optimize only the policy while keeping the VQ decoder frozen. Recent diffusion T2I work, exemplified by REPAE, has shown that the VAE itself constitutes a key alignment bottleneck, yet no analogous investigation exists for discrete AR models. We show that policy-only optimization induces Latent Covariate Shift: as the policy evolves, the resulting token distribution diverges from the ground-truth distribution on which the decoder was trained, such that reward scores improve while decoded image quality degrades. To address this mismatch, we propose RankE, the first end-to-end post-training framework for discrete T2I generation. Rather than optimizing the policy against a fixed decoder, RankE co-evolves both components through alternating optimization: each module maximizes a ranking-based alignment objective while being regularized by a stability-preserving anchor suited to its parameter space. This co-evolution breaks the fidelity–alignment trade-off that plagues frozen-decoder approaches: on LlamaGen-XL (775M), standard RL improves CLIP but degrades FID, whereas RankE improves both simultaneously (FID 15.21, CLIP 33.76 on MSCOCO 30K). Consistent gains on Janus-Pro (1B) confirm that decoder co-evolution reliably converts reward optimization into pixel-space quality improvements.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520g26rankedi,
+  title = {RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21195.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g26-ranke-discrete-t2i-decoder-co-evolution/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RankE: End-to-End Post-Training for Discrete Text-to-Image Generation with Decoder Co-Evolution. https://arxiv.org/pdf/2605.21195.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21195.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.21195" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

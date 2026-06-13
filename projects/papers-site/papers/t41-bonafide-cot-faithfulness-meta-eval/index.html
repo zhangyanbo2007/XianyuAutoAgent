@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 CoT 审计中的核心假设：已有 faithfulness metrics 是否真的测量了推理链是否反映模型计算过程。
+
+作者构造能从输出反推必要中间计算的任务，并建立自动标注流程，得到 step-level 和 CoT-level ground-truth faithfulness labels。
+
+BonaFide benchmark 包含 13 个任务、10 个模型和 3,066" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t41-bonafide-cot-faithfulness-meta-eval/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth" />
+    <meta property="og:description" content="这篇论文针对 CoT 审计中的核心假设：已有 faithfulness metrics 是否真的测量了推理链是否反映模型计算过程。
+
+作者构造能从输出反推必要中间计算的任务，并建立自动标注流程，得到 step-level 和 CoT-level ground-truth faithfulness labels。
+
+BonaFide benchmark 包含 13 个任务、10 个模型和 3,066" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t41-bonafide-cot-faithfulness-meta-eval/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth" />
+    <meta name="twitter:description" content="这篇论文针对 CoT 审计中的核心假设：已有 faithfulness metrics 是否真的测量了推理链是否反映模型计算过程。
+
+作者构造能从输出反推必要中间计算的任务，并建立自动标注流程，得到 step-level 和 CoT-level ground-truth faithfulness labels。
+
+BonaFide benchmark 包含 13 个任务、10 个模型和 3,066" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-05-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.25052" target="_blank" rel="noopener noreferrer">2605.25052</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 CoT 审计中的核心假设：已有 faithfulness metrics 是否真的测量了推理链是否反映模型计算过程。</dd></div><div><dt>方法/机制</dt><dd>作者构造能从输出反推必要中间计算的任务，并建立自动标注流程，得到 step-level 和 CoT-level ground-truth faithfulness labels。</dd></div><div><dt>结果/证据</dt><dd>BonaFide benchmark 包含 13 个任务、10 个模型和 3,066 条标注 CoTs；系统评估显示多数现有指标接近随机、有强预测偏差，并在长 CoT 上退化。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提供了 CoT faithfulness 度量的 ground-truth meta-evaluation，直接影响 reasoning model interpretability、安全审计和链式思维监控。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 CoT 审计中的核心假设：已有 faithfulness metrics 是否真的测量了推理链是否反映模型计算过程。</p><p>作者构造能从输出反推必要中间计算的任务，并建立自动标注流程，得到 step-level 和 CoT-level ground-truth faithfulness labels。</p><p>BonaFide benchmark 包含 13 个任务、10 个模型和 3,066 条标注 CoTs；系统评估显示多数现有指标接近随机、有强预测偏差，并在长 CoT 上退化。</p><p>它值得正式收录，因为它提供了 CoT faithfulness 度量的 ground-truth meta-evaluation，直接影响 reasoning model interpretability、安全审计和链式思维监控。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>思维链（CoT）已成为解释和审计大型语言模型行为的核心。然而，越来越多的证据表明，这些轨迹往往未能忠实地代表模型预测背后的计算过程。已经提出了几种忠实度指标，但它们是否真正衡量了忠实度仍然未知。回答这个问题需要真实标签，而由于内部计算不可直接观察，这些标签很难获得。因此，大多数提出指标的工作只报告绝对分数或与先前指标的比较，少数现有基准依赖于诸如合理性或重要性等代理指标，这些属性与忠实度正交，可能误导人们对CoT是否可信的判断。我们通过构建任务来解决这一挑战，这些任务的输出揭示了哪些中间计算必须产生了它们，并开发了一个自动化标注流水线，可在步骤和CoT级别生成真实忠实度标签。基于这种方法，我们提出了B ONA F IDE，一个包含13个任务和10个模型的3,066个标注CoT的基准，并用它进行了首次对主要忠实度指标的系统评估。我们的实验表明，大多数指标表现接近随机，表现出强烈的预测偏差，并在较长的CoT上性能下降。最佳指标在CoT级别仅达到0.70 AUROC，而另一个在步骤级别达到0.59，两者都无法跨设置迁移，同时带来过高的计算成本。我们的结果揭示了当前忠实度评估中的根本性缺陷，并呼吁开发更可靠和高效的指标。github.com/BonaFide huggingface.co/BonaFide</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Chains of thought (CoTs) have become central in interpreting and auditing behaviors of large language models. Yet growing evidence suggests that these traces often fail to faithfully represent the computations behind a model’s predictions. Several faithfulness metrics have been proposed, but whether they indeed measure faithfulness remains unknown. Answering this requires ground-truth labels, which are hard to obtain since internal computations are not directly observable. Consequently, most works proposing metrics report only absolute scores or comparisons to prior metrics, and the few existing benchmarks rely on proxies like plausibility or importance, properties orthogonal to faithfulness that can mislead about whether a CoT can be trusted. We address this challenge by constructing tasks whose outputs reveal which intermediate computations must have produced them, and developing an automated labeling pipeline that yields ground-truth faithfulness labels at both the step and CoT level. Building on this methodology, we present B ONA F IDE, a benchmark of 3,066 labeled CoTs across 13 tasks and 10 models, and use it to conduct the first systematic evaluation of prominent faithfulness metrics. Our experiments show that most metrics perform near chance, exhibit strong prediction biases and degrade on longer CoTs. The best metric reaches only 0.70 AUROC at the CoT level while another reaches 0.59 at the step level, with neither transferring across settings, while entailing prohibitively high computational cost. Our results expose fundamental gaps in current faithfulness evaluation and call for the development of more reliable and efficient metrics. github.com/BonaFide huggingface.co/BonaFide</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260524t41bonafid,
+  title = {Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.25052.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t41-bonafide-cot-faithfulness-meta-eval/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth. https://arxiv.org/pdf/2605.25052.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/t40-subliminal-steering/">
+              <span>Subliminal Steering: Stronger Encoding of Hidden Signals</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.25052.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.25052" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/yoavgur/BonaFide" target="_blank" rel="noopener noreferrer">代码</a><a href="https://huggingface.co/collections/yoavgurarieh/bonafide" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

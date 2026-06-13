@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenSeeker: Democratizing Frontier Search Agents by Fully Open-Sourcing Training Data | DAST Papers</title>
+    <meta name="description" content="高性能 search agent 一直被少数工业实验室垄断，一个关键瓶颈不是模型结构，而是高质量训练数据不透明。这篇论文直接对准这个问题，试图把 frontier-level search agent 的训练入口从闭源系统手里拆出来。
+
+作者提出 OpenSeeker，并把核心放在两块：一是 fact-grounded、controllable 的多跳问答合成，通过 web graph 的拓扑扩展" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a61-openseeker-search-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OpenSeeker: Democratizing Frontier Search Agents by Fully Open-Sourcing Training Data" />
+    <meta property="og:description" content="高性能 search agent 一直被少数工业实验室垄断，一个关键瓶颈不是模型结构，而是高质量训练数据不透明。这篇论文直接对准这个问题，试图把 frontier-level search agent 的训练入口从闭源系统手里拆出来。
+
+作者提出 OpenSeeker，并把核心放在两块：一是 fact-grounded、controllable 的多跳问答合成，通过 web graph 的拓扑扩展" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a61-openseeker-search-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OpenSeeker: Democratizing Frontier Search Agents by Fully Open-Sourcing Training Data" />
+    <meta name="twitter:description" content="高性能 search agent 一直被少数工业实验室垄断，一个关键瓶颈不是模型结构，而是高质量训练数据不透明。这篇论文直接对准这个问题，试图把 frontier-level search agent 的训练入口从闭源系统手里拆出来。
+
+作者提出 OpenSeeker，并把核心放在两块：一是 fact-grounded、controllable 的多跳问答合成，通过 web graph 的拓扑扩展" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OpenSeeker: Democratizing Frontier Search Agents by Fully Open-Sourcing Training Data</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15594" target="_blank" rel="noopener noreferrer">2603.15594</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>高性能 search agent 一直被少数工业实验室垄断，一个关键瓶颈不是模型结构，而是高质量训练数据不透明。这篇论文直接对准这个问题，试图把 frontier-level search agent 的训练入口从闭源系统手里拆出来。</dd></div><div><dt>方法/机制</dt><dd>作者提出 OpenSeeker，并把核心放在两块：一是 fact-grounded、controllable 的多跳问答合成，通过 web graph 的拓扑扩展和实体扰动构造高复杂度检索任务；二是 denoised trajectory synthesis，用 retrospective summarization 对教师轨迹去噪，提升动作质量。论文强调只用一次 SFT 和约 1.17 万条合成样本，就能把开源 search agent 拉到非常强的水平。</dd></div><div><dt>结果/证据</dt><dd>这篇论文的收录价值很明确：它不只是又做了一个 search agent，而是把“可训练的 frontier search 数据生成流程”开放出来。对 agent research 来说，这种数据与训练工作流的开放性具有很强的可复用价值，能实质推动开源 search agent 的可比性和创新速度。</dd></div><div><dt>收录价值</dt><dd>它还不是更高一级，因为当前证据仍集中在 search 这一具体 agent 子方向，且主要依赖合成数据路线。是否能稳定外溢到更广的 tool-use agent、enterprise agent 或 scientific agent，还需要后续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>高性能 search agent 一直被少数工业实验室垄断，一个关键瓶颈不是模型结构，而是高质量训练数据不透明。这篇论文直接对准这个问题，试图把 frontier-level search agent 的训练入口从闭源系统手里拆出来。</p><p>作者提出 OpenSeeker，并把核心放在两块：一是 fact-grounded、controllable 的多跳问答合成，通过 web graph 的拓扑扩展和实体扰动构造高复杂度检索任务；二是 denoised trajectory synthesis，用 retrospective summarization 对教师轨迹去噪，提升动作质量。论文强调只用一次 SFT 和约 1.17 万条合成样本，就能把开源 search agent 拉到非常强的水平。</p><p>这篇论文的收录价值很明确：它不只是又做了一个 search agent，而是把“可训练的 frontier search 数据生成流程”开放出来。对 agent research 来说，这种数据与训练工作流的开放性具有很强的可复用价值，能实质推动开源 search agent 的可比性和创新速度。</p><p>它还不是更高一级，因为当前证据仍集中在 search 这一具体 agent 子方向，且主要依赖合成数据路线。是否能稳定外溢到更广的 tool-use agent、enterprise agent 或 scientific agent，还需要后续验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316a61opensee,
+  title = {OpenSeeker: Democratizing Frontier Search Agents by Fully Open-Sourcing Training Data},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15594v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a61-openseeker-search-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OpenSeeker: Democratizing Frontier Search Agents by Fully Open-Sourcing Training Data. https://arxiv.org/pdf/2603.15594v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15594v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

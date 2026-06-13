@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Understanding Reasoning in LLMs through Strategic Information Allocation under Uncertainty | DAST Papers</title>
+    <meta name="description" content="这篇论文试图解释推理模型里一个常被表面化理解的现象：所谓的 Aha moment 或自我纠错，到底是不是由某些特殊 token 直接触发。作者给出的答案是否定的。他们把推理分解成两类信息活动：程序性信息，也就是按步骤执行；以及 epistemic verbalization，也就是把内部不确定性显式外化成文本。
+
+在这个框架下，论文论证了纯程序性推理会出现信息停滞，而认知性语言化能让模型持续获取信" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r10-strategic-info-allocation-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Understanding Reasoning in LLMs through Strategic Information Allocation under Uncertainty" />
+    <meta property="og:description" content="这篇论文试图解释推理模型里一个常被表面化理解的现象：所谓的 Aha moment 或自我纠错，到底是不是由某些特殊 token 直接触发。作者给出的答案是否定的。他们把推理分解成两类信息活动：程序性信息，也就是按步骤执行；以及 epistemic verbalization，也就是把内部不确定性显式外化成文本。
+
+在这个框架下，论文论证了纯程序性推理会出现信息停滞，而认知性语言化能让模型持续获取信" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r10-strategic-info-allocation-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Understanding Reasoning in LLMs through Strategic Information Allocation under Uncertainty" />
+    <meta name="twitter:description" content="这篇论文试图解释推理模型里一个常被表面化理解的现象：所谓的 Aha moment 或自我纠错，到底是不是由某些特殊 token 直接触发。作者给出的答案是否定的。他们把推理分解成两类信息活动：程序性信息，也就是按步骤执行；以及 epistemic verbalization，也就是把内部不确定性显式外化成文本。
+
+在这个框架下，论文论证了纯程序性推理会出现信息停滞，而认知性语言化能让模型持续获取信" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Understanding Reasoning in LLMs through Strategic Information Allocation under Uncertainty</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15500" target="_blank" rel="noopener noreferrer">2603.15500</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文试图解释推理模型里一个常被表面化理解的现象：所谓的 Aha moment 或自我纠错，到底是不是由某些特殊 token 直接触发。作者给出的答案是否定的。他们把推理分解成两类信息活动：程序性信息，也就是按步骤执行；以及 epistemic verbalization，也就是把内部不确定性显式外化成文本。</dd></div><div><dt>方法/机制</dt><dd>在这个框架下，论文论证了纯程序性推理会出现信息停滞，而认知性语言化能让模型持续获取信息并支持后续控制动作。也因此，真正重要的不是表面上的“Wait”“Hmm”这类词，而是这些词是否承载了真实的不确定性外化和状态评估。论文进一步把这个观点拿来统一解释 Aha moments、LIMO 类蒸馏成败和 post-training 中某些反直觉现象。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为这是对推理模型一个核心现象的强机制澄清。它没有再提一个新的推理 trick，而是重新界定了模型在不确定性下如何分配文本容量、为什么有些长思维链有效、有些只是冗余。这对 reasoning data construction、distillation、test-time compute 和 post-training 都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，主要因为它仍是一篇解释框架和信息论分析论文，而不是已经给出新的通用训练范式。它对理解推理很重要，但更接近高价值机制论文，而不是范式替代。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文试图解释推理模型里一个常被表面化理解的现象：所谓的 Aha moment 或自我纠错，到底是不是由某些特殊 token 直接触发。作者给出的答案是否定的。他们把推理分解成两类信息活动：程序性信息，也就是按步骤执行；以及 epistemic verbalization，也就是把内部不确定性显式外化成文本。</p><p>在这个框架下，论文论证了纯程序性推理会出现信息停滞，而认知性语言化能让模型持续获取信息并支持后续控制动作。也因此，真正重要的不是表面上的“Wait”“Hmm”这类词，而是这些词是否承载了真实的不确定性外化和状态评估。论文进一步把这个观点拿来统一解释 Aha moments、LIMO 类蒸馏成败和 post-training 中某些反直觉现象。</p><p>它值得收录，因为这是对推理模型一个核心现象的强机制澄清。它没有再提一个新的推理 trick，而是重新界定了模型在不确定性下如何分配文本容量、为什么有些长思维链有效、有些只是冗余。这对 reasoning data construction、distillation、test-time compute 和 post-training 都有直接外溢。</p><p>它没有升到更高一级，主要因为它仍是一篇解释框架和信息论分析论文，而不是已经给出新的通用训练范式。它对理解推理很重要，但更接近高价值机制论文，而不是范式替代。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>2025），将思维链（CoT）（Wei et al., 2022b）重新解释为一种向正确答案积累信息的过程。尽管提供了宝贵的见解，但这些方法大多假设程序性的、按部就班的执行，并未充分解释现代推理模型的自我纠正行为，尤其是在进入错误轨迹后的恢复能力。一旦执行收敛到错误的路径，推理可能在局部保持连贯，但在全局上却是错误的，而未能识别出潜在的错误。LLMs在推理过程中经常表现出顿悟时刻，例如在“Wait”等标记之后出现的明显自我纠正，但其潜在机制仍不清楚。为了解决这个问题，我们关注推理中一个与程序性信息正交的额外信息轴。我们的核心思想是认知言语化，即在语言或标记层面，模型对其推理状态的内部不确定性的显式外显化。由于LLMs在生成每个标记时都以前面的标记为条件，因此只有当这种不确定性在推理轨迹中明确表达时，对推理轨迹可能不可靠的评估才能影响未来的生成。当不确定性保持潜在时，其对后续推理的影响是有限的；当其被言语化时，它就成为可操作的信息。因此，认知言语化并非生成的肤浅副产品，而是一个支持控制动作的信息信号。我们引入了一个信息论框架，将推理分解为程序性信息和认知言语化——即支持下游控制动作的不确定性的显式外显化。我们表明，纯粹的程序性推理可能变得信息停滞，而认知言语化则能够实现持续的信息获取，并且对于实现信息充分性至关重要。经验结果表明，强大的推理性能是由不确定性外显化而非特定的表面标记驱动的。从这个角度来看，推理是不确定性下的战略性信息分配，它结合了程序性信息和认知言语化。我们的框架统一了先前关于顿悟时刻和后训练实验的发现，并为未来的推理模型设计提供了见解。我们的分析代码可在link找到。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>2025), reinterpreting Chain-of-Thought (CoT) (Wei et al., 2022b) as a process of information accumulation toward the correct answer. While offering valuable insights, these approaches largely assume procedural, step-by-step execution and do not fully account for the self-corrective behaviors of modern reasoning models, particularly recovery after entering an incorrect trajectory. Once execution converges to an erroneous path, reasoning may remain locally coherent yet globally incorrect without recognizing the underlying error. LLMs often exhibit Aha moments during reasoning, such as apparent self-correction following tokens like “Wait,” yet their underlying mechanisms remain unclear. We introduce an informationtheoretic framework that decomposes reasoning into procedural information and epistemic verbalization—the explicit externalization of uncertainty that supports downstream control actions. We show that purely procedural reasoning can become informationally stagnant, whereas epistemic verbalization enables continued information acquisition and is critical for achieving information sufficiency. Empirical results demonstrate that strong reasoning performance is driven by uncertainty externalization rather than specific surface tokens. Our framework unifies prior findings on Aha moments and post-training experiments, and offers insights for future reasoning model design. Our analysis code can be found at link. To address this, we focus on an additional informational axis in reasoning that is orthogonal to procedural information. Our key idea is epistemic verbalization, the explicit externalization, at the language or token level, of a model’s internal uncertainty about its reasoning state. Because LLMs generate each token conditioned on preceding tokens, assessments that a reasoning trajectory may be unreliable can influence future generation only when such uncertainty is made explicit in the reasoning trace. When uncertainty remains latent, its influence on subsequent reasoning is limited; when verbalized, it becomes actionable information. Accordingly, epistemic verbalization is not a superficial byproduct of generation, but an informative signal that supports control actions. From this perspective, reasoning is strategic information allocation under uncertainty, combining procedural information with epistemic verbalization.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316r10strateg,
+  title = {Understanding Reasoning in LLMs through Strategic Information Allocation under Uncertainty},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15500v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r10-strategic-info-allocation-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Understanding Reasoning in LLMs through Strategic Information Allocation under Uncertainty. https://arxiv.org/pdf/2603.15500v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15500v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

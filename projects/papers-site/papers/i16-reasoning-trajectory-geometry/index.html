@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals | DAST Papers</title>
+    <meta name="description" content="虽然思维链推理已经成为 LLM 的核心能力之一，但我们对模型内部究竟如何跨步骤组织和纠偏，仍主要停留在静态表示或单点探针层面。真正缺的不是又一个“某层有什么信号”的观察，而是对整段推理过程作为动态轨迹的描述。
+
+这篇工作把多步推理明确刻画成表示空间中的结构化轨迹，发现不同推理步骤会穿过功能有序的子空间，而且正确与错误解答在后期轨迹上会系统分叉。基于这一点，作者进一步做出了中期正确性预测器，以及只在" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i16-reasoning-trajectory-geometry/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals" />
+    <meta property="og:description" content="虽然思维链推理已经成为 LLM 的核心能力之一，但我们对模型内部究竟如何跨步骤组织和纠偏，仍主要停留在静态表示或单点探针层面。真正缺的不是又一个“某层有什么信号”的观察，而是对整段推理过程作为动态轨迹的描述。
+
+这篇工作把多步推理明确刻画成表示空间中的结构化轨迹，发现不同推理步骤会穿过功能有序的子空间，而且正确与错误解答在后期轨迹上会系统分叉。基于这一点，作者进一步做出了中期正确性预测器，以及只在" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i16-reasoning-trajectory-geometry/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals" />
+    <meta name="twitter:description" content="虽然思维链推理已经成为 LLM 的核心能力之一，但我们对模型内部究竟如何跨步骤组织和纠偏，仍主要停留在静态表示或单点探针层面。真正缺的不是又一个“某层有什么信号”的观察，而是对整段推理过程作为动态轨迹的描述。
+
+这篇工作把多步推理明确刻画成表示空间中的结构化轨迹，发现不同推理步骤会穿过功能有序的子空间，而且正确与错误解答在后期轨迹上会系统分叉。基于这一点，作者进一步做出了中期正确性预测器，以及只在" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05655" target="_blank" rel="noopener noreferrer">2604.05655</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>虽然思维链推理已经成为 LLM 的核心能力之一，但我们对模型内部究竟如何跨步骤组织和纠偏，仍主要停留在静态表示或单点探针层面。真正缺的不是又一个“某层有什么信号”的观察，而是对整段推理过程作为动态轨迹的描述。</dd></div><div><dt>方法/机制</dt><dd>这篇工作把多步推理明确刻画成表示空间中的结构化轨迹，发现不同推理步骤会穿过功能有序的子空间，而且正确与错误解答在后期轨迹上会系统分叉。基于这一点，作者进一步做出了中期正确性预测器，以及只在轨迹偏离时触发的 trajectory-based steering，用于纠错和控制推理长度。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把 interpretability、预测和干预接到了同一个几何接口上：不仅能解释 LLM 在推理时“走到了哪里”，还能据此判断是否即将出错，并在推理期做局部引导。这对 reasoning control、test-time intervention 和 mechanistic analysis 都有明确复用价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前实验主要集中在数学任务和有限模型家族上，而且“理想轨迹”这一干预基准在更开放任务里是否稳健还需要继续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>虽然思维链推理已经成为 LLM 的核心能力之一，但我们对模型内部究竟如何跨步骤组织和纠偏，仍主要停留在静态表示或单点探针层面。真正缺的不是又一个“某层有什么信号”的观察，而是对整段推理过程作为动态轨迹的描述。</p><p>这篇工作把多步推理明确刻画成表示空间中的结构化轨迹，发现不同推理步骤会穿过功能有序的子空间，而且正确与错误解答在后期轨迹上会系统分叉。基于这一点，作者进一步做出了中期正确性预测器，以及只在轨迹偏离时触发的 trajectory-based steering，用于纠错和控制推理长度。</p><p>它值得正式收录，因为它把 interpretability、预测和干预接到了同一个几何接口上：不仅能解释 LLM 在推理时“走到了哪里”，还能据此判断是否即将出错，并在推理期做局部引导。这对 reasoning control、test-time intervention 和 mechanistic analysis 都有明确复用价值。</p><p>它暂时不升到更高一级，原因在于当前实验主要集中在数学任务和有限模型家族上，而且“理想轨迹”这一干预基准在更开放任务里是否稳健还需要继续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>这项工作将大型语言模型（LLM）的思维链生成描述为通过表示空间的结构化轨迹。我们表明，数学推理遍历功能有序、特定于步骤的子空间，这些子空间随着层深度的增加而变得越来越可分离。这种结构已经存在于基础模型中，而推理训练主要加速了向终止相关子空间的收敛，而不是引入新的表示组织。虽然早期的推理步骤遵循相似的轨迹，但正确和不正确的解决方案在后期阶段系统地分歧。这种后期分歧使得在推理中期预测最终答案的正确性成为可能，其ROC–AUC高达0.87。此外，我们引入了基于轨迹的引导，这是一种推理时干预框架，能够根据导出的理想轨迹进行推理纠正和长度控制。总而言之，这些结果确立了推理轨迹作为解释、预测和控制LLM推理行为的几何视角。1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>This work characterizes large language models’ chain-of-thought generation as a structured trajectory through representation space. We show that mathematical reasoning traverses functionally ordered, step-specific subspaces that become increasingly separable with layer depth. This structure already exists in base models, while reasoning training primarily accelerates convergence toward termination-related subspaces rather than introducing new representational organization. While early reasoning steps follow similar trajectories, correct and incorrect solutions diverge systematically at late stages. This late-stage divergence enables mid-reasoning prediction of final-answer correctness with ROC–AUC up to 0.87. Furthermore, we introduce trajectory-based steering, an inference-time intervention framework that enables reasoning correction and length control based on derived ideal trajectories. Together, these results establish reasoning trajectories as a geometric lens for interpreting, predicting, and controlling LLM reasoning behavior.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407i16reasoni,
+  title = {LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05655.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i16-reasoning-trajectory-geometry/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals. https://arxiv.org/pdf/2604.05655.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+            <a class="related-item" href="../../papers/i17-weight-tying-output-bias/">
+              <span>Weight Tying Biases Token Embeddings Towards the Output Space</span>
+              <small>可解释性与机制分析 · 2026-03-27</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05655.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

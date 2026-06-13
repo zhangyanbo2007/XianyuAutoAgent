@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM-Redactor: An Empirical Evaluation of Eight Techniques for Privacy-Preserving LLM Requests | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 coding agents 和 LLM 应用的现实隐私问题：敏感代码、PII 和业务上下文经常被发送到云端 API，而传统加密或 DLP 并不解决 prompt 内容泄露。
+
+LLM-Redactor 系统比较本地推理、占位符脱敏、语义改写、TEE、split inference、FHE、MPC 和 DP 等八类方案，并提供兼容 MCP/OpenAI API 的 shim。
+
+按本库" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/s10-llm-redactor-privacy/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LLM-Redactor: An Empirical Evaluation of Eight Techniques for Privacy-Preserving LLM Requests" />
+    <meta property="og:description" content="这篇论文针对 coding agents 和 LLM 应用的现实隐私问题：敏感代码、PII 和业务上下文经常被发送到云端 API，而传统加密或 DLP 并不解决 prompt 内容泄露。
+
+LLM-Redactor 系统比较本地推理、占位符脱敏、语义改写、TEE、split inference、FHE、MPC 和 DP 等八类方案，并提供兼容 MCP/OpenAI API 的 shim。
+
+按本库" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/s10-llm-redactor-privacy/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LLM-Redactor: An Empirical Evaluation of Eight Techniques for Privacy-Preserving LLM Requests" />
+    <meta name="twitter:description" content="这篇论文针对 coding agents 和 LLM 应用的现实隐私问题：敏感代码、PII 和业务上下文经常被发送到云端 API，而传统加密或 DLP 并不解决 prompt 内容泄露。
+
+LLM-Redactor 系统比较本地推理、占位符脱敏、语义改写、TEE、split inference、FHE、MPC 和 DP 等八类方案，并提供兼容 MCP/OpenAI API 的 shim。
+
+按本库" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LLM-Redactor: An Empirical Evaluation of Eight Techniques for Privacy-Preserving LLM Requests</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12064" target="_blank" rel="noopener noreferrer">2604.12064</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 coding agents 和 LLM 应用的现实隐私问题：敏感代码、PII 和业务上下文经常被发送到云端 API，而传统加密或 DLP 并不解决 prompt 内容泄露。</dd></div><div><dt>方法/机制</dt><dd>LLM-Redactor 系统比较本地推理、占位符脱敏、语义改写、TEE、split inference、FHE、MPC 和 DP 等八类方案，并提供兼容 MCP/OpenAI API 的 shim。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它值得收录，因为它把隐私保护从原则讨论落到可选技术矩阵、威胁模型和 benchmark，直接服务 agent/LLM 系统工程。</dd></div><div><dt>收录价值</dt><dd>局限是实际部署仍要在准确率、延迟、成本和泄露风险之间权衡；FHE/MPC 等方案当前更多是研究阶段。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 coding agents 和 LLM 应用的现实隐私问题：敏感代码、PII 和业务上下文经常被发送到云端 API，而传统加密或 DLP 并不解决 prompt 内容泄露。</p><p>LLM-Redactor 系统比较本地推理、占位符脱敏、语义改写、TEE、split inference、FHE、MPC 和 DP 等八类方案，并提供兼容 MCP/OpenAI API 的 shim。</p><p>按本库标准，它值得收录，因为它把隐私保护从原则讨论落到可选技术矩阵、威胁模型和 benchmark，直接服务 agent/LLM 系统工程。</p><p>局限是实际部署仍要在准确率、延迟、成本和泄露风险之间权衡；FHE/MPC 等方案当前更多是研究阶段。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM-Redactor：八种隐私保护型LLM请求技术的实证评估编码代理和LLM驱动的应用程序通常会向云端LLM API发送可能敏感的内容，这些内容可能会被记录、保留、用于训练或被传唤。现有的隐私工具侧重于网络级加密和组织级DLP，但两者都未能解决提示本身的内容问题。我们对八种隐私保护型LLM请求技术进行了系统的实证评估：(A) 仅限本地推理，(B) 带有占位符恢复的修订，(C) 语义改写，(D) 可信执行环境托管推理，(E) 分割推理，(F) 全同态加密，(G) 通过多方计算进行秘密共享，以及 (H) 差分隐私噪声。我们在与MCP和任何OpenAI兼容API兼容的开源垫片中实现了所有八种技术（或在部署尚不可行时，实现了其中一个可行的研究阶段子集）。我们使用一个包含1,300个样本和4,014个标注的真实标签泄露基准，评估了四种实用选项（A、B、C、H）及其在四种工作负载类别中的组合。我们的主要发现是，没有单一技术占据主导地位：A+B+C组合（尽可能在本地路由，其余部分进行修订和改写）在PII上实现了0.6%的综合泄露，在专有代码上实现了31.3%的综合泄露，并且在500个样本中PII的精确泄露为零。我们提出了一种决策规则，可以根据威胁模型预算和工作负载特征选择一个或多个适当的选项。代码、基准和评估工具已在 https://github.com/jayluxferro/llm-redactor 发布。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Coding agents and LLM-powered applications routinely send potentially sensitive content to cloud LLM APIs where it may be logged, retained, used for training, or subpoenaed. Existing privacy tooling focuses on network-level encryption and organization-level DLP, neither of which addresses the content of prompts themselves. We present a systematic empirical evaluation of eight techniques for privacy-preserving LLM requests: (A) local-only inference, (B) redaction with placeholder restoration, (C) semantic rephrasing, (D) Trusted Execution Environment hosted inference, (E) split inference, (F) fully homomorphic encryption, (G) secret sharing via multi-party computation, and (H) differential-privacy noise. We implement all eight (or a tractable research-stage subset where deployment is not yet feasible) in an open-source shim compatible with MCP and any OpenAI-compatible API. We evaluate the four practical options (A, B, C, H) and their combinations across four workload classes using a ground-truth-labelled leak benchmark of 1,300 samples with 4,014 annotations. Our headline finding is that no single technique dominates: the combination A+B+C (route locally when possible, redact and rephrase the rest) achieves 0.6% combined leak on PII and 31.3% on proprietary code, with zero exact leaks on PII across 500 samples. We present a decision rule that selects the appropriate option(s) from a threat-model budget and workload characterisation. Code, benchmarks, and evaluation harness are released at https://github.com/jayluxferro/llm-redactor.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415s10llmreda,
+  title = {LLM-Redactor: An Empirical Evaluation of Eight Techniques for Privacy-Preserving LLM Requests},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12064.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/s10-llm-redactor-privacy/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LLM-Redactor: An Empirical Evaluation of Eight Techniques for Privacy-Preserving LLM Requests. https://arxiv.org/pdf/2604.12064.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12064.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

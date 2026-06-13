@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computational design of metallohydrolases | DAST Papers</title>
+    <meta name="description" content="问题与背景：金属水解酶能够催化生物体系中最困难的一类水解反应，但从头设计高活性金属酶一直非常困难，过去往往活性偏低、需要大量定向进化补救。论文聚焦的核心问题是：能否直接从计算设计出具有真实高催化效率的 metallohydrolases，而不是停留在概念验证层面。
+
+方法/新意：作者引入 RFdiffusion2，从量子化学推导的活性位几何出发进行催化位点支架化设计，不再要求先指定每个催化残基的序" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio7-computational-design-metallohydrolases/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Computational design of metallohydrolases" />
+    <meta property="og:description" content="问题与背景：金属水解酶能够催化生物体系中最困难的一类水解反应，但从头设计高活性金属酶一直非常困难，过去往往活性偏低、需要大量定向进化补救。论文聚焦的核心问题是：能否直接从计算设计出具有真实高催化效率的 metallohydrolases，而不是停留在概念验证层面。
+
+方法/新意：作者引入 RFdiffusion2，从量子化学推导的活性位几何出发进行催化位点支架化设计，不再要求先指定每个催化残基的序" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio7-computational-design-metallohydrolases/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Computational design of metallohydrolases" />
+    <meta name="twitter:description" content="问题与背景：金属水解酶能够催化生物体系中最困难的一类水解反应，但从头设计高活性金属酶一直非常困难，过去往往活性偏低、需要大量定向进化补救。论文聚焦的核心问题是：能否直接从计算设计出具有真实高催化效率的 metallohydrolases，而不是停留在概念验证层面。
+
+方法/新意：作者引入 RFdiffusion2，从量子化学推导的活性位几何出发进行催化位点支架化设计，不再要求先指定每个催化残基的序" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Computational design of metallohydrolases</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-01-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-29</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-025-09746-w" target="_blank" rel="noopener noreferrer">10.1038/s41586-025-09746-w</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：金属水解酶能够催化生物体系中最困难的一类水解反应，但从头设计高活性金属酶一直非常困难，过去往往活性偏低、需要大量定向进化补救。论文聚焦的核心问题是：能否直接从计算设计出具有真实高催化效率的 metallohydrolases，而不是停留在概念验证层面。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：作者引入 RFdiffusion2，从量子化学推导的活性位几何出发进行催化位点支架化设计，不再要求先指定每个催化残基的序列位置和主链坐标。论文最强的部分不只是算法更新，而是把该设计流程真正用于锌依赖 metallohydrolases，并在实验上得到远高于既往设计结果的催化效率。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇工作适合放在 AI x biology / protein design 主线，而且是高位条目。它显示生成式结构设计已经不只是做结合蛋白或简单酶，而是开始进入复杂金属酶活性位设计，这对计算酶工程、环境降解催化及更广泛的功能蛋白设计都有明显外溢性。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：它已经是很强的颠覆性工作，但是否达到更高一级，还取决于这种设计范式在更广酶类和更复杂反应上的可扩展性，以及社区是否将其视为新的默认设计路径。目前更稳妥的定位仍是颠覆性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：金属水解酶能够催化生物体系中最困难的一类水解反应，但从头设计高活性金属酶一直非常困难，过去往往活性偏低、需要大量定向进化补救。论文聚焦的核心问题是：能否直接从计算设计出具有真实高催化效率的 metallohydrolases，而不是停留在概念验证层面。</p><p>方法/新意：作者引入 RFdiffusion2，从量子化学推导的活性位几何出发进行催化位点支架化设计，不再要求先指定每个催化残基的序列位置和主链坐标。论文最强的部分不只是算法更新，而是把该设计流程真正用于锌依赖 metallohydrolases，并在实验上得到远高于既往设计结果的催化效率。</p><p>意义/放在仓库中的位置：这篇工作适合放在 AI x biology / protein design 主线，而且是高位条目。它显示生成式结构设计已经不只是做结合蛋白或简单酶，而是开始进入复杂金属酶活性位设计，这对计算酶工程、环境降解催化及更广泛的功能蛋白设计都有明显外溢性。</p><p>局限/为何不再升一级：它已经是很强的颠覆性工作，但是否达到更高一级，还取决于这种设计范式在更广酶类和更复杂反应上的可扩展性，以及社区是否将其视为新的默认设计路径。目前更稳妥的定位仍是颠覆性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从头酶设计从理想活性位点的描述开始，该活性位点由围绕反应过渡态的催化残基组成，并构建包含该位点的蛋白质结构1–7。RFdiffusion11,12等生成式AI方法现在能够直接在活性位点周围生成蛋白质，但迄今为止，这种支架构建需要指定每个催化残基在序列中的位置和骨架坐标，这使得采样复杂化。在本文中，我们介绍了一种名为RFdiffusion2的生成式AI方法，该方法克服了这些限制，并利用它来设计锌金属水解酶，从活性位点几何结构的密度泛函理论描述开始。在最初实验测试的96个设计中，活性最高的酶的kcat/KM为16,000 M-1 s-1，比之前设计的金属水解酶6,7,13,14高出几个数量级。第二轮的96个设计产生了3个额外的高活性酶，其kcat/KM高达53,000 M-1 s-1，kcat高达1.5 s-1。这四种酶的结构彼此之间以及与PDB中的结构都非常不同。每种酶都能几乎完美地定位反应底物，以便结合金属激活的水分子进行亲核攻击，并且PLACER15和Chai-144预测它们具有高度预组织的活性位点。能够直接从计算机中生成高活性催化剂，无需实验优化，利用量子化学计算的活性位点几何结构，应该为新一代高效设计酶16,17打开大门。bioRxiv预印本doi: https://doi.org/10.1101/2024.11.13.623507; 此版本发布于2025年4月11日。本预印本（未经同行评审认证）的版权所有者是作者/资助者，他们已授予bioRxiv永久展示该预印本的许可。本预印本根据aCC-BY-ND 4.0国际许可协议提供。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>De novo enzyme design starts from a description of an ideal active site composed of catalytic residues surrounding the reaction transition state(s), and builds a protein structure that contains this site1–7. Generative AI methods such as RFdiffusion11,12 now enable the direct generation of proteins around active sites, but to date, such scaffolding has required specification of both the position in the sequence and the backbone coordinates of each catalytic residue, which complicates sampling. Here we introduce a generative AI method called RFdiffusion2 that overcomes these limitations and use it to design zinc metallohydrolases starting from a density functional theory description of the active site geometry. Of an initial set of 96 designs tested experimentally, the most active has a kcat/KM of 16,000 M-1 s-1, orders of magnitude higher than previously designed metallohydrolases.6,7,13,14 A second round of 96 designs yielded 3 additional highly active enzymes, with kcat/KM up to 53,000 M-1 s-1 and kcat up to 1.5 s-1. The structures of the four enzymes are very different from each other and from the structures in the PDB. Each enzyme positions the reaction substrate almost perfectly for nucleophilic attack by a water molecule activated by the bound metal, and are predicted by PLACER15 and Chai-144 to have highly preorganized active sites. The ability to generate highly active catalysts straight out of the computer, without experimental optimization, using quantum chemistry calculated active site geometries should open the door to a new generation of potent designer enzymes.16,17 bioRxiv preprint doi: https://doi.org/10.1101/2024.11.13.623507; this version posted April 11, 2025. The copyright holder for this preprint (which was not certified by peer review) is the author/funder, who has granted bioRxiv a license to display the preprint in perpetuity. It is made available under aCC-BY-ND 4.0 International license.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260129bio7comput,
+  title = {Computational design of metallohydrolases},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41586-025-09746-w},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio7-computational-design-metallohydrolases/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Computational design of metallohydrolases. https://www.nature.com/articles/s41586-025-09746-w</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-025-09746-w" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

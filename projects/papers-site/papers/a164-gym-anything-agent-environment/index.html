@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gym-Anything: Turn any Software into an Agent Environment | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是 computer-use agents 一个长期被低估但越来越关键的问题：现有评测和训练环境覆盖的软件种类太少、任务链太短，而且大量环境仍停留在电商、系统设置或少数桌面操作 demo 上，离真正有经济价值的软件工作流很远。作者把瓶颈明确定位在 environment creation 本身太昂贵、太手工，因此 agent 研究无法稳定扩展到更复杂的软件世界。
+
+Gym-Anyth" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a164-gym-anything-agent-environment/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Gym-Anything: Turn any Software into an Agent Environment" />
+    <meta property="og:description" content="这篇论文处理的是 computer-use agents 一个长期被低估但越来越关键的问题：现有评测和训练环境覆盖的软件种类太少、任务链太短，而且大量环境仍停留在电商、系统设置或少数桌面操作 demo 上，离真正有经济价值的软件工作流很远。作者把瓶颈明确定位在 environment creation 本身太昂贵、太手工，因此 agent 研究无法稳定扩展到更复杂的软件世界。
+
+Gym-Anyth" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a164-gym-anything-agent-environment/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Gym-Anything: Turn any Software into an Agent Environment" />
+    <meta name="twitter:description" content="这篇论文处理的是 computer-use agents 一个长期被低估但越来越关键的问题：现有评测和训练环境覆盖的软件种类太少、任务链太短，而且大量环境仍停留在电商、系统设置或少数桌面操作 demo 上，离真正有经济价值的软件工作流很远。作者把瓶颈明确定位在 environment creation 本身太昂贵、太手工，因此 agent 研究无法稳定扩展到更复杂的软件世界。
+
+Gym-Anyth" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Gym-Anything: Turn any Software into an Agent Environment</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06126" target="_blank" rel="noopener noreferrer">2604.06126</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是 computer-use agents 一个长期被低估但越来越关键的问题：现有评测和训练环境覆盖的软件种类太少、任务链太短，而且大量环境仍停留在电商、系统设置或少数桌面操作 demo 上，离真正有经济价值的软件工作流很远。作者把瓶颈明确定位在 environment creation 本身太昂贵、太手工，因此 agent 研究无法稳定扩展到更复杂的软件世界。</dd></div><div><dt>方法/机制</dt><dd>Gym-Anything 的核心贡献不是再做一个 benchmark，而是提出把“把软件变成 agent environment”本身做成多 agent 流程。系统里 coding agent 负责写 setup 脚本、下载真实数据、配置软件并生成 setup evidence，独立 audit agent 再按 checklist 验证环境是否真的搭好。基于这套流程，作者构建出覆盖 200 个软件应用、超过 10K 长链任务的 CUA-World 和更难的 CUA-World-Long，把 environment generation、审计、训练/测试切分和长任务评测接成了同一个可扩展基础设施。</dd></div><div><dt>结果/证据</dt><dd>这篇应收进仓库，因为它改写的不是某个 agent policy，而是 computer-use 研究的环境供给方式。相比只在固定 GUI benchmark 上比较模型，Gym-Anything 把 environment generation、auditability 和 economic-task coverage 一起纳入方法设计，对 agent evaluation、computer-use training、long-horizon task construction 和未来真实软件自动化都有明显外溢。它更像一个 durable workflow primitive，而不是一次性基准集合。</dd></div><div><dt>收录价值</dt><dd>这篇目前仍是 arXiv 预印本，任务分布和环境质量主要依赖作者自己的生成与审计流水线，外部团队是否会采用这一套环境构建方法还需要时间验证。它是很强的 benchmark/infrastructure paper，但还没有强到足以成为范式级改写，因此给 `breakthrough`。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是 computer-use agents 一个长期被低估但越来越关键的问题：现有评测和训练环境覆盖的软件种类太少、任务链太短，而且大量环境仍停留在电商、系统设置或少数桌面操作 demo 上，离真正有经济价值的软件工作流很远。作者把瓶颈明确定位在 environment creation 本身太昂贵、太手工，因此 agent 研究无法稳定扩展到更复杂的软件世界。</p><p>Gym-Anything 的核心贡献不是再做一个 benchmark，而是提出把“把软件变成 agent environment”本身做成多 agent 流程。系统里 coding agent 负责写 setup 脚本、下载真实数据、配置软件并生成 setup evidence，独立 audit agent 再按 checklist 验证环境是否真的搭好。基于这套流程，作者构建出覆盖 200 个软件应用、超过 10K 长链任务的 CUA-World 和更难的 CUA-World-Long，把 environment generation、审计、训练/测试切分和长任务评测接成了同一个可扩展基础设施。</p><p>这篇应收进仓库，因为它改写的不是某个 agent policy，而是 computer-use 研究的环境供给方式。相比只在固定 GUI benchmark 上比较模型，Gym-Anything 把 environment generation、auditability 和 economic-task coverage 一起纳入方法设计，对 agent evaluation、computer-use training、long-horizon task construction 和未来真实软件自动化都有明显外溢。它更像一个 durable workflow primitive，而不是一次性基准集合。</p><p>这篇目前仍是 arXiv 预印本，任务分布和环境质量主要依赖作者自己的生成与审计流水线，外部团队是否会采用这一套环境构建方法还需要时间验证。它是很强的 benchmark/infrastructure paper，但还没有强到足以成为范式级改写，因此给 `breakthrough`。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>计算机使用智能体有望在广泛的数字经济活动中提供帮助。然而，当前研究主要集中在有限软件集上的短周期任务，这些任务的经济价值有限，例如基本的电子商务和操作系统配置任务。一个关键原因是，为复杂软件创建环境需要大量时间和人力，因此无法扩展。为解决此问题，我们引入了Gym-Anything，一个将任何软件转换为交互式计算机使用环境的框架。我们将环境创建本身视为一个多智能体任务：一个编码智能体编写设置脚本、下载真实世界数据并配置软件，同时生成正确设置的证据。然后，一个独立的审计智能体根据质量清单验证环境设置的证据。我们利用基于美国GDP数据的经济价值职业分类法，将此管道应用于200个具有广泛职业覆盖的软件应用程序。结果是CUA-World，一个包含超过10K个长周期任务的集合，涵盖从医学科学和天文学到工程和企业系统等领域，每个任务都配置了真实数据以及训练和测试拆分。CUA-World还包括CUA-World-Long，一个具有挑战性的长周期基准，其任务通常需要超过500个步骤，远远超过现有基准。将训练拆分中的成功轨迹提炼到一个2B视觉语言模型中，其性能优于其两倍大小的模型。我们还在测试时应用相同的审计原则：一个单独的VLM审查已完成的轨迹并提供关于剩余内容的反馈，将Gemini-3-Flash在CUA-World-Long上的性能从11.5%提高到14.0%。我们发布了所有代码、基础设施和基准数据，以促进未来在真实计算机使用智能体方面的研究。图1：CUA-World由Gym-Anything构建，涵盖所有主要职业群体和行业，跨越200个软件应用程序的10K+长周期任务和环境，极大地扩展了计算机使用智能体评估和训练的范围。预印本。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Computer-use agents hold the promise of assisting in a wide range of digital economic activities. However, current research has largely focused on short-horizon tasks over a limited set of software with limited economic value, such as basic ecommerce and OS-configuration tasks. A key reason is that creating environments for complex software requires significant time and human effort, and therefore does not scale. To address this, we introduce Gym-Anything, a framework for converting any software into an interactive computer-use environment. We frame environment creation itself as a multi-agent task: a coding agent writes setup scripts, downloads real-world data, and configures the software, while producing evidence of correct setup. An independent audit agent then verifies evidence for the environment setup against a quality checklist. Using a taxonomy of economically valuable occupations grounded in U.S. GDP data, we apply this pipeline to 200 software applications with broad occupational coverage. The result is CUA-World, a collection of over 10K long-horizon tasks spanning domains from medical science and astronomy to engineering and enterprise systems, each configured with realistic data along with train and test splits. CUA-World also includes CUA-World-Long, a challenging long-horizon benchmark with tasks often requiring over 500 steps, far exceeding existing benchmarks. Distilling successful trajectories from the training split into a 2B vision-language model outperforms models 2× its size. We also apply the same auditing principle at test time: a separate VLM reviews completed trajectories and provides feedback on what remains, improving Gemini-3-Flash on CUA-World-Long from 11.5% to 14.0%. We release all code, infrastructure, and benchmark data to facilitate future research in realistic computer-use agents. Figure 1: Built with Gym-Anything, CUA-World covers all major occupation groups and industries, spanning over 10K+ long-horizon tasks and environments across 200 software applications, dramatically expanding the scope of computer-use agent evaluation and training. Preprint.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407a164gymany,
+  title = {Gym-Anything: Turn any Software into an Agent Environment},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06126v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a164-gym-anything-agent-environment/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Gym-Anything: Turn any Software into an Agent Environment. https://arxiv.org/pdf/2604.06126v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06126v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

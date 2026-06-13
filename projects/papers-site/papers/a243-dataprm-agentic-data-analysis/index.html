@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis | DAST Papers</title>
+    <meta name="description" content="这篇工作的关键不是再证明 PRM 在数学里有用，而是把 process reward 真正推进到 agentic data analysis 这种动态环境。作者先明确指出通用 PRM 在这个场景里会错两种事：抓不到 silent errors，又会把必要的 exploration 误判成 grounding failure。
+
+DataPRM 的方法外溢点也比较清楚：它不是被动判分，而是作为 ac" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a243-dataprm-agentic-data-analysis/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis" />
+    <meta property="og:description" content="这篇工作的关键不是再证明 PRM 在数学里有用，而是把 process reward 真正推进到 agentic data analysis 这种动态环境。作者先明确指出通用 PRM 在这个场景里会错两种事：抓不到 silent errors，又会把必要的 exploration 误判成 grounding failure。
+
+DataPRM 的方法外溢点也比较清楚：它不是被动判分，而是作为 ac" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a243-dataprm-agentic-data-analysis/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis" />
+    <meta name="twitter:description" content="这篇工作的关键不是再证明 PRM 在数学里有用，而是把 process reward 真正推进到 agentic data analysis 这种动态环境。作者先明确指出通用 PRM 在这个场景里会错两种事：抓不到 silent errors，又会把必要的 exploration 误判成 grounding failure。
+
+DataPRM 的方法外溢点也比较清楚：它不是被动判分，而是作为 ac" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis</h1>
+          <p class="subtitle">科学发现旗舰工作 · 发表：2026-04-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">科学发现旗舰工作</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.24198" target="_blank" rel="noopener noreferrer">2604.24198</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作的关键不是再证明 PRM 在数学里有用，而是把 process reward 真正推进到 agentic data analysis 这种动态环境。作者先明确指出通用 PRM 在这个场景里会错两种事：抓不到 silent errors，又会把必要的 exploration 误判成 grounding failure。</dd></div><div><dt>方法/机制</dt><dd>DataPRM 的方法外溢点也比较清楚：它不是被动判分，而是作为 active verifier 去探测中间执行状态；同时用 reflection-aware ternary reward 区分可纠正错误、探索行为和不可恢复错误。这个设计比把数学 PRM 生搬到科学代理上强得多。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这提供的是 scientific agent process supervision 的新接口。对数据分析型科学代理、test-time selection、Best-of-N 和 outcome-reward 之外的 RL 监督，都有明显方法价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前主证据仍集中在 data analysis / scientific discovery 代理上，尚未证明这套环境感知 PRM 会成为更广义 tool-using agent 的默认方案。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作的关键不是再证明 PRM 在数学里有用，而是把 process reward 真正推进到 agentic data analysis 这种动态环境。作者先明确指出通用 PRM 在这个场景里会错两种事：抓不到 silent errors，又会把必要的 exploration 误判成 grounding failure。</p><p>DataPRM 的方法外溢点也比较清楚：它不是被动判分，而是作为 active verifier 去探测中间执行状态；同时用 reflection-aware ternary reward 区分可纠正错误、探索行为和不可恢复错误。这个设计比把数学 PRM 生搬到科学代理上强得多。</p><p>它值得正式收录，因为这提供的是 scientific agent process supervision 的新接口。对数据分析型科学代理、test-time selection、Best-of-N 和 outcome-reward 之外的 RL 监督，都有明显方法价值。</p><p>它没有更高，是因为当前主证据仍集中在 data analysis / scientific discovery 代理上，尚未证明这套环境感知 PRM 会成为更广义 tool-using agent 的默认方案。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>过程奖励模型（PRM）在增强大型语言模型（LLM）在数学等静态领域的推理能力方面取得了显著成功。然而，它们在动态数据分析任务中的潜力仍未充分探索。在这项工作中，我们首先进行了一项实证研究，揭示了通用领域PRM难以监督数据分析智能体。具体而言，它们未能检测到静默错误（即在不触发解释器异常的情况下产生错误结果的逻辑缺陷），并错误地惩罚探索性行为，将必要的试错探索误认为是基础错误。为了弥补这一差距，我们引入了DataPRM，一种新颖的、环境感知的生成式过程奖励模型，它（1）可以作为主动验证器，自主与环境交互以探测中间执行状态并揭示静默错误，以及（2）采用一种反思感知的、三元奖励策略，区分可纠正的基础错误和不可恢复的错误。我们设计了一个可扩展的流程，通过多样性驱动的轨迹生成和知识增强的步骤级标注，为DataPRM构建了超过7K个高质量训练实例。实验结果表明，DataPRM使用Best-of-N推理，在ScienceAgentBench上将下游策略LLM的性能提高了7.21%，在DABStep上提高了11.28%。值得注意的是，DataPRM仅用40亿参数就优于强大的基线，并在不同的TestTime Scaling策略中表现出强大的泛化能力。此外，将DataPRM整合到强化学习中，相较于结果奖励基线取得了显著提升，在DABench上达到78.73%，在TableBench上达到64.84%，验证了过程奖励监督的有效性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Process Reward Models (PRMs) have achieved remarkable success in augmenting the reasoning capabilities of Large Language Models (LLMs) within static domains such as mathematics. However, their potential in dynamic data analysis tasks remains underexplored. In this work, we first present a empirical study revealing that general-domain PRMs struggle to supervise data analysis agents. Specifically, they fail to detect silent errors, logical flaws that yield incorrect results without triggering interpreter exceptions, and erroneously penalize exploratory actions, mistaking necessary trialand-error exploration for grounding failures. To bridge this gap, we introduce DataPRM, a novel environment-aware generative process reward model that (1) can serve as an active verifier, autonomously interacting with the environment to probe intermediate execution states and uncover silent errors, and (2) employs a reflection-aware ternary reward strategy that distinguishes between correctable grounding errors and irrecoverable mistakes. We design a scalable pipeline to construct over 7K high-quality training instances for DataPRM via diversity-driven trajectory generation and knowledgeaugmented step-level annotation. Experimental results demonstrate that DataPRM improves downstream policy LLMs by 7.21% on ScienceAgentBench and 11.28% on DABStep using Best-of-N inference. Notably, with only 4B parameters, DataPRM outperforms strong baselines, and exhibits robust generalizability across diverse TestTime Scaling strategies. Furthermore, integrating DataPRM into Reinforcement Learning yields substantial gains over outcome-reward baselines, achieving 78.73% on DABench and 64.84% on TableBench, validating the effectiveness of process reward supervision1 .</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260427a243datapr,
+  title = {Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.24198.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a243-dataprm-agentic-data-analysis/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Rewarding the Scientific Process: Process-Level Reward Modeling for Agentic Data Analysis. https://arxiv.org/pdf/2604.24198.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/s86-spatialdataagent-omics-curation/">
+              <span>SpatialDataAgent: Autonomous Spatial Omics Data Curation at Decade Scale</span>
+              <small>科学发现旗舰工作 · 2026-05-30</small>
+            </a>
+            <a class="related-item" href="../../papers/s86-causalab-causal-discovery-agents/">
+              <span>CausaLab: A Scalable Environment for Interactive Causal Discovery Toward AI Scientists</span>
+              <small>科学发现旗舰工作 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/s88-ai-research-agents-narrow-exploration/">
+              <span>AI Research Agents Narrow Scientific Exploration</span>
+              <small>科学发现旗舰工作 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/s87-scientistone-chain-evidence/">
+              <span>ScientistOne: Towards Human-Level Autonomous Research via Chain-of-Evidence</span>
+              <small>科学发现旗舰工作 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/s84-cusp-scientific-progress-forecasting/">
+              <span>Forecasting Scientific Progress with Artificial Intelligence</span>
+              <small>科学发现旗舰工作 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/s85-sciatlas-automated-scientific-research-kg/">
+              <span>SciAtlas: A Large-Scale Knowledge Graph for Automated Scientific Research</span>
+              <small>科学发现旗舰工作 · 2026-05-20</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.24198.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/zjunlp/DataMind" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

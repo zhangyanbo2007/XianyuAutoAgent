@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Routing-Free Mixture-of-Experts | DAST Papers</title>
+    <meta name="description" content="Mixture-of-Experts 已成为扩展模型容量和训练效率的核心路线，但现有主流设计几乎都默认依赖一个集中式 router，再配上 softmax、top-k 和显式 load balancing 规则。这套结构虽然有效，却也把很多设计选择提前硬编码进了系统，限制了专家激活与资源分配方式的可塑性。Routing-Free MoE 直接把这个默认前提拿掉。
+
+论文提出 Routing-Fre" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r27-routing-free-moe/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Routing-Free Mixture-of-Experts" />
+    <meta property="og:description" content="Mixture-of-Experts 已成为扩展模型容量和训练效率的核心路线，但现有主流设计几乎都默认依赖一个集中式 router，再配上 softmax、top-k 和显式 load balancing 规则。这套结构虽然有效，却也把很多设计选择提前硬编码进了系统，限制了专家激活与资源分配方式的可塑性。Routing-Free MoE 直接把这个默认前提拿掉。
+
+论文提出 Routing-Fre" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r27-routing-free-moe/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Routing-Free Mixture-of-Experts" />
+    <meta name="twitter:description" content="Mixture-of-Experts 已成为扩展模型容量和训练效率的核心路线，但现有主流设计几乎都默认依赖一个集中式 router，再配上 softmax、top-k 和显式 load balancing 规则。这套结构虽然有效，却也把很多设计选择提前硬编码进了系统，限制了专家激活与资源分配方式的可塑性。Routing-Free MoE 直接把这个默认前提拿掉。
+
+论文提出 Routing-Fre" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Routing-Free Mixture-of-Experts</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00801" target="_blank" rel="noopener noreferrer">2604.00801</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Mixture-of-Experts 已成为扩展模型容量和训练效率的核心路线，但现有主流设计几乎都默认依赖一个集中式 router，再配上 softmax、top-k 和显式 load balancing 规则。这套结构虽然有效，却也把很多设计选择提前硬编码进了系统，限制了专家激活与资源分配方式的可塑性。Routing-Free MoE 直接把这个默认前提拿掉。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Routing-Free MoE，把专家激活功能完全收回到各个 expert 内部，不再使用外部 router、Softmax、Top-K 或固定的负载均衡模块，而是通过连续梯度流直接优化专家自身的激活行为。作者同时引入统一的 adaptive load-balancing framework，在 expert-balancing 与 token-balancing 之间做可配置插值，让资源分配目标本身也成为可调设计变量，而不是预先钉死的规则。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是在 MoE router 上做局部修补，而是在重写 MoE 的组织方式：从 centralized routing 转向 expert-local activation。这种改变具有明确的结构外溢，可能影响后续 MoE 的路由、扩展性、鲁棒性和资源调度设计，属于会改变问题处理方式的工作。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前证据仍主要来自作者论文中的实验与分析，外部采用和跨模型大规模验证还没有形成。它已经足够显示出 disruptive 意味，但是否会成为新的主流 MoE 蓝图，还需要更多后续工作确认。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Mixture-of-Experts 已成为扩展模型容量和训练效率的核心路线，但现有主流设计几乎都默认依赖一个集中式 router，再配上 softmax、top-k 和显式 load balancing 规则。这套结构虽然有效，却也把很多设计选择提前硬编码进了系统，限制了专家激活与资源分配方式的可塑性。Routing-Free MoE 直接把这个默认前提拿掉。</p><p>论文提出 Routing-Free MoE，把专家激活功能完全收回到各个 expert 内部，不再使用外部 router、Softmax、Top-K 或固定的负载均衡模块，而是通过连续梯度流直接优化专家自身的激活行为。作者同时引入统一的 adaptive load-balancing framework，在 expert-balancing 与 token-balancing 之间做可配置插值，让资源分配目标本身也成为可调设计变量，而不是预先钉死的规则。</p><p>这篇工作值得收录，因为它不是在 MoE router 上做局部修补，而是在重写 MoE 的组织方式：从 centralized routing 转向 expert-local activation。这种改变具有明确的结构外溢，可能影响后续 MoE 的路由、扩展性、鲁棒性和资源调度设计，属于会改变问题处理方式的工作。</p><p>它没有升到更高一级，是因为当前证据仍主要来自作者论文中的实验与分析，外部采用和跨模型大规模验证还没有形成。它已经足够显示出 disruptive 意味，但是否会成为新的主流 MoE 蓝图，还需要更多后续工作确认。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标准的专家混合模型 (MoE) 依赖于引入僵化归纳偏置的集中式路由机制。我们提出了无路由MoE，它消除了任何硬编码的集中式设计，包括外部路由器、Softmax、TopK和负载均衡，而是将所有激活功能封装在单个专家内部，并通过连续梯度流直接优化，使每个专家能够完全独立地决定其激活。我们引入了一个统一的自适应负载均衡框架，通过可配置的插值同时优化专家均衡和令牌均衡目标，从而实现灵活且可定制的资源分配。大量实验表明，无路由MoE能够始终优于基线，具有更好的可扩展性和鲁棒性。我们详细分析了其行为，并提供了可能促进未来MoE设计和优化的见解。代码可在 https://github.com/liuyilun2000/RoutingFreeMoE/tree/release 获取。图1：标准MoE依赖路由来协调专家激活。无路由MoE让每个专家纯粹独立地决定自己的激活。绿色表示激活的组件；红色表示非激活的组件；黄色表示可训练的组件。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Standard Mixture-of-Experts (MoE) models rely on centralized routing mechanisms that introduce rigid inductive biases. We propose Routing-Free MoE which eliminates any hard-coded centralized designs including external routers, Softmax, TopK and load balancing, instead encapsulating all activation functionalities within individual experts and are directly optimized through continuous gradient flow, enabling each expert to determine its activation entirely on its own. We introduce a unified adaptive load-balancing framework to simultaneously optimize both expert-balancing and token-balancing objectives through a configurable interpolation, allowing flexible and customizable resource allocation. Extensive experiments show that Routing-Free MoE can consistently outperform baselines with better scalability and robustness. We analyze its behavior in detail and offer insights that may facilitate future MoE design and optimization. Code is available at https://github.com/liuyilun2000/RoutingFreeMoE/tree/release. Figure 1: Standard MoE relies on routing to orchestrate expert activations. Routing-Free MoE let each expert purely-independently determine its own activation. Green indicates activated components; red for inactive components; yellow for trainable components.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r27routing,
+  title = {Routing-Free Mixture-of-Experts},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00801.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r27-routing-free-moe/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Routing-Free Mixture-of-Experts. https://arxiv.org/pdf/2604.00801.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00801.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

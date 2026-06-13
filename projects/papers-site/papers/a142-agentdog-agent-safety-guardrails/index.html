@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security | DAST Papers</title>
+    <meta name="description" content="随着 AI agents 获得更强的工具调用和环境交互能力，安全失败不再只是单轮输出失误，而是会沿着完整轨迹累积并最终转化为真实行动风险。现有 guardrail 往往只给出二元拦截判断，缺少对 agentic 风险的细粒度刻画，也缺少对失败根因的诊断能力。
+
+AgentDoG 的核心贡献是把 agent safety 做成一个可复用的结构化框架：先提出按风险来源、失败方式和后果组织的三维 tax" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a142-agentdog-agent-safety-guardrails/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security" />
+    <meta property="og:description" content="随着 AI agents 获得更强的工具调用和环境交互能力，安全失败不再只是单轮输出失误，而是会沿着完整轨迹累积并最终转化为真实行动风险。现有 guardrail 往往只给出二元拦截判断，缺少对 agentic 风险的细粒度刻画，也缺少对失败根因的诊断能力。
+
+AgentDoG 的核心贡献是把 agent safety 做成一个可复用的结构化框架：先提出按风险来源、失败方式和后果组织的三维 tax" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a142-agentdog-agent-safety-guardrails/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security" />
+    <meta name="twitter:description" content="随着 AI agents 获得更强的工具调用和环境交互能力，安全失败不再只是单轮输出失误，而是会沿着完整轨迹累积并最终转化为真实行动风险。现有 guardrail 往往只给出二元拦截判断，缺少对 agentic 风险的细粒度刻画，也缺少对失败根因的诊断能力。
+
+AgentDoG 的核心贡献是把 agent safety 做成一个可复用的结构化框架：先提出按风险来源、失败方式和后果组织的三维 tax" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.18491" target="_blank" rel="noopener noreferrer">2601.18491</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>随着 AI agents 获得更强的工具调用和环境交互能力，安全失败不再只是单轮输出失误，而是会沿着完整轨迹累积并最终转化为真实行动风险。现有 guardrail 往往只给出二元拦截判断，缺少对 agentic 风险的细粒度刻画，也缺少对失败根因的诊断能力。</dd></div><div><dt>方法/机制</dt><dd>AgentDoG 的核心贡献是把 agent safety 做成一个可复用的结构化框架：先提出按风险来源、失败方式和后果组织的三维 taxonomy，再据此构造细粒度 benchmark，并在运行时对 agent trajectory 做带上下文的诊断式监控。它不仅判断是否不安全，还尝试定位问题发生在何处、如何发生、会造成什么后果。</dd></div><div><dt>结果/证据</dt><dd>这使它不只是又一个安全分类器，而更像 agent safety 的统一诊断接口。对本仓库来说，它属于能够外溢到工具代理、电脑操作代理和多代理系统的 reusable evaluation-and-guardrail pattern，和我们关注的 permissioning、trajectory evaluation、execution governance 是同一主线。</dd></div><div><dt>收录价值</dt><dd>它目前仍主要是安全治理层和评测层的推进，而不是对 agent 基础范式的重写；同时其影响力和跨生态验证还没有达到更高等级。因此正式收录没有问题，但当前更合理的层级仍是 breakthrough。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>随着 AI agents 获得更强的工具调用和环境交互能力，安全失败不再只是单轮输出失误，而是会沿着完整轨迹累积并最终转化为真实行动风险。现有 guardrail 往往只给出二元拦截判断，缺少对 agentic 风险的细粒度刻画，也缺少对失败根因的诊断能力。</p><p>AgentDoG 的核心贡献是把 agent safety 做成一个可复用的结构化框架：先提出按风险来源、失败方式和后果组织的三维 taxonomy，再据此构造细粒度 benchmark，并在运行时对 agent trajectory 做带上下文的诊断式监控。它不仅判断是否不安全，还尝试定位问题发生在何处、如何发生、会造成什么后果。</p><p>这使它不只是又一个安全分类器，而更像 agent safety 的统一诊断接口。对本仓库来说，它属于能够外溢到工具代理、电脑操作代理和多代理系统的 reusable evaluation-and-guardrail pattern，和我们关注的 permissioning、trajectory evaluation、execution governance 是同一主线。</p><p>它目前仍主要是安全治理层和评测层的推进，而不是对 agent 基础范式的重写；同时其影响力和跨生态验证还没有达到更高等级。因此正式收录没有问题，但当前更合理的层级仍是 breakthrough。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AgentDoG：一个用于AI智能体安全保障的诊断性护栏框架。AI智能体的兴起带来了由自主工具使用和环境交互产生的复杂安全和保障挑战。当前的护栏模型缺乏智能体风险意识和风险诊断的透明度。为了引入一个涵盖复杂且众多危险行为的智能体护栏，我们首先提出了一个统一的三维分类法，它根据风险来源（何处）、故障模式（如何）和后果（何物）正交地对智能体风险进行分类。在这个结构化和分层分类法的指导下，我们引入了一个新的细粒度智能体安全基准（ATBench）和一个用于智能体安全保障的诊断性护栏框架（AgentDoG）。AgentDoG在智能体轨迹中提供细粒度和上下文相关的监控。更重要的是，AgentDoG能够诊断不安全行为以及看似安全但不合理行为的根本原因，提供超越二元标签的溯源和透明度，以促进有效的智能体对齐。AgentDoG变体在Qwen和Llama模型家族中提供三种尺寸（4B、7B和8B参数）。大量的实验结果表明，AgentDoG在多样化和复杂的交互场景中，在智能体安全审查方面取得了最先进的性能。所有模型和数据集均已公开发布。R-Judge 91.84 91.67</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The rise of AI agents introduces complex safety and security challenges arising from autonomous tool use and environmental interactions. Current guardrail models lack agentic risk awareness and transparency in risk diagnosis. To introduce an agentic guardrail that covers complex and numerous risky behaviors, we first propose a unified three-dimensional taxonomy that orthogonally categorizes agentic risks by their source (where), failure mode (how), and consequence (what). Guided by this structured and hierarchical taxonomy, we introduce a new fine-grained agentic safety benchmark (ATBench) and a Diagnostic Guardrail framework for agent safety and security (AgentDoG). AgentDoG provides fine-grained and contextual monitoring across agent trajectories. More Crucially, AgentDoG can diagnose the root causes of unsafe actions and seemingly safe but unreasonable actions, offering provenance and transparency beyond binary labels to facilitate effective agent alignment. AgentDoG variants are available in three sizes (4B, 7B, and 8B parameters) across Qwen and Llama model families. Extensive experimental results demonstrate that AgentDoG achieves state-of-the-art performance in agentic safety moderation in diverse and complex interactive scenarios. All models and datasets are openly released. R-Judge 91.84 91.67</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260126a142agentd,
+  title = {AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.18491v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a142-agentdog-agent-safety-guardrails/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security. https://arxiv.org/pdf/2601.18491v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.18491v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

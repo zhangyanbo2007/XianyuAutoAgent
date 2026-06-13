@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Many-Tier Instruction Hierarchy in LLM Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 agent 系统中越来越常见的多来源指令冲突问题，指出传统 instruction hierarchy 通常只假设少数固定权限层级，难以覆盖真实 agent 中系统消息、用户消息、工具输出、组织角色、API 信任边界等更细粒度的权限关系。作者把问题扩展为可有任意多权限层级的 Many-Tier Instruction Hierarchy，并以此定义新的安全与可靠性评测目标。
+
+核心贡" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a185-manyih-agent-instruction-hierarchy/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Many-Tier Instruction Hierarchy in LLM Agents" />
+    <meta property="og:description" content="这篇论文针对 agent 系统中越来越常见的多来源指令冲突问题，指出传统 instruction hierarchy 通常只假设少数固定权限层级，难以覆盖真实 agent 中系统消息、用户消息、工具输出、组织角色、API 信任边界等更细粒度的权限关系。作者把问题扩展为可有任意多权限层级的 Many-Tier Instruction Hierarchy，并以此定义新的安全与可靠性评测目标。
+
+核心贡" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a185-manyih-agent-instruction-hierarchy/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Many-Tier Instruction Hierarchy in LLM Agents" />
+    <meta name="twitter:description" content="这篇论文针对 agent 系统中越来越常见的多来源指令冲突问题，指出传统 instruction hierarchy 通常只假设少数固定权限层级，难以覆盖真实 agent 中系统消息、用户消息、工具输出、组织角色、API 信任边界等更细粒度的权限关系。作者把问题扩展为可有任意多权限层级的 Many-Tier Instruction Hierarchy，并以此定义新的安全与可靠性评测目标。
+
+核心贡" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Many-Tier Instruction Hierarchy in LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-10</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-10</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.09443" target="_blank" rel="noopener noreferrer">2604.09443</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 agent 系统中越来越常见的多来源指令冲突问题，指出传统 instruction hierarchy 通常只假设少数固定权限层级，难以覆盖真实 agent 中系统消息、用户消息、工具输出、组织角色、API 信任边界等更细粒度的权限关系。作者把问题扩展为可有任意多权限层级的 Many-Tier Instruction Hierarchy，并以此定义新的安全与可靠性评测目标。</dd></div><div><dt>方法/机制</dt><dd>核心贡献是 ManyIH 范式和 ManyIH-Bench。基准包含 853 个 agentic 任务，覆盖编码与指令遵循两类场景，最多要求模型处理 12 个冲突权限层级，并把约束设计、人工验证和自动检查结合起来，使模型必须显式识别并服从最高权限约束，而不是依赖少数硬编码 role label。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它把 agent 安全从“system &gt; user”这种粗粒度模板推进到可扩展权限解析问题，给工具型 agent、组织内 agent、代码 agent 和多组件 agent 的指令治理提供了可复用评测框架。当前前沿模型在层级数扩张时明显失效，这说明问题不是单纯增加推理 token 可以解决，而需要面向权限结构的训练和接口设计。</dd></div><div><dt>收录价值</dt><dd>局限在于论文主要提出评测和范式，尚未给出成熟的训练方法或协议标准；ManyIH 的权限值也被预先给定，真实系统中仍需要解决权限来源认证、动态信任更新和跨工具传播。因此它定位为突破性 agent 评测/安全框架，而不是更高一级的系统范式转移。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 agent 系统中越来越常见的多来源指令冲突问题，指出传统 instruction hierarchy 通常只假设少数固定权限层级，难以覆盖真实 agent 中系统消息、用户消息、工具输出、组织角色、API 信任边界等更细粒度的权限关系。作者把问题扩展为可有任意多权限层级的 Many-Tier Instruction Hierarchy，并以此定义新的安全与可靠性评测目标。</p><p>核心贡献是 ManyIH 范式和 ManyIH-Bench。基准包含 853 个 agentic 任务，覆盖编码与指令遵循两类场景，最多要求模型处理 12 个冲突权限层级，并把约束设计、人工验证和自动检查结合起来，使模型必须显式识别并服从最高权限约束，而不是依赖少数硬编码 role label。</p><p>它值得收录，是因为它把 agent 安全从“system &gt; user”这种粗粒度模板推进到可扩展权限解析问题，给工具型 agent、组织内 agent、代码 agent 和多组件 agent 的指令治理提供了可复用评测框架。当前前沿模型在层级数扩张时明显失效，这说明问题不是单纯增加推理 token 可以解决，而需要面向权限结构的训练和接口设计。</p><p>局限在于论文主要提出评测和范式，尚未给出成熟的训练方法或协议标准；ManyIH 的权限值也被预先给定，真实系统中仍需要解决权限来源认证、动态信任更新和跨工具传播。因此它定位为突破性 agent 评测/安全框架，而不是更高一级的系统范式转移。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型智能体从多种来源接收指令——系统消息、用户提示、工具输出等等——每种来源都带有不同程度的信任和权限。当这些指令冲突时，模型必须可靠地遵循最高权限的指令，以保持安全和有效。主流范式，即指令层级（IH），假设一个固定的、少量（通常少于五个）的权限级别集合，这些级别由严格的角色标签定义（例如，系统 &gt; 用户）。这对于现实世界的智能体设置来说是不够的，因为在这些设置中，冲突可能在更多的来源和上下文中产生。在这项工作中，我们提出了多层指令层级（ManyIH），这是一种用于解决具有任意多个权限级别的指令之间冲突的范式。我们引入了M ANY IH-B ENCH，这是ManyIH的第一个基准。M ANY IH-B ENCH要求模型处理多达12个具有不同权限的冲突指令层级，包括</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language model agents receive instructions from many sources— system messages, user prompts, tool outputs, and more—each carrying different levels of trust and authority. When these instructions conflict, models must reliably follow the highest-privilege instruction to remain safe and effective. The dominant paradigm, instruction hierarchy (IH), assumes a fixed, small set of privilege levels (typically fewer than five) defined by rigid role labels (e.g., system &gt; user). This is inadequate for real-world agentic settings, where conflicts can arise across far more sources and contexts. In this work, we propose Many-Tier Instruction Hierarchy (ManyIH), a paradigm for resolving instruction conflicts among instructions with arbitrarily many privilege levels. We introduce M ANY IH-B ENCH, the first benchmark for ManyIH. M ANY IH-B ENCH requires models to navigate up to 12 levels of conflicting instructions with varying privileges, comprising</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260410a185manyih,
+  title = {Many-Tier Instruction Hierarchy in LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.09443.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a185-manyih-agent-instruction-hierarchy/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Many-Tier Instruction Hierarchy in LLM Agents. https://arxiv.org/pdf/2604.09443.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.09443.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://jhu-clsp.github.io/ManyIH" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/JHU-CLSP/ManyIH" target="_blank" rel="noopener noreferrer">代码</a><a href="https://huggingface.co/datasets/jhu-clsp/ManyIH-Bench" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

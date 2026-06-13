@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation | DAST Papers</title>
+    <meta name="description" content="这篇 Science Robotics 论文提出 RAM，用 retrieval-augmented object-centric 3D 表征补足 VLM 在机器人操作中的空间推理缺口。问题在于 VLM 能理解高层语言，但缺少精确放置、朝向、碰撞和物理约束所需的几何智能。
+
+RAM 将抽象概念 grounding 到显式 3D object-centric representation，再把该结构" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl90-ram-vlm-spatial-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation" />
+    <meta property="og:description" content="这篇 Science Robotics 论文提出 RAM，用 retrieval-augmented object-centric 3D 表征补足 VLM 在机器人操作中的空间推理缺口。问题在于 VLM 能理解高层语言，但缺少精确放置、朝向、碰撞和物理约束所需的几何智能。
+
+RAM 将抽象概念 grounding 到显式 3D object-centric representation，再把该结构" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl90-ram-vlm-spatial-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation" />
+    <meta name="twitter:description" content="这篇 Science Robotics 论文提出 RAM，用 retrieval-augmented object-centric 3D 表征补足 VLM 在机器人操作中的空间推理缺口。问题在于 VLM 能理解高层语言，但缺少精确放置、朝向、碰撞和物理约束所需的几何智能。
+
+RAM 将抽象概念 grounding 到显式 3D object-centric representation，再把该结构" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-29</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Science Robotics 论文提出 RAM，用 retrieval-augmented object-centric 3D 表征补足 VLM 在机器人操作中的空间推理缺口。问题在于 VLM 能理解高层语言，但缺少精确放置、朝向、碰撞和物理约束所需的几何智能。</dd></div><div><dt>方法/机制</dt><dd>RAM 将抽象概念 grounding 到显式 3D object-centric representation，再把该结构化信息作为增强上下文提供给 VLM，使其能把复杂语言指令分解为空间精确、物理可行的子目标序列。</dd></div><div><dt>结果/证据</dt><dd>论文在真实机器人零样本设置中展示复杂空间语言指令执行、单张 2D 图像指导下的空间操作，以及基于物体尺寸和碰撞约束的自适应重规划。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提供了 VLM 与几何执行之间的可复用桥接模式，是 VLA/robot foundation model 落地操作任务时需要的关键系统接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Science Robotics 论文提出 RAM，用 retrieval-augmented object-centric 3D 表征补足 VLM 在机器人操作中的空间推理缺口。问题在于 VLM 能理解高层语言，但缺少精确放置、朝向、碰撞和物理约束所需的几何智能。</p><p>RAM 将抽象概念 grounding 到显式 3D object-centric representation，再把该结构化信息作为增强上下文提供给 VLM，使其能把复杂语言指令分解为空间精确、物理可行的子目标序列。</p><p>论文在真实机器人零样本设置中展示复杂空间语言指令执行、单张 2D 图像指导下的空间操作，以及基于物体尺寸和碰撞约束的自适应重规划。</p><p>收录价值在于它提供了 VLM 与几何执行之间的可复用桥接模式，是 VLA/robot foundation model 落地操作任务时需要的关键系统接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>检索增强操作 (RAM) 是一种以物体为中心的框架，通过将抽象概念地引入明确的 3D 物体中心表示并将其作为增强的上下文输入到 VLM 中，为通用视觉基础模型提供空间推理能力，以用于机器人的操作。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Retrieval-Augmented Manipulation (RAM) is an object-centric framework that gives general-purpose vision foundation models spatial reasoning for robotic manipulation by grounding abstract concepts into explicit 3D object-centric representations and feeding them as augmented context to a VLM.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260429rl90ramvlm,
+  title = {A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation},
+  year = {2026},
+  url = {https://doi.org/10.1126/scirobotics.aea2092},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl90-ram-vlm-spatial-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A retrieval-augmented framework enabling VLM spatial awareness for object-centric robot manipulation. https://doi.org/10.1126/scirobotics.aea2092</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1126/scirobotics.aea2092" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://api.crossref.org/works/10.1126%2Fscirobotics.aea2092" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

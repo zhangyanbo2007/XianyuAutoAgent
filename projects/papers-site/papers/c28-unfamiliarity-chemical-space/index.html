@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Molecular deep learning at the edge of chemical space | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了分子机器学习里一个长期但经常被低估的问题：模型在训练分布边缘之外往往迅速失真，但很多工作只报告平均测试集性能，几乎不显式刻画“离训练化学空间有多远时还可信”。作者的重点不是再做一个 predictor，而是为 chemical-space generalization 引入更可用的估计量。
+
+方法上，他们把性质预测和分子重建联合建模，提出 reconstruction-based u" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c28-unfamiliarity-chemical-space/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Molecular deep learning at the edge of chemical space" />
+    <meta property="og:description" content="这篇论文抓住了分子机器学习里一个长期但经常被低估的问题：模型在训练分布边缘之外往往迅速失真，但很多工作只报告平均测试集性能，几乎不显式刻画“离训练化学空间有多远时还可信”。作者的重点不是再做一个 predictor，而是为 chemical-space generalization 引入更可用的估计量。
+
+方法上，他们把性质预测和分子重建联合建模，提出 reconstruction-based u" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c28-unfamiliarity-chemical-space/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Molecular deep learning at the edge of chemical space" />
+    <meta name="twitter:description" content="这篇论文抓住了分子机器学习里一个长期但经常被低估的问题：模型在训练分布边缘之外往往迅速失真，但很多工作只报告平均测试集性能，几乎不显式刻画“离训练化学空间有多远时还可信”。作者的重点不是再做一个 predictor，而是为 chemical-space generalization 引入更可用的估计量。
+
+方法上，他们把性质预测和分子重建联合建模，提出 reconstruction-based u" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Molecular deep learning at the edge of chemical space</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-04-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-22</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01216-w" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01216-w</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了分子机器学习里一个长期但经常被低估的问题：模型在训练分布边缘之外往往迅速失真，但很多工作只报告平均测试集性能，几乎不显式刻画“离训练化学空间有多远时还可信”。作者的重点不是再做一个 predictor，而是为 chemical-space generalization 引入更可用的估计量。</dd></div><div><dt>方法/机制</dt><dd>方法上，他们把性质预测和分子重建联合建模，提出 reconstruction-based unfamiliarity 指标，用来估计样本相对训练分布的陌生程度以及模型在该点的可靠性。它不只检测 OOD，还在 30 多个 bioactivity 数据集上表现为 classifier performance 的稳定预测信号。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 unfamiliarity 是很有复用潜力的方法原语。对于 virtual screening、active learning、分子库优先级排序，以及 wet-lab 前的风险控制都很有意义。更重要的是，作者还做了两条 kinase 的实验验证，说明这个指标不是纸上泛化，而能真的帮助发现结构上更远的新活性分子。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为当前贡献仍集中在 molecular ML 的 generalization diagnostics 与 screening workflow，虽然很强，但还没到重构整个药物发现基础设施的级别。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了分子机器学习里一个长期但经常被低估的问题：模型在训练分布边缘之外往往迅速失真，但很多工作只报告平均测试集性能，几乎不显式刻画“离训练化学空间有多远时还可信”。作者的重点不是再做一个 predictor，而是为 chemical-space generalization 引入更可用的估计量。</p><p>方法上，他们把性质预测和分子重建联合建模，提出 reconstruction-based unfamiliarity 指标，用来估计样本相对训练分布的陌生程度以及模型在该点的可靠性。它不只检测 OOD，还在 30 多个 bioactivity 数据集上表现为 classifier performance 的稳定预测信号。</p><p>它值得正式收录，因为 unfamiliarity 是很有复用潜力的方法原语。对于 virtual screening、active learning、分子库优先级排序，以及 wet-lab 前的风险控制都很有意义。更重要的是，作者还做了两条 kinase 的实验验证，说明这个指标不是纸上泛化，而能真的帮助发现结构上更远的新活性分子。</p><p>它没有升到更高等级，是因为当前贡献仍集中在 molecular ML 的 generalization diagnostics 与 screening workflow，虽然很强，但还没到重构整个药物发现基础设施的级别。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>分子机器学习模型通常难以泛化到其训练数据所涵盖的化学空间之外，这限制了它们对结构新颖的生物活性分子进行可靠预测的能力。为此，为了提升机器学习超越其训练化学空间“边缘”的能力，我们引入了一种联合建模方法，该方法结合了分子性质预测与分子重建。这种方法引入了陌生度（unfamiliarity），这是一种基于重建的度量，能够估计模型的泛化能力。通过对30多个生物活性数据集的系统分析，我们证明陌生度不仅能有效识别分布外分子，还能作为分类器性能的可靠预测指标。即使面对大规模分子库中存在的强烈分布偏移，陌生度也能产生传统方法未能察觉的稳健且有意义的分子见解。最后，我们通过湿实验室实验验证了基于陌生度的分子筛选方法，针对两种临床相关的激酶，发现了七种具有低微摩尔效价且与训练分子相似度有限的化合物。这表明陌生度能够将机器学习的范围扩展到已绘制化学空间的边缘之外，从而推动多样化和结构新颖分子的发现。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Molecular machine learning models often fail to generalize beyond the chemical space of their training data, limiting their ability to reliably perform predictions on structurally novel bioactive molecules. Here, to advance the ability of machine learning to go beyond the ‘edge’ of their training chemical space, we introduce a joint modelling approach that combines molecular property prediction with molecular reconstruction. This approach allows the introduction of unfamiliarity, a reconstruction-based metric that enables the estimation of model generalizability. Via a systematic analysis spanning more than 30 bioactivity datasets, we demonstrate that unfamiliarity not only effectively identifies out-of-distribution molecules but also serves as a reliable predictor of classifier performance. Even when faced with the presence of strong distribution shifts on large-scale molecular libraries, unfamiliarity yields robust and meaningful molecular insights that go unnoticed by traditional methods. Finally, we experimentally validate unfamiliarity-based molecule screening in the wet lab for two clinically relevant kinases, discovering seven compounds with low micromolar potency and limited similarity to training molecules. This demonstrates that unfamiliarity can extend the reach of machine learning beyond the edge of the charted chemical space, advancing the discovery of diverse and structurally novel molecules.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260422c28unfamil,
+  title = {Molecular deep learning at the edge of chemical space},
+  year = {2026},
+  url = {https://www.nature.com/articles/s42256-026-01216-w.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c28-unfamiliarity-chemical-space/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Molecular deep learning at the edge of chemical space. https://www.nature.com/articles/s42256-026-01216-w.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-026-01216-w.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

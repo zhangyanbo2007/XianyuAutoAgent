@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context | DAST Papers</title>
+    <meta name="description" content="这篇论文讨论的是长上下文推理里的一个核心难点：即使模型窗口变长，真正稳定地抽取、组织并使用远距离信息依然很难。此前 Recursive Language Models 这类方法试图通过递归式子调用和程序化上下文交互来处理长文档，但这条路线的成功到底来自递归结构本身，还是来自更一般的推理程序搜索，一直没有被讲清。
+
+作者提出的 SRLM 把重点从显式递归转向 uncertainty-aware se" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r11-srlm-long-context-search/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context" />
+    <meta property="og:description" content="这篇论文讨论的是长上下文推理里的一个核心难点：即使模型窗口变长，真正稳定地抽取、组织并使用远距离信息依然很难。此前 Recursive Language Models 这类方法试图通过递归式子调用和程序化上下文交互来处理长文档，但这条路线的成功到底来自递归结构本身，还是来自更一般的推理程序搜索，一直没有被讲清。
+
+作者提出的 SRLM 把重点从显式递归转向 uncertainty-aware se" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r11-srlm-long-context-search/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context" />
+    <meta name="twitter:description" content="这篇论文讨论的是长上下文推理里的一个核心难点：即使模型窗口变长，真正稳定地抽取、组织并使用远距离信息依然很难。此前 Recursive Language Models 这类方法试图通过递归式子调用和程序化上下文交互来处理长文档，但这条路线的成功到底来自递归结构本身，还是来自更一般的推理程序搜索，一直没有被讲清。
+
+作者提出的 SRLM 把重点从显式递归转向 uncertainty-aware se" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-03-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.15653" target="_blank" rel="noopener noreferrer">2603.15653</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文讨论的是长上下文推理里的一个核心难点：即使模型窗口变长，真正稳定地抽取、组织并使用远距离信息依然很难。此前 Recursive Language Models 这类方法试图通过递归式子调用和程序化上下文交互来处理长文档，但这条路线的成功到底来自递归结构本身，还是来自更一般的推理程序搜索，一直没有被讲清。</dd></div><div><dt>方法/机制</dt><dd>作者提出的 SRLM 把重点从显式递归转向 uncertainty-aware self-reflective program search。它利用 self-consistency、reasoning length 和 verbalized confidence 三种内在信号来估计模型不确定性，再用这些信号比较候选的 context-interaction programs。实验显示，在相同时间预算下，SRLM 相比 RLM 最高可提升 22%，而且一个重要结论是：递归本身并不是 RLM 有效的主要原因，简单的自反式程序搜索在很多设置下就可以匹配甚至超过显式递归。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它不只是给长上下文任务再加一个新技巧，而是对一个正在形成中的方向做了方法澄清：在 long-context agentic inference 中，好的 program search 和 uncertainty signal 可能比递归结构本身更关键。这对长上下文推理、inference-time search、agentic decomposition 和 uncertainty-aware LM 控制都有明确外溢价值。</dd></div><div><dt>收录价值</dt><dd>它目前适合定为 breakthrough，而不是更高一级。原因是这仍是预印本，影响力还主要体现在一组扎实的实验和相对清晰的机制结论上，而不是已经成为社区公认的新默认范式。它更像一篇很好的方向澄清与方法增强论文，距离 paradigm 或 disruptive 还差更广泛的独立采用与跨任务验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文讨论的是长上下文推理里的一个核心难点：即使模型窗口变长，真正稳定地抽取、组织并使用远距离信息依然很难。此前 Recursive Language Models 这类方法试图通过递归式子调用和程序化上下文交互来处理长文档，但这条路线的成功到底来自递归结构本身，还是来自更一般的推理程序搜索，一直没有被讲清。</p><p>作者提出的 SRLM 把重点从显式递归转向 uncertainty-aware self-reflective program search。它利用 self-consistency、reasoning length 和 verbalized confidence 三种内在信号来估计模型不确定性，再用这些信号比较候选的 context-interaction programs。实验显示，在相同时间预算下，SRLM 相比 RLM 最高可提升 22%，而且一个重要结论是：递归本身并不是 RLM 有效的主要原因，简单的自反式程序搜索在很多设置下就可以匹配甚至超过显式递归。</p><p>这篇工作值得正式收录，因为它不只是给长上下文任务再加一个新技巧，而是对一个正在形成中的方向做了方法澄清：在 long-context agentic inference 中，好的 program search 和 uncertainty signal 可能比递归结构本身更关键。这对长上下文推理、inference-time search、agentic decomposition 和 uncertainty-aware LM 控制都有明确外溢价值。</p><p>它目前适合定为 breakthrough，而不是更高一级。原因是这仍是预印本，影响力还主要体现在一组扎实的实验和相对清晰的机制结论上，而不是已经成为社区公认的新默认范式。它更像一篇很好的方向澄清与方法增强论文，距离 paradigm 或 disruptive 还差更广泛的独立采用与跨任务验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>递归语言模型遇上不确定性：自反程序搜索在长上下文中的惊人有效性。长上下文处理仍然是LLM的核心挑战：即使上下文窗口得到扩展，模型也常常无法可靠地从长上下文中提取、推理和利用信息。最近的研究，如递归语言模型（RLMs），通过在推理时以代理方式将长上下文分解为递归子查询的程序化交互来应对这一挑战。尽管前景广阔，但RLMs的成功关键取决于这些上下文交互程序的轨迹如何选择，这一点尚未得到探索。在本文中，我们研究了这个问题，并引入了长上下文自反程序搜索（SRLM），这是一个将基于编程的上下文交互与不确定性感知自反相结合的框架。SRLM利用三个内在信号：自洽性、推理轨迹长度和口头表达的置信度。这些信号作为模型内部不确定性的互补指标，模型利用它们来评估和比较候选上下文交互程序。跨越不同基准数据集、上下文长度和骨干模型的广泛实验表明，SRLM始终优于最先进的基线，在相同时间预算下，相对于RLMs实现了高达22%的改进。我们的研究结果表明，递归本身并非RLMs性能的主要驱动因素，一个简单的自反程序搜索无需自查询或显式递归机制即可与RLM匹敌或超越RLM。我们发现，对于模型上下文窗口内的上下文长度，带有递归的RLMs相对于基础模型通常会降低性能，而SRLM在短上下文和长上下文上都产生了持续且稳健的增益。我们还发现，RLM在语义密集型任务中效果较差，在这些任务中，启发式程序搜索不足以满足需求，需要更广泛的上下文理解，而SRLM中的自反提供了语义信号，能够更好地引导在这些具有挑战性的长上下文场景中的推理。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-context handling remains a core challenge for language models: even with extended context windows, models often fail to reliably extract, reason over, and use the information across long contexts. Recent works like Recursive Language Models (RLMs) have approached this challenge by agentic way of decomposing long contexts into recursive sub-queries through programmatic interaction at inference. While promising, the success of RLMs critically depends on how these trajectories of context-interaction programs are selected, which has remained unexplored. In this paper, we study this problem and introduce Self-Reflective Program Search for Long Context (SRLM), a framework that augments programming-based context interaction with uncertainty-aware self-reflection. SRLM leverages three intrinsic signals: self consistency, reasoning trace length, and verbalized confidence. These serve as complementary indicators of a model’s internal uncertainty, and the model uses them to evaluate and compare candidate context-interaction programs. Extensive experiments across diverse benchmark datasets, context lengths, and backbone models, show that SRLM consistently outperforms state-of-the-art baselines, yielding up to 22% improvement over RLMs under the same time budget. Our findings show that recursion itself is not the primary driver of performance in RLMs, and a simple self-reflective program search can match or surpass RLM without requiring self-query or explicit recursion mechanisms. We find that for context lengths within the model’s context window, RLMs with recursion often degrade performance relative to the base model, whereas SRLM yields consistent and robust gains across both short and long contexts. We also find that RLM is less effective in tasks with semantically intensive nature, where heuristic program search is insufficient and broader contextual understanding is required, while self-reflection in SRLM provides a semantic signal that better steers reasoning in these challenging long-context scenarios.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260307r11srlmlon,
+  title = {Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.15653v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r11-srlm-long-context-search/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Recursive Language Models Meet Uncertainty: The Surprising Effectiveness of Self-Reflective Program Search for Long Context. https://arxiv.org/pdf/2603.15653v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.15653v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

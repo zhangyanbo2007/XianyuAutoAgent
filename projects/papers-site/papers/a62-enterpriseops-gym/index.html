@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EnterpriseOps-Gym: Environments and Evaluations for Stateful Agentic Planning and Tool Use in Enterprise Settings | DAST Papers</title>
+    <meta name="description" content="企业环境里的 agent 评测长期偏弱，一个根本问题是现有 benchmark 很少真正覆盖持久状态、权限约束、多工具调用和长程计划这些现实企业场景最难的部分。EnterpriseOps-Gym 正面把这个缺口做成了环境级 benchmark。
+
+论文构建了一个带有 164 张数据库表、512 个工具和 1150 个专家任务的容器化 sandbox，覆盖客服、人力、IT 等关键业务垂类。更重要的是" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a62-enterpriseops-gym/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EnterpriseOps-Gym: Environments and Evaluations for Stateful Agentic Planning and Tool Use in Enterprise Settings" />
+    <meta property="og:description" content="企业环境里的 agent 评测长期偏弱，一个根本问题是现有 benchmark 很少真正覆盖持久状态、权限约束、多工具调用和长程计划这些现实企业场景最难的部分。EnterpriseOps-Gym 正面把这个缺口做成了环境级 benchmark。
+
+论文构建了一个带有 164 张数据库表、512 个工具和 1150 个专家任务的容器化 sandbox，覆盖客服、人力、IT 等关键业务垂类。更重要的是" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a62-enterpriseops-gym/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EnterpriseOps-Gym: Environments and Evaluations for Stateful Agentic Planning and Tool Use in Enterprise Settings" />
+    <meta name="twitter:description" content="企业环境里的 agent 评测长期偏弱，一个根本问题是现有 benchmark 很少真正覆盖持久状态、权限约束、多工具调用和长程计划这些现实企业场景最难的部分。EnterpriseOps-Gym 正面把这个缺口做成了环境级 benchmark。
+
+论文构建了一个带有 164 张数据库表、512 个工具和 1150 个专家任务的容器化 sandbox，覆盖客服、人力、IT 等关键业务垂类。更重要的是" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EnterpriseOps-Gym: Environments and Evaluations for Stateful Agentic Planning and Tool Use in Enterprise Settings</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.13594" target="_blank" rel="noopener noreferrer">2603.13594</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>企业环境里的 agent 评测长期偏弱，一个根本问题是现有 benchmark 很少真正覆盖持久状态、权限约束、多工具调用和长程计划这些现实企业场景最难的部分。EnterpriseOps-Gym 正面把这个缺口做成了环境级 benchmark。</dd></div><div><dt>方法/机制</dt><dd>论文构建了一个带有 164 张数据库表、512 个工具和 1150 个专家任务的容器化 sandbox，覆盖客服、人力、IT 等关键业务垂类。更重要的是，它不仅测任务成功率，还显式测 infeasible task refusal、planning consistency 和 side effects，把“企业 agent 可部署性”从演示层推进到了更接近真实 operating constraint 的评测层。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得正式收录，因为它重新定义了 enterprise agent 应该怎样被测。很多 agent benchmark 只测静态答题或轻量工具调用，而这篇工作把 persistent state、policy friction 和 long-horizon planning 合在一起，具有很强的评测外溢价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不是更高一级，因为目前核心贡献仍然是 benchmark 和诊断框架，而不是新的通用 agent 训练机制。它非常重要，但更像一篇高质量评测基础设施论文，而不是直接改写 agent 方法主线的论文。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>企业环境里的 agent 评测长期偏弱，一个根本问题是现有 benchmark 很少真正覆盖持久状态、权限约束、多工具调用和长程计划这些现实企业场景最难的部分。EnterpriseOps-Gym 正面把这个缺口做成了环境级 benchmark。</p><p>论文构建了一个带有 164 张数据库表、512 个工具和 1150 个专家任务的容器化 sandbox，覆盖客服、人力、IT 等关键业务垂类。更重要的是，它不仅测任务成功率，还显式测 infeasible task refusal、planning consistency 和 side effects，把“企业 agent 可部署性”从演示层推进到了更接近真实 operating constraint 的评测层。</p><p>这篇论文值得正式收录，因为它重新定义了 enterprise agent 应该怎样被测。很多 agent benchmark 只测静态答题或轻量工具调用，而这篇工作把 persistent state、policy friction 和 long-horizon planning 合在一起，具有很强的评测外溢价值。</p><p>它暂时不是更高一级，因为目前核心贡献仍然是 benchmark 和诊断框架，而不是新的通用 agent 训练机制。它非常重要，但更像一篇高质量评测基础设施论文，而不是直接改写 agent 方法主线的论文。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>EnterpriseOps-Gym：企业环境中带状态的智能体规划与工具使用的环境与评估。大型语言模型正在从被动的信息提供者转变为旨在处理复杂工作流的主动智能体。然而，由于现有基准未能捕捉专业环境的复杂性，特别是长期规划在持续状态变化和严格访问协议下的需求，它们作为企业中可靠AI员工的部署受阻。在这项工作中，我们引入了 E NTERPRISE O PS -G YM，这是一个旨在评估真实企业环境中智能体规划能力的基准。具体而言，E NTERPRISE O PS -G YM 设有一个容器化沙盒，包含164个数据库表和512个功能工具，以模拟现实世界的搜索摩擦。在此环境中，智能体在八个关键业务领域（包括客户服务、人力资源和IT）的1,150项专家策划任务上进行评估。我们对14个前沿模型的评估揭示了最先进模型的关键局限性：表现最佳的Claude Opus 4.5仅达到37.4%的成功率。进一步分析表明，提供预言机式的人类规划可将性能提高14-35个百分点，这表明战略推理是主要的瓶颈。此外，智能体经常未能拒绝不可行的任务（最佳模型达到53.9%），导致意想不到的、可能有害的副作用。我们的发现强调，当前的智能体尚未准备好进行自主企业部署。更广泛地说，E NTERPRISE O PS -G YM 提供了一个具体的测试平台，以提升专业工作流中智能体规划的鲁棒性。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models are shifting from passive information providers to active agents intended for complex workflows. However, their deployment as reliable AI workers in enterprise is stalled by benchmarks that fail to capture the intricacies of professional environments, specifically, the need for long-horizon planning amidst persistent state changes and strict access protocols. In this work, we introduce E NTERPRISE O PS -G YM, a benchmark designed to evaluate agentic planning in realistic enterprise settings. Specifically, E NTERPRISE O PS -G YM features a containerized sandbox with 164 database tables and 512 functional tools to mimic real-world search friction. Within this environment, agents are evaluated on 1,150 expert-curated tasks across eight missioncritical verticals (including Customer Service, HR, and IT). Our evaluation of 14 frontier models reveals critical limitations in state-of-the-art models: the top-performing Claude Opus 4.5 achieves only 37.4% success. Further analysis shows that providing oracle human plans improves performance by 14–35 percentage points, pinpointing strategic reasoning as the primary bottleneck. Additionally, agents frequently fail to refuse infeasible tasks (best model achieves 53.9%), leading to unintended and potentially harmful side effects. Our findings underscore that current agents are not yet ready for autonomous enterprise deployment. More broadly, E NTERPRISE O PS -G YM provides a concrete testbed to advance the robustness of agentic planning in professional workflows.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260313a62enterpr,
+  title = {EnterpriseOps-Gym: Environments and Evaluations for Stateful Agentic Planning and Tool Use in Enterprise Settings},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.13594v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a62-enterpriseops-gym/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EnterpriseOps-Gym: Environments and Evaluations for Stateful Agentic Planning and Tool Use in Enterprise Settings. https://arxiv.org/pdf/2603.13594v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.13594v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR | DAST Papers</title>
+    <meta name="description" content="NudgeRL 处理 RLVR 的核心瓶颈：模型只能从已经采样到的轨迹中学习，简单增加 rollout 数量成本高且探索方向不可控。
+
+它用 Strategy Nudging 给每次 rollout 加入轻量策略上下文，引导多样化推理轨迹；再用统一目标分解 inter-context 和 intra-context reward，并把发现的行为蒸馏回 base policy。
+
+它值得正式收录，因" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl76-nudgerl-strategy-exploration/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR" />
+    <meta property="og:description" content="NudgeRL 处理 RLVR 的核心瓶颈：模型只能从已经采样到的轨迹中学习，简单增加 rollout 数量成本高且探索方向不可控。
+
+它用 Strategy Nudging 给每次 rollout 加入轻量策略上下文，引导多样化推理轨迹；再用统一目标分解 inter-context 和 intra-context reward，并把发现的行为蒸馏回 base policy。
+
+它值得正式收录，因" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl76-nudgerl-strategy-exploration/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR" />
+    <meta name="twitter:description" content="NudgeRL 处理 RLVR 的核心瓶颈：模型只能从已经采样到的轨迹中学习，简单增加 rollout 数量成本高且探索方向不可控。
+
+它用 Strategy Nudging 给每次 rollout 加入轻量策略上下文，引导多样化推理轨迹；再用统一目标分解 inter-context 和 intra-context reward，并把发现的行为蒸馏回 base policy。
+
+它值得正式收录，因" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</h1>
+          <p class="subtitle">强化学习 · 发表：2026-05-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.15726" target="_blank" rel="noopener noreferrer">2605.15726</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>NudgeRL 处理 RLVR 的核心瓶颈：模型只能从已经采样到的轨迹中学习，简单增加 rollout 数量成本高且探索方向不可控。</dd></div><div><dt>方法/机制</dt><dd>它用 Strategy Nudging 给每次 rollout 加入轻量策略上下文，引导多样化推理轨迹；再用统一目标分解 inter-context 和 intra-context reward，并把发现的行为蒸馏回 base policy。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 reasoning RL 的下一步不是只堆 rollout，而是让探索变得结构化、可控、可迁移。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为策略上下文设计、不同任务族的泛化和大模型训练稳定性还需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>NudgeRL 处理 RLVR 的核心瓶颈：模型只能从已经采样到的轨迹中学习，简单增加 rollout 数量成本高且探索方向不可控。</p><p>它用 Strategy Nudging 给每次 rollout 加入轻量策略上下文，引导多样化推理轨迹；再用统一目标分解 inter-context 和 intra-context reward，并把发现的行为蒸馏回 base policy。</p><p>它值得正式收录，因为 reasoning RL 的下一步不是只堆 rollout，而是让探索变得结构化、可控、可迁移。</p><p>它没有更高，是因为策略上下文设计、不同任务族的泛化和大模型训练稳定性还需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>可验证奖励的强化学习（RLVR）已成为一种可扩展的范式，用于提高大型语言模型（LLMs）的推理能力。然而，其有效性从根本上受限于探索：策略只能在其已采样的轨迹上改进。虽然增加rollout数量可以缓解此问题，但这种暴力扩展计算成本高昂，并且现有修改优化目标的方法对探索内容提供有限的控制。在这项工作中，我们提出了NUDGE RL，一个用于RLVR中结构化和多样性驱动探索的框架。我们的方法引入了策略推动（Strategy Nudging），它根据轻量级、策略级上下文条件化每个rollout，以诱导多样化的推理轨迹，而无需依赖昂贵的预言机监督。为了从这种结构化探索中有效学习，我们进一步提出了一个统一目标，它将奖励信号分解为上下文间和上下文内组件，并结合蒸馏目标将发现的行为转移回基础策略。经验上，NUDGE RL优于标准GRPO，rollout预算高达8倍，同时在五个具有挑战性的数学基准测试中平均优于预言机引导的RL基线。这些结果表明，结构化、上下文驱动的探索可以作为暴力rollout扩展和基于特权信息的可行性导向方法的高效且可扩展的替代方案。我们的代码可在 https://github.com/tally0818/NudgeRL 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning with verifiable rewards (RLVR) has emerged as a scalable paradigm for improving the reasoning capabilities of large language models. However, its effectiveness is fundamentally limited by exploration: the policy can only improve on trajectories it has already sampled. While increasing the number of rollouts alleviates this issue, such brute-force scaling is computationally expensive, and existing approaches that modify the optimization objective provide limited control over what is explored. In this work, we propose N UDGE RL, a framework for structured and diversity-driven exploration in RLVR. Our approach introduces Strategy Nudging, which conditions each rollout on lightweight, strategy-level contexts to induce diverse reasoning trajectories without relying on expensive oracle supervision. To effectively learn from such structured exploration, we further propose a unified objective, which decomposes the reward signal into interand intra-context components and incorporates a distillation objective to transfer discovered behaviors back to the base policy. Empirically, N UDGE RL outperforms standard GRPO with up to 8× larger rollout budgets, while outperforming oracle-guided RL baseline on average across five challenging math benchmarks. These results demonstrate that structured, context-driven exploration can serve as an efficient and scalable alternative to both brute-force rollout scaling and feasibility-oriented methods based on privileged information. Our code is available at https://github.com/tally0818/NudgeRL.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260515rl76nudger,
+  title = {Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.15726.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl76-nudgerl-strategy-exploration/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR. https://arxiv.org/pdf/2605.15726.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl65-listwise-policy-optimization/">
+              <span>Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex</span>
+              <small>强化学习 · 2026-05-11</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.15726.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.15726" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

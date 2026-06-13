@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 deep-research agent 的关键评估盲区：只看最终答案无法知道长轨迹中哪一段搜索、证据检查或 synthesis 导致了不可靠结论。
+
+作者把真实 agent logs 转成语义 spans，构建 TELBench，并提出 DRIFT 这种 claim-centric auditing 框架，沿轨迹追踪 claims、证据支撑和冲突位置。
+
+它值得收录，因为它把 age" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a361-deepresearch-error-localization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories" />
+    <meta property="og:description" content="这篇论文针对 deep-research agent 的关键评估盲区：只看最终答案无法知道长轨迹中哪一段搜索、证据检查或 synthesis 导致了不可靠结论。
+
+作者把真实 agent logs 转成语义 spans，构建 TELBench，并提出 DRIFT 这种 claim-centric auditing 框架，沿轨迹追踪 claims、证据支撑和冲突位置。
+
+它值得收录，因为它把 age" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a361-deepresearch-error-localization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories" />
+    <meta name="twitter:description" content="这篇论文针对 deep-research agent 的关键评估盲区：只看最终答案无法知道长轨迹中哪一段搜索、证据检查或 synthesis 导致了不可靠结论。
+
+作者把真实 agent logs 转成语义 spans，构建 TELBench，并提出 DRIFT 这种 claim-centric auditing 框架，沿轨迹追踪 claims、证据支撑和冲突位置。
+
+它值得收录，因为它把 age" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories</h1>
+          <p class="subtitle">Agent Systems And Execution · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">Agent Systems And Execution</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.02060" target="_blank" rel="noopener noreferrer">2606.02060</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 deep-research agent 的关键评估盲区：只看最终答案无法知道长轨迹中哪一段搜索、证据检查或 synthesis 导致了不可靠结论。</dd></div><div><dt>方法/机制</dt><dd>作者把真实 agent logs 转成语义 spans，构建 TELBench，并提出 DRIFT 这种 claim-centric auditing 框架，沿轨迹追踪 claims、证据支撑和冲突位置。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把 agent 可靠性评估从 outcome-level 推进到 process-level localization，提供了可复用的错误定位 benchmark 和审计范式，对研究型 agent、工具使用 agent 和生产观测都有直接价值。</dd></div><div><dt>收录价值</dt><dd>按当前更高 agent 门槛，它仍然合格，因为贡献不是普通 agent 技巧，而是可复用的诊断/审计接口；局限是标注流程和任务分布仍需跨更多 agent 框架验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 deep-research agent 的关键评估盲区：只看最终答案无法知道长轨迹中哪一段搜索、证据检查或 synthesis 导致了不可靠结论。</p><p>作者把真实 agent logs 转成语义 spans，构建 TELBench，并提出 DRIFT 这种 claim-centric auditing 框架，沿轨迹追踪 claims、证据支撑和冲突位置。</p><p>它值得收录，因为它把 agent 可靠性评估从 outcome-level 推进到 process-level localization，提供了可复用的错误定位 benchmark 和审计范式，对研究型 agent、工具使用 agent 和生产观测都有直接价值。</p><p>按当前更高 agent 门槛，它仍然合格，因为贡献不是普通 agent 技巧，而是可复用的诊断/审计接口；局限是标注流程和任务分布仍需跨更多 agent 框架验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>深度研究智能体通过搜索、工具使用、证据检查和答案综合的漫长轨迹来解决任务。基于最终答案的评估显示了智能体是否成功，但未能指出轨迹的哪些部分导致答案不可靠。我们研究深度研究智能体的跨度级错误定位。我们从两个智能体框架、三个骨干模型和三个基准中收集了2,790条真实轨迹，将原始日志转换为语义跨度，并通过LLM辅助的专家评审标注了有害错误跨度。基于这些标注，我们构建了TELB ENCHa，这是一个包含1,000个实例的基准，用于识别正常探索、失败搜索、初步假设和无害噪声中的错误跨度。我们进一步提出了DRIFT b，这是一个以声明为中心的审计框架，它跟踪智能体声明，检查它们在轨迹证据中的支持度，并标记出不受支持或相互冲突的声明影响答案路径的跨度。跨模型家族和审计框架的实验表明，DRIFT将跨度级错误定位和首次错误准确率提高了多达30个百分点。我们的工作提供了深度研究智能体可靠性的过程级视图。a https://huggingface.co/datasets/NJU-LINK/TELBench</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Deep-research agents solve tasks through long trajectories of search, tool use, evidence inspection, and answer synthesis. Evaluation based on final answers shows whether an agent succeeds, but not which parts of the trajectory make the answer unreliable. We study span-level error localization for deep-research agents. We collect 2,790 real trajectories from two agent frameworks, three backbone models, and three benchmarks, convert raw logs into semantic spans, and annotate harmful error spans through LLM-assisted expert review. From these annotations, we build TELB ENCHa , a 1,000-instance benchmark for identifying error spans among normal exploration, failed searches, tentative hypotheses, and harmless noise. We further propose DRIFT b , a claim-centric auditing framework that tracks agent claims, checks their support in trajectory evidence, and marks spans where unsupported or conflicting claims affect the answer path. Experiments across model families and auditing frameworks show that DRIFT improves span-level error localization and first-error accuracy by up to 30 percentage points. Our work provides a process-level view of reliability in deep-research agents. a https://huggingface.co/datasets/NJU-LINK/TELBench</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601a361deepre,
+  title = {Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.02060.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a361-deepresearch-error-localization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Where Do Deep-Research Agents Go Wrong? Span-Level Error Localization in Agent Trajectories. https://arxiv.org/pdf/2606.02060.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a363-agent-libos-runtime/">
+              <span>Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents</span>
+              <small>Agent Systems And Execution · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/a362-mmg2skill-guide-to-skill/">
+              <span>MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?</span>
+              <small>Agent Systems And Execution · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.02060.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2606.02060" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

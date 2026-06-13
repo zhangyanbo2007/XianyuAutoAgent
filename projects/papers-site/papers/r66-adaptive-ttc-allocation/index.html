@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization | DAST Papers</title>
+    <meta name="description" content="问题与背景：test-time compute scaling 有效但昂贵，真实部署必须决定哪些输入值得多采样/搜索/长推理，哪些可以低成本回答。
+
+方法与新意：论文把问题形式化为平均 compute budget 约束下最大化准确率，用 Lagrangian relaxation 分解为单样本 oracle action，再训练轻量分类器从低成本特征模仿预算分配策略。
+
+收录意义：这篇对 inf" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r66-adaptive-ttc-allocation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization" />
+    <meta property="og:description" content="问题与背景：test-time compute scaling 有效但昂贵，真实部署必须决定哪些输入值得多采样/搜索/长推理，哪些可以低成本回答。
+
+方法与新意：论文把问题形式化为平均 compute budget 约束下最大化准确率，用 Lagrangian relaxation 分解为单样本 oracle action，再训练轻量分类器从低成本特征模仿预算分配策略。
+
+收录意义：这篇对 inf" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r66-adaptive-ttc-allocation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization" />
+    <meta name="twitter:description" content="问题与背景：test-time compute scaling 有效但昂贵，真实部署必须决定哪些输入值得多采样/搜索/长推理，哪些可以低成本回答。
+
+方法与新意：论文把问题形式化为平均 compute budget 约束下最大化准确率，用 Lagrangian relaxation 分解为单样本 oracle action，再训练轻量分类器从低成本特征模仿预算分配策略。
+
+收录意义：这篇对 inf" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14853" target="_blank" rel="noopener noreferrer">2604.14853</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：test-time compute scaling 有效但昂贵，真实部署必须决定哪些输入值得多采样/搜索/长推理，哪些可以低成本回答。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：论文把问题形式化为平均 compute budget 约束下最大化准确率，用 Lagrangian relaxation 分解为单样本 oracle action，再训练轻量分类器从低成本特征模仿预算分配策略。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇对 inference-time scaling 很重要，因为它把“多想一点”从启发式变成可优化的预算分配问题，并给出 regret bound 与可部署的 solve-then-learn pipeline。</dd></div><div><dt>收录价值</dt><dd>局限：实验集中在数学推理与少数模型，特征选择和 oracle 构造在复杂 agent workflow 中还需扩展。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：test-time compute scaling 有效但昂贵，真实部署必须决定哪些输入值得多采样/搜索/长推理，哪些可以低成本回答。</p><p>方法与新意：论文把问题形式化为平均 compute budget 约束下最大化准确率，用 Lagrangian relaxation 分解为单样本 oracle action，再训练轻量分类器从低成本特征模仿预算分配策略。</p><p>收录意义：这篇对 inference-time scaling 很重要，因为它把“多想一点”从启发式变成可优化的预算分配问题，并给出 regret bound 与可部署的 solve-then-learn pipeline。</p><p>局限：实验集中在数学推理与少数模型，特征选择和 oracle 构造在复杂 agent workflow 中还需扩展。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>测试时计算扩展，即通过重复采样、搜索或扩展推理在推理过程中花费额外计算的做法，已成为提高大型语言模型（LLM）性能的强大手段。然而，在有限的推理预算下部署这些技术需要一个当前系统大多忽略的决策：哪些输入值得更多的计算，哪些可以廉价地回答？我们将此形式化为一个约束优化问题（在平均计算预算下最大化预期准确性），并使用两阶段的S OLVE - THEN -L EARN管道来解决。在求解阶段，拉格朗日松弛将全局约束分解为每个实例的子问题，每个子问题都允许一个闭式最优动作，该动作以最优方式权衡准确性和成本。我们证明了所产生的成本在对偶变量中是单调的，从而可以通过二分搜索实现精确的预算目标。在学习阶段，训练一个轻量级分类器，从廉价的输入特征预测最优动作，从而为实时部署分摊分配规则。我们确定学习策略的任务级遗憾由其模仿误差乘以最坏情况下的每个实例差距所限制，从而将约束推理干净地简化为监督分类。在MATH和GSM8K数据集上使用三个LLM（DeepSeek-V3、GPT-4omini、Qwen2.5-7B）进行的实验表明，我们的方法始终优于统一和启发式分配基线，在匹配的预算约束下，在MATH上实现了高达12.8%的相对准确性提升，同时以超过91%的模仿准确性密切跟踪拉格朗日最优上限。代码可在https://github.com/zhiyuanZhai20/AdaCompute-LLM获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Test-time compute scaling, the practice of spending extra computation during inference via repeated sampling, search, or extended reasoning, has become a powerful lever for improving large language model performance. Yet deploying these techniques under finite inference budgets requires a decision that current systems largely ignore: which inputs deserve more compute, and which can be answered cheaply? We formalize this as a constrained optimization problem (maximize expected accuracy subject to an average compute budget) and solve it with a two-stage S OLVE - THEN -L EARN pipeline. In the solve stage, Lagrangian relaxation decomposes the global constraint into per-instance sub-problems, each admitting a closed-form oracle action that optimally prices accuracy against cost. We prove that the induced cost is monotone in the dual variable, enabling exact budget targeting via binary search. In the learn stage, a lightweight classifier is trained to predict oracle actions from cheap input features, amortizing the allocation rule for real-time deployment. We establish that the task-level regret of the learned policy is bounded by its imitation error times the worst-case per-instance gap, yielding a clean reduction from constrained inference to supervised classification. Experiments on MATH and GSM8K with three LLMs (DeepSeek-V3, GPT-4omini, Qwen2.5-7B) show that our method consistently outperforms uniform and heuristic allocation baselines, achieving up to 12.8% relative accuracy improvement on MATH under matched budget constraints, while closely tracking the Lagrangian oracle upper bound with over 91% imitation accuracy. Code is available at https://github.com/zhiyuanZhai20/AdaCompute-LLM.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416r66adaptiv,
+  title = {Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14853.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r66-adaptive-ttc-allocation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Adaptive Test-Time Compute Allocation for Reasoning LLMs via Constrained Policy Optimization. https://arxiv.org/pdf/2604.14853.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14853.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate | DAST Papers</title>
+    <meta name="description" content="向量量化一直是 KV cache 压缩和向量检索中的核心问题，但许多方法虽然降低了位宽，却仍要为每个 block 额外保存 scale、zero point 等高精度量化常数，导致真实内存收益被明显侵蚀。TurboQuant 处理的是这个长期被低估的系统瓶颈。
+
+它提出一套 data-oblivious、适合 online 场景的向量量化方案：先随机旋转，把高维向量坐标变成更适合独立标量量化的分布" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t22-turboquant-vector-quantization/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate" />
+    <meta property="og:description" content="向量量化一直是 KV cache 压缩和向量检索中的核心问题，但许多方法虽然降低了位宽，却仍要为每个 block 额外保存 scale、zero point 等高精度量化常数，导致真实内存收益被明显侵蚀。TurboQuant 处理的是这个长期被低估的系统瓶颈。
+
+它提出一套 data-oblivious、适合 online 场景的向量量化方案：先随机旋转，把高维向量坐标变成更适合独立标量量化的分布" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t22-turboquant-vector-quantization/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate" />
+    <meta name="twitter:description" content="向量量化一直是 KV cache 压缩和向量检索中的核心问题，但许多方法虽然降低了位宽，却仍要为每个 block 额外保存 scale、zero point 等高精度量化常数，导致真实内存收益被明显侵蚀。TurboQuant 处理的是这个长期被低估的系统瓶颈。
+
+它提出一套 data-oblivious、适合 online 场景的向量量化方案：先随机旋转，把高维向量坐标变成更适合独立标量量化的分布" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2025-04-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-04-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2504.19874" target="_blank" rel="noopener noreferrer">2504.19874</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>向量量化一直是 KV cache 压缩和向量检索中的核心问题，但许多方法虽然降低了位宽，却仍要为每个 block 额外保存 scale、zero point 等高精度量化常数，导致真实内存收益被明显侵蚀。TurboQuant 处理的是这个长期被低估的系统瓶颈。</dd></div><div><dt>方法/机制</dt><dd>它提出一套 data-oblivious、适合 online 场景的向量量化方案：先随机旋转，把高维向量坐标变成更适合独立标量量化的分布；再在均方误差量化后，对 residual 施加 1-bit QJL 修正 inner product bias，从而同时兼顾 MSE 与 inner-product distortion。论文还给出了信息论下界，并证明其失真率只差一个小常数因子。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的仓库价值不只在压缩率，而在于它把 KV cache quantization 和 vector search 统一到了更扎实的理论与系统接口上。对长上下文推理、检索基础设施和 memory-bound inference 来说，这是一条有持续外溢的核心技术路线。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，因为虽然理论和实验都很强，但离成为生产环境默认标准还需要更多跨模型、跨硬件和更大规模 serving 体系中的验证。特别是与更复杂 mixed-precision / runtime KV management 策略的耦合，还没有完全展开。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>向量量化一直是 KV cache 压缩和向量检索中的核心问题，但许多方法虽然降低了位宽，却仍要为每个 block 额外保存 scale、zero point 等高精度量化常数，导致真实内存收益被明显侵蚀。TurboQuant 处理的是这个长期被低估的系统瓶颈。</p><p>它提出一套 data-oblivious、适合 online 场景的向量量化方案：先随机旋转，把高维向量坐标变成更适合独立标量量化的分布；再在均方误差量化后，对 residual 施加 1-bit QJL 修正 inner product bias，从而同时兼顾 MSE 与 inner-product distortion。论文还给出了信息论下界，并证明其失真率只差一个小常数因子。</p><p>这篇工作的仓库价值不只在压缩率，而在于它把 KV cache quantization 和 vector search 统一到了更扎实的理论与系统接口上。对长上下文推理、检索基础设施和 memory-bound inference 来说，这是一条有持续外溢的核心技术路线。</p><p>它目前仍是 breakthrough，因为虽然理论和实验都很强，但离成为生产环境默认标准还需要更多跨模型、跨硬件和更大规模 serving 体系中的验证。特别是与更复杂 mixed-precision / runtime KV management 策略的耦合，还没有完全展开。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>向量量化是香农信源编码理论中的一个问题，旨在量化高维欧几里得向量，同时最小化其几何结构中的失真。我们提出了TurboQuant来解决均方误差 (MSE) 和内积失真问题，克服了现有方法未能实现最优失真率的局限性。我们的数据无关算法适用于在线应用，在所有比特宽度和维度上实现了近最优失真率（在一个小常数因子内）。TurboQuant通过随机旋转输入向量，在坐标上诱导集中的Beta分布，并利用高维中不同坐标的近乎独立性，简单地对每个坐标应用最优标量量化器来实现这一点。认识到MSE最优量化器会在内积估计中引入偏差，我们提出了一种两阶段方法：首先应用一个MSE量化器，然后对残差进行1比特量化JL (QJL) 变换，从而得到一个无偏内积量化器。我们还提供了任何向量量化器可实现最佳失真率的信息论下界的正式证明，表明TurboQuant与这些下界紧密匹配，仅相差一个小常数 (≈ 2.7) 倍。实验结果验证了我们的理论发现，表明对于KV缓存量化，我们在每通道3.5比特时实现了绝对质量中性，在每通道2.5比特时实现了边际质量下降。此外，在最近邻搜索任务中，我们的方法在召回率方面优于现有乘积量化技术，同时将索引时间减少到几乎为零。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vector quantization, a problem rooted in Shannon’s source coding theory, aims to quantize high-dimensional Euclidean vectors while minimizing distortion in their geometric structure. We propose TurboQuant to address both mean-squared error (MSE) and inner product distortion, overcoming limitations of existing methods that fail to achieve optimal distortion rates. Our data-oblivious algorithms, suitable for online applications, achieve near-optimal distortion rates (within a small constant factor) across all bit-widths and dimensions. TurboQuant achieves this by randomly rotating input vectors, inducing a concentrated Beta distribution on coordinates, and leveraging the near-independence property of distinct coordinates in high dimensions to simply apply optimal scalar quantizers per each coordinate. Recognizing that MSE-optimal quantizers introduce bias in inner product estimation, we propose a two-stage approach: applying an MSE quantizer followed by a 1-bit Quantized JL (QJL) transform on the residual, resulting in an unbiased inner product quantizer. We also provide a formal proof of the information-theoretic lower bounds on best achievable distortion rate by any vector quantizer, demonstrating that TurboQuant closely matches these bounds, differing only by a small constant (≈ 2.7) factor. Experimental results validate our theoretical findings, showing that for KV cache quantization, we achieve absolute quality neutrality with 3.5 bits per channel and marginal quality degradation with 2.5 bits per channel. Furthermore, in nearest neighbor search tasks, our method outperforms existing product quantization techniques in recall while reducing indexing time to virtually zero.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250428t22turboqu,
+  title = {TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2504.19874.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t22-turboquant-vector-quantization/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate. https://arxiv.org/pdf/2504.19874.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2504.19874.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scaling Coding Agents via Atomic Skills | DAST Papers</title>
+    <meta name="description" content="当前 coding agents 的主流训练仍然高度依赖 composite tasks，比如 bug fixing 或 issue resolution。这种做法虽然能直接刷 benchmark，但往往让模型在特定任务分布上过拟合，反而不利于形成可迁移的通用软件工程能力。
+
+这篇工作把 coding agent 能力显式拆成五个 atomic skills：code localization、c" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a168-atomic-skills-coding-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Scaling Coding Agents via Atomic Skills" />
+    <meta property="og:description" content="当前 coding agents 的主流训练仍然高度依赖 composite tasks，比如 bug fixing 或 issue resolution。这种做法虽然能直接刷 benchmark，但往往让模型在特定任务分布上过拟合，反而不利于形成可迁移的通用软件工程能力。
+
+这篇工作把 coding agent 能力显式拆成五个 atomic skills：code localization、c" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a168-atomic-skills-coding-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Scaling Coding Agents via Atomic Skills" />
+    <meta name="twitter:description" content="当前 coding agents 的主流训练仍然高度依赖 composite tasks，比如 bug fixing 或 issue resolution。这种做法虽然能直接刷 benchmark，但往往让模型在特定任务分布上过拟合，反而不利于形成可迁移的通用软件工程能力。
+
+这篇工作把 coding agent 能力显式拆成五个 atomic skills：code localization、c" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Scaling Coding Agents via Atomic Skills</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.05013" target="_blank" rel="noopener noreferrer">2604.05013</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前 coding agents 的主流训练仍然高度依赖 composite tasks，比如 bug fixing 或 issue resolution。这种做法虽然能直接刷 benchmark，但往往让模型在特定任务分布上过拟合，反而不利于形成可迁移的通用软件工程能力。</dd></div><div><dt>方法/机制</dt><dd>这篇工作把 coding agent 能力显式拆成五个 atomic skills：code localization、code editing、unit-test generation、issue reproduction 和 code review，并在这些原子技能上做 joint RL。核心价值不只是分数提升，而是把训练目标从“做完整任务”重写成“掌握可组合技能”，从而减轻不同子能力之间的负迁移。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它为 coding agents 提供了一个更 durable 的训练接口：不是继续堆更大模型或更多 composite data，而是直接对 skill basis 做优化。这种结构化拆分对 agent training、generalization diagnosis 和后续 skill composition 都有明显外溢价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前证据仍主要集中在 coding domain，且 atomic skill 划分是否会成为更广泛 agent training 的默认接口还需要后续验证。它是很强的方法推进，但还不是通用 agent 学习范式的最终定型。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前 coding agents 的主流训练仍然高度依赖 composite tasks，比如 bug fixing 或 issue resolution。这种做法虽然能直接刷 benchmark，但往往让模型在特定任务分布上过拟合，反而不利于形成可迁移的通用软件工程能力。</p><p>这篇工作把 coding agent 能力显式拆成五个 atomic skills：code localization、code editing、unit-test generation、issue reproduction 和 code review，并在这些原子技能上做 joint RL。核心价值不只是分数提升，而是把训练目标从“做完整任务”重写成“掌握可组合技能”，从而减轻不同子能力之间的负迁移。</p><p>它值得正式收录，因为它为 coding agents 提供了一个更 durable 的训练接口：不是继续堆更大模型或更多 composite data，而是直接对 skill basis 做优化。这种结构化拆分对 agent training、generalization diagnosis 和后续 skill composition 都有明显外溢价值。</p><p>它暂时不升到更高一级，原因在于当前证据仍主要集中在 coding domain，且 atomic skill 划分是否会成为更广泛 agent training 的默认接口还需要后续验证。它是很强的方法推进，但还不是通用 agent 学习范式的最终定型。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>当前的LLM编码智能体主要在复合基准（例如，错误修复）上进行训练，这通常导致任务特定的过拟合和有限的泛化能力。为了解决这个问题，我们提出了一种新颖的扩展范式，将重点从任务级优化转移到原子技能掌握。我们首先形式化了五种基本的原子技能——代码定位、代码编辑、单元测试生成、问题复现和代码审查——它们作为复杂软件工程任务的“基向量”。与复合编码任务相比，这些原子技能更具泛化性和可组合性。然后，我们通过对原子技能执行联合强化学习（RL）来扩展编码智能体。通过这种方式，原子技能得到持续改进，而不会产生负面干扰或相互之间的权衡。值得注意的是，我们观察到这些原子技能的改进很好地泛化到其他未见的复合编码任务，例如错误修复、代码重构、机器学习工程和代码安全。这一观察结果激发了一种通过原子技能训练来扩展编码智能体的新范式。大量的实验证明了我们提出的范式的有效性。值得注意的是，我们的联合RL在5项原子技能和5项复合任务上的平均性能提高了18.7%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Current LLM coding agents are predominantly trained on composite benchmarks (e.g., bug-fixing), which often leads to task-specific overfitting and limited generalization. To address this, we propose a novel scaling paradigm that shifts the focus from task-level optimization to atomic skill mastery. We first formalize five fundamental atomic skills—code localization, code editing, unit-test generation, issue reproduction, and code review—that serve as the ”basis vectors” for complex software engineering tasks. Compared with composite coding tasks, these atomic skills are more generalizable and composable. Then, we scale coding agents by performing joint RL over atomic skills. In this manner, atomic skills are consistently improved without negative interference or trade-offs between them. Notably, we observe that improvements in these atomic skills generalize well to other unseen composite coding tasks, such as bug-fixing, code refactoring, machine learning engineering, and code security. The observation motivates a new scaling paradigm for coding agents by training with atomic skills. Extensive experiments demonstrate the effectiveness of our proposed paradigm. Notably, our joint RL improves average performance by 18.7% on 5 atomic skills and 5 composite tasks.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406a168atomic,
+  title = {Scaling Coding Agents via Atomic Skills},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.05013.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a168-atomic-skills-coding-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Scaling Coding Agents via Atomic Skills. https://arxiv.org/pdf/2604.05013.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.05013.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

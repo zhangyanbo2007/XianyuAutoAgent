@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Causal-JEPA: Learning World Models through Object-Level Latent Interventions | DAST Papers</title>
+    <meta name="description" content="这篇论文是 JEPA 路线里少数真正往 object-centric world model 推进的工作。它不是继续做 patch-level 的 latent prediction，而是把预测单位提升到对象级别，并通过 object-level masking 让模型必须利用其他对象的状态去推断被遮蔽对象的未来表示。
+
+方法上，作者提出 `Causal-JEPA`。核心做法是把视频场景表示成对象" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j1-causal-jepa/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Causal-JEPA: Learning World Models through Object-Level Latent Interventions" />
+    <meta property="og:description" content="这篇论文是 JEPA 路线里少数真正往 object-centric world model 推进的工作。它不是继续做 patch-level 的 latent prediction，而是把预测单位提升到对象级别，并通过 object-level masking 让模型必须利用其他对象的状态去推断被遮蔽对象的未来表示。
+
+方法上，作者提出 `Causal-JEPA`。核心做法是把视频场景表示成对象" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j1-causal-jepa/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Causal-JEPA: Learning World Models through Object-Level Latent Interventions" />
+    <meta name="twitter:description" content="这篇论文是 JEPA 路线里少数真正往 object-centric world model 推进的工作。它不是继续做 patch-level 的 latent prediction，而是把预测单位提升到对象级别，并通过 object-level masking 让模型必须利用其他对象的状态去推断被遮蔽对象的未来表示。
+
+方法上，作者提出 `Causal-JEPA`。核心做法是把视频场景表示成对象" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Causal-JEPA: Learning World Models through Object-Level Latent Interventions</h1>
+          <p class="subtitle">JEPA 与预测式世界模型 · 发表：2026-02-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">JEPA 与预测式世界模型</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.11389" target="_blank" rel="noopener noreferrer">2602.11389</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文是 JEPA 路线里少数真正往 object-centric world model 推进的工作。它不是继续做 patch-level 的 latent prediction，而是把预测单位提升到对象级别，并通过 object-level masking 让模型必须利用其他对象的状态去推断被遮蔽对象的未来表示。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者提出 `Causal-JEPA`。核心做法是把视频场景表示成对象槽位，再在训练时对部分对象进行干预式遮蔽。模型需要根据剩余对象和时序上下文预测目标对象的 latent trajectory。这样的训练目标会显式鼓励模型学习对象之间的相互作用，而不是只记住局部纹理或短期运动模式。作者把这种效果解释为一种因果导向的归纳偏置。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的价值在于，它把 JEPA 从通用表征学习进一步推到“可用于预测、反事实推理和控制”的世界模型方向。摘要里给出的结果也够硬：在 counterfactual reasoning 上相对基线有明显增益，并且在控制场景里只用极少量 latent features 就能达到接近 patch-based world model 的表现。</dd></div><div><dt>收录价值</dt><dd>如果从 JEPA 近两个月进展里只挑一篇最值得跟的，我会选这篇。它还不是一个完整的新主流范式，但已经明显超过“把 JEPA 换个数据集再跑一次”的级别，属于接近颠覆性候选的工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文是 JEPA 路线里少数真正往 object-centric world model 推进的工作。它不是继续做 patch-level 的 latent prediction，而是把预测单位提升到对象级别，并通过 object-level masking 让模型必须利用其他对象的状态去推断被遮蔽对象的未来表示。</p><p>方法上，作者提出 `Causal-JEPA`。核心做法是把视频场景表示成对象槽位，再在训练时对部分对象进行干预式遮蔽。模型需要根据剩余对象和时序上下文预测目标对象的 latent trajectory。这样的训练目标会显式鼓励模型学习对象之间的相互作用，而不是只记住局部纹理或短期运动模式。作者把这种效果解释为一种因果导向的归纳偏置。</p><p>这篇工作的价值在于，它把 JEPA 从通用表征学习进一步推到“可用于预测、反事实推理和控制”的世界模型方向。摘要里给出的结果也够硬：在 counterfactual reasoning 上相对基线有明显增益，并且在控制场景里只用极少量 latent features 就能达到接近 patch-based world model 的表现。</p><p>如果从 JEPA 近两个月进展里只挑一篇最值得跟的，我会选这篇。它还不是一个完整的新主流范式，但已经明显超过“把 JEPA 换个数据集再跑一次”的级别，属于接近颠覆性候选的工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Causal-JEPA：通过对象级潜在干预学习世界模型。世界模型需要强大的关系理解能力来支持预测、推理和控制。尽管以对象为中心的表示提供了一种有用的抽象，但它们不足以捕捉依赖于交互的动态。因此，我们提出了C-JEPA，一个简单灵活的以对象为中心的世界模型，它将掩码联合嵌入预测从图像块扩展到以对象为中心的表示。通过应用对象级掩码，该掩码要求从其他对象推断一个对象的状态，C-JEPA诱导了具有类反事实效应的潜在干预，并防止了捷径解决方案，从而使交互推理变得至关重要。经验上，C-JEPA在视觉问答方面取得了持续的提升，与没有对象级掩码的相同架构相比，在反事实推理方面绝对提高了约20%。在智能体控制任务中，C-JEPA通过仅使用基于图像块的世界模型所需的总潜在输入特征的1%，实现了显著更高效的规划，同时达到了可比的性能。最后，我们提供了一项形式化分析，证明对象级掩码通过潜在干预诱导了因果归纳偏置。我们的代码可在github.com/galilai-group/cjepa获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>World models require robust = ϕ relational under+ e) standing to support prediction,slot reasoning, and conidentity encoding trol. While object-centric representations provide : Observable slots to capa useful abstraction, they are not sufficient : Observable auxiliaries ture interaction-dependent dynamics. We therefore propose C-JEPA, a simple: Masked and flexible objecthistory / future centric world model that extends masked joint em: Identity-anchor bedding prediction from image patches to object: Intervened variable centric By applying object-level Temporal positionalrepresentations. encoding 𝐞𝛕 masking that requires an object’s state to be inferred from other objects, C-JEPA induces latent Slots interventions with counterfactual-like effects and prevents shortcut solutions, making interaction reasoning essential. Empirically, C-JEPA Auxiliariesleads to consistent gains in visual question answering, with an absolute improvement of about 20% in counterfactual reasoning compared to the same arSlots + Auxiliaries chitecture without object-level masking. On agent control tasks, C-JEPA enables substantially more efficient planning by using only 1% of the total latent input features required by patch-based world models, while achieving comparable performance. Finally, we provide a formal analysis demonstrating that object-level masking induces a causal inductive bias via latent interventions. Our code is available at github.com/galilai-group/cjepa.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260211j1causalje,
+  title = {Causal-JEPA: Learning World Models through Object-Level Latent Interventions},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.11389.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j1-causal-jepa/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Causal-JEPA: Learning World Models through Object-Level Latent Interventions. https://arxiv.org/pdf/2602.11389.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/j9-worldmark-interactive-world-model-benchmark/">
+              <span>WorldMark: A Unified Benchmark Suite for Interactive Video World Models</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j14-deltaworld-delta-tokens/">
+              <span>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-06</small>
+            </a>
+            <a class="related-item" href="../../papers/j13-wildworld-action-state-dataset/">
+              <span>WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j10-seoul-world-model/">
+              <span>Grounding World Simulation Models in a Real-World Metropolis</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-16</small>
+            </a>
+            <a class="related-item" href="../../papers/j12-v-jepa-2-1-dense-features/">
+              <span>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-15</small>
+            </a>
+            <a class="related-item" href="../../papers/j11-leworldmodel-stable-pixel-jepa/">
+              <span>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-13</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.11389.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

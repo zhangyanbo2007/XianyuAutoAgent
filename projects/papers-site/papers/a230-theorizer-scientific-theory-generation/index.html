@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Generating Literature-Driven Scientific Theories at Scale | DAST Papers</title>
+    <meta name="description" content="这篇论文把 AI for science 的目标从自动实验推进到自动理论生成：系统不是只总结论文，而是从大规模文献中抽取证据并合成带有 law、scope、evidence 的可测试理论。对于本仓库，它的重要性在于提出了一个可复用的 literature-to-theory workflow，而不只是一个文献综述工具。
+
+Theorizer 的流程包括文献发现、结构化证据抽取、理论合成与自反思精炼" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a230-theorizer-scientific-theory-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Generating Literature-Driven Scientific Theories at Scale" />
+    <meta property="og:description" content="这篇论文把 AI for science 的目标从自动实验推进到自动理论生成：系统不是只总结论文，而是从大规模文献中抽取证据并合成带有 law、scope、evidence 的可测试理论。对于本仓库，它的重要性在于提出了一个可复用的 literature-to-theory workflow，而不只是一个文献综述工具。
+
+Theorizer 的流程包括文献发现、结构化证据抽取、理论合成与自反思精炼" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a230-theorizer-scientific-theory-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Generating Literature-Driven Scientific Theories at Scale" />
+    <meta name="twitter:description" content="这篇论文把 AI for science 的目标从自动实验推进到自动理论生成：系统不是只总结论文，而是从大规模文献中抽取证据并合成带有 law、scope、evidence 的可测试理论。对于本仓库，它的重要性在于提出了一个可复用的 literature-to-theory workflow，而不只是一个文献综述工具。
+
+Theorizer 的流程包括文献发现、结构化证据抽取、理论合成与自反思精炼" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Generating Literature-Driven Scientific Theories at Scale</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.16282" target="_blank" rel="noopener noreferrer">2601.16282</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 AI for science 的目标从自动实验推进到自动理论生成：系统不是只总结论文，而是从大规模文献中抽取证据并合成带有 law、scope、evidence 的可测试理论。对于本仓库，它的重要性在于提出了一个可复用的 literature-to-theory workflow，而不只是一个文献综述工具。</dd></div><div><dt>方法/机制</dt><dd>Theorizer 的流程包括文献发现、结构化证据抽取、理论合成与自反思精炼，并用 13.7k 篇来源论文生成约 2.9k 条理论。论文还通过 backtesting 评估这些理论对后续论文结果的预测性，给出了比纯参数记忆生成更好的 specificity、empirical support 和 predictive accuracy。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它明确提出了科学发现 agent 中尚未充分系统化的层级：从论文集合压缩出可检验理论。这种模式对 AI scientist、自动化科研工作流、文献驱动假设生成和理论审计都有外溢价值，且 Ai2 同时开放了代码和样例理论数据。</dd></div><div><dt>收录价值</dt><dd>它没有升到 paradigm，是因为当前输出仍是 hypothesis 而非可靠科学定律，评估依赖 LLM-as-judge 和文献回测，领域覆盖也更适合 AI/NLP 这种开放论文密集场景。它是强范式候选，但仍需更多跨学科和人工实验验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 AI for science 的目标从自动实验推进到自动理论生成：系统不是只总结论文，而是从大规模文献中抽取证据并合成带有 law、scope、evidence 的可测试理论。对于本仓库，它的重要性在于提出了一个可复用的 literature-to-theory workflow，而不只是一个文献综述工具。</p><p>Theorizer 的流程包括文献发现、结构化证据抽取、理论合成与自反思精炼，并用 13.7k 篇来源论文生成约 2.9k 条理论。论文还通过 backtesting 评估这些理论对后续论文结果的预测性，给出了比纯参数记忆生成更好的 specificity、empirical support 和 predictive accuracy。</p><p>它值得正式收录，是因为它明确提出了科学发现 agent 中尚未充分系统化的层级：从论文集合压缩出可检验理论。这种模式对 AI scientist、自动化科研工作流、文献驱动假设生成和理论审计都有外溢价值，且 Ai2 同时开放了代码和样例理论数据。</p><p>它没有升到 paradigm，是因为当前输出仍是 hypothesis 而非可靠科学定律，评估依赖 LLM-as-judge 和文献回测，领域覆盖也更适合 AI/NLP 这种开放论文密集场景。它是强范式候选，但仍需更多跨学科和人工实验验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>当代自动化科学发现主要集中于生成科学实验的智能体，而执行理论构建等更高层次科学活动的系统仍未得到充分探索。在这项工作中，我们提出了从大量科学文献语料库中综合由定性和定量定律组成的理论的问题。将经验结果转化为紧凑、可泛化的陈述，以支持解释和预测。例如，开普勒定律将几个世纪的天文观测压缩成一套描述行星运动的定律。这引出了一个基本问题：基于语言模型的AI系统能否通过阅读研究文献来综合科学理论？在这项工作中，我们首先定义了基于文献的理论综合问题——即生成一组在特定领域内概括科学知识的定性和定量定律。然后，我们为这些生成的理论指定了五个理想标准：特异性、经验支持、预测准确性、新颖性和合理性。我们引入了一个新颖的系统THEORIZER，它阅读数万篇涵盖人工智能和自然语言处理领域不同主题的论文，以生成大量候选理论。我们探索了THEORIZER的几种变体——一种RAG风格的、文献支持的方法和一个更简单的LLM基线。对于每种方法，我们考虑了两种变体——一种优化准确性，另一种旨在增加新颖性。通过新实验大规模评估数千个理论是不可行的。为了解决这个问题，我们开发了几种评估方法，包括一个回溯测试范式（Yetisgen-Yildiz和Pratt，2009），其中理论是在固定的知识截止日期下生成的，其预测结果与随后发表文献中报告的实验结果进行评估。实验表明，虽然我们的文献支持方法比简单的LLM方法昂贵近7倍，但它产生了显著更准确和更具预测性的理论——这通过使用LLM评判理论定律陈述以及在我们的回溯测试范式中将生成的理论与4,554篇随后撰写的论文进行比较来衡量。我们进一步分析了理论质量在不同生成条件下的变化，比较了生成。当代自动化科学发现主要集中于生成科学实验的智能体，而执行理论构建等更高层次科学活动的系统仍未得到充分探索。我们大规模研究理论生成，使用13.7k篇源论文综合了2.9k个理论，考察了使用文献基础知识与参数化知识生成，以及以准确性为中心与以新颖性为中心的生成目标如何改变理论属性。我们的实验表明，与使用参数化LLM记忆进行生成相比，我们的文献支持方法所创建的理论在匹配现有证据和预测来自4.6k篇随后撰写论文的未来结果方面都显著更优。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>empirical results into compact, generalizable statements that support explanation and prediction. For example, Kepler’s laws compressed centuries of astronomical observations into a set of laws that describe planetary motion. This raises a fundamental question: can AI systems, built on language models, synthesize scientific theories by reading the research literature? In this work, we first define the problem of literature-based theory synthesis — generating sets of qualitative and quantitative laws that generalize scientific knowledge in a subect area. We then specify five desirable criteria for these generated theories: specificity, empirical support, predictive accuracy, novelty, and plausibility. We introduce a novel system, T HEORIZER, that reads tens of thousands of papers spanning diverse topics in artificial intelligence and natural language processing to generate numerous candidate theories. We explore several variants of T HEORIZER— a RAGstyle, literature-supported method and a simpler LLM baseline. For each of these methods, we consider two variants — one that optimizes accuracy and another that aims to increase novelty. Evaluating thousands of theories via new experiments is infeasible at scale. To address this, we develop several evaluation methods, including a backtesting paradigm (Yetisgen-Yildiz and Pratt, 2009) where theories are generated using a fixed knowledge cutoff, and their predictions are evaluated against experimental results reported in subsequently published literature. Experiments show that, while our literature-supported method is almost 7x more expensive than a simple LLM approach, it yields significantly more accurate and predictive theories - as measured both by using an LLM judge on theory-law statements, and by comparing the generated theories to 4,554 subsequentlywritten papers in our backtesting paradigm. We further analyze how theory quality varies across the generation conditions, comparing generation Contemporary automated scientific discovery has focused on agents for generating scientific experiments, while systems that perform higher-level scientific activities such as theory building remain underexplored. In this work, we formulate the problem of synthesizing theories consisting of qualitative and quantitative laws from large corpora of scientific literature. We study theory generation at scale, using 13.7k source papers to synthesize 2.9k theories, examining how generation using literaturegrounding versus parametric knowledge, and accuracy-focused versus novelty-focused generation objectives change theory properties. Our experiments show that, compared to using parametric LLM memory for generation, our literature-supported method creates theories that are significantly better at both matching existing evidence and at predicting future results from 4.6k subsequently-written papers.1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260122a230theori,
+  title = {Generating Literature-Driven Scientific Theories at Scale},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.16282.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a230-theorizer-scientific-theory-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Generating Literature-Driven Scientific Theories at Scale. https://arxiv.org/pdf/2601.16282.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.16282.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://allenai.org/blog/theorizer" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/allenai/asta-theorizer" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models | DAST Papers</title>
+    <meta name="description" content="问题与背景：agent 评测长期被少数可公开复现的环境限制，难覆盖真实职业任务。OccuBench 把评测对象扩展到急诊分诊、核电安全监控、海关进口处理等 65 个专业域，并把任务完成和环境鲁棒性放在同一套协议里。
+
+方法与新意：论文用 Language World Models 生成领域工具响应与环境反馈，并通过多智能体合成管线保证实例可解、难度可校准、文档 grounding 多样。它不是静态" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a212-occubench-language-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models" />
+    <meta property="og:description" content="问题与背景：agent 评测长期被少数可公开复现的环境限制，难覆盖真实职业任务。OccuBench 把评测对象扩展到急诊分诊、核电安全监控、海关进口处理等 65 个专业域，并把任务完成和环境鲁棒性放在同一套协议里。
+
+方法与新意：论文用 Language World Models 生成领域工具响应与环境反馈，并通过多智能体合成管线保证实例可解、难度可校准、文档 grounding 多样。它不是静态" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a212-occubench-language-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models" />
+    <meta name="twitter:description" content="问题与背景：agent 评测长期被少数可公开复现的环境限制，难覆盖真实职业任务。OccuBench 把评测对象扩展到急诊分诊、核电安全监控、海关进口处理等 65 个专业域，并把任务完成和环境鲁棒性放在同一套协议里。
+
+方法与新意：论文用 Language World Models 生成领域工具响应与环境反馈，并通过多智能体合成管线保证实例可解、难度可校准、文档 grounding 多样。它不是静态" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.10866" target="_blank" rel="noopener noreferrer">2604.10866</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：agent 评测长期被少数可公开复现的环境限制，难覆盖真实职业任务。OccuBench 把评测对象扩展到急诊分诊、核电安全监控、海关进口处理等 65 个专业域，并把任务完成和环境鲁棒性放在同一套协议里。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：论文用 Language World Models 生成领域工具响应与环境反馈，并通过多智能体合成管线保证实例可解、难度可校准、文档 grounding 多样。它不是静态问答集，而是面向职业 workflow 的可交互模拟评测。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇值得进入 agent/evaluation 主线，因为它提出了一个可复用的职业任务评测接口：同一 agent 在不同专业环境、不同故障注入条件下的能力画像。对企业级 agent、workflow agent 和高风险场景评估都有方法参考价值。</dd></div><div><dt>收录价值</dt><dd>局限：Language World Model 仍是模拟环境，真实职业系统中的工具副作用、权限约束和组织流程很难完全复现；因此当前按突破性 benchmark 收录，而不是更高等级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：agent 评测长期被少数可公开复现的环境限制，难覆盖真实职业任务。OccuBench 把评测对象扩展到急诊分诊、核电安全监控、海关进口处理等 65 个专业域，并把任务完成和环境鲁棒性放在同一套协议里。</p><p>方法与新意：论文用 Language World Models 生成领域工具响应与环境反馈，并通过多智能体合成管线保证实例可解、难度可校准、文档 grounding 多样。它不是静态问答集，而是面向职业 workflow 的可交互模拟评测。</p><p>收录意义：这篇值得进入 agent/evaluation 主线，因为它提出了一个可复用的职业任务评测接口：同一 agent 在不同专业环境、不同故障注入条件下的能力画像。对企业级 agent、workflow agent 和高风险场景评估都有方法参考价值。</p><p>局限：Language World Model 仍是模拟环境，真实职业系统中的工具副作用、权限约束和组织流程很难完全复现；因此当前按突破性 benchmark 收录，而不是更高等级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AI智能体有望在数百个职业领域（从急诊科分诊到核反应堆安全监控再到海关进口处理）执行专业工作，然而现有基准只能在少数存在公共环境的领域评估智能体。我们引入了O CCU B ENCH，一个涵盖10个行业类别和65个专业领域中100个真实世界专业任务场景的基准，该基准通过语言世界模型（LWMs）实现，LWMs通过LLM驱动的工具响应生成来模拟领域特定环境。我们的多智能体合成管道自动生成具有保证可解性、校准难度和文档基础多样性的评估实例。O CCU B ENCH从两个互补维度评估智能体：跨专业领域的任务完成度以及在受控故障注入（显式错误、隐式数据降级和混合故障）下的环境鲁棒性。我们评估了8个模型家族的15个前沿模型，发现：(1) 没有单一模型能主导所有行业，因为每个模型都有独特的职业能力概况；(2) 隐式故障（截断数据、缺失字段）比显式错误（超时、500s）和混合故障更难，因为它们缺乏明显的错误信号，需要智能体独立检测数据降级；(3) 更大的模型、更新的代际和更高的推理努力持续提升性能。GPT-5.2从最小推理努力到最大推理努力提升了27.5分；(4) 强大的智能体不一定是强大的环境模拟器。模拟器质量对于基于LWM的评估可靠性至关重要。O CCU B ENCH首次对AI智能体在专业职业任务上进行了系统的跨行业评估。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>AI agents are expected to perform professional work across hundreds of occupational domains (from emergency department triage to nuclear reactor safety monitoring to customs import processing), yet existing benchmarks can only evaluate agents in the few domains where public environments exist. We introduce O CCU B ENCH, a benchmark covering 100 real-world professional task scenarios across 10 industry categories and 65 specialized domains, enabled by Language World Models (LWMs) that simulate domainspecific environments through LLM-driven tool response generation. Our multi-agent synthesis pipeline automatically produces evaluation instances with guaranteed solvability, calibrated difficulty, and document-grounded diversity. O CCU B ENCH evaluates agents along two complementary dimensions: task completion across professional domains and environmental robustness under controlled fault injection (explicit errors, implicit data degradation, and mixed faults). We evaluate 15 frontier models across 8 model families and find that: (1) no single model dominates all industries, as each has a distinct occupational capability profile; (2) implicit faults (truncated data, missing fields) are harder than both explicit errors (timeouts, 500s) and mixed faults, because they lack overt error signals and require the agent to independently detect data degradation; (3) larger models, newer generations, and higher reasoning effort consistently improve performance. GPT-5.2 improves by 27.5 points from minimal to maximum reasoning effort; and (4) strong agents are not necessarily strong environment simulators. Simulator quality is critical for LWM-based evaluation reliability. O CCU B ENCH provides the first systematic cross-industry evaluation of AI agents on professional occupational tasks.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413a212occube,
+  title = {OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.10866.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a212-occubench-language-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models. https://arxiv.org/pdf/2604.10866.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.10866.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

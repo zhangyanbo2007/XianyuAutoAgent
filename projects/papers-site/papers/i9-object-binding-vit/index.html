@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Does Object Binding Naturally Emerge in Large Pretrained Vision Transformers? | DAST Papers</title>
+    <meta name="description" content="问题与背景
+这篇论文问的是一个经典认知科学问题：对象绑定是否会在大规模预训练 ViT 中自然涌现。过去很多工作认为对象级绑定需要显式 object-centric 机制，而纯连接主义的 ViT 可能只能学到局部特征和注意力热区，缺少真正的绑定能力。
+
+方法与新意
+作者提出了一个可操作的表征量 `IsSameObject`，并用 quadratic similarity probe 去解码两个 pa" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/i9-object-binding-vit/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Does Object Binding Naturally Emerge in Large Pretrained Vision Transformers?" />
+    <meta property="og:description" content="问题与背景
+这篇论文问的是一个经典认知科学问题：对象绑定是否会在大规模预训练 ViT 中自然涌现。过去很多工作认为对象级绑定需要显式 object-centric 机制，而纯连接主义的 ViT 可能只能学到局部特征和注意力热区，缺少真正的绑定能力。
+
+方法与新意
+作者提出了一个可操作的表征量 `IsSameObject`，并用 quadratic similarity probe 去解码两个 pa" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/i9-object-binding-vit/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Does Object Binding Naturally Emerge in Large Pretrained Vision Transformers?" />
+    <meta name="twitter:description" content="问题与背景
+这篇论文问的是一个经典认知科学问题：对象绑定是否会在大规模预训练 ViT 中自然涌现。过去很多工作认为对象级绑定需要显式 object-centric 机制，而纯连接主义的 ViT 可能只能学到局部特征和注意力热区，缺少真正的绑定能力。
+
+方法与新意
+作者提出了一个可操作的表征量 `IsSameObject`，并用 quadratic similarity probe 去解码两个 pa" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Does Object Binding Naturally Emerge in Large Pretrained Vision Transformers?</h1>
+          <p class="subtitle">可解释性与机制分析 · 发表：2025-10-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">可解释性与机制分析</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.24709" target="_blank" rel="noopener noreferrer">2510.24709</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景</dd></div><div><dt>方法/机制</dt><dd>这篇论文问的是一个经典认知科学问题：对象绑定是否会在大规模预训练 ViT 中自然涌现。过去很多工作认为对象级绑定需要显式 object-centric 机制，而纯连接主义的 ViT 可能只能学到局部特征和注意力热区，缺少真正的绑定能力。</dd></div><div><dt>结果/证据</dt><dd>方法与新意</dd></div><div><dt>收录价值</dt><dd>作者提出了一个可操作的表征量 `IsSameObject`，并用 quadratic similarity probe 去解码两个 patch 是否属于同一对象。结果显示，在 DINO、CLIP 和监督式 ViT 中，这个信号能被高精度解码；而在 MAE 中明显更弱。作者还进一步做了子空间分析和消融，论证这一对象绑定信号不仅存在，而且参与了下游任务。</dd></div><div><dt>要点 5</dt><dd>意义与仓库位置</dd></div><div><dt>要点 6</dt><dd>这篇适合放在机制解释与认知交叉主线。它的重要性不只是对 ViT 做 probe，而是把“对象绑定”这个认知科学问题转成了可测、可干预的现代模型机制问题，说明某种 symbolic grouping 能在 connectionist vision model 里自然涌现。</dd></div><div><dt>要点 7</dt><dd>局限与为什么不更高一级</dd></div><div><dt>要点 8</dt><dd>这篇的证据主要集中在表征解码与消融分析，还不是一个直接改变视觉模型训练范式的工作。它非常适合做机制和认知桥接，但还没有到路线重排级别，所以我把它放在突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景</p><p>这篇论文问的是一个经典认知科学问题：对象绑定是否会在大规模预训练 ViT 中自然涌现。过去很多工作认为对象级绑定需要显式 object-centric 机制，而纯连接主义的 ViT 可能只能学到局部特征和注意力热区，缺少真正的绑定能力。</p><p>方法与新意</p><p>作者提出了一个可操作的表征量 `IsSameObject`，并用 quadratic similarity probe 去解码两个 patch 是否属于同一对象。结果显示，在 DINO、CLIP 和监督式 ViT 中，这个信号能被高精度解码；而在 MAE 中明显更弱。作者还进一步做了子空间分析和消融，论证这一对象绑定信号不仅存在，而且参与了下游任务。</p><p>意义与仓库位置</p><p>这篇适合放在机制解释与认知交叉主线。它的重要性不只是对 ViT 做 probe，而是把“对象绑定”这个认知科学问题转成了可测、可干预的现代模型机制问题，说明某种 symbolic grouping 能在 connectionist vision model 里自然涌现。</p><p>局限与为什么不更高一级</p><p>这篇的证据主要集中在表征解码与消融分析，还不是一个直接改变视觉模型训练范式的工作。它非常适合做机制和认知桥接，但还没有到路线重排级别，所以我把它放在突破性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>对象绑定是大脑将共同代表一个对象的众多特征绑定成一个连贯整体的能力，它对人类认知至关重要。它将低级感知特征分组为高级对象表示，以高效和组合的方式在内存中存储这些对象，并支持人类对单个对象实例的推理。尽管先前的工作通常明确地施加以对象为中心的注意力（例如，Slot Attention）来探究这些益处，但这种能力是否在预训练视觉Transformer (ViT) 中自然涌现仍不清楚。直观上，它们可能做到：识别哪些图像块属于同一对象应该对下游预测有用，从而引导注意力。受自注意力二次性质的启发，我们假设ViT表示两个图像块是否属于同一对象，我们将此属性称为IsSameObject。我们使用二次相似性探针从ViT层中的图像块嵌入中解码IsSameObject，其准确率超过90%。关键的是，这种对象绑定能力在DINO、CLIP和ImageNet监督的ViT中可靠地涌现，但在MAE中则明显较弱，这表明绑定并非微不足道的架构产物，而是通过特定预训练目标获得的能力。我们进一步发现IsSameObject编码在对象特征之上的低维子空间中，并且该信号积极地引导注意力。从模型激活中消融IsSameObject会降低下游性能并与学习目标相悖，这意味着涌现的对象绑定自然地服务于预训练目标。我们的发现挑战了ViT缺乏对象绑定的观点，并强调了“哪些部分属于一起”的符号知识如何在联结主义系统中自然涌现。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Object binding, the brain’s ability to bind the many features that collectively represent an object into a coherent whole, is central to human cognition. It groups low-level perceptual features into high-level object representations, stores those objects efficiently and compositionally in memory, and supports human reasoning about individual object instances. While prior work often imposes object-centric attention (e.g., Slot Attention) explicitly to probe these benefits, it remains unclear whether this ability naturally emerges in pre-trained Vision Transformers (ViTs). Intuitively, they could: recognizing which patches belong to the same object should be useful for downstream prediction and thus guide attention. Motivated by the quadratic nature of self-attention, we hypothesize that ViTs represent whether two patches belong to the same object, a property we term IsSameObject. We decode IsSameObject from patch embeddings across ViT layers using a quadratic similarity probe, which reaches over 90% accuracy. Crucially, this object-binding capability emerges reliably in DINO, CLIP, and ImageNet-supervised ViTs, but is markedly weaker in MAE, suggesting that binding is not a trivial architectural artifact, but an ability acquired through specific pretraining objectives. We further discover that IsSameObject is encoded in a low-dimensional subspace on top of object features, and that this signal actively guides attention. Ablating IsSameObject from model activations degrades downstream performance and works against the learning objective, implying that emergent object binding naturally serves the pretraining objective. Our findings challenge the view that ViTs lack object binding and highlight how symbolic knowledge of “which parts belong together” emerges naturally in a connectionist system. 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251028i9objectbi,
+  title = {Does Object Binding Naturally Emerge in Large Pretrained Vision Transformers?},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.24709.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/i9-object-binding-vit/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Does Object Binding Naturally Emerge in Large Pretrained Vision Transformers?. https://arxiv.org/pdf/2510.24709.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/i19-attractor-geometry-transformer-memory/">
+              <span>Attractor Geometry of Transformer Memory: From Conflict Arbitration to Confident Hallucination</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i18-natural-language-autoencoders/">
+              <span>Natural Language Autoencoders Produce Unsupervised Explanations of LLM Activations</span>
+              <small>可解释性与机制分析 · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/t31-physical-mechanisms-generalization-hallucination/">
+              <span>Physical mechanisms governing generalization and hallucination in deep learning for imaging through scattering media</span>
+              <small>可解释性与机制分析 · 2026-04-23</small>
+            </a>
+            <a class="related-item" href="../../papers/t30-competing-biases-llm-confidence/">
+              <span>Competing Biases underlie Overconfidence and Underconfidence in LLMs</span>
+              <small>可解释性与机制分析 · 2026-04-22</small>
+            </a>
+            <a class="related-item" href="../../papers/i16-reasoning-trajectory-geometry/">
+              <span>LLM Reasoning as Trajectories: Step-Specific Representation Geometry and Correctness Signals</span>
+              <small>可解释性与机制分析 · 2026-04-07</small>
+            </a>
+            <a class="related-item" href="../../papers/i13-contextual-privacy-norms/">
+              <span>Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations</span>
+              <small>可解释性与机制分析 · 2026-03-31</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.24709.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

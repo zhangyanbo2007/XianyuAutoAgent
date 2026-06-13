@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning | DAST Papers</title>
+    <meta name="description" content="Equilibrium Reasoners 提出一种不同于 CoT 采样和 verifier reranking 的 reasoning scaling 思路：把推理看成向 latent attractor 收敛。
+
+模型学习可迭代更新的吸引子动力学，在测试时通过更多迭代接近稳定解，而不必依赖外部 verifier 或大量候选答案投票。
+
+这种机制与 attractor networks、隐空间搜" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r80-equilibrium-reasoners-attractors/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning" />
+    <meta property="og:description" content="Equilibrium Reasoners 提出一种不同于 CoT 采样和 verifier reranking 的 reasoning scaling 思路：把推理看成向 latent attractor 收敛。
+
+模型学习可迭代更新的吸引子动力学，在测试时通过更多迭代接近稳定解，而不必依赖外部 verifier 或大量候选答案投票。
+
+这种机制与 attractor networks、隐空间搜" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r80-equilibrium-reasoners-attractors/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning" />
+    <meta name="twitter:description" content="Equilibrium Reasoners 提出一种不同于 CoT 采样和 verifier reranking 的 reasoning scaling 思路：把推理看成向 latent attractor 收敛。
+
+模型学习可迭代更新的吸引子动力学，在测试时通过更多迭代接近稳定解，而不必依赖外部 verifier 或大量候选答案投票。
+
+这种机制与 attractor networks、隐空间搜" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-05-20</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-20</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.21488" target="_blank" rel="noopener noreferrer">2605.21488</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Equilibrium Reasoners 提出一种不同于 CoT 采样和 verifier reranking 的 reasoning scaling 思路：把推理看成向 latent attractor 收敛。</dd></div><div><dt>方法/机制</dt><dd>模型学习可迭代更新的吸引子动力学，在测试时通过更多迭代接近稳定解，而不必依赖外部 verifier 或大量候选答案投票。</dd></div><div><dt>结果/证据</dt><dd>这种机制与 attractor networks、隐空间搜索和 test-time compute 有直接联系，为 reasoning model 提供了新的控制接口。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它为可扩展推理提供了结构性替代方案，可能影响长程推理、数学任务和 agent planning。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Equilibrium Reasoners 提出一种不同于 CoT 采样和 verifier reranking 的 reasoning scaling 思路：把推理看成向 latent attractor 收敛。</p><p>模型学习可迭代更新的吸引子动力学，在测试时通过更多迭代接近稳定解，而不必依赖外部 verifier 或大量候选答案投票。</p><p>这种机制与 attractor networks、隐空间搜索和 test-time compute 有直接联系，为 reasoning model 提供了新的控制接口。</p><p>它值得正式收录，因为它为可扩展推理提供了结构性替代方案，可能影响长程推理、数学任务和 agent planning。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>通过迭代更新潜在状态来扩展测试时计算已成为一种强大的推理范式。然而，使这些迭代模型能够超越记忆模式进行泛化的内部机制仍然根本不清楚。我们假设这种可泛化推理源于学习任务条件吸引子：一个潜在动力系统，其中稳定的不动点对应于有效解。我们通过引入平衡推理器 (EqR) 来形式化这一过程。EqR无需依赖外部验证器或任务特定先验即可实现测试时扩展。相反，我们的模型沿两个轴扩展内部动力学：通过运行更多迭代来增加深度，以及通过聚合来自多个初始化的随机轨迹来增加广度。经验上，扩展测试时计算带来的性能提升与更好地收敛到吸引子紧密相关。图1. 可扩展的测试时计算源于收敛到神经吸引子。我们评估了具有不同推理预算的平衡推理器 (EqRs)，并绘制了精确准确率与不动点残差 ∥fθ (z; x) − z∥ 的关系图（其中z表示潜在状态；值越低表示收敛性越好）。点颜色以对数尺度编码迭代次数。值得注意的是，尽管训练上限为16次迭代，但学习到的吸引子动力学在测试时泛化到超过1,024次迭代。这相当于展开超过40,000个有效层，这种大规模扩展降低了不动点残差，并在与通过随机初始化进行广度扩展相结合时，将Sudoku-Extreme上的推理准确率提高到99%以上。这种吸引子视角允许神经网络根据任务难度自适应分配测试时计算。虽然简单情况在1到5个迭代步骤内收敛，但最困难的情况受益于大规模测试时扩展。通过展开多达相当于40,000个层，这种可扩展的潜在推理将前馈模型的准确率从2.6%提高到SudokuExtreme上的99%以上。我们希望我们的吸引子视角能阐明可扩展推理。然而，情况也可能相反，即更多的测试时计算可能会导致收益递减甚至更差的性能 (Pipis et al., 2025; Ghosal et al., 2025; Fu et al., 2026; Chen et al., 2025)。这表明通过测试时扩展来改进推理需要特定的内部机制。它提出了一个基本问题：什么内部机制能够实现可扩展和可泛化的推理？</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Scaling test-time compute by iteratively updating a latent state has emerged as a powerful paradigm for reasoning. Yet, the internal mechanisms that enable these iterative models to generalize beyond memorized patterns remain fundamentally unclear. We hypothesize that such generalizable reasoning arises from learning task-conditioned attractors: a latent dynamical system where stable fixed points correspond to valid solutions. We formalize this process by introducing Equilibrium Reasoners (EqR). EqR enables test-time scaling without relying on external verifiers or taskspecific priors. Instead, our models scale internal dynamics along two axes: depth by running more iterations and breadth by aggregating stochastic trajectories from multiple initializations. Empirically, performance gains from scaling test-time compute are tightly coupled with better convergence to attractors. Figure 1. Scalable test-time compute emerges from convergence to neural attractors. We evaluate Equilibrium Reasoners (EqRs) with varying inference budgets and plot exact accuracy against the fixed-point residual ∥fθ (z; x) − z∥ (where z denotes latent states; lower indicates better convergence). Point color encodes the number of iterations on a log scale. Remarkably, while training is capped at 16 iterations, the learned attractor dynamics generalize to over 1,024 iterations at test time. Equivalent to unrolling over 40,000 effective layers, this massive scale-up drives the fixed-point residual down and boosts reasoning accuracy to over 99% on Sudoku-Extreme when further combined with breadth scaling via random initializations. This attractor perspective allows neural networks to adaptively allocate test-time compute based on task difficulty. While simple cases converge within 1 to 5 iteration steps, the hardest cases benefit from massive test-time scaling. By unrolling up to an equivalent of 40,000 layers, this scalable latent reasoning boosts accuracy from 2.6% for feedforward models to over 99% on SudokuExtreme. We hope our attractor perspective sheds light on scalable reasoning. Yet the opposite can be true, where more test-time com✅ returns or even worse perforpute may yield diminishing mance (Pipis et al., 2025; Ghosal et al., 2025; Fu et al., 2026; Chen et al., 2025). This suggests that improving reasoning via test-time scaling requires specific internal mechanisms. It raises a basic question: what internal mechanisms enable scalable and generalizable reasoning?</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260520r80equilib,
+  title = {Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.21488.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r80-equilibrium-reasoners-attractors/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Equilibrium Reasoners: Learning Attractors Enables Scalable Reasoning. https://arxiv.org/pdf/2605.21488.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.21488.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.21488" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

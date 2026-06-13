@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recursive Flow Matching | DAST Papers</title>
+    <meta name="description" content="Recursive Flow Matching 属于 generative dynamics 和科学建模交叉方向，目标是让 flow matching 更好表达复杂递归/多步动态结构。
+
+论文将递归结构引入 flow matching，使模型能够在生成过程内部反复细化状态转移，而不仅是一次性学习固定时间流。
+
+这种范式对物理仿真、科学动态系统、分层生成和长程预测都有潜在溢出，尤其适合替代昂贵数值模" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p35-recursive-flow-matching/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Recursive Flow Matching" />
+    <meta property="og:description" content="Recursive Flow Matching 属于 generative dynamics 和科学建模交叉方向，目标是让 flow matching 更好表达复杂递归/多步动态结构。
+
+论文将递归结构引入 flow matching，使模型能够在生成过程内部反复细化状态转移，而不仅是一次性学习固定时间流。
+
+这种范式对物理仿真、科学动态系统、分层生成和长程预测都有潜在溢出，尤其适合替代昂贵数值模" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p35-recursive-flow-matching/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Recursive Flow Matching" />
+    <meta name="twitter:description" content="Recursive Flow Matching 属于 generative dynamics 和科学建模交叉方向，目标是让 flow matching 更好表达复杂递归/多步动态结构。
+
+论文将递归结构引入 flow matching，使模型能够在生成过程内部反复细化状态转移，而不仅是一次性学习固定时间流。
+
+这种范式对物理仿真、科学动态系统、分层生成和长程预测都有潜在溢出，尤其适合替代昂贵数值模" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Recursive Flow Matching</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-05-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.26535" target="_blank" rel="noopener noreferrer">2605.26535</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Recursive Flow Matching 属于 generative dynamics 和科学建模交叉方向，目标是让 flow matching 更好表达复杂递归/多步动态结构。</dd></div><div><dt>方法/机制</dt><dd>论文将递归结构引入 flow matching，使模型能够在生成过程内部反复细化状态转移，而不仅是一次性学习固定时间流。</dd></div><div><dt>结果/证据</dt><dd>这种范式对物理仿真、科学动态系统、分层生成和长程预测都有潜在溢出，尤其适合替代昂贵数值模拟的 surrogate modeling。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为 flow matching 正成为生成建模和 AI for science 的重要基础方法，这篇提供了面向复杂动态的可复用扩展。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Recursive Flow Matching 属于 generative dynamics 和科学建模交叉方向，目标是让 flow matching 更好表达复杂递归/多步动态结构。</p><p>论文将递归结构引入 flow matching，使模型能够在生成过程内部反复细化状态转移，而不仅是一次性学习固定时间流。</p><p>这种范式对物理仿真、科学动态系统、分层生成和长程预测都有潜在溢出，尤其适合替代昂贵数值模拟的 surrogate modeling。</p><p>它值得正式收录，因为 flow matching 正成为生成建模和 AI for science 的重要基础方法，这篇提供了面向复杂动态的可复用扩展。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>生成模型已成为解决物理系统和建模复杂时空动力学的强大范式。然而，在不产生高计算成本的情况下实现高物理精度仍然是一个基本挑战，因为现有方法面临着速度与保真度之间的关键权衡。在这项工作中，我们引入了递归流匹配（Recursive Flow Matching, RecFM），这是一个用于预测复杂时空动力学的生成框架。RecFM 强制执行自洽性，以对齐不同离散化尺度上的轨迹，从而减少离散化误差并提高基于物理任务的各项指标性能。据我们所知，这是第一个实现科学系统高保真一步和少步（2-4步）动态生成的方法，其性能可与最先进的多步求解器相媲美。在具有挑战性的科学基准测试中，RecFM 比领先的基于扩散的模拟器实现了高达 20 倍的加速，同时提高了预测精度。此外，与普通流匹配相比，RecFM 将均方误差降低了 15% 以上，为实时科学模拟提供了一个可扩展且高效的解决方案。项目页面：jhhuangchloe.github.io/RecFM/。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Generative models have emerged as a powerful paradigm for solving physics systems and modeling complex spatiotemporal dynamics. However, achieving high physical accuracy without incurring high computational cost remains a fundamental challenge, as existing approaches face a critical speed-fidelity trade-off. In this work, we introduce Recursive Flow Matching (RecFM), a generative framework for forecasting complex spatiotemporal dynamics. RecFM enforces self-consistency to align trajectories across discretization scales, reducing discretization errors and improving performance across metrics for physics-based tasks. To our knowledge, this is the first method to achieve high-fidelity one- and few-step (2-4 step) dynamic generation for scientific systems with performance comparable to state-of-the-art multi-step solvers. Across challenging scientific benchmarks, RecFM achieves up to a 20× speedup over leading diffusion-based emulators while improving predictive accuracy. Furthermore, RecFM reduces mean squared error by over 15% compared to vanilla flow matching, offering a scalable and efficient solution for real-time scientific emulation. Project page: jhhuangchloe.github.io/RecFM/.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260526p35recursi,
+  title = {Recursive Flow Matching},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.26535.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p35-recursive-flow-matching/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Recursive Flow Matching. https://arxiv.org/pdf/2605.26535.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+            <a class="related-item" href="../../papers/p27-sign-ultra-large-dynamics/">
+              <span>Predicting Dynamics of Ultra-Large Complex Systems by Inferring Governing Equations</span>
+              <small>物理与 AI for Science · 2026-04-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.26535.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.26535" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

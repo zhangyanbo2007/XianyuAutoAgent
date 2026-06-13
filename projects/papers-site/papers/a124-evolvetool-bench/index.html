@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EvolveTool-Bench: Evaluating the Quality of LLM-Generated Tool Libraries as Software Artifacts | DAST Papers</title>
+    <meta name="description" content="越来越多的 LLM agents 会在运行时自己生成工具，从 Python functions 到 API clients 都开始被动态创建和迭代。但主流评测几乎仍然只看下游任务是否完成，这会掩盖一个关键事实：即使任务成功率接近，生成出来的工具库也可能在复用性、冗余、回归稳定性和安全性上相差很大。
+
+论文提出 EvolveTool-Bench，把 agent 生成的 tool library 当作" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a124-evolvetool-bench/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EvolveTool-Bench: Evaluating the Quality of LLM-Generated Tool Libraries as Software Artifacts" />
+    <meta property="og:description" content="越来越多的 LLM agents 会在运行时自己生成工具，从 Python functions 到 API clients 都开始被动态创建和迭代。但主流评测几乎仍然只看下游任务是否完成，这会掩盖一个关键事实：即使任务成功率接近，生成出来的工具库也可能在复用性、冗余、回归稳定性和安全性上相差很大。
+
+论文提出 EvolveTool-Bench，把 agent 生成的 tool library 当作" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a124-evolvetool-bench/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EvolveTool-Bench: Evaluating the Quality of LLM-Generated Tool Libraries as Software Artifacts" />
+    <meta name="twitter:description" content="越来越多的 LLM agents 会在运行时自己生成工具，从 Python functions 到 API clients 都开始被动态创建和迭代。但主流评测几乎仍然只看下游任务是否完成，这会掩盖一个关键事实：即使任务成功率接近，生成出来的工具库也可能在复用性、冗余、回归稳定性和安全性上相差很大。
+
+论文提出 EvolveTool-Bench，把 agent 生成的 tool library 当作" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EvolveTool-Bench: Evaluating the Quality of LLM-Generated Tool Libraries as Software Artifacts</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00392" target="_blank" rel="noopener noreferrer">2604.00392</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>越来越多的 LLM agents 会在运行时自己生成工具，从 Python functions 到 API clients 都开始被动态创建和迭代。但主流评测几乎仍然只看下游任务是否完成，这会掩盖一个关键事实：即使任务成功率接近，生成出来的工具库也可能在复用性、冗余、回归稳定性和安全性上相差很大。</dd></div><div><dt>方法/机制</dt><dd>论文提出 EvolveTool-Bench，把 agent 生成的 tool library 当作一等软件制品来评估。基准覆盖专有数据格式、API orchestration 和数值计算三个需要真实执行工具的领域，同时定义 library-level 指标，如 reuse、redundancy、composition success、regression stability、safety，以及 per-tool 的 Tool Quality Score，用来衡量 correctness、robustness、generality 和 code quality。作者据此比较 code-level 与 strategy-level 的 tool evolution 系统，显示相近 task completion 会掩盖显著不同的 library health。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为 tool use 已经从调用固定工具库转向生成、维护、演化工具库本身，而这篇论文第一次把“生成出来的工具软件质量”显式拉进 agent evaluation。对 tool-learning agents、capability extension、software-artifact governance 和长期工具生态，这是一条很有耐久性的评测补位。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前核心贡献仍然是 benchmark 与评测维度设计，而不是直接提出新的 tool-learning 主方法。它对方向发展很重要，但是否会成为该线的标准基准，还需要后续采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>越来越多的 LLM agents 会在运行时自己生成工具，从 Python functions 到 API clients 都开始被动态创建和迭代。但主流评测几乎仍然只看下游任务是否完成，这会掩盖一个关键事实：即使任务成功率接近，生成出来的工具库也可能在复用性、冗余、回归稳定性和安全性上相差很大。</p><p>论文提出 EvolveTool-Bench，把 agent 生成的 tool library 当作一等软件制品来评估。基准覆盖专有数据格式、API orchestration 和数值计算三个需要真实执行工具的领域，同时定义 library-level 指标，如 reuse、redundancy、composition success、regression stability、safety，以及 per-tool 的 Tool Quality Score，用来衡量 correctness、robustness、generality 和 code quality。作者据此比较 code-level 与 strategy-level 的 tool evolution 系统，显示相近 task completion 会掩盖显著不同的 library health。</p><p>这篇工作值得收录，因为 tool use 已经从调用固定工具库转向生成、维护、演化工具库本身，而这篇论文第一次把“生成出来的工具软件质量”显式拉进 agent evaluation。对 tool-learning agents、capability extension、software-artifact governance 和长期工具生态，这是一条很有耐久性的评测补位。</p><p>它没有升到更高一级，是因为当前核心贡献仍然是 benchmark 与评测维度设计，而不是直接提出新的 tool-learning 主方法。它对方向发展很重要，但是否会成为该线的标准基准，还需要后续采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>现代LLM代理在运行时越来越多地创建自己的工具——从Python函数到API客户端——然而现有基准几乎只通过下游任务完成度来评估它们。这类似于仅凭代码是否运行来评判软件工程师，而忽略了冗余、回归和安全性。我们引入EvolveTool-Bench，这是一个用于评估软件工程工作流中LLM生成工具库的诊断基准。在需要实际工具执行的三个领域（专有数据格式、API编排和数值计算）中，我们定义了库级别的软件质量指标——重用性、冗余性、组合成功率、回归稳定性和安全性——以及衡量正确性、鲁棒性、通用性和代码质量的每个工具的工具质量分数。在首次对代码级和策略级工具演化（ARISE vs. EvoSkill vs. 一次性基线，99个任务，两个模型）进行正面比较中，我们发现任务完成度相似（63-68%）的系统在库健康度方面差异高达18%，揭示了仅通过任务评估无法察觉的软件质量风险。我们的结果强调，LLM生成工具的评估和治理需要将不断演进的工具库视为一流的软件工件，而非黑盒。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Modern LLM agents increasingly create their own tools at runtime—from Python functions to API clients— yet existing benchmarks evaluate them almost exclusively by downstream task completion. This is analogous to judging a software engineer only by whether their code runs, ignoring redundancy, regression, and safety. We introduce EvolveTool-Bench, a diagnostic benchmark for LLM-generated tool libraries in software engineering workflows. Across three domains requiring actual tool execution (proprietary data formats, API orchestration, and numerical computation), we define library-level software quality metrics—reuse, redundancy, composition success, regression stability, and safety—alongside a per-tool Tool Quality Score measuring correctness, robustness, generality, and code quality. In the first head-to-head comparison of code-level and strategy-level tool evolution (ARISE vs. EvoSkill vs. one-shot baselines, 99 tasks, two models), we show that systems with similar task completion (63–68%) differ by up to 18% in library health, revealing software quality risks invisible to task-only evaluation. Our results highlight that evaluation and governance of LLM-generated tools require treating the evolving tool library as a firstclass software artifact, not a black box.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a124evolve,
+  title = {EvolveTool-Bench: Evaluating the Quality of LLM-Generated Tool Libraries as Software Artifacts},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00392.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a124-evolvetool-bench/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EvolveTool-Bench: Evaluating the Quality of LLM-Generated Tool Libraries as Software Artifacts. https://arxiv.org/pdf/2604.00392.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00392.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers | DAST Papers</title>
+    <meta name="description" content="这篇论文关注生成模型 scaling 中很硬的稳定性问题：Diffusion Transformer 继续加深时会出现均值主导的 collapse。它把这个失效模式命名并给出结构性处理。
+
+Mean-Variance Split Residuals 的意义在于把超深 DiT 的训练稳定性变成架构问题，而不是只靠调参或训练技巧。1000-layer 这一设定说明它瞄准的是下一阶段扩展瓶颈。
+
+它值得" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g5-mean-mode-screaming/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers" />
+    <meta property="og:description" content="这篇论文关注生成模型 scaling 中很硬的稳定性问题：Diffusion Transformer 继续加深时会出现均值主导的 collapse。它把这个失效模式命名并给出结构性处理。
+
+Mean-Variance Split Residuals 的意义在于把超深 DiT 的训练稳定性变成架构问题，而不是只靠调参或训练技巧。1000-layer 这一设定说明它瞄准的是下一阶段扩展瓶颈。
+
+它值得" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g5-mean-mode-screaming/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers" />
+    <meta name="twitter:description" content="这篇论文关注生成模型 scaling 中很硬的稳定性问题：Diffusion Transformer 继续加深时会出现均值主导的 collapse。它把这个失效模式命名并给出结构性处理。
+
+Mean-Variance Split Residuals 的意义在于把超深 DiT 的训练稳定性变成架构问题，而不是只靠调参或训练技巧。1000-layer 这一设定说明它瞄准的是下一阶段扩展瓶颈。
+
+它值得" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.06169" target="_blank" rel="noopener noreferrer">2605.06169</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注生成模型 scaling 中很硬的稳定性问题：Diffusion Transformer 继续加深时会出现均值主导的 collapse。它把这个失效模式命名并给出结构性处理。</dd></div><div><dt>方法/机制</dt><dd>Mean-Variance Split Residuals 的意义在于把超深 DiT 的训练稳定性变成架构问题，而不是只靠调参或训练技巧。1000-layer 这一设定说明它瞄准的是下一阶段扩展瓶颈。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为生成模型的长期进展依赖更深、更稳、更可控的 backbone；这类残差结构如果成立，会成为可复用的 generative scaling primitive。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为需要看更多模型族、数据规模和下游生成质量是否稳定受益。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注生成模型 scaling 中很硬的稳定性问题：Diffusion Transformer 继续加深时会出现均值主导的 collapse。它把这个失效模式命名并给出结构性处理。</p><p>Mean-Variance Split Residuals 的意义在于把超深 DiT 的训练稳定性变成架构问题，而不是只靠调参或训练技巧。1000-layer 这一设定说明它瞄准的是下一阶段扩展瓶颈。</p><p>它值得正式收录，因为生成模型的长期进展依赖更深、更稳、更可控的 backbone；这类残差结构如果成立，会成为可复用的 generative scaling primitive。</p><p>它没有更高，是因为需要看更多模型族、数据规模和下游生成质量是否稳定受益。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>将扩散Transformer (DiT) 扩展到数百层会引入一个结构性脆弱点：网络可能进入一种静默的、均值主导的崩溃状态，该状态会同质化token表示并抑制中心化变异。通过机制审计，我们将这种崩溃的触发事件分离为均值模式尖叫 (MMS)。MMS甚至在训练看起来稳定时也可能发生，它对残差写入器产生均值相干的后向冲击，打开深层残差分支并将网络驱动到均值主导状态。我们表明这种行为是由这些梯度精确分解为均值相干分量和中心化分量所驱动的，并且一旦值同质化，Softmax雅可比矩阵的零空间会加剧注意力logit梯度的结构性抑制。为了解决这个问题，我们提出了均值-方差分离 (MV-Split) 残差，它将单独获得的中心化残差更新与有泄漏的主干均值替换相结合。在一个400层单流DiT上，MV-Split阻止了未稳定化基线崩溃的发散性崩溃；它紧密跟踪基线崩溃前的轨迹，同时在整个训练计划中始终显著优于LayerScale等token各向同性门控方法。最后，我们展示了一个1000层DiT作为边界规模下的规模验证运行，证明了该架构在极端深度下仍能稳定训练。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Scaling Diffusion Transformers (DiTs) to hundreds of layers introduces a structural vulnerability: networks can enter a silent, mean-dominated collapse state that homogenizes token representations and suppresses centered variation. Through mechanistic auditing, we isolate the trigger event of this collapse as Mean Mode Screaming (MMS). MMS can occur even when training appears stable, with a mean-coherent backward shock on residual writers that opens deep residual branches and drives the network into a mean-dominated state. We show this behavior is driven by an exact decomposition of these gradients into mean-coherent and centered components, compounded by the structural suppression of attention-logit gradients through the null space of the Softmax Jacobian once values homogenize. To address this, we propose Mean–Variance Split (MV-Split) Residuals, which combine a separately gained centered residual update with a leaky trunk-mean replacement. On a 400-layer single-stream DiT, MV-Split prevents the divergent Preprint. collapse that crashes the un-stabilized baseline; it tracks close to the baseline’s pre-crash trajectory while remaining substantially better than token-isotropic gating methods such as LayerScale across the full schedule. Finally, we present a 1000-layer DiT as a scale-validation run at boundary scales, establishing that the architecture remains stably trainable at extreme depth.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511g5meanmode,
+  title = {Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.06169.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g5-mean-mode-screaming/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Mean Mode Screaming: Mean--Variance Split Residuals for 1000-Layer Diffusion Transformers. https://arxiv.org/pdf/2605.06169.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.06169.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.06169" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D-MEM: Dopamine-Gated Agentic Memory via Reward Prediction Error Routing | DAST Papers</title>
+    <meta name="description" content="长程 LLM agent memory 的一个现实瓶颈，是很多 append-and-evolve 体系在写入和结构更新时很快走向高 token 开销和平方级延迟。随着记忆规模增长，真正需要解决的已不是‘能不能存’，而是哪些输入值得触发代价高昂的认知重组。
+
+D-MEM 的核心贡献，是用 reward prediction error 风格的 fast/slow routing 去管理记忆写入。它" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a155-d-mem-agentic-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="D-MEM: Dopamine-Gated Agentic Memory via Reward Prediction Error Routing" />
+    <meta property="og:description" content="长程 LLM agent memory 的一个现实瓶颈，是很多 append-and-evolve 体系在写入和结构更新时很快走向高 token 开销和平方级延迟。随着记忆规模增长，真正需要解决的已不是‘能不能存’，而是哪些输入值得触发代价高昂的认知重组。
+
+D-MEM 的核心贡献，是用 reward prediction error 风格的 fast/slow routing 去管理记忆写入。它" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a155-d-mem-agentic-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="D-MEM: Dopamine-Gated Agentic Memory via Reward Prediction Error Routing" />
+    <meta name="twitter:description" content="长程 LLM agent memory 的一个现实瓶颈，是很多 append-and-evolve 体系在写入和结构更新时很快走向高 token 开销和平方级延迟。随着记忆规模增长，真正需要解决的已不是‘能不能存’，而是哪些输入值得触发代价高昂的认知重组。
+
+D-MEM 的核心贡献，是用 reward prediction error 风格的 fast/slow routing 去管理记忆写入。它" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>D-MEM: Dopamine-Gated Agentic Memory via Reward Prediction Error Routing</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14597" target="_blank" rel="noopener noreferrer">2603.14597</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长程 LLM agent memory 的一个现实瓶颈，是很多 append-and-evolve 体系在写入和结构更新时很快走向高 token 开销和平方级延迟。随着记忆规模增长，真正需要解决的已不是‘能不能存’，而是哪些输入值得触发代价高昂的认知重组。</dd></div><div><dt>方法/机制</dt><dd>D-MEM 的核心贡献，是用 reward prediction error 风格的 fast/slow routing 去管理记忆写入。它先用轻量 Critic Router 评估 surprise 和 utility，把低 RPE 的常规输入直接旁路或放入 O(1) buffer，而把高 RPE 的事实冲突、偏好变化等输入送入较慢的 memory evolution pipeline 去重塑知识图谱。论文还补上了 LoCoMo-Noise 这一更贴近真实对话噪声条件的评测设定。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这不是普通 memory schema，而是 memory-control primitive。对 agent memory 系统而言，什么时候触发昂贵的结构更新、如何把短期缓存和长期重组分层，是一类会反复出现的核心问题；D-MEM 给出了一套清楚、可复用且代价模型明确的答案。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前主要证据仍集中在对话型长程记忆 benchmark 和作者定义的噪声设定，跨更多 agent workflow 与真实部署生态的外部采用还不够。现阶段它是很强的 memory-routing 方案，但还没到更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长程 LLM agent memory 的一个现实瓶颈，是很多 append-and-evolve 体系在写入和结构更新时很快走向高 token 开销和平方级延迟。随着记忆规模增长，真正需要解决的已不是‘能不能存’，而是哪些输入值得触发代价高昂的认知重组。</p><p>D-MEM 的核心贡献，是用 reward prediction error 风格的 fast/slow routing 去管理记忆写入。它先用轻量 Critic Router 评估 surprise 和 utility，把低 RPE 的常规输入直接旁路或放入 O(1) buffer，而把高 RPE 的事实冲突、偏好变化等输入送入较慢的 memory evolution pipeline 去重塑知识图谱。论文还补上了 LoCoMo-Noise 这一更贴近真实对话噪声条件的评测设定。</p><p>它值得正式收录，因为这不是普通 memory schema，而是 memory-control primitive。对 agent memory 系统而言，什么时候触发昂贵的结构更新、如何把短期缓存和长期重组分层，是一类会反复出现的核心问题；D-MEM 给出了一套清楚、可复用且代价模型明确的答案。</p><p>它没有升到更高一级，是因为当前主要证据仍集中在对话型长程记忆 benchmark 和作者定义的噪声设定，跨更多 agent workflow 与真实部署生态的外部采用还不够。现阶段它是很强的 memory-routing 方案，但还没到更高一级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>D-MEM：通过奖励预测误差路由实现多巴胺门控的智能体记忆。结构化、长期记忆的整合对于自主大型语言模型 (LLM) 智能体的开发至关重要。近期进展，例如智能体记忆 (A-MEM) 框架，通过动态构建和演化知识图谱取得了显著进步。然而，现有架构本质上作为同步的“追加并演化所有”系统运行。通过计算成本高昂的 O(N^2) 记忆演化管道处理每个用户话语，会引入严重的写入延迟、无限制的 API token 成本以及由对话噪声引起的灾难性上下文窗口污染。为解决这一可扩展性瓶颈，我们引入了 D-MEM（多巴胺门控的智能体记忆），这是一种受生物学启发的架构，它将短期交互与长期认知重构解耦。D-MEM 从哺乳动物腹侧被盖区 (VTA) 中多巴胺驱动的奖励预测误差 (RPE) 门控机制中汲取灵感，实现了一个高效的快/慢路由系统。我们引入了一个轻量级的评论家路由器，它持续评估传入刺激的信息熵（惊喜度）和长期效用。具有低 RPE 的常规输入要么完全绕过，要么缓存在 O(1) 快速访问缓冲区中，从而节省计算资源。相反，产生高 RPE 的输入——例如事实矛盾或范式转变的偏好变化——会触发“多巴胺释放”，从而激活缓慢的 O(N) 深度记忆演化管道，主动重塑智能体的全局知识图谱。为了在现实条件下进行严格评估，我们进一步引入了 LoCoMo-Noise 基准，它系统地将受控的对话噪声注入长期对话会话中，以模拟真实世界的交互动态。广泛的评估表明，D-MEM 将 API token 消耗降低了 80% 以上，并消除了 O(N^2) 写入延迟瓶颈，同时在复杂的多跳推理和对抗性韧性方面严格优于同步基线。通过选择性地门控认知重构并利用零成本检索增强，D-MEM 为终身智能体记忆提供了一个高度可扩展且经济高效的基础。为了支持可复现性，我们已在 https://github.com/london-and-tequila/dmem 开源了我们的实现。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The integration of structured, long-term memory is critical for the development of autonomous Large Language Model (LLM) agents. Recent advancements, such as the Agentic Memory (A-MEM) framework, have achieved significant progress by dynamically constructing and evolving knowledge graphs. However, existing architectures inherently operate as synchronous, “append-and-evolve-all” systems. Processing every user utterance through a computationally expensive O(N 2 ) memory evolution pipeline introduces severe write-latency, unbounded API token costs, and catastrophic context window pollution caused by conversational noise. To address this scalability bottleneck, we introduce D-MEM (Dopamine-Gated Agentic Memory), a biologically inspired architecture that decouples short-term interaction from long-term cognitive restructuring. Drawing inspiration from the Dopaminedriven Reward Prediction Error (RPE) gating mechanism in the mammalian Ventral Tegmental Area (VTA), D-MEM implements a highly efficient Fast/Slow routing system. We introduce a lightweight Critic Router that continuously evaluates the Information Entropy (Surprise) and Long-term Utility of incoming stimuli. Routine inputs with low RPE are either bypassed entirely or cached in an O(1) fast-access buffer, preserving computational resources. Conversely, inputs generating a high RPE—such as factual contradictions or paradigm-shifting preference changes— trigger a “dopamine release” that activates the slow, O(N ) deep memory evolution pipeline, actively reshaping the agent’s global knowledge graph. To enable rigorous evaluation under realistic conditions, we further introduce the LoCoMo-Noise benchmark, which systematically injects controlled conversational noise into longterm dialogue sessions to simulate real-world interaction dynamics. Extensive evaluations demonstrate that D-MEM reduces API token consumption by over 80% and eliminates O(N 2 ) write-latency bottlenecks, all while strictly outperforming synchronous baselines in complex multi-hop reasoning and adversarial resilience. By selectively gating cognitive restructuring and leveraging zero-cost retrieval augmentations, D-MEM provides a highly scalable and cost-efficient foundation for lifelong agentic memory. To support reproducibility, we open-source our implementation at https://github.com/london-and-tequila/dmem.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260315a155dmemag,
+  title = {D-MEM: Dopamine-Gated Agentic Memory via Reward Prediction Error Routing},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14597.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a155-d-mem-agentic-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). D-MEM: Dopamine-Gated Agentic Memory via Reward Prediction Error Routing. https://arxiv.org/pdf/2603.14597.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14597.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

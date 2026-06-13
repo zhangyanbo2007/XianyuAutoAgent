@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neuro-Symbolic Synergy for Interactive World Modeling | DAST Papers</title>
+    <meta name="description" content="这篇论文瞄准的是用 LLM 充当世界模型时最棘手的短板：在需要严格遵守环境规则的交互场景里，纯神经世界模型很容易 hallucinate，而纯符号系统又缺乏语义灵活性。作者试图做的不是二选一，而是让两种范式协同工作。
+
+方法上，NeSyS 把 LLM world model 与可执行符号规则模型交替训练：对符号规则覆盖不到的轨迹，微调神经模型；对神经模型难以稳定解释的轨迹，则用符号模型约束其输出概" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a21-nesys-interactive-world-modeling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Neuro-Symbolic Synergy for Interactive World Modeling" />
+    <meta property="og:description" content="这篇论文瞄准的是用 LLM 充当世界模型时最棘手的短板：在需要严格遵守环境规则的交互场景里，纯神经世界模型很容易 hallucinate，而纯符号系统又缺乏语义灵活性。作者试图做的不是二选一，而是让两种范式协同工作。
+
+方法上，NeSyS 把 LLM world model 与可执行符号规则模型交替训练：对符号规则覆盖不到的轨迹，微调神经模型；对神经模型难以稳定解释的轨迹，则用符号模型约束其输出概" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a21-nesys-interactive-world-modeling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Neuro-Symbolic Synergy for Interactive World Modeling" />
+    <meta name="twitter:description" content="这篇论文瞄准的是用 LLM 充当世界模型时最棘手的短板：在需要严格遵守环境规则的交互场景里，纯神经世界模型很容易 hallucinate，而纯符号系统又缺乏语义灵活性。作者试图做的不是二选一，而是让两种范式协同工作。
+
+方法上，NeSyS 把 LLM world model 与可执行符号规则模型交替训练：对符号规则覆盖不到的轨迹，微调神经模型；对神经模型难以稳定解释的轨迹，则用符号模型约束其输出概" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Neuro-Symbolic Synergy for Interactive World Modeling</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.10480" target="_blank" rel="noopener noreferrer">2602.10480</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文瞄准的是用 LLM 充当世界模型时最棘手的短板：在需要严格遵守环境规则的交互场景里，纯神经世界模型很容易 hallucinate，而纯符号系统又缺乏语义灵活性。作者试图做的不是二选一，而是让两种范式协同工作。</dd></div><div><dt>方法/机制</dt><dd>方法上，NeSyS 把 LLM world model 与可执行符号规则模型交替训练：对符号规则覆盖不到的轨迹，微调神经模型；对神经模型难以稳定解释的轨迹，则用符号模型约束其输出概率分布。关键点是符号模型不是外部后处理，而是直接介入神经模型的决策分布。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里的位置很明确：这是 world model 和 neuro-symbolic 结合方向的一篇代表作，和 JEPA、VLA、interactive planning 那些条目形成互补。相比只讨论“神经 vs 符号”理念的论文，它给出了更可执行的训练与推理机制。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是方法很值得收，也有跨环境实验支持，但目前影响范围仍集中在交互式世界模型这一子线，还不足以上升到更高一级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文瞄准的是用 LLM 充当世界模型时最棘手的短板：在需要严格遵守环境规则的交互场景里，纯神经世界模型很容易 hallucinate，而纯符号系统又缺乏语义灵活性。作者试图做的不是二选一，而是让两种范式协同工作。</p><p>方法上，NeSyS 把 LLM world model 与可执行符号规则模型交替训练：对符号规则覆盖不到的轨迹，微调神经模型；对神经模型难以稳定解释的轨迹，则用符号模型约束其输出概率分布。关键点是符号模型不是外部后处理，而是直接介入神经模型的决策分布。</p><p>它在仓库里的位置很明确：这是 world model 和 neuro-symbolic 结合方向的一篇代表作，和 JEPA、VLA、interactive planning 那些条目形成互补。相比只讨论“神经 vs 符号”理念的论文，它给出了更可执行的训练与推理机制。</p><p>我把它放在“突破性”。原因是方法很值得收，也有跨环境实验支持，但目前影响范围仍集中在交互式世界模型这一子线，还不足以上升到更高一级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大型语言模型（LLMs）展现出强大的通用推理能力，然而当它们被用作世界模型（WMs）时，却经常出现幻觉，尤其是在需要严格遵守确定性转换规则（特别是在边缘情况）的场景中。相比之下，符号WMs提供了逻辑一致性，但缺乏语义表达能力。为了弥合这一差距，我们提出了神经符号协同（NeSyS），这是一个将LLMs的概率语义先验与可执行符号规则相结合的框架，以实现表达能力和鲁棒性。NeSyS利用另一个模型未能充分解释的轨迹，在两个模型之间交替进行训练。与基于规则的提示不同，符号WM通过修改LLM的输出概率分布来直接约束LLM。神经WM仅在符号规则未覆盖的轨迹上进行微调，在不损失准确性的情况下将训练数据减少了50%。在ScienceWorld、Webshop和Plancraft这三个不同的交互式环境上进行的广泛实验表明，NeSyS在WM预测准确性和数据效率方面均持续优于基线。图1. 世界建模任务的一个示例。给定当前信念状态和智能体的下一个动作，世界模型需要预测下一个状态。神经世界模型（LLM）和符号世界模型都无法单独回答这个问题。我们提出通过将符号分数视为一个能量项来结合这两个世界模型，该能量项修改了神经世界模型的概率分布。它们在广泛的任务中表现出竞争力。然而，LLMs在具有结构化观测和明确动态的领域（例如游戏和网络环境）中，常常难以产生准确的预测（Levy et al., 2025; Chae et al., 2024）。特别是，尽管它们在随机设置中表现出色，但在需要严格遵守转换规则和约束的确定性场景中，它们却经常失败（Duan et al., 2024）。尽管广泛的领域特定微调可以部分缓解这些问题，但LLMs固有的概率性质使得严格遵守硬约束难以保证。此外，它们对统计学习的依赖限制了它们可靠捕获罕见边缘情况和长尾行为的能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large language models (LLMs) exhibit strong general-purpose reasoning capabilities, yet they frequently hallucinate when used as world models (WMs), where strict compliance with deterministic transition rules—particularly in corner cases—is essential. In contrast, Symbolic WMs provide logical consistency but lack semantic expressivity. To bridge this gap, we propose NeuroSymbolic Synergy (NeSyS), a framework that integrates the probabilistic semantic priors of LLMs with executable symbolic rules to achieve both expressivity and robustness. NeSyS alternates training between the two models using trajectories inadequately explained by the other. Unlike rule-based prompting, the symbolic WM directly constrains the LLM by modifying its output probability distribution. The neural WM is fine-tuned only on trajectories not covered by symbolic rules, reducing training data by 50% without loss of accuracy. Extensive experiments on three distinct interactive environments, i.e., ScienceWorld, Webshop, and Plancraft, demonstrate NeSyS’s consistent advantages over baselines in both WM prediction accuracy and data efficiency. Figure 1. An example of the world modeling task. Given the current belief state and the agent’s next action, the world model needs to predict the next state. Both a neural world model (LLM) and a symbolic world model fail to answer the question by themselves. We propose to combine the two world models by viewing the symbolic scores as an energy term that modifies the probability distribution of the neural world model. ities, they perform competitively across a wide range of tasks. However, LLMs often struggle to produce accurate predictions in domains with structured observations and well-defined dynamics, such as games and web environments (Levy et al., 2025; Chae et al., 2024). In particular, despite their strong performance in stochastic settings, they frequently fail in deterministic scenarios that require strict adherence to transition rules and constraints (Duan et al., 2024). Although extensive domain-specific fine-tuning can partially mitigate these issues, the inherently probabilistic nature of LLMs makes strict adherence to hard constraints difficult to guarantee. Moreover, their reliance on statistical learning limits their ability to reliably capture rare corner cases and long-tail behaviors.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260211a21nesysin,
+  title = {Neuro-Symbolic Synergy for Interactive World Modeling},
+  year = {2026},
+  url = {https://arxiv.org/abs/2602.10480},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a21-nesys-interactive-world-modeling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Neuro-Symbolic Synergy for Interactive World Modeling. https://arxiv.org/abs/2602.10480</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2602.10480" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

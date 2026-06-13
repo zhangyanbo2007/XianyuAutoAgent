@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights | DAST Papers</title>
+    <meta name="description" content="这篇论文挑战了一个默认前提：后训练是否真的在学习全新能力，还是更多在预训练权重附近选择已经潜伏存在的任务专家。作者提出 large pretrained models 并不只对应一个单点解，而是位于一个局部高密度的“专家丛林”之中；当预训练足够强时，对权重做小幅随机扰动，就可能落到不同任务的可用专家上。
+
+方法上的核心不是复杂优化，而是一个刻意极简的后训练基线 RandOpt：围绕预训练权重随机采" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t18-neural-thickets/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights" />
+    <meta property="og:description" content="这篇论文挑战了一个默认前提：后训练是否真的在学习全新能力，还是更多在预训练权重附近选择已经潜伏存在的任务专家。作者提出 large pretrained models 并不只对应一个单点解，而是位于一个局部高密度的“专家丛林”之中；当预训练足够强时，对权重做小幅随机扰动，就可能落到不同任务的可用专家上。
+
+方法上的核心不是复杂优化，而是一个刻意极简的后训练基线 RandOpt：围绕预训练权重随机采" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t18-neural-thickets/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights" />
+    <meta name="twitter:description" content="这篇论文挑战了一个默认前提：后训练是否真的在学习全新能力，还是更多在预训练权重附近选择已经潜伏存在的任务专家。作者提出 large pretrained models 并不只对应一个单点解，而是位于一个局部高密度的“专家丛林”之中；当预训练足够强时，对权重做小幅随机扰动，就可能落到不同任务的可用专家上。
+
+方法上的核心不是复杂优化，而是一个刻意极简的后训练基线 RandOpt：围绕预训练权重随机采" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.12228" target="_blank" rel="noopener noreferrer">2603.12228</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文挑战了一个默认前提：后训练是否真的在学习全新能力，还是更多在预训练权重附近选择已经潜伏存在的任务专家。作者提出 large pretrained models 并不只对应一个单点解，而是位于一个局部高密度的“专家丛林”之中；当预训练足够强时，对权重做小幅随机扰动，就可能落到不同任务的可用专家上。</dd></div><div><dt>方法/机制</dt><dd>方法上的核心不是复杂优化，而是一个刻意极简的后训练基线 RandOpt：围绕预训练权重随机采样多个扰动，选出更优候选，再做集成。论文显示，这种几乎不依赖梯度优化的简单过程，在若干任务上能够逼近甚至比肩标准 post-training 方法。它真正新的是把 post-training 重新解释为对预训练邻域中潜在行为的选择，而不是总要通过昂贵优化去发明新行为。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为它对后训练、对齐和能力形成机制给出了一个很强的问题重述。它不只是提出一个小 trick，而是在追问 RLHF、PPO、GRPO 一类方法到底在做什么，这对后训练研究、模型编辑和权重空间理解都有直接外溢价值。对于仓库来说，它属于高信号的理论/机制型突破。</dd></div><div><dt>收录价值</dt><dd>它还不到更高一级，原因是当前主要证据集中在特定模型和任务上的权重邻域分析，是否能普遍解释更广泛的大模型后训练过程，还需要更多模型族、尺度和方法学验证。因此目前更稳的定位是高位 breakthrough，而不是已经坐实的 disruptive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文挑战了一个默认前提：后训练是否真的在学习全新能力，还是更多在预训练权重附近选择已经潜伏存在的任务专家。作者提出 large pretrained models 并不只对应一个单点解，而是位于一个局部高密度的“专家丛林”之中；当预训练足够强时，对权重做小幅随机扰动，就可能落到不同任务的可用专家上。</p><p>方法上的核心不是复杂优化，而是一个刻意极简的后训练基线 RandOpt：围绕预训练权重随机采样多个扰动，选出更优候选，再做集成。论文显示，这种几乎不依赖梯度优化的简单过程，在若干任务上能够逼近甚至比肩标准 post-training 方法。它真正新的是把 post-training 重新解释为对预训练邻域中潜在行为的选择，而不是总要通过昂贵优化去发明新行为。</p><p>这项工作值得收录，因为它对后训练、对齐和能力形成机制给出了一个很强的问题重述。它不只是提出一个小 trick，而是在追问 RLHF、PPO、GRPO 一类方法到底在做什么，这对后训练研究、模型编辑和权重空间理解都有直接外溢价值。对于仓库来说，它属于高信号的理论/机制型突破。</p><p>它还不到更高一级，原因是当前主要证据集中在特定模型和任务上的权重邻域分析，是否能普遍解释更广泛的大模型后训练过程，还需要更多模型族、尺度和方法学验证。因此目前更稳的定位是高位 breakthrough，而不是已经坐实的 disruptive。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：神经丛林：多样化的任务专家密集分布在预训练权重周围。预训练产生一个学习到的参数向量，该向量通常被视为进一步迭代适应的起点。在这项工作中，我们转而将预训练的结果视为参数向量的分布，其支撑集已经包含任务特定的专家。我们表明，在小型模型中，此类专家解决方案仅占该分布体积的微不足道的一部分，这使得它们的发现依赖于梯度下降等结构化优化方法。相比之下，在大型、经过良好预训练的模型中，任务专家的密度显著增加，因此多样化的、能改进任务的专家占据了预训练权重周围邻域的很大一部分。受此观点的启发，我们探索了一种简单、完全并行的后训练方法，该方法随机采样N个参数扰动，选择前K个，并通过多数投票集成预测。尽管其简单，但对于当前的大规模模型，这种方法与PPO、GRPO和ES等标准后训练方法具有竞争力。项目页面：https://thickets.mit.edu</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Pretraining produces a learned parameter vector that is typically treated as a starting point for further iterative adaptation. In this work, we instead view the outcome of pretraining as a distribution over parameter vectors, whose support already contains task-specific experts. We show that in small models such expert solutions occupy a negligible fraction of the volume of this distribution, making their discovery reliant on structured optimization methods such as gradient descent. In contrast, in large, well-pretrained models the density of task-experts increases dramatically, so that diverse, task-improving specialists populate a substantial fraction of the neighborhood around the pretrained weights. Motivated by this perspective, we explore a simple, fully parallel post-training method that samples N parameter perturbations at random, selects the top K, and ensembles predictions via majority vote. Despite its simplicity, this approach is competitive with standard post-training methods such as PPO, GRPO, and ES for contemporary large-scale models. Project page: https://thickets.mit.edu</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260312t18neuralt,
+  title = {Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.12228.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t18-neural-thickets/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Neural Thickets: Diverse Task Experts Are Dense Around Pretrained Weights. https://arxiv.org/pdf/2603.12228.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.12228.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

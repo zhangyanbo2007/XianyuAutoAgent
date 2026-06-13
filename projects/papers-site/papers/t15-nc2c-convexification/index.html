@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NC2C: Automated Convexification of Generic Non-Convex Optimization Problems | DAST Papers</title>
+    <meta name="description" content="这篇论文研究的是通用非凸优化问题能否被大模型自动识别并转化为可求解的凸形式。它抓的是数学规划和工程优化中的老问题：很多非凸问题理论上能被凸化，但实际过程高度依赖专家经验，难以自动化。
+
+方法上，NC2C 用 LLM 做端到端的凸化流水线，包括检测非凸成分、选择凸化策略、符号推理生成等价形式，再配合验证、纠错和可行域修正模块，形成闭环。重点不是直接让模型输出解，而是把模型放在优化问题结构变换这个环节" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t15-nc2c-convexification/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="NC2C: Automated Convexification of Generic Non-Convex Optimization Problems" />
+    <meta property="og:description" content="这篇论文研究的是通用非凸优化问题能否被大模型自动识别并转化为可求解的凸形式。它抓的是数学规划和工程优化中的老问题：很多非凸问题理论上能被凸化，但实际过程高度依赖专家经验，难以自动化。
+
+方法上，NC2C 用 LLM 做端到端的凸化流水线，包括检测非凸成分、选择凸化策略、符号推理生成等价形式，再配合验证、纠错和可行域修正模块，形成闭环。重点不是直接让模型输出解，而是把模型放在优化问题结构变换这个环节" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t15-nc2c-convexification/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NC2C: Automated Convexification of Generic Non-Convex Optimization Problems" />
+    <meta name="twitter:description" content="这篇论文研究的是通用非凸优化问题能否被大模型自动识别并转化为可求解的凸形式。它抓的是数学规划和工程优化中的老问题：很多非凸问题理论上能被凸化，但实际过程高度依赖专家经验，难以自动化。
+
+方法上，NC2C 用 LLM 做端到端的凸化流水线，包括检测非凸成分、选择凸化策略、符号推理生成等价形式，再配合验证、纠错和可行域修正模块，形成闭环。重点不是直接让模型输出解，而是把模型放在优化问题结构变换这个环节" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>NC2C: Automated Convexification of Generic Non-Convex Optimization Problems</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-01-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.04789" target="_blank" rel="noopener noreferrer">2601.04789</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文研究的是通用非凸优化问题能否被大模型自动识别并转化为可求解的凸形式。它抓的是数学规划和工程优化中的老问题：很多非凸问题理论上能被凸化，但实际过程高度依赖专家经验，难以自动化。</dd></div><div><dt>方法/机制</dt><dd>方法上，NC2C 用 LLM 做端到端的凸化流水线，包括检测非凸成分、选择凸化策略、符号推理生成等价形式，再配合验证、纠错和可行域修正模块，形成闭环。重点不是直接让模型输出解，而是把模型放在优化问题结构变换这个环节。</dd></div><div><dt>结果/证据</dt><dd>这篇适合放在 AI×optimization / mathematical programming 主线。它的价值在于把 LLM 从“求解器外的语言接口”推进到“问题重写器”的位置，对优化编译、自动建模和科学计算都有方法学外溢。</dd></div><div><dt>收录价值</dt><dd>它还不是更高一级，因为目前主要证明 LLM 可以在凸化这类专家流程中发挥作用，但距离成为广泛采用的标准优化工作流还差更多系统性验证和真实工业任务证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文研究的是通用非凸优化问题能否被大模型自动识别并转化为可求解的凸形式。它抓的是数学规划和工程优化中的老问题：很多非凸问题理论上能被凸化，但实际过程高度依赖专家经验，难以自动化。</p><p>方法上，NC2C 用 LLM 做端到端的凸化流水线，包括检测非凸成分、选择凸化策略、符号推理生成等价形式，再配合验证、纠错和可行域修正模块，形成闭环。重点不是直接让模型输出解，而是把模型放在优化问题结构变换这个环节。</p><p>这篇适合放在 AI×optimization / mathematical programming 主线。它的价值在于把 LLM 从“求解器外的语言接口”推进到“问题重写器”的位置，对优化编译、自动建模和科学计算都有方法学外溢。</p><p>它还不是更高一级，因为目前主要证明 LLM 可以在凸化这类专家流程中发挥作用，但距离成为广泛采用的标准优化工作流还差更多系统性验证和真实工业任务证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>非凸优化问题在数学规划、工程设计和科学计算中普遍存在，由于其复杂的目标函数和受限的解空间，常常给传统求解器带来难以解决的挑战。为了解决手动凸化效率低下和过度依赖专家知识的问题，我们提出了NC2C，这是一个基于LLM的端到端自动化框架，旨在利用大型语言模型将通用非凸优化问题转化为可解的凸形式。NC2C利用LLM的数学推理能力，自主检测非凸分量，选择最优凸化策略，并生成严谨的凸等价形式。该框架集成了符号推理、自适应变换技术和迭代验证，并配备了纠错循环和可行域校正机制，以确保转换后问题的鲁棒性和有效性。在包含100个通用非凸问题的多样化数据集上的实验结果表明，NC2C在生成可行、高质量的凸变换方面达到了89.3%的执行率和76%的成功率。这显著优于基线方法，突显了NC2C利用LLM实现非凸到凸自动化转换、减少专家依赖以及为先前难以解决的优化任务高效部署凸求解器的能力。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Non-convex optimization problems are pervasive across mathematical programming, engineering design, and scientific computing, often posing intractable challenges for traditional solvers due to their complex objective functions and constrained landscapes. To address the inefficiency of manual convexification and the over-reliance on expert knowledge, we propose NC2C, an LLM-based end-to-end automated framework designed to transform generic nonconvex optimization problems into solvable convex forms using large language models. NC2C leverages LLMs’ mathematical reasoning capabilities to autonomously detect nonconvex components, select optimal convexification strategies, and generate rigorous convex equivalents. The framework integrates symbolic reasoning, adaptive transformation techniques, and iterative validation, equipped with error correction loops and feasibility domain correction mechanisms to ensure the robustness and validity of transformed problems. Experimental results on a diverse dataset of 100 generic non-convex problems demonstrate that NC2C achieves an 89.3% execution rate and a 76% success rate in producing feasible, highquality convex transformations. This outperforms baseline methods by a significant margin, highlighting NC2C’s ability to leverage LLMs for automated non-convex to convex transformation, reduce expert dependency, and enable efficient deployment of convex solvers for previously intractable optimization tasks.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260108t15nc2ccon,
+  title = {NC2C: Automated Convexification of Generic Non-Convex Optimization Problems},
+  year = {2026},
+  url = {https://arxiv.org/abs/2601.04789},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t15-nc2c-convexification/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). NC2C: Automated Convexification of Generic Non-Convex Optimization Problems. https://arxiv.org/abs/2601.04789</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/abs/2601.04789" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

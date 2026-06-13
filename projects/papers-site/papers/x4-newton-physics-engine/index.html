@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newton Physics Engine | DAST Papers</title>
+    <meta name="description" content="Newton 不是普通产品新闻，而是一个面向 generalist robotics 的底层仿真基础设施项目。它由 NVIDIA、Google DeepMind 和 Disney Research 共同开发，并由 Linux Foundation 托管，目标不是做单一求解器，而是提供一个统一、开放、可扩展的机器人物理仿真底座。对 physical AI 来说，这类基础设施会直接影响训练数据生成、s" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/x4-newton-physics-engine/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Newton Physics Engine" />
+    <meta property="og:description" content="Newton 不是普通产品新闻，而是一个面向 generalist robotics 的底层仿真基础设施项目。它由 NVIDIA、Google DeepMind 和 Disney Research 共同开发，并由 Linux Foundation 托管，目标不是做单一求解器，而是提供一个统一、开放、可扩展的机器人物理仿真底座。对 physical AI 来说，这类基础设施会直接影响训练数据生成、s" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/x4-newton-physics-engine/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Newton Physics Engine" />
+    <meta name="twitter:description" content="Newton 不是普通产品新闻，而是一个面向 generalist robotics 的底层仿真基础设施项目。它由 NVIDIA、Google DeepMind 和 Disney Research 共同开发，并由 Linux Foundation 托管，目标不是做单一求解器，而是提供一个统一、开放、可扩展的机器人物理仿真底座。对 physical AI 来说，这类基础设施会直接影响训练数据生成、s" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Newton Physics Engine</h1>
+          <p class="subtitle">Projects And Appendices · 发表：2025-09-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">Projects And Appendices</span>
+          <span class="badge grade">项目</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-09-29</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Newton 不是普通产品新闻，而是一个面向 generalist robotics 的底层仿真基础设施项目。它由 NVIDIA、Google DeepMind 和 Disney Research 共同开发，并由 Linux Foundation 托管，目标不是做单一求解器，而是提供一个统一、开放、可扩展的机器人物理仿真底座。对 physical AI 来说，这类基础设施会直接影响训练数据生成、sim-to-real、系统辨识和策略优化的上限。</dd></div><div><dt>方法/机制</dt><dd>从技术定位看，Newton 建立在 NVIDIA Warp 和 OpenUSD 之上，强调 GPU 加速、可插拔求解器、与 MuJoCo Playground / Isaac Lab 的兼容，以及 differentiable physics。它的意义不在于‘又一个 physics engine’，而在于把 differentiable simulation、OpenUSD 资产管线、机器人学习框架兼容性和开放治理绑定到同一个平台里。</dd></div><div><dt>结果/证据</dt><dd>这类条目值得入库，但不应当被误当作正式论文。它更适合作为 project appendix：一方面，它会深刻影响机器人学习与 physical AI 的后续工作流；另一方面，它当前的核心价值仍主要体现在基础设施、生态接口和产业协作，而不是一篇自足的研究论文贡献。</dd></div><div><dt>收录价值</dt><dd>因此这里给 `project` 而不是 `breakthrough`。如果后续 Newton 自身产生了足够强、可独立引用的方法论文或 benchmark 论文，再分别按正式论文标准处理会更合理。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Newton 不是普通产品新闻，而是一个面向 generalist robotics 的底层仿真基础设施项目。它由 NVIDIA、Google DeepMind 和 Disney Research 共同开发，并由 Linux Foundation 托管，目标不是做单一求解器，而是提供一个统一、开放、可扩展的机器人物理仿真底座。对 physical AI 来说，这类基础设施会直接影响训练数据生成、sim-to-real、系统辨识和策略优化的上限。</p><p>从技术定位看，Newton 建立在 NVIDIA Warp 和 OpenUSD 之上，强调 GPU 加速、可插拔求解器、与 MuJoCo Playground / Isaac Lab 的兼容，以及 differentiable physics。它的意义不在于‘又一个 physics engine’，而在于把 differentiable simulation、OpenUSD 资产管线、机器人学习框架兼容性和开放治理绑定到同一个平台里。</p><p>这类条目值得入库，但不应当被误当作正式论文。它更适合作为 project appendix：一方面，它会深刻影响机器人学习与 physical AI 的后续工作流；另一方面，它当前的核心价值仍主要体现在基础设施、生态接口和产业协作，而不是一篇自足的研究论文贡献。</p><p>因此这里给 `project` 而不是 `breakthrough`。如果后续 Newton 自身产生了足够强、可独立引用的方法论文或 benchmark 论文，再分别按正式论文标准处理会更合理。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>一个由NVIDIA、Google DeepMind和Disney Research开发，旨在推动机器人学习与发展的开源、可扩展物理引擎。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>An open-source, extensible physics engine developed by NVIDIA, Google DeepMind, and Disney Research to advance robot learning and development.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250929x4newtonph,
+  title = {Newton Physics Engine},
+  year = {2025},
+  url = {https://developer.nvidia.com/newton-physics},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/x4-newton-physics-engine/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Newton Physics Engine. https://developer.nvidia.com/newton-physics</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/x3-eon-virtual-embodied-fly/">
+              <span>How the Eon Team Produced a Virtual Embodied Fly</span>
+              <small>Projects And Appendices · 2026-03-10</small>
+            </a>
+            <a class="related-item" href="../../papers/x2-beacon-consortium/">
+              <span>Benchmarking, Evaluation, and Assessment Consortium for Science</span>
+              <small>Projects And Appendices · 2026-02-18</small>
+            </a>
+            <a class="related-item" href="../../papers/x1-genesis-mission/">
+              <span>Genesis Mission (White House + DOE challenges)</span>
+              <small>Projects And Appendices · 2025-11-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://developer.nvidia.com/newton-physics" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://developer.nvidia.com/newton-physics" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

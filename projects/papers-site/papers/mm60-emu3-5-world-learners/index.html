@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emu3.5: Native Multimodal Models are World Learners | DAST Papers</title>
+    <meta name="description" content="问题与背景：多模态世界模型需要从离散图文生成走向时空连续经验建模。Emu3.5 明确把长视频交错数据视为 next-state prediction 的训练载体，用统一 NTP 基础设施学习视觉和语言状态演化。
+
+方法与新意：模型在超过 10T vision-language interleaved tokens 上端到端预训练，输入输出都支持交错图文；后训练加入大规模 RL，并用 Discret" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm60-emu3-5-world-learners/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Emu3.5: Native Multimodal Models are World Learners" />
+    <meta property="og:description" content="问题与背景：多模态世界模型需要从离散图文生成走向时空连续经验建模。Emu3.5 明确把长视频交错数据视为 next-state prediction 的训练载体，用统一 NTP 基础设施学习视觉和语言状态演化。
+
+方法与新意：模型在超过 10T vision-language interleaved tokens 上端到端预训练，输入输出都支持交错图文；后训练加入大规模 RL，并用 Discret" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm60-emu3-5-world-learners/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Emu3.5: Native Multimodal Models are World Learners" />
+    <meta name="twitter:description" content="问题与背景：多模态世界模型需要从离散图文生成走向时空连续经验建模。Emu3.5 明确把长视频交错数据视为 next-state prediction 的训练载体，用统一 NTP 基础设施学习视觉和语言状态演化。
+
+方法与新意：模型在超过 10T vision-language interleaved tokens 上端到端预训练，输入输出都支持交错图文；后训练加入大规模 RL，并用 Discret" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Emu3.5: Native Multimodal Models are World Learners</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2025-10-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.26583" target="_blank" rel="noopener noreferrer">2510.26583</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：多模态世界模型需要从离散图文生成走向时空连续经验建模。Emu3.5 明确把长视频交错数据视为 next-state prediction 的训练载体，用统一 NTP 基础设施学习视觉和语言状态演化。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：模型在超过 10T vision-language interleaved tokens 上端到端预训练，输入输出都支持交错图文；后训练加入大规模 RL，并用 Discrete Diffusion Adaptation 把 token-by-token 图像解码转成双向并行预测以提升推理效率。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇适合进入 multimodal/world-model 主线，因为它把 native multimodal generation、长程视觉语言生成、X2I、文本富集图像生成和 embodied manipulation 放入同一个 next-state/world-learning 框架。它对视频世界模型、具身模拟和开放多模态生成都有参考价值。</dd></div><div><dt>收录价值</dt><dd>局限：它仍是大模型系统报告，世界建模能力的物理一致性、可控性和第三方复现需要更强评测；Next State Prediction 的表述也仍依赖 tokenized sequence training，而非完整因果物理模型。因此按 breakthrough 收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：多模态世界模型需要从离散图文生成走向时空连续经验建模。Emu3.5 明确把长视频交错数据视为 next-state prediction 的训练载体，用统一 NTP 基础设施学习视觉和语言状态演化。</p><p>方法与新意：模型在超过 10T vision-language interleaved tokens 上端到端预训练，输入输出都支持交错图文；后训练加入大规模 RL，并用 Discrete Diffusion Adaptation 把 token-by-token 图像解码转成双向并行预测以提升推理效率。</p><p>收录意义：这篇适合进入 multimodal/world-model 主线，因为它把 native multimodal generation、长程视觉语言生成、X2I、文本富集图像生成和 embodied manipulation 放入同一个 next-state/world-learning 框架。它对视频世界模型、具身模拟和开放多模态生成都有参考价值。</p><p>局限：它仍是大模型系统报告，世界建模能力的物理一致性、可控性和第三方复现需要更强评测；Next State Prediction 的表述也仍依赖 tokenized sequence training，而非完整因果物理模型。因此按 breakthrough 收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们介绍Emu3.5，一个大规模多模态世界模型，它能原生预测视觉和语言的下一个状态。Emu3.5采用统一的下一词元预测目标，在包含超过10万亿词元的视觉-语言交错数据语料库上进行端到端预训练，这些数据主要来源于互联网视频的连续帧和转录文本。该模型自然地接受交错的视觉-语言输入，并生成交错的视觉-语言输出。Emu3.5通过大规模强化学习进一步进行后训练，以增强多模态推理和生成能力。为了提高推理效率，我们提出了离散扩散适应（DiDA），它将逐词元解码转换为双向并行预测，在不牺牲性能的情况下将每图像推理速度提升约20倍。Emu3.5展现出强大的原生多模态能力，包括长程视觉-语言生成、任意到图像（X2I）生成以及复杂文本丰富图像生成。它还展现出可泛化的世界建模能力，能够在多样化的场景和任务中实现时空一致的世界探索和开放世界具身操作。作为比较，Emu3.5在图像生成和编辑任务上取得了与Gemini 2.5 Flash Image (Nano Banana)相当的性能，并在一系列交错生成任务上展现出卓越的结果。我们已在https://github.com/baaivision/Emu3.5开源Emu3.5，以支持社区研究。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce Emu3.5, a large-scale multimodal world model that natively predicts the next state across vision and language. Emu3.5 is pre-trained end-to-end with a unified next-token prediction objective on a corpus of vision-language interleaved data containing over 10 trillion tokens, primarily derived from sequential frames and transcripts of internet videos. The model naturally accepts interleaved vision-language inputs and generates interleaved vision-language outputs. Emu3.5 is further post-trained with large-scale reinforcement learning to enhance multimodal reasoning and generation. To improve inference efficiency, we propose Discrete Diffusion Adaptation (DiDA), which converts token-by-token decoding into bidirectional parallel prediction, accelerating per-image inference by about 20× without sacrificing performance. Emu3.5 exhibits strong native multimodal capabilities, including long-horizon vision-language generation, any-to-image (X2I) generation, and complex text-rich image generation. It also exhibits generalizable world-modeling abilities, enabling spatiotemporally consistent world exploration and open-world embodied manipulation across diverse scenarios and tasks. For comparison, Emu3.5 achieves performance comparable to Gemini 2.5 Flash Image (Nano Banana) on image generation and editing tasks and demonstrates superior results on a suite of interleaved generation tasks. We open-source Emu3.5 at https://github.com/baaivision/Emu3.5 to support community research.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251030mm60emu35w,
+  title = {Emu3.5: Native Multimodal Models are World Learners},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.26583.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm60-emu3-5-world-learners/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Emu3.5: Native Multimodal Models are World Learners. https://arxiv.org/pdf/2510.26583.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.26583.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://emu.world" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/baaivision/Emu3.5" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

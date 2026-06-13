@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Reason in 13 Parameters | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 PEFT/LoRA 研究里一个非常少被真正推到极限的问题：为了让大模型学会更强推理，到底需要多大规模的参数更新？传统 LoRA 已经把微调从全量权重降到低秩矩阵，但仍然至少要受制于模型维度；LoRA-XS 进一步压缩后，通常也还在成千上万参数量级。作者直接反问：如果目标是让模型更会推理，rank=1 甚至是否都太大了？
+
+论文提出 TinyLoRA，用一个极小可训练向量通过固定投影扩" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r13-tinylora-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Reason in 13 Parameters" />
+    <meta property="og:description" content="这篇论文针对 PEFT/LoRA 研究里一个非常少被真正推到极限的问题：为了让大模型学会更强推理，到底需要多大规模的参数更新？传统 LoRA 已经把微调从全量权重降到低秩矩阵，但仍然至少要受制于模型维度；LoRA-XS 进一步压缩后，通常也还在成千上万参数量级。作者直接反问：如果目标是让模型更会推理，rank=1 甚至是否都太大了？
+
+论文提出 TinyLoRA，用一个极小可训练向量通过固定投影扩" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r13-tinylora-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Reason in 13 Parameters" />
+    <meta name="twitter:description" content="这篇论文针对 PEFT/LoRA 研究里一个非常少被真正推到极限的问题：为了让大模型学会更强推理，到底需要多大规模的参数更新？传统 LoRA 已经把微调从全量权重降到低秩矩阵，但仍然至少要受制于模型维度；LoRA-XS 进一步压缩后，通常也还在成千上万参数量级。作者直接反问：如果目标是让模型更会推理，rank=1 甚至是否都太大了？
+
+论文提出 TinyLoRA，用一个极小可训练向量通过固定投影扩" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Reason in 13 Parameters</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-02-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.04118" target="_blank" rel="noopener noreferrer">2602.04118</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 PEFT/LoRA 研究里一个非常少被真正推到极限的问题：为了让大模型学会更强推理，到底需要多大规模的参数更新？传统 LoRA 已经把微调从全量权重降到低秩矩阵，但仍然至少要受制于模型维度；LoRA-XS 进一步压缩后，通常也还在成千上万参数量级。作者直接反问：如果目标是让模型更会推理，rank=1 甚至是否都太大了？</dd></div><div><dt>方法/机制</dt><dd>论文提出 TinyLoRA，用一个极小可训练向量通过固定投影扩展成完整权重更新，并进一步在不同模块与层之间共享这组参数，在极端设置下把全模型更新压缩到仅 1 个可训练参数。最强结果出现在 13 个 bf16 参数上：Qwen2.5-8B 在 GSM8K 上从 76% 提升到 91%。更重要的是，作者发现这种极限参数化几乎只在强化学习训练下成立；同样的小更新用于 SFT 时效果很弱，往往需要高出 100 到 1000 倍的参数量才能达到相似性能。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它不是单纯“更省参数”的 PEFT recipe，而是给出了一个很强的机制性结论：当目标是激活已有推理能力时，RL 可能只需要极小、定向的参数扰动，而不需要像 SFT 那样去记忆完整轨迹。这对 reasoning post-training、LoRA/PEFT 设计、低成本 specialization 以及未来超大模型的 task-specific tuning 都有明显外溢价值。它实际上把“推理能力到底是在学新知识，还是在解锁已有能力”这个问题推进了一步。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因在于当前证据仍集中在数学与推理 benchmark，且主要围绕 Qwen2.5-8B 这一路线展开。它揭示了很有冲击力的 scaling 和 RL-specific 现象，但要证明 TinyLoRA 会成为更广泛的 post-training 默认接口，还需要更多跨模型、跨任务和非 reasoning 场景验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 PEFT/LoRA 研究里一个非常少被真正推到极限的问题：为了让大模型学会更强推理，到底需要多大规模的参数更新？传统 LoRA 已经把微调从全量权重降到低秩矩阵，但仍然至少要受制于模型维度；LoRA-XS 进一步压缩后，通常也还在成千上万参数量级。作者直接反问：如果目标是让模型更会推理，rank=1 甚至是否都太大了？</p><p>论文提出 TinyLoRA，用一个极小可训练向量通过固定投影扩展成完整权重更新，并进一步在不同模块与层之间共享这组参数，在极端设置下把全模型更新压缩到仅 1 个可训练参数。最强结果出现在 13 个 bf16 参数上：Qwen2.5-8B 在 GSM8K 上从 76% 提升到 91%。更重要的是，作者发现这种极限参数化几乎只在强化学习训练下成立；同样的小更新用于 SFT 时效果很弱，往往需要高出 100 到 1000 倍的参数量才能达到相似性能。</p><p>这项工作值得正式收录，因为它不是单纯“更省参数”的 PEFT recipe，而是给出了一个很强的机制性结论：当目标是激活已有推理能力时，RL 可能只需要极小、定向的参数扰动，而不需要像 SFT 那样去记忆完整轨迹。这对 reasoning post-training、LoRA/PEFT 设计、低成本 specialization 以及未来超大模型的 task-specific tuning 都有明显外溢价值。它实际上把“推理能力到底是在学新知识，还是在解锁已有能力”这个问题推进了一步。</p><p>它暂时还不到更高一级，原因在于当前证据仍集中在数学与推理 benchmark，且主要围绕 Qwen2.5-8B 这一路线展开。它揭示了很有冲击力的 scaling 和 RL-specific 现象，但要证明 TinyLoRA 会成为更广泛的 post-training 默认接口，还需要更多跨模型、跨任务和非 reasoning 场景验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>标题：在13个参数中学习推理。最近的研究表明，语言模型能够学习推理，通常通过强化学习实现。一些工作甚至训练低秩参数化以进行推理，但传统的LoRA无法扩展到低于模型维度。我们质疑即使是rank=1的LoRA对于学习推理是否必要，并提出了TinyLoRA，这是一种将低秩适配器扩展到小至一个参数的方法。在我们新的参数化中，我们能够使用bf16中仅13个训练参数（总计26字节）将8B参数大小的Qwen2.5在GSM8K上训练到91%的准确率。我们发现这一趋势普遍成立：在AIME、AMC和MATH500等一系列更困难的推理学习基准测试中，我们能够以训练少1000倍参数的方式恢复90%的性能提升。值得注意的是，我们只能通过RL实现如此强大的性能：使用SFT训练的模型需要100 − 1000倍更大的更新才能达到相同的性能。日期：2026年2月5日</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent research has shown that language models can learn to reason, often via reinforcement learning. Some work even trains low-rank parameterizations for reasoning, but conventional LoRA cannot scale below the model dimension. We question whether even rank=1 LoRA is necessary for learning to reason and propose TinyLoRA, a method for scaling low-rank adapters to sizes as small as one parameter. Within our new parameterization, we are able to train the 8B parameter size of Qwen2.5 to 91% accuracy on GSM8K with only 13 trained parameters in bf16 (26 total bytes). We find this trend holds in general: we are able to recover 90% of performance improvements while training 1000x fewer parameters across a suite of more difficult learning-to-reason benchmarks such as AIME, AMC, and MATH500. Notably, we are only able to achieve such strong performance with RL: models trained using SFT require 100 − 1000x larger updates to reach the same performance. Date: February 5, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260204r13tinylor,
+  title = {Learning to Reason in 13 Parameters},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.04118v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r13-tinylora-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Reason in 13 Parameters. https://arxiv.org/pdf/2602.04118v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.04118v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

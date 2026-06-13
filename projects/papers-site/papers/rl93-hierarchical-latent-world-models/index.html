@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hierarchical Planning with Latent World Models | DAST Papers</title>
+    <meta name="description" content="这篇 Meta FAIR、NYU、Mila、Brown 等团队的 arXiv 论文处理 latent world model 控制中的核心瓶颈：单层世界模型在长时程规划中会遇到预测误差累积和搜索空间爆炸，导致非贪心任务很难靠直接 MPC 解决。
+
+方法上，论文学习多个时间尺度的 latent world models，并在这些尺度之间做 hierarchical planning：高层模型负责粗粒" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl93-hierarchical-latent-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Hierarchical Planning with Latent World Models" />
+    <meta property="og:description" content="这篇 Meta FAIR、NYU、Mila、Brown 等团队的 arXiv 论文处理 latent world model 控制中的核心瓶颈：单层世界模型在长时程规划中会遇到预测误差累积和搜索空间爆炸，导致非贪心任务很难靠直接 MPC 解决。
+
+方法上，论文学习多个时间尺度的 latent world models，并在这些尺度之间做 hierarchical planning：高层模型负责粗粒" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl93-hierarchical-latent-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hierarchical Planning with Latent World Models" />
+    <meta name="twitter:description" content="这篇 Meta FAIR、NYU、Mila、Brown 等团队的 arXiv 论文处理 latent world model 控制中的核心瓶颈：单层世界模型在长时程规划中会遇到预测误差累积和搜索空间爆炸，导致非贪心任务很难靠直接 MPC 解决。
+
+方法上，论文学习多个时间尺度的 latent world models，并在这些尺度之间做 hierarchical planning：高层模型负责粗粒" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Hierarchical Planning with Latent World Models</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.03208" target="_blank" rel="noopener noreferrer">2604.03208</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Meta FAIR、NYU、Mila、Brown 等团队的 arXiv 论文处理 latent world model 控制中的核心瓶颈：单层世界模型在长时程规划中会遇到预测误差累积和搜索空间爆炸，导致非贪心任务很难靠直接 MPC 解决。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文学习多个时间尺度的 latent world models，并在这些尺度之间做 hierarchical planning：高层模型负责粗粒度远期规划，低层模型负责细粒度动作执行，从而把长程任务分解成可搜索的子目标结构。</dd></div><div><dt>结果/证据</dt><dd>实验覆盖真实机器人 pick-and-place、push manipulation 和 maze navigation 等任务。论文报告在真实非贪心机器人任务中，仅给最终目标规格时取得 70% 成功率，而单层世界模型为 0%；在仿真任务中也提高成功率并最多减少 4x planning-time compute。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它给 embodied AI/world model 提供了可复用规划抽象：不是只训练更大的模型，而是在 latent dynamics 上引入时间尺度层级，把世界模型从短程预测器推进到长程控制接口，对机器人规划、VLA/world model 和 inference-time planning 都有明确 spillover。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Meta FAIR、NYU、Mila、Brown 等团队的 arXiv 论文处理 latent world model 控制中的核心瓶颈：单层世界模型在长时程规划中会遇到预测误差累积和搜索空间爆炸，导致非贪心任务很难靠直接 MPC 解决。</p><p>方法上，论文学习多个时间尺度的 latent world models，并在这些尺度之间做 hierarchical planning：高层模型负责粗粒度远期规划，低层模型负责细粒度动作执行，从而把长程任务分解成可搜索的子目标结构。</p><p>实验覆盖真实机器人 pick-and-place、push manipulation 和 maze navigation 等任务。论文报告在真实非贪心机器人任务中，仅给最终目标规格时取得 70% 成功率，而单层世界模型为 0%；在仿真任务中也提高成功率并最多减少 4x planning-time compute。</p><p>收录价值在于它给 embodied AI/world model 提供了可复用规划抽象：不是只训练更大的模型，而是在 latent dynamics 上引入时间尺度层级，把世界模型从短程预测器推进到长程控制接口，对机器人规划、VLA/world model 和 inference-time planning 都有明确 spillover。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>基于潜在世界模型的层次规划 张万聪1,2,∗, Basile Terver1, Artem Zholus1,3, Soham Chitnis2, Harsh Sutaria2, Mido Assran1, Randall Balestriero1,4, Amir Bar1, Adrien Bardes1, Yann LeCun2,†, Nicolas Ballas1,† 1</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Hierarchical Planning with Latent World Models Wancong Zhang1,2,∗ , Basile Terver1 , Artem Zholus1,3 , Soham Chitnis2 , Harsh Sutaria2 , Mido Assran1 , Randall Balestriero1,4 , Amir Bar1 , Adrien Bardes1 , Yann LeCun2,† , Nicolas Ballas1,† 1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406rl93hierar,
+  title = {Hierarchical Planning with Latent World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.03208.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl93-hierarchical-latent-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Hierarchical Planning with Latent World Models. https://arxiv.org/pdf/2604.03208.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.03208.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://kevinghst.github.io/HWM/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/kevinghst/HWM_PLDM" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments | DAST Papers</title>
+    <meta name="description" content="很多医疗 agent benchmark 只测静态问答、单步意图或者文本知识，离真实临床系统还差很远。PhysicianBench 过线的原因，是它把评测对象换成了真实 EHR 环境里的长链路 physician tasks，而不是抽象化 toy interaction。
+
+它的接口设计也很扎实：真实患者记录、标准 EHR API、跨 21 个专科、平均 27 次工具调用，以及分阶段 checkp" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/med7-physicianbench-ehr-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments" />
+    <meta property="og:description" content="很多医疗 agent benchmark 只测静态问答、单步意图或者文本知识，离真实临床系统还差很远。PhysicianBench 过线的原因，是它把评测对象换成了真实 EHR 环境里的长链路 physician tasks，而不是抽象化 toy interaction。
+
+它的接口设计也很扎实：真实患者记录、标准 EHR API、跨 21 个专科、平均 27 次工具调用，以及分阶段 checkp" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/med7-physicianbench-ehr-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments" />
+    <meta name="twitter:description" content="很多医疗 agent benchmark 只测静态问答、单步意图或者文本知识，离真实临床系统还差很远。PhysicianBench 过线的原因，是它把评测对象换成了真实 EHR 环境里的长链路 physician tasks，而不是抽象化 toy interaction。
+
+它的接口设计也很扎实：真实患者记录、标准 EHR API、跨 21 个专科、平均 27 次工具调用，以及分阶段 checkp" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments</h1>
+          <p class="subtitle">公共卫生与医疗运营 · 发表：2026-05-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">公共卫生与医疗运营</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-04</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.02240" target="_blank" rel="noopener noreferrer">2605.02240</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多医疗 agent benchmark 只测静态问答、单步意图或者文本知识，离真实临床系统还差很远。PhysicianBench 过线的原因，是它把评测对象换成了真实 EHR 环境里的长链路 physician tasks，而不是抽象化 toy interaction。</dd></div><div><dt>方法/机制</dt><dd>它的接口设计也很扎实：真实患者记录、标准 EHR API、跨 21 个专科、平均 27 次工具调用，以及分阶段 checkpoint 验证。这使它更像 execution-grounded workflow benchmark，而不是又一个医疗问答集。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为高风险 agent 的关键不是‘会不会答’，而是‘能不能在真实系统里可靠检索、推理、执行和记录’。这篇工作把这个问题具体化了，对未来 clinical agent 和一般 enterprise agent benchmark 都有参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前场景仍局限在医疗 EHR 工作流。尽管执行式评测接口很耐用，但它还不是跨所有高风险 agent 系统的统一基准。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多医疗 agent benchmark 只测静态问答、单步意图或者文本知识，离真实临床系统还差很远。PhysicianBench 过线的原因，是它把评测对象换成了真实 EHR 环境里的长链路 physician tasks，而不是抽象化 toy interaction。</p><p>它的接口设计也很扎实：真实患者记录、标准 EHR API、跨 21 个专科、平均 27 次工具调用，以及分阶段 checkpoint 验证。这使它更像 execution-grounded workflow benchmark，而不是又一个医疗问答集。</p><p>它值得正式收录，因为高风险 agent 的关键不是‘会不会答’，而是‘能不能在真实系统里可靠检索、推理、执行和记录’。这篇工作把这个问题具体化了，对未来 clinical agent 和一般 enterprise agent benchmark 都有参考价值。</p><p>它没有更高，是因为当前场景仍局限在医疗 EHR 工作流。尽管执行式评测接口很耐用，但它还不是跨所有高风险 agent 系统的统一基准。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们引入了PhysicianBench，这是一个用于评估LLM智能体在电子健康记录（EHR）环境中基于真实临床场景的医生任务的基准。现有的医疗智能体基准主要关注静态知识回忆、单步原子操作或没有可验证执行的环境中的动作意图。因此，它们未能捕捉到真实临床系统所特有的长周期、复合工作流程。PhysicianBench包含</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We introduce PhysicianBench, a benchmark for evaluating LLM agents on physician tasks grounded in real clinical setting within electronic health record (EHR) environments. Existing medical agent benchmarks primarily focus on static knowledge recall, single-step atomic actions, or action intent without verifiable execution against the environment. As a result, they fail to capture the long-horizon, composite workflows that characterize real clinical systems. PhysicianBench comprises</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260504med7physic,
+  title = {PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments},
+  year = {2026},
+  url = {http://arxiv.org/pdf/2605.02240v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/med7-physicianbench-ehr-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PhysicianBench: Evaluating LLM Agents in Real-World EHR Environments. http://arxiv.org/pdf/2605.02240v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/ph6-caml-medical-ai-interpretability/">
+              <span>Bridging the interpretability gap for medical artificial intelligence models using class-association manifold learning</span>
+              <small>公共卫生与医疗运营 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/med6-fair-unlearning-clinical-ai/">
+              <span>Mitigating algorithmic unfairness arising from forgetfulness of medical records in clinical artificial intelligence</span>
+              <small>公共卫生与医疗运营 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/med5-gsco-generalist-specialist-collaboration/">
+              <span>Towards generalizable AI in medicine via Generalist-Specialist Collaboration</span>
+              <small>公共卫生与医疗运营 · 2026-05-01</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-merlin-ct-vlm/">
+              <span>Merlin: a computed tomography vision–language foundation model and dataset</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph7-llm-physician-reasoning/">
+              <span>Performance of a large language model on the reasoning tasks of a physician</span>
+              <small>公共卫生与医疗运营 · 2026-04-30</small>
+            </a>
+            <a class="related-item" href="../../papers/ph4-fm-hct-head-ct/">
+              <span>3D foundation model for generalizable disease detection in head computed tomography</span>
+              <small>公共卫生与医疗运营 · 2026-04-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="http://arxiv.org/pdf/2605.02240v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

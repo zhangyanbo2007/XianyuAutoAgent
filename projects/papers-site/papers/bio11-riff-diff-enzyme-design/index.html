@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Computational enzyme design by catalytic motif scaffolding | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是蛋白设计里一个最硬的问题之一：如何不再只设计稳定折叠蛋白，而是直接为明确的催化基元构建高活性酶。传统 de novo enzyme design 往往需要筛大量候选，初始活性也偏低，离工业或化学生物应用还有很长距离。作者把问题重构为 catalytic motif scaffolding，并用生成式与原子级建模组合去做。
+
+方法上的核心是 Riff-Diff（rotamer inv" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio11-riff-diff-enzyme-design/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Computational enzyme design by catalytic motif scaffolding" />
+    <meta property="og:description" content="这篇论文处理的是蛋白设计里一个最硬的问题之一：如何不再只设计稳定折叠蛋白，而是直接为明确的催化基元构建高活性酶。传统 de novo enzyme design 往往需要筛大量候选，初始活性也偏低，离工业或化学生物应用还有很长距离。作者把问题重构为 catalytic motif scaffolding，并用生成式与原子级建模组合去做。
+
+方法上的核心是 Riff-Diff（rotamer inv" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio11-riff-diff-enzyme-design/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Computational enzyme design by catalytic motif scaffolding" />
+    <meta name="twitter:description" content="这篇论文处理的是蛋白设计里一个最硬的问题之一：如何不再只设计稳定折叠蛋白，而是直接为明确的催化基元构建高活性酶。传统 de novo enzyme design 往往需要筛大量候选，初始活性也偏低，离工业或化学生物应用还有很长距离。作者把问题重构为 catalytic motif scaffolding，并用生成式与原子级建模组合去做。
+
+方法上的核心是 Riff-Diff（rotamer inv" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Computational enzyme design by catalytic motif scaffolding</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-12-03</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-12-03</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-025-09747-9" target="_blank" rel="noopener noreferrer">10.1038/s41586-025-09747-9</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是蛋白设计里一个最硬的问题之一：如何不再只设计稳定折叠蛋白，而是直接为明确的催化基元构建高活性酶。传统 de novo enzyme design 往往需要筛大量候选，初始活性也偏低，离工业或化学生物应用还有很长距离。作者把问题重构为 catalytic motif scaffolding，并用生成式与原子级建模组合去做。</dd></div><div><dt>方法/机制</dt><dd>方法上的核心是 Riff-Diff（rotamer inverted fragment finder–diffusion）。它把扩散式骨架生成和原子级催化位点放置联在一起，目标不是先生成一个蛋白再事后看能否催化，而是从一开始就围绕催化阵列去构造骨架。论文用这条路线同时处理 retro-aldol 和 Morita–Baylis–Hillman 两类机理差异明显的反应，证明它不是只对单一玩具任务有效。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里的价值很高，因为这是生成式蛋白设计从‘做出结构’走向‘做出功能’的强条目。更具体地说，它把 motif scaffolding、diffusion protein design 和 catalytic function 这三条线真正接上了，并且结果已经逼近体外进化优化过的酶活性水平。这对 AI for biology、蛋白工程和可编程生物催化都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它没有再升到更高一级，是因为虽然结果很强，但影响仍主要集中在酶设计与功能蛋白工程这一高价值子方向，还没到像 AlphaFold 那样重写更大范围生物建模工作流的层级。更合适的判断是：这是生成式生物设计路线里非常强、很值得放前排的一篇颠覆性论文。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是蛋白设计里一个最硬的问题之一：如何不再只设计稳定折叠蛋白，而是直接为明确的催化基元构建高活性酶。传统 de novo enzyme design 往往需要筛大量候选，初始活性也偏低，离工业或化学生物应用还有很长距离。作者把问题重构为 catalytic motif scaffolding，并用生成式与原子级建模组合去做。</p><p>方法上的核心是 Riff-Diff（rotamer inverted fragment finder–diffusion）。它把扩散式骨架生成和原子级催化位点放置联在一起，目标不是先生成一个蛋白再事后看能否催化，而是从一开始就围绕催化阵列去构造骨架。论文用这条路线同时处理 retro-aldol 和 Morita–Baylis–Hillman 两类机理差异明显的反应，证明它不是只对单一玩具任务有效。</p><p>它在仓库里的价值很高，因为这是生成式蛋白设计从‘做出结构’走向‘做出功能’的强条目。更具体地说，它把 motif scaffolding、diffusion protein design 和 catalytic function 这三条线真正接上了，并且结果已经逼近体外进化优化过的酶活性水平。这对 AI for biology、蛋白工程和可编程生物催化都有直接外溢。</p><p>它没有再升到更高一级，是因为虽然结果很强，但影响仍主要集中在酶设计与功能蛋白工程这一高价值子方向，还没到像 AlphaFold 那样重写更大范围生物建模工作流的层级。更合适的判断是：这是生成式生物设计路线里非常强、很值得放前排的一篇颠覆性论文。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>酶因其卓越的选择性、效率和温和的反应条件，在工业和医药领域作为生物催化剂得到广泛应用。定制设计的酶可以生产量身定制的生物催化剂，其潜在应用超越了自然反应。然而，当前的酶设计方法需要测试大量的设计，并且大多产生催化活性较低的从头酶。因此，它们需要昂贵的实验优化和高通量筛选才能实现工业可行性。在本文中，我们提出了旋转异构体反转片段查找器-扩散（Riff-Diff），这是一种混合机器学习和原子建模策略，用于在从头蛋白质中构建催化阵列。我们通过设计用于两种机制上不同的化学转化（逆醛醇反应和Morita–Baylis–Hillman反应）的酶，突出了Riff-Diff的普遍适用性。我们表明，在这两种情况下，都可以生成具有与体外进化优化相当的活性以及卓越立体选择性的催化剂。其中六种设计的高分辨率结构揭示了近原子级的活性位点设计精度。这种设计策略原则上可以应用于任何具有催化能力的氨基酸阵列。这些发现为从头蛋白质催化剂在合成中的实际应用奠定了基础，并阐述了蛋白质设计和酶催化的基本原理。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Enzymes find broad use as biocatalysts in industry and medicine owing to their exquisite selectivity, efficiency and mild reaction conditions. Custom-designed enzymes can produce tailor-made biocatalysts with potential applications that extend beyond natural reactions. However, current design methods require testing a large number of designs and mostly produce de novo enzymes with low catalytic activities . As a result, they require costly experimental optimization and high-throughput screening to be industrially viable . Here we present rotamer inverted fragment finder–diffusion (Riff-Diff), a hybrid machine learning and atomistic modelling strategy for scaffolding catalytic arrays in de novo proteins. We highlight the general applicability of Riff-Diff by designing enzymes for two mechanistically distinct chemical transformations, the retro-aldol reaction and the Morita–Baylis–Hillman reaction. We show that in both cases, it is possible to generate catalysts that exhibit activities rivalling those optimized by in vitro evolution, along with exquisite stereoselectivity. High-resolution structures of six of the designs revealed near-atomic active site design precision. The design strategy can, in principle, be applied to any catalytically competent amino acid array. These findings lay the basis for practical applicability of de novo protein catalysts in synthesis and describe fundamental principles of protein design and enzyme catalysis.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251203bio11riffd,
+  title = {Computational enzyme design by catalytic motif scaffolding},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41586-025-09747-9},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio11-riff-diff-enzyme-design/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Computational enzyme design by catalytic motif scaffolding. https://www.nature.com/articles/s41586-025-09747-9</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-025-09747-9" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

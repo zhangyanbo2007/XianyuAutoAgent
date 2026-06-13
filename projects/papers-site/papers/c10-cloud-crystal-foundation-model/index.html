@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CLOUD: A Scalable and Physics-Informed Foundation Model for Crystal Representation Learning | DAST Papers</title>
+    <meta name="description" content="该文关注晶体性质预测在材料发现中的基础瓶颈：实验测量和第一性原理计算成本高，现有机器学习模型又往往依赖带标签数据、结构表示不充分，且缺少可组合的物理约束。论文把问题提升为一个更一般的材料 foundation model 问题，希望在统一表示上同时覆盖多类晶体性质任务。
+
+论文提出 CLOUD，一个基于 transformer 的晶体表征框架，并引入 SCOPE 这种对称性一致、无坐标的字符串编码" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c10-cloud-crystal-foundation-model/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CLOUD: A Scalable and Physics-Informed Foundation Model for Crystal Representation Learning" />
+    <meta property="og:description" content="该文关注晶体性质预测在材料发现中的基础瓶颈：实验测量和第一性原理计算成本高，现有机器学习模型又往往依赖带标签数据、结构表示不充分，且缺少可组合的物理约束。论文把问题提升为一个更一般的材料 foundation model 问题，希望在统一表示上同时覆盖多类晶体性质任务。
+
+论文提出 CLOUD，一个基于 transformer 的晶体表征框架，并引入 SCOPE 这种对称性一致、无坐标的字符串编码" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c10-cloud-crystal-foundation-model/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CLOUD: A Scalable and Physics-Informed Foundation Model for Crystal Representation Learning" />
+    <meta name="twitter:description" content="该文关注晶体性质预测在材料发现中的基础瓶颈：实验测量和第一性原理计算成本高，现有机器学习模型又往往依赖带标签数据、结构表示不充分，且缺少可组合的物理约束。论文把问题提升为一个更一般的材料 foundation model 问题，希望在统一表示上同时覆盖多类晶体性质任务。
+
+论文提出 CLOUD，一个基于 transformer 的晶体表征框架，并引入 SCOPE 这种对称性一致、无坐标的字符串编码" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CLOUD: A Scalable and Physics-Informed Foundation Model for Crystal Representation Learning</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-026-70467-3" target="_blank" rel="noopener noreferrer">10.1038/s41467-026-70467-3</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>该文关注晶体性质预测在材料发现中的基础瓶颈：实验测量和第一性原理计算成本高，现有机器学习模型又往往依赖带标签数据、结构表示不充分，且缺少可组合的物理约束。论文把问题提升为一个更一般的材料 foundation model 问题，希望在统一表示上同时覆盖多类晶体性质任务。</dd></div><div><dt>方法/机制</dt><dd>论文提出 CLOUD，一个基于 transformer 的晶体表征框架，并引入 SCOPE 这种对称性一致、无坐标的字符串编码，把晶体对称性、Wyckoff 位点和组分压缩进统一输入。模型在超过六百万晶体上预训练，再迁移到多种下游性质预测；同时作者把它和 Debye 模型结合，展示了可微材料建模的路线，使温度相关声子性质预测可以在不额外引入监督数据的情况下保持热力学一致性。</dd></div><div><dt>结果/证据</dt><dd>这篇论文值得正式收录，不只是因为效果强，而是因为它把晶体 foundation model、对称性一致表示、以及 physics-grounded differentiable modeling 三件事真正接在了一起。对 AI x materials 主线来说，它比单一性质预测器更像可复用底座，也比纯表征学习论文更接近实际科学工作流。</dd></div><div><dt>收录价值</dt><dd>它目前仍属于 breakthrough 而不是更高一级，因为核心验证仍集中在晶体性质预测与相关可微建模示例上，还没有像更高层级条目那样彻底改写整条材料发现流程。它的长期地位还取决于后续社区是否把 SCOPE/CLOUD 这一表示与训练范式真正当作默认基座。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>该文关注晶体性质预测在材料发现中的基础瓶颈：实验测量和第一性原理计算成本高，现有机器学习模型又往往依赖带标签数据、结构表示不充分，且缺少可组合的物理约束。论文把问题提升为一个更一般的材料 foundation model 问题，希望在统一表示上同时覆盖多类晶体性质任务。</p><p>论文提出 CLOUD，一个基于 transformer 的晶体表征框架，并引入 SCOPE 这种对称性一致、无坐标的字符串编码，把晶体对称性、Wyckoff 位点和组分压缩进统一输入。模型在超过六百万晶体上预训练，再迁移到多种下游性质预测；同时作者把它和 Debye 模型结合，展示了可微材料建模的路线，使温度相关声子性质预测可以在不额外引入监督数据的情况下保持热力学一致性。</p><p>这篇论文值得正式收录，不只是因为效果强，而是因为它把晶体 foundation model、对称性一致表示、以及 physics-grounded differentiable modeling 三件事真正接在了一起。对 AI x materials 主线来说，它比单一性质预测器更像可复用底座，也比纯表征学习论文更接近实际科学工作流。</p><p>它目前仍属于 breakthrough 而不是更高一级，因为核心验证仍集中在晶体性质预测与相关可微建模示例上，还没有像更高层级条目那样彻底改写整条材料发现流程。它的长期地位还取决于后续社区是否把 SCOPE/CLOUD 这一表示与训练范式真正当作默认基座。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>CLOUD：一种可扩展且物理信息驱动的晶体表示学习基础模型。预测晶体性质对于理解结构-性质关系和加速材料发现至关重要。然而，传统的实验测量或密度泛函理论计算等方法资源密集，限制了它们的可扩展性。尽管机器学习通过从数据中学习复杂的结构-性质关系提供了一个有前景的替代方案，但现有模型通常依赖于标记数据，采用的表示不足以捕捉基本的结构特征，并且缺乏物理学的整合，从而限制了它们的泛化能力和可解释性。在本文中，我们介绍了 CLOUD（用于统一和可微分材料建模的晶体语言模型），这是一个基于 Transformer 的框架，它在对称一致有序参数编码（SCOPE）上进行训练，该编码以紧凑、无坐标的字符串表示形式编码晶体对称性、Wyckoff 位置和成分。CLOUD 在超过六百万个晶体上进行预训练，并在下游任务上进行微调，在各种材料性质上取得了有竞争力的性能，展示了其在数据和模型规模方面的强大扩展能力。此外，作为可微分材料建模的概念验证，CLOUD 通过与德拜模型集成，应用于预测声子相关性质。这种方法强制执行热力学一致性，并能够在不需要额外数据的情况下实现与温度相关的性质预测。这些结果证明了 CLOUD 作为一种可扩展且物理信息驱动的晶体材料基础模型的潜力，它将对称一致的表示与基于物理的学习相结合，用于性质预测和材料发现。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Predicting crystal properties is essential for understanding structure-property relationships and accelerating material discovery. However, conventional approaches like experimental measurements or density functional theory calculations are resource-intensive, limiting their scalability. While machine learning offers a p romising a lternative b y l earning c omplex s tructure-property relationships from data, existing models often rely on labeled data, adopt representations insufficiently ca pturing es sential st ructural ch aracteristics, an d la ck integration of physics, limiting their generalizability and interpretability. Here, we introduce CLOUD (Crystal Language mOdel for Unified and Differentiable materials modeling), a transformer-based framework trained on a Symmetry-Consistent Ordered Parameter Encoding (SCOPE) that encodes crystal symmetry, Wyckoff positions, and composition in a compact, coordinate-free string representation. Pre-trained on over six million crystals, CLOUD is fine-tuned o n downstream tasks and achieves competitive performance across diverse material properties, demonstrating strong scaling with respect to data and model size. Furthermore, as a proof-of-concept of differentiable m aterials m odeling, C LOUD i s applied to predict the phonon-related properties by integrating with the Debye model. This approach enforces thermodynamic consistency and enables temperaturedependent property prediction without requiring additional data. These results demonstrate CLOUD’s potential as a scalable and physics-informed foundation model for crystalline materials, unifying symmetry-consistent representations with physics-grounded learning for property prediction and materials discovery.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317c10cloudcr,
+  title = {CLOUD: A Scalable and Physics-Informed Foundation Model for Crystal Representation Learning},
+  year = {2026},
+  url = {https://doi.org/10.1038/s41467-026-70467-3},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c10-cloud-crystal-foundation-model/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CLOUD: A Scalable and Physics-Informed Foundation Model for Crystal Representation Learning. https://doi.org/10.1038/s41467-026-70467-3</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41467-026-70467-3" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

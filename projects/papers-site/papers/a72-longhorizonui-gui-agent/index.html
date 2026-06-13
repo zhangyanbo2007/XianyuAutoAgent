@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LongHorizonUI: A Unified Framework for Robust long-horizon Task Automation of GUI Agent | DAST Papers</title>
+    <meta name="description" content="GUI agent 这条线已经证明了短程 computer use 可以做得越来越像样，但一旦任务跨到十几步以上，视觉状态漂移、界面元素误识别、执行偏差累计和回退失败就会迅速让系统失稳。LongHorizonUI 处理的正是这类长程 GUI 自动化里最实际的鲁棒性问题。
+
+论文从三个层面给出方案。第一，提出 LongGUIBench，把需要超过 15 步的复杂游戏与通用应用任务系统化成专门的长程 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a72-longhorizonui-gui-agent/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LongHorizonUI: A Unified Framework for Robust long-horizon Task Automation of GUI Agent" />
+    <meta property="og:description" content="GUI agent 这条线已经证明了短程 computer use 可以做得越来越像样，但一旦任务跨到十几步以上，视觉状态漂移、界面元素误识别、执行偏差累计和回退失败就会迅速让系统失稳。LongHorizonUI 处理的正是这类长程 GUI 自动化里最实际的鲁棒性问题。
+
+论文从三个层面给出方案。第一，提出 LongGUIBench，把需要超过 15 步的复杂游戏与通用应用任务系统化成专门的长程 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a72-longhorizonui-gui-agent/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LongHorizonUI: A Unified Framework for Robust long-horizon Task Automation of GUI Agent" />
+    <meta name="twitter:description" content="GUI agent 这条线已经证明了短程 computer use 可以做得越来越像样，但一旦任务跨到十几步以上，视觉状态漂移、界面元素误识别、执行偏差累计和回退失败就会迅速让系统失稳。LongHorizonUI 处理的正是这类长程 GUI 自动化里最实际的鲁棒性问题。
+
+论文从三个层面给出方案。第一，提出 LongGUIBench，把需要超过 15 步的复杂游戏与通用应用任务系统化成专门的长程 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LongHorizonUI: A Unified Framework for Robust long-horizon Task Automation of GUI Agent</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-06</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>GUI agent 这条线已经证明了短程 computer use 可以做得越来越像样，但一旦任务跨到十几步以上，视觉状态漂移、界面元素误识别、执行偏差累计和回退失败就会迅速让系统失稳。LongHorizonUI 处理的正是这类长程 GUI 自动化里最实际的鲁棒性问题。</dd></div><div><dt>方法/机制</dt><dd>论文从三个层面给出方案。第一，提出 LongGUIBench，把需要超过 15 步的复杂游戏与通用应用任务系统化成专门的长程 benchmark。第二，设计 Multimodal Enhanced Perceiver，把元素检测与文字识别结合起来并给界面元素分配唯一索引，加强状态表示。第三，加入 Deep Reflection Decider 和 Compensatory Action Executor，通过多级反馈验证、退化补偿和基于执行进度的 rollback 机制提升长程执行稳定性。</dd></div><div><dt>结果/证据</dt><dd>对这个仓库来说，这篇工作的价值在于它把 GUI agent 的研究重心从短流程成功率推进到长程任务中的 state tracking、self-correction 和 execution recovery。它不仅是一个 benchmark 条目，也提供了一套更接近真实 computer-use agent 的系统架构模式，因此值得正式收录。</dd></div><div><dt>收录价值</dt><dd>它没有再往上升一级，原因是当前可直接获取的主来源是 ICLR 官方 poster 页 HTML 摘要，OpenReview 正文在当前网络下不可直接稳定抓取；同时现阶段证据仍主要集中在 benchmark 和系统设计层，还需要更开放环境和更长周期任务的进一步验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>GUI agent 这条线已经证明了短程 computer use 可以做得越来越像样，但一旦任务跨到十几步以上，视觉状态漂移、界面元素误识别、执行偏差累计和回退失败就会迅速让系统失稳。LongHorizonUI 处理的正是这类长程 GUI 自动化里最实际的鲁棒性问题。</p><p>论文从三个层面给出方案。第一，提出 LongGUIBench，把需要超过 15 步的复杂游戏与通用应用任务系统化成专门的长程 benchmark。第二，设计 Multimodal Enhanced Perceiver，把元素检测与文字识别结合起来并给界面元素分配唯一索引，加强状态表示。第三，加入 Deep Reflection Decider 和 Compensatory Action Executor，通过多级反馈验证、退化补偿和基于执行进度的 rollback 机制提升长程执行稳定性。</p><p>对这个仓库来说，这篇工作的价值在于它把 GUI agent 的研究重心从短流程成功率推进到长程任务中的 state tracking、self-correction 和 execution recovery。它不仅是一个 benchmark 条目，也提供了一套更接近真实 computer-use agent 的系统架构模式，因此值得正式收录。</p><p>它没有再往上升一级，原因是当前可直接获取的主来源是 ICLR 官方 poster 页 HTML 摘要，OpenReview 正文在当前网络下不可直接稳定抓取；同时现阶段证据仍主要集中在 benchmark 和系统设计层，还需要更开放环境和更长周期任务的进一步验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260206a72longhor,
+  title = {LongHorizonUI: A Unified Framework for Robust long-horizon Task Automation of GUI Agent},
+  year = {2026},
+  url = {https://iclr.cc/virtual/2026/poster/10010959},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a72-longhorizonui-gui-agent/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LongHorizonUI: A Unified Framework for Robust long-horizon Task Automation of GUI Agent. https://iclr.cc/virtual/2026/poster/10010959</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://iclr.cc/virtual/2026/poster/10010959" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://iclr.cc/virtual/2026/poster/10010959" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

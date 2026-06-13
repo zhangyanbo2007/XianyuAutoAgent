@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning the committor without collective variables | DAST Papers</title>
+    <meta name="description" content="这篇 Nature Computational Science 论文处理的是分子动力学和稀有事件模拟里的一个基础难题：如何学习 committor，即系统到达目标态概率的最优反应进程刻画，而不先人为指定 collective variables。传统方法通常强依赖人工设计的低维反应坐标，这既限制了泛化，也容易把真正重要的动力学结构压扁。
+
+论文的核心推进在于直接学习 committor，而不把问题" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p22-committor-without-collective-variables/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning the committor without collective variables" />
+    <meta property="og:description" content="这篇 Nature Computational Science 论文处理的是分子动力学和稀有事件模拟里的一个基础难题：如何学习 committor，即系统到达目标态概率的最优反应进程刻画，而不先人为指定 collective variables。传统方法通常强依赖人工设计的低维反应坐标，这既限制了泛化，也容易把真正重要的动力学结构压扁。
+
+论文的核心推进在于直接学习 committor，而不把问题" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p22-committor-without-collective-variables/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning the committor without collective variables" />
+    <meta name="twitter:description" content="这篇 Nature Computational Science 论文处理的是分子动力学和稀有事件模拟里的一个基础难题：如何学习 committor，即系统到达目标态概率的最优反应进程刻画，而不先人为指定 collective variables。传统方法通常强依赖人工设计的低维反应坐标，这既限制了泛化，也容易把真正重要的动力学结构压扁。
+
+论文的核心推进在于直接学习 committor，而不把问题" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning the committor without collective variables</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-02-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-17</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s43588-026-00958-2" target="_blank" rel="noopener noreferrer">10.1038/s43588-026-00958-2</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature Computational Science 论文处理的是分子动力学和稀有事件模拟里的一个基础难题：如何学习 committor，即系统到达目标态概率的最优反应进程刻画，而不先人为指定 collective variables。传统方法通常强依赖人工设计的低维反应坐标，这既限制了泛化，也容易把真正重要的动力学结构压扁。</dd></div><div><dt>方法/机制</dt><dd>论文的核心推进在于直接学习 committor，而不把问题先投影到手工选择的 collective variables 上。这样做的意义不只是少一个超参数，而是把反应路径建模从“先假设低维结构再拟合”转成“让模型自己从高维动力学中识别过渡统计结构”。这对稀有事件建模、分子跃迁分析和动力学采样都具有方法论上的独立价值。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为它属于 AI for science 中很典型的“去手工特征化”突破：不是单纯提高某个模拟指标，而是削弱了领域专家先验坐标工程在核心流程中的必要性。它对生成式动力学建模、反应路径学习以及高维物理系统中的表征学习都有启发，因此比一般科学机器学习应用论文更值得长期保留。</dd></div><div><dt>收录价值</dt><dd>它还不到 disruptive，原因是 committor 学习本身仍处在一个相对专业的科学计算子方向里，外溢虽然存在，但还没广到重排更大范围 AI for science 工作流。更准确的定位是一篇高质量 breakthrough。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature Computational Science 论文处理的是分子动力学和稀有事件模拟里的一个基础难题：如何学习 committor，即系统到达目标态概率的最优反应进程刻画，而不先人为指定 collective variables。传统方法通常强依赖人工设计的低维反应坐标，这既限制了泛化，也容易把真正重要的动力学结构压扁。</p><p>论文的核心推进在于直接学习 committor，而不把问题先投影到手工选择的 collective variables 上。这样做的意义不只是少一个超参数，而是把反应路径建模从“先假设低维结构再拟合”转成“让模型自己从高维动力学中识别过渡统计结构”。这对稀有事件建模、分子跃迁分析和动力学采样都具有方法论上的独立价值。</p><p>这项工作值得收录，因为它属于 AI for science 中很典型的“去手工特征化”突破：不是单纯提高某个模拟指标，而是削弱了领域专家先验坐标工程在核心流程中的必要性。它对生成式动力学建模、反应路径学习以及高维物理系统中的表征学习都有启发，因此比一般科学机器学习应用论文更值得长期保留。</p><p>它还不到 disruptive，原因是 committor 学习本身仍处在一个相对专业的科学计算子方向里，外溢虽然存在，但还没广到重排更大范围 AI for science 工作流。更准确的定位是一篇高质量 breakthrough。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们在此介绍一种基于几何向量感知器构建的图神经网络架构，用于直接从原子坐标预测提交函数，从而避免了对人工设计的集体变量的需求。该方法提供了原子级可解释性，无需依赖先验假设即可精确识别复杂跃迁中的关键原子参与者。将该方法应用于各种分子系统，它能准确推断提交函数，并突出每个重原子在跃迁机制中的重要性。它还能对潜在过程的速率常数进行精确估计。所提出的方法通过实现无集体变量学习以及自动化识别复杂分子过程中物理上有意义的反应坐标，有助于理解和建模复杂动力学。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Here we introduce a graph neural network architecture built on geometric vector perceptrons to predict the committor function directly from atomic coordinates, bypassing the need for hand-crafted collective variables. The method offers atom-level interpretability, pinpointing the key atomic players in complex transitions without relying on prior assumptions. Applied across diverse molecular systems, the method accurately infers the committor function and highlights the importance of each heavy atom in the transition mechanism. It also yields precise estimates of the rate constants for the underlying processes. The proposed approach assists in understanding and modeling complex dynamics, by enabling collective-variable-free learning and automated identification of physically meaningful reaction coordinates of complex molecular processes.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260217p22committ,
+  title = {Learning the committor without collective variables},
+  year = {2026},
+  url = {https://www.nature.com/articles/s43588-026-00958-2},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p22-committor-without-collective-variables/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning the committor without collective variables. https://www.nature.com/articles/s43588-026-00958-2</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s43588-026-00958-2" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

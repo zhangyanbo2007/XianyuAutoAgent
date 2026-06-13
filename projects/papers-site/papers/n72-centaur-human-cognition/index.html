@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A foundation model to predict and capture human cognition | DAST Papers</title>
+    <meta name="description" content="这篇论文之所以过本库更严格的 cognition / neuroscience 门槛，不是因为它又做了一个像人的行为预测器，而是因为它把‘统一认知模型’这个老问题推进到了 foundation-model 时代。Centaur 试图用一个自然语言可表达实验上的统一模型来覆盖决策、执行控制、记忆等多类任务。
+
+真正重要的点有两个。第一，它不只是拟合单一实验，而是基于 Psych-101 这样的跨任务" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n72-centaur-human-cognition/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A foundation model to predict and capture human cognition" />
+    <meta property="og:description" content="这篇论文之所以过本库更严格的 cognition / neuroscience 门槛，不是因为它又做了一个像人的行为预测器，而是因为它把‘统一认知模型’这个老问题推进到了 foundation-model 时代。Centaur 试图用一个自然语言可表达实验上的统一模型来覆盖决策、执行控制、记忆等多类任务。
+
+真正重要的点有两个。第一，它不只是拟合单一实验，而是基于 Psych-101 这样的跨任务" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n72-centaur-human-cognition/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A foundation model to predict and capture human cognition" />
+    <meta name="twitter:description" content="这篇论文之所以过本库更严格的 cognition / neuroscience 门槛，不是因为它又做了一个像人的行为预测器，而是因为它把‘统一认知模型’这个老问题推进到了 foundation-model 时代。Centaur 试图用一个自然语言可表达实验上的统一模型来覆盖决策、执行控制、记忆等多类任务。
+
+真正重要的点有两个。第一，它不只是拟合单一实验，而是基于 Psych-101 这样的跨任务" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A foundation model to predict and capture human cognition</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2025-02-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-02-26</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-025-09215-4" target="_blank" rel="noopener noreferrer">10.1038/s41586-025-09215-4</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文之所以过本库更严格的 cognition / neuroscience 门槛，不是因为它又做了一个像人的行为预测器，而是因为它把‘统一认知模型’这个老问题推进到了 foundation-model 时代。Centaur 试图用一个自然语言可表达实验上的统一模型来覆盖决策、执行控制、记忆等多类任务。</dd></div><div><dt>方法/机制</dt><dd>真正重要的点有两个。第一，它不只是拟合单一实验，而是基于 Psych-101 这样的跨任务 trial-level 数据去学一个更一般的行为生成器。第二，作者还声称 fine-tuning 后的内部表征与人类神经活动更加对齐，这让它不只是一个黑箱行为拟合器，而是一个可被拿来讨论 cognition-modeling 的 AI 对象。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类工作对 NeuroAI 和 cognition-inspired AI 的意义远大于普通心理学建模：它强行把‘统一理论能否存在’这个问题变成了可训练、可评估、可失败的工程对象。即使它最后被证明有明显局限，这个 framing 本身也很耐用。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为后续批评已经指出它可能依赖任务格式和指令模式记忆而不是更深层机制理解。也就是说，它是一个重要的认知 foundation-model 尝试，但还不能被当作统一认知理论已经成立的证据。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文之所以过本库更严格的 cognition / neuroscience 门槛，不是因为它又做了一个像人的行为预测器，而是因为它把‘统一认知模型’这个老问题推进到了 foundation-model 时代。Centaur 试图用一个自然语言可表达实验上的统一模型来覆盖决策、执行控制、记忆等多类任务。</p><p>真正重要的点有两个。第一，它不只是拟合单一实验，而是基于 Psych-101 这样的跨任务 trial-level 数据去学一个更一般的行为生成器。第二，作者还声称 fine-tuning 后的内部表征与人类神经活动更加对齐，这让它不只是一个黑箱行为拟合器，而是一个可被拿来讨论 cognition-modeling 的 AI 对象。</p><p>它值得正式收录，因为这类工作对 NeuroAI 和 cognition-inspired AI 的意义远大于普通心理学建模：它强行把‘统一理论能否存在’这个问题变成了可训练、可评估、可失败的工程对象。即使它最后被证明有明显局限，这个 framing 本身也很耐用。</p><p>它没有更高，是因为后续批评已经指出它可能依赖任务格式和指令模式记忆而不是更深层机制理解。也就是说，它是一个重要的认知 foundation-model 尝试，但还不能被当作统一认知理论已经成立的证据。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>建立统一的认知理论一直是心理学中的一个重要目标。迈向这一理论的第一步是创建一个能够在广泛情境中预测人类行为的计算模型。在本文中，我们介绍了Centaur，这是一个能够预测和模拟人类在任何可用自然语言表达的实验中行为的计算模型。我们通过在一个名为Psych-101的大规模数据集上微调一个最先进的语言模型来得到Centaur。Psych-101具有前所未有的规模，涵盖了来自超过60,000名参与者在160项实验中进行超过10,000,000次选择的逐次试验数据。Centaur不仅比现有认知模型更好地捕捉了未参与训练的参与者的行为，而且还能泛化到以前未见的背景故事、结构性任务修改和全新的领域。此外，在微调之后，模型的内部表征与人类神经活动更加一致。综上所述，我们的结果表明，发现能够捕捉人类在广泛领域行为的计算模型是可能的。我们相信，此类模型为指导认知理论的发展提供了巨大的潜力，我们还提供了一个案例研究来证明这一点。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Establishing a unified theory of cognition has been an important goal in psychology . A first step towards such a theory is to create a computational model that can predict human behaviour in a wide range of settings. Here we introduce Centaur, a computational model that can predict and simulate human behaviour in any experiment expressible in natural language. We derived Centaur by fine-tuning a state-of-the-art language model on a large-scale dataset called Psych-101. Psych-101 has an unprecedented scale, covering trial-by-trial data from more than 60,000 participants performing in excess of 10,000,000 choices in 160 experiments. Centaur not only captures the behaviour of held-out participants better than existing cognitive models, but it also generalizes to previously unseen cover stories, structural task modifications and entirely new domains. Furthermore, the model’s internal representations become more aligned with human neural activity after fine-tuning. Taken together, our results demonstrate that it is possible to discover computational models that capture human behaviour across a wide range of domains. We believe that such models provide tremendous potential for guiding the development of cognitive theories, and we present a case study to demonstrate this.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250226n72centaur,
+  title = {A foundation model to predict and capture human cognition},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41586-025-09215-4},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n72-centaur-human-cognition/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). A foundation model to predict and capture human cognition. https://www.nature.com/articles/s41586-025-09215-4</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41586-025-09215-4" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

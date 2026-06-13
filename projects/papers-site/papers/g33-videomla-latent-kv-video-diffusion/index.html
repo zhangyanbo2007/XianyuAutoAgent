@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion | DAST Papers</title>
+    <meta name="description" content="长程 autoregressive video diffusion 的核心瓶颈之一是 KV cache 内存和延迟。
+
+VideoMLA 将 per-head key/value 替换为共享低秩内容 latent 和 decoupled 3D-RoPE positional key，大幅降低缓存成本，并分析为什么低秩 latent attention 在视频扩散中可行。
+
+它值得收录，因为视频世界" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g33-videomla-latent-kv-video-diffusion/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion" />
+    <meta property="og:description" content="长程 autoregressive video diffusion 的核心瓶颈之一是 KV cache 内存和延迟。
+
+VideoMLA 将 per-head key/value 替换为共享低秩内容 latent 和 decoupled 3D-RoPE positional key，大幅降低缓存成本，并分析为什么低秩 latent attention 在视频扩散中可行。
+
+它值得收录，因为视频世界" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g33-videomla-latent-kv-video-diffusion/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion" />
+    <meta name="twitter:description" content="长程 autoregressive video diffusion 的核心瓶颈之一是 KV cache 内存和延迟。
+
+VideoMLA 将 per-head key/value 替换为共享低秩内容 latent 和 decoupled 3D-RoPE positional key，大幅降低缓存成本，并分析为什么低秩 latent attention 在视频扩散中可行。
+
+它值得收录，因为视频世界" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-28</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-28</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30351" target="_blank" rel="noopener noreferrer">2605.30351</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长程 autoregressive video diffusion 的核心瓶颈之一是 KV cache 内存和延迟。</dd></div><div><dt>方法/机制</dt><dd>VideoMLA 将 per-head key/value 替换为共享低秩内容 latent 和 decoupled 3D-RoPE positional key，大幅降低缓存成本，并分析为什么低秩 latent attention 在视频扩散中可行。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为视频世界模型和长视频生成都依赖分钟级 rollout，KV cache 结构优化是基础系统 primitive。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长程 autoregressive video diffusion 的核心瓶颈之一是 KV cache 内存和延迟。</p><p>VideoMLA 将 per-head key/value 替换为共享低秩内容 latent 和 decoupled 3D-RoPE positional key，大幅降低缓存成本，并分析为什么低秩 latent attention 在视频扩散中可行。</p><p>它值得收录，因为视频世界模型和长视频生成都依赖分钟级 rollout，KV cache 结构优化是基础系统 primitive。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>长滚播因果视频扩散已收敛于固定大小的滑动窗口 KV 缓存，最近的进展主要在于改变窗口中占据哪些 token 或如何编码其位置。KV 布局本身，作为流式内存和延迟的主要贡献者，基本保持不变。在本文中，我们首次研究了 Multi-Head Latent Attention (MLA) 在视频扩散中的应用。VideoMLA 替换了每个头的键和值，使用共享的低秩内容潜向量和一个共享的解耦 3D-RoPE 位置键，在每个缓存层都减少了每条 token 的 KV 内存 92.7%。我们进一步研究了 MLA 在视频扩散中取得成功的理由，尽管在语言模型中常用的谱假设并不成立：预训练的视频注意力不是低秩的，其有效秩远高于任何实际的潜在维度，达到 99% 能量有效率。VideoMLA 在直接谱近似预测的大型重建误差的情况下，在压缩率上保持了质量。我们表明，MLA 瓶颈，而不是预训练的谱，决定了有效秩：谱初始化和随机初始化几乎占据了整个秩预算，训练保留了这个预算并在其中进行适应。在 VBench 上，VideoMLA 匹配了短视界流式视频扩散基线，在评估方法中获得了最全面的分数，并在长视界上提高了 1.23 倍的吞吐量，在一个 B200 机器上。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Long-rollout causal video diffusion has converged on a fixed-size sliding-window KV cache, with recent progress innovating within this layout by changing which tokens occupy the window or how their positions are encoded. The per-head KV layout itself, a dominant contributor to streaming memory and latency, has been mostly left unchanged. In this paper, we present the first study of Multi-Head Latent Attention (MLA) in video diffusion. VideoMLA replaces per-head keys and values with a shared low-rank content latent and a shared decoupled 3D-RoPE positional key, reducing per-token KV memory by 92.7% at every cached layer. We further investigate why MLA succeeds in video diffusion even though the spectral assumption often used to motivate it in language models does not hold: pretrained video attention is not low-rank, with 99%-energy effective rank far above any practical latent dimension. VideoMLA retains quality at compression ratios where direct spectral approximation would predict large reconstruction error. We show that the MLA bottleneck, rather than the pretrained spectrum, determines the effective rank: both spectral and random initialization occupy nearly the full rank budget from initialization, and training preserves this budget while adapting within it. On VBench, VideoMLA matches short-horizon streaming video diffusion baselines, achieves the best overall score at long horizons among evaluated methods, and improves throughput by 1.23× on a single B200.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260528g33videoml,
+  title = {VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30351.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g33-videomla-latent-kv-video-diffusion/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion. https://arxiv.org/pdf/2605.30351.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/g24-scope-cross-game-fps-world-models/">
+              <span>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</span>
+              <small>生成建模与扩散 · 2026-05-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30351.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.30351" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

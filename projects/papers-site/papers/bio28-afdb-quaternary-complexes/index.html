@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AlphaFold Database expands to proteome-scale quaternary structures | DAST Papers</title>
+    <meta name="description" content="蛋白质功能越来越需要在复合体与互作层面理解，但现有结构资源长期偏向单体，导致很多生物学与药物发现工作仍停留在序列、单体结构或零散相互作用证据上。AlphaFold Protein Structure Database 已经把单体结构访问门槛大幅降低，这篇工作继续把问题推进到 proteome-scale 的复合体层。
+
+作者将 4,777 个 proteome 上 31M 级别的 homo- 和 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio28-afdb-quaternary-complexes/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AlphaFold Database expands to proteome-scale quaternary structures" />
+    <meta property="og:description" content="蛋白质功能越来越需要在复合体与互作层面理解，但现有结构资源长期偏向单体，导致很多生物学与药物发现工作仍停留在序列、单体结构或零散相互作用证据上。AlphaFold Protein Structure Database 已经把单体结构访问门槛大幅降低，这篇工作继续把问题推进到 proteome-scale 的复合体层。
+
+作者将 4,777 个 proteome 上 31M 级别的 homo- 和 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio28-afdb-quaternary-complexes/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AlphaFold Database expands to proteome-scale quaternary structures" />
+    <meta name="twitter:description" content="蛋白质功能越来越需要在复合体与互作层面理解，但现有结构资源长期偏向单体，导致很多生物学与药物发现工作仍停留在序列、单体结构或零散相互作用证据上。AlphaFold Protein Structure Database 已经把单体结构访问门槛大幅降低，这篇工作继续把问题推进到 proteome-scale 的复合体层。
+
+作者将 4,777 个 proteome 上 31M 级别的 homo- 和 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AlphaFold Database expands to proteome-scale quaternary structures</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-03-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-29</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>蛋白质功能越来越需要在复合体与互作层面理解，但现有结构资源长期偏向单体，导致很多生物学与药物发现工作仍停留在序列、单体结构或零散相互作用证据上。AlphaFold Protein Structure Database 已经把单体结构访问门槛大幅降低，这篇工作继续把问题推进到 proteome-scale 的复合体层。</dd></div><div><dt>方法/机制</dt><dd>作者将 4,777 个 proteome 上 31M 级别的 homo- 和 heteromeric 复合体预测整合起来，并给出 1.8M 高置信 complex 结果，同时系统校准 complex 置信度、提出 cutoffs、分析 monomer 场景看不到的新结构拓扑与聚类规律。它的真正新意不只是规模，而是把 interactome 级结构预测做成可用的公共工作流和参考资源。</dd></div><div><dt>结果/证据</dt><dd>这件事对 AI x biology 的价值很直接：它把结构生物学、互作研究、功能注释和药物发现中的一个高摩擦环节转成了可检索、可筛选、可批量调用的基础设施。相比单个模型论文，它更像长期会被反复调用的工作流底座，因此很适合正式收进仓库。</dd></div><div><dt>收录价值</dt><dd>但这篇还不到更高一级。原因是它更偏资源扩展与大规模部署，而不是提出新的基础模型范式；而且目前仍是 bioRxiv 阶段，长期影响虽然看起来很强，但还需要看后续社区吸收、正式发表和下游依赖程度。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>蛋白质功能越来越需要在复合体与互作层面理解，但现有结构资源长期偏向单体，导致很多生物学与药物发现工作仍停留在序列、单体结构或零散相互作用证据上。AlphaFold Protein Structure Database 已经把单体结构访问门槛大幅降低，这篇工作继续把问题推进到 proteome-scale 的复合体层。</p><p>作者将 4,777 个 proteome 上 31M 级别的 homo- 和 heteromeric 复合体预测整合起来，并给出 1.8M 高置信 complex 结果，同时系统校准 complex 置信度、提出 cutoffs、分析 monomer 场景看不到的新结构拓扑与聚类规律。它的真正新意不只是规模，而是把 interactome 级结构预测做成可用的公共工作流和参考资源。</p><p>这件事对 AI x biology 的价值很直接：它把结构生物学、互作研究、功能注释和药物发现中的一个高摩擦环节转成了可检索、可筛选、可批量调用的基础设施。相比单个模型论文，它更像长期会被反复调用的工作流底座，因此很适合正式收进仓库。</p><p>但这篇还不到更高一级。原因是它更偏资源扩展与大规模部署，而不是提出新的基础模型范式；而且目前仍是 bioRxiv 阶段，长期影响虽然看起来很强，但还需要看后续社区吸收、正式发表和下游依赖程度。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>蛋白质功能受分子相互作用调控，然而这些相互作用的结构覆盖率仍然稀疏。AlphaFold蛋白质结构数据库（AFDB）改变了大规模获取准确单体蛋白质结构的方式。在此，我们通过对来自4,777个蛋白质组（包括模式生物和全球健康相关生物）的超过3100万个预测的同源和异源蛋白质复合物进行大规模研究，并使用STRING物理相互作用注释，将AFDB扩展到包含180万个高置信度蛋白质复合物。我们校准了置信度指标以评估复合物预测的质量，并提出了置信度截止值。这些使得在复合物结构预测中发现了单体预测中不存在的新兴结构和拓扑。高置信度复合物的聚类显示，最大的1%非单例代表占据了所有复合物的约25%，并且约9%的簇在所有超界中是保守的。总而言之，相互作用组的大规模结构预测为促进跨生物学的功能和机制发现提供了基础资源。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Protein function is governed by molecular interactions, yet structural coverage of these interactions remains sparse. The AlphaFold Protein Structure Database (AFDB) transformed access to accurate monomeric protein structures at scale. Here, we expand AFDB with 1.8M high-confidence protein complexes by conducting a large-scale study of over 31M predicted homo- and heteromeric protein complexes compiled from 4,777 proteomes, including model- and global health organisms, and using STRING physical-interaction annotations. We calibrate confidence metrics to assess the quality of complex predictions, and propose confidence cutoffs. These enabled the discovery of emergent structure and topologies in complex structure prediction that is not present with monomeric predictions. Clustering of high-confidence complexes showed that the largest 1% of non-singleton representatives account for ~25% of all complexes, and that ~9% of clusters are conserved across superkingdoms. In summary, large-scale structural predictions of the interactome serve as a foundational resource to facilitate functional and mechanistic discovery across biology.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260329bio28afdbq,
+  title = {AlphaFold Database expands to proteome-scale quaternary structures},
+  year = {2026},
+  url = {https://research.nvidia.com/labs/dbr/assets/data/manuscripts/afdb.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio28-afdb-quaternary-complexes/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AlphaFold Database expands to proteome-scale quaternary structures. https://research.nvidia.com/labs/dbr/assets/data/manuscripts/afdb.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://research.nvidia.com/labs/dbr/assets/data/manuscripts/afdb.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://research.nvidia.com/labs/dbr/assets/data/manuscripts/afdb.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

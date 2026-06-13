@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Heddle: A Distributed Orchestration System for Agentic RL Rollout | DAST Papers</title>
+    <meta name="description" content="Agentic RL 把 LLM 训练分成 rollout data collection 和 policy training 两个阶段，但真正卡住吞吐的往往不是训练本身，而是 rollout 中长尾轨迹的生成。频繁工具调用会导致排队延迟、相互干扰和 per-token time 膨胀，而很多系统仍按 step-centric 方式调度，忽略了整条 trajectory 的上下文与长尾特性。
+
+H" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a111-heddle-agentic-rl-rollout/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Heddle: A Distributed Orchestration System for Agentic RL Rollout" />
+    <meta property="og:description" content="Agentic RL 把 LLM 训练分成 rollout data collection 和 policy training 两个阶段，但真正卡住吞吐的往往不是训练本身，而是 rollout 中长尾轨迹的生成。频繁工具调用会导致排队延迟、相互干扰和 per-token time 膨胀，而很多系统仍按 step-centric 方式调度，忽略了整条 trajectory 的上下文与长尾特性。
+
+H" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a111-heddle-agentic-rl-rollout/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Heddle: A Distributed Orchestration System for Agentic RL Rollout" />
+    <meta name="twitter:description" content="Agentic RL 把 LLM 训练分成 rollout data collection 和 policy training 两个阶段，但真正卡住吞吐的往往不是训练本身，而是 rollout 中长尾轨迹的生成。频繁工具调用会导致排队延迟、相互干扰和 per-token time 膨胀，而很多系统仍按 step-centric 方式调度，忽略了整条 trajectory 的上下文与长尾特性。
+
+H" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Heddle: A Distributed Orchestration System for Agentic RL Rollout</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-30</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-30</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.28101" target="_blank" rel="noopener noreferrer">2603.28101</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Agentic RL 把 LLM 训练分成 rollout data collection 和 policy training 两个阶段，但真正卡住吞吐的往往不是训练本身，而是 rollout 中长尾轨迹的生成。频繁工具调用会导致排队延迟、相互干扰和 per-token time 膨胀，而很多系统仍按 step-centric 方式调度，忽略了整条 trajectory 的上下文与长尾特性。</dd></div><div><dt>方法/机制</dt><dd>Heddle 的核心新意是把 rollout orchestration 改写成 trajectory-centric system problem。它结合 trajectory-level scheduling、trajectory-aware placement 和 trajectory-adaptive resource manager 三个层次，分别处理何时排队、放到哪里执行、以及如何动态调整模型并行度，从而有针对性地压制长尾轨迹对端到端吞吐的拖累。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为 agentic RL 正在变成越来越重要的系统层问题，而 Heddle 给出的不是某个 workload 特化优化，而是一套可复用的 rollout orchestration pattern。对需要大规模工具调用、长轨迹交互和分布式收集的 agentic RL 系统都有直接外溢价值。</dd></div><div><dt>收录价值</dt><dd>它现在是 breakthrough 而不是更高一级，因为主要证据仍来自 arXiv 阶段和 rollout throughput 指标，离更广泛的通用 distributed agent runtime 参考架构还有距离；同时不同 agent workload 下的调度收益和工程复杂度仍需更多生产级验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Agentic RL 把 LLM 训练分成 rollout data collection 和 policy training 两个阶段，但真正卡住吞吐的往往不是训练本身，而是 rollout 中长尾轨迹的生成。频繁工具调用会导致排队延迟、相互干扰和 per-token time 膨胀，而很多系统仍按 step-centric 方式调度，忽略了整条 trajectory 的上下文与长尾特性。</p><p>Heddle 的核心新意是把 rollout orchestration 改写成 trajectory-centric system problem。它结合 trajectory-level scheduling、trajectory-aware placement 和 trajectory-adaptive resource manager 三个层次，分别处理何时排队、放到哪里执行、以及如何动态调整模型并行度，从而有针对性地压制长尾轨迹对端到端吞吐的拖累。</p><p>它值得正式收录，因为 agentic RL 正在变成越来越重要的系统层问题，而 Heddle 给出的不是某个 workload 特化优化，而是一套可复用的 rollout orchestration pattern。对需要大规模工具调用、长轨迹交互和分布式收集的 agentic RL 系统都有直接外溢价值。</p><p>它现在是 breakthrough 而不是更高一级，因为主要证据仍来自 arXiv 阶段和 rollout throughput 指标，离更广泛的通用 distributed agent runtime 参考架构还有距离；同时不同 agent workload 下的调度收益和工程复杂度仍需更多生产级验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>智能体强化学习（RL）通过在数据收集的rollout阶段和策略训练阶段之间交替，使LLMs能够解决复杂任务。在rollout期间，智能体生成轨迹，即LLMs与外部工具之间的多步交互。然而，频繁的工具调用会导致长尾轨迹生成，从而瓶颈化rollout。这源于以步骤为中心的设计忽略了轨迹上下文，为长尾轨迹生成引发了三个系统问题：排队延迟、干扰开销和每token时间膨胀。我们提出了Heddle，一个以轨迹为中心的系统，用于优化智能体rollout执行的时间、地点和方式。Heddle集成了三个核心机制：❶ 使用运行时预测和渐进优先级进行轨迹级调度，以最小化累积排队；❷ 通过预排序动态规划和在空闲工具调用间隔期间的机会性迁移进行轨迹感知放置，以最小化干扰；以及❸ 轨迹自适应资源管理器，动态调整模型并行度以加速长尾轨迹的每token时间，同时保持短轨迹的高吞吐量。对各种智能体RL工作负载的评估表明，Heddle有效地消除了长尾瓶颈，与最先进的基线相比，实现了高达2.5倍的端到端rollout吞吐量。分析[17, 33]指出rollout生成是主要的瓶颈，消耗了整个训练时间的80%以上。这种低效率主要是由rollout阶段严重的“拖延者效应”驱动的：生成的智能体轨迹呈现长尾分布，其中一小部分复杂的多步交互显著延长了rollout的完成时间。如图2所示，对CodeForces [24]数据集上的Qwen3 [48]编码智能体rollout进行分析揭示，生成的token数量和工具执行延迟都高度偏斜。因此，如图1所示，大部分计算资源处于空闲等待状态。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic Reinforcement Learning (RL) enables LLMs to solve complex tasks by alternating between a data-collection rollout phase and a policy training phase. During rollout, the agent generates trajectories, i.e., multi-step interactions between LLMs and external tools. Yet, frequent tool calls induce long-tailed trajectory generation that bottlenecks rollouts. This stems from step-centric designs that ignore trajectory context, triggering three system problems for long-tail trajectory generation: queueing delays, interference overhead, and inflated per-token time. We propose Heddle, a trajectorycentric system to optimize the when, where, and how of agentic rollout execution. Heddle integrates three core mechanisms: ❶ trajectory-level scheduling using runtime prediction and progressive priority to minimize cumulative queueing; ❷ trajectory-aware placement via presorted dynamic programming and opportunistic migration during idle toolcall intervals to minimize interference; and ❸ trajectoryadaptive resource manager that dynamically tunes model parallelism to accelerate the per-token time of long-tail trajectories while maintaining high throughput for short trajectories. Evaluations across diverse agentic RL workloads demonstrate that Heddle effectively neutralizes the long-tail bottleneck, achieving up to 2.5× higher end-to-end rollout throughput compared to state-of-the-art baselines. analysis [17, 33] identifies rollout generation as the dominant bottleneck, consuming over 80% of the entire training time. This inefficiency is primarily driven by the severe straggler effect of rollout phase: a long-tail distribution of generated agentic trajectories where a small fraction of complex, multistep interactions significantly prolongs the rollout makespan. As shown in Figure 2, profiling Qwen3 [48] coding agentic rollouts on the CodeForces [24] dataset reveals that both the number of generated tokens and the tool execution latency are highly skewed. Consequently, as shown in Figure 1, the majority of computational resources remain idle waiting</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260330a111heddle,
+  title = {Heddle: A Distributed Orchestration System for Agentic RL Rollout},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.28101.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a111-heddle-agentic-rl-rollout/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Heddle: A Distributed Orchestration System for Agentic RL Rollout. https://arxiv.org/pdf/2603.28101.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.28101.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

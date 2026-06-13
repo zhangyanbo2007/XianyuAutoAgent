@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning Next Action Predictors from Human-Computer Interaction | DAST Papers</title>
+    <meta name="description" content="问题与背景：当前大多数 AI 系统仍然是被动响应式的，只有在用户显式发出请求后才开始工作。论文关注的核心问题是：AI 能否从长期、多模态的人机交互历史中学习，在用户行动发生之前预测其下一步操作，从而把人机协作从“响应”推进到“预判”。
+
+方法/新意：作者首先形式化了 next action prediction（NAP）任务，并构建了用于私有基础设施标注的 NAPsack 管线，在一个月、20 名" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a35-longnap-hci-action-prediction/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning Next Action Predictors from Human-Computer Interaction" />
+    <meta property="og:description" content="问题与背景：当前大多数 AI 系统仍然是被动响应式的，只有在用户显式发出请求后才开始工作。论文关注的核心问题是：AI 能否从长期、多模态的人机交互历史中学习，在用户行动发生之前预测其下一步操作，从而把人机协作从“响应”推进到“预判”。
+
+方法/新意：作者首先形式化了 next action prediction（NAP）任务，并构建了用于私有基础设施标注的 NAPsack 管线，在一个月、20 名" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a35-longnap-hci-action-prediction/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning Next Action Predictors from Human-Computer Interaction" />
+    <meta name="twitter:description" content="问题与背景：当前大多数 AI 系统仍然是被动响应式的，只有在用户显式发出请求后才开始工作。论文关注的核心问题是：AI 能否从长期、多模态的人机交互历史中学习，在用户行动发生之前预测其下一步操作，从而把人机协作从“响应”推进到“预判”。
+
+方法/新意：作者首先形式化了 next action prediction（NAP）任务，并构建了用于私有基础设施标注的 NAPsack 管线，在一个月、20 名" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning Next Action Predictors from Human-Computer Interaction</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.05923" target="_blank" rel="noopener noreferrer">2603.05923</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：当前大多数 AI 系统仍然是被动响应式的，只有在用户显式发出请求后才开始工作。论文关注的核心问题是：AI 能否从长期、多模态的人机交互历史中学习，在用户行动发生之前预测其下一步操作，从而把人机协作从“响应”推进到“预判”。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：作者首先形式化了 next action prediction（NAP）任务，并构建了用于私有基础设施标注的 NAPsack 管线，在一个月、20 名用户、1800 小时的真实手机使用中标注出 36 万条行为动作。模型层面提出 LongNAP，将参数化学习与 in-context retrieval 结合起来，并用 policy gradient 优化生成用户特定的 reasoning traces，再检索和复用历史 traces 来预测未来动作。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇工作适合放在 agent / HCI / proactive assistance 主线。它的重要性不只是一个新 benchmark，而是把“下一步动作预测”建立成可研究任务，同时展示了长期交互历史、私有行为数据标注和基于推理轨迹的 anticipatory modeling 可以组成一条新的个人代理路线。对长期助手、桌面/手机代理和个性化 AI 都有明显外溢性。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：论文目前仍主要停留在 next-action prediction 这一新任务设定和小规模真实用户数据上，虽然结果有说服力，但还没有进入大规模部署或更广泛任务闭环，也尚未证明这种 anticipatory modeling 会成为主流 agent 设计范式，因此先定为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：当前大多数 AI 系统仍然是被动响应式的，只有在用户显式发出请求后才开始工作。论文关注的核心问题是：AI 能否从长期、多模态的人机交互历史中学习，在用户行动发生之前预测其下一步操作，从而把人机协作从“响应”推进到“预判”。</p><p>方法/新意：作者首先形式化了 next action prediction（NAP）任务，并构建了用于私有基础设施标注的 NAPsack 管线，在一个月、20 名用户、1800 小时的真实手机使用中标注出 36 万条行为动作。模型层面提出 LongNAP，将参数化学习与 in-context retrieval 结合起来，并用 policy gradient 优化生成用户特定的 reasoning traces，再检索和复用历史 traces 来预测未来动作。</p><p>意义/放在仓库中的位置：这篇工作适合放在 agent / HCI / proactive assistance 主线。它的重要性不只是一个新 benchmark，而是把“下一步动作预测”建立成可研究任务，同时展示了长期交互历史、私有行为数据标注和基于推理轨迹的 anticipatory modeling 可以组成一条新的个人代理路线。对长期助手、桌面/手机代理和个性化 AI 都有明显外溢性。</p><p>局限/为何不再升一级：论文目前仍主要停留在 next-action prediction 这一新任务设定和小规模真实用户数据上，虽然结果有说服力，但还没有进入大规模部署或更广泛任务闭环，也尚未证明这种 anticipatory modeling 会成为主流 agent 设计范式，因此先定为突破性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从人机交互中学习下一动作预测器。真正主动的人工智能系统必须预测我们接下来会做什么。这种预见性需要比我们输入提示的稀疏信号丰富得多的信息——它需要对我们所见所做的整个上下文进行推理。我们将此任务形式化为下一动作预测（NAP）：给定用户与计算机进行多模态交互（屏幕截图、点击、传感器数据）的序列，预测该用户的下一动作。在此任务上取得进展需要新的数据和建模方法。为了扩展数据收集，我们使用视觉-语言模型标注了纵向的、自然的人机交互数据。我们发布了一个开源管道，用于在私有基础设施上执行此标注，并标注了来自20位用户在一个月连续手机使用中的超过360K个动作，总计1,800小时的屏幕时间。随后，我们引入了LongNAP，这是一个结合了参数化学习和上下文学习的用户模型，用于对长交互历史进行推理。LongNAP通过策略梯度方法进行训练，以在给定某些上下文的情况下生成用户特定的推理轨迹；从过去的轨迹库中检索相关轨迹；然后将检索到的轨迹应用于上下文以预测未来的动作。使用LLM作为评判的评估指标（与真实值的0-1相似度），LongNAP在保留数据上显著优于监督微调和提示基线（分别高出79%和39%）。此外，当在个体之间进行训练时，LongNAP能够泛化到未参与训练的用户。用户在任何时刻可能采取的下一动作空间是无限的，涵盖了数千种可能的结局。尽管如此，LongNAP预测的轨迹中有17.1%与用户接下来所做的行为高度一致（LLM评判分数 ≥ 0.5）。当我们筛选出高置信度预测时，这一比例上升到26%。总之，我们认为从用户行为的完整上下文中学习以预测用户需求现在是一项可行的任务，并具有巨大的机遇。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Truly proactive AI systems must anticipate what we will do next. This foresight demands far richer information than the sparse signals we type into our prompts — it demands reasoning over the entire context of what we see and do. We formalize this task as next action prediction (NAP): given a sequence of a user’s multimodal interactions with a computer (screenshots, clicks, sensor data), predict that user’s next action. Progress on this task requires both new data and modeling approaches. To scale data collection, we annotate longitudinal, naturalistic computer use with vision-language models. We release an open-source pipeline for performing this labeling on private infrastructure, and label over 360K actions across one month of continuous phone usage from 20 users, amounting to 1,800 hours of screen time. We then introduce LongNAP, a user model that combines parametric and in-context learning to reason over long interaction histories. LongNAP is trained via policy gradient methods to generate userspecific reasoning traces given some context; retrieve relevant traces from a library of past traces; and then apply retrieved traces in-context to predict future actions. Using an LLM-as-judge evaluation metric (0-1 similarity to ground truth), LongNAP significantly outperforms supervised finetuning and prompted baselines on held-out data (by 79% and 39% respectively). Additionally, LongNAP generalizes to held out users when trained across individuals. The space of next actions a user might take at any moment is unbounded, spanning thousands of possible outcomes. Despite this, 17.1% of LongNAP’s predicted trajectories are well-aligned with what a user does next (LLM-judge score ≥ 0.5). This rises to 26% when we filter to highly confident predictions. In sum, we argue that learning from the full context of user behavior to anticipate user needs is now a viable task with substantial opportunity.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260306a35longnap,
+  title = {Learning Next Action Predictors from Human-Computer Interaction},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.05923.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a35-longnap-hci-action-prediction/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning Next Action Predictors from Human-Computer Interaction. https://arxiv.org/pdf/2603.05923.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.05923.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

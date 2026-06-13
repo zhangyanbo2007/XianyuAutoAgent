@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Discover at Test Time | DAST Papers</title>
+    <meta name="description" content="这篇论文把 test-time scaling 从 frozen-model prompting/search 推进到 test-time reinforcement learning：模型在单个待解问题上继续训练，以发现更优解。它对本仓库的价值在于重新定义了 inference-time adaptation 的目标：不是泛化到很多问题，而是为当前问题找到一个最优结果。
+
+TTT-Discove" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a231-ttt-discover-test-time-science/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Discover at Test Time" />
+    <meta property="og:description" content="这篇论文把 test-time scaling 从 frozen-model prompting/search 推进到 test-time reinforcement learning：模型在单个待解问题上继续训练，以发现更优解。它对本仓库的价值在于重新定义了 inference-time adaptation 的目标：不是泛化到很多问题，而是为当前问题找到一个最优结果。
+
+TTT-Discove" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a231-ttt-discover-test-time-science/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Discover at Test Time" />
+    <meta name="twitter:description" content="这篇论文把 test-time scaling 从 frozen-model prompting/search 推进到 test-time reinforcement learning：模型在单个待解问题上继续训练，以发现更优解。它对本仓库的价值在于重新定义了 inference-time adaptation 的目标：不是泛化到很多问题，而是为当前问题找到一个最优结果。
+
+TTT-Discove" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Discover at Test Time</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.16175" target="_blank" rel="noopener noreferrer">2601.16175</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 test-time scaling 从 frozen-model prompting/search 推进到 test-time reinforcement learning：模型在单个待解问题上继续训练，以发现更优解。它对本仓库的价值在于重新定义了 inference-time adaptation 的目标：不是泛化到很多问题，而是为当前问题找到一个最优结果。</dd></div><div><dt>方法/机制</dt><dd>TTT-Discover 将在线 RL 与搜索子程序结合，面向连续可验证 reward 的科学和工程问题运行，包括数学构造、GPU kernel 优化、AtCoder heuristic competition 以及 single-cell RNA-seq denoising。项目还公开代码和可核验结果，降低了与 AlphaEvolve 类封闭系统相比的复现实验门槛。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它提供了 AI scientist / test-time learning 的关键操作模式：冻结参数之外，还可以在推理期为具体任务进行局部训练。这对科学发现、算法工程、kernel search 和可验证优化问题都有明显可复用价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到 paradigm，是因为该方法目前强依赖可计算 reward、较小任务成本、可接受的在线训练预算和特定任务选择。开放式理论发现、长程实验设计和高噪声现实科学问题是否同样适用仍需验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 test-time scaling 从 frozen-model prompting/search 推进到 test-time reinforcement learning：模型在单个待解问题上继续训练，以发现更优解。它对本仓库的价值在于重新定义了 inference-time adaptation 的目标：不是泛化到很多问题，而是为当前问题找到一个最优结果。</p><p>TTT-Discover 将在线 RL 与搜索子程序结合，面向连续可验证 reward 的科学和工程问题运行，包括数学构造、GPU kernel 优化、AtCoder heuristic competition 以及 single-cell RNA-seq denoising。项目还公开代码和可核验结果，降低了与 AlphaEvolve 类封闭系统相比的复现实验门槛。</p><p>它值得正式收录，是因为它提供了 AI scientist / test-time learning 的关键操作模式：冻结参数之外，还可以在推理期为具体任务进行局部训练。这对科学发现、算法工程、kernel search 和可验证优化问题都有明显可复用价值。</p><p>它没有升到 paradigm，是因为该方法目前强依赖可计算 reward、较小任务成本、可接受的在线训练预算和特定任务选择。开放式理论发现、长程实验设计和高噪声现实科学问题是否同样适用仍需验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>测试时学习发现。我们如何利用人工智能为一个科学问题发现新的最先进解决方案？先前的测试时扩展工作，例如AlphaEvolve，通过提示冻结的LLM来执行搜索。我们在测试时执行强化学习，因此LLM可以继续训练，但现在是利用特定于测试问题的经验进行训练。这种形式的持续学习非常特殊，因为其目标是产生一个出色的解决方案，而不是平均而言的许多良好解决方案，并且是解决这个特定问题，而不是泛化到其他问题。因此，我们的学习目标和搜索子程序旨在优先考虑最有前途的解决方案。我们将此方法称为测试时训练发现（TTT-Discover）。遵循先前的工作，我们专注于具有连续奖励的问题。我们报告了我们尝试过的所有问题的结果，涵盖数学、GPU内核工程、算法设计和生物学领域。TTT-Discover在几乎所有这些问题中都创造了新的最先进水平：(i) 埃尔德什的最小重叠问题和自相关不等式；(ii) GPUMode内核竞赛（比现有技术快2倍）；(iii) 过去的AtCoder算法竞赛；以及(iv) 单细胞分析中的去噪问题。我们的解决方案经过专家或组织者的审查。我们所有的结果都是使用开放模型OpenAI gpt-oss-120b实现的，并且可以使用我们公开可用的代码进行复现，这与需要封闭前沿模型的先前最佳结果形成对比。我们的测试时训练运行是使用Thinking Machines提供的Tinker API进行的，每个问题的成本仅为几百美元。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>How can we use AI to discover a new state of the art for a scientific problem? Prior work in test-time scaling, such as AlphaEvolve, performs search by prompting a frozen LLM. We perform reinforcement learning at test time, so the LLM can continue to train, but now with experience specific to the test problem. This form of continual learning is quite special, because its goal is to produce one great solution rather than many good ones on average, and to solve this very problem rather than generalize to other problems. Therefore, our learning objective and search subroutine are designed to prioritize the most promising solutions. We call this method Test-Time Training to Discover (TTT-Discover). Following prior work, we focus on problems with continuous rewards. We report results for every problem we attempted, across mathematics, GPU kernel engineering, algorithm design, and biology. TTT-Discover sets the new state of the art in almost all of them: (i) Erdős’ minimum overlap problem and an autocorrelation inequality; (ii) a GPUMode kernel competition (up to 2× faster than prior art); (iii) past AtCoder algorithm competitions; and (iv) denoising problem in single-cell analysis. Our solutions are reviewed by experts or the organizers. All our results are achieved with an open model, OpenAI gpt-oss-120b, and can be reproduced with our publicly available code, in contrast to previous best results that required closed frontier models. Our test-time training runs are performed using Tinker, an API by Thinking Machines, with a cost of only a few hundred dollars per problem.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260122a231tttdis,
+  title = {Learning to Discover at Test Time},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.16175.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a231-ttt-discover-test-time-science/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Discover at Test Time. https://arxiv.org/pdf/2601.16175.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.16175.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://test-time-training.github.io/discover/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://github.com/test-time-training/ttt-discover" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

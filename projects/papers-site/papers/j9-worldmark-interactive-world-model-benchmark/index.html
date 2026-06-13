@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WorldMark: A Unified Benchmark Suite for Interactive Video World Models | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是 interactive video world model 一个明显但长期没被补上的评测缺口：模型很多、控制接口各异、测试场景和轨迹不统一，导致不同工作之间几乎无法做 apples-to-apples 比较。过去各种指标零散存在，但缺的是统一输入、统一动作、统一测试条件。
+
+WorldMark 的核心贡献是把这个比较基础设施补齐。它引入统一 action-mapping laye" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/j9-worldmark-interactive-world-model-benchmark/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="WorldMark: A Unified Benchmark Suite for Interactive Video World Models" />
+    <meta property="og:description" content="这篇论文解决的是 interactive video world model 一个明显但长期没被补上的评测缺口：模型很多、控制接口各异、测试场景和轨迹不统一，导致不同工作之间几乎无法做 apples-to-apples 比较。过去各种指标零散存在，但缺的是统一输入、统一动作、统一测试条件。
+
+WorldMark 的核心贡献是把这个比较基础设施补齐。它引入统一 action-mapping laye" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/j9-worldmark-interactive-world-model-benchmark/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="WorldMark: A Unified Benchmark Suite for Interactive Video World Models" />
+    <meta name="twitter:description" content="这篇论文解决的是 interactive video world model 一个明显但长期没被补上的评测缺口：模型很多、控制接口各异、测试场景和轨迹不统一，导致不同工作之间几乎无法做 apples-to-apples 比较。过去各种指标零散存在，但缺的是统一输入、统一动作、统一测试条件。
+
+WorldMark 的核心贡献是把这个比较基础设施补齐。它引入统一 action-mapping laye" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>WorldMark: A Unified Benchmark Suite for Interactive Video World Models</h1>
+          <p class="subtitle">JEPA 与预测式世界模型 · 发表：2026-04-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">JEPA 与预测式世界模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.21686" target="_blank" rel="noopener noreferrer">2604.21686</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是 interactive video world model 一个明显但长期没被补上的评测缺口：模型很多、控制接口各异、测试场景和轨迹不统一，导致不同工作之间几乎无法做 apples-to-apples 比较。过去各种指标零散存在，但缺的是统一输入、统一动作、统一测试条件。</dd></div><div><dt>方法/机制</dt><dd>WorldMark 的核心贡献是把这个比较基础设施补齐。它引入统一 action-mapping layer，把共享的 WASD 风格动作空间翻译成各模型原生控制格式；再配一个 500 个 evaluation cases 的分层测试集，覆盖视角、风格和难度；最后用模块化评测工具同时看 visual quality、control alignment 和 world consistency，并开放在线 World Model Arena。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这是一种很典型的 durable evaluation interface。随着 interactive world models 从 demo 走向更接近 agent / game / simulation 的使用场景，一个可复用、可扩展、可横向比较的 benchmark suite 会直接影响后续方法发展和社区共识。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为它主要定义了统一评测接口，而不是新的世界模型方法论；长期影响仍要看是否成为该方向的默认 benchmark stack。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是 interactive video world model 一个明显但长期没被补上的评测缺口：模型很多、控制接口各异、测试场景和轨迹不统一，导致不同工作之间几乎无法做 apples-to-apples 比较。过去各种指标零散存在，但缺的是统一输入、统一动作、统一测试条件。</p><p>WorldMark 的核心贡献是把这个比较基础设施补齐。它引入统一 action-mapping layer，把共享的 WASD 风格动作空间翻译成各模型原生控制格式；再配一个 500 个 evaluation cases 的分层测试集，覆盖视角、风格和难度；最后用模块化评测工具同时看 visual quality、control alignment 和 world consistency，并开放在线 World Model Arena。</p><p>它值得正式收录，因为这是一种很典型的 durable evaluation interface。随着 interactive world models 从 demo 走向更接近 agent / game / simulation 的使用场景，一个可复用、可扩展、可横向比较的 benchmark suite 会直接影响后续方法发展和社区共识。</p><p>它没有升到更高等级，是因为它主要定义了统一评测接口，而不是新的世界模型方法论；长期影响仍要看是否成为该方向的默认 benchmark stack。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Genie、YUME、HY-World和Matrix-Game等交互式视频生成模型正在迅速发展，但每个模型都在其自己的基准上使用私有场景和轨迹进行评估，这使得公平的跨模型比较变得不可能。现有的公共基准提供了有用的指标，如轨迹误差、美学分数和基于VLM的判断，但没有一个提供标准化测试条件——相同的场景、相同的动作序列和统一的控制接口——这些是使具有异构输入的模型之间的指标可比较所必需的。我们引入了WorldMark，这是第一个为交互式图像到视频世界模型提供这种通用竞技场的基准。WorldMark的贡献包括：（1）一个统一的动作映射层，将共享的WASD风格动作词汇转换为每个模型的原生控制格式，从而能够在相同场景和轨迹上对六个主要模型进行“苹果对苹果”的比较；（2）一个包含500个评估案例的分层测试套件，涵盖第一人称和第三人称视角、逼真和风格化场景，以及从易到难的三个难度级别，时长为20-60秒；（3）一个用于视觉质量、控制对齐和世界一致性的模块化评估工具包，旨在让研究人员可以重用我们的标准化输入，同时随着领域的发展插入他们自己的指标。我们将发布所有数据、评估代码和模型输出，以促进未来的研究。除了离线指标，我们还推出了World Model Arena (warena.ai)，这是一个在线平台，任何人都可以让领先的世界模型进行并排对战，并查看实时排行榜。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Interactive video generation models such as Genie, YUME, HY-World, and Matrix-Game are advancing rapidly, yet every model is evaluated on its own benchmark with private scenes and trajectories, making fair cross-model comparison impossible. Existing public benchmarks offer useful metrics such as trajectory error, aesthetic scores, and VLM-based judgments, but none supplies the standardized test conditions—identical scenes, identical action sequences, and a unified control interface—needed to make those metrics comparable across models with heterogeneous inputs. We introduce WorldMark, the first benchmark that provides such a common playing field for interactive Image-to-Video world models. WorldMark contributes: (1) a unified action-mapping layer that translates a shared WASD-style action vocabulary into each model’s native control format, enabling apples-to-apples comparison across six major models on identical scenes and trajectories; (2) a hierarchical test suite of 500 evaluation cases covering first- and third-person viewpoints, photorealistic and stylized scenes, and three difficulty tiers from Easy to Hard spanning 20–60 s; and (3) a modular evaluation toolkit for Visual Quality, Control Alignment, and World Consistency, designed so that researchers can reuse our standardized inputs while plugging in their own metrics as the field evolves. We will release all data, evaluation code, and model outputs to facilitate future research. Beyond offline metrics, we launch World Model Arena (warena.ai), an online platform where anyone can pit leading world models against each other in side-by-side battles and watch the live leaderboard.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260424j9worldmar,
+  title = {WorldMark: A Unified Benchmark Suite for Interactive Video World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.21686.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/j9-worldmark-interactive-world-model-benchmark/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). WorldMark: A Unified Benchmark Suite for Interactive Video World Models. https://arxiv.org/pdf/2604.21686.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/j14-deltaworld-delta-tokens/">
+              <span>A Frame is Worth One Token: Efficient Generative World Modeling with Delta Tokens</span>
+              <small>JEPA 与预测式世界模型 · 2026-04-06</small>
+            </a>
+            <a class="related-item" href="../../papers/j13-wildworld-action-state-dataset/">
+              <span>WildWorld: A Large-Scale Dataset for Dynamic World Modeling with Actions and Explicit State toward Generative ARPG</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-24</small>
+            </a>
+            <a class="related-item" href="../../papers/j10-seoul-world-model/">
+              <span>Grounding World Simulation Models in a Real-World Metropolis</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-16</small>
+            </a>
+            <a class="related-item" href="../../papers/j12-v-jepa-2-1-dense-features/">
+              <span>V-JEPA 2.1: Unlocking Dense Features in Video Self-Supervised Learning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-15</small>
+            </a>
+            <a class="related-item" href="../../papers/j11-leworldmodel-stable-pixel-jepa/">
+              <span>LeWorldModel: Stable End-to-End Joint-Embedding Predictive Architecture from Pixels</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-13</small>
+            </a>
+            <a class="related-item" href="../../papers/j9-temporal-straightening-latent-planning/">
+              <span>Temporal Straightening for Latent Planning</span>
+              <small>JEPA 与预测式世界模型 · 2026-03-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.21686.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://warena.ai" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring | DAST Papers</title>
+    <meta name="description" content="牡蛎礁监测是典型的高风险、高成本海洋生态任务。人工潜水效率低、危险高，而传统 AUV 又主要依赖几何导航，无法理解场景语义。把 VLM 直接做成端到端导航器虽然看起来先进，但会带来推理频繁、动力学失配和误差累积等问题。
+
+CORAL 的方法很干净：高层 VLM 只负责语义层面的 waypoint 选择，底层由 dynamics-aware local planner 完成避障和执行，再用 geom" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mar2-coral-underwater-monitoring/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring" />
+    <meta property="og:description" content="牡蛎礁监测是典型的高风险、高成本海洋生态任务。人工潜水效率低、危险高，而传统 AUV 又主要依赖几何导航，无法理解场景语义。把 VLM 直接做成端到端导航器虽然看起来先进，但会带来推理频繁、动力学失配和误差累积等问题。
+
+CORAL 的方法很干净：高层 VLM 只负责语义层面的 waypoint 选择，底层由 dynamics-aware local planner 完成避障和执行，再用 geom" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mar2-coral-underwater-monitoring/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring" />
+    <meta name="twitter:description" content="牡蛎礁监测是典型的高风险、高成本海洋生态任务。人工潜水效率低、危险高，而传统 AUV 又主要依赖几何导航，无法理解场景语义。把 VLM 直接做成端到端导航器虽然看起来先进，但会带来推理频繁、动力学失配和误差累积等问题。
+
+CORAL 的方法很干净：高层 VLM 只负责语义层面的 waypoint 选择，底层由 dynamics-aware local planner 完成避障和执行，再用 geom" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring</h1>
+          <p class="subtitle">海洋、渔业与海岸系统 · 发表：2026-03-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">海洋、渔业与海岸系统</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.14786" target="_blank" rel="noopener noreferrer">2603.14786</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>牡蛎礁监测是典型的高风险、高成本海洋生态任务。人工潜水效率低、危险高，而传统 AUV 又主要依赖几何导航，无法理解场景语义。把 VLM 直接做成端到端导航器虽然看起来先进，但会带来推理频繁、动力学失配和误差累积等问题。</dd></div><div><dt>方法/机制</dt><dd>CORAL 的方法很干净：高层 VLM 只负责语义层面的 waypoint 选择，底层由 dynamics-aware local planner 完成避障和执行，再用 geometric verification 模块对 waypoint 做校验并在需要时触发重规划。这个分层结构把语义推理和精细运动控制明确解耦，避免把所有控制责任都压给 VLM。</dd></div><div><dt>结果/证据</dt><dd>这篇论文的仓库价值在于它给出了一个可迁移的 embodied pattern：让 foundation-model 负责上下文理解和高层意图，让传统/可验证的 planner 负责低层安全执行。它不只适用于水下监测，对其他高风险场景中的语义导航同样有启发。</dd></div><div><dt>收录价值</dt><dd>它暂时不是更高一级，因为实验场景仍然集中在水下牡蛎礁监测，且目前还是预印本阶段。若后续在更广 marine robotics 或一般 embodied exploration 任务上复现，这个分层范式会更稳。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>牡蛎礁监测是典型的高风险、高成本海洋生态任务。人工潜水效率低、危险高，而传统 AUV 又主要依赖几何导航，无法理解场景语义。把 VLM 直接做成端到端导航器虽然看起来先进，但会带来推理频繁、动力学失配和误差累积等问题。</p><p>CORAL 的方法很干净：高层 VLM 只负责语义层面的 waypoint 选择，底层由 dynamics-aware local planner 完成避障和执行，再用 geometric verification 模块对 waypoint 做校验并在需要时触发重规划。这个分层结构把语义推理和精细运动控制明确解耦，避免把所有控制责任都压给 VLM。</p><p>这篇论文的仓库价值在于它给出了一个可迁移的 embodied pattern：让 foundation-model 负责上下文理解和高层意图，让传统/可验证的 planner 负责低层安全执行。它不只适用于水下监测，对其他高风险场景中的语义导航同样有启发。</p><p>它暂时不是更高一级，因为实验场景仍然集中在水下牡蛎礁监测，且目前还是预印本阶段。若后续在更广 marine robotics 或一般 embodied exploration 任务上复现，这个分层范式会更稳。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260316mar2coralu,
+  title = {CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.14786.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mar2-coral-underwater-monitoring/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CORAL: COntextual Reasoning And Local Planning in A Hierarchical VLM Framework for Underwater Monitoring. https://arxiv.org/pdf/2603.14786.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mar3-multimodal-auv-coral-reefs/">
+              <span>Autonomous seeking and mapping coral reef biodiversity hotspots with a multimodal AUV</span>
+              <small>海洋、渔业与海岸系统 · 2026-05-13</small>
+            </a>
+            <a class="related-item" href="../../papers/mar1-sentinel3-ocean-colour-fm/">
+              <span>A Sentinel-3 foundation model for ocean colour</span>
+              <small>海洋、渔业与海岸系统 · 2025-09-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.14786.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

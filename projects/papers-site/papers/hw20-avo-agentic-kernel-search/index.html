@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AVO: Agentic Variation Operators for Autonomous Evolutionary Search | DAST Papers</title>
+    <meta name="description" content="现有 evolutionary search 即使接入 LLM，也往往只是把模型当候选生成器，真正的 mutation、crossover 和局部修补逻辑仍然由人手工定义。AVO 的切入点更深：不是让 agent 在既定搜索框架里吐候选，而是让 agent 直接充当 variation operator，自主读取 lineage、知识库和执行反馈，决定如何改写候选实现。
+
+论文提出 Agentic" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw20-avo-agentic-kernel-search/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AVO: Agentic Variation Operators for Autonomous Evolutionary Search" />
+    <meta property="og:description" content="现有 evolutionary search 即使接入 LLM，也往往只是把模型当候选生成器，真正的 mutation、crossover 和局部修补逻辑仍然由人手工定义。AVO 的切入点更深：不是让 agent 在既定搜索框架里吐候选，而是让 agent 直接充当 variation operator，自主读取 lineage、知识库和执行反馈，决定如何改写候选实现。
+
+论文提出 Agentic" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw20-avo-agentic-kernel-search/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AVO: Agentic Variation Operators for Autonomous Evolutionary Search" />
+    <meta name="twitter:description" content="现有 evolutionary search 即使接入 LLM，也往往只是把模型当候选生成器，真正的 mutation、crossover 和局部修补逻辑仍然由人手工定义。AVO 的切入点更深：不是让 agent 在既定搜索框架里吐候选，而是让 agent 直接充当 variation operator，自主读取 lineage、知识库和执行反馈，决定如何改写候选实现。
+
+论文提出 Agentic" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AVO: Agentic Variation Operators for Autonomous Evolutionary Search</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.24517" target="_blank" rel="noopener noreferrer">2603.24517</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>现有 evolutionary search 即使接入 LLM，也往往只是把模型当候选生成器，真正的 mutation、crossover 和局部修补逻辑仍然由人手工定义。AVO 的切入点更深：不是让 agent 在既定搜索框架里吐候选，而是让 agent 直接充当 variation operator，自主读取 lineage、知识库和执行反馈，决定如何改写候选实现。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Agentic Variation Operators，把 propose、repair、critique、verify 统一进一个自驱动 agent loop。作者用它搜索 Blackwell B200 上的 multi-head attention kernel，连续七天自动演化后，得到的 kernel 在多种配置上超过 cuDNN 和 FlashAttention-4，而且还可以快速迁移到 grouped-query attention。这里真正有新意的是“agent 作为 variation operator”这个抽象，而不只是某个 kernel 的最终性能数字。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它把自动搜索从 candidate generation 推进到了更通用的 agentic search primitive，对 AI 系统优化、kernel search、自动化硬件/软件协同设计都有明确外溢。尤其在 attention kernel 这种已经被高度人工优化的目标上还能持续超越现有实现，说明这条路线不只是概念包装。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为公开验证还集中在 attention kernel 这一类目标和 Blackwell 这一代硬件上。是否能成为跨系统、跨算法、跨硬件的默认 agentic optimization interface，还需要更广泛的任务族验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>现有 evolutionary search 即使接入 LLM，也往往只是把模型当候选生成器，真正的 mutation、crossover 和局部修补逻辑仍然由人手工定义。AVO 的切入点更深：不是让 agent 在既定搜索框架里吐候选，而是让 agent 直接充当 variation operator，自主读取 lineage、知识库和执行反馈，决定如何改写候选实现。</p><p>论文提出 Agentic Variation Operators，把 propose、repair、critique、verify 统一进一个自驱动 agent loop。作者用它搜索 Blackwell B200 上的 multi-head attention kernel，连续七天自动演化后，得到的 kernel 在多种配置上超过 cuDNN 和 FlashAttention-4，而且还可以快速迁移到 grouped-query attention。这里真正有新意的是“agent 作为 variation operator”这个抽象，而不只是某个 kernel 的最终性能数字。</p><p>它值得正式收录，因为它把自动搜索从 candidate generation 推进到了更通用的 agentic search primitive，对 AI 系统优化、kernel search、自动化硬件/软件协同设计都有明确外溢。尤其在 attention kernel 这种已经被高度人工优化的目标上还能持续超越现有实现，说明这条路线不只是概念包装。</p><p>它目前仍是 breakthrough，而不是更高一级，因为公开验证还集中在 attention kernel 这一类目标和 Blackwell 这一代硬件上。是否能成为跨系统、跨算法、跨硬件的默认 agentic optimization interface，还需要更广泛的任务族验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AVO：用于自主演化搜索的智能体变异算子。智能体变异算子（AVO）是一类新型的演化变异算子，它用自主编码智能体取代了经典演化搜索中固定的突变、交叉和手工设计的启发式方法。AVO没有将语言模型限制在预设流程中的候选生成，而是将变异实例化为一个自主导向的智能体循环，该循环可以查阅当前谱系、领域特定知识库和执行反馈，以提出、修复、批判和验证实现修改。我们在NVIDIA Blackwell (B200) GPU上评估了AVO在注意力机制上的表现，注意力机制是AI领域中优化最激烈的内核目标之一。在多头注意力上进行7天连续自主演化后，AVO发现了在所有评估配置中性能优于cuDNN高达3.5%和FlashAttention-4高达10.5%的内核。所发现的优化可以很容易地迁移到分组查询注意力，仅需30分钟的额外自主适应，即可在cuDNN上实现高达7.0%的增益，并在FlashAttention-4上实现高达9.3%的增益。综上所述，这些结果表明，智能体变异算子通过将智能体从候选生成器提升为变异算子，超越了先前的LLM在环演化流程，并且能够发现性能关键的微架构优化，从而生成在当今最先进GPU硬件上超越最先进专家工程注意力实现的内核。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agentic Variation Operators (AVO) are a new family of evolutionary variation operators that replace the fixed mutation, crossover, and hand-designed heuristics of classical evolutionary search with autonomous coding agents. Rather than confining a language model to candidate generation within a prescribed pipeline, AVO instantiates variation as a self-directed agent loop that can consult the current lineage, a domain-specific knowledge base, and execution feedback to propose, repair, critique, and verify implementation edits. We evaluate AVO on attention, among the most aggressively optimized kernel targets in AI, on NVIDIA Blackwell (B200) GPUs. Over 7 days of continuous autonomous evolution on multi-head attention, AVO discovers kernels that outperform cuDNN by up to 3.5% and FlashAttention-4 by up to 10.5% across the evaluated configurations. The discovered optimizations transfer readily to grouped-query attention, requiring only 30 minutes of additional autonomous adaptation and yielding gains of up to 7.0% over cuDNN and 9.3% over FlashAttention-4. Together, these results show that agentic variation operators move beyond prior LLM-in-the-loop evolutionary pipelines by elevating the agent from candidate generator to variation operator, and can discover performance-critical micro-architectural optimizations that produce kernels surpassing state-of-the-art expert-engineered attention implementations on today’s most advanced GPU hardware.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260325hw20avoage,
+  title = {AVO: Agentic Variation Operators for Autonomous Evolutionary Search},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.24517.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw20-avo-agentic-kernel-search/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AVO: Agentic Variation Operators for Autonomous Evolutionary Search. https://arxiv.org/pdf/2603.24517.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.24517.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

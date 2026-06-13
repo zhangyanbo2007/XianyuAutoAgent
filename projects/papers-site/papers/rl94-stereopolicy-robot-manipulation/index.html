@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StereoPolicy: Improving Robotic Manipulation Policies via Stereo Perception | DAST Papers</title>
+    <meta name="description" content="这篇论文针对机器人 imitation learning 中单目视觉的结构性短板：RGB policy 可以学到语义和外观，但在杂乱、透明、几何复杂场景里缺少稳定深度和空间对应线索。
+
+StereoPolicy 直接使用同步 stereo image pairs，不显式重建 3D、也不依赖相机标定；左右图分别进入 pretrained 2D vision encoder，再由 Stereo Tra" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl94-stereopolicy-robot-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="StereoPolicy: Improving Robotic Manipulation Policies via Stereo Perception" />
+    <meta property="og:description" content="这篇论文针对机器人 imitation learning 中单目视觉的结构性短板：RGB policy 可以学到语义和外观，但在杂乱、透明、几何复杂场景里缺少稳定深度和空间对应线索。
+
+StereoPolicy 直接使用同步 stereo image pairs，不显式重建 3D、也不依赖相机标定；左右图分别进入 pretrained 2D vision encoder，再由 Stereo Tra" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl94-stereopolicy-robot-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="StereoPolicy: Improving Robotic Manipulation Policies via Stereo Perception" />
+    <meta name="twitter:description" content="这篇论文针对机器人 imitation learning 中单目视觉的结构性短板：RGB policy 可以学到语义和外观，但在杂乱、透明、几何复杂场景里缺少稳定深度和空间对应线索。
+
+StereoPolicy 直接使用同步 stereo image pairs，不显式重建 3D、也不依赖相机标定；左右图分别进入 pretrained 2D vision encoder，再由 Stereo Tra" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>StereoPolicy: Improving Robotic Manipulation Policies via Stereo Perception</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.09989" target="_blank" rel="noopener noreferrer">2605.09989</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对机器人 imitation learning 中单目视觉的结构性短板：RGB policy 可以学到语义和外观，但在杂乱、透明、几何复杂场景里缺少稳定深度和空间对应线索。</dd></div><div><dt>方法/机制</dt><dd>StereoPolicy 直接使用同步 stereo image pairs，不显式重建 3D、也不依赖相机标定；左右图分别进入 pretrained 2D vision encoder，再由 Stereo Transformer 融合，隐式捕捉 correspondence 和 disparity。</dd></div><div><dt>结果/证据</dt><dd>它的接口设计比较实用：既能接入 diffusion-based policies，也能接入 pretrained VLA policies，不要求改动 backbone；在 RoboMimic、RoboCasa、OmniGibson 和真实 tabletop/bimanual mobile manipulation 中均展示相对 RGB、RGB-D、point cloud、多视角 baselines 的提升。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提出了一个可扩展的机器人视觉模态接口：用 stereo 连接大规模 2D 预训练表征与 3D 几何操作需求，对 VLA、diffusion policy 和真实机器人部署都有直接方法价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对机器人 imitation learning 中单目视觉的结构性短板：RGB policy 可以学到语义和外观，但在杂乱、透明、几何复杂场景里缺少稳定深度和空间对应线索。</p><p>StereoPolicy 直接使用同步 stereo image pairs，不显式重建 3D、也不依赖相机标定；左右图分别进入 pretrained 2D vision encoder，再由 Stereo Transformer 融合，隐式捕捉 correspondence 和 disparity。</p><p>它的接口设计比较实用：既能接入 diffusion-based policies，也能接入 pretrained VLA policies，不要求改动 backbone；在 RoboMimic、RoboCasa、OmniGibson 和真实 tabletop/bimanual mobile manipulation 中均展示相对 RGB、RGB-D、point cloud、多视角 baselines 的提升。</p><p>收录价值在于它提出了一个可扩展的机器人视觉模态接口：用 stereo 连接大规模 2D 预训练表征与 3D 几何操作需求，对 VLA、diffusion policy 和真实机器人部署都有直接方法价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Evans Han1,2 Yunfan Jiang1 Yingke Wang1,∗ Haoyue Xiao1,∗ Huang Huang1 Jianwen Xie3 Jiajun Wu1 Li Fei-Fei1 Ruohan Zhang1,2 1 2 3 斯坦福大学 西北大学 Lambda公司 摘要：机器人模仿学习的最新进展已经产生了强大的视觉运动策略，能够直接从单目视觉输入中操纵各种物体。然而，单目观测本质上缺乏可靠的深度线索和空间感知，这对于在杂乱或几何复杂的场景中进行精确操作至关重要。为了解决这一限制，我们引入了StereoPolicy，一个全新的视觉运动策略学习框架，它直接利用同步立体图像对来加强几何推理，而无需显式的3D重建或相机校准。StereoPolicy采用预训练的2D视觉编码器独立处理每张图像，并通过立体Transformer融合所得的表征。这种设计隐式地捕获了空间对应和视差线索。该框架与基于扩散和预训练的视觉-语言-动作（VLA）策略无缝集成，在RoboMimic、RoboCasa和OmniGibson这三个模拟基准上，相对于RGB、RGB-D、点云和多视图基线，提供了持续的改进。我们进一步在涵盖桌面和双手移动操作设置的真实机器人实验中验证了StereoPolicy。我们的结果强调了立体视觉作为一种可扩展且鲁棒的模态，它将2D预训练表征与3D几何理解相结合，用于机器人操作。项目页面可在https://stereopolicy.github.io/找到。关键词：机器人感知，立体视觉，机器人操作</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Evans Han1,2 Yunfan Jiang1 Yingke Wang1,∗ Haoyue Xiao1,∗ Huang Huang1 Jianwen Xie3 Jiajun Wu1 Li Fei-Fei1 Ruohan Zhang1,2 1 2 3 Stanford University Northwestern University Lambda, Inc Abstract: Recent advances in robot imitation learning have yielded powerful visuomotor policies capable of manipulating a wide variety of objects directly from monocular visual inputs. However, monocular observations inherently lack reliable depth cues and spatial awareness, which are critical for precise manipulation in cluttered or geometrically complex scenes. To address this limitation, we introduce StereoPolicy, a new visuomotor policy learning framework that directly leverages synchronized stereo image pairs to strengthen geometric reasoning, without requiring explicit 3D reconstruction or camera calibration. StereoPolicy employs pretrained 2D vision encoders to process each image independently and fuses the resulting representations through a Stereo Transformer. This design implicitly captures spatial correspondence and disparity cues. The framework integrates seamlessly with diffusion-based and pretrained vision-language-action (VLA) policies, delivering consistent improvements over RGB, RGB-D, point cloud, and multi-view baselines across three simulation benchmarks: RoboMimic, RoboCasa, and OmniGibson. We further validate StereoPolicy on real-robot experiments spanning both tabletop and bimanual mobile manipulation settings. Our results underscore stereo vision as a scalable and robust modality that bridges 2D pretrained representations with 3D geometric understanding for robotic manipulation. The project page can be found at https://stereopolicy.github.io/. Keywords: Robotic Perception, Stereo Vision, Robot Manipulation</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511rl94stereo,
+  title = {StereoPolicy: Improving Robotic Manipulation Policies via Stereo Perception},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.09989.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl94-stereopolicy-robot-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). StereoPolicy: Improving Robotic Manipulation Policies via Stereo Perception. https://arxiv.org/pdf/2605.09989.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.09989.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://stereopolicy.github.io/" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CocoaBench: Evaluating Unified Digital Agents in the Wild | DAST Papers</title>
+    <meta name="description" content="当前 agent 评测通常把软件工程、研究检索、GUI/视觉自动化分开测试，但真实数字代理经常需要把这些能力组合起来。单项 benchmark 分数高，并不意味着模型能在一个长视距任务中灵活切换搜索、视觉理解、代码执行和文件处理。
+
+CocoaBench 针对这个缺口构建了 unified digital agents benchmark：任务由人设计、长视距、只给自然语言指令和最终输出的自动评估" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a188-cocoabench-digital-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CocoaBench: Evaluating Unified Digital Agents in the Wild" />
+    <meta property="og:description" content="当前 agent 评测通常把软件工程、研究检索、GUI/视觉自动化分开测试，但真实数字代理经常需要把这些能力组合起来。单项 benchmark 分数高，并不意味着模型能在一个长视距任务中灵活切换搜索、视觉理解、代码执行和文件处理。
+
+CocoaBench 针对这个缺口构建了 unified digital agents benchmark：任务由人设计、长视距、只给自然语言指令和最终输出的自动评估" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a188-cocoabench-digital-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CocoaBench: Evaluating Unified Digital Agents in the Wild" />
+    <meta name="twitter:description" content="当前 agent 评测通常把软件工程、研究检索、GUI/视觉自动化分开测试，但真实数字代理经常需要把这些能力组合起来。单项 benchmark 分数高，并不意味着模型能在一个长视距任务中灵活切换搜索、视觉理解、代码执行和文件处理。
+
+CocoaBench 针对这个缺口构建了 unified digital agents benchmark：任务由人设计、长视距、只给自然语言指令和最终输出的自动评估" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CocoaBench: Evaluating Unified Digital Agents in the Wild</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-13</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.11201" target="_blank" rel="noopener noreferrer">2604.11201</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>当前 agent 评测通常把软件工程、研究检索、GUI/视觉自动化分开测试，但真实数字代理经常需要把这些能力组合起来。单项 benchmark 分数高，并不意味着模型能在一个长视距任务中灵活切换搜索、视觉理解、代码执行和文件处理。</dd></div><div><dt>方法/机制</dt><dd>CocoaBench 针对这个缺口构建了 unified digital agents benchmark：任务由人设计、长视距、只给自然语言指令和最终输出的自动评估函数，要求 agent 组合 vision、search、coding 等能力。论文还提供 CocoaAgent 作为轻量 scaffold，用于隔离模型 backbone 差异。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它把数字代理评估从单能力测试推进到组合能力测试，并保持自动化可扩展评估。对未来统一 agent scaffold、agent benchmark 和多能力系统评估，它提供了更贴近真实应用的任务定义。</dd></div><div><dt>收录价值</dt><dd>局限在于 benchmark 本身会随任务设计和评测函数覆盖而变化；它证明了当前 agent 的能力缺口，但还不是训练方法。因此按 agent evaluation/workflow 的突破性基准收录。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>当前 agent 评测通常把软件工程、研究检索、GUI/视觉自动化分开测试，但真实数字代理经常需要把这些能力组合起来。单项 benchmark 分数高，并不意味着模型能在一个长视距任务中灵活切换搜索、视觉理解、代码执行和文件处理。</p><p>CocoaBench 针对这个缺口构建了 unified digital agents benchmark：任务由人设计、长视距、只给自然语言指令和最终输出的自动评估函数，要求 agent 组合 vision、search、coding 等能力。论文还提供 CocoaAgent 作为轻量 scaffold，用于隔离模型 backbone 差异。</p><p>它值得收录，因为它把数字代理评估从单能力测试推进到组合能力测试，并保持自动化可扩展评估。对未来统一 agent scaffold、agent benchmark 和多能力系统评估，它提供了更贴近真实应用的任务定义。</p><p>局限在于 benchmark 本身会随任务设计和评测函数覆盖而变化；它证明了当前 agent 的能力缺口，但还不是训练方法。因此按 agent evaluation/workflow 的突破性基准收录。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM智能体目前在软件工程、深度研究、GUI自动化以及各种其他应用中表现出色，而最近的智能体框架和模型正日益将这些能力整合到统一系统中。然而，大多数评估仍然孤立地测试这些能力，这为需要智能体结合不同能力的更多样化用例留下了空白。我们引入了C OCOA B ENCH，这是一个用于统一数字智能体的基准，它由人类设计的、需要灵活组合视觉、搜索和编码的长期任务构建而成。任务仅通过指令和对最终输出的自动评估函数来指定，从而实现了跨不同智能体基础设施的可靠和可扩展评估。我们还提出了C OCOA -A GENT，一个轻量级的共享骨架，用于跨模型骨干模型进行受控比较。实验表明，当前智能体在C OCOA B ENCH上的可靠性仍然很低，表现最佳的系统仅达到45.1%的成功率。我们的分析进一步指出，在推理和规划、工具使用和执行以及视觉基础方面仍有很大的改进空间。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>LLM agents now perform strongly in software engineering, deep research, GUI automation, and various other applications, while recent agent scaffolds and models are increasingly integrating these capabilities into unified systems. Yet, most evaluations still test these capabilities in isolation, which leaves a gap for more diverse use cases that require agents to combine different capabilities. We introduce C OCOA B ENCH, a benchmark for unified digital agents built from human-designed, long-horizon tasks that require flexible composition of vision, search, and coding. Tasks are specified only by an instruction and an automatic evaluation function over the final output, enabling reliable and scalable evaluation across diverse agent infrastructures. We also present C OCOA -A GENT, a lightweight shared scaffold for controlled comparison across model backbones. Experiments show that current agents remain far from reliable on C OCOA B ENCH, with the best evaluated system achieving only 45.1% success rate. Our analysis further points to substantial room for improvement in reasoning and planning, tool use and execution, and visual grounding.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260413a188cocoab,
+  title = {CocoaBench: Evaluating Unified Digital Agents in the Wild},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.11201.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a188-cocoabench-digital-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CocoaBench: Evaluating Unified Digital Agents in the Wild. https://arxiv.org/pdf/2604.11201.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.11201.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

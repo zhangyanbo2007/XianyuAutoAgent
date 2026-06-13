@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A neural circuit framework for economic choice: From building blocks of valuation to compositionality in multitasking | DAST Papers</title>
+    <meta name="description" content="问题与背景：价值驱动的经济选择是认知科学与神经经济学中的核心问题，但从神经电路角度把价值计算、比较和多任务组合统一起来一直较难。已有实验发现很多现象，但缺少一个兼顾生物合理性、行为泛化和神经表征解释的统一框架。
+
+方法/新意：作者用满足 Dale 定律的生物合理 RNN，通过强化学习在一组经济选择任务上训练模型，并分析网络如何在输入层完成价值估计、在递归回路中进行 winner-take-all " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n47-economic-choice-circuit-framework/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A neural circuit framework for economic choice: From building blocks of valuation to compositionality in multitasking" />
+    <meta property="og:description" content="问题与背景：价值驱动的经济选择是认知科学与神经经济学中的核心问题，但从神经电路角度把价值计算、比较和多任务组合统一起来一直较难。已有实验发现很多现象，但缺少一个兼顾生物合理性、行为泛化和神经表征解释的统一框架。
+
+方法/新意：作者用满足 Dale 定律的生物合理 RNN，通过强化学习在一组经济选择任务上训练模型，并分析网络如何在输入层完成价值估计、在递归回路中进行 winner-take-all " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n47-economic-choice-circuit-framework/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A neural circuit framework for economic choice: From building blocks of valuation to compositionality in multitasking" />
+    <meta name="twitter:description" content="问题与背景：价值驱动的经济选择是认知科学与神经经济学中的核心问题，但从神经电路角度把价值计算、比较和多任务组合统一起来一直较难。已有实验发现很多现象，但缺少一个兼顾生物合理性、行为泛化和神经表征解释的统一框架。
+
+方法/新意：作者用满足 Dale 定律的生物合理 RNN，通过强化学习在一组经济选择任务上训练模型，并分析网络如何在输入层完成价值估计、在递归回路中进行 winner-take-all " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A neural circuit framework for economic choice: From building blocks of valuation to compositionality in multitasking</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-02-04</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-04</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：价值驱动的经济选择是认知科学与神经经济学中的核心问题，但从神经电路角度把价值计算、比较和多任务组合统一起来一直较难。已有实验发现很多现象，但缺少一个兼顾生物合理性、行为泛化和神经表征解释的统一框架。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：作者用满足 Dale 定律的生物合理 RNN，通过强化学习在一组经济选择任务上训练模型，并分析网络如何在输入层完成价值估计、在递归回路中进行 winner-take-all 比较，以及在多任务场景中形成共享与专用模块的组合式表征。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇论文是认知科学主线里的高质量原始研究，属于计算神经科学与 NeuroAI 的交叉代表作。它的重要性在于用可解释的电路框架把 valuation、comparison、generalization 和 multitasking 串成同一机制叙事，而不是零散解释单个任务。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：它的影响主要集中在经济选择与前额叶/OFC 决策回路建模，外溢性不如更广泛的 foundation model 或通用世界模型工作。当前更适合定为突破性，而不是颠覆性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：价值驱动的经济选择是认知科学与神经经济学中的核心问题，但从神经电路角度把价值计算、比较和多任务组合统一起来一直较难。已有实验发现很多现象，但缺少一个兼顾生物合理性、行为泛化和神经表征解释的统一框架。</p><p>方法/新意：作者用满足 Dale 定律的生物合理 RNN，通过强化学习在一组经济选择任务上训练模型，并分析网络如何在输入层完成价值估计、在递归回路中进行 winner-take-all 比较，以及在多任务场景中形成共享与专用模块的组合式表征。</p><p>意义/放在仓库中的位置：这篇论文是认知科学主线里的高质量原始研究，属于计算神经科学与 NeuroAI 的交叉代表作。它的重要性在于用可解释的电路框架把 valuation、comparison、generalization 和 multitasking 串成同一机制叙事，而不是零散解释单个任务。</p><p>局限/为何不再升一级：它的影响主要集中在经济选择与前额叶/OFC 决策回路建模，外溢性不如更广泛的 foundation model 或通用世界模型工作。当前更适合定为突破性，而不是颠覆性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>价值导向的决策是认知的基石，但其底层的电路级机制仍然难以捉摸。我们使用强化学习训练了遵循戴尔定律的循环神经网络模型，使其完成一系列经济选择任务，这揭示了一个两阶段的计算框架。首先，价值估计发生在输入层，学习到的权重在此存储主观偏好，并近似奖励大小和概率的非线性乘法以产生期望值。这种前馈机制使得模型能够泛化到新颖的选择选项。其次，选项价值在循环网络内部进行比较，其中特定的连接模式介导了鲁棒的赢者通吃决策，兴奋性和抑制性神经元均表现出价值和选择选择性。通过在多个任务上训练单个网络，我们展示了结合共享计算图式和专门神经模块的组合表示。我们的模型再现了灵长类动物眶额皮层中的关键神经生理学发现，并将价值计算、比较和泛化统一到一个具有可检验预测的连贯框架中。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Value-guided decisions are a cornerstone of cognition, yet the underlying circuit-level mechanisms remain elusive. We used reinforcement learning to train recurrent neural network models endowed with Dale’s law on a battery of economic choice tasks, which revealed a two-stage computational framework. First, value estimation occurs at input level where learned weights store subjective preferences and approximate the nonlinear multiplication of reward magnitude and probability to yield expected values. This feedforward mechanism enables generalization to novel choice options. Second, option values are compared within the recurrent network, where specific connectivity patterns mediate robust winner-take-all decisions, with both excitatory and inhibitory neurons exhibiting value and choice selectivity. By training a single network on multiple tasks, we show compositional representations combining a shared computational schema with specialized neural modules. Reproducing key neurophysiological findings from the primate orbitofrontal cortex, our model unifies value computation, comparison, and generalization into a coherent framework with testable predictions.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260204n47economi,
+  title = {A neural circuit framework for economic choice: From building blocks of valuation to compositionality in multitasking},
+  year = {2026},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC11952538/},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n47-economic-choice-circuit-framework/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A neural circuit framework for economic choice: From building blocks of valuation to compositionality in multitasking. https://pmc.ncbi.nlm.nih.gov/articles/PMC11952538/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11952538/" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

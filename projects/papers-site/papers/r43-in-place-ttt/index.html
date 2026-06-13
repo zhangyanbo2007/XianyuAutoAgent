@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>In-Place Test-Time Training | DAST Papers</title>
+    <meta name="description" content="大语言模型仍基本停留在“训练完成后静态部署”的范式，这使它们很难在推理时随着上下文流持续适应。测试时训练本来是解决这类问题的理想方向，但过去方法往往需要重构 Transformer 架构、逐 token 更新导致吞吐量差，或者使用与自回归语言建模并不对齐的重构目标。
+
+这篇工作的核心是 In-Place TTT：不引入新层，而是把标准 MLP 的最终投影矩阵原地转成可更新的快速权重，再用与 nex" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r43-in-place-ttt/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="In-Place Test-Time Training" />
+    <meta property="og:description" content="大语言模型仍基本停留在“训练完成后静态部署”的范式，这使它们很难在推理时随着上下文流持续适应。测试时训练本来是解决这类问题的理想方向，但过去方法往往需要重构 Transformer 架构、逐 token 更新导致吞吐量差，或者使用与自回归语言建模并不对齐的重构目标。
+
+这篇工作的核心是 In-Place TTT：不引入新层，而是把标准 MLP 的最终投影矩阵原地转成可更新的快速权重，再用与 nex" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r43-in-place-ttt/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="In-Place Test-Time Training" />
+    <meta name="twitter:description" content="大语言模型仍基本停留在“训练完成后静态部署”的范式，这使它们很难在推理时随着上下文流持续适应。测试时训练本来是解决这类问题的理想方向，但过去方法往往需要重构 Transformer 架构、逐 token 更新导致吞吐量差，或者使用与自回归语言建模并不对齐的重构目标。
+
+这篇工作的核心是 In-Place TTT：不引入新层，而是把标准 MLP 的最终投影矩阵原地转成可更新的快速权重，再用与 nex" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>In-Place Test-Time Training</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-07</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-07</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.06169" target="_blank" rel="noopener noreferrer">2604.06169</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>大语言模型仍基本停留在“训练完成后静态部署”的范式，这使它们很难在推理时随着上下文流持续适应。测试时训练本来是解决这类问题的理想方向，但过去方法往往需要重构 Transformer 架构、逐 token 更新导致吞吐量差，或者使用与自回归语言建模并不对齐的重构目标。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的核心是 In-Place TTT：不引入新层，而是把标准 MLP 的最终投影矩阵原地转成可更新的快速权重，再用与 next-token prediction 对齐的目标函数驱动其更新。配合大分块 chunk-wise 更新和上下文并行，它既保留了注意力层处理细粒度 token 交互的能力，也把传统 TTT 的串行瓶颈显著压低。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它改变了 TTT 在 LLM 里的工程入口：不再要求从头训练专门架构，而是为现有开源模型提供了低侵入升级路径。这对长上下文、持续适应和部署后学习都有明显方法外溢，不只是一个局部 benchmark 改进。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前证据仍主要集中在自回归文本模型和长上下文评测上。是否能成为更广义测试时学习的默认接口，还需要更多跨任务、跨模态和后续采用来确认。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>大语言模型仍基本停留在“训练完成后静态部署”的范式，这使它们很难在推理时随着上下文流持续适应。测试时训练本来是解决这类问题的理想方向，但过去方法往往需要重构 Transformer 架构、逐 token 更新导致吞吐量差，或者使用与自回归语言建模并不对齐的重构目标。</p><p>这篇工作的核心是 In-Place TTT：不引入新层，而是把标准 MLP 的最终投影矩阵原地转成可更新的快速权重，再用与 next-token prediction 对齐的目标函数驱动其更新。配合大分块 chunk-wise 更新和上下文并行，它既保留了注意力层处理细粒度 token 交互的能力，也把传统 TTT 的串行瓶颈显著压低。</p><p>它值得正式收录，因为它改变了 TTT 在 LLM 里的工程入口：不再要求从头训练专门架构，而是为现有开源模型提供了低侵入升级路径。这对长上下文、持续适应和部署后学习都有明显方法外溢，不只是一个局部 benchmark 改进。</p><p>它暂时不升到更高一级，原因在于当前证据仍主要集中在自回归文本模型和长上下文评测上。是否能成为更广义测试时学习的默认接口，还需要更多跨任务、跨模态和后续采用来确认。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>静态的“训练然后部署”范式从根本上限制了大型语言模型（LLMs）动态调整其权重以响应现实世界任务中固有的连续新信息流的能力。测试时训练（TTT）提供了一个引人注目的替代方案，即在推理时更新模型参数（快速权重）的一个子集，但其在当前LLM生态系统中的潜力受到关键障碍的阻碍，包括架构不兼容性、计算效率低下以及与语言建模的快速权重目标不匹配。在这项工作中，我们引入了原地测试时训练（In-Place TTT），一个无缝赋予LLMs测试时训练能力的框架。In-Place TTT将无处不在的MLP块的最终投影矩阵视为其可适应的快速权重，从而为LLMs实现了“即插即用”的增强，而无需从头开始进行昂贵的再训练。此外，我们将TTT的通用重建目标替换为量身定制的、有理论基础的目标，该目标明确与控制自回归语言建模的下一词元预测任务对齐。这种原则性目标，结合高效的块式更新机制，产生了一种高度可扩展的算法，与上下文并行性兼容。广泛的实验验证了我们框架的有效性：作为一种原地增强，它使一个4B参数模型在上下文长度高达128k的任务上实现了卓越的性能，并且当从头开始预训练时，它始终优于具有竞争力的TTT相关方法。消融研究结果进一步提供了对我们设计选择的更深入见解。总的来说，我们的结果确立了In-Place TTT是迈向LLMs持续学习范式的一个有前景的步骤。日期：2026年4月8日 通讯：Di He (dihe@pku.edu.cn) 和 Wenhao Huang (huang.wenhao@bytedance.com) 代码：https://github.com/ByteDance-Seed/In-Place-TTT</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The static “train then deploy&quot; paradigm fundamentally limits Large Language Models (LLMs) from dynamically adapting their weights in response to continuous streams of new information inherent in real-world tasks. Test-Time Training (TTT) offers a compelling alternative by updating a subset of model parameters (fast weights) at inference time, yet its potential in the current LLM ecosystem is hindered by critical barriers including architectural incompatibility, computational inefficiency and misaligned fast weight objectives for language modeling. In this work, we introduce In-Place Test-Time Training (In-Place TTT), a framework that seamlessly endows LLMs with Test-Time Training ability. In-Place TTT treats the final projection matrix of the ubiquitous MLP blocks as its adaptable fast weights, enabling a “drop-in&quot; enhancement for LLMs without costly retraining from scratch. Furthermore, we replace TTT’s generic reconstruction objective with a tailored, theoretically-grounded objective explicitly aligned with the Next-Token-Prediction task governing autoregressive language modeling. This principled objective, combined with an efficient chunk-wise update mechanism, results in a highly scalable algorithm compatible with context parallelism. Extensive experiments validate our framework’s effectiveness: as an in-place enhancement, it enables a 4B-parameter model to achieve superior performance on tasks with contexts up to 128k, and when pretrained from scratch, it consistently outperforms competitive TTT-related approaches. Ablation study results further provide deeper insights on our design choices. Collectively, our results establish In-Place TTT as a promising step towards a paradigm of continual learning in LLMs. Date: April 8, 2026 Correspondence: Di He at dihe@pku.edu.cn and Wenhao Huang at huang.wenhao@bytedance.com Code: https://github.com/ByteDance-Seed/In-Place-TTT</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260407r43inplace,
+  title = {In-Place Test-Time Training},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.06169.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r43-in-place-ttt/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). In-Place Test-Time Training. https://arxiv.org/pdf/2604.06169.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.06169.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

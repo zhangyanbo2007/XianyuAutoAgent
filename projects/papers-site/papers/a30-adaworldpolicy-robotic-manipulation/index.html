@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation | DAST Papers</title>
+    <meta name="description" content="问题与背景：机器人操作策略在真实环境里常受视觉和力学分布漂移影响，离线训练好的 diffusion policy 难以在动态条件下稳健适应。
+
+方法/新意：AdaWorldPolicy 把 world model、action expert 和 force predictor 都实现成 flow-matching diffusion transformer，并用在线自适应学习在 action ge" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a30-adaworldpolicy-robotic-manipulation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation" />
+    <meta property="og:description" content="问题与背景：机器人操作策略在真实环境里常受视觉和力学分布漂移影响，离线训练好的 diffusion policy 难以在动态条件下稳健适应。
+
+方法/新意：AdaWorldPolicy 把 world model、action expert 和 force predictor 都实现成 flow-matching diffusion transformer，并用在线自适应学习在 action ge" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a30-adaworldpolicy-robotic-manipulation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation" />
+    <meta name="twitter:description" content="问题与背景：机器人操作策略在真实环境里常受视觉和力学分布漂移影响，离线训练好的 diffusion policy 难以在动态条件下稳健适应。
+
+方法/新意：AdaWorldPolicy 把 world model、action expert 和 force predictor 都实现成 flow-matching diffusion transformer，并用在线自适应学习在 action ge" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-02-23</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-23</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.20057" target="_blank" rel="noopener noreferrer">2602.20057</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：机器人操作策略在真实环境里常受视觉和力学分布漂移影响，离线训练好的 diffusion policy 难以在动态条件下稳健适应。</dd></div><div><dt>方法/机制</dt><dd>方法/新意：AdaWorldPolicy 把 world model、action expert 和 force predictor 都实现成 flow-matching diffusion transformer，并用在线自适应学习在 action generation 与 future imagination 两种模式间切换，使系统在视觉和物理漂移下都能闭环更新。</dd></div><div><dt>结果/证据</dt><dd>意义/放在仓库中的位置：这篇论文属于 robotics / world model / adaptive policy 主线。它的重要性在于把世界模型从纯预测器推进为在线适应策略的核心监督源。</dd></div><div><dt>收录价值</dt><dd>局限/为何不再升一级：尽管系统完整，但目前主要影响机器人 manipulation 这一赛道，尚不足以升到颠覆性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：机器人操作策略在真实环境里常受视觉和力学分布漂移影响，离线训练好的 diffusion policy 难以在动态条件下稳健适应。</p><p>方法/新意：AdaWorldPolicy 把 world model、action expert 和 force predictor 都实现成 flow-matching diffusion transformer，并用在线自适应学习在 action generation 与 future imagination 两种模式间切换，使系统在视觉和物理漂移下都能闭环更新。</p><p>意义/放在仓库中的位置：这篇论文属于 robotics / world model / adaptive policy 主线。它的重要性在于把世界模型从纯预测器推进为在线适应策略的核心监督源。</p><p>局限/为何不再升一级：尽管系统完整，但目前主要影响机器人 manipulation 这一赛道，尚不足以升到颠覆性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>AdaWorldPolicy：用于机器人操作的世界模型驱动的在线自适应学习扩散策略 有效的机器人操作需要能够预测物理结果并适应真实世界环境的策略。在这项工作中，我们引入了一个统一的框架，即世界模型驱动的在线自适应学习扩散策略 (AdaWorldPolicy)，以在动态条件下以最少的人工干预来增强机器人操作。我们的核心见解是，世界模型提供强大的监督信号，从而在动态环境中实现在线自适应学习，这可以通过力矩反馈来补充，以减轻动态力变化。我们的AdaWorldPolicy集成了世界模型、动作专家和力预测器——所有这些都作为相互连接的流匹配扩散Transformer (DiT) 实现。它们通过多模态自注意力层相互连接，实现深度特征交换以进行联合学习，同时保留其独特的模块化特性。我们进一步提出了一种新颖的在线自适应学习 (AdaOL) 策略，该策略在动作生成模式和未来想象模式之间动态切换，以驱动所有三个模块的反应性更新。这创建了一个强大的闭环机制，能够以最小的开销适应视觉和物理域偏移。在一系列模拟和真实机器人基准测试中，我们的AdaWorldPolicy实现了最先进的性能，并对分布外场景具有动态自适应能力。主页：https://AdaWorldPolicy.github.io 图1. 我们的AdaWorldPolicy与自适应在线学习 (AdaOL) 的概述。在时间步 t，我们的AdaWorldPolicy网络以两种模式运行。模式I（动作生成）：AdaWorldPolicy网络充当动作策略生成器 P policy (a|o)，它接收当前多模态观测 o（来自静态/夹持器相机和力传感器）以生成动作 a。然后机器人执行此动作。在离线训练期间，此步骤由模仿损失 L1 监督（参见第3.3节）。模式II（未来想象）：随后，我们的AdaWorldPolicy网络转变为动作条件世界模型 P imagine (o′ |o, a)，它接收相同的观测 o 和已执行的动作 a，以预测时间步 t + 1 的想象观测。我们的AdaOL策略的核心在于在线更新循环（红色箭头）。想象观测与时间步 t + 1 的真实观测之间的差异（例如，在域内设置下或在光照或姿态变化等域偏移下）通过预测损失 L2 进行量化。这种损失驱动对一小部分共享网络参数进行在线更新，从而创建一个持续适应真实世界动态的闭环系统。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Effective robotic manipulation requires policies that can anticipate physical outcomes and adapt to real-world environments. In this work, we introduce a unified framework, World-Model-Driven Diffusion Policy with Online Adaptive Learning (AdaWorldPolicy) to enhance robotic manipulation under dynamic conditions with minimal human involvement. Our core insight is that world models provide strong supervision signals, enabling online adaptive learning in dynamic environments, which can be complemented by force-torque feedback to mitigate dynamic force shifts. Our AdaWorldPolicy integrates a world model, an action expert, and a force predictor—all implemented as interconnected Flow Matching Diffusion Transformers (DiT). They are interconnected via the multi-modal self-attention layers, enabling deep feature exchange for joint learning while preserving their distinct modularity characteristics. We further propose a novel Online Adaptive Learning (AdaOL) strategy that dynamically switches between an Action Generation mode and a Future Imagination mode to drive reactive updates across all three modules. This creates a powerful closed-loop mechanism that adapts to both visual and physical domain shifts with minimal overhead. Across a suite of simulated and real-robot benchmarks, our AdaWorldPolicy achieves state-of-the-art performance, with dynamical adaptive capacity to out-of-distribution scenarios. Homepage: https://AdaWorldPolicy.github.io Figure 1. An overview of our AdaWorldPolicy with Adaptive Online Learning (AdaOL). At timestep t, our AdaWorldPolicy Network operates in two modes. Mode I (Action Generation): AdaWorldPolicy network acts as an action policy generator P policy (a|o), which takes the current multi-modal observation o (from static/gripper cameras and force sensor) to generate an action a. This action is then executed by the robot. During offline training, this step is supervised by the imitation loss L1 (see Section 3.3). Mode II (Future Imagination): Subsequently, our AdaWorldPolicy network turns into an action-conditioned world model P imagine (o′ |o, a) which takes the same observation o and the executed action a to predict an Imagined Observation at timestep t + 1. The core of our AdaOL strategy lies in the online updating loop (red arrows). The discrepancy between the Imagined Observation and the real Observation at timestep t + 1 (e.g., under in-domain setup or under domain shifts like lighting or pose variations) is quantified by a prediction loss L2 . This loss drives an online update to a small subset of shared network parameters, creating a closed-loop system that continuously adapts to real-world dynamics.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260223a30adaworl,
+  title = {AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.20057v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a30-adaworldpolicy-robotic-manipulation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation. https://arxiv.org/pdf/2602.20057v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.20057v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

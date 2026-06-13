@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A generalizable foundation model for analysis of human brain MRI | DAST Papers</title>
+    <meta name="description" content="这篇 Nature Neuroscience 论文处理脑 MRI AI 的核心瓶颈：标注数据少、任务特异模型泛化弱、不同疾病和任务之间难复用。
+
+作者提出 Brain Imaging Adaptive Core (BrainIAC)，用 self-supervised pretraining 学习 unlabeled brain MRI 的通用表征，再面向不同应用做 targeted adapta" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n81-brainiac-mri-foundation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A generalizable foundation model for analysis of human brain MRI" />
+    <meta property="og:description" content="这篇 Nature Neuroscience 论文处理脑 MRI AI 的核心瓶颈：标注数据少、任务特异模型泛化弱、不同疾病和任务之间难复用。
+
+作者提出 Brain Imaging Adaptive Core (BrainIAC)，用 self-supervised pretraining 学习 unlabeled brain MRI 的通用表征，再面向不同应用做 targeted adapta" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n81-brainiac-mri-foundation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A generalizable foundation model for analysis of human brain MRI" />
+    <meta name="twitter:description" content="这篇 Nature Neuroscience 论文处理脑 MRI AI 的核心瓶颈：标注数据少、任务特异模型泛化弱、不同疾病和任务之间难复用。
+
+作者提出 Brain Imaging Adaptive Core (BrainIAC)，用 self-supervised pretraining 学习 unlabeled brain MRI 的通用表征，再面向不同应用做 targeted adapta" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A generalizable foundation model for analysis of human brain MRI</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-02-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-05</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41593-026-02202-6" target="_blank" rel="noopener noreferrer">10.1038/s41593-026-02202-6</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Nature Neuroscience 论文处理脑 MRI AI 的核心瓶颈：标注数据少、任务特异模型泛化弱、不同疾病和任务之间难复用。</dd></div><div><dt>方法/机制</dt><dd>作者提出 Brain Imaging Adaptive Core (BrainIAC)，用 self-supervised pretraining 学习 unlabeled brain MRI 的通用表征，再面向不同应用做 targeted adaptation。</dd></div><div><dt>结果/证据</dt><dd>模型在 48,965 个 brain MRIs 上训练和验证，覆盖广泛任务，在 low-data、few-shot 和高难预测任务中优于局部监督训练与其他 pretrained models。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把脑影像 AI 从单病种预测推进到可迁移 foundation model substrate，对 NeuroAI 数据表征、医学影像工作流和多模态脑模型都有复用价值。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Nature Neuroscience 论文处理脑 MRI AI 的核心瓶颈：标注数据少、任务特异模型泛化弱、不同疾病和任务之间难复用。</p><p>作者提出 Brain Imaging Adaptive Core (BrainIAC)，用 self-supervised pretraining 学习 unlabeled brain MRI 的通用表征，再面向不同应用做 targeted adaptation。</p><p>模型在 48,965 个 brain MRIs 上训练和验证，覆盖广泛任务，在 low-data、few-shot 和高难预测任务中优于局部监督训练与其他 pretrained models。</p><p>它值得正式收录，因为它把脑影像 AI 从单病种预测推进到可迁移 foundation model substrate，对 NeuroAI 数据表征、医学影像工作流和多模态脑模型都有复用价值。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>人工智能应用于脑磁共振成像（MRI）有望推动神经系统疾病的诊断、预后和治疗规划。迄今为止，该领域一直受限于有限的训练数据以及在不同患者群体和医疗任务中泛化能力不佳的特定任务模型。通过利用自监督学习、预训练和定向适应，基础模型提供了一种有前景的范式来克服这些局限性。在本文中，我们介绍了脑成像自适应核心（BrainIAC）——一个基础模型，旨在从未标记的脑MRI数据中学习通用表征，并作为多样化下游应用适应的核心基础。BrainIAC在48,965张脑MRI图像上进行了训练和验证，涵盖了广泛的任务，我们证明BrainIAC优于局部监督训练和其他预训练模型，特别是在低数据、少样本设置和高难度预测任务中，从而使其能够应用于其他情况下不可行的场景。BrainIAC可以集成到成像流程和多模态框架中，并可能促进生物标志物发现和人工智能临床转化的改进。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Artificial intelligence applied to brain magnetic resonance imaging (MRI) holds potential to advance diagnosis, prognosis and treatment planning for neurological diseases. The field has been constrained, thus far, by limited training data and task-specific models that do not generalize well across patient populations and medical tasks. By leveraging self-supervised learning, pretraining and targeted adaptation, foundation models present a promising paradigm to overcome these limitations. Here we present Brain Imaging Adaptive Core (BrainIAC)—a foundation model designed to learn generalized representations from unlabeled brain MRI data and serve as a core basis for diverse downstream application adaptation. Trained and validated on 48,965 brain MRIs across a broad spectrum of tasks, we demonstrate that BrainIAC outperforms localized supervised training and other pretrained models, particularly in low-data, few-shot, settings and in high-difficulty prediction tasks, allowing for application in scenarios otherwise infeasible. BrainIAC can be integrated into imaging pipelines and multimodal frameworks and may lead to improved biomarker discovery and artificial intelligence clinical translation.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260205n81brainia,
+  title = {A generalizable foundation model for analysis of human brain MRI},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41593-026-02202-6.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n81-brainiac-mri-foundation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A generalizable foundation model for analysis of human brain MRI. https://www.nature.com/articles/s41593-026-02202-6.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41593-026-02202-6.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

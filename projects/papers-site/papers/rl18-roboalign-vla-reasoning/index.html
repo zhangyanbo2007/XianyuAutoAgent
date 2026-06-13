@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是一个很实在的问题：很多在 MLLM 上加 reasoning supervision 的方法，迁移到 VLA 后并不能稳定提升机器人表现，甚至会伤害动作质量。作者把症结归因于语言推理和低层动作之间的接口没有真正对齐。
+
+RoboAlign 的核心做法是先用零样本自然语言推理产生动作 token，再通过 RL 对这些推理进行校正，使语言侧的决策过程能够更可靠地映射到扩散式动作头。重点" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl18-roboalign-vla-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models" />
+    <meta property="og:description" content="这篇论文处理的是一个很实在的问题：很多在 MLLM 上加 reasoning supervision 的方法，迁移到 VLA 后并不能稳定提升机器人表现，甚至会伤害动作质量。作者把症结归因于语言推理和低层动作之间的接口没有真正对齐。
+
+RoboAlign 的核心做法是先用零样本自然语言推理产生动作 token，再通过 RL 对这些推理进行校正，使语言侧的决策过程能够更可靠地映射到扩散式动作头。重点" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl18-roboalign-vla-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models" />
+    <meta name="twitter:description" content="这篇论文处理的是一个很实在的问题：很多在 MLLM 上加 reasoning supervision 的方法，迁移到 VLA 后并不能稳定提升机器人表现，甚至会伤害动作质量。作者把症结归因于语言推理和低层动作之间的接口没有真正对齐。
+
+RoboAlign 的核心做法是先用零样本自然语言推理产生动作 token，再通过 RL 对这些推理进行校正，使语言侧的决策过程能够更可靠地映射到扩散式动作头。重点" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.21341" target="_blank" rel="noopener noreferrer">2603.21341</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是一个很实在的问题：很多在 MLLM 上加 reasoning supervision 的方法，迁移到 VLA 后并不能稳定提升机器人表现，甚至会伤害动作质量。作者把症结归因于语言推理和低层动作之间的接口没有真正对齐。</dd></div><div><dt>方法/机制</dt><dd>RoboAlign 的核心做法是先用零样本自然语言推理产生动作 token，再通过 RL 对这些推理进行校正，使语言侧的决策过程能够更可靠地映射到扩散式动作头。重点不是再堆 VQA 监督，而是把 reasoning 直接变成动作对齐机制。</dd></div><div><dt>结果/证据</dt><dd>这条路线命中仓库当前重点的 `VLA / embodied reasoning / test-time adaptation`。它展示了一种更系统的语言-动作桥接方案，且在 LIBERO、CALVIN 和 real-world 上都给出了明显增益，因此不只是 benchmark trick。</dd></div><div><dt>收录价值</dt><dd>它暂时还不是更高一级，因为当前验证仍围绕特定 VLA 训练配方和 benchmark 体系展开。要成为更通用的范式，还需要在更广机器人形态、动作表示和长期部署 setting 上继续验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是一个很实在的问题：很多在 MLLM 上加 reasoning supervision 的方法，迁移到 VLA 后并不能稳定提升机器人表现，甚至会伤害动作质量。作者把症结归因于语言推理和低层动作之间的接口没有真正对齐。</p><p>RoboAlign 的核心做法是先用零样本自然语言推理产生动作 token，再通过 RL 对这些推理进行校正，使语言侧的决策过程能够更可靠地映射到扩散式动作头。重点不是再堆 VQA 监督，而是把 reasoning 直接变成动作对齐机制。</p><p>这条路线命中仓库当前重点的 `VLA / embodied reasoning / test-time adaptation`。它展示了一种更系统的语言-动作桥接方案，且在 LIBERO、CALVIN 和 real-world 上都给出了明显增益，因此不只是 benchmark trick。</p><p>它暂时还不是更高一级，因为当前验证仍围绕特定 VLA 训练配方和 benchmark 体系展开。要成为更通用的范式，还需要在更广机器人形态、动作表示和长期部署 setting 上继续验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多模态大语言模型 (MLLMs) 的感知、语言理解和常识知识为在现实世界场景中训练可泛化的机器人策略提供了基础 (Yang et al., 2023; Huang et al., 2022b; Tellex et al., 2020; Huang et al., 2022a; Hu et al., 2023)。具体而言，策略的获取方式要么是通过 MLLMs 的离散动作 token 预测 (Kim et al., 2024; Pertsch et al., 2025; Kim et al., 2025b)，要么是通过在 MLLMs 潜在状态上操作的外部动作专家进行连续动作预测 (Black et al., 2024; Bjorck et al., 2025; Team et al., 2024)。这种方法利用了 MLLMs 中广泛的预训练知识，即使在机器人数据量有限的情况下，也能开发出可泛化的策略。提高多模态大语言模型 (MLLMs) 中的具身推理能力至关重要，以便在其之上构建视觉-语言-动作模型 (VLAs)，从而将多模态理解迅速转化为低级动作。因此，最近的工作探索了通过视觉问答类型的监督来增强 MLLMs 中的具身推理能力。然而，据报道这些方法会导致 VLA 性能不稳定，常常只产生微不足道甚至负面的收益。在本文中，我们提出了一种更系统的 MLLM 训练框架 ROBOALIGN，能够可靠地提高 VLA 性能。我们的核心思想是通过零样本自然语言推理来采样动作 token，并使用强化学习 (RL) 来优化这种推理，以提高动作准确性。因此，ROBOALIGN 弥合了 MLLMs 中语言与低级动作之间的模态鸿沟，并促进了知识从 MLLM 到 VLA 的迁移。为了验证 ROBOALIGN 的有效性，我们通过在 MLLM 骨干模型之上添加一个基于扩散的动作头来训练 VLA，并在主要的机器人基准上对其进行评估。值得注意的是，通过在 SFT 之后使用不到 1% 的数据执行基于 RL 的对齐，ROBOALIGN 在 LIBERO、CALVIN 和真实世界环境中，相对于 SFT 基线分别实现了 17.5%、18.9% 和 106.6% 的性能提升。然而，VLA 的性能和泛化能力常常受到底层 MLLMs 的限制，这些 MLLMs 在动作生成所需的关键具身任务上表现不佳，例如空间推理 (Tong et al., 2024; Zhou et al., 2025; Cheng et al., 2024) 和时间推理 (Ahn et al., 2022; Sermanet et al., 2024)。为了解决这一限制，研究人员开发了各种具身问答任务，旨在提高机器人操作的推理技能。这些任务包括回答高级动作问题 (Chen et al., 2025; Lynch et al., 2023)，回答关于物体空间关系的问题 (Chen et al., 2024a; Xu et al., 2025)，在图像中定位点或边界框以识别与功能相关的区域 (Yuan et al., 2024; Song et al., 2025a)，以及预测末端执行器的未来视觉轨迹 (Ji et al., 2025; Yuan et al., 2025a)。尽管监督微调 (SFT) 一直是这些任务的主导范式，最近的方法已经利用强化学习 (RL) 策略（例如，DeepSeek-R1; Guo et al. 2025）来激发更强的推理能力，从而带来了显著的性能提升 (Azzolini et al., 2025; Kim et al., 2025a; Song et al., 2025b; Huang et al., 2025a)。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>perception, language understanding, and common-sense knowledge of multimodal-large-language models (MLLMs), VLAs provide a foundation for training generalizable robotic policies in real-world scenarios (Yang et al., 2023; Huang et al., 2022b; Tellex et al., 2020; Huang et al., 2022a; Hu et al., 2023). Specifically, policies are obtained either through discrete action token predictions by MLLMs (Kim et al., 2024; Pertsch et al., 2025; Kim et al., 2025b) or through continuous action prediction by external action experts that operate on latent states of MLLMs (Black et al., 2024; Bjorck et al., 2025; Team et al., 2024). This approach leverages the extensive pretrained knowledge within MLLMs, enabling the development of generalizable policies even with a limited amount of robotics data. Improving embodied reasoning in multimodallarge-language models (MLLMs) is essential for building vision-language-action models (VLAs) on top of them to readily translate multimodal understanding into low-level actions. Accordingly, recent work has explored enhancing embodied reasoning in MLLMs through supervision of vision-question-answering type. However, these approaches have been reported to result in unstable VLA performance, often yielding only marginal or even negative gains. In this paper, we propose a more systematic MLLM training framework ROBOA LIGN that reliably improves VLA performance. Our key idea is to sample action tokens via zero-shot natural language reasoning and refines this reasoning using reinforcement learning (RL) to improve action accuracy. As a result, ROBOA LIGN bridges the modality gap between language and low-level actions in MLLMs, and facilitate knowledge transfer from MLLM to VLA. To validate the effectiveness of ROBOA LIGN, we train VLAs by adding a diffusion-based action head on top of an MLLM backbone and evaluate them on major robotics benchmarks. Remarkably, by performing RLbased alignment after SFT using less than 1% of the data, ROBOA LIGN achieves performance improvements of 17.5%, 18.9%, and 106.6% over SFT baselines on LIBERO, CALVIN, and realworld environments, respectively. However, the performance and generalization of VLAs are often limited by the underlying MLLMs, which struggle with key embodied tasks required for action generation, such as spatial reasoning (Tong et al., 2024; Zhou et al., 2025; Cheng et al., 2024) and temporal reasoning (Ahn et al., 2022; Sermanet et al., 2024). To address this limitation, researchers have developed various embodied questionanswering tasks designed to improve reasoning skills for robotic manipulation. These include tasks such as answering high-level action questions (Chen et al., 2025; Lynch et al., 2023), responding to spatial questions about object relationships (Chen et al., 2024a; Xu et al., 2025), grounding points or bounding boxes in images to identify affordance-related locations (Yuan et al., 2024; Song et al., 2025a), and predicting future visual trajectories of end-effectors (Ji et al., 2025; Yuan et al., 2025a). While supervised fine-tuning (SFT) has been the dominant paradigm for these tasks, recent approaches have leveraged reinforcement learning (RL) strategies (e.g., DeepSeek-R1; Guo et al. 2025) to elicit stronger reasoning capabilities, leading to significant performance improvements (Azzolini et al., 2025; Kim et al., 2025a; Song et al., 2025b; Huang et al., 2025a).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260322rl18roboal,
+  title = {RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.21341v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl18-roboalign-vla-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). RoboAlign: Learning Test-Time Reasoning for Language-Action Alignment in Vision-Language-Action Models. https://arxiv.org/pdf/2603.21341v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.21341v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

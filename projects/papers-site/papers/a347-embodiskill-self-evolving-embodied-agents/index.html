@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EmbodiSkill: Skill-Aware Reflection for Self-Evolving Embodied Agents | DAST Papers</title>
+    <meta name="description" content="这篇论文把 self-evolving skills 从数字环境推进到 embodied agents。具身环境的失败并不总是技能内容错了，也可能是 agent 没有执行好本来正确的指导。
+
+EmbodiSkill 的核心是 skill-aware reflection：每条轨迹都相对于当前 skill 解释，区分 skill-changing evidence 和 execution-lapse" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a347-embodiskill-self-evolving-embodied-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="EmbodiSkill: Skill-Aware Reflection for Self-Evolving Embodied Agents" />
+    <meta property="og:description" content="这篇论文把 self-evolving skills 从数字环境推进到 embodied agents。具身环境的失败并不总是技能内容错了，也可能是 agent 没有执行好本来正确的指导。
+
+EmbodiSkill 的核心是 skill-aware reflection：每条轨迹都相对于当前 skill 解释，区分 skill-changing evidence 和 execution-lapse" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a347-embodiskill-self-evolving-embodied-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="EmbodiSkill: Skill-Aware Reflection for Self-Evolving Embodied Agents" />
+    <meta name="twitter:description" content="这篇论文把 self-evolving skills 从数字环境推进到 embodied agents。具身环境的失败并不总是技能内容错了，也可能是 agent 没有执行好本来正确的指导。
+
+EmbodiSkill 的核心是 skill-aware reflection：每条轨迹都相对于当前 skill 解释，区分 skill-changing evidence 和 execution-lapse" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>EmbodiSkill: Skill-Aware Reflection for Self-Evolving Embodied Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10332" target="_blank" rel="noopener noreferrer">2605.10332</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文把 self-evolving skills 从数字环境推进到 embodied agents。具身环境的失败并不总是技能内容错了，也可能是 agent 没有执行好本来正确的指导。</dd></div><div><dt>方法/机制</dt><dd>EmbodiSkill 的核心是 skill-aware reflection：每条轨迹都相对于当前 skill 解释，区分 skill-changing evidence 和 execution-lapse evidence。前者用于修改技能主体，后者用于保留并强调已有有效指导。</dd></div><div><dt>结果/证据</dt><dd>这种区分很关键，因为直接把失败轨迹粗暴蒸馏成技能更新，会把执行失误错误地写进技能，导致长期技能污染。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它提出了 embodied skill self-evolution 的具体诊断边界，让技能更新从“失败就改”变成“判断是技能错还是执行错再改”。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文把 self-evolving skills 从数字环境推进到 embodied agents。具身环境的失败并不总是技能内容错了，也可能是 agent 没有执行好本来正确的指导。</p><p>EmbodiSkill 的核心是 skill-aware reflection：每条轨迹都相对于当前 skill 解释，区分 skill-changing evidence 和 execution-lapse evidence。前者用于修改技能主体，后者用于保留并强调已有有效指导。</p><p>这种区分很关键，因为直接把失败轨迹粗暴蒸馏成技能更新，会把执行失误错误地写进技能，导致长期技能污染。</p><p>收录价值在于它提出了 embodied skill self-evolution 的具体诊断边界，让技能更新从“失败就改”变成“判断是技能错还是执行错再改”。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>具身智能体可以受益于指导物体搜索、动作执行和跨多样化环境状态变化的技能。由于具身环境因布局、物体状态和其他执行因素而异，这些技能必须从任务执行过程中生成的轨迹中自我演化。然而，现有的技能自我演化方法主要在数字环境中开发，并且通常将轨迹转换为粗略的技能更新。将这种范式直接应用于具身环境存在问题，因为失败的任务执行可能不仅反映了不正确的技能内容，还反映了智能体未能遵循有效指导的执行失误。我们提出了EmbodiSkill，一个通过技能感知反射和有针对性的修订实现具身技能自我演化的免训练框架。EmbodiSkill根据当前技能解释每条轨迹，使用技能改变证据来更新技能主体，并使用执行失误证据来保留并强调有效指导。在ALFWorld和EmbodiedBench上的实验表明，EmbodiSkill持续提高了具身任务成功率。在ALFWorld上，EmbodiSkill使冻结的Qwen3.5-27B执行器达到93.28%的任务成功率，比作为无技能直接智能体使用的GPT-5.2高出31.58%。这些结果表明，技能感知自我演化有助于具身智能体从自身轨迹中积累可重用的程序性知识。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Embodied agents can benefit from skills that guide object search, action execution, and state changes across diverse environments. Since embodied environments vary across layouts, object states, and other execution factors, these skills must self-evolve from trajectories generated during task execution. However, existing skill self-evolution methods are mainly developed in digital environments and often convert trajectories into coarse skill updates. Directly applying this paradigm to embodied settings is problematic, because a failed task execution may reflect not only incorrect skill content, but also an execution lapse in which the agent fails to follow valid guidance. We propose EmbodiSkill, a training-free framework for embodied skill selfevolution through skill-aware reflection and targeted revision. EmbodiSkill interprets each trajectory with respect to the current skill, uses skill-changing evidence to update the skill body, and uses execution-lapse evidence to preserve and emphasize valid guidance. Experiments on ALFWorld and EmbodiedBench show that EmbodiSkill consistently improves embodied task success. On ALFWorld, EmbodiSkill enables a frozen Qwen3.5-27B executor to reach 93.28% task success, outperforming GPT-5.2 used as a direct agent without skills by 31.58%. These results show that skill-aware self-evolution helps embodied agents accumulate reusable procedural knowledge from their own trajectories.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511a347embodi,
+  title = {EmbodiSkill: Skill-Aware Reflection for Self-Evolving Embodied Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10332.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a347-embodiskill-self-evolving-embodied-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). EmbodiSkill: Skill-Aware Reflection for Self-Evolving Embodied Agents. https://arxiv.org/pdf/2605.10332.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10332.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

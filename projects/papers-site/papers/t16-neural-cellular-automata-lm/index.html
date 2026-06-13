@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Training Language Models via Neural Cellular Automata | DAST Papers</title>
+    <meta name="description" content="这篇论文要回答一个非常根本的问题：训练语言模型获得推理和上下文学习能力，是否真的必须依赖自然语言语料？作者提出先用神经元胞自动机（NCA）生成的非语言序列做“预-预训练”，再进入常规自然语言训练，从而把结构性计算能力先注入模型。
+
+方法上，作者用 NCA 生成具有丰富时空结构和可控复杂度的合成 token 序列，并系统研究它们对后续 OpenWebText、OpenWebMath、CodeParr" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/t16-neural-cellular-automata-lm/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Training Language Models via Neural Cellular Automata" />
+    <meta property="og:description" content="这篇论文要回答一个非常根本的问题：训练语言模型获得推理和上下文学习能力，是否真的必须依赖自然语言语料？作者提出先用神经元胞自动机（NCA）生成的非语言序列做“预-预训练”，再进入常规自然语言训练，从而把结构性计算能力先注入模型。
+
+方法上，作者用 NCA 生成具有丰富时空结构和可控复杂度的合成 token 序列，并系统研究它们对后续 OpenWebText、OpenWebMath、CodeParr" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/t16-neural-cellular-automata-lm/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Training Language Models via Neural Cellular Automata" />
+    <meta name="twitter:description" content="这篇论文要回答一个非常根本的问题：训练语言模型获得推理和上下文学习能力，是否真的必须依赖自然语言语料？作者提出先用神经元胞自动机（NCA）生成的非语言序列做“预-预训练”，再进入常规自然语言训练，从而把结构性计算能力先注入模型。
+
+方法上，作者用 NCA 生成具有丰富时空结构和可控复杂度的合成 token 序列，并系统研究它们对后续 OpenWebText、OpenWebMath、CodeParr" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Training Language Models via Neural Cellular Automata</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.10055" target="_blank" rel="noopener noreferrer">2603.10055</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文要回答一个非常根本的问题：训练语言模型获得推理和上下文学习能力，是否真的必须依赖自然语言语料？作者提出先用神经元胞自动机（NCA）生成的非语言序列做“预-预训练”，再进入常规自然语言训练，从而把结构性计算能力先注入模型。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者用 NCA 生成具有丰富时空结构和可控复杂度的合成 token 序列，并系统研究它们对后续 OpenWebText、OpenWebMath、CodeParrot 等语料训练的迁移效果。结果显示，只用 1.64 亿个 NCA token 的预-预训练，就能优于 16 亿个自然语言 token 的同类阶段训练，并改善语言建模、数学、代码等下游表现。</dd></div><div><dt>结果/证据</dt><dd>它在仓库里属于“合成数据预训练 / reasoning priors / language model training”主线。论文真正重要的地方不是再做一个小数据增强技巧，而是在探索一种不同于人类语言统计的能力注入路径，对未来完全或部分合成预训练路线很有启发。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍然需要自然语言阶段来完成语义对齐，NCA 还不是自然语言预训练的完整替代方案。它更像一条很有潜力的新训练路线，而不是已经完成主流替换的范式跃迁。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文要回答一个非常根本的问题：训练语言模型获得推理和上下文学习能力，是否真的必须依赖自然语言语料？作者提出先用神经元胞自动机（NCA）生成的非语言序列做“预-预训练”，再进入常规自然语言训练，从而把结构性计算能力先注入模型。</p><p>方法上，作者用 NCA 生成具有丰富时空结构和可控复杂度的合成 token 序列，并系统研究它们对后续 OpenWebText、OpenWebMath、CodeParrot 等语料训练的迁移效果。结果显示，只用 1.64 亿个 NCA token 的预-预训练，就能优于 16 亿个自然语言 token 的同类阶段训练，并改善语言建模、数学、代码等下游表现。</p><p>它在仓库里属于“合成数据预训练 / reasoning priors / language model training”主线。论文真正重要的地方不是再做一个小数据增强技巧，而是在探索一种不同于人类语言统计的能力注入路径，对未来完全或部分合成预训练路线很有启发。</p><p>它没有升到更高一级，是因为当前仍然需要自然语言阶段来完成语义对齐，NCA 还不是自然语言预训练的完整替代方案。它更像一条很有潜力的新训练路线，而不是已经完成主流替换的范式跃迁。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>预训练对于大型语言模型（LLMs）至关重要，因为大多数表示和能力都是在此阶段获得的。然而，自然语言预训练存在问题：高质量文本有限，它包含人类偏见，并且将知识与推理纠缠在一起。这引出了一个基本问题：自然语言是通向智能的唯一途径吗？我们提出使用神经元细胞自动机（NCA）生成合成的非语言数据，用于LLMs的预-预训练——即在合成数据之后再训练自然语言。NCA数据展现出丰富的时空结构和统计特性，类似于自然语言，同时可控且能以低成本大规模生成。我们发现，仅在1.64亿NCA tokens上进行预-预训练，可将下游语言建模性能提升高达6%，并将收敛速度加快高达1.6倍。令人惊讶的是，这甚至超越了在Common Crawl的16亿自然语言tokens上进行预-预训练（且计算量更大）的性能。这些增益也迁移到推理基准测试中，包括GSM8K、HumanEval和BigBench-Lite。在探究迁移的驱动因素时，我们发现注意力层是最具可迁移性的，并且最佳NCA复杂度因领域而异：代码受益于更简单的动态，而数学和网络文本则偏爱更复杂的动态。这些结果使得能够系统地调整合成数据分布以适应目标领域。更广泛地说，我们的工作为通过完全合成预训练实现更高效的模型开辟了一条道路。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Pre-training is crucial for large language models (LLMs), as it is when most representations and capabilities are acquired. However, natural language pre-training has problems: high-quality text is finite, it contains human biases, and it entangles knowledge with reasoning. This raises a fundamental question: is natural language the only path to intelligence? We propose using neural cellular automata (NCA) to generate synthetic, non-linguistic data for pre-pre-training LLMs–training on synthetic-then-natural language. NCA data exhibits rich spatiotemporal structure and statistics resembling natural language while being controllable and cheap to generate at scale. We find that pre-pre-training on only 164M NCA tokens improves downstream language modeling by up to 6% and accelerates convergence by up to 1.6×. Surprisingly, this even outperforms pre-pre-training on 1.6B tokens of natural language from Common Crawl with more compute. These gains also transfer to reasoning benchmarks, including GSM8K, HumanEval, and BigBench-Lite. Investigating what drives transfer, we find that attention layers are the most transferable, and that optimal NCA complexity varies by domain: code benefits from simpler dynamics, while math and web text favor more complex ones. These results enable systematic tuning of the synthetic distribution to target domains. More broadly, our work opens a path toward more efficient models with fully synthetic pre-training.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309t16neuralc,
+  title = {Training Language Models via Neural Cellular Automata},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.10055v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/t16-neural-cellular-automata-lm/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Training Language Models via Neural Cellular Automata. https://arxiv.org/pdf/2603.10055v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.10055v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents | DAST Papers</title>
+    <meta name="description" content="多轮 LLM agent 的 RL 训练正在从单轮问答转向长轨迹、强环境交互的任务，但真正拖慢系统的常常不是 PPO 或 GRPO 本身，而是 rollout 这一侧：要管理沙箱环境、工具调用、异步反馈和不同任务的执行时延。现有框架往往把 rollout 生命周期直接嵌在 trainer 里，结果是训练侧和执行侧的系统边界被揉在一起，迁移、扩展和维护都变得很重。
+
+ProRL Agent 的核心贡" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a76-prorl-agent-rollout-service/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents" />
+    <meta property="og:description" content="多轮 LLM agent 的 RL 训练正在从单轮问答转向长轨迹、强环境交互的任务，但真正拖慢系统的常常不是 PPO 或 GRPO 本身，而是 rollout 这一侧：要管理沙箱环境、工具调用、异步反馈和不同任务的执行时延。现有框架往往把 rollout 生命周期直接嵌在 trainer 里，结果是训练侧和执行侧的系统边界被揉在一起，迁移、扩展和维护都变得很重。
+
+ProRL Agent 的核心贡" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a76-prorl-agent-rollout-service/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents" />
+    <meta name="twitter:description" content="多轮 LLM agent 的 RL 训练正在从单轮问答转向长轨迹、强环境交互的任务，但真正拖慢系统的常常不是 PPO 或 GRPO 本身，而是 rollout 这一侧：要管理沙箱环境、工具调用、异步反馈和不同任务的执行时延。现有框架往往把 rollout 生命周期直接嵌在 trainer 里，结果是训练侧和执行侧的系统边界被揉在一起，迁移、扩展和维护都变得很重。
+
+ProRL Agent 的核心贡" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-19</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-19</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.18815" target="_blank" rel="noopener noreferrer">2603.18815</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>多轮 LLM agent 的 RL 训练正在从单轮问答转向长轨迹、强环境交互的任务，但真正拖慢系统的常常不是 PPO 或 GRPO 本身，而是 rollout 这一侧：要管理沙箱环境、工具调用、异步反馈和不同任务的执行时延。现有框架往往把 rollout 生命周期直接嵌在 trainer 里，结果是训练侧和执行侧的系统边界被揉在一起，迁移、扩展和维护都变得很重。</dd></div><div><dt>方法/机制</dt><dd>ProRL Agent 的核心贡献是把这一部分明确抽成独立服务，提出 rollout-as-a-service 的训练架构。trainer 不再自己管理 agent 执行，而是通过统一 HTTP 接口提交请求并取回 trajectory 与 reward；服务端则负责环境初始化、工具执行、推理协调和结果评估。论文还补上了几个关键工程接口：token-in/token-out 避免重分词漂移，可扩展的 sandbox 统一承载异构 agent 任务，以及 rootless HPC 部署能力，保证它能在共享集群环境下落地。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得正式收录，因为它给出的不是一次性的 NeMo 组件封装，而是 agentic RL 训练基础设施的一条清晰系统分层：训练器负责优化，rollout 服务负责执行。这个边界对多任务 agent RL、可插拔训练后端、以及需要频繁更换环境与工具链的研究流程都有明显复用价值。它和已经收录的 ARL-Tangram 也不重复，后者重在 action-level 资源调度，ProRL Agent 重在把 rollout 生命周期从 trainer 中系统性解耦。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough，而不是更高一级，因为证据主要集中在与 ProRL training framework 的整合和一组 agentic 任务验证，还没有证明 rollout-as-a-service 已经成为更广泛 agent post-training 生态的默认接口。它的思想很对，但长期通用性、跨框架采纳和更复杂企业级 workflow 支撑还需要更多公开验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>多轮 LLM agent 的 RL 训练正在从单轮问答转向长轨迹、强环境交互的任务，但真正拖慢系统的常常不是 PPO 或 GRPO 本身，而是 rollout 这一侧：要管理沙箱环境、工具调用、异步反馈和不同任务的执行时延。现有框架往往把 rollout 生命周期直接嵌在 trainer 里，结果是训练侧和执行侧的系统边界被揉在一起，迁移、扩展和维护都变得很重。</p><p>ProRL Agent 的核心贡献是把这一部分明确抽成独立服务，提出 rollout-as-a-service 的训练架构。trainer 不再自己管理 agent 执行，而是通过统一 HTTP 接口提交请求并取回 trajectory 与 reward；服务端则负责环境初始化、工具执行、推理协调和结果评估。论文还补上了几个关键工程接口：token-in/token-out 避免重分词漂移，可扩展的 sandbox 统一承载异构 agent 任务，以及 rootless HPC 部署能力，保证它能在共享集群环境下落地。</p><p>这篇工作值得正式收录，因为它给出的不是一次性的 NeMo 组件封装，而是 agentic RL 训练基础设施的一条清晰系统分层：训练器负责优化，rollout 服务负责执行。这个边界对多任务 agent RL、可插拔训练后端、以及需要频繁更换环境与工具链的研究流程都有明显复用价值。它和已经收录的 ARL-Tangram 也不重复，后者重在 action-level 资源调度，ProRL Agent 重在把 rollout 生命周期从 trainer 中系统性解耦。</p><p>它目前仍是 breakthrough，而不是更高一级，因为证据主要集中在与 ProRL training framework 的整合和一组 agentic 任务验证，还没有证明 rollout-as-a-service 已经成为更广泛 agent post-training 生态的默认接口。它的思想很对，但长期通用性、跨框架采纳和更复杂企业级 workflow 支撑还需要更多公开验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>多轮LLM智能体对于解决复杂、交互式任务变得越来越重要，而强化学习（RL）是改善其长期行为的关键要素。然而，RL训练需要生成大量的沙盒式rollout轨迹，并且现有基础设施通常将rollout编排与训练循环耦合，使得系统难以迁移和维护。在“rollout即服务”的理念下，我们提出了ProRL Agent，这是一个可扩展的基础设施，它通过API服务支持完整的智能体rollout生命周期。ProRL Agent还提供标准化且可扩展的沙盒环境，支持在无root权限的高性能计算（HPC）环境中进行各种智能体任务。我们通过在软件工程、数学、STEM和编码任务上进行RL训练来验证ProRL Agent。ProRL Agent已在ProRL Agent开源，并作为NVIDIA NeMo Gym的一部分进行集成。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Multi-turn LLM agents are increasingly important for solving complex, interactive tasks, and reinforcement learning (RL) is a key ingredient for improving their long-horizon behavior. However, RL training requires generating large numbers of sandboxed rollout trajectories, and existing infrastructures often couple rollout orchestration with the training loop, making systems hard to migrate and maintain. Under the rollout-as-a-service philosophy, we present ProRL Agent , a scalable infrastructure that serves the full agentic rollout lifecycle through an API service. ProRL Agent also provides standardized and extensible sandbox environments that support diverse agentic tasks in rootless HPC settings. We validate ProRL Agent through RL training on software engineering, math, STEM, and coding tasks. ProRL Agent is open-sourced at ProRL Agent and integrated as part of NVIDIA NeMo Gym.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260319a76prorlag,
+  title = {ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.18815.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a76-prorl-agent-rollout-service/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents. https://arxiv.org/pdf/2603.18815.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.18815.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

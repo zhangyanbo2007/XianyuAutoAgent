@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory | DAST Papers</title>
+    <meta name="description" content="长期会话记忆里最难的部分往往不是“能否检索到相关片段”，而是如何在多月跨度的对话中正确处理时间变化、事件先后关系和跨轮次多跳查询。很多 memory 系统仍然主要依赖语义相似度，因此一旦用户事实随时间变化，或者问题本身要求 temporal filtering，就很容易把语义相关但时间错误的证据混在一起。
+
+Chronos 的核心新意是把长期对话显式重写成两个结构化检索层：一个是由 subject" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a106-chronos-temporal-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory" />
+    <meta property="og:description" content="长期会话记忆里最难的部分往往不是“能否检索到相关片段”，而是如何在多月跨度的对话中正确处理时间变化、事件先后关系和跨轮次多跳查询。很多 memory 系统仍然主要依赖语义相似度，因此一旦用户事实随时间变化，或者问题本身要求 temporal filtering，就很容易把语义相关但时间错误的证据混在一起。
+
+Chronos 的核心新意是把长期对话显式重写成两个结构化检索层：一个是由 subject" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a106-chronos-temporal-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory" />
+    <meta name="twitter:description" content="长期会话记忆里最难的部分往往不是“能否检索到相关片段”，而是如何在多月跨度的对话中正确处理时间变化、事件先后关系和跨轮次多跳查询。很多 memory 系统仍然主要依赖语义相似度，因此一旦用户事实随时间变化，或者问题本身要求 temporal filtering，就很容易把语义相关但时间错误的证据混在一起。
+
+Chronos 的核心新意是把长期对话显式重写成两个结构化检索层：一个是由 subject" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-03-17</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-17</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.16862" target="_blank" rel="noopener noreferrer">2603.16862</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>长期会话记忆里最难的部分往往不是“能否检索到相关片段”，而是如何在多月跨度的对话中正确处理时间变化、事件先后关系和跨轮次多跳查询。很多 memory 系统仍然主要依赖语义相似度，因此一旦用户事实随时间变化，或者问题本身要求 temporal filtering，就很容易把语义相关但时间错误的证据混在一起。</dd></div><div><dt>方法/机制</dt><dd>Chronos 的核心新意是把长期对话显式重写成两个结构化检索层：一个是由 subject-verb-object 事件与时间范围组成的 events calendar，另一个是保留原始上下文的 turn calendar。查询时系统不是静态 top-k，而是先动态生成 retrieval guidance，再通过迭代式 tool-calling 在两个 calendar 上做时间约束检索和多跳推理。这个设计把长期记忆从“语义相似”推进到“时间结构化检索”。</dd></div><div><dt>结果/证据</dt><dd>它值得这个仓库正式收录，因为 temporal-aware memory 是长期 agent memory 的核心难点，而 Chronos 给出的是清晰、可复用的系统模式：先把会话压成可时间推理的结构化事件层，再保留上下文层作为精读补充。对 personal assistant、long-horizon dialogue agent 和 profile memory infra 都有直接外溢。</dd></div><div><dt>收录价值</dt><dd>它目前仍是 breakthrough 而不是更高一级，因为证据还主要来自 arXiv 阶段和 LongMemEvalS 一类特定 benchmark，离成为更广长期记忆默认架构还有距离；同时它的 structured event extraction 本身仍依赖上游解析质量，复杂真实对话中的稳定性需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>长期会话记忆里最难的部分往往不是“能否检索到相关片段”，而是如何在多月跨度的对话中正确处理时间变化、事件先后关系和跨轮次多跳查询。很多 memory 系统仍然主要依赖语义相似度，因此一旦用户事实随时间变化，或者问题本身要求 temporal filtering，就很容易把语义相关但时间错误的证据混在一起。</p><p>Chronos 的核心新意是把长期对话显式重写成两个结构化检索层：一个是由 subject-verb-object 事件与时间范围组成的 events calendar，另一个是保留原始上下文的 turn calendar。查询时系统不是静态 top-k，而是先动态生成 retrieval guidance，再通过迭代式 tool-calling 在两个 calendar 上做时间约束检索和多跳推理。这个设计把长期记忆从“语义相似”推进到“时间结构化检索”。</p><p>它值得这个仓库正式收录，因为 temporal-aware memory 是长期 agent memory 的核心难点，而 Chronos 给出的是清晰、可复用的系统模式：先把会话压成可时间推理的结构化事件层，再保留上下文层作为精读补充。对 personal assistant、long-horizon dialogue agent 和 profile memory infra 都有直接外溢。</p><p>它目前仍是 breakthrough 而不是更高一级，因为证据还主要来自 arXiv 阶段和 LongMemEvalS 一类特定 benchmark，离成为更广长期记忆默认架构还有距离；同时它的 structured event extraction 本身仍依赖上游解析质量，复杂真实对话中的稳定性需要更多验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Chronos：具有结构化事件检索的长期记忆时间感知对话代理。大型语言模型（LLMs）的最新进展使得对话式AI代理能够进行持续数周或数月的扩展多轮交互。然而，现有的记忆系统难以对在数月交互中演变的时间性事实和偏好进行推理，并且缺乏针对长对话历史中多跳、时间敏感查询的有效检索策略。我们引入了Chronos，这是一种新颖的时间感知记忆框架，它将原始对话分解为带有已解析日期时间范围和实体别名的主谓宾事件元组，并将其与保留完整对话上下文的轮次日历一起索引到结构化事件日历中。在查询时，Chronos应用动态提示为每个问题生成量身定制的检索指导，指导代理检索什么、如何在时间范围内进行过滤以及如何通过对两个日历的迭代工具调用循环来处理多跳推理。我们使用8个LLMs（包括开源和闭源）在LongMemEvalS基准上评估了Chronos，该基准包含500个问题，涵盖六类对话历史任务。Chronos Low实现了92.60%的准确率，Chronos High达到了95.60%的准确率，比之前最好的系统提高了7.67%，创造了新的最先进水平。消融结果显示，事件日历对基线带来了58.9%的提升，而所有其他组件的提升介于15.5%到22.3%之间。值得注意的是，仅Chronos Low就超越了在最强模型配置下评估的先前方法。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Recent advances in Large Language Models (LLMs) have enabled conversational AI agents to engage in extended multi-turn interactions spanning weeks or months. However, existing memory systems struggle to reason over temporally grounded facts and preferences that evolve across months of interaction and lack effective retrieval strategies for multi-hop, timesensitive queries over long dialogue histories. We introduce Chronos, a novel temporal-aware memory framework that decomposes raw dialogue into subject-verb-object event tuples with resolved datetime ranges and entity aliases, indexing them in a structured event calendar alongside a turn calendar that preserves full conversational context. At query time, Chronos applies dynamic prompting to generate tailored retrieval guidance for each question, directing the agent on what to retrieve, how to filter across time ranges, and how to approach multi-hop reasoning through an iterative tool-calling loop over both calendars. We evaluate Chronos with 8 LLMs, both open-source and closed-source, on the LongMemEvalS benchmark comprising 500 questions spanning six categories of dialogue history tasks. Chronos Low achieves 92.60% and Chronos High scores 95.60% accuracy, setting a new state of the art with an improvement of 7.67% over the best prior system. Ablation results reveal the events calendar accounts for a 58.9% gain on the baseline while all other components yield improvements between 15.5% and 22.3%. Notably, Chronos Low alone surpasses prior approaches evaluated under their strongest model configurations.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260317a106chrono,
+  title = {Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.16862.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a106-chronos-temporal-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Chronos: Temporal-Aware Conversational Agents with Structured Event Retrieval for Long-Term Memory. https://arxiv.org/pdf/2603.16862.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.16862.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

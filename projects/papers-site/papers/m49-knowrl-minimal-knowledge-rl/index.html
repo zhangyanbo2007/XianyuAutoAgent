@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance | DAST Papers</title>
+    <meta name="description" content="这篇论文延续 hint-guided RL 的问题线，但把重点从“给更多提示”改为“找最小充分知识点”。它试图降低 hard reasoning 任务中的奖励稀疏，同时避免长提示带来的冗余和训练开销。
+
+KnowRL 把 guidance 分解为 atomic knowledge points，并用 constrained subset search 选择交互相关的紧凑子集。论文还指出 pruni" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/m49-knowrl-minimal-knowledge-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance" />
+    <meta property="og:description" content="这篇论文延续 hint-guided RL 的问题线，但把重点从“给更多提示”改为“找最小充分知识点”。它试图降低 hard reasoning 任务中的奖励稀疏，同时避免长提示带来的冗余和训练开销。
+
+KnowRL 把 guidance 分解为 atomic knowledge points，并用 constrained subset search 选择交互相关的紧凑子集。论文还指出 pruni" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/m49-knowrl-minimal-knowledge-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance" />
+    <meta name="twitter:description" content="这篇论文延续 hint-guided RL 的问题线，但把重点从“给更多提示”改为“找最小充分知识点”。它试图降低 hard reasoning 任务中的奖励稀疏，同时避免长提示带来的冗余和训练开销。
+
+KnowRL 把 guidance 分解为 atomic knowledge points，并用 constrained subset search 选择交互相关的紧凑子集。论文还指出 pruni" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance</h1>
+          <p class="subtitle">理论、鲁棒性与核心机器学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">理论、鲁棒性与核心机器学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.12627" target="_blank" rel="noopener noreferrer">2604.12627</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文延续 hint-guided RL 的问题线，但把重点从“给更多提示”改为“找最小充分知识点”。它试图降低 hard reasoning 任务中的奖励稀疏，同时避免长提示带来的冗余和训练开销。</dd></div><div><dt>方法/机制</dt><dd>KnowRL 把 guidance 分解为 atomic knowledge points，并用 constrained subset search 选择交互相关的紧凑子集。论文还指出 pruning interaction paradox：单个知识点移除可能有利，但多个一起移除可能伤害性能。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它值得收录，因为它提供了 RL reasoning 中 guidance 设计的新接口，可与此前 HiLL/Scaf-GRPO 类工作形成对照：关键不是提示长度，而是知识点子集结构。</dd></div><div><dt>收录价值</dt><dd>局限是它与已有 hint-learning/RLVR 方法高度相邻，范式级新意弱于 HiLL；主要价值在 minimal-sufficient guidance 的工程和消融。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文延续 hint-guided RL 的问题线，但把重点从“给更多提示”改为“找最小充分知识点”。它试图降低 hard reasoning 任务中的奖励稀疏，同时避免长提示带来的冗余和训练开销。</p><p>KnowRL 把 guidance 分解为 atomic knowledge points，并用 constrained subset search 选择交互相关的紧凑子集。论文还指出 pruning interaction paradox：单个知识点移除可能有利，但多个一起移除可能伤害性能。</p><p>按本库标准，它值得收录，因为它提供了 RL reasoning 中 guidance 设计的新接口，可与此前 HiLL/Scaf-GRPO 类工作形成对照：关键不是提示长度，而是知识点子集结构。</p><p>局限是它与已有 hint-learning/RLVR 方法高度相邻，范式级新意弱于 HiLL；主要价值在 minimal-sufficient guidance 的工程和消融。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>RLVR提升了大型语言模型（LLM）的推理能力，但其有效性常因难题上严重的奖励稀疏性而受限。最近基于提示的强化学习方法通过注入部分解决方案或抽象模板来缓解稀疏性，但它们通常通过增加更多token来扩展指导，这引入了冗余、不一致性和额外的训练开销。我们提出了KnowRL（知识引导强化学习），一个将提示设计视为最小充分指导问题的强化学习训练框架。在强化学习训练期间，KnowRL将指导分解为原子知识点（KPs），并使用约束子集搜索（CSS）来构建紧凑、交互感知的训练子集。我们进一步识别了一个剪枝交互悖论——移除一个知识点可能有所帮助，而移除多个此类知识点则可能有害——并在此依赖结构下明确优化鲁棒的子集筛选。我们从OpenMath-Nemotron-1.5B训练了KnowRL-Nemotron1.5B。在1.5B规模的八个推理基准测试中，KnowRL-Nemotron-1.5B始终优于强大的强化学习和提示基线。在推理时没有知识点提示的情况下，KnowRL-Nemotron1.5B达到了70.08的平均准确率，已经比Nemotron-1.5B高出9.63个百分点；通过选定的知识点，性能提高到74.16，在该规模下建立了新的最先进水平。模型、精选训练数据和代码已在https://github.com/Hasuer/KnowRL公开。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>RLVR improves reasoning in large language models, but its effectiveness is often limited by severe reward sparsity on hard problems. Recent hint-based RL methods mitigate sparsity by injecting partial solutions or abstract templates, yet they typically scale guidance by adding more tokens, which introduce redundancy, inconsistency, and extra training overhead. We propose KnowRL (Knowledge-Guided Reinforcement Learning), an RL training framework that treats hint design as a minimal-sufficient guidance problem. During RL training, KnowRL decomposes guidance into atomic knowledge points (KPs) and uses Constrained Subset Search (CSS) to construct compact, interactionaware subsets for training. We further identify a pruning interaction paradox—removing one KP may help while removing multiple such KPs can hurt—and explicitly optimize for robust subset curation under this dependency structure. We train KnowRL-Nemotron1.5B from OpenMath-Nemotron-1.5B. Across eight reasoning benchmarks at the 1.5B scale, KnowRL-Nemotron-1.5B consistently outperforms strong RL and hinting baselines. Without KP hints at inference, KnowRL-Nemotron1.5B reaches 70.08 average accuracy, already surpassing Nemotron-1.5B by +9.63 points; with selected KPs, performance improves to 74.16, establishing a new state of the art at this scale. The model, curated training data, and code are publicly available at https:// github.com/Hasuer/KnowRL.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415m49knowrlm,
+  title = {KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.12627.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/m49-knowrl-minimal-knowledge-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). KnowRL: Boosting LLM Reasoning via Reinforcement Learning with Minimal-Sufficient Knowledge Guidance. https://arxiv.org/pdf/2604.12627.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/t41-bonafide-cot-faithfulness-meta-eval/">
+              <span>Faithfulness Metrics Don&#x27;t Measure Faithfulness: A Meta-Evaluation with Ground Truth</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-24</small>
+            </a>
+            <a class="related-item" href="../../papers/t42-zero-cot-contamination-probe/">
+              <span>The Illusion of Reasoning: Exposing Evasive Data Contamination in LLMs via Zero-CoT Truncation</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/t39-agent-security-systems/">
+              <span>Agent Security is a Systems Problem</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t17-eventgraph-world-models/">
+              <span>Deterministic Event-Graph Substrates as World Models for Counterfactual Reasoning</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/t34-rocket-recurrent-hpo/">
+              <span>Automated deep learning by recurrent hyperparameter optimization</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-05-04</small>
+            </a>
+            <a class="related-item" href="../../papers/t33-warmth-sycophancy-reliability/">
+              <span>Training language models to be warm can reduce accuracy and increase sycophancy</span>
+              <small>理论、鲁棒性与核心机器学习 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.12627.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

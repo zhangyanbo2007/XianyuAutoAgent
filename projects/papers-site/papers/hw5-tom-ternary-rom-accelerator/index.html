@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TOM: A Ternary Read-only Memory Accelerator for LLM-powered Edge Intelligence | DAST Papers</title>
+    <meta name="description" content="这篇工作针对边缘侧部署大语言模型时最硬的瓶颈之一：片上存储容量与带宽不足导致模型装不下、跑不快，也难以做轻量适配。作者把问题收敛到内存墙，而不是只做局部算子优化，因此切入点对端侧 AI 硬件是成立的。
+
+方法上，TOM 不是单纯做 ternary 量化，也不是单纯做 ROM 存储，而是把 ternary 权重、ROM-SRAM 混合存储、分布式计算单元以及 QLoRA 式可调部分联合起来设计。核心" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw5-tom-ternary-rom-accelerator/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TOM: A Ternary Read-only Memory Accelerator for LLM-powered Edge Intelligence" />
+    <meta property="og:description" content="这篇工作针对边缘侧部署大语言模型时最硬的瓶颈之一：片上存储容量与带宽不足导致模型装不下、跑不快，也难以做轻量适配。作者把问题收敛到内存墙，而不是只做局部算子优化，因此切入点对端侧 AI 硬件是成立的。
+
+方法上，TOM 不是单纯做 ternary 量化，也不是单纯做 ROM 存储，而是把 ternary 权重、ROM-SRAM 混合存储、分布式计算单元以及 QLoRA 式可调部分联合起来设计。核心" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw5-tom-ternary-rom-accelerator/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TOM: A Ternary Read-only Memory Accelerator for LLM-powered Edge Intelligence" />
+    <meta name="twitter:description" content="这篇工作针对边缘侧部署大语言模型时最硬的瓶颈之一：片上存储容量与带宽不足导致模型装不下、跑不快，也难以做轻量适配。作者把问题收敛到内存墙，而不是只做局部算子优化，因此切入点对端侧 AI 硬件是成立的。
+
+方法上，TOM 不是单纯做 ternary 量化，也不是单纯做 ROM 存储，而是把 ternary 权重、ROM-SRAM 混合存储、分布式计算单元以及 QLoRA 式可调部分联合起来设计。核心" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TOM: A Ternary Read-only Memory Accelerator for LLM-powered Edge Intelligence</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-02-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.20662" target="_blank" rel="noopener noreferrer">2602.20662</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇工作针对边缘侧部署大语言模型时最硬的瓶颈之一：片上存储容量与带宽不足导致模型装不下、跑不快，也难以做轻量适配。作者把问题收敛到内存墙，而不是只做局部算子优化，因此切入点对端侧 AI 硬件是成立的。</dd></div><div><dt>方法/机制</dt><dd>方法上，TOM 不是单纯做 ternary 量化，也不是单纯做 ROM 存储，而是把 ternary 权重、ROM-SRAM 混合存储、分布式计算单元以及 QLoRA 式可调部分联合起来设计。核心价值在于它把高密度只读权重与少量可训练/可调部分拆开，形成了适合边缘 LLM 的结构化硬件接口。</dd></div><div><dt>结果/证据</dt><dd>对这个仓库而言，这篇论文的价值在于它提供了一种清晰的 AI 硬件设计模式：高密度固定参数承载主模型，灵活 SRAM 区承载低成本适配能力。这比普通 edge accelerator 更贴近当前大模型部署现实，也和 LoRA/QLoRA 一类参数高效适配形成了明确的软硬件共设计关系。</dd></div><div><dt>收录价值</dt><dd>它暂时还不适合更高分级，因为验证仍集中在 edge LLM serving 场景，离真正改变通用 AI 加速器设计范式还有距离。当前证据更像是一个很强的架构型突破，而不是已经被广泛证明的长期蓝图。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇工作针对边缘侧部署大语言模型时最硬的瓶颈之一：片上存储容量与带宽不足导致模型装不下、跑不快，也难以做轻量适配。作者把问题收敛到内存墙，而不是只做局部算子优化，因此切入点对端侧 AI 硬件是成立的。</p><p>方法上，TOM 不是单纯做 ternary 量化，也不是单纯做 ROM 存储，而是把 ternary 权重、ROM-SRAM 混合存储、分布式计算单元以及 QLoRA 式可调部分联合起来设计。核心价值在于它把高密度只读权重与少量可训练/可调部分拆开，形成了适合边缘 LLM 的结构化硬件接口。</p><p>对这个仓库而言，这篇论文的价值在于它提供了一种清晰的 AI 硬件设计模式：高密度固定参数承载主模型，灵活 SRAM 区承载低成本适配能力。这比普通 edge accelerator 更贴近当前大模型部署现实，也和 LoRA/QLoRA 一类参数高效适配形成了明确的软硬件共设计关系。</p><p>它暂时还不适合更高分级，因为验证仍集中在 edge LLM serving 场景，离真正改变通用 AI 加速器设计范式还有距离。当前证据更像是一个很强的架构型突破，而不是已经被广泛证明的长期蓝图。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260224hw5tomtern,
+  title = {TOM: A Ternary Read-only Memory Accelerator for LLM-powered Edge Intelligence},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.20662.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw5-tom-ternary-rom-accelerator/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TOM: A Ternary Read-only Memory Accelerator for LLM-powered Edge Intelligence. https://arxiv.org/pdf/2602.20662.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.20662.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

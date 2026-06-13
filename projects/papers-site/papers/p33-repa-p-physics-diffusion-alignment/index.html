@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment | DAST Papers</title>
+    <meta name="description" content="REPA-P 指出 physics-informed diffusion 常只约束最终输出，隐藏层仍可能学 shortcut，导致边界条件变化时 OOD 鲁棒性差。
+
+方法在选定中间层接轻量 projection heads，把 hidden activations 解码成物理量并施加 PDE residual losses；这些 heads 在推理时移除，因此没有额外推理开销。
+
+论文在 Dar" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p33-repa-p-physics-diffusion-alignment/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment" />
+    <meta property="og:description" content="REPA-P 指出 physics-informed diffusion 常只约束最终输出，隐藏层仍可能学 shortcut，导致边界条件变化时 OOD 鲁棒性差。
+
+方法在选定中间层接轻量 projection heads，把 hidden activations 解码成物理量并施加 PDE residual losses；这些 heads 在推理时移除，因此没有额外推理开销。
+
+论文在 Dar" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p33-repa-p-physics-diffusion-alignment/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment" />
+    <meta name="twitter:description" content="REPA-P 指出 physics-informed diffusion 常只约束最终输出，隐藏层仍可能学 shortcut，导致边界条件变化时 OOD 鲁棒性差。
+
+方法在选定中间层接轻量 projection heads，把 hidden activations 解码成物理量并施加 PDE residual losses；这些 heads 在推理时移除，因此没有额外推理开销。
+
+论文在 Dar" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.20780" target="_blank" rel="noopener noreferrer">2605.20780</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>REPA-P 指出 physics-informed diffusion 常只约束最终输出，隐藏层仍可能学 shortcut，导致边界条件变化时 OOD 鲁棒性差。</dd></div><div><dt>方法/机制</dt><dd>方法在选定中间层接轻量 projection heads，把 hidden activations 解码成物理量并施加 PDE residual losses；这些 heads 在推理时移除，因此没有额外推理开销。</dd></div><div><dt>结果/证据</dt><dd>论文在 Darcy flow、topology optimization、electrostatic potential、turbulent channel flow 等任务上报告更快收敛、更低 physics residual 和更强 OOD 鲁棒性。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 representation alignment 变成 scientific diffusion 的可复用训练原语，补足了只在输出层加物理损失的不足。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>REPA-P 指出 physics-informed diffusion 常只约束最终输出，隐藏层仍可能学 shortcut，导致边界条件变化时 OOD 鲁棒性差。</p><p>方法在选定中间层接轻量 projection heads，把 hidden activations 解码成物理量并施加 PDE residual losses；这些 heads 在推理时移除，因此没有额外推理开销。</p><p>论文在 Darcy flow、topology optimization、electrostatic potential、turbulent channel flow 等任务上报告更快收敛、更低 physics residual 和更强 OOD 鲁棒性。</p><p>它值得正式收录，因为它把 representation alignment 变成 scientific diffusion 的可复用训练原语，补足了只在输出层加物理损失的不足。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>2025b；Esser 等人，2024）和视频合成（Gupta 等人，2023）。实现高质量生成通常依赖于可扩展且有效的架构，例如U-Net和DiT（Ronneberger 等人，2015；Peebles &amp; Xie，2023）。尽管取得了这些进展，但将这些成功扩展到科学AI仍然面临根本性挑战。与自然图像不同，科学数据受严格、不可变的物理定律（Cuomo 等人，2022）支配。物理信息扩散模型通常仅在最终输出上强制执行PDE约束，使中间表示不受约束，并且在边界条件发生变化时容易出现捷径学习。我们引入了REPA-P，一个无教师、与架构无关的框架，它使用第一性原理残差将中间特征与物理状态对齐。REPA-P将轻量级的1×1投影头连接到选定的层，将隐藏激活解码为物理量，并在训练期间应用PDE残差损失。这些头在推理时被丢弃，引入零开销。在包括达西流、拓扑优化、静电势和湍流通道流在内的四个PDE任务中，REPA-P将收敛速度提高了2倍，将物理残差减少了66.4%，并将分布外鲁棒性提高了49.3%，在U-Net和Diffusion Transformer骨干模型上都取得了持续的收益。消融实验表明，监督一小组中间层可以获得大部分益处，并补充了输出级别的物理损失。代码可在https://github.com/ Hxxxz0/REPA-P获取。当前数据驱动方法，即使在输出端增加了物理约束，其根本问题在于它们仍然可能容易出现捷径学习（Bastek 等人，2025）。当约束仅应用于最终预测时，这种情况尤其明显，这使得内部网络可以绕过物理推理。通过利用深度网络的强大表达能力，模型本质上“记忆”了虚假相关性、特定于分布的线索以及训练集的离散化伪影，以最小化去噪目标，而不是真正“理解”潜在的物理机制。这类似于一个死记硬背数学问题答案而不理解推导步骤的学生：他们可能在熟悉的问题上得分很高，但在问题参数改变时会灾难性地失败。在扩散模型的背景下，这种内部理解的缺乏可能导致对分布外（OOD）边界条件和物理不一致性的脆弱性，这些不一致性仅仅被表面模式匹配所掩盖。假设。我们假设通过将中间表示与物理状态对齐，可以显著增强科学生成模型的鲁棒性和泛化能力。虽然标准扩散模型作为统计去噪器有效运行，但我们认为，如果它们的潜在特征与物理量（例如速度、压力）结构对齐，模型将更好地捕捉潜在动力学，而不是依赖虚假相关性（Li 等人，2021）。我们将此属性称为物理可解码性：轻量级解码器将潜在特征映射到满足控制方程的状态变量的能力。我们认为，鼓励这种可解码性可以作为一种强大的归纳偏置，引导模型内化物理定律，从而改进。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>2025b; Esser et al., 2024) and video synthesis (Gupta et al., 2023). Achieving high-quality generation often relies on scalable and effective architectures, such as U-Net and DiT (Ronneberger et al., 2015; Peebles &amp; Xie, 2023). Despite these advances, extending these successes to AI for Science remains fundamentally challenging. Unlike natural images, scientific data is governed by strict, immutable physical laws (Cuomo et al., 2022). Physics-informed diffusion models typically enforce PDE constraints only on final outputs, leaving intermediate representations unconstrained and prone to shortcut learning under shifted boundary conditions. We introduce REPA-P, a teacher-free, architecture-agnostic framework that aligns intermediate features with physical states using first-principles residuals. REPA-P attaches lightweight 1×1 projection heads to selected layers, decodes hidden activations into physical quantities, and applies PDE residual losses during training. These heads are discarded at inference, introducing zero overhead. Across four PDE tasks, including Darcy flow, topology optimization, electrostatic potential, and turbulent channel flow, REPA-P accelerates convergence by up to 2×, reduces physics residuals by up to 66.4%, and improves out-of-distribution robustness by up to 49.3%, with consistent gains on both U-Net and Diffusion Transformer backbones. Ablations show that supervising a small set of intermediate layers captures most benefits and complements output-level physics losses. Code is available at https://github.com/ Hxxxz0/REPA-P. The fundamental problem with current data-driven approaches, even when augmented with physics constraints at the output, is that they may still be prone to shortcut learning (Bastek et al., 2025). This is particularly true when constraints are applied solely to the final prediction, allowing the internal network to bypass physical reasoning. By exploiting the powerful expressivity of deep networks, models essentially “memorize” spurious correlations, distributionspecific cues, and discretization artifacts of the training set to minimize the denoising objective, rather than genuinely “understanding” the underlying physical mechanisms. This is analogous to a student who rote memorizes the answers to math problems without understanding the derivation steps: they may score well on familiar questions, but fail catastrophically when the question parameters change. In the context of diffusion models, this lack of internal understanding may lead to fragility against out-of-distribution (OOD) boundary conditions and physical inconsistencies that are merely masked by superficial pattern matching. Hypothesis. We hypothesize that the robustness and generalizability of scientific generative models can be significantly enhanced by aligning intermediate representations with physical states. While standard diffusion models operate effectively as statistical denoisers, we posit that if their latent features are structurally aligned with physical quantities (e.g., velocity, pressure), the model is better positioned to capture the underlying dynamics rather than relying on spurious correlations (Li et al., 2021). We refer to this property as Physical Decodability: the capability of a lightweight decoder to map latent features to state variables that satisfy governing equations. We argue that encouraging such decodability acts as a powerful inductive bias, guiding the model to internalize physical laws and thereby improv-</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521p33repapph,
+  title = {Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.20780.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p33-repa-p-physics-diffusion-alignment/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment. https://arxiv.org/pdf/2605.20780.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+            <a class="related-item" href="../../papers/p27-sign-ultra-large-dynamics/">
+              <span>Predicting Dynamics of Ultra-Large Complex Systems by Inferring Governing Equations</span>
+              <small>物理与 AI for Science · 2026-04-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.20780.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://github.com/Hxxxz0/REPA-P" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

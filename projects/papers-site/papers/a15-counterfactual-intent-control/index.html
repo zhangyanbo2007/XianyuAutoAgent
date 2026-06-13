@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Should I Have Expressed a Different Intent? Counterfactual Generation for LLM-Based Autonomous Control | DAST Papers</title>
+    <meta name="description" content="这篇论文要解决的是 LLM 智能体控制中的反事实解释问题。传统 agent 往往只能给出一次规划与执行结果，但用户在看到执行后，常常真正关心的是：如果当时表达的目标略有不同，系统会不会做出完全不同的决策。这篇论文把这个问题提升到可计算、可校准的层面。
+
+方法上，作者把用户、LLM 代理和环境的闭环交互建模为结构因果模型，然后结合 test-time scaling 去生成多个候选反事实轨迹，再通过" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a15-counterfactual-intent-control/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Should I Have Expressed a Different Intent? Counterfactual Generation for LLM-Based Autonomous Control" />
+    <meta property="og:description" content="这篇论文要解决的是 LLM 智能体控制中的反事实解释问题。传统 agent 往往只能给出一次规划与执行结果，但用户在看到执行后，常常真正关心的是：如果当时表达的目标略有不同，系统会不会做出完全不同的决策。这篇论文把这个问题提升到可计算、可校准的层面。
+
+方法上，作者把用户、LLM 代理和环境的闭环交互建模为结构因果模型，然后结合 test-time scaling 去生成多个候选反事实轨迹，再通过" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a15-counterfactual-intent-control/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Should I Have Expressed a Different Intent? Counterfactual Generation for LLM-Based Autonomous Control" />
+    <meta name="twitter:description" content="这篇论文要解决的是 LLM 智能体控制中的反事实解释问题。传统 agent 往往只能给出一次规划与执行结果，但用户在看到执行后，常常真正关心的是：如果当时表达的目标略有不同，系统会不会做出完全不同的决策。这篇论文把这个问题提升到可计算、可校准的层面。
+
+方法上，作者把用户、LLM 代理和环境的闭环交互建模为结构因果模型，然后结合 test-time scaling 去生成多个候选反事实轨迹，再通过" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Should I Have Expressed a Different Intent? Counterfactual Generation for LLM-Based Autonomous Control</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-01-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.20090" target="_blank" rel="noopener noreferrer">2601.20090</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文要解决的是 LLM 智能体控制中的反事实解释问题。传统 agent 往往只能给出一次规划与执行结果，但用户在看到执行后，常常真正关心的是：如果当时表达的目标略有不同，系统会不会做出完全不同的决策。这篇论文把这个问题提升到可计算、可校准的层面。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者把用户、LLM 代理和环境的闭环交互建模为结构因果模型，然后结合 test-time scaling 去生成多个候选反事实轨迹，再通过离线校准给出带覆盖保证的 counterfactual outcome sets。新意不在于再做一个 agent，而在于让 agentic control 的反事实分析有了形式保证。</dd></div><div><dt>结果/证据</dt><dd>它的重要性在于，这类工作让智能体系统不再只有“做什么”，而开始回答“如果换一种意图会怎样”。这对自主控制、可解释人机交互、以及高风险环境下的事后分析都很关键。放在仓库里，它属于 agent / world model / causal control 交叉线上的高质量补链论文。</dd></div><div><dt>收录价值</dt><dd>我把它放在“突破性”。原因是问题抓得很对，方法也比一般 counterfactual prompt work 更扎实，但它仍然是一个相对专门的 agentic control 方向成果，距离更高一级的范式改写还有明显距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文要解决的是 LLM 智能体控制中的反事实解释问题。传统 agent 往往只能给出一次规划与执行结果，但用户在看到执行后，常常真正关心的是：如果当时表达的目标略有不同，系统会不会做出完全不同的决策。这篇论文把这个问题提升到可计算、可校准的层面。</p><p>方法上，作者把用户、LLM 代理和环境的闭环交互建模为结构因果模型，然后结合 test-time scaling 去生成多个候选反事实轨迹，再通过离线校准给出带覆盖保证的 counterfactual outcome sets。新意不在于再做一个 agent，而在于让 agentic control 的反事实分析有了形式保证。</p><p>它的重要性在于，这类工作让智能体系统不再只有“做什么”，而开始回答“如果换一种意图会怎样”。这对自主控制、可解释人机交互、以及高风险环境下的事后分析都很关键。放在仓库里，它属于 agent / world model / causal control 交叉线上的高质量补链论文。</p><p>我把它放在“突破性”。原因是问题抓得很对，方法也比一般 counterfactual prompt work 更扎实，但它仍然是一个相对专门的 agentic control 方向成果，距离更高一级的范式改写还有明显距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>作为配置请求。LLM代理发出相应的网络命令，在环境中执行操作。网络返回关键性能指标（KPI）。最后，代理为操作员生成结果摘要报告。然而，在观察到结果后，用户可能会想：如果我以不同的方式表达了我的意图会怎样？我们引入了一个框架，该框架能够在LLM驱动的代理控制场景中实现这种反事实推理，同时提供正式的可靠性保证。一旦代理提交报告，人类可能会自然而然地提出关于替代指令或意图的“如果”问题。例如，在AgentRAN场景中，操作员可能会想，如果意图的措辞不同，或者如果向基于LLM的代理指示了不同的KPI目标，会发生什么。图2中可以找到一个示例。我们的方法将用户、基于LLM的代理和环境之间的闭环交互建模为结构因果模型（SCM），并利用测试时缩放通过概率溯因生成多个候选反事实结果。通过离线校准阶段，所提出的保形反事实生成（CCG）产生了一组反事实结果，这些结果被保证以高概率包含真实的反事实结果。我们在一个无线网络控制用例中展示了CCG的性能，与简单的重新执行基线相比，它展现出显著优势。解决此类反事实查询需要推理代理的内部决策过程以及在表达了不同意图的假设反事实情景下环境的响应。在其他条件相同的情况下，不同的用户提示可能会导致代理选择不同的行动计划，这反过来又会引发不同的环境轨迹和结果。虽然代理的内部操作通常是可访问的，使得研究代理的反事实行为成为可能（Chatzi et al., 2025; Ravfogel et al., 2025），但推理替代环境响应需要模拟-</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>as a configuration request. The LLM agent issues corre- actions in an environment. Yet after observing sponding network commands, and the network, returns key an outcome, users may wonder: What if I had performance indicators (KPIs). Finally, the agent generates phrased my intent differently? We introduce a a summary report of the outcome for the operator. framework that enables such counterfactual rea- soning in agentic LLM-driven control scenarios, Once the agent presents its report, the human may natu- while providing formal reliability guarantees. Our rally ask “what if” questions about alternative instructions approach models the closed-loop interaction be- or intents. For instance, in the AgentRAN scenario, the op- tween a user, an LLM-based agent, and an en- erator may wonder what would have happened if the intent vironment as a structural causal model (SCM), had been phrased differently or if different KPI targets had and leverages test-time scaling to generate multi- been indicated to the LLM-based agent. An example can be ple candidate counterfactual outcomes via prob- found in Fig. 2. abilistic abduction. Through an offline calibra- Addressing such counterfactual queries requires reasoning tion phase, the proposed conformal counterfactual about both the agent’s internal decision process and the en- generation (CCG) yields sets of counterfactual vironment’s response under the hypothetical counterfactual outcomes that are guaranteed to contain the true scenario that a different intent had been expressed. All else counterfactual outcome with high probability. We being equal, a different user prompt could cause the agent showcase the performance of CCG on a wireless to choose a different plan of actions, which in turn would in- network control use case, demonstrating signifi- duce a different environment trajectory and outcome. While cant advantages compared to naive re-execution the agent’s internal operation is typically accessible, mak- baselines. ing it possible to study counterfactual actions by the agent (Chatzi et al., 2025; Ravfogel et al., 2025), reasoning about alternative environment responses requires a simulation-in-</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260127a15counter,
+  title = {Should I Have Expressed a Different Intent? Counterfactual Generation for LLM-Based Autonomous Control},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.20090.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a15-counterfactual-intent-control/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Should I Have Expressed a Different Intent? Counterfactual Generation for LLM-Based Autonomous Control. https://arxiv.org/pdf/2601.20090.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.20090.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

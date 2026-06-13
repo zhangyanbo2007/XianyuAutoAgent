@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YORU: Animal behavior detection with object-based approach for real-time closed-loop feedback | DAST Papers</title>
+    <meta name="description" content="这篇论文解决的是多动物社会行为实时检测在神经科学实验里一直很难落地的问题。传统 pose estimation 方法在遮挡、接近接触和复杂互动场景下容易失效，尤其不适合需要毫秒级触发外部反馈的 closed-loop 实验。
+
+方法上，作者提出 YORU，把行为本身当作“behavior object”来检测，而不是先追踪身体关键点再做时序分类。系统基于 YOLOv5 风格目标检测，配套 GUI、" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/n19-yoru-closed-loop-behavior/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="YORU: Animal behavior detection with object-based approach for real-time closed-loop feedback" />
+    <meta property="og:description" content="这篇论文解决的是多动物社会行为实时检测在神经科学实验里一直很难落地的问题。传统 pose estimation 方法在遮挡、接近接触和复杂互动场景下容易失效，尤其不适合需要毫秒级触发外部反馈的 closed-loop 实验。
+
+方法上，作者提出 YORU，把行为本身当作“behavior object”来检测，而不是先追踪身体关键点再做时序分类。系统基于 YOLOv5 风格目标检测，配套 GUI、" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/n19-yoru-closed-loop-behavior/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="YORU: Animal behavior detection with object-based approach for real-time closed-loop feedback" />
+    <meta name="twitter:description" content="这篇论文解决的是多动物社会行为实时检测在神经科学实验里一直很难落地的问题。传统 pose estimation 方法在遮挡、接近接触和复杂互动场景下容易失效，尤其不适合需要毫秒级触发外部反馈的 closed-loop 实验。
+
+方法上，作者提出 YORU，把行为本身当作“behavior object”来检测，而不是先追踪身体关键点再做时序分类。系统基于 YOLOv5 风格目标检测，配套 GUI、" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>YORU: Animal behavior detection with object-based approach for real-time closed-loop feedback</h1>
+          <p class="subtitle">神经科学与认知科学 · 发表：2026-02-13</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">神经科学与认知科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-13</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文解决的是多动物社会行为实时检测在神经科学实验里一直很难落地的问题。传统 pose estimation 方法在遮挡、接近接触和复杂互动场景下容易失效，尤其不适合需要毫秒级触发外部反馈的 closed-loop 实验。</dd></div><div><dt>方法/机制</dt><dd>方法上，作者提出 YORU，把行为本身当作“behavior object”来检测，而不是先追踪身体关键点再做时序分类。系统基于 YOLOv5 风格目标检测，配套 GUI、离线分析和实时处理模块，并通过多进程把图像采集、识别和外设控制并行化，用于实时触发 LED、DAQ、Arduino 等外部设备。</dd></div><div><dt>结果/证据</dt><dd>这篇工作的意义在于，它把动物行为分析从“离线标注工具”推进到了“可直接驱动神经干预的实时实验系统”。论文覆盖果蝇、蚂蚁、斑马鱼和小鼠等多种动物，并展示了面向 social behavior 的 closed-loop photostimulation 场景，所以它适合放在仓库的认知科学 / 神经科学工具主线，而不是 AI 基础模型主线。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，原因是外溢性主要集中在行为神经科学实验范式，而不是更广泛的 AI 方法学。它是很强的实验系统论文，但不是会重排整个机器学习路线图的工作。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文解决的是多动物社会行为实时检测在神经科学实验里一直很难落地的问题。传统 pose estimation 方法在遮挡、接近接触和复杂互动场景下容易失效，尤其不适合需要毫秒级触发外部反馈的 closed-loop 实验。</p><p>方法上，作者提出 YORU，把行为本身当作“behavior object”来检测，而不是先追踪身体关键点再做时序分类。系统基于 YOLOv5 风格目标检测，配套 GUI、离线分析和实时处理模块，并通过多进程把图像采集、识别和外设控制并行化，用于实时触发 LED、DAQ、Arduino 等外部设备。</p><p>这篇工作的意义在于，它把动物行为分析从“离线标注工具”推进到了“可直接驱动神经干预的实时实验系统”。论文覆盖果蝇、蚂蚁、斑马鱼和小鼠等多种动物，并展示了面向 social behavior 的 closed-loop photostimulation 场景，所以它适合放在仓库的认知科学 / 神经科学工具主线，而不是 AI 基础模型主线。</p><p>它没有升到更高等级，原因是外溢性主要集中在行为神经科学实验范式，而不是更广泛的 AI 方法学。它是很强的实验系统论文，但不是会重排整个机器学习路线图的工作。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>YORU：基于对象方法的动物行为检测，用于实时闭环反馈 深度学习方法在动物行为分析中的出现，彻底改变了神经行为学研究。然而，以多个个体之间的动态互动为特征的社会行为分析，仍然是一个重大挑战。在本研究中，我们提出了“YORU”（your optimal recognition utility），这是一种利用目标检测深度学习算法的行为检测方法。与传统方法不同，YORU基于动物的形状直接将行为识别为“行为对象”，从而实现了鲁棒和准确的检测。YORU成功分类了从脊椎动物到昆虫等物种的多种社会行为。此外，YORU能够实现实时行为分析和闭环反馈。我们还实现了在社会行为期间向特定个体实时传递光刺激反馈，即使多个个体彼此靠近。该系统克服了传统姿态估计方法带来的挑战，并为行为分析提出了一种替代方法。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>YORU: Animal behavior detection with object-­based approach for real-­time closed-­loop feedback Hayato M. Yamanouchi1†‡*, Ryosuke F. Takeuchi2†, Naoya Chiba3, Koichi Hashimoto4, Takashi Shimizu1, Fumitaka Osakada2, Ryoya Tanaka1,5‡*, Azusa Kamikouchi1,5,6‡* The advent of deep learning methodologies for animal behavior analysis has revolutionized neuroethology studies. However, the analysis of social behaviors, characterized by dynamic interactions among multiple individuals, continues to represent a major challenge. In this study, we present “YORU” (your optimal recognition utility), a behavior detection approach leveraging an object detection deep learning algorithm. Unlike conventional approaches, YORU directly identifies behaviors as “behavior objects” based on the animal’s shape, enabling robust and accurate detection. YORU successfully classified several types of social behaviors in species ranging from vertebrates to insects. Furthermore, YORU enables real-­time behavior analysis and closed-­loop feedback. In addition, we achieved real-­time delivery of photostimulation feedback to specific individuals during social behaviors, even when multiple individuals are close together. This system overcomes the challenges posed by conventional pose estimation methods and presents an alternative approach for behavioral analysis.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260213n19yoruclo,
+  title = {YORU: Animal behavior detection with object-based approach for real-time closed-loop feedback},
+  year = {2026},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC12893285/},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/n19-yoru-closed-loop-behavior/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). YORU: Animal behavior detection with object-based approach for real-time closed-loop feedback. https://pmc.ncbi.nlm.nih.gov/articles/PMC12893285/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/n134-action-derived-safety-value/">
+              <span>A synaptic mechanism for encoding the learned value of action-derived safety</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n132-vlpfc-decision-learning/">
+              <span>Ventrolateral prefrontal cortex in macaques guides decisions in different learning conditions</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n131-vagus-septo-hippocampal-memory/">
+              <span>The vagus nerve promotes memory in rats via nutrient-induced septo-hippocampal acetylcholine signaling</span>
+              <small>神经科学与认知科学 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/n133-sign-language-timescale-hierarchy/">
+              <span>Sign language narrative reveals universal and modality-specific features of cortical timescale hierarchy</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n130-bla-emotional-state-geometry/">
+              <span>The representational geometry of emotional states in basolateral amygdala</span>
+              <small>神经科学与认知科学 · 2026-06-03</small>
+            </a>
+            <a class="related-item" href="../../papers/n124-histamine-human-learning-dynamics/">
+              <span>Histamine shapes the neurocomputational dynamics of human learning</span>
+              <small>神经科学与认知科学 · 2026-06-02</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12893285/" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OptAgent: an Agentic AI framework for Intelligent Building Operations | DAST Papers</title>
+    <meta name="description" content="这篇论文针对 building operations 里长期存在的一个瓶颈：楼宇节能、热舒适、HVAC 控制、分布式能源和需求响应虽然都能用数字孪生与优化工具建模，但实际 workflow 仍高度依赖人工工程师逐步拼接模型、脚本和分析流程，难以规模化部署。作者明确把问题从单点预测或单次控制器设计，提升为一个可持续运行的 building-energy operations workflow。
+
+O" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/en1-optagent-building-operations/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OptAgent: an Agentic AI framework for Intelligent Building Operations" />
+    <meta property="og:description" content="这篇论文针对 building operations 里长期存在的一个瓶颈：楼宇节能、热舒适、HVAC 控制、分布式能源和需求响应虽然都能用数字孪生与优化工具建模，但实际 workflow 仍高度依赖人工工程师逐步拼接模型、脚本和分析流程，难以规模化部署。作者明确把问题从单点预测或单次控制器设计，提升为一个可持续运行的 building-energy operations workflow。
+
+O" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/en1-optagent-building-operations/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OptAgent: an Agentic AI framework for Intelligent Building Operations" />
+    <meta name="twitter:description" content="这篇论文针对 building operations 里长期存在的一个瓶颈：楼宇节能、热舒适、HVAC 控制、分布式能源和需求响应虽然都能用数字孪生与优化工具建模，但实际 workflow 仍高度依赖人工工程师逐步拼接模型、脚本和分析流程，难以规模化部署。作者明确把问题从单点预测或单次控制器设计，提升为一个可持续运行的 building-energy operations workflow。
+
+O" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OptAgent: an Agentic AI framework for Intelligent Building Operations</h1>
+          <p class="subtitle">能源、水与基础设施 · 发表：2026-01-27</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">能源、水与基础设施</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-01-27</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2601.20005" target="_blank" rel="noopener noreferrer">2601.20005</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对 building operations 里长期存在的一个瓶颈：楼宇节能、热舒适、HVAC 控制、分布式能源和需求响应虽然都能用数字孪生与优化工具建模，但实际 workflow 仍高度依赖人工工程师逐步拼接模型、脚本和分析流程，难以规模化部署。作者明确把问题从单点预测或单次控制器设计，提升为一个可持续运行的 building-energy operations workflow。</dd></div><div><dt>方法/机制</dt><dd>OptAgent 的核心是一个 physics-informed machine learning digital environment，加上由 11 个 specialist agents 和 72 个 MCP tools 组成的 agentic layer。前者覆盖 building thermal dynamics、HVAC 和 DER，后者负责多步能源分析、控制评估和 orchestration。它不只是对现有 building simulator 套一层 LLM，而是把 physics-consistent environment、tool graph 和 orchestrator-specialist coordination 明确组织成端到端执行框架，并给出约 4000 次 benchmark 评估其 accuracy、token、time 和 cost。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得正式收录，因为它把 AI 在 building operations 中的角色从分析助手推进到真正可复用的 agentic operations pattern。对仓库来说，这篇论文代表了一个很清晰的方向：当 AI 进入能源和基础设施系统时，关键不是再做一个负荷预测器，而是把 digital twin、tooling、控制评估和多步决策统一成 scalable workflow。它对 building energy、grid-interactive operations 和 infrastructure AI 都有明显外溢。</dd></div><div><dt>收录价值</dt><dd>它暂时还不到更高一级，原因是当前证据仍主要集中在 building-energy 场景和作者构造的 benchmark 框架，距离证明这会成为更广泛基础设施 AI 的默认蓝图还有距离。它的系统设计很扎实，但跨城市基础设施、跨真实部署和跨组织复用性还需要更多验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对 building operations 里长期存在的一个瓶颈：楼宇节能、热舒适、HVAC 控制、分布式能源和需求响应虽然都能用数字孪生与优化工具建模，但实际 workflow 仍高度依赖人工工程师逐步拼接模型、脚本和分析流程，难以规模化部署。作者明确把问题从单点预测或单次控制器设计，提升为一个可持续运行的 building-energy operations workflow。</p><p>OptAgent 的核心是一个 physics-informed machine learning digital environment，加上由 11 个 specialist agents 和 72 个 MCP tools 组成的 agentic layer。前者覆盖 building thermal dynamics、HVAC 和 DER，后者负责多步能源分析、控制评估和 orchestration。它不只是对现有 building simulator 套一层 LLM，而是把 physics-consistent environment、tool graph 和 orchestrator-specialist coordination 明确组织成端到端执行框架，并给出约 4000 次 benchmark 评估其 accuracy、token、time 和 cost。</p><p>这项工作值得正式收录，因为它把 AI 在 building operations 中的角色从分析助手推进到真正可复用的 agentic operations pattern。对仓库来说，这篇论文代表了一个很清晰的方向：当 AI 进入能源和基础设施系统时，关键不是再做一个负荷预测器，而是把 digital twin、tooling、控制评估和多步决策统一成 scalable workflow。它对 building energy、grid-interactive operations 和 infrastructure AI 都有明显外溢。</p><p>它暂时还不到更高一级，原因是当前证据仍主要集中在 building-energy 场景和作者构造的 benchmark 框架，距离证明这会成为更广泛基础设施 AI 的默认蓝图还有距离。它的系统设计很扎实，但跨城市基础设施、跨真实部署和跨组织复用性还需要更多验证。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260127en1optagen,
+  title = {OptAgent: an Agentic AI framework for Intelligent Building Operations},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2601.20005.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/en1-optagent-building-operations/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OptAgent: an Agentic AI framework for Intelligent Building Operations. https://arxiv.org/pdf/2601.20005.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/en7-llm-utp-traffic-foundation/">
+              <span>A scalable and generic framework for city-wide traffic prediction with large language model</span>
+              <small>能源、水与基础设施 · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/en9-tegnet-thermoelectric-emulator/">
+              <span>Composable neural emulators accelerate thermoelectric generator design</span>
+              <small>能源、水与基础设施 · 2026-04-15</small>
+            </a>
+            <a class="related-item" href="../../papers/en8-autonomous-perovskite-cells/">
+              <span>Autonomous closed-loop framework for reproducible perovskite solar cells</span>
+              <small>能源、水与基础设施 · 2026-04-14</small>
+            </a>
+            <a class="related-item" href="../../papers/en4-sage-grid-battery-aging/">
+              <span>SAGE: Synthetic Aging for a Grid Environment</span>
+              <small>能源、水与基础设施 · 2026-03-14</small>
+            </a>
+            <a class="related-item" href="../../papers/en3-twinai-water-distribution/">
+              <span>TwinAI: A digital twin and graph reinforcement learning framework for real-time management of water distribution networks</span>
+              <small>能源、水与基础设施 · 2026-03-04</small>
+            </a>
+            <a class="related-item" href="../../papers/en6-vissimrl-traffic-control/">
+              <span>VissimRL: A Multi-Agent Reinforcement Learning Framework for Traffic Signal Control Based on Vissim</span>
+              <small>能源、水与基础设施 · 2026-01-26</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2601.20005.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring | DAST Papers</title>
+    <meta name="description" content="这篇把 VLA/机器人可靠性从离线 success rate 推向 runtime monitoring：系统要在执行中尽早发现失败，而不是事后评估。
+
+Hide-and-Seek 用 trajectory-level supervision 学出 step-level failure signals，避免昂贵 action resampling 或外部监督，并结合 conformal predi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl87-hideseek-vla-runtime-monitoring/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring" />
+    <meta property="og:description" content="这篇把 VLA/机器人可靠性从离线 success rate 推向 runtime monitoring：系统要在执行中尽早发现失败，而不是事后评估。
+
+Hide-and-Seek 用 trajectory-level supervision 学出 step-level failure signals，避免昂贵 action resampling 或外部监督，并结合 conformal predi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl87-hideseek-vla-runtime-monitoring/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring" />
+    <meta name="twitter:description" content="这篇把 VLA/机器人可靠性从离线 success rate 推向 runtime monitoring：系统要在执行中尽早发现失败，而不是事后评估。
+
+Hide-and-Seek 用 trajectory-level supervision 学出 step-level failure signals，避免昂贵 action resampling 或外部监督，并结合 conformal predi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</h1>
+          <p class="subtitle">强化学习 · 发表：2026-05-29</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-29</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.30834" target="_blank" rel="noopener noreferrer">2605.30834</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇把 VLA/机器人可靠性从离线 success rate 推向 runtime monitoring：系统要在执行中尽早发现失败，而不是事后评估。</dd></div><div><dt>方法/机制</dt><dd>Hide-and-Seek 用 trajectory-level supervision 学出 step-level failure signals，避免昂贵 action resampling 或外部监督，并结合 conformal prediction 处理准确率-及时性权衡。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它提供了 embodied AI safety 的可复用监控 primitive：coarse labels -&gt; localized failure signals -&gt; runtime intervention。</dd></div><div><dt>收录价值</dt><dd>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇把 VLA/机器人可靠性从离线 success rate 推向 runtime monitoring：系统要在执行中尽早发现失败，而不是事后评估。</p><p>Hide-and-Seek 用 trajectory-level supervision 学出 step-level failure signals，避免昂贵 action resampling 或外部监督，并结合 conformal prediction 处理准确率-及时性权衡。</p><p>收录价值在于它提供了 embodied AI safety 的可复用监控 primitive：coarse labels -&gt; localized failure signals -&gt; runtime intervention。</p><p>风险与限制：当前仍是 arXiv 初版，核心结论需要跨模型、跨环境和真实部署场景的进一步复现；因此分级为 breakthrough，而不是 disruptive/paradigm。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉-语言-动作 (VLA) 模型使机器人能够遵循自然语言指令并泛化到各种任务，但仍然容易受到执行失败的影响，从而在实际部署中损害可靠性。因此，在执行过程中检测此类失败对于嵌入式系统的稳健部署至关重要。现有的失败检测方法要么依赖于昂贵的动作重采样，要么依赖于外部模型，而替代方案则在每个时间步上均匀地传播轨迹级别的标签，从而掩盖了局部化的失败信号。在本文中，我们提出 Hide-and-Seek 框架，将 VLA 失败检测表述为一个粗略监督学习问题。通过结合轨迹间和轨迹内对比目标，Hide-and-Seek 能够定位指示失败的动作，并仅从轨迹级别的监督中诱导出具有时间结构失败信号，而无需任何粒度级别的标注。我们在 LIBERO、VLABench 和一个真实世界的机器人平台上评估了 Hide-and-Seek，涵盖了三个代表性的 VLA 策略：OpenVLA、π0 和 π0.5。我们的方法在 conformal prediction 下实现了最先进的多任务失败检测性能，并具有实际的准确率-及时性权衡，并且很好地泛化到既有任务和未见任务。代码和视频可在我们的项目页面上找到。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision-Language-Action (VLA) models enable robots to follow natural language instructions and generalize across diverse tasks, but they remain vulnerable to execution failures that compromise reliability in real-world deployment. Detecting such failures during execution is therefore critical for the robust deployment of embodied systems. Existing failure detection methods either rely on expensive action resampling or external models, while alternatives propagate trajectory-level labels uniformly across every timestep, obscuring localized failure signals. In this paper, we propose Hide-and-Seek, a framework that formulates VLA failure detection as a coarsely supervised learning problem. By combining inter-trajectory and intratrajectory contrastive objectives, Hide-and-Seek localizes failure-indicative actions and induces temporally structured failure signals from trajectory-level supervision alone, without any step-level annotation. We evaluate Hide-and-Seek on LIBERO, VLABench, and a real-world robotic platform across three representative VLA policies: OpenVLA, π0 , and π0.5 . Our method achieves state-of-the-art multi-task failure detection performance with a practical accuracy–timeliness trade-off under conformal prediction, and generalizes well to both seen and unseen tasks. Code and videos are available at our project page.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260529rl87hidese,
+  title = {Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.30834.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl87-hideseek-vla-runtime-monitoring/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring. https://arxiv.org/pdf/2605.30834.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl65-listwise-policy-optimization/">
+              <span>Listwise Policy Optimization: Group-based RLVR as Target-Projection on the LLM Response Simplex</span>
+              <small>强化学习 · 2026-05-11</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.30834.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://seongheon-96.github.io/hide_and_seek_site/" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

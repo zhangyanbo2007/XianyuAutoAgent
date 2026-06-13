@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenSpatial: A Principled Data Engine for Empowering Spatial Intelligence | DAST Papers</title>
+    <meta name="description" content="这篇论文聚焦多模态模型的空间智能数据问题。很多现有空间任务数据集是单点式构造，覆盖特定任务或封闭 pipeline，导致模型很难系统学习距离、相对位置、多视角一致性和场景级空间推理。
+
+OpenSpatial 把 3D bounding box 作为核心原语，构建了一个可扩展数据生成引擎，并围绕 Spatial Measurement、Spatial Relationship、Camera Per" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm48-openspatial-data-engine/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="OpenSpatial: A Principled Data Engine for Empowering Spatial Intelligence" />
+    <meta property="og:description" content="这篇论文聚焦多模态模型的空间智能数据问题。很多现有空间任务数据集是单点式构造，覆盖特定任务或封闭 pipeline，导致模型很难系统学习距离、相对位置、多视角一致性和场景级空间推理。
+
+OpenSpatial 把 3D bounding box 作为核心原语，构建了一个可扩展数据生成引擎，并围绕 Spatial Measurement、Spatial Relationship、Camera Per" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm48-openspatial-data-engine/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OpenSpatial: A Principled Data Engine for Empowering Spatial Intelligence" />
+    <meta name="twitter:description" content="这篇论文聚焦多模态模型的空间智能数据问题。很多现有空间任务数据集是单点式构造，覆盖特定任务或封闭 pipeline，导致模型很难系统学习距离、相对位置、多视角一致性和场景级空间推理。
+
+OpenSpatial 把 3D bounding box 作为核心原语，构建了一个可扩展数据生成引擎，并围绕 Spatial Measurement、Spatial Relationship、Camera Per" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>OpenSpatial: A Principled Data Engine for Empowering Spatial Intelligence</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-08</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-08</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.07296" target="_blank" rel="noopener noreferrer">2604.07296</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文聚焦多模态模型的空间智能数据问题。很多现有空间任务数据集是单点式构造，覆盖特定任务或封闭 pipeline，导致模型很难系统学习距离、相对位置、多视角一致性和场景级空间推理。</dd></div><div><dt>方法/机制</dt><dd>OpenSpatial 把 3D bounding box 作为核心原语，构建了一个可扩展数据生成引擎，并围绕 Spatial Measurement、Spatial Relationship、Camera Perception、Multi-view Consistency 和 Scene-Aware Reasoning 五类任务组织数据层级。基于该引擎，作者生成 OpenSpatial-3M，并给出数据规模、任务组合和来源扩展对空间性能的系统分析。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为它不是单个空间 benchmark，而是一个面向空间智能的开放数据生产工作流。论文展示用该数据训练的模型能在多个空间推理 benchmark 上取得平均约 19% 相对提升，并强调从静态数据集转向可持续数据引擎，这与仓库关注的可复用数据/评测基础设施一致。</dd></div><div><dt>收录价值</dt><dd>主要限制是贡献重心在数据工程和合成 pipeline，模型方法本身不新；数据质量仍依赖 3D lifting、标注模板和任务设计的正确性。它是强基础设施型突破，但尚不足以称为空间智能范式改变。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文聚焦多模态模型的空间智能数据问题。很多现有空间任务数据集是单点式构造，覆盖特定任务或封闭 pipeline，导致模型很难系统学习距离、相对位置、多视角一致性和场景级空间推理。</p><p>OpenSpatial 把 3D bounding box 作为核心原语，构建了一个可扩展数据生成引擎，并围绕 Spatial Measurement、Spatial Relationship、Camera Perception、Multi-view Consistency 和 Scene-Aware Reasoning 五类任务组织数据层级。基于该引擎，作者生成 OpenSpatial-3M，并给出数据规模、任务组合和来源扩展对空间性能的系统分析。</p><p>它值得收录，因为它不是单个空间 benchmark，而是一个面向空间智能的开放数据生产工作流。论文展示用该数据训练的模型能在多个空间推理 benchmark 上取得平均约 19% 相对提升，并强调从静态数据集转向可持续数据引擎，这与仓库关注的可复用数据/评测基础设施一致。</p><p>主要限制是贡献重心在数据工程和合成 pipeline，模型方法本身不新；数据质量仍依赖 3D lifting、标注模板和任务设计的正确性。它是强基础设施型突破，但尚不足以称为空间智能范式改变。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。空间理解是人类智能的基石。然而，当前研究主要集中于领域特定的数据生产，留下了一个关键空白：缺乏一个能够充分释放高质量空间数据潜力的、有原则的开源引擎。为弥补这一差距，我们阐明了一个鲁棒数据生成系统的设计原则，并引入了OpenSpatial——一个为高质量、广泛可扩展性、多样化任务和优化效率而设计的开源数据引擎。OpenSpatial采用3D边界框作为基本原语，构建了一个涵盖五项基础任务的综合数据层次结构：空间测量（SM）、空间关系（SR）、相机感知（CP）、多视图一致性（MC）和场景感知推理（SAR）。利用这一可扩展的基础设施，我们整理了OpenSpatial-3M，一个包含300万个高保真样本的大规模数据集。广泛的评估表明，在我们数据集上训练的多功能模型在各种空间推理基准测试中取得了最先进的性能。值得注意的是，表现最佳的模型相对平均提升了19%。此外，我们系统地分析了数据属性如何影响空间感知。通过开源该引擎和3M规模的数据集，我们为加速未来空间智能研究提供了坚实的基础。关键词：空间智能 · 视觉语言模型</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Spatial understanding is a fundamental cornerstone of humanlevel intelligence. Nonetheless, current research predominantly focuses on domain-specific data production, leaving a critical void: the absence of a principled, open-source engine capable of fully unleashing the potential of high-quality spatial data. To bridge this gap, we elucidate the design principles of a robust data generation system and introduce OpenSpatial—an open-source data engine engineered for high quality, extensive scalability, broad task diversity, and optimized efficiency. OpenSpatial adopts 3D bounding boxes as the fundamental primitive to construct a comprehensive data hierarchy across five foundational tasks: Spatial Measurement (SM), Spatial Relationship (SR), Camera Perception (CP), Multi-view Consistency (MC), and Scene-Aware Reasoning (SAR). Leveraging this scalable infrastructure, we curate OpenSpatial-3M, a largescale dataset comprising 3 million high-fidelity samples. Extensive evaluations demonstrate that versatile models trained on our dataset achieve state-of-the-art performance across a wide spectrum of spatial reasoning benchmarks. Notably, the best-performing model exhibits a substantial average improvement of 19%, relatively. Furthermore, we provide a systematic analysis of how data attributes influence spatial perception. By open-sourcing both the engine and the 3M-scale dataset, we provide a robust foundation to accelerate future research in spatial intelligence. Keywords: Spatial Intelligence · Vision-language Model</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260408mm48opensp,
+  title = {OpenSpatial: A Principled Data Engine for Empowering Spatial Intelligence},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.07296.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm48-openspatial-data-engine/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). OpenSpatial: A Principled Data Engine for Empowering Spatial Intelligence. https://arxiv.org/pdf/2604.07296.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.07296.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TR-ICRL: Test-Time Rethinking for In-Context Reinforcement Learning | DAST Papers</title>
+    <meta name="description" content="In-Context Reinforcement Learning 试图让 LLM 直接在上下文中从外部 reward 学习，但一到真实推理阶段就会碰到一个根本问题：模型往往拿不到 ground truth，因此 reward estimation 本身变得不可靠。TR-ICRL 关注的正是这个关键短板。
+
+论文提出 Test-Time Rethinking for In-Context Rein" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r30-tr-icrl-test-time-rethinking/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TR-ICRL: Test-Time Rethinking for In-Context Reinforcement Learning" />
+    <meta property="og:description" content="In-Context Reinforcement Learning 试图让 LLM 直接在上下文中从外部 reward 学习，但一到真实推理阶段就会碰到一个根本问题：模型往往拿不到 ground truth，因此 reward estimation 本身变得不可靠。TR-ICRL 关注的正是这个关键短板。
+
+论文提出 Test-Time Rethinking for In-Context Rein" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r30-tr-icrl-test-time-rethinking/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TR-ICRL: Test-Time Rethinking for In-Context Reinforcement Learning" />
+    <meta name="twitter:description" content="In-Context Reinforcement Learning 试图让 LLM 直接在上下文中从外部 reward 学习，但一到真实推理阶段就会碰到一个根本问题：模型往往拿不到 ground truth，因此 reward estimation 本身变得不可靠。TR-ICRL 关注的正是这个关键短板。
+
+论文提出 Test-Time Rethinking for In-Context Rein" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TR-ICRL: Test-Time Rethinking for In-Context Reinforcement Learning</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00438" target="_blank" rel="noopener noreferrer">2604.00438</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>In-Context Reinforcement Learning 试图让 LLM 直接在上下文中从外部 reward 学习，但一到真实推理阶段就会碰到一个根本问题：模型往往拿不到 ground truth，因此 reward estimation 本身变得不可靠。TR-ICRL 关注的正是这个关键短板。</dd></div><div><dt>方法/机制</dt><dd>论文提出 Test-Time Rethinking for In-Context Reinforcement Learning，通过从未标注 evaluation set 中检索相关实例，再让模型为这些实例生成多组候选答案，利用 majority voting 构造 pseudo-label，并据此生成 reward messages 与 formative feedback，驱动多轮迭代 refinement。最后再把这些综合上下文与原问题拼接，形成最终推理 prompt。换句话说，它把 test-time unlabeled data 变成了一种可循环利用的伪反馈源。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 ICRL 从单轮上下文适配推进到 test-time iterative improvement loop，形成了更完整的 in-context adaptation pattern。它与仓库持续扩展的 test-time learning、deployment-time adaptation 和 reasoning control 方向高度一致，属于可复用的方法模式。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前方案仍较依赖特定的 pseudo-labeling 和 majority-vote 设计，是否能成为更广 ICRL 或 TTL 的标准组件还需要更多跨任务、跨模型验证。它有效且有启发，但还不是更高层级的统一框架。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>In-Context Reinforcement Learning 试图让 LLM 直接在上下文中从外部 reward 学习，但一到真实推理阶段就会碰到一个根本问题：模型往往拿不到 ground truth，因此 reward estimation 本身变得不可靠。TR-ICRL 关注的正是这个关键短板。</p><p>论文提出 Test-Time Rethinking for In-Context Reinforcement Learning，通过从未标注 evaluation set 中检索相关实例，再让模型为这些实例生成多组候选答案，利用 majority voting 构造 pseudo-label，并据此生成 reward messages 与 formative feedback，驱动多轮迭代 refinement。最后再把这些综合上下文与原问题拼接，形成最终推理 prompt。换句话说，它把 test-time unlabeled data 变成了一种可循环利用的伪反馈源。</p><p>这篇工作值得收录，因为它把 ICRL 从单轮上下文适配推进到 test-time iterative improvement loop，形成了更完整的 in-context adaptation pattern。它与仓库持续扩展的 test-time learning、deployment-time adaptation 和 reasoning control 方向高度一致，属于可复用的方法模式。</p><p>它没有升到更高一级，是因为当前方案仍较依赖特定的 pseudo-labeling 和 majority-vote 设计，是否能成为更广 ICRL 或 TTL 的标准组件还需要更多跨任务、跨模型验证。它有效且有启发，但还不是更高层级的统一框架。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>广泛的领域。最近，OpenAI的o1 (Jaech et al., 2024) 和Deepseek-R1 (Guo et al., 2025) 表明，测试时扩展 (Test-Time Scaling, TTS) (Zhang et al., 2025b; Balachandran et al., 2025) 可以通过在推理过程中利用额外的计算资源，显著增强LLMs的推理能力。继上下文监督学习 (Brown et al., 2020) 取得突破后，人们对形式化上下文强化学习 (In-Context Reinforcement Learning, ICRL) (Moeini et al., 2025; Monea et al., 2024; Ye et al., 2026) 的兴趣日益增长。尽管早期的理论实例化主要局限于多臂老虎机 (Krishnamurthy et al., 2024) 等模拟环境，ICRL已迅速发展成为一种用于复杂推理的多功能范式。最近的实证证据 (Song et al., 2025) 表明，上下文强化学习器展现出强大的涌现能力，能够在多样化、高风险的领域中自主完善其策略。这些应用现在涵盖了从组织复杂的科学实验和开放式创意写作到解决奥林匹克水平数学问题等广泛范围。通过绕过对显式梯度更新 (Brown et al., 2020) 的需求，ICRL使LLMs能够纯粹通过上下文交互，实时适应这些知识密集型任务的细微差别。尽管取得了这些进展，但这引出了一个基本问题：如何将测试时扩展与上下文强化学习最佳地交织起来，以促进自主策略完善？在开放式环境中部署ICRL的一个主要瓶颈是其传统上对标注数据的依赖。在缺乏外部监督的情况下，出现了一个基本挑战：如何在测试时推导出鲁棒的奖励信号，以在无法访问真实标签的情况下促进自我改进。为了缓解这些挑战，我们引入了上下文强化学习的测试时重思考——上下文强化学习 (ICRL) 使大型语言模型 (LLMs) 能够直接在上下文窗口内从外部奖励中在线学习。然而，ICRL的一个核心挑战是奖励估计，因为模型在推理过程中通常无法访问真实值。为了解决这一局限性，我们提出了上下文强化学习的测试时重思考 (Test-Time Rethinking for In-Context Reinforcement Learning, TR-ICRL)，这是一种新颖的ICRL框架，专为推理和知识密集型任务设计。TR-ICRL的工作原理是，首先从一个未标注的评估集中为给定查询检索最相关的实例。在每个ICRL迭代中，LLM为每个检索到的实例生成一组候选答案。接下来，通过多数投票从这组答案中推导出一个伪标签。该标签随后作为代理，提供奖励信息并生成形成性反馈，通过迭代细化指导LLM。最后，将这种合成的上下文信息与原始查询整合，形成一个全面的提示，并通过最后一轮多数投票确定答案。TR-ICRL在主流推理和知识密集型任务上进行了评估，并展示了显著的性能提升。值得注意的是，TR-ICRL使Qwen2.5-7B在MedQA上平均提升了21.23%，在AIME2024上甚至提升了137.59%。广泛的消融研究和分析进一步验证了我们方法的有效性和鲁棒性。我们的代码可在 https://github.com/pangpang-xuan/TR_ICRL 获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>range of domains. Recently, OpenAI’s o1 (Jaech et al., 2024) and Deepseek-R1 (Guo et al., 2025) have shown that Test-Time Scaling (TTS) (Zhang et al., 2025b; Balachandran et al., 2025) can significantly enhance the reasoning capabilities of LLMs by leveraging additional computational resources during inference. Following the breakthrough of in-context supervised learning (Brown et al., 2020), there is growing interest in formalizing In-Context Reinforcement Learning (ICRL) (Moeini et al., 2025; Monea et al., 2024; Ye et al., 2026). While early theoretical instantiations were predominantly confined to simulated environments such as multi-armed bandits (Krishnamurthy et al., 2024), ICRL has rapidly evolved into a versatile paradigm for sophisticated reasoning. Recent empirical evidence (Song et al., 2025) demonstrates that in-context reinforcement learners exhibit a powerful emergent capability to autonomously refine their strategies across diverse, high-stakes domains. These applications now range from orchestrating complex scientific experiments and open-ended creative writing to solving olympiadlevel mathematics. By bypassing the need for explicit gradient updates (Brown et al., 2020), ICRL enables LLMs to adapt to the nuances of these knowledge-intensive tasks in real-time, purely through contextual interaction. Despite these advancements, this raises a fundamental question: how can Test-Time Scaling be optimally interleaved with in-context reinforcement learning to facilitate autonomous strategy refinement? A primary bottleneck in deploying ICRL within open-ended environments is its traditional dependence labeled data. In the absence of external supervision, a fundamental challenge arises: how to derive robust reward signals during test time to facilitate self-improvement without access to ground-truth labels. To mitigate these challenges, we introduce Test-Time Rethinking for In-Context Reinforce- In-Context Reinforcement Learning (ICRL) enables Large Language Models (LLMs) to learn online from external rewards directly within the context window. However, a central challenge in ICRL is reward estimation, as models typically lack access to ground-truths during inference. To address this limitation, we propose Test-Time Rethinking for In-Context Reinforcement Learning (TR-ICRL), a novel ICRL framework designed for both reasoning and knowledge-intensive tasks. TR-ICRL operates by first retrieving the most relevant instances from an unlabeled evaluation set for a given query. During each ICRL iteration, LLM generates a set of candidate answers for every retrieved instance. Next, a pseudo-label is derived from this set through majority voting. This label then serves as a proxy to give reward messages and generate formative feedbacks, guiding LLM through iterative refinement. In the end, this synthesized contextual information is integrated with the original query to form a comprehensive prompt, with the answer determining through a final round of majority voting. TR-ICRL is evaluated on mainstream reasoning and knowledge-intensive tasks, where it demonstrates significant performance gains. Remarkably, TR-ICRL improves Qwen2.5-7B by 21.23% on average on MedQA and even 137.59% on AIME2024. Extensive ablation studies and analyses further validate the effectiveness and robustness of our approach. Our code is available at https: //github.com/pangpang-xuan/TR_ICRL.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r30tricrlt,
+  title = {TR-ICRL: Test-Time Rethinking for In-Context Reinforcement Learning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00438.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r30-tr-icrl-test-time-rethinking/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TR-ICRL: Test-Time Rethinking for In-Context Reinforcement Learning. https://arxiv.org/pdf/2604.00438.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00438.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

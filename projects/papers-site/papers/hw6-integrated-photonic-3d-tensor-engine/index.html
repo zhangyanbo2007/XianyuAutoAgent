@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Integrated photonic 3D tensor processing engine | DAST Papers</title>
+    <meta name="description" content="这篇论文处理的是当前光计算加速器里一个很实际的问题：现有 photonic accelerator 大多围绕 2D matrix-vector multiplication 设计，而 3D 卷积网络在真实系统里需要额外做高阶张量重排与同步，导致内存与时延开销回落到电子域。
+
+作者提出的 3D-TPE 通过时间、波长和空间三域交织，把缓存、同步和计算尽量留在光域中完成，核心不只是器件性能，而是把高阶" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw6-integrated-photonic-3d-tensor-engine/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Integrated photonic 3D tensor processing engine" />
+    <meta property="og:description" content="这篇论文处理的是当前光计算加速器里一个很实际的问题：现有 photonic accelerator 大多围绕 2D matrix-vector multiplication 设计，而 3D 卷积网络在真实系统里需要额外做高阶张量重排与同步，导致内存与时延开销回落到电子域。
+
+作者提出的 3D-TPE 通过时间、波长和空间三域交织，把缓存、同步和计算尽量留在光域中完成，核心不只是器件性能，而是把高阶" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw6-integrated-photonic-3d-tensor-engine/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Integrated photonic 3D tensor processing engine" />
+    <meta name="twitter:description" content="这篇论文处理的是当前光计算加速器里一个很实际的问题：现有 photonic accelerator 大多围绕 2D matrix-vector multiplication 设计，而 3D 卷积网络在真实系统里需要额外做高阶张量重排与同步，导致内存与时延开销回落到电子域。
+
+作者提出的 3D-TPE 通过时间、波长和空间三域交织，把缓存、同步和计算尽量留在光域中完成，核心不只是器件性能，而是把高阶" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Integrated photonic 3D tensor processing engine</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-06</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41377-026-02183-y" target="_blank" rel="noopener noreferrer">10.1038/s41377-026-02183-y</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文处理的是当前光计算加速器里一个很实际的问题：现有 photonic accelerator 大多围绕 2D matrix-vector multiplication 设计，而 3D 卷积网络在真实系统里需要额外做高阶张量重排与同步，导致内存与时延开销回落到电子域。</dd></div><div><dt>方法/机制</dt><dd>作者提出的 3D-TPE 通过时间、波长和空间三域交织，把缓存、同步和计算尽量留在光域中完成，核心不只是器件性能，而是把高阶张量处理路径整体搬到了更适合的计算介质里。论文还给出 LiDAR 3D 点云识别的 proof-of-concept，说明它不是完全脱离 AI 工作负载的纯器件展示。</dd></div><div><dt>结果/证据</dt><dd>从仓库视角看，这篇工作符合 AI accelerator / hardware design 的扩展范围，因为它讨论的是高阶张量卷积这一 AI 计算路径怎样被新的硬件结构承载。它对后续 photonic AI accelerator 的设计空间有明确启发，不只是单点性能改进。</dd></div><div><dt>收录价值</dt><dd>它仍不宜升得更高，因为当前证据还停留在 proof-of-concept 级别，且主要展示 3D 卷积相关 workload。它更像是一个强方向性硬件条目，而不是已经成熟的通用 AI 加速架构范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文处理的是当前光计算加速器里一个很实际的问题：现有 photonic accelerator 大多围绕 2D matrix-vector multiplication 设计，而 3D 卷积网络在真实系统里需要额外做高阶张量重排与同步，导致内存与时延开销回落到电子域。</p><p>作者提出的 3D-TPE 通过时间、波长和空间三域交织，把缓存、同步和计算尽量留在光域中完成，核心不只是器件性能，而是把高阶张量处理路径整体搬到了更适合的计算介质里。论文还给出 LiDAR 3D 点云识别的 proof-of-concept，说明它不是完全脱离 AI 工作负载的纯器件展示。</p><p>从仓库视角看，这篇工作符合 AI accelerator / hardware design 的扩展范围，因为它讨论的是高阶张量卷积这一 AI 计算路径怎样被新的硬件结构承载。它对后续 photonic AI accelerator 的设计空间有明确启发，不只是单点性能改进。</p><p>它仍不宜升得更高，因为当前证据还停留在 proof-of-concept 级别，且主要展示 3D 卷积相关 workload。它更像是一个强方向性硬件条目，而不是已经成熟的通用 AI 加速架构范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>光计算利用高带宽、低延迟和高能效，被认为是加速深度学习任务最有效的解决方案之一。然而，主流的光子硬件加速器主要针对二维 (2D) 矩阵-向量乘法 (MVMs) 进行优化。为了实现三维 (3D) 卷积神经网络 (CNNs)，高阶张量在计算前必须根据加速器的大小在电域中进行重塑，这会导致额外的内存使用和时间开销。此外，多通道间的同步依赖于外部电子时钟，这增加了系统的复杂性。在这项工作中，我们提出了一种基于时间、波长和空间交织调制的集成光子三维张量处理引擎 (3D-TPE)。数据缓存、通道同步和计算完全在光域内实现，减少了内存和时间使用，并简化了系统。光学缓存和同步通过一个支持高达 200 GHz 多功能时钟频率的光可调延迟线 (OTDL) 芯片实现，而光计算则通过一个基于双耦合微环谐振器 (MRRs) 的交叉开关芯片完成，该芯片具有 50 GHz 的 3-dB 通带宽度。我们验证了 3D-TPE 在 10 GHz 至 30 GHz 时钟频率范围内的处理能力，并针对在 20 GHz 下运行的激光雷达三维点云图像识别任务进行了概念验证实验，实现了 97.06% 的识别准确率。所提出的 3D-TPE 有望促进高阶张量卷积，在自动驾驶、医疗保健、视频分析、虚拟现实等领域发挥重要作用。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Optical computing leverages high bandwidth, low latency, and power efﬁciency, which is considered as one of the most effective solutions for accelerating deep learning tasks. However, mainstream photonic hardware accelerators are primarily optimized for two-dimensional (2D) matrix-vector multiplications (MVMs). To implement three-dimensional (3D) convolutional neural networks (CNNs), high-order tensors must be reshaped in the electrical domain according to the size of the accelerators before computation, leading to extra memory usage and time overheads. Additionally, synchronization across multiple channels depends on external electronic clocks, which increases the complexity of the system. In this work, we propose an integrated photonic 3D tensor processing engine (3D-TPE) based on the interleaving modulation of time, wavelength, and space. Data caching, channel synchronization and computation are realized entirely within the optical domain, reducing memory and time usage, and simplifying the system. Optical caching and synchronization are achieved with an optical tunable delay line (OTDL) chip supporting versatile clock frequencies up to 200 GHz, and optical computing is accomplished with a dual-coupled micro-ring resonators (MRRs) based crossbar chip with a 3-dB passband width of 50 GHz. We verify the processing capabilities of the 3D-TPE at clock frequencies ranging from 10 GHz to 30 GHz and perform a proof-of-concept experiment for a LiDAR 3D point cloud image recognition task operating at 20 GHz, achieving a recognition accuracy of 97.06%. The proposed 3D-TPE is anticipated to facilitate high-order tensor convolutions, playing an important role in autonomous driving, healthcare, video analytics, virtual reality, etc.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260306hw6integra,
+  title = {Integrated photonic 3D tensor processing engine},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41377-026-02183-y.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw6-integrated-photonic-3d-tensor-engine/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Integrated photonic 3D tensor processing engine. https://www.nature.com/articles/s41377-026-02183-y.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41377-026-02183-y.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

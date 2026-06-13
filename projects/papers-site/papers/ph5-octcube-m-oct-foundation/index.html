@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A three-dimensional multi-modal foundation model for optical coherence tomography | DAST Papers</title>
+    <meta name="description" content="这篇论文的重点不只是又一个眼科预测器，而是把 3D OCT 作为真正的 foundation-model substrate 来建模，并进一步把 OCT 与 IR、fundus autofluorescence 等 retinal modalities 接成一个多模态统一框架。过去很多 retinal AI 系统把 OCT 当成切片级或单模态任务，3D 结构和跨模态关系都没有被真正吃透。
+
+OCT" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/ph5-octcube-m-oct-foundation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="A three-dimensional multi-modal foundation model for optical coherence tomography" />
+    <meta property="og:description" content="这篇论文的重点不只是又一个眼科预测器，而是把 3D OCT 作为真正的 foundation-model substrate 来建模，并进一步把 OCT 与 IR、fundus autofluorescence 等 retinal modalities 接成一个多模态统一框架。过去很多 retinal AI 系统把 OCT 当成切片级或单模态任务，3D 结构和跨模态关系都没有被真正吃透。
+
+OCT" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/ph5-octcube-m-oct-foundation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="A three-dimensional multi-modal foundation model for optical coherence tomography" />
+    <meta name="twitter:description" content="这篇论文的重点不只是又一个眼科预测器，而是把 3D OCT 作为真正的 foundation-model substrate 来建模，并进一步把 OCT 与 IR、fundus autofluorescence 等 retinal modalities 接成一个多模态统一框架。过去很多 retinal AI 系统把 OCT 当成切片级或单模态任务，3D 结构和跨模态关系都没有被真正吃透。
+
+OCT" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>A three-dimensional multi-modal foundation model for optical coherence tomography</h1>
+          <p class="subtitle">生物医药与药物发现 · 发表：2026-04-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生物医药与药物发现</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-24</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41551-026-01662-2" target="_blank" rel="noopener noreferrer">10.1038/s41551-026-01662-2</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的重点不只是又一个眼科预测器，而是把 3D OCT 作为真正的 foundation-model substrate 来建模，并进一步把 OCT 与 IR、fundus autofluorescence 等 retinal modalities 接成一个多模态统一框架。过去很多 retinal AI 系统把 OCT 当成切片级或单模态任务，3D 结构和跨模态关系都没有被真正吃透。</dd></div><div><dt>方法/机制</dt><dd>OCTCube-M 的贡献在于同时把三件事做好：3D 表征、跨模态对齐，以及跨设备 / 跨队列泛化。单模态 OCTCube 在 8 个 retinal diseases 上做到 SOTA 级表现，多模态扩展又把 cross-modality retrieval 和 geographic atrophy growth prediction 带了进来。这个结构比单个任务成绩更重要，因为它把 OCT 基础模型的 reusable interface 定义得更清楚了。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为这类医学成像 foundation model 只有在真正跨设备、跨队列、跨模态时才有长期基础设施价值；这里贡献的是一种 durable biomedical FM pattern，而不是窄任务刷榜。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为当前外溢仍然主要在 retinal imaging 体系内，虽然很强，但离更广泛 medical imaging foundation-model 默认范式还有一段距离。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的重点不只是又一个眼科预测器，而是把 3D OCT 作为真正的 foundation-model substrate 来建模，并进一步把 OCT 与 IR、fundus autofluorescence 等 retinal modalities 接成一个多模态统一框架。过去很多 retinal AI 系统把 OCT 当成切片级或单模态任务，3D 结构和跨模态关系都没有被真正吃透。</p><p>OCTCube-M 的贡献在于同时把三件事做好：3D 表征、跨模态对齐，以及跨设备 / 跨队列泛化。单模态 OCTCube 在 8 个 retinal diseases 上做到 SOTA 级表现，多模态扩展又把 cross-modality retrieval 和 geographic atrophy growth prediction 带了进来。这个结构比单个任务成绩更重要，因为它把 OCT 基础模型的 reusable interface 定义得更清楚了。</p><p>它值得正式收录，因为这类医学成像 foundation model 只有在真正跨设备、跨队列、跨模态时才有长期基础设施价值；这里贡献的是一种 durable biomedical FM pattern，而不是窄任务刷榜。</p><p>它没有更高，是因为当前外溢仍然主要在 retinal imaging 体系内，虽然很强，但离更广泛 medical imaging foundation-model 默认范式还有一段距离。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视网膜疾病导致的视力丧失仍然是全球致残的主要原因。光学相干断层扫描 (OCT) 是一种用于诊断视网膜疾病的成像技术。计算模型可以使用 OCT 图像执行各种诊断和预后任务，但大多数现有方法未能充分利用 OCT 数据丰富的三维 (3D) 结构，并且缺乏将其他视网膜成像模态整合到分析中的能力。为解决这些局限性，我们在此提出了 OCTCube-M，这是一个基于 3D OCT 的多模态框架，旨在对 3D OCT 和 2D 平面 (EF) 图像进行集成分析。OCTCube-M 利用 COEP 这一有效的多模态对比学习方法，将 OCT 与其他视网膜成像模态（例如眼底自发荧光成像和红外视网膜成像 (IR)）进行整合。利用 OCTCube-M 框架，我们开发了三个模型：OCTCube（单模态）、OCTCube-IR（双模态）和 OCTCube-EF（三模态）。OCTCube 是一个 3D 基础模型，在包含 162 万张 2D OCT 切片的 26,605 个 3D OCT 体积上进行了预训练，在预测 8 种视网膜疾病方面取得了最先进的性能，同时在不同队列、设备和模态之间展现出强大的泛化能力。OCTCube-IR 通过整合 26,685 对 OCT 和 IR 图像来扩展 OCTCube，从而实现这两种模态的精确跨模态检索和联合分析。OCTCube-EF 在超过 400 万张 2D OCT 切片和 40 万张 EF 视网膜图像上进行训练，在预测来自 23 个国家 6 项多中心临床试验收集的数据集中地理萎缩的增长率方面表现出色。总之，OCTCube-M 是一个用于整合 OCT 和其他视网膜成像模态的 3D 多模态基础模型框架。它在跨中心、跨设备、跨模态和全身性疾病预测方面展现出显著进步，同时在地理萎缩临床试验中提供了巨大的实用价值。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Vision loss caused by retinal diseases remains a leading global cause of disability. Optical coherence tomography (OCT) is an imaging technique that is used for diagnosing retinal diseases. Computational models can use OCT images for various diagnostic and prognostic tasks, but most existing approaches fail to fully leverage the rich three-dimensional (3D) structure of OCT data and lack the capability to integrate other retinal imaging modalities into the analysis. Here, to address these limitations, we present OCTCube-M, a 3D OCT-based multi-modal framework designed for the integrated analysis of 3D OCT and 2D en face (EF) images. OCTCube-M exploits COEP, an effective multi-modal contrastive learning method, to integrate OCT with other retinal imaging modalities, such as fundus autofluorescence imaging and infrared retinal imaging (IR). Using the OCTCube-M framework, we developed three models: OCTCube (uni-modal), OCTCube-IR (bi-modal) and OCTCube-EF (tri-modal). OCTCube, a 3D foundation model pre-trained on 26,605 3D OCT volumes comprising 1.62 million 2D OCT slices, achieved state-of-the-art performance in predicting 8 retinal diseases while demonstrating robust generalizability across cohorts, devices and modalities. OCTCube-IR extends OCTCube by incorporating 26,685 pairs of OCT and IR images, enabling accurate cross-modality retrieval and joint analysis of these two modalities. OCTCube-EF, trained on over 4 million 2D OCT slices and 400 thousand EF retinal images, excels in predicting the growth rate of geographic atrophy across datasets collected from 6 multi-centre clinical trials across 23 countries. Collectively, OCTCube-M is a 3D multi-modal foundation model framework for integrating OCT and other retinal imaging modalities. It demonstrated substantial advancements in cross-site, cross-device, cross-modality and systemic disease prediction, while offering substantial utility in geographic atrophy clinical trials.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260424ph5octcube,
+  title = {A three-dimensional multi-modal foundation model for optical coherence tomography},
+  year = {2026},
+  url = {https://www.nature.com/articles/s41551-026-01662-2.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/ph5-octcube-m-oct-foundation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). A three-dimensional multi-modal foundation model for optical coherence tomography. https://www.nature.com/articles/s41551-026-01662-2.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/bio53-comole-molecular-gfm/">
+              <span>Controllable Molecular Generative Foundation Models</span>
+              <small>生物医药与药物发现 · 2026-05-18</small>
+            </a>
+            <a class="related-item" href="../../papers/bio50-raise-sarbecovirus-spillover/">
+              <span>RAISE: A computational tool for evaluating sarbecovirus spillover potential</span>
+              <small>生物医药与药物发现 · 2026-04-25</small>
+            </a>
+            <a class="related-item" href="../../papers/bio49-ires-programmable-rna-translation/">
+              <span>Programmable RNA translation through deep learning-driven IRES discovery and de novo generation</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+            <a class="related-item" href="../../papers/bio48-deepdrugdiscovery-ad-autophagy/">
+              <span>DeepDrugDiscovery identifies blood–brain barrier permeable autophagy enhancers for Alzheimer’s disease</span>
+              <small>生物医药与药物发现 · 2026-04-24</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41551-026-01662-2.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

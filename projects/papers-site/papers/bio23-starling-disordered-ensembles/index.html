@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Accurate predictions of disordered protein ensembles with STARLING | DAST Papers</title>
+    <meta name="description" content="无序蛋白及无序区域并不是少数例外，而是细胞功能和分子识别中的核心组成部分。难点在于它们不对应单一稳定结构，而是跨越大范围构象 ensemble。传统计算方法往往要么精度不够，要么成本过高，很难支持大规模序列搜索、条件分析和快速设计。
+
+STARLING 把 physics-based force fields 与 multi-modal generative deep learning 结合起来，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio23-starling-disordered-ensembles/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Accurate predictions of disordered protein ensembles with STARLING" />
+    <meta property="og:description" content="无序蛋白及无序区域并不是少数例外，而是细胞功能和分子识别中的核心组成部分。难点在于它们不对应单一稳定结构，而是跨越大范围构象 ensemble。传统计算方法往往要么精度不够，要么成本过高，很难支持大规模序列搜索、条件分析和快速设计。
+
+STARLING 把 physics-based force fields 与 multi-modal generative deep learning 结合起来，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio23-starling-disordered-ensembles/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Accurate predictions of disordered protein ensembles with STARLING" />
+    <meta name="twitter:description" content="无序蛋白及无序区域并不是少数例外，而是细胞功能和分子识别中的核心组成部分。难点在于它们不对应单一稳定结构，而是跨越大范围构象 ensemble。传统计算方法往往要么精度不够，要么成本过高，很难支持大规模序列搜索、条件分析和快速设计。
+
+STARLING 把 physics-based force fields 与 multi-modal generative deep learning 结合起来，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Accurate predictions of disordered protein ensembles with STARLING</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-18</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41586-026-10141-2" target="_blank" rel="noopener noreferrer">10.1038/s41586-026-10141-2</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>无序蛋白及无序区域并不是少数例外，而是细胞功能和分子识别中的核心组成部分。难点在于它们不对应单一稳定结构，而是跨越大范围构象 ensemble。传统计算方法往往要么精度不够，要么成本过高，很难支持大规模序列搜索、条件分析和快速设计。</dd></div><div><dt>方法/机制</dt><dd>STARLING 把 physics-based force fields 与 multi-modal generative deep learning 结合起来，从序列快速生成准确的 IDR ensembles 和 ensemble-aware 表征，并支持在不同离子强度等环境条件下建模。作者还加入 Bayesian maximum-entropy reweighting，用实验约束进一步 refinement；在此基础上，STARLING 既能做 biophysical look-alike 搜索，也能把 ensemble-first sequence design 从每个候选数小时或数周压到秒级。</dd></div><div><dt>结果/证据</dt><dd>对这个仓库来说，这篇论文的价值不在“又一个蛋白模型”，而在于它把无序蛋白研究从昂贵的逐个候选分析，推进到可扩展的 generative ensemble workflow。它明显属于 AI-driven biology / protein engineering 主线，并且对 sequence-to-ensemble modeling、条件生成和实验解释都有长期参考价值。</dd></div><div><dt>收录价值</dt><dd>它暂时不再升一级，是因为当前工作虽然很强，但影响面仍主要集中在 intrinsically disordered proteins 这一子方向，还没有像更通用的 protein foundation model 那样改变更广泛的蛋白设计默认范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>无序蛋白及无序区域并不是少数例外，而是细胞功能和分子识别中的核心组成部分。难点在于它们不对应单一稳定结构，而是跨越大范围构象 ensemble。传统计算方法往往要么精度不够，要么成本过高，很难支持大规模序列搜索、条件分析和快速设计。</p><p>STARLING 把 physics-based force fields 与 multi-modal generative deep learning 结合起来，从序列快速生成准确的 IDR ensembles 和 ensemble-aware 表征，并支持在不同离子强度等环境条件下建模。作者还加入 Bayesian maximum-entropy reweighting，用实验约束进一步 refinement；在此基础上，STARLING 既能做 biophysical look-alike 搜索，也能把 ensemble-first sequence design 从每个候选数小时或数周压到秒级。</p><p>对这个仓库来说，这篇论文的价值不在“又一个蛋白模型”，而在于它把无序蛋白研究从昂贵的逐个候选分析，推进到可扩展的 generative ensemble workflow。它明显属于 AI-driven biology / protein engineering 主线，并且对 sequence-to-ensemble modeling、条件生成和实验解释都有长期参考价值。</p><p>它暂时不再升一级，是因为当前工作虽然很强，但影响面仍主要集中在 intrinsically disordered proteins 这一子方向，还没有像更通用的 protein foundation model 那样改变更广泛的蛋白设计默认范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>使用STARLING准确预测无序蛋白集成。内在无序蛋白和区域（统称IDRs）存在于生命的所有界，并在几乎每个真核细胞过程中发挥关键作用。IDRs以广泛的结构不同构象集成形式存在。这种结构可塑性促进了多样的分子识别和功能。在本文中，我们将基于物理的力场方面的进展与多模态生成式深度学习的力量相结合，开发了STARLING，这是一个用于从序列快速生成准确IDR集成和集成感知表征的框架。STARLING支持跨离子强度的环境条件调节，并证明了生成模型在其训练域之外的插值能力的概念验证。此外，我们使用贝叶斯最大熵重加权方案，实现了在实验约束下的集成精修。除了集成表征之外，STARLING序列表征还可以通过多种方式使用。我们展示了两个例子：首先，STARLING使我们能够进行基于集成的“生物物理学上的相似物”搜索。其次，我们展示了如何利用这些潜在表征将集成优先的序列设计从每个候选数周或数小时加速到数秒，从而实现库规模设计。总之，STARLING通过涌现的生物物理特性视角，显著降低了对IDR功能进行计算探究的障碍，补充了生物信息学蛋白序列分析。我们根据现有实验数据评估了STARLING的准确性，并提供了一系列案例，说明STARLING如何能够为IDR功能实现快速假设生成并辅助解释实验数据。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Intrinsically disordered proteins and regions (collectively IDRs) are found across all kingdoms of life and have critical roles in virtually every eukaryotic cellular process . IDRs exist in a broad ensemble of structurally distinct conformations. This structural plasticity facilitates diverse molecular recognition and function . Here we combine advances in physics-based force fields with the power of multi-modal generative deep learning to develop STARLING, a framework for rapid generation of accurate IDR ensembles and ensemble-aware representations from sequence. STARLING supports environmental conditioning across ionic strengths and demonstrates proof of concept for the interpolative ability of generative models beyond their training domain. Moreover, we enable ensemble refinement under experimental constraints using a Bayesian maximum-entropy reweighting scheme. Beyond ensemble characterization, STARLING sequence representations can be used in multiple ways. We showcase two examples: first, STARLING lets us perform ensemble-based search for ‘biophysical look-alikes’. Second, we demonstrate how these latent representations can be used to accelerate ensemble-first sequence design from weeks or hours per candidate to seconds, enabling library-scale designs. Together, STARLING dramatically lowers the barrier to the computational interrogation of IDR function through the lens of emergent biophysical properties, complementing bioinformatic protein sequence analysis. We evaluate the accuracy of STARLING against extant experimental data and offer a series of vignettes illustrating how STARLING can enable rapid hypothesis generation for IDR function and aid the interpretation of experimental data.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260218bio23starl,
+  title = {Accurate predictions of disordered protein ensembles with STARLING},
+  year = {2026},
+  url = {https://doi.org/10.1038/s41586-026-10141-2},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio23-starling-disordered-ensembles/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Accurate predictions of disordered protein ensembles with STARLING. https://doi.org/10.1038/s41586-026-10141-2</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://doi.org/10.1038/s41586-026-10141-2" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

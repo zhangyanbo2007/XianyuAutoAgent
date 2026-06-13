@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments | DAST Papers</title>
+    <meta name="description" content="LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+OS-level benchmark for behavior jailbreaks in autonomous agents.
+
+It evaluates physi" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a278-litmus-os-agent-jailbreaks/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments" />
+    <meta property="og:description" content="LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+OS-level benchmark for behavior jailbreaks in autonomous agents.
+
+It evaluates physi" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a278-litmus-os-agent-jailbreaks/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments" />
+    <meta name="twitter:description" content="LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。
+
+OS-level benchmark for behavior jailbreaks in autonomous agents.
+
+It evaluates physi" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10779" target="_blank" rel="noopener noreferrer">2605.10779</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</dd></div><div><dt>方法/机制</dt><dd>OS-level benchmark for behavior jailbreaks in autonomous agents.</dd></div><div><dt>结果/证据</dt><dd>It evaluates physical/action-layer harm with rollback and dual semantic-physical verification, a strong reusable safety benchmark.</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments 关注的是一个可复用的 AI 系统或评测问题，而不是单点 demo。</p><p>OS-level benchmark for behavior jailbreaks in autonomous agents.</p><p>It evaluates physical/action-layer harm with rollback and dual semantic-physical verification, a strong reusable safety benchmark.</p><p>它没有更高，是因为这些新 arXiv 工作仍需要更多独立复现、真实系统部署和长期社区采用来确认影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>LLM驱动的自主代理在真实操作系统环境中的迅速普及，引入了一种超越传统内容安全的新型安全风险：行为越狱，即攻击者诱导代理执行具有不可逆物理后果的危险OS级操作。现有基准要么仅在语义输出层评估安全性，忽略了物理层危害，要么未能隔离测试用例，导致早期运行污染后期运行。我们提出了LITMUS（LLM代理OS内测试以衡量不安全颠覆），一个通过语义-物理双重验证机制和OS级状态回滚设计来解决这两个缺陷的基准。LITMUS包含一个由819个高风险测试用例组成的数据集，这些用例被组织成一个有害种子子集和六个攻击扩展子集，涵盖三种对抗范式（越狱话语、技能注入和实体封装），以及一个全自动多代理评估框架，该框架独立地在对话和OS级物理层判断代理行为。对多个前沿代理的评估揭示了三个一致的发现：（1）当前代理在真实OS环境中缺乏对危险指令的有效安全意识，即使是强大的模型（例如Claude Sonnet 4.6）仍执行40.64%的高风险操作；（2）代理表现出普遍的执行幻觉（EH），即口头拒绝请求，但危险操作已在系统层面完成，这种现象在所有先前的仅语义评估框架中是不可见的；（3）我们设计的技能注入和实体封装攻击取得了高成功率，暴露了代理对恶意技能干扰和指令混淆的显著漏洞。LITMUS为LLM代理在真实OS环境中可复现、物理基础的行为安全评估提供了第一个标准化平台。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The rapid proliferation of LLM-based autonomous agents in real operating system environments introduces a qualitatively new category of safety risk beyond traditional content safety: behavior jailbreak, where an adversary induces an agent to execute dangerous OS-level operations with irreversible physical consequences. Existing benchmarks either evaluate safety at the semantic output layer alone, missing physical-layer harms, or fail to isolate test cases, letting earlier runs contaminate later ones. We present LITMUS (LLM-agents In-OS Testing for Measuring Unsafe Subversion), a benchmark that addresses both gaps through a semantic–physical dual verification mechanism and an OS-level state rollback design. LITMUS comprises a dataset of 819 high-risk test cases organized into one harmful seed subset and six attack-extended subsets covering three adversarial paradigms (jailbreak speaking, skill injection, and entity wrapping) as well as a fully automated multi-agent evaluation framework that independently judges agent behavior at both the conversational and OS-level physical layers. Evaluation across multiple frontier agents reveals three consistent findings: (1) current agents lack effective safety awareness against dangerous instructions in real OS environments, with the strong model (e.g. Claude Sonnet 4.6) still executing 40.64% of high-risk operations; (2) agents exhibit pervasive Execution Hallucination (EH), verbally refusing a request while the dangerous operation has already completed at the system level, a phenomenon invisible to every prior semantic-only evaluation framework; and (3) skill injection and entity wrapping attacks we designed achieve high success rates, exposing pronounced agent vulnerabilities to malicious skill interference and instruction obfuscation. LITMUS provides the first standardized platform for reproducible, physically grounded behavioral safety evaluation of LLM agents in real OS environments.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511a278litmus,
+  title = {LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10779.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a278-litmus-os-agent-jailbreaks/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LITMUS: Benchmarking Behavioral Jailbreaks of LLM Agents in Real OS Environments. https://arxiv.org/pdf/2605.10779.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10779.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.10779" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

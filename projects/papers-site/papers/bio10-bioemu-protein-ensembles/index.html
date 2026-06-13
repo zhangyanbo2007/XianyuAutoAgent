@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scalable emulation of protein equilibrium ensembles with generative deep learning | DAST Papers</title>
+    <meta name="description" content="这篇 Science 论文处理的是蛋白质建模里一个比单结构预测更困难的问题：如何高效近似蛋白质的平衡构象分布，也就是 protein equilibrium ensembles。传统分子动力学虽然能给出动态分布，但成本极高，难以大规模覆盖；而只预测单一静态结构又不足以刻画真实功能相关的构象变化。
+
+论文提出用生成式深度学习直接模拟蛋白质平衡构象集合，把原本昂贵的分子动力学采样问题改写成可扩展的生成" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio10-bioemu-protein-ensembles/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Scalable emulation of protein equilibrium ensembles with generative deep learning" />
+    <meta property="og:description" content="这篇 Science 论文处理的是蛋白质建模里一个比单结构预测更困难的问题：如何高效近似蛋白质的平衡构象分布，也就是 protein equilibrium ensembles。传统分子动力学虽然能给出动态分布，但成本极高，难以大规模覆盖；而只预测单一静态结构又不足以刻画真实功能相关的构象变化。
+
+论文提出用生成式深度学习直接模拟蛋白质平衡构象集合，把原本昂贵的分子动力学采样问题改写成可扩展的生成" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio10-bioemu-protein-ensembles/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Scalable emulation of protein equilibrium ensembles with generative deep learning" />
+    <meta name="twitter:description" content="这篇 Science 论文处理的是蛋白质建模里一个比单结构预测更困难的问题：如何高效近似蛋白质的平衡构象分布，也就是 protein equilibrium ensembles。传统分子动力学虽然能给出动态分布，但成本极高，难以大规模覆盖；而只预测单一静态结构又不足以刻画真实功能相关的构象变化。
+
+论文提出用生成式深度学习直接模拟蛋白质平衡构象集合，把原本昂贵的分子动力学采样问题改写成可扩展的生成" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Scalable emulation of protein equilibrium ensembles with generative deep learning</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2025-08-14</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">颠覆级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-08-14</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 Science 论文处理的是蛋白质建模里一个比单结构预测更困难的问题：如何高效近似蛋白质的平衡构象分布，也就是 protein equilibrium ensembles。传统分子动力学虽然能给出动态分布，但成本极高，难以大规模覆盖；而只预测单一静态结构又不足以刻画真实功能相关的构象变化。</dd></div><div><dt>方法/机制</dt><dd>论文提出用生成式深度学习直接模拟蛋白质平衡构象集合，把原本昂贵的分子动力学采样问题改写成可扩展的生成式近似问题。它的价值不只是再做一个结构生成模型，而是把 sequence-to-ensemble 作为核心建模对象，试图在速度和物理可用性之间建立新的折中，从而形成可大规模调用的蛋白质动力学模拟器。</dd></div><div><dt>结果/证据</dt><dd>这项工作值得收录，因为它明显改变了蛋白质动力学研究的工作流：从长时间模拟转向快速生成式近似。对于 AI for science 尤其是生物分子建模来说，这类系统有很强的外溢性，既影响蛋白质功能理解，也可能影响药物发现、构象筛选和下游实验设计。因此它比一般蛋白生成论文更接近 workflow-changing 的条目。</dd></div><div><dt>收录价值</dt><dd>它还不到 paradigm，原因是平衡构象模拟的物理可信度、适用边界和跨蛋白泛化仍需要长期检验。现阶段更准确的定位是 disruptive：它显著改变了问题的实践路线，但是否成为长期主导范式，还取决于后续社区验证和广泛采用。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 Science 论文处理的是蛋白质建模里一个比单结构预测更困难的问题：如何高效近似蛋白质的平衡构象分布，也就是 protein equilibrium ensembles。传统分子动力学虽然能给出动态分布，但成本极高，难以大规模覆盖；而只预测单一静态结构又不足以刻画真实功能相关的构象变化。</p><p>论文提出用生成式深度学习直接模拟蛋白质平衡构象集合，把原本昂贵的分子动力学采样问题改写成可扩展的生成式近似问题。它的价值不只是再做一个结构生成模型，而是把 sequence-to-ensemble 作为核心建模对象，试图在速度和物理可用性之间建立新的折中，从而形成可大规模调用的蛋白质动力学模拟器。</p><p>这项工作值得收录，因为它明显改变了蛋白质动力学研究的工作流：从长时间模拟转向快速生成式近似。对于 AI for science 尤其是生物分子建模来说，这类系统有很强的外溢性，既影响蛋白质功能理解，也可能影响药物发现、构象筛选和下游实验设计。因此它比一般蛋白生成论文更接近 workflow-changing 的条目。</p><p>它还不到 paradigm，原因是平衡构象模拟的物理可信度、适用边界和跨蛋白泛化仍需要长期检验。现阶段更准确的定位是 disruptive：它显著改变了问题的实践路线，但是否成为长期主导范式，还取决于后续社区验证和广泛采用。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>理由：为了解决这一吞吐量挑战，我们开发了一种生物分子模拟器 (BioEmu)，它可以对单个蛋白质链的近似结构平衡分布进行采样。BioEmu是一个生成式深度学习系统，可以在单个图形处理单元 (GPU) 上每小时生成数千个统计独立的结构样本。BioEmu利用AlphaFold将蛋白质序列编码成丰富的序列-结构表示，该表示作为输入进入一个扩散模型，该模型能高效地采样三维结构。BioEmu的训练分为三个阶段：首先，它在一个经过处理的AlphaFold数据库 (AFDB) 版本上进行了预训练，旨在促使模型将每个蛋白质序列与一组多样化的结构关联起来。训练继续在一个包含数千种蛋白质的MD模拟大型数据集上进行，总模拟时间超过200毫秒。最后，BioEmu利用此处开发的一项技术——属性预测微调 (PPFT)，对超过500,000个实验蛋白质稳定性数据进行了微调。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>RATIONALE: As a step toward solving this throughput challenge, we developed a biomolecular emulator (BioEmu) that samples the approximate equilibrium distribution of structures of single protein chains. BioEmu is a generative deep-­learning system that can generate thousands of statistically independent structure samples per hour on a single graphics processing unit (GPU). BioEmu leverages AlphaFold to encode the protein sequence into a rich sequence-­structure representation, which inputs into a diffusion model that efficiently samples three-­dimensional structures. BioEmu was trained in three stages: It was pretrained on a processed version of the AlphaFold database (AFDB) in such a way as to incentivize the model to associate each protein sequence with a diverse set of structures. Training was continued on a vast dataset of MD simulations of thousands of proteins and more than 200 ms of aggregate simulation time. And finally, BioEmu was fine-­tuned on more than 500,000 experimental protein stabilities using a technology developed here, property-­prediction fine-­tuning (PPFT).</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250814bio10bioem,
+  title = {Scalable emulation of protein equilibrium ensembles with generative deep learning},
+  year = {2025},
+  url = {https://pubmed.ncbi.nlm.nih.gov/40638710/},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio10-bioemu-protein-ensembles/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Scalable emulation of protein equilibrium ensembles with generative deep learning. https://pubmed.ncbi.nlm.nih.gov/40638710/</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://pubmed.ncbi.nlm.nih.gov/40638710/" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

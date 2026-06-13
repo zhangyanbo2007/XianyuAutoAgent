@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autogenesis: A Self-Evolving Agent Protocol | DAST Papers</title>
+    <meta name="description" content="Autogenesis 把 self-evolving agents 从一次性系统技巧提升为协议问题：agent、tool、prompt、memory、environment 等都被建模为有状态、有生命周期、有版本接口的资源，而 evolution 本身通过独立协议层管理。
+
+核心分层是 RSPL 与 SEPL。RSPL 负责资源注册、状态、版本和上下文管理；SEPL 负责 proposal、as" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a220-autogenesis-self-evolving-agent-protocol/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Autogenesis: A Self-Evolving Agent Protocol" />
+    <meta property="og:description" content="Autogenesis 把 self-evolving agents 从一次性系统技巧提升为协议问题：agent、tool、prompt、memory、environment 等都被建模为有状态、有生命周期、有版本接口的资源，而 evolution 本身通过独立协议层管理。
+
+核心分层是 RSPL 与 SEPL。RSPL 负责资源注册、状态、版本和上下文管理；SEPL 负责 proposal、as" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a220-autogenesis-self-evolving-agent-protocol/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Autogenesis: A Self-Evolving Agent Protocol" />
+    <meta name="twitter:description" content="Autogenesis 把 self-evolving agents 从一次性系统技巧提升为协议问题：agent、tool、prompt、memory、environment 等都被建模为有状态、有生命周期、有版本接口的资源，而 evolution 本身通过独立协议层管理。
+
+核心分层是 RSPL 与 SEPL。RSPL 负责资源注册、状态、版本和上下文管理；SEPL 负责 proposal、as" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Autogenesis: A Self-Evolving Agent Protocol</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-16</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-16</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.15034" target="_blank" rel="noopener noreferrer">2604.15034</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Autogenesis 把 self-evolving agents 从一次性系统技巧提升为协议问题：agent、tool、prompt、memory、environment 等都被建模为有状态、有生命周期、有版本接口的资源，而 evolution 本身通过独立协议层管理。</dd></div><div><dt>方法/机制</dt><dd>核心分层是 RSPL 与 SEPL。RSPL 负责资源注册、状态、版本和上下文管理；SEPL 负责 proposal、assessment、commit、lineage 和 rollback。这个设计将自我改进从不可控 prompt patching 转成有边界、可追踪、可回滚的资源演化流程。</dd></div><div><dt>结果/证据</dt><dd>收录价值在于它正好对齐 agent 系统下一阶段的关键问题：静态 agent 会快速老化，而可安全演化需要明确的资源边界、版本治理和验证接口。即使实验仍早期，协议化 framing 本身具有较强工程参考价值。</dd></div><div><dt>收录价值</dt><dd>主要限制是论文证据更像 protocol/system demonstration，缺少大规模真实部署和安全失败分析；自我修改机制如果缺少强验证和权限控制，也可能带来回归、权限膨胀和隐性目标漂移。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Autogenesis 把 self-evolving agents 从一次性系统技巧提升为协议问题：agent、tool、prompt、memory、environment 等都被建模为有状态、有生命周期、有版本接口的资源，而 evolution 本身通过独立协议层管理。</p><p>核心分层是 RSPL 与 SEPL。RSPL 负责资源注册、状态、版本和上下文管理；SEPL 负责 proposal、assessment、commit、lineage 和 rollback。这个设计将自我改进从不可控 prompt patching 转成有边界、可追踪、可回滚的资源演化流程。</p><p>收录价值在于它正好对齐 agent 系统下一阶段的关键问题：静态 agent 会快速老化，而可安全演化需要明确的资源边界、版本治理和验证接口。即使实验仍早期，协议化 framing 本身具有较强工程参考价值。</p><p>主要限制是论文证据更像 protocol/system demonstration，缺少大规模真实部署和安全失败分析；自我修改机制如果缺少强验证和权限控制，也可能带来回归、权限膨胀和隐性目标漂移。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>真实世界环境。为了克服这一限制，赋予智能体自我演化能力——使其能够根据环境反馈自动调整策略、完善指令并更新工具——已成为实现鲁棒自主性的关键途径。这种从预定义执行到动态适应的转变代表了智能体系统设计的根本性转变。基于LLM的智能体系统在处理复杂、长周期任务方面展现出潜力。然而，现有的智能体协议（例如A2A和MCP）对跨实体生命周期和上下文管理、版本跟踪以及演化安全更新接口的规定不足，这导致了单体组合和脆弱的胶水代码。我们引入了AUTOGENESIS P RO TOCOL (AGP)，一种将“演化什么”与“如何演化”解耦的自我演化协议。其资源基底协议层（RSPL）将提示、智能体、工具、环境和内存建模为具有明确状态、生命周期和版本化接口的协议注册资源1。其自我演化协议层（SEPL）指定了一个闭环操作员接口，用于提议、评估和提交具有可审计沿袭和回滚能力的改进。基于AGP，我们提出了AUTOGENESIS S YSTEM (AGS)，一个在执行过程中动态实例化、检索和完善协议注册资源的自我演化多智能体系统。我们在多个需要长周期规划和跨异构资源工具使用的挑战性基准上评估了AGS。结果表明，与强大的基线相比，AGS持续改进，支持了智能体资源管理和闭环自我演化的有效性。尽管对自我演化智能体的兴趣日益增长，但其实现仍然高度碎片化和临时性。现有系统通常缺乏共享标准，使得演化过程既不可组合也无法审计。开发者经常被迫依赖脆弱的胶水代码，导致难以维护的单体架构。此外，如果没有明确的生命周期管理和安全更新接口，自我修改会引入显著的运行时不稳定风险。为了解决这些问题，有必要将开发从临时工程实践提升到协议层面，通过标准化框架将“演化什么”与“如何演化”解耦，以确保模块化、可追溯和安全的演化。虽然Anthropic的Model Context Protocol (MCP) (Anthropic, 2025b)和Google的Agent-toAgent (A2A)等协议已经标准化了连接性，但将它们直接应用于自我演化场景存在概念上的不匹配。这些协议主要旨在解决连接性挑战——具体来说，是模型-工具调用（MCP）或智能体间通信（A2A）。然而，自我演化的核心不在于调用，而在于状态突变和管理。现有连接协议缺乏对实体生命周期和版本沿袭的原生支持。在闭环演化系统中，如果组件的创建、更新和销毁没有精确定义，优化器就无法安全地应用修改。此外，缺乏版本跟踪和回滚机制意味着错误的更新可能导致不可恢复的错误。因此，仅仅依靠通信协议是不够的；需要一种能够管理突变动态的新型协议。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>real-world environments. To overcome this limitation, endowing agents with self-evolution capabilities—enabling them to automatically adjust strategies, refine instructions, and update tools based on environmental feedback—has emerged as a critical avenue for achieving robust autonomy. This transition from predefined execution to dynamic adaptation represents a fundamental shift in agentic system design. Recent advances in LLM based agent systems have shown promise in tackling complex, long horizon tasks. However, existing agent protocols (e.g., A2A and MCP) under specify cross entity lifecycle and context management, version tracking, and evolution safe update interfaces, which encourages monolithic compositions and brittle glue code. We introduce AUTOGENESIS P RO TOCOL (AGP), a self evolution protocol that decouples what evolves from how evolution occurs. Its Resource Substrate Protocol Layer (RSPL) models prompts, agents, tools, environments, and memory as protocol registered resources1 with explicit state, lifecycle, and versioned interfaces. Its Self Evolution Protocol Layer (SEPL) specifies a closed loop operator interface for proposing, assessing, and committing improvements with auditable lineage and rollback. Building on AGP, we present AUTOGENESIS S YSTEM (AGS), a self-evolving multi-agent system that dynamically instantiates, retrieves, and refines protocol-registered resources during execution. We evaluate AGS on multiple challenging benchmarks that require long horizon planning and tool use across heterogeneous resources. The results demonstrate consistent improvements over strong baselines, supporting the effectiveness of agent resource management and closed loop self evolution. Despite the growing interest in self-evolving agents, implementations remain largely fragmented and ad hoc. Existing systems often lack shared standards, rendering the evolution process neither composable nor auditable. Developers are frequently forced to rely on brittle glue code, leading to monolithic architectures that are difficult to maintain. Furthermore, without explicit lifecycle management and safe update interfaces, self-modification introduces significant risks of runtime instability. To address these issues, it is necessary to elevate development from ad hoc engineering practices to the protocol level, decoupling “what evolves” from “how evolution occurs” via a standardized framework to ensure modular, traceable, and safe evolution. While protocols such as Anthropic’s Model Context Protocol (MCP) (Anthropic, 2025b) and Google’s Agent-toAgent (A2A) have standardized connectivity, applying them directly to self-evolution scenarios presents a conceptual mismatch. These protocols are primarily designed to resolve connectivity challenges—specifically, model-tool invocation (MCP) or inter-agent communication (A2A). However, the core of self-evolution lies not in invocation, but in state mutation and management. Existing connectivity protocols lack native support for entity Lifecycle and Version Lineage. In a closed-loop evolutionary system, if the creation, update, and destruction of components are not precisely defined, the optimizer cannot safely apply modifications. Moreover, the absence of version tracking and rollback mechanisms means that erroneous updates can lead to irrecoverable errors. Consequently, relying solely on communication protocols is insufficient; a novel protocol capable of managing the dynamics of mutation is required.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260416a220autoge,
+  title = {Autogenesis: A Self-Evolving Agent Protocol},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.15034.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a220-autogenesis-self-evolving-agent-protocol/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Autogenesis: A Self-Evolving Agent Protocol. https://arxiv.org/pdf/2604.15034.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.15034.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

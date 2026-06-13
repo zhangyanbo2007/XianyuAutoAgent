@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Self-driving thin film laboratory: autonomous epitaxial atomic-layer synthesis via real-time computer vision analysis of electron diffraction | DAST Papers</title>
+    <meta name="description" content="这篇论文属于 AI for science / self-driving lab 方向里比较扎实的一类工作：不是泛泛谈 autonomous lab，而是在原子层外延薄膜合成中做实时闭环决策。核心问题是多维工艺参数空间搜索成本高，而材料制备过程中的反馈又是连续且高时效的。
+
+作者把实时计算机视觉分析的 RHEED 电子衍射图像接到组合式脉冲激光沉积平台上，让系统在生长过程中逐帧分析并即时更新下一轮" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c13-self-driving-thin-film-lab/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Self-driving thin film laboratory: autonomous epitaxial atomic-layer synthesis via real-time computer vision analysis of electron diffraction" />
+    <meta property="og:description" content="这篇论文属于 AI for science / self-driving lab 方向里比较扎实的一类工作：不是泛泛谈 autonomous lab，而是在原子层外延薄膜合成中做实时闭环决策。核心问题是多维工艺参数空间搜索成本高，而材料制备过程中的反馈又是连续且高时效的。
+
+作者把实时计算机视觉分析的 RHEED 电子衍射图像接到组合式脉冲激光沉积平台上，让系统在生长过程中逐帧分析并即时更新下一轮" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c13-self-driving-thin-film-lab/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Self-driving thin film laboratory: autonomous epitaxial atomic-layer synthesis via real-time computer vision analysis of electron diffraction" />
+    <meta name="twitter:description" content="这篇论文属于 AI for science / self-driving lab 方向里比较扎实的一类工作：不是泛泛谈 autonomous lab，而是在原子层外延薄膜合成中做实时闭环决策。核心问题是多维工艺参数空间搜索成本高，而材料制备过程中的反馈又是连续且高时效的。
+
+作者把实时计算机视觉分析的 RHEED 电子衍射图像接到组合式脉冲激光沉积平台上，让系统在生长过程中逐帧分析并即时更新下一轮" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Self-driving thin film laboratory: autonomous epitaxial atomic-layer synthesis via real-time computer vision analysis of electron diffraction</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-02-24</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge video">有讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-02-24</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2602.20432" target="_blank" rel="noopener noreferrer">2602.20432</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文属于 AI for science / self-driving lab 方向里比较扎实的一类工作：不是泛泛谈 autonomous lab，而是在原子层外延薄膜合成中做实时闭环决策。核心问题是多维工艺参数空间搜索成本高，而材料制备过程中的反馈又是连续且高时效的。</dd></div><div><dt>方法/机制</dt><dd>作者把实时计算机视觉分析的 RHEED 电子衍射图像接到组合式脉冲激光沉积平台上，让系统在生长过程中逐帧分析并即时更新下一轮实验决策，形成真正的 closed-loop autonomous navigation。结果上，论文报告相对全面参数扫描可实现超过 30 倍的实验次数压缩，这对实验吞吐和工艺优化都很有说服力。</dd></div><div><dt>结果/证据</dt><dd>对仓库来说，它的重要性在于工作流模式：实时视觉表征 + 原位反馈 + 自动实验决策 + 材料工艺优化。这种模式比很多只做离线 surrogate 或单步 BO 的论文更接近可迁移的实验自动化基础设施，因此属于高价值 AI x materials / AI x lab automation 条目。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前工作仍主要展示在特定薄膜合成平台与目标相上。方法的跨实验平台泛化和更广泛的自治实验能力还需要后续证明，因此目前定为 breakthrough 更稳妥。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文属于 AI for science / self-driving lab 方向里比较扎实的一类工作：不是泛泛谈 autonomous lab，而是在原子层外延薄膜合成中做实时闭环决策。核心问题是多维工艺参数空间搜索成本高，而材料制备过程中的反馈又是连续且高时效的。</p><p>作者把实时计算机视觉分析的 RHEED 电子衍射图像接到组合式脉冲激光沉积平台上，让系统在生长过程中逐帧分析并即时更新下一轮实验决策，形成真正的 closed-loop autonomous navigation。结果上，论文报告相对全面参数扫描可实现超过 30 倍的实验次数压缩，这对实验吞吐和工艺优化都很有说服力。</p><p>对仓库来说，它的重要性在于工作流模式：实时视觉表征 + 原位反馈 + 自动实验决策 + 材料工艺优化。这种模式比很多只做离线 surrogate 或单步 BO 的论文更接近可迁移的实验自动化基础设施，因此属于高价值 AI x materials / AI x lab automation 条目。</p><p>它没有升到更高一级，是因为当前工作仍主要展示在特定薄膜合成平台与目标相上。方法的跨实验平台泛化和更广泛的自治实验能力还需要后续证明，因此目前定为 breakthrough 更稳妥。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260224c13selfdri,
+  title = {Self-driving thin film laboratory: autonomous epitaxial atomic-layer synthesis via real-time computer vision analysis of electron diffraction},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2602.20432.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c13-self-driving-thin-film-lab/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Self-driving thin film laboratory: autonomous epitaxial atomic-layer synthesis via real-time computer vision analysis of electron diffraction. https://arxiv.org/pdf/2602.20432.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2602.20432.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

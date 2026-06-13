@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models | DAST Papers</title>
+    <meta name="description" content="视频世界模型已经能模拟大量场景，但现有记忆机制大多默认环境近似静态，对动态主体暂时离开视野后再出现的情况处理很差，常见问题是主体冻结、形变或直接消失。这个问题本质上不是普通长视频建模，而是世界模型是否真正学会了对动态对象进行持续记忆。
+
+这篇工作把问题明确成 hybrid memory：背景需要像档案一样稳定存储，运动主体则需要像跟踪器一样维持连续状态。作者为此构建了 HM-World 数据集，并" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm33-hybrid-memory-video-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models" />
+    <meta property="og:description" content="视频世界模型已经能模拟大量场景，但现有记忆机制大多默认环境近似静态，对动态主体暂时离开视野后再出现的情况处理很差，常见问题是主体冻结、形变或直接消失。这个问题本质上不是普通长视频建模，而是世界模型是否真正学会了对动态对象进行持续记忆。
+
+这篇工作把问题明确成 hybrid memory：背景需要像档案一样稳定存储，运动主体则需要像跟踪器一样维持连续状态。作者为此构建了 HM-World 数据集，并" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm33-hybrid-memory-video-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models" />
+    <meta name="twitter:description" content="视频世界模型已经能模拟大量场景，但现有记忆机制大多默认环境近似静态，对动态主体暂时离开视野后再出现的情况处理很差，常见问题是主体冻结、形变或直接消失。这个问题本质上不是普通长视频建模，而是世界模型是否真正学会了对动态对象进行持续记忆。
+
+这篇工作把问题明确成 hybrid memory：背景需要像档案一样稳定存储，运动主体则需要像跟踪器一样维持连续状态。作者为此构建了 HM-World 数据集，并" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-26</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-26</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.25716" target="_blank" rel="noopener noreferrer">2603.25716</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>视频世界模型已经能模拟大量场景，但现有记忆机制大多默认环境近似静态，对动态主体暂时离开视野后再出现的情况处理很差，常见问题是主体冻结、形变或直接消失。这个问题本质上不是普通长视频建模，而是世界模型是否真正学会了对动态对象进行持续记忆。</dd></div><div><dt>方法/机制</dt><dd>这篇工作把问题明确成 hybrid memory：背景需要像档案一样稳定存储，运动主体则需要像跟踪器一样维持连续状态。作者为此构建了 HM-World 数据集，并提出 HyDRA 记忆架构，把记忆压缩成 token，再用时空相关性驱动的检索去取回与当前生成最相关的动态线索，从而维持遮挡、出画和回画场景中的主体一致性。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，不是因为又提升了一个视频分数，而是因为它把动态主体记忆从模糊能力项提升成了显式训练目标、数据构造方式和可复用模块接口。这对视频世界模型、交互式生成以及更广义的长期视觉记忆建模都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>它现在还不到更高一级，主要因为证据仍集中在作者自建任务设定和 preprint 阶段；Hybrid Memory 是否会成为更广视频生成或视觉世界模型的标准接口，还需要跨数据集、跨架构复现来确认。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>视频世界模型已经能模拟大量场景，但现有记忆机制大多默认环境近似静态，对动态主体暂时离开视野后再出现的情况处理很差，常见问题是主体冻结、形变或直接消失。这个问题本质上不是普通长视频建模，而是世界模型是否真正学会了对动态对象进行持续记忆。</p><p>这篇工作把问题明确成 hybrid memory：背景需要像档案一样稳定存储，运动主体则需要像跟踪器一样维持连续状态。作者为此构建了 HM-World 数据集，并提出 HyDRA 记忆架构，把记忆压缩成 token，再用时空相关性驱动的检索去取回与当前生成最相关的动态线索，从而维持遮挡、出画和回画场景中的主体一致性。</p><p>它值得收录，不是因为又提升了一个视频分数，而是因为它把动态主体记忆从模糊能力项提升成了显式训练目标、数据构造方式和可复用模块接口。这对视频世界模型、交互式生成以及更广义的长期视觉记忆建模都有外溢价值。</p><p>它现在还不到更高一级，主要因为证据仍集中在作者自建任务设定和 preprint 阶段；Hybrid Memory 是否会成为更广视频生成或视觉世界模型的标准接口，还需要跨数据集、跨架构复现来确认。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260326mm33hybrid,
+  title = {Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.25716.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm33-hybrid-memory-video-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Out of Sight but Not Out of Mind: Hybrid Memory for Dynamic Video World Models. https://arxiv.org/pdf/2603.25716.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.25716.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

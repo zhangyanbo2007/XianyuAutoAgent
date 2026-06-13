@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Two-dimensional geometric template diffusion for boosting single-sequence protein structure prediction | DAST Papers</title>
+    <meta name="description" content="单序列蛋白结构预测的重要性持续上升，因为很多蛋白缺乏足够同源信息，而传统依赖 MSA 或模板的路线在这些场景下成本高、覆盖差。这篇论文瞄准的就是如何在不依赖同源信息的情况下，仍然高效地得到高质量结构预测。
+
+作者提出 TDFold，用二维几何模板扩散先生成成对距离和方向等 pairwise geometries，再结合 sequence-geometry collaborative learnin" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/bio29-tdfold-protein-structure/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Two-dimensional geometric template diffusion for boosting single-sequence protein structure prediction" />
+    <meta property="og:description" content="单序列蛋白结构预测的重要性持续上升，因为很多蛋白缺乏足够同源信息，而传统依赖 MSA 或模板的路线在这些场景下成本高、覆盖差。这篇论文瞄准的就是如何在不依赖同源信息的情况下，仍然高效地得到高质量结构预测。
+
+作者提出 TDFold，用二维几何模板扩散先生成成对距离和方向等 pairwise geometries，再结合 sequence-geometry collaborative learnin" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/bio29-tdfold-protein-structure/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Two-dimensional geometric template diffusion for boosting single-sequence protein structure prediction" />
+    <meta name="twitter:description" content="单序列蛋白结构预测的重要性持续上升，因为很多蛋白缺乏足够同源信息，而传统依赖 MSA 或模板的路线在这些场景下成本高、覆盖差。这篇论文瞄准的就是如何在不依赖同源信息的情况下，仍然高效地得到高质量结构预测。
+
+作者提出 TDFold，用二维几何模板扩散先生成成对距离和方向等 pairwise geometries，再结合 sequence-geometry collaborative learnin" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Two-dimensional geometric template diffusion for boosting single-sequence protein structure prediction</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s42256-026-01210-2" target="_blank" rel="noopener noreferrer">10.1038/s42256-026-01210-2</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>单序列蛋白结构预测的重要性持续上升，因为很多蛋白缺乏足够同源信息，而传统依赖 MSA 或模板的路线在这些场景下成本高、覆盖差。这篇论文瞄准的就是如何在不依赖同源信息的情况下，仍然高效地得到高质量结构预测。</dd></div><div><dt>方法/机制</dt><dd>作者提出 TDFold，用二维几何模板扩散先生成成对距离和方向等 pairwise geometries，再结合 sequence-geometry collaborative learning 推断三维结构。它把扩散模型用在 2D 几何模板层，而不是直接在 3D 结构空间硬做生成，这使得单序列输入下的结构归纳更稳定，也形成了一个不同于现有 protein language model 路线的接口设计。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它不是简单刷新单一 benchmark，而是在单序列 protein folding 上给出了一条更清晰的可复用方法路径：先生成高质量 2D 几何模板，再高效折叠到 3D。对资源受限环境、同源稀缺蛋白，以及更广的 AI x biology 结构建模都有现实意义。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为其影响目前仍主要集中在蛋白结构预测子线，且长期地位还要看后续外部复现、与主流基础模型路线的结合程度，以及在更复杂结构生物学任务中的延展性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>单序列蛋白结构预测的重要性持续上升，因为很多蛋白缺乏足够同源信息，而传统依赖 MSA 或模板的路线在这些场景下成本高、覆盖差。这篇论文瞄准的就是如何在不依赖同源信息的情况下，仍然高效地得到高质量结构预测。</p><p>作者提出 TDFold，用二维几何模板扩散先生成成对距离和方向等 pairwise geometries，再结合 sequence-geometry collaborative learning 推断三维结构。它把扩散模型用在 2D 几何模板层，而不是直接在 3D 结构空间硬做生成，这使得单序列输入下的结构归纳更稳定，也形成了一个不同于现有 protein language model 路线的接口设计。</p><p>这篇工作值得收录，因为它不是简单刷新单一 benchmark，而是在单序列 protein folding 上给出了一条更清晰的可复用方法路径：先生成高质量 2D 几何模板，再高效折叠到 3D。对资源受限环境、同源稀缺蛋白，以及更广的 AI x biology 结构建模都有现实意义。</p><p>它没有升到更高一级，是因为其影响目前仍主要集中在蛋白结构预测子线，且长期地位还要看后续外部复现、与主流基础模型路线的结合程度，以及在更复杂结构生物学任务中的延展性。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>单序列蛋白质结构预测因获取同源信息所需的高计算成本而受到越来越多的关注。在本文中，我们提出了一种名为TDFold的类视觉二维几何模板扩散方法，用于生成高质量的成对几何信息（包括成对距离和方向），以实现蛋白质准确高效的单序列三维结构预测。给定蛋白质序列，TDFold首先生成</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Single-sequence protein structure prediction has drawn increasing attention due to the high computational costs associated with obtaining homologous information. Here, we propose a visual-like 2D geometric template∗ diffusion method, named TDFold, to generate high-quality pairwise geometries (including pairwise distances and orientations) for achieving accurate and highly efficient single-sequence 3D structure prediction for proteins. Given a protein sequence, TDFold initially generates ∗</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401bio29tdfol,
+  title = {Two-dimensional geometric template diffusion for boosting single-sequence protein structure prediction},
+  year = {2026},
+  url = {https://www.nature.com/articles/s42256-026-01210-2},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/bio29-tdfold-protein-structure/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Two-dimensional geometric template diffusion for boosting single-sequence protein structure prediction. https://www.nature.com/articles/s42256-026-01210-2</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s42256-026-01210-2" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules | DAST Papers</title>
+    <meta name="description" content="SciCore-Mol 针对科学 LLM 处理分子数据时的结构性问题：把拓扑分子和连续反应信息压成离散文本会造成信息损失和语义噪声。
+
+框架把 topology-aware perception、latent diffusion-based molecular generation 和 reaction-aware reasoning 三个模块以 learned representation in" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/c33-scicore-mol-pluggable-cognition/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules" />
+    <meta property="og:description" content="SciCore-Mol 针对科学 LLM 处理分子数据时的结构性问题：把拓扑分子和连续反应信息压成离散文本会造成信息损失和语义噪声。
+
+框架把 topology-aware perception、latent diffusion-based molecular generation 和 reaction-aware reasoning 三个模块以 learned representation in" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/c33-scicore-mol-pluggable-cognition/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules" />
+    <meta name="twitter:description" content="SciCore-Mol 针对科学 LLM 处理分子数据时的结构性问题：把拓扑分子和连续反应信息压成离散文本会造成信息损失和语义噪声。
+
+框架把 topology-aware perception、latent diffusion-based molecular generation 和 reaction-aware reasoning 三个模块以 learned representation in" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules</h1>
+          <p class="subtitle">化学、生物与自动化实验室 · 发表：2026-05-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">化学、生物与自动化实验室</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-21</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.22287" target="_blank" rel="noopener noreferrer">2605.22287</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>SciCore-Mol 针对科学 LLM 处理分子数据时的结构性问题：把拓扑分子和连续反应信息压成离散文本会造成信息损失和语义噪声。</dd></div><div><dt>方法/机制</dt><dd>框架把 topology-aware perception、latent diffusion-based molecular generation 和 reaction-aware reasoning 三个模块以 learned representation interfaces 接入 LLM backbone，而不是仅依赖文本工具反馈。</dd></div><div><dt>结果/证据</dt><dd>实验覆盖 molecular understanding、generation、reaction prediction 和 general chemistry knowledge，目标是让 8B 开源系统在化学任务上获得更系统的专家能力。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它提供了“LLM + 可插拔科学认知模块”的体系结构样板，比普通化学问答或分子属性预测更接近可复用 scientific-agent substrate。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>SciCore-Mol 针对科学 LLM 处理分子数据时的结构性问题：把拓扑分子和连续反应信息压成离散文本会造成信息损失和语义噪声。</p><p>框架把 topology-aware perception、latent diffusion-based molecular generation 和 reaction-aware reasoning 三个模块以 learned representation interfaces 接入 LLM backbone，而不是仅依赖文本工具反馈。</p><p>实验覆盖 molecular understanding、generation、reaction prediction 和 general chemistry knowledge，目标是让 8B 开源系统在化学任务上获得更系统的专家能力。</p><p>它值得正式收录，因为它提供了“LLM + 可插拔科学认知模块”的体系结构样板，比普通化学问答或分子属性预测更接近可复用 scientific-agent substrate。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>大语言模型（LLM）是“一站式”智能范式的核心，但在处理分子等异构科学数据时面临一个根本性挑战：离散语言符号与拓扑分子或连续反应数据之间的固有鸿沟，导致在基于文本的推理中出现显著的信息丢失和语义噪声。我们提出了SciCore-Mol，一个模块化框架，通过三个深度集成的可插拔认知模块弥合了这一鸿沟：一个拓扑感知感知模块、一个基于潜在扩散的分子生成模块和一个反应感知推理模块。每个模块都通过学习到的表示接口与LLM骨干模型耦合，实现了比仅通过文本工具反馈更丰富的信息交换。我们在多样化的化学任务上的实验表明，SciCore-Mol在分子理解、生成、反应预测和一般化学知识方面取得了强大的综合性能，其80亿参数的开源系统在多个维度上与专有大型模型竞争并超越它们。这项工作为通过解耦、可插拔和灵活编排的模块为LLM配备科学专业知识提供了系统蓝图，对药物设计、化学合成和更广泛的科学发现具有直接影响。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Large Language Models (LLMs) are central to the one-for-all intelligent paradigm, but they face a fundamental challenge when dealing with heterogeneous scientific data such as molecules: the inherent gap between discrete linguistic symbols and topological molecular or continuous reaction data leads to significant information loss and semantic noise in text-based reasoning. We propose SciCore-Mol, a modular framework that bridges this gap through three deeply integrated pluggable cognitive modules: a topology-aware perception module, a latent diffusion-based molecular generation module, and a reaction-aware reasoning module. Each module is coupled to the LLM backbone through learned representation interfaces, enabling richer information exchange than is possible with text-only tool feedback. Our experiments on diverse chemical tasks demonstrate that SciCore-Mol achieves strong comprehensive performance across molecular understanding, generation, reaction prediction, and general chemistry knowledge, with an 8B-parameter open-source system that is competitive with and in several dimensions surpasses proprietary large models. This work provides a systematic blueprint for equipping LLMs with scientific expertise through decoupled, pluggable, and flexibly orchestrated modules, with direct implications for drug design, chemical synthesis, and broader scientific discovery.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260521c33scicore,
+  title = {SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.22287.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/c33-scicore-mol-pluggable-cognition/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). SciCore-Mol: Augmenting Large Language Models with Pluggable Molecular Cognition Modules. https://arxiv.org/pdf/2605.22287.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/c44-opticpl-multimodal-chiroptical-design/">
+              <span>Multimodal deep-learning optimization of chiroptical properties in all-inorganic perovskite-coated TiO2 nanohelices and inverse-design transfer to organic chiral luminophores</span>
+              <small>化学、生物与自动化实验室 · 2026-06-04</small>
+            </a>
+            <a class="related-item" href="../../papers/c43-artificial-raman-expert/">
+              <span>Artificial Raman Expert: Autonomous Spectroscopic Reasoning Driven by Localized Large Language Models</span>
+              <small>化学、生物与自动化实验室 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/c36-cross-material-catalyst-discovery/">
+              <span>Cross-material catalyst discovery via deep learning</span>
+              <small>化学、生物与自动化实验室 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/bio59-uniair-immune-mutation-effects/">
+              <span>Generalizable mutation-effect prediction across adaptive immune recognition via unified multimodal framework</span>
+              <small>化学、生物与自动化实验室 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/c35-master-multiagent-catalyst-discovery/">
+              <span>Hierarchical Multi-agent Large Language Model Reasoning for Autonomous Heterogeneous Catalyst Discovery</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/c34-sofisher-rl-spatial-omics-design/">
+              <span>SOFisher: reinforcement learning-guided experiment designs for spatial omics</span>
+              <small>化学、生物与自动化实验室 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.22287.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

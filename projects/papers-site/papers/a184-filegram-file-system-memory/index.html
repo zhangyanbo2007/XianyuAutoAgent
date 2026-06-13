@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FileGram: Grounding Agent Personalization in File-System Behavioral Traces | DAST Papers</title>
+    <meta name="description" content="这篇论文针对个性化智能体长期记忆的一个具体缺口：现有记忆系统多依赖用户画像、对话摘要或叙事式 profile，但真实个人工作流往往沉淀在文件系统的操作痕迹、内容差异、目录结构、跨应用上下文和时间序列中。作者将这些低层行为轨迹视为可被智能体记忆系统利用的原始证据，提出用文件系统行为来支撑更稳健的个性化、意图恢复和长期上下文建模。
+
+方法上，论文构建了 FileGramEngine、FileGramB" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a184-filegram-file-system-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="FileGram: Grounding Agent Personalization in File-System Behavioral Traces" />
+    <meta property="og:description" content="这篇论文针对个性化智能体长期记忆的一个具体缺口：现有记忆系统多依赖用户画像、对话摘要或叙事式 profile，但真实个人工作流往往沉淀在文件系统的操作痕迹、内容差异、目录结构、跨应用上下文和时间序列中。作者将这些低层行为轨迹视为可被智能体记忆系统利用的原始证据，提出用文件系统行为来支撑更稳健的个性化、意图恢复和长期上下文建模。
+
+方法上，论文构建了 FileGramEngine、FileGramB" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a184-filegram-file-system-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FileGram: Grounding Agent Personalization in File-System Behavioral Traces" />
+    <meta name="twitter:description" content="这篇论文针对个性化智能体长期记忆的一个具体缺口：现有记忆系统多依赖用户画像、对话摘要或叙事式 profile，但真实个人工作流往往沉淀在文件系统的操作痕迹、内容差异、目录结构、跨应用上下文和时间序列中。作者将这些低层行为轨迹视为可被智能体记忆系统利用的原始证据，提出用文件系统行为来支撑更稳健的个性化、意图恢复和长期上下文建模。
+
+方法上，论文构建了 FileGramEngine、FileGramB" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>FileGram: Grounding Agent Personalization in File-System Behavioral Traces</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-06</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-06</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.04901" target="_blank" rel="noopener noreferrer">2604.04901</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文针对个性化智能体长期记忆的一个具体缺口：现有记忆系统多依赖用户画像、对话摘要或叙事式 profile，但真实个人工作流往往沉淀在文件系统的操作痕迹、内容差异、目录结构、跨应用上下文和时间序列中。作者将这些低层行为轨迹视为可被智能体记忆系统利用的原始证据，提出用文件系统行为来支撑更稳健的个性化、意图恢复和长期上下文建模。</dd></div><div><dt>方法/机制</dt><dd>方法上，论文构建了 FileGramEngine、FileGramBench 和 FileGramOS 三个配套组件。FileGramEngine 用 persona 驱动的数据生成流程模拟真实文件工作流和多模态动作序列；FileGramBench 将评测拆成 profile reconstruction、trace disentanglement、persona drift detection、multimodal grounding 等任务；FileGramOS 则采用自底向上的记忆架构，把原子级文件动作、内容 delta 和时间上下文组织为程序性、语义性与情节性记忆通道，并在查询时进行抽象和检索。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为它把 agent memory 从对话摘要和向量检索推进到更接近操作系统层的行为证据建模，并给出了可复用的数据生成、评测和系统接口。对仓库关注的 agent memory、能力扩展和本地优先工具链而言，FileGram 的价值不只在一个 benchmark 分数，而在于提出了一种把文件系统事件流转化为个性化记忆的工程模式。</dd></div><div><dt>收录价值</dt><dd>主要限制是证据仍然高度依赖合成轨迹和模拟 persona，真实个人文件系统会带来更强的隐私、权限、噪声、跨设备同步和分布漂移问题。FileGramOS 展示了比叙事式记忆更强的效果，但还不是大规模真实部署验证，因此更适合作为突破性 agent-memory 工作收录，而不是上调到 disruptive。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文针对个性化智能体长期记忆的一个具体缺口：现有记忆系统多依赖用户画像、对话摘要或叙事式 profile，但真实个人工作流往往沉淀在文件系统的操作痕迹、内容差异、目录结构、跨应用上下文和时间序列中。作者将这些低层行为轨迹视为可被智能体记忆系统利用的原始证据，提出用文件系统行为来支撑更稳健的个性化、意图恢复和长期上下文建模。</p><p>方法上，论文构建了 FileGramEngine、FileGramBench 和 FileGramOS 三个配套组件。FileGramEngine 用 persona 驱动的数据生成流程模拟真实文件工作流和多模态动作序列；FileGramBench 将评测拆成 profile reconstruction、trace disentanglement、persona drift detection、multimodal grounding 等任务；FileGramOS 则采用自底向上的记忆架构，把原子级文件动作、内容 delta 和时间上下文组织为程序性、语义性与情节性记忆通道，并在查询时进行抽象和检索。</p><p>它值得正式收录，是因为它把 agent memory 从对话摘要和向量检索推进到更接近操作系统层的行为证据建模，并给出了可复用的数据生成、评测和系统接口。对仓库关注的 agent memory、能力扩展和本地优先工具链而言，FileGram 的价值不只在一个 benchmark 分数，而在于提出了一种把文件系统事件流转化为个性化记忆的工程模式。</p><p>主要限制是证据仍然高度依赖合成轨迹和模拟 persona，真实个人文件系统会带来更强的隐私、权限、噪声、跨设备同步和分布漂移问题。FileGramOS 展示了比叙事式记忆更强的效果，但还不是大规模真实部署验证，因此更适合作为突破性 agent-memory 工作收录，而不是上调到 disruptive。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260406a184filegr,
+  title = {FileGram: Grounding Agent Personalization in File-System Behavioral Traces},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.04901.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a184-filegram-file-system-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). FileGram: Grounding Agent Personalization in File-System Behavioral Traces. https://arxiv.org/pdf/2604.04901.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.04901.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agent-RewardBench: Towards a Unified Benchmark for Reward Modeling across Perception, Planning, and Safety in Real-World Multimodal Agents | DAST Papers</title>
+    <meta name="description" content="这篇 ACL 2025 论文面向 agent reward modeling 的关键缺口：现实 agent 的好坏不只取决于文本答案，还涉及感知、规划、安全边界和动作过程。Agent-RewardBench 把这些维度放进统一评估框架。
+
+它的可复用价值在于定义了 multimodal agent reward model 的评测接口，能用于检验奖励模型是否真的理解任务过程、环境反馈与风险，而不只" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a200-agentrewardbench-multimodal-agents/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Agent-RewardBench: Towards a Unified Benchmark for Reward Modeling across Perception, Planning, and Safety in Real-World Multimodal Agents" />
+    <meta property="og:description" content="这篇 ACL 2025 论文面向 agent reward modeling 的关键缺口：现实 agent 的好坏不只取决于文本答案，还涉及感知、规划、安全边界和动作过程。Agent-RewardBench 把这些维度放进统一评估框架。
+
+它的可复用价值在于定义了 multimodal agent reward model 的评测接口，能用于检验奖励模型是否真的理解任务过程、环境反馈与风险，而不只" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a200-agentrewardbench-multimodal-agents/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Agent-RewardBench: Towards a Unified Benchmark for Reward Modeling across Perception, Planning, and Safety in Real-World Multimodal Agents" />
+    <meta name="twitter:description" content="这篇 ACL 2025 论文面向 agent reward modeling 的关键缺口：现实 agent 的好坏不只取决于文本答案，还涉及感知、规划、安全边界和动作过程。Agent-RewardBench 把这些维度放进统一评估框架。
+
+它的可复用价值在于定义了 multimodal agent reward model 的评测接口，能用于检验奖励模型是否真的理解任务过程、环境反馈与风险，而不只" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Agent-RewardBench: Towards a Unified Benchmark for Reward Modeling across Perception, Planning, and Safety in Real-World Multimodal Agents</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-07-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-07-01</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 ACL 2025 论文面向 agent reward modeling 的关键缺口：现实 agent 的好坏不只取决于文本答案，还涉及感知、规划、安全边界和动作过程。Agent-RewardBench 把这些维度放进统一评估框架。</dd></div><div><dt>方法/机制</dt><dd>它的可复用价值在于定义了 multimodal agent reward model 的评测接口，能用于检验奖励模型是否真的理解任务过程、环境反馈与风险，而不只是偏好一段流畅回答。</dd></div><div><dt>结果/证据</dt><dd>按本库标准，它属于 agent 系统评估与安全基础设施方向。随着 RL、process supervision、agent judge、computer-use agent 的发展，跨感知/规划/安全的 reward benchmark 会成为可复用参考。</dd></div><div><dt>收录价值</dt><dd>局限是 benchmark 本身不能保证覆盖全部真实部署风险，且 reward model 的外推能力仍取决于任务采样和标注质量。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 ACL 2025 论文面向 agent reward modeling 的关键缺口：现实 agent 的好坏不只取决于文本答案，还涉及感知、规划、安全边界和动作过程。Agent-RewardBench 把这些维度放进统一评估框架。</p><p>它的可复用价值在于定义了 multimodal agent reward model 的评测接口，能用于检验奖励模型是否真的理解任务过程、环境反馈与风险，而不只是偏好一段流畅回答。</p><p>按本库标准，它属于 agent 系统评估与安全基础设施方向。随着 RL、process supervision、agent judge、computer-use agent 的发展，跨感知/规划/安全的 reward benchmark 会成为可复用参考。</p><p>局限是 benchmark 本身不能保证覆盖全部真实部署风险，且 reward model 的外推能力仍取决于任务采样和标注质量。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Agent-RewardBench：迈向真实世界多模态智能体中感知、规划和安全奖励建模的统一基准随着多模态大语言模型（MLLMs）的进步，多模态智能体在网络导航和具身智能等真实世界任务中展现出巨大潜力。然而，由于缺乏外部反馈的限制，这些智能体在自我纠正和泛化方面面临困难。一个有前景的方法是使用奖励模型作为外部反馈，但目前尚不清楚如何为智能体选择奖励模型。因此，迫切需要构建一个面向智能体的奖励基准。为应对这些挑战，我们提出了AgentRewardBench，一个旨在评估MLLMs中奖励建模能力的基准。该基准具有三个关键特征：(1) 多维度和真实世界智能体场景评估。它涵盖了感知、规划和安全，共7个场景；(2) 步级奖励评估。它允许在任务的每个单独步骤评估智能体的能力，从而在规划过程中提供更细粒度的性能视图；(3) 适当的难度和高质量。我们从10个不同的模型中精心采样，控制难度以保持任务挑战性，并进行人工验证以确保数据的完整性。实验表明，即使是最先进的多模态模型也表现出有限的性能，这凸显了在智能体奖励建模方面进行专门训练的必要性。代码可在github上获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>As Multimodal Large Language Models (MLLMs) advance, multimodal agents show promise in real-world tasks like web navigation and embodied intelligence. However, due to limitations in a lack of external feedback, these agents struggle with self-correction and generalization. A promising approach is to use reward models as external feedback, but there is no clear on how to select reward models for agents. Thus, there is an urgent need to build a reward bench targeted at agents. To address these challenges, we propose AgentRewardBench, a benchmark designed to evaluate reward modeling ability in MLLMs. The benchmark is characterized by three key features: (1) Multiple dimensions and real-world agent scenarios evaluation. It covers perception, planning, and safety with 7 scenarios; (2) Step-level reward evaluation. It allows for the assessment of agent capabilities at the individual steps of a task, providing a more granular view of performance during the planning process; and (3) Appropriately difficulty and highquality. We carefully sample from 10 diverse models, difficulty control to maintain task challenges, and manual verification to ensure the integrity of the data. Experiments demonstrate that even state-of-the-art multimodal models show limited performance, highlighting the need for specialized training in agent reward modeling. Code is available at github.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250701a200agentr,
+  title = {Agent-RewardBench: Towards a Unified Benchmark for Reward Modeling across Perception, Planning, and Safety in Real-World Multimodal Agents},
+  year = {2025},
+  url = {https://aclanthology.org/2025.acl-long.857.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a200-agentrewardbench-multimodal-agents/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Agent-RewardBench: Towards a Unified Benchmark for Reward Modeling across Perception, Planning, and Safety in Real-World Multimodal Agents. https://aclanthology.org/2025.acl-long.857.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://aclanthology.org/2025.acl-long.857.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

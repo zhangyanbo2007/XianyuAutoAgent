@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PF-LLM: Large Language Model Hinted Hardware Prefetching | DAST Papers</title>
+    <meta name="description" content="PF-LLM tackles a classic microarchitecture bottleneck: hardware prefetchers must decide when and how aggressively to prefetch under extremely tight runtime latency and area constraints. Existing ensem" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/hw22-pf-llm-hardware-prefetching/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PF-LLM: Large Language Model Hinted Hardware Prefetching" />
+    <meta property="og:description" content="PF-LLM tackles a classic microarchitecture bottleneck: hardware prefetchers must decide when and how aggressively to prefetch under extremely tight runtime latency and area constraints. Existing ensem" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/hw22-pf-llm-hardware-prefetching/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PF-LLM: Large Language Model Hinted Hardware Prefetching" />
+    <meta name="twitter:description" content="PF-LLM tackles a classic microarchitecture bottleneck: hardware prefetchers must decide when and how aggressively to prefetch under extremely tight runtime latency and area constraints. Existing ensem" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PF-LLM: Large Language Model Hinted Hardware Prefetching</h1>
+          <p class="subtitle">AI 硬件与加速器 · 发表：2026-03-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">AI 硬件与加速器</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-22</dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>PF-LLM tackles a classic microarchitecture bottleneck: hardware prefetchers must decide when and how aggressively to prefetch under extremely tight runtime latency and area constraints. Existing ensemble prefetchers rely on online heuristics and trial-and-error adaptation, which limits their ability to use broader program context and respond well to diverse access patterns.</dd></div><div><dt>方法/机制</dt><dd>The paper’s core idea is to move the hard orchestration decisions out of runtime hardware and into offline LLM analysis. PF-LLM is fine-tuned to read assembly context around load instructions and emit prefetching hints, while a lightweight runtime LMHint Prefetcher consumes those hints inside a prefetcher ensemble. This turns code understanding by a foundation model into a practical microarchitectural control signal.</dd></div><div><dt>结果/证据</dt><dd>This is worth collecting because it is more than a one-off performance tweak. It demonstrates a reusable workflow pattern for AI-guided hardware optimization: use offline learned program analysis to steer a constrained online hardware mechanism. That pattern has spillover beyond prefetching to broader architecture, compiler, and low-level system design questions.</dd></div><div><dt>收录价值</dt><dd>It is not ranked higher because the contribution is still centered on one subsystem, hardware data prefetching, rather than redefining AI-hardware co-design at a larger scale. The performance gains are meaningful and the method is conceptually fresh, but its immediate scope remains narrower than the strongest route-level hardware papers in the repository.</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>PF-LLM tackles a classic microarchitecture bottleneck: hardware prefetchers must decide when and how aggressively to prefetch under extremely tight runtime latency and area constraints. Existing ensemble prefetchers rely on online heuristics and trial-and-error adaptation, which limits their ability to use broader program context and respond well to diverse access patterns.</p><p>The paper’s core idea is to move the hard orchestration decisions out of runtime hardware and into offline LLM analysis. PF-LLM is fine-tuned to read assembly context around load instructions and emit prefetching hints, while a lightweight runtime LMHint Prefetcher consumes those hints inside a prefetcher ensemble. This turns code understanding by a foundation model into a practical microarchitectural control signal.</p><p>This is worth collecting because it is more than a one-off performance tweak. It demonstrates a reusable workflow pattern for AI-guided hardware optimization: use offline learned program analysis to steer a constrained online hardware mechanism. That pattern has spillover beyond prefetching to broader architecture, compiler, and low-level system design questions.</p><p>It is not ranked higher because the contribution is still centered on one subsystem, hardware data prefetching, rather than redefining AI-hardware co-design at a larger scale. The performance gains are meaningful and the method is conceptually fresh, but its immediate scope remains narrower than the strongest route-level hardware papers in the repository.</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>PF-LLM：大型语言模型提示的硬件预取。硬件数据预取是现代处理器中缓解内存延迟的关键技术。尽管存在复杂的硬件预取算法，但它们对运行时信息的独占依赖限制了其快速适应和理解更广泛程序上下文的能力。我们的关键见解是，加载指令的最佳预取策略通常可以从其静态代码上下文中识别出来——这是一项经验丰富的开发人员擅长的任务。这激发了我们的核心问题：能否训练一个大型语言模型（LLM）来自动执行这种分析？我们引入了PF-LLM，这是一个经过微调的LLM，用于分析加载指令周围的汇编上下文并生成预取提示。这些离线生成的提示在运行时由LMHint Prefetcher（一个旨在利用这种静态指导的轻量级硬件预取器集成）消耗。我们的方法通过将“何时、如何以及多激进地预取”这些困难的决策从运行时硬件中移出，并转移到离线的LLM驱动分析中，从而提升了片上硬件预取器的性能。这项技术（香港科技大学，香港，yuanxie@ust.hk）将片上预取器转变为一个零延迟、神谕级别的系统，该系统始终遵循针对每个加载指令的最佳预取策略。我们的评估表明，与最先进的硬件预取基线相比，我们的方法在内存密集型SPEC 2017基准测试中平均实现了9.8%的每周期指令数（IPC）提升；与最先进的集成方法相比，平均提升了18.9%，这展示了利用LLM指导微架构决策的巨大潜力。CCS概念：• 计算机系统组织 → 架构；串行架构。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Hardware data prefetching is a critical technique for mitigating memory latency in modern processors. While sophisticated hardware prefetching algorithms exist, their exclusive reliance on runtime information limits their ability to adapt quickly and comprehend broader program context. Our key insight is that the optimal prefetching strategy for a load instruction is often discernible from its static code context—a task at which experienced developers excel. This motivates our central question: can a Large Language Model (LLM) be trained to perform this analysis automatically? We introduce PF-LLM, an LLM fine-tuned to analyze the assembly context surrounding a load instruction and generate prefetching hints. These offline-generated hints are consumed at runtime by LMHint Prefetcher, a lightweight hardware prefetcher ensemble designed to leverage this static guidance. Our approach boosts the performance of the on-chip hardware prefetcher by moving the hard “when, how, and how aggressively to prefetch” decisions out of the runtime hardware and into an offline LLM-powered analysis. This The Hong Kong University of Science and Technology Hong Kong, Hong Kong yuanxie@ust.hk turns the on-chip prefetcher into a zero-latency, oraclelevel system that always follows the best prefetching policy for every single load instruction. Our evaluation shows that our approach achieves a 9.8% instruction-per-cycle (IPC) improvement on average for memory-intensive SPEC 2017 benchmarks over state-of-the-art hardware prefetching baselines and 18.9% improvement on average over state-of-theart ensemble methods, demonstrating the significant potential of leveraging LLMs to guide microarchitectural decisions. CCS Concepts: • Computer systems organization → Architectures; Serial architectures.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260322hw22pfllmh,
+  title = {PF-LLM: Large Language Model Hinted Hardware Prefetching},
+  year = {2026},
+  url = {https://fact-lab.hkust.edu.hk/publications/conference-paper/2025/xu-2025-pf-llm/3779212.3790202.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/hw22-pf-llm-hardware-prefetching/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PF-LLM: Large Language Model Hinted Hardware Prefetching. https://fact-lab.hkust.edu.hk/publications/conference-paper/2025/xu-2025-pf-llm/3779212.3790202.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/hw35-trainable-neuromorphic-spintronic-hardware/">
+              <span>Trainable neuromorphic spintronic hardware Via analog finite-difference gradient methods</span>
+              <small>AI 硬件与加速器 · 2026-05-23</small>
+            </a>
+            <a class="related-item" href="../../papers/hw38-adaptive-tunneling-photodiodes/">
+              <span>Adaptive tunneling photodiodes enable visual recognition in high-contrast scenes</span>
+              <small>AI 硬件与加速器 · 2026-05-22</small>
+            </a>
+            <a class="related-item" href="../../papers/hw33-optical-dfa-training/">
+              <span>Streamlined optical training of large-scale modern deep learning architectures with direct feedback alignment</span>
+              <small>AI 硬件与加速器 · 2026-05-19</small>
+            </a>
+            <a class="related-item" href="../../papers/hw9-resistive-memory-diffusion-solver/">
+              <span>Resistive memory-based neural differential equation solver for score-based diffusion model</span>
+              <small>AI 硬件与加速器 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/hw36-time-synthetic-onn/">
+              <span>Time-synthetic optical neural networks with stable programmable gain</span>
+              <small>AI 硬件与加速器 · 2026-05-06</small>
+            </a>
+            <a class="related-item" href="../../papers/sys31-roundpipe-consumer-gpu-training/">
+              <span>Efficient Training on Multiple Consumer GPUs with RoundPipe</span>
+              <small>AI 硬件与加速器 · 2026-04-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://fact-lab.hkust.edu.hk/publications/conference-paper/2025/xu-2025-pf-llm/3779212.3790202.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://fact-lab.hkust.edu.hk/publications/conference-paper/2025/xu-2025-pf-llm/3779212.3790202.pdf" target="_blank" rel="noopener noreferrer">项目</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

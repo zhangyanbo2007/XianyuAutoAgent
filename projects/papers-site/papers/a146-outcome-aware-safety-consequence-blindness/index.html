@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Read the Scene, Not the Script: Outcome-Aware Safety for LLMs | DAST Papers</title>
+    <meta name="description" content="很多安全对齐工作把问题看成“识别敏感表面信号并拒答”，但现实里模型的失败往往来自更深一层：它没有真正理解行动与结果之间的关系，因此既可能被语义伪装绕过，也可能对无害请求过度拒绝。
+
+这篇论文把该问题明确命名为 consequence-blindness，并构造 CB-Bench 去区分 semantic risk 与 outcome risk 是否一致的场景，再提出 CS-Chain-4k 作为 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a146-outcome-aware-safety-consequence-blindness/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Read the Scene, Not the Script: Outcome-Aware Safety for LLMs" />
+    <meta property="og:description" content="很多安全对齐工作把问题看成“识别敏感表面信号并拒答”，但现实里模型的失败往往来自更深一层：它没有真正理解行动与结果之间的关系，因此既可能被语义伪装绕过，也可能对无害请求过度拒绝。
+
+这篇论文把该问题明确命名为 consequence-blindness，并构造 CB-Bench 去区分 semantic risk 与 outcome risk 是否一致的场景，再提出 CS-Chain-4k 作为 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a146-outcome-aware-safety-consequence-blindness/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Read the Scene, Not the Script: Outcome-Aware Safety for LLMs" />
+    <meta name="twitter:description" content="很多安全对齐工作把问题看成“识别敏感表面信号并拒答”，但现实里模型的失败往往来自更深一层：它没有真正理解行动与结果之间的关系，因此既可能被语义伪装绕过，也可能对无害请求过度拒绝。
+
+这篇论文把该问题明确命名为 consequence-blindness，并构造 CB-Bench 去区分 semantic risk 与 outcome risk 是否一致的场景，再提出 CS-Chain-4k 作为 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Read the Scene, Not the Script: Outcome-Aware Safety for LLMs</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2025-10-05</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-10-05</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2510.04320" target="_blank" rel="noopener noreferrer">2510.04320</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>很多安全对齐工作把问题看成“识别敏感表面信号并拒答”，但现实里模型的失败往往来自更深一层：它没有真正理解行动与结果之间的关系，因此既可能被语义伪装绕过，也可能对无害请求过度拒绝。</dd></div><div><dt>方法/机制</dt><dd>这篇论文把该问题明确命名为 consequence-blindness，并构造 CB-Bench 去区分 semantic risk 与 outcome risk 是否一致的场景，再提出 CS-Chain-4k 作为 consequence-reasoning 对齐数据。它不只是说当前安全做法不够好，而是给出了一套更可操作的 outcome-aware framing。</dd></div><div><dt>结果/证据</dt><dd>这种 framing 对仓库很有价值，因为它能外溢到 agent safety、tool use、policy evaluation 和 refusal calibration 等多条线。相比纯 jailbreak 对抗，这篇工作更接近“安全该如何被定义和训练”的问题重述，因此具有更长的参考寿命。</dd></div><div><dt>收录价值</dt><dd>它仍未达到更高等级的原因在于，目前主要证据还是 benchmark 与对齐数据带来的改进，而不是一个已被广泛采纳的新安全蓝图。但作为 breakthrough 收录是合理的。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>很多安全对齐工作把问题看成“识别敏感表面信号并拒答”，但现实里模型的失败往往来自更深一层：它没有真正理解行动与结果之间的关系，因此既可能被语义伪装绕过，也可能对无害请求过度拒绝。</p><p>这篇论文把该问题明确命名为 consequence-blindness，并构造 CB-Bench 去区分 semantic risk 与 outcome risk 是否一致的场景，再提出 CS-Chain-4k 作为 consequence-reasoning 对齐数据。它不只是说当前安全做法不够好，而是给出了一套更可操作的 outcome-aware framing。</p><p>这种 framing 对仓库很有价值，因为它能外溢到 agent safety、tool use、policy evaluation 和 refusal calibration 等多条线。相比纯 jailbreak 对抗，这篇工作更接近“安全该如何被定义和训练”的问题重述，因此具有更长的参考寿命。</p><p>它仍未达到更高等级的原因在于，目前主要证据还是 benchmark 与对齐数据带来的改进，而不是一个已被广泛采纳的新安全蓝图。但作为 breakthrough 收录是合理的。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251005a146outcom,
+  title = {Read the Scene, Not the Script: Outcome-Aware Safety for LLMs},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2510.04320v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a146-outcome-aware-safety-consequence-blindness/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Read the Scene, Not the Script: Outcome-Aware Safety for LLMs. https://arxiv.org/pdf/2510.04320v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2510.04320v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TTA-Vid: Generalized Test-Time Adaptation for Video Reasoning | DAST Papers</title>
+    <meta name="description" content="视频推理模型通常依赖大规模监督数据和多阶段训练管线，迁移到新 domain 或新数据分布时成本高、适配慢。test-time learning 虽然在若干模态里被反复讨论，但真正落到 video reasoning 上，尤其是无标注、样本极少的在线适配场景，仍然缺少足够强的方法。
+
+论文提出 TTA-Vid，把 test-time reinforcement learning 用到 video-l" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm38-tta-vid-video-reasoning/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="TTA-Vid: Generalized Test-Time Adaptation for Video Reasoning" />
+    <meta property="og:description" content="视频推理模型通常依赖大规模监督数据和多阶段训练管线，迁移到新 domain 或新数据分布时成本高、适配慢。test-time learning 虽然在若干模态里被反复讨论，但真正落到 video reasoning 上，尤其是无标注、样本极少的在线适配场景，仍然缺少足够强的方法。
+
+论文提出 TTA-Vid，把 test-time reinforcement learning 用到 video-l" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm38-tta-vid-video-reasoning/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TTA-Vid: Generalized Test-Time Adaptation for Video Reasoning" />
+    <meta name="twitter:description" content="视频推理模型通常依赖大规模监督数据和多阶段训练管线，迁移到新 domain 或新数据分布时成本高、适配慢。test-time learning 虽然在若干模态里被反复讨论，但真正落到 video reasoning 上，尤其是无标注、样本极少的在线适配场景，仍然缺少足够强的方法。
+
+论文提出 TTA-Vid，把 test-time reinforcement learning 用到 video-l" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>TTA-Vid: Generalized Test-Time Adaptation for Video Reasoning</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00696" target="_blank" rel="noopener noreferrer">2604.00696</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>视频推理模型通常依赖大规模监督数据和多阶段训练管线，迁移到新 domain 或新数据分布时成本高、适配慢。test-time learning 虽然在若干模态里被反复讨论，但真正落到 video reasoning 上，尤其是无标注、样本极少的在线适配场景，仍然缺少足够强的方法。</dd></div><div><dt>方法/机制</dt><dd>论文提出 TTA-Vid，把 test-time reinforcement learning 用到 video-language reasoning 中。方法在 inference 时对不同 frame subsets 做 step-by-step reasoning，并利用 batch-aware frequency-based reward 在无真实标签条件下形成 pseudo supervision，再配合 multi-armed bandit 做自适应 frame selection，优先选择信息量高的片段。作者声称即便只用单 batch 或单 sample 也能形成对整个数据集乃至跨数据集的 test-time generalization。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它把 test-time adaptation 从 text/reasoning 场景有效推进到 video reasoning，并且不是简单套个 TTA 名字，而是给出了 reward 设计、frame selection 和跨样本泛化的完整机制。对多模态 adaptation、video understanding 和部署时快速适配，这是一条可复用的方法模式。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍是早期 arXiv 证据，方法的稳定性、成本和在更复杂视频任务上的耐久收益还需要进一步验证。它已经很有价值，但还未形成更高层级的统一适配范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>视频推理模型通常依赖大规模监督数据和多阶段训练管线，迁移到新 domain 或新数据分布时成本高、适配慢。test-time learning 虽然在若干模态里被反复讨论，但真正落到 video reasoning 上，尤其是无标注、样本极少的在线适配场景，仍然缺少足够强的方法。</p><p>论文提出 TTA-Vid，把 test-time reinforcement learning 用到 video-language reasoning 中。方法在 inference 时对不同 frame subsets 做 step-by-step reasoning，并利用 batch-aware frequency-based reward 在无真实标签条件下形成 pseudo supervision，再配合 multi-armed bandit 做自适应 frame selection，优先选择信息量高的片段。作者声称即便只用单 batch 或单 sample 也能形成对整个数据集乃至跨数据集的 test-time generalization。</p><p>这篇工作值得收录，因为它把 test-time adaptation 从 text/reasoning 场景有效推进到 video reasoning，并且不是简单套个 TTA 名字，而是给出了 reward 设计、frame selection 和跨样本泛化的完整机制。对多模态 adaptation、video understanding 和部署时快速适配，这是一条可复用的方法模式。</p><p>它没有升到更高一级，是因为当前仍是早期 arXiv 证据，方法的稳定性、成本和在更复杂视频任务上的耐久收益还需要进一步验证。它已经很有价值，但还未形成更高层级的统一适配范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>摘要。最近的视频推理模型在时间性和多模态理解方面表现出强大的结果，但它们依赖于大规模监督数据和多阶段训练流程，这使得它们训练成本高昂且难以适应新领域。在这项工作中，我们利用视频语言数据上的测试时强化学习（Test-Time Reinforcement Learning）范式，允许在测试时将预训练模型适应于传入的视频样本，而无需显式标签。所提出的视频测试时适应方法（TTA-Vid）在推理时对多个帧子集执行逐步推理。然后，我们使用在不同帧子集上计算的批次感知基于频率的奖励作为伪真值来更新模型。结果表明，在单个批次甚至数据集中的单个样本上训练的模型，能够在测试时泛化到整个数据集甚至跨数据集。由于适应完全在测试时发生，我们的方法不需要真实标签或专门的训练划分。此外，我们提出了一种多臂老虎机策略用于自适应帧选择，该策略学习根据相同的奖励公式优先选择信息丰富的帧。我们的评估表明，TTA-Vid 在各种视频推理任务中都产生了持续的改进，并且能够超越当前在大规模数据上训练的最先进方法。这突出了测试时强化学习在时间多模态理解方面的潜力。1 关键词：多模态学习 · 强化学习 · 测试时适应</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Abstract. Recent video reasoning models have shown strong results on temporal and multimodal understanding, yet they depend on large-scale supervised data and multi-stage training pipelines, making them costly to train and difficult to adapt to new domains. In this work, we leverage the paradigm of Test-Time Reinforcement Learning on video-language data to allow for adapting a pretrained model to incoming video samples at test-time without explicit labels. The proposed test-time adaptation for video approach (TTA-Vid) performs step-by-step reasoning at inference time on multiple frame subsets. We then use a batch-aware frequencybased reward computed across different frame subsets as pseudo ground truth to update the model. It shows that the resulting model trained on a single batch or even a single sample from a dataset, is able to generalize at test-time to the whole dataset and even across datasets. Because the adaptation occurs entirely at test time, our method requires no ground-truth annotations or dedicated training splits. Additionally, we propose a multi-armed bandit strategy for adaptive frame selection that learns to prioritize informative frames, guided by the same reward formulation. Our evaluation shows that TTA-Vid yields consistent improvements across various video reasoning tasks and is able to outperform current state-of-the-art methods trained on large-scale data. This highlights the potential of test-time reinforcement learning for temporal multimodal understanding. 1 Keywords: Multimodal Learning · Reinforcement Learning · Test-time Adaptation</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401mm38ttavid,
+  title = {TTA-Vid: Generalized Test-Time Adaptation for Video Reasoning},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00696.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm38-tta-vid-video-reasoning/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). TTA-Vid: Generalized Test-Time Adaptation for Video Reasoning. https://arxiv.org/pdf/2604.00696.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00696.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

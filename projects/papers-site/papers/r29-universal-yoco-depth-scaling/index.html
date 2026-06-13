@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Universal YOCO for Efficient Depth Scaling | DAST Papers</title>
+    <meta name="description" content="test-time scaling 让 LLM 的推理和 agentic 能力显著提升，但标准 Transformer 在推理时做深度扩展并不高效：循环计算带来高额重复开销，而 KV cache 也会随着深度和长度一起膨胀。Universal YOCO 的出发点就是解决这种 inference-time depth scaling 的结构瓶颈。
+
+论文把 YOCO 的 decoder-decode" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r29-universal-yoco-depth-scaling/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Universal YOCO for Efficient Depth Scaling" />
+    <meta property="og:description" content="test-time scaling 让 LLM 的推理和 agentic 能力显著提升，但标准 Transformer 在推理时做深度扩展并不高效：循环计算带来高额重复开销，而 KV cache 也会随着深度和长度一起膨胀。Universal YOCO 的出发点就是解决这种 inference-time depth scaling 的结构瓶颈。
+
+论文把 YOCO 的 decoder-decode" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r29-universal-yoco-depth-scaling/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Universal YOCO for Efficient Depth Scaling" />
+    <meta name="twitter:description" content="test-time scaling 让 LLM 的推理和 agentic 能力显著提升，但标准 Transformer 在推理时做深度扩展并不高效：循环计算带来高额重复开销，而 KV cache 也会随着深度和长度一起膨胀。Universal YOCO 的出发点就是解决这种 inference-time depth scaling 的结构瓶颈。
+
+论文把 YOCO 的 decoder-decode" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Universal YOCO for Efficient Depth Scaling</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.01220" target="_blank" rel="noopener noreferrer">2604.01220</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>test-time scaling 让 LLM 的推理和 agentic 能力显著提升，但标准 Transformer 在推理时做深度扩展并不高效：循环计算带来高额重复开销，而 KV cache 也会随着深度和长度一起膨胀。Universal YOCO 的出发点就是解决这种 inference-time depth scaling 的结构瓶颈。</dd></div><div><dt>方法/机制</dt><dd>论文把 YOCO 的 decoder-decoder 架构与 recursive computation 结合，提出 Universal Self-Decoder，在参数共享下执行多轮迭代，但把递归限制在更浅、更高效的 attention 层中。这样一来，YOCO 的 constant global KV cache 和 linear prefill 保留下来，而部分递归又能以较低额外代价增加表示深度。结果是 capability-efficiency tradeoff 比单独用 YOCO 或单独做 recursion 更好。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为它给高效深度扩展提供了清晰的新 pattern：把高效注意力架构和递归深度计算耦合，而不是在标准 Transformer 上直接堆 test-time compute。对于长上下文、高效推理和可扩展 reasoning stack，这种结构接口有持续参考价值。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍然建立在 YOCO 这条特定架构路线之上，是否会外溢成更广泛的默认深度扩展方案还需要后续验证。它是很强的结构推进，但还不是明确的路线重写。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>test-time scaling 让 LLM 的推理和 agentic 能力显著提升，但标准 Transformer 在推理时做深度扩展并不高效：循环计算带来高额重复开销，而 KV cache 也会随着深度和长度一起膨胀。Universal YOCO 的出发点就是解决这种 inference-time depth scaling 的结构瓶颈。</p><p>论文把 YOCO 的 decoder-decoder 架构与 recursive computation 结合，提出 Universal Self-Decoder，在参数共享下执行多轮迭代，但把递归限制在更浅、更高效的 attention 层中。这样一来，YOCO 的 constant global KV cache 和 linear prefill 保留下来，而部分递归又能以较低额外代价增加表示深度。结果是 capability-efficiency tradeoff 比单独用 YOCO 或单独做 recursion 更好。</p><p>这篇工作值得收录，因为它给高效深度扩展提供了清晰的新 pattern：把高效注意力架构和递归深度计算耦合，而不是在标准 Transformer 上直接堆 test-time compute。对于长上下文、高效推理和可扩展 reasoning stack，这种结构接口有持续参考价值。</p><p>它没有升到更高一级，是因为当前仍然建立在 YOCO 这条特定架构路线之上，是否会外溢成更广泛的默认深度扩展方案还需要后续验证。它是很强的结构推进，但还不是明确的路线重写。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>用于高效深度扩展的通用YOCO。测试时扩展的兴起显著提升了大型语言模型（LLMs）的推理和智能体能力。然而，标准Transformer难以高效扩展推理时计算，因为传统的循环策略存在高计算开销，并且KV缓存会随模型深度而膨胀。我们提出了通用YOCO（YOCO-U），它将YOCO解码器-解码器架构与递归计算相结合，以实现比单独使用任一方法都更大的协同效应。YOCO-U基于YOCO框架构建，实现了一个通用自解码器，通过参数共享执行多次迭代，同时将迭代过程限制在浅层、高效注意力层中。这种组合产生了YOCO和递归都无法独立实现的有利的能力-效率权衡。YOCO架构提供了一个恒定的全局KV缓存和线性预填充，而部分递归则以有限的开销增强了表示深度。总之，YOCO-U在保持高效推理的同时，提高了token利用率和扩展行为。实验结果证实，YOCO-U在通用和长上下文基准测试中仍具有高度竞争力，表明高效注意力架构与递归计算的结合是可扩展LLMs的一个有前景的方向。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>The rise of test-time scaling has remarkably boosted the reasoning and agentic proficiency of Large Language Models (LLMs). Yet, standard Transformers struggle to scale inference-time compute efficiently, as conventional looping strategies suffer from high computational overhead and a KV cache that inflates alongside model depth. We present Universal YOCO (YOCO-U), which combines the YOCO decoder-decoder architecture with recursive computation to achieve a synergistic effect greater than either alone. Built on the YOCO framework, YOCO-U implements a Universal Self-Decoder that performs multiple iterations via parameter sharing, while confining the iterative process to shallow, efficient-attention layers. This combination yields a favorable capability-efficiency tradeoff that neither YOCO nor recursion achieves independently. The YOCO architecture provides a constant global KV cache and linear pre-filling, while partial recursion enhances representational depth with limited overhead. Together, YOCO-U improves token utility and scaling behavior while maintaining efficient inference. Empirical results confirm that YOCO-U remains highly competitive in general and long-context benchmarks, demonstrating that the integration of efficient-attention architectures and recursive computation is a promising direction for scalable LLMs.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401r29univers,
+  title = {Universal YOCO for Efficient Depth Scaling},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.01220.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r29-universal-yoco-depth-scaling/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Universal YOCO for Efficient Depth Scaling. https://arxiv.org/pdf/2604.01220.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.01220.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

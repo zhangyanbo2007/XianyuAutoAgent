@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PlayWorld: Learning Robot World Models from Autonomous Play | DAST Papers</title>
+    <meta name="description" content="这篇论文关注机器人 world model 训练里的一个关键瓶颈：现有视频世界模型虽然能从大规模机器人数据中学习，但在接触密集、长尾物体交互上仍然很难保持物理一致性，而且训练数据通常偏向人类成功示范。对本仓库来说，它不是单纯的视频生成改进，而是机器人世界模型的数据来源和训练闭环问题。
+
+PlayWorld 的核心贡献是把 unsupervised robot self-play 变成 world " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl11-playworld-robot-world-models/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="PlayWorld: Learning Robot World Models from Autonomous Play" />
+    <meta property="og:description" content="这篇论文关注机器人 world model 训练里的一个关键瓶颈：现有视频世界模型虽然能从大规模机器人数据中学习，但在接触密集、长尾物体交互上仍然很难保持物理一致性，而且训练数据通常偏向人类成功示范。对本仓库来说，它不是单纯的视频生成改进，而是机器人世界模型的数据来源和训练闭环问题。
+
+PlayWorld 的核心贡献是把 unsupervised robot self-play 变成 world " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl11-playworld-robot-world-models/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PlayWorld: Learning Robot World Models from Autonomous Play" />
+    <meta name="twitter:description" content="这篇论文关注机器人 world model 训练里的一个关键瓶颈：现有视频世界模型虽然能从大规模机器人数据中学习，但在接触密集、长尾物体交互上仍然很难保持物理一致性，而且训练数据通常偏向人类成功示范。对本仓库来说，它不是单纯的视频生成改进，而是机器人世界模型的数据来源和训练闭环问题。
+
+PlayWorld 的核心贡献是把 unsupervised robot self-play 变成 world " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>PlayWorld: Learning Robot World Models from Autonomous Play</h1>
+          <p class="subtitle">强化学习 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.09030" target="_blank" rel="noopener noreferrer">2603.09030</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文关注机器人 world model 训练里的一个关键瓶颈：现有视频世界模型虽然能从大规模机器人数据中学习，但在接触密集、长尾物体交互上仍然很难保持物理一致性，而且训练数据通常偏向人类成功示范。对本仓库来说，它不是单纯的视频生成改进，而是机器人世界模型的数据来源和训练闭环问题。</dd></div><div><dt>方法/机制</dt><dd>PlayWorld 的核心贡献是把 unsupervised robot self-play 变成 world model 的主要数据来源。作者提出一个完全自主的 pipeline，用机器人自主交互收集更丰富、更长尾的物理交互，再用这些经验训练动作条件视频世界模型，并进一步在世界模型内部做 RL，最终回到真实世界提升策略表现。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，是因为这改变了 robot world model 的一个重要默认假设：不再主要依赖 success-biased human demonstrations，而是把 autonomous play 作为更可扩展、更贴近真实交互分布的数据引擎。对 embodied world models、robot data generation 和 sim-to-real style policy improvement 来说，这是一条清晰的新 workflow。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高等级，是因为虽然工作流价值明确，但当前影响仍主要集中在机器人世界模型这条子路线，还没有证明会成为更广泛多模态世界建模的统一基础范式。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文关注机器人 world model 训练里的一个关键瓶颈：现有视频世界模型虽然能从大规模机器人数据中学习，但在接触密集、长尾物体交互上仍然很难保持物理一致性，而且训练数据通常偏向人类成功示范。对本仓库来说，它不是单纯的视频生成改进，而是机器人世界模型的数据来源和训练闭环问题。</p><p>PlayWorld 的核心贡献是把 unsupervised robot self-play 变成 world model 的主要数据来源。作者提出一个完全自主的 pipeline，用机器人自主交互收集更丰富、更长尾的物理交互，再用这些经验训练动作条件视频世界模型，并进一步在世界模型内部做 RL，最终回到真实世界提升策略表现。</p><p>它值得正式收录，是因为这改变了 robot world model 的一个重要默认假设：不再主要依赖 success-biased human demonstrations，而是把 autonomous play 作为更可扩展、更贴近真实交互分布的数据引擎。对 embodied world models、robot data generation 和 sim-to-real style policy improvement 来说，这是一条清晰的新 workflow。</p><p>它没有升到更高等级，是因为虽然工作流价值明确，但当前影响仍主要集中在机器人世界模型这条子路线，还没有证明会成为更广泛多模态世界建模的统一基础范式。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>PlayWorld：从自主游戏中学习机器人世界模型 动作条件视频模型为构建能够直接从数据中改进的通用机器人模拟器提供了一条有前景的途径。然而，尽管在大型机器人数据集上进行了训练，当前最先进的视频模型仍然难以预测在机器人操作中至关重要的物理一致的机器人-物体交互。为了弥补这一差距，我们提出了PlayWorld，这是一个简单、可扩展且完全自主的管道，用于从交互经验中训练高保真视频世界模拟器。与依赖于成功偏向的人类演示的先前方法不同，PlayWorld是第一个能够完全从无监督机器人自玩中学习的系统，从而实现了自然可扩展的数据收集，同时捕获了建模真实物体动力学所必需的复杂、长尾物理交互。跨越不同操作任务的实验表明，PlayWorld为接触丰富的交互生成了高质量、物理一致的预测，而这些交互是人类收集数据训练的世界模型所无法捕获的。我们进一步展示了PlayWorld在实现细粒度故障预测和策略评估方面的多功能性，相对于人类收集的数据，性能提升高达40%。最后，我们展示了PlayWorld如何使世界模型中的强化学习成为可能，在实际部署时，策略的成功率提高了65%。关键词：视频世界模型，自主数据收集 网站：robot-playworld.github.io</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Action-conditioned video models offer a promising path to building general-purpose robot simulators that can improve directly from data. Yet, despite training on large-scale robot datasets, current state-of-the-art video models still struggle to predict physically consistent robot-object interactions that are crucial in robotic manipulation. To close this gap, we present PlayWorld, a simple, scalable, and fully autonomous pipeline for training high-fidelity video world simulators from interaction experience. In contrast to prior approaches that rely on success-biased human demonstrations, PlayWorld is the first system capable of learning entirely from unsupervised robot self-play, enabling naturally scalable data collection while capturing complex, long-tailed physical interactions essential for modeling realistic object dynamics. Experiments across diverse manipulation tasks show that PlayWorld generates high-quality, physically consistent predictions for contact-rich interactions that are not captured by world models trained on human-collected data. We further demonstrate the versatility of PlayWorld in enabling fine-grained failure prediction and policy evaluation, with up to 40% improvements over human-collected data. Finally, we demonstrate how PlayWorld enables reinforcement learning in the world model, improving policy performance by 65% in success rates when deployed in the real world. Keywords: Video World Models, Autonomous Data Collection Website: robot-playworld.github.io</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309rl11playwo,
+  title = {PlayWorld: Learning Robot World Models from Autonomous Play},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.09030.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl11-playworld-robot-world-models/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). PlayWorld: Learning Robot World Models from Autonomous Play. https://arxiv.org/pdf/2603.09030.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.09030.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems | DAST Papers</title>
+    <meta name="description" content="LongMINT 面向真实 agent 长期运行中的核心问题：记忆不是静态事实检索，而是长期上下文中不断更新、互相干扰、需要多目标聚合推理的动态系统。
+
+Benchmark 覆盖 state tracking、多轮对话、Wikipedia revisions 和 GitHub commits 等场景，包含 15.6k QA pairs，平均上下文约 138.8k tokens，最长到 1.8M t" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a305-longmint-agent-memory-interference/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems" />
+    <meta property="og:description" content="LongMINT 面向真实 agent 长期运行中的核心问题：记忆不是静态事实检索，而是长期上下文中不断更新、互相干扰、需要多目标聚合推理的动态系统。
+
+Benchmark 覆盖 state tracking、多轮对话、Wikipedia revisions 和 GitHub commits 等场景，包含 15.6k QA pairs，平均上下文约 138.8k tokens，最长到 1.8M t" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a305-longmint-agent-memory-interference/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems" />
+    <meta name="twitter:description" content="LongMINT 面向真实 agent 长期运行中的核心问题：记忆不是静态事实检索，而是长期上下文中不断更新、互相干扰、需要多目标聚合推理的动态系统。
+
+Benchmark 覆盖 state tracking、多轮对话、Wikipedia revisions 和 GitHub commits 等场景，包含 15.6k QA pairs，平均上下文约 138.8k tokens，最长到 1.8M t" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-18</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-18</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.18565" target="_blank" rel="noopener noreferrer">2605.18565</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>LongMINT 面向真实 agent 长期运行中的核心问题：记忆不是静态事实检索，而是长期上下文中不断更新、互相干扰、需要多目标聚合推理的动态系统。</dd></div><div><dt>方法/机制</dt><dd>Benchmark 覆盖 state tracking、多轮对话、Wikipedia revisions 和 GitHub commits 等场景，包含 15.6k QA pairs，平均上下文约 138.8k tokens，最长到 1.8M tokens。</dd></div><div><dt>结果/证据</dt><dd>论文评测 long-context LLM、RAG 和 memory-augmented agent frameworks 等 7 类系统，发现平均准确率只有 27.9%，尤其在多证据聚合和旧事实被后续事实干扰时显著失败。</dd></div><div><dt>收录价值</dt><dd>它值得正式收录，因为它把 agent memory evaluation 从静态 recall 推进到 long-horizon interference 和 evolving memory 的问题定义，能长期作为 memory agent 系统的压力测试接口。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>LongMINT 面向真实 agent 长期运行中的核心问题：记忆不是静态事实检索，而是长期上下文中不断更新、互相干扰、需要多目标聚合推理的动态系统。</p><p>Benchmark 覆盖 state tracking、多轮对话、Wikipedia revisions 和 GitHub commits 等场景，包含 15.6k QA pairs，平均上下文约 138.8k tokens，最长到 1.8M tokens。</p><p>论文评测 long-context LLM、RAG 和 memory-augmented agent frameworks 等 7 类系统，发现平均准确率只有 27.9%，尤其在多证据聚合和旧事实被后续事实干扰时显著失败。</p><p>它值得正式收录，因为它把 agent memory evaluation 从静态 recall 推进到 long-horizon interference 和 evolving memory 的问题定义，能长期作为 memory agent 系统的压力测试接口。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>在现实世界中，智能体在漫长且不断演变的时间跨度内运行，信息会反复更新并可能在记忆之间产生干扰，这要求智能体能够准确回忆并对多条信息进行聚合推理。然而，现有基准侧重于静态、独立的记忆回忆，未能捕捉到不断演变的记忆之间的动态交互。在本文中，我们研究了当前记忆增强型智能体在现实、干扰严重、长时程设置中，跨不同领域和问题类型的表现。为此，我们引入了MINTE VAL（长时程干扰下记忆评估），这是一个分析性基准，其特点包括：(1) 具有频繁更新信息且高度互联的长上下文，会产生大量干扰；(2) 多样化的领域（状态跟踪、多轮对话、维基百科修订和GitHub提交），能够评估领域泛化能力；以及 (3) 多样化的问答类型，用于评估对干扰的鲁棒性，包括 (i) 需要从长上下文中检索特定目标的单目标回忆任务，以及 (ii) 需要对多条相关信息进行推理的多目标聚合任务。总体而言，MINTE VAL包含15.6k个问答对，这些问答对基于平均138.8k个token、最长可达1.8M个token的长时程上下文。我们评估了七个代表性系统，包括普通的长期上下文LLMs、检索增强生成方法和记忆增强型智能体框架。在所有系统中，我们观察到性能普遍较低（平均准确率为27.9%），尤其是在需要对多条证据进行聚合推理的问题上。细粒度分析表明，性能主要受限于检索和记忆构建能力。此外，当前的记忆系统难以回忆和推理那些后来被后续上下文修改或干扰的早期事实，并且随着中间更新次数的增加，性能会下降。这些发现强调了在动态、长时程、跨不同领域环境中，需要更强大的记忆管理系统。代码和数据可在https://github.com/amy-hyunji/MINTEval获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Agents in real-world settings operate over long and evolving horizons, where information is repeatedly updated and may interfere across memories, requiring accurate recall and aggregated reasoning over multiple pieces of information. However, existing benchmarks focus on static, independent recall and fail to capture these dynamic interactions between evolving memories. In this paper, we study how current memory-augmented agents perform in realistic, interference-heavy, long-horizon settings across diverse domains and question types. To this end, we introduce MINTE VAL (Long-Horizon Memory under INTerference Evaluation), an analytical benchmark which features (1) long, highly interconnected contexts with frequently updated information that induces substantial interference, (2) diverse domains (state tracking, multi-turn dialogue, Wikipedia revisions, and GitHub commits), enabling evaluation of domain generalization, and (3) diverse question types that assess robustness to interference, including (i) single-target recall tasks requiring retrieval of a specific target from long contexts, and (ii) multi-target aggregation tasks requiring reasoning over multiple relevant pieces of information. Overall, MINTE VAL contains 15.6k question-answering pairs over long-horizon contexts averaging 138.8k tokens and extending up to 1.8M tokens per instance. We evaluate seven representative systems, including vanilla long-context LLMs, retrievalaugmented generation methods, and memory-augmented agent frameworks. Across all systems, we observe consistently low performance (avg. 27.9% accuracy), especially on questions requiring aggregated reasoning over multiple pieces of evidence. Fine-grained analysis shows that performance is primarily limited by retrieval and memory construction capabilities. Furthermore, current memory systems struggle to recall and reason over earlier facts that are later revised or interfered with by subsequent context, with performance degrading as the number of intervening updates increases. These findings highlight the need for more robust memory management systems for dynamic, long-horizon environments across varying domains. Code and data are available at https://github.com/amy-hyunji/MINTEval.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260518a305longmi,
+  title = {LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.18565.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a305-longmint-agent-memory-interference/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). LongMINT: Evaluating Memory under Multi-Target Interference in Long-Horizon Agent Systems. https://arxiv.org/pdf/2605.18565.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.18565.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

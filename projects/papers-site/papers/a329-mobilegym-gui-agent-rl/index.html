@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research | DAST Papers</title>
+    <meta name="description" content="GUI agent 研究的瓶颈之一是环境难并行、结果难验证、真实移动应用后端不可控，导致在线 RL 和可重复评测都很困难。
+
+MobileGym 用 browser-hosted lightweight mobile environment 表达 everyday apps，通过结构化 JSON 状态支持配置、fork、比较和 deterministic judging，并把 verdict 和 " />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a329-mobilegym-gui-agent-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research" />
+    <meta property="og:description" content="GUI agent 研究的瓶颈之一是环境难并行、结果难验证、真实移动应用后端不可控，导致在线 RL 和可重复评测都很困难。
+
+MobileGym 用 browser-hosted lightweight mobile environment 表达 everyday apps，通过结构化 JSON 状态支持配置、fork、比较和 deterministic judging，并把 verdict 和 " />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a329-mobilegym-gui-agent-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research" />
+    <meta name="twitter:description" content="GUI agent 研究的瓶颈之一是环境难并行、结果难验证、真实移动应用后端不可控，导致在线 RL 和可重复评测都很困难。
+
+MobileGym 用 browser-hosted lightweight mobile environment 表达 everyday apps，通过结构化 JSON 状态支持配置、fork、比较和 deterministic judging，并把 verdict 和 " />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-25</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-25</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.26114" target="_blank" rel="noopener noreferrer">2605.26114</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>GUI agent 研究的瓶颈之一是环境难并行、结果难验证、真实移动应用后端不可控，导致在线 RL 和可重复评测都很困难。</dd></div><div><dt>方法/机制</dt><dd>MobileGym 用 browser-hosted lightweight mobile environment 表达 everyday apps，通过结构化 JSON 状态支持配置、fork、比较和 deterministic judging，并把 verdict 和 dense reward 统一起来。</dd></div><div><dt>结果/证据</dt><dd>MobileGym-Bench 包含 28 个应用和 416 个参数化任务模板，支持低成本并行 rollouts；论文还报告 GRPO 训练在真实设备子集上保留大部分仿真增益。</dd></div><div><dt>收录价值</dt><dd>它值得收录，因为它提供了 GUI/mobile computer-use agent 的可验证训练环境，把 agent evaluation、online RL 和 sim-to-real 放入同一个可复用平台。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>GUI agent 研究的瓶颈之一是环境难并行、结果难验证、真实移动应用后端不可控，导致在线 RL 和可重复评测都很困难。</p><p>MobileGym 用 browser-hosted lightweight mobile environment 表达 everyday apps，通过结构化 JSON 状态支持配置、fork、比较和 deterministic judging，并把 verdict 和 dense reward 统一起来。</p><p>MobileGym-Bench 包含 28 个应用和 416 个参数化任务模板，支持低成本并行 rollouts；论文还报告 GRPO 训练在真实设备子集上保留大部分仿真增益。</p><p>它值得收录，因为它提供了 GUI/mobile computer-use agent 的可验证训练环境，把 agent evaluation、online RL 和 sim-to-real 放入同一个可复用平台。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们提出了 MOBILEGYM，一个浏览器托管的、轻量级、完全可控的日常移动使用模拟平台，旨在实现交互保真度，而无需复制专有后端。它实现了日常应用程序以前无法实现的两种能力：通过基于结构化 JSON 状态的确定性状态判断提供可验证的结果信号，以及通过低成本并行采样实现可扩展的在线强化学习 (RL)。完整的环境状态以结构化 JSON 形式捕获、配置、分叉和比较，单个服务器可以托管数百个并行实例（每个约 400 MB，冷启动约 3 秒）。分层状态模型和声明式任务定义框架保持了状态可编程性和任务创建在大规模应用中的实用性，单一的程序化判断机制提供确定性评估结果和密集的强化学习奖励。随附的 MOBILEGYM-BENCH 提供</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We present MOBILEGYM, a browser-hosted, lightweight, fully controllable simulation platform for everyday mobile use, targeting interaction fidelity without replicating proprietary backends. It enables two capabilities previously out of reach for everyday apps: verifiable outcome signals through deterministic state-based judging over structured JSON state, and scalable online RL through low-cost parallel rollouts. The full environment state is captured, configured, forked, and compared as structured JSON, and a single server can host hundreds of parallel instances (∼400 MB each, ∼3 s cold start). A layered state model and a declarative task-definition framework keep state programmability and task creation practical at scale, and a single programmatic judging mechanism delivers both deterministic evaluation verdicts and dense RL rewards. The accompanying MOBILEGYM-BENCH provides</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260525a329mobile,
+  title = {MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.26114.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a329-mobilegym-gui-agent-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). MobileGym: A Verifiable and Highly Parallel Simulation Platform for Mobile GUI Agent Research. https://arxiv.org/pdf/2605.26114.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.26114.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://mobilegym.github.io" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.26114" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

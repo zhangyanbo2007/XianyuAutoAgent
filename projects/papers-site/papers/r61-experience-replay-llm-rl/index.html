@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Efficient RL Training for LLMs with Experience Replay | DAST Papers</title>
+    <meta name="description" content="这篇论文挑战 LLM post-training 中“必须严格 on-policy”的常见假设。由于生成 rollout 成本很高，完全丢弃旧样本可能并不是最优；经验回放在经典 RL 中成熟，却在 LLM RL 中长期被认为会因 stale data 失效。
+
+作者系统研究 replay buffer 的设计权衡：staleness 引入的方差、样本多样性、生成成本和策略熵之间如何平衡。实验显示，" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/r61-experience-replay-llm-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Efficient RL Training for LLMs with Experience Replay" />
+    <meta property="og:description" content="这篇论文挑战 LLM post-training 中“必须严格 on-policy”的常见假设。由于生成 rollout 成本很高，完全丢弃旧样本可能并不是最优；经验回放在经典 RL 中成熟，却在 LLM RL 中长期被认为会因 stale data 失效。
+
+作者系统研究 replay buffer 的设计权衡：staleness 引入的方差、样本多样性、生成成本和策略熵之间如何平衡。实验显示，" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/r61-experience-replay-llm-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Efficient RL Training for LLMs with Experience Replay" />
+    <meta name="twitter:description" content="这篇论文挑战 LLM post-training 中“必须严格 on-policy”的常见假设。由于生成 rollout 成本很高，完全丢弃旧样本可能并不是最优；经验回放在经典 RL 中成熟，却在 LLM RL 中长期被认为会因 stale data 失效。
+
+作者系统研究 replay buffer 的设计权衡：staleness 引入的方差、样本多样性、生成成本和策略熵之间如何平衡。实验显示，" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Efficient RL Training for LLMs with Experience Replay</h1>
+          <p class="subtitle">推理、记忆与推理时控制 · 发表：2026-04-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">推理、记忆与推理时控制</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.08706" target="_blank" rel="noopener noreferrer">2604.08706</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文挑战 LLM post-training 中“必须严格 on-policy”的常见假设。由于生成 rollout 成本很高，完全丢弃旧样本可能并不是最优；经验回放在经典 RL 中成熟，却在 LLM RL 中长期被认为会因 stale data 失效。</dd></div><div><dt>方法/机制</dt><dd>作者系统研究 replay buffer 的设计权衡：staleness 引入的方差、样本多样性、生成成本和策略熵之间如何平衡。实验显示，设计良好的 replay buffer 可以显著降低 inference compute，同时不损害甚至提升最终性能。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，是因为它为 RLVR/LLM RL 提供了训练系统层面的重要修正：on-policy 不是绝对教条，生成成本应进入算法设计目标。这个结论会影响大规模 reasoning RL 的采样、缓存和训练吞吐设计。</dd></div><div><dt>收录价值</dt><dd>局限在于 replay 策略仍需针对任务、模型和 reward 噪声调参；理论边界和极大规模训练稳定性还有待验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文挑战 LLM post-training 中“必须严格 on-policy”的常见假设。由于生成 rollout 成本很高，完全丢弃旧样本可能并不是最优；经验回放在经典 RL 中成熟，却在 LLM RL 中长期被认为会因 stale data 失效。</p><p>作者系统研究 replay buffer 的设计权衡：staleness 引入的方差、样本多样性、生成成本和策略熵之间如何平衡。实验显示，设计良好的 replay buffer 可以显著降低 inference compute，同时不损害甚至提升最终性能。</p><p>它值得收录，是因为它为 RLVR/LLM RL 提供了训练系统层面的重要修正：on-policy 不是绝对教条，生成成本应进入算法设计目标。这个结论会影响大规模 reasoning RL 的采样、缓存和训练吞吐设计。</p><p>局限在于 replay 策略仍需针对任务、模型和 reward 噪声调参；理论边界和极大规模训练稳定性还有待验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>虽然经验回放——即在训练期间存储 rollout 并多次重用它们的技术——是通用强化学习中的一个基础技术，但在大型语言模型（LLM）的后训练阶段却鲜有探索，这主要是因为人们普遍认为新鲜、基于策略的数据对于获得高性能至关重要。在这项工作中，我们挑战了这一假设。我们对 LLM 后训练中的回放缓冲区进行了系统研究，将最优设计形式化为滞后引起的方差、样本多样性和生成高计算成本之间的权衡。我们表明，当生成成本较高时，严格的基于策略采样是不理想的。经验上，我们表明，经过精心设计的回放缓冲区可以显著减少推理计算量，而不会降低（甚至在某些情况下提高）最终模型性能，同时保持策略熵。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>While Experience Replay - the practice of storing rollouts and reusing them multiple times during training - is a foundational technique in general RL, it remains largely unexplored in LLM post-training due to the prevailing belief that fresh, on-policy data is essential for high performance. In this work, we challenge this assumption. We present a systematic study of replay buffers for LLM post-training, formalizing the optimal design as a trade-off between staleness-induced variance, sample diversity and the high computational cost of generation. We show that strict on-policy sampling is suboptimal when generation is expensive. Empirically, we show that a well-designed replay buffer can drastically reduce inference compute without degrading - and in some cases even improving - final model performance, while preserving policy entropy.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260409r61experie,
+  title = {Efficient RL Training for LLMs with Experience Replay},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.08706.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/r61-experience-replay-llm-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Efficient RL Training for LLMs with Experience Replay. https://arxiv.org/pdf/2604.08706.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/r90-lm-self-modifying-sleep/">
+              <span>Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories</span>
+              <small>推理、记忆与推理时控制 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/r89-star-kv-gui-vlm-compression/">
+              <span>STaR-KV: Spatio-Temporal Adaptive Re-weighting for KV Cache Compression in GUI Vision-Language Models</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r88-peft-million-personal-models/">
+              <span>On the Scaling of PEFT: Towards Million Personal Models of Trillion Parameters</span>
+              <small>推理、记忆与推理时控制 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/r86-collectionlora-multi-effect-lora/">
+              <span>CollectionLoRA: Collecting 50 Effects in 1 LoRA via Multi-Teacher On-Policy Distillation</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r85-xetrieval-dense-retrieval-explanation/">
+              <span>Xetrieval: Mechanistically Explaining Dense Retrieval</span>
+              <small>推理、记忆与推理时控制 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/r87-transformer-to-ttt/">
+              <span>Linearizing Vision Transformer with Test-Time Training</span>
+              <small>推理、记忆与推理时控制 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.08706.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Do Phone-Use Agents Respect Your Privacy? | DAST Papers</title>
+    <meta name="description" content="mobile phone-use agents 的任务成功率越来越高，但它们是否尊重用户隐私一直很难严格回答。问题不只是模型会不会偷看隐私，而是缺少可操作的 privacy contract 和可验证的观测接口，普通 app 也不会直接告诉你 agent 在哪些表单里多填了什么、何时过度申请权限。MyPhoneBench 正是在把这个模糊问题变成可测问题。
+
+论文提出 MyPhoneBench，把" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a121-myphonebench-phone-privacy/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Do Phone-Use Agents Respect Your Privacy?" />
+    <meta property="og:description" content="mobile phone-use agents 的任务成功率越来越高，但它们是否尊重用户隐私一直很难严格回答。问题不只是模型会不会偷看隐私，而是缺少可操作的 privacy contract 和可验证的观测接口，普通 app 也不会直接告诉你 agent 在哪些表单里多填了什么、何时过度申请权限。MyPhoneBench 正是在把这个模糊问题变成可测问题。
+
+论文提出 MyPhoneBench，把" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a121-myphonebench-phone-privacy/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Do Phone-Use Agents Respect Your Privacy?" />
+    <meta name="twitter:description" content="mobile phone-use agents 的任务成功率越来越高，但它们是否尊重用户隐私一直很难严格回答。问题不只是模型会不会偷看隐私，而是缺少可操作的 privacy contract 和可验证的观测接口，普通 app 也不会直接告诉你 agent 在哪些表单里多填了什么、何时过度申请权限。MyPhoneBench 正是在把这个模糊问题变成可测问题。
+
+论文提出 MyPhoneBench，把" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Do Phone-Use Agents Respect Your Privacy?</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-04-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.00986" target="_blank" rel="noopener noreferrer">2604.00986</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>mobile phone-use agents 的任务成功率越来越高，但它们是否尊重用户隐私一直很难严格回答。问题不只是模型会不会偷看隐私，而是缺少可操作的 privacy contract 和可验证的观测接口，普通 app 也不会直接告诉你 agent 在哪些表单里多填了什么、何时过度申请权限。MyPhoneBench 正是在把这个模糊问题变成可测问题。</dd></div><div><dt>方法/机制</dt><dd>论文提出 MyPhoneBench，把 privacy-respecting phone use 操作化为 permissioned access、minimal disclosure 和 user-controlled memory，并用最小隐私契约 `iMy`、instrumented mock apps 和 rule-based auditing 让不必要权限申请、欺骗性再披露、过度表单填写都可观测、可复现。基于 10 个 mobile apps、300 个任务和多个 frontier models 的评测，作者显示任务成功、隐私合规完成和后续会话中对保存偏好的使用其实是三种不同能力。</dd></div><div><dt>结果/证据</dt><dd>这篇工作值得收录，因为 phone-use agents 是 computer-use agents 的高风险变体，而这篇论文第一次把其 privacy behavior 明确做成 benchmark 与审计接口。对于 agent evaluation、computer-use safety 和 deployment readiness，这种 success 与 privacy jointly evaluated 的框架有明显长期价值，而不只是一次安全吐槽。</dd></div><div><dt>收录价值</dt><dd>它没有升到更高一级，是因为当前仍主要围绕作者构建的 mock apps 与任务设置验证，外部生态和真实部署场景中的采用还需要时间。它是很强的评测与安全条目，但还没到更高层级。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>mobile phone-use agents 的任务成功率越来越高，但它们是否尊重用户隐私一直很难严格回答。问题不只是模型会不会偷看隐私，而是缺少可操作的 privacy contract 和可验证的观测接口，普通 app 也不会直接告诉你 agent 在哪些表单里多填了什么、何时过度申请权限。MyPhoneBench 正是在把这个模糊问题变成可测问题。</p><p>论文提出 MyPhoneBench，把 privacy-respecting phone use 操作化为 permissioned access、minimal disclosure 和 user-controlled memory，并用最小隐私契约 `iMy`、instrumented mock apps 和 rule-based auditing 让不必要权限申请、欺骗性再披露、过度表单填写都可观测、可复现。基于 10 个 mobile apps、300 个任务和多个 frontier models 的评测，作者显示任务成功、隐私合规完成和后续会话中对保存偏好的使用其实是三种不同能力。</p><p>这篇工作值得收录，因为 phone-use agents 是 computer-use agents 的高风险变体，而这篇论文第一次把其 privacy behavior 明确做成 benchmark 与审计接口。对于 agent evaluation、computer-use safety 和 deployment readiness，这种 success 与 privacy jointly evaluated 的框架有明显长期价值，而不只是一次安全吐槽。</p><p>它没有升到更高一级，是因为当前仍主要围绕作者构建的 mock apps 与任务设置验证，外部生态和真实部署场景中的采用还需要时间。它是很强的评测与安全条目，但还没到更高层级。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>我们研究手机使用代理在完成良性移动任务时是否尊重隐私。这个问题一直难以回答，因为隐私合规行为尚未针对手机使用代理进行操作化，并且普通应用程序不会精确揭示代理在执行过程中将哪些数据输入到哪些表单字段中。为了使这个问题可衡量，我们引入了M Y P HONE B ENCH，一个可验证的移动代理隐私行为评估框架。我们通过一个最小隐私契约I M Y，将尊重隐私的手机使用操作化为授权访问、最小披露和用户控制的内存，并将其与经过检测的模拟应用程序以及基于规则的审计相结合，使不必要的权限请求、欺骗性再披露和不必要的表单填写可观察和可重现。在10个移动应用程序上对五个前沿模型进行测试，并且</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>We study whether phone-use agents respect privacy while completing benign mobile tasks. This question has remained hard to answer because privacy-compliant behavior is not operationalized for phone-use agents, and ordinary apps do not reveal exactly what data agents type into which form entries during execution. To make this question measurable, we introduce M Y P HONE B ENCH, a verifiable evaluation framework for privacy behavior in mobile agents. We operationalize privacy-respecting phone use as permissioned access, minimal disclosure, and user-controlled memory through a minimal privacy contract, I M Y, and pair it with instrumented mock apps plus rule-based auditing that make unnecessary permission requests, deceptive re-disclosure, and unnecessary form filling observable and reproducible. Across five frontier models on 10 mobile apps and</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260401a121myphon,
+  title = {Do Phone-Use Agents Respect Your Privacy?},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.00986.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a121-myphonebench-phone-privacy/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Do Phone-Use Agents Respect Your Privacy?. https://arxiv.org/pdf/2604.00986.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.00986.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

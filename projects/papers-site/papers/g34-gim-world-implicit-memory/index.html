@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Geometry-Aware Implicit Memory for Video World Models | DAST Papers</title>
+    <meta name="description" content="Video world models 的长程 rollout 依赖模型在观察离开上下文窗口后还能保留场景结构。
+
+GIM-World 用 geometry-aware implicit memory 压缩历史状态，并显式约束跨视角几何，而不是保存帧或依赖启发式 3D 重建。
+
+它值得收录，因为 world model memory 正成为交互式视频生成和 embodied simulation 的" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g34-gim-world-implicit-memory/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Geometry-Aware Implicit Memory for Video World Models" />
+    <meta property="og:description" content="Video world models 的长程 rollout 依赖模型在观察离开上下文窗口后还能保留场景结构。
+
+GIM-World 用 geometry-aware implicit memory 压缩历史状态，并显式约束跨视角几何，而不是保存帧或依赖启发式 3D 重建。
+
+它值得收录，因为 world model memory 正成为交互式视频生成和 embodied simulation 的" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g34-gim-world-implicit-memory/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Geometry-Aware Implicit Memory for Video World Models" />
+    <meta name="twitter:description" content="Video world models 的长程 rollout 依赖模型在观察离开上下文窗口后还能保留场景结构。
+
+GIM-World 用 geometry-aware implicit memory 压缩历史状态，并显式约束跨视角几何，而不是保存帧或依赖启发式 3D 重建。
+
+它值得收录，因为 world model memory 正成为交互式视频生成和 embodied simulation 的" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Geometry-Aware Implicit Memory for Video World Models</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-06-01</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-06-01</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2606.02436" target="_blank" rel="noopener noreferrer">2606.02436</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>Video world models 的长程 rollout 依赖模型在观察离开上下文窗口后还能保留场景结构。</dd></div><div><dt>方法/机制</dt><dd>GIM-World 用 geometry-aware implicit memory 压缩历史状态，并显式约束跨视角几何，而不是保存帧或依赖启发式 3D 重建。</dd></div><div><dt>结果/证据</dt><dd>它值得收录，因为 world model memory 正成为交互式视频生成和 embodied simulation 的核心瓶颈。</dd></div><div><dt>收录价值</dt><dd>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>Video world models 的长程 rollout 依赖模型在观察离开上下文窗口后还能保留场景结构。</p><p>GIM-World 用 geometry-aware implicit memory 压缩历史状态，并显式约束跨视角几何，而不是保存帧或依赖启发式 3D 重建。</p><p>它值得收录，因为 world model memory 正成为交互式视频生成和 embodied simulation 的核心瓶颈。</p><p>按当前收录规则，它属于近期值得正式跟踪的可复用方法或系统模式；但作为新近预印本，后续仍需要代码、复现和真实部署结果来确认长期影响。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>从冻结的基础模型中引入场景结构到训练期间的记忆中，并且一个信息引导的剪枝规则保持编码成本随着历史的增长而有界。在推理时，几何教师被丢弃，留下一个轻量级的内存模块。在MIND数据集上的实验表明，GIM-World比显式记忆和隐式记忆基线更能保持长范围的几何和视觉一致性。视频世界模型旨在模拟可控的视觉环境，但长范围的滚动依赖于模型在观察离开其原生上下文窗口后记住的内容。显式记忆保留帧或在线3D重建，这可能会遭受启发式检索错误、冗余外观存储或重建伪像的影响。隐式记忆将历史压缩为紧凑的状态，但现有设计并未明确地约束编码跨视图场景几何。我们提出GIMWorld，一个为视频世界模型设计的几何感知隐式记忆框架。一个轻量级的Transformer编码器将可变长度的历史压缩为固定大小的内存token，一个可查询摄像机的几何头部提取3D</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>scene structure from a frozen foundation model into the memory during training, and an information-guided pruning rule keeps encoding cost bounded as history grows. The geometry teacher is discarded at inference, leaving a lightweight memory module. Experiments on MIND show that GIM-World better preserves long-horizon geometric and visual consistency than both explicit- and implicitmemory baselines. Video world models aim to simulate controllable visual environments, but long-horizon rollouts depend on what the model remembers after observations leave its native context window. Explicit memories retain frames or online 3D reconstructions, which can suffer from heuristic retrieval errors, redundant appearance storage, or reconstruction artifacts. Implicit memories compress history into a compact state, but existing designs are not explicitly constrained to encode cross-view scene geometry. We propose GIMWorld, a geometry-aware implicit memory framework for video world models. A lightweight transformer encoder compresses variable-length history into fixed-size memory tokens, a camera-queryable geometry head distills 3D</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260601g34gimworl,
+  title = {Geometry-Aware Implicit Memory for Video World Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2606.02436.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g34-gim-world-implicit-memory/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Geometry-Aware Implicit Memory for Video World Models. https://arxiv.org/pdf/2606.02436.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/g24-scope-cross-game-fps-world-models/">
+              <span>SCOPE: Simulating Cross-game Operations in Playable Environments for FPS World Models</span>
+              <small>生成建模与扩散 · 2026-05-22</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2606.02436.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

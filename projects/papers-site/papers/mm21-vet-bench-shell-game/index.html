@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Can Vision-Language Models Solve the Shell Game? | DAST Papers</title>
+    <meta name="description" content="这篇论文抓住了当前视频 VLM 一个被很多综合 benchmark 掩盖的核心短板：视觉实体跟踪。作者指出，现有视频问答数据里常常存在可利用的静态外观线索，模型即使没有真正跟踪能力，也能通过单帧重识别得到高分。为此，论文把经典的 shell game 重新做成一个严格去除外观捷径的诊断任务，直接检验模型能否仅凭时空连续性追踪完全相同的对象。
+
+作者提出 VET-Bench，用外观完全一致的杯子、扑" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/mm21-vet-bench-shell-game/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Can Vision-Language Models Solve the Shell Game?" />
+    <meta property="og:description" content="这篇论文抓住了当前视频 VLM 一个被很多综合 benchmark 掩盖的核心短板：视觉实体跟踪。作者指出，现有视频问答数据里常常存在可利用的静态外观线索，模型即使没有真正跟踪能力，也能通过单帧重识别得到高分。为此，论文把经典的 shell game 重新做成一个严格去除外观捷径的诊断任务，直接检验模型能否仅凭时空连续性追踪完全相同的对象。
+
+作者提出 VET-Bench，用外观完全一致的杯子、扑" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/mm21-vet-bench-shell-game/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Can Vision-Language Models Solve the Shell Game?" />
+    <meta name="twitter:description" content="这篇论文抓住了当前视频 VLM 一个被很多综合 benchmark 掩盖的核心短板：视觉实体跟踪。作者指出，现有视频问答数据里常常存在可利用的静态外观线索，模型即使没有真正跟踪能力，也能通过单帧重识别得到高分。为此，论文把经典的 shell game 重新做成一个严格去除外观捷径的诊断任务，直接检验模型能否仅凭时空连续性追踪完全相同的对象。
+
+作者提出 VET-Bench，用外观完全一致的杯子、扑" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Can Vision-Language Models Solve the Shell Game?</h1>
+          <p class="subtitle">多模态基础模型 · 发表：2026-03-09</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">多模态基础模型</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-03-09</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2603.08436" target="_blank" rel="noopener noreferrer">2603.08436</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文抓住了当前视频 VLM 一个被很多综合 benchmark 掩盖的核心短板：视觉实体跟踪。作者指出，现有视频问答数据里常常存在可利用的静态外观线索，模型即使没有真正跟踪能力，也能通过单帧重识别得到高分。为此，论文把经典的 shell game 重新做成一个严格去除外观捷径的诊断任务，直接检验模型能否仅凭时空连续性追踪完全相同的对象。</dd></div><div><dt>方法/机制</dt><dd>作者提出 VET-Bench，用外观完全一致的杯子、扑克牌等对象构造 synthetic diagnostic benchmark，逼迫模型依赖真正的时序实体表征。实验显示，现有前沿视频 VLM 在这一测试上接近随机猜测。论文进一步给出理论分析，把这类视觉实体跟踪和 state-tracking 问题联系起来，论证固定深度 transformer 在没有中间计算监督时存在表达能力限制。</dd></div><div><dt>结果/证据</dt><dd>在方法上，作者提出 Spatiotemporal Grounded Chain-of-Thought（SGCoT），让模型先显式生成对象轨迹，再给出最终答案，把感知问题转成有中间状态的推理过程。基于 Molmo2 的跟踪能力和合成文本对齐数据，SGCoT 在 VET-Bench 上把性能推到 90% 以上。对仓库来说，这篇的价值不只是一个新 benchmark，而是把视频感知、状态跟踪、CoT 中间监督和模型表达能力限制连接起来，属于多模态推理主线里很值得收的条目。</dd></div><div><dt>收录价值</dt><dd>它没有更高一级，因为当前仍是 arXiv 预印本，而且任务设置带有较强诊断性质，外部复现和跨任务外溢还需要继续观察。如果后续社区把 VET-Bench 或类似 shell-game-style tracking 视为视频 VLM 的标准短板测试，这篇的地位还可能继续上升。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文抓住了当前视频 VLM 一个被很多综合 benchmark 掩盖的核心短板：视觉实体跟踪。作者指出，现有视频问答数据里常常存在可利用的静态外观线索，模型即使没有真正跟踪能力，也能通过单帧重识别得到高分。为此，论文把经典的 shell game 重新做成一个严格去除外观捷径的诊断任务，直接检验模型能否仅凭时空连续性追踪完全相同的对象。</p><p>作者提出 VET-Bench，用外观完全一致的杯子、扑克牌等对象构造 synthetic diagnostic benchmark，逼迫模型依赖真正的时序实体表征。实验显示，现有前沿视频 VLM 在这一测试上接近随机猜测。论文进一步给出理论分析，把这类视觉实体跟踪和 state-tracking 问题联系起来，论证固定深度 transformer 在没有中间计算监督时存在表达能力限制。</p><p>在方法上，作者提出 Spatiotemporal Grounded Chain-of-Thought（SGCoT），让模型先显式生成对象轨迹，再给出最终答案，把感知问题转成有中间状态的推理过程。基于 Molmo2 的跟踪能力和合成文本对齐数据，SGCoT 在 VET-Bench 上把性能推到 90% 以上。对仓库来说，这篇的价值不只是一个新 benchmark，而是把视频感知、状态跟踪、CoT 中间监督和模型表达能力限制连接起来，属于多模态推理主线里很值得收的条目。</p><p>它没有更高一级，因为当前仍是 arXiv 预印本，而且任务设置带有较强诊断性质，外部复现和跨任务外溢还需要继续观察。如果后续社区把 VET-Bench 或类似 shell-game-style tracking 视为视频 VLM 的标准短板测试，这篇的地位还可能继续上升。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>视觉实体追踪是人类与生俱来的认知能力，但对于视觉语言模型（VLMs）来说，它仍然是一个关键瓶颈。这一缺陷在现有视频基准测试中常被视觉捷径所掩盖。我们引入了VET-Bench，这是一个合成诊断测试平台，其特点是视觉上相同的物体，需要完全通过时空连续性进行追踪。我们的实验表明，当前最先进的VLMs在VET-Bench上的表现处于或接近随机水平，暴露出一个根本性局限：过度依赖静态帧级特征，以及未能随时间推移保持实体表示。我们提供了一项理论分析，将其与状态追踪问题联系起来，证明了固定深度的基于Transformer的VLMs由于表达能力限制，在没有中间监督的情况下追踪不可区分物体时存在根本性局限。为了解决这个问题，我们提出了时空接地思维链（SGCoT）：将物体轨迹生成为显式的中间状态。利用Molmo2的物体追踪能力，我们通过在合成的纯文本数据上进行微调以实现对齐，从而引出SGCoT推理。我们的方法在VET-Bench上取得了超过90%的最先进准确率，表明VLMs无需外部工具即可可靠地端到端解决视频藏球游戏任务。我们的代码和数据可在https://vetbench.github.io获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Visual entity tracking is an innate cognitive ability in humans, yet it remains a critical bottleneck for Vision-Language Models (VLMs). This deficit is often obscured in existing video benchmarks by visual shortcuts. We introduce VET-Bench, a synthetic diagnostic testbed featuring visually identical objects that necessitate tracking exclusively through spatiotemporal continuity. Our experiments reveal that current state-of-the-art VLMs perform at or near chance level on VET-Bench, exposing a fundamental limitation: an over-reliance on static frame-level features and a failure to maintain entity representations over time. We provide a theoretical analysis drawing connections to the state-tracking problem, proving that fixed-depth transformerbased VLMs are fundamentally limited in tracking indistinguishable objects without intermediate supervision due to expressivity constraints. To address this, we propose Spatiotemporal Grounded Chain-of-Thought (SGCoT): generating object trajectories as explicit intermediate states. Leveraging Molmo2’s object tracking ability, we elicit SGCoT reasoning by fine-tuning on synthesized text-only data for alignment. Our method achieves state-ofthe-art accuracy exceeding 90% on VET-Bench, demonstrating that VLMs can reliably solve the video shell-game task end-to-end without external tools. Our code and data are available at https://vetbench.github.io.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260309mm21vetben,
+  title = {Can Vision-Language Models Solve the Shell Game?},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2603.08436v1.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/mm21-vet-bench-shell-game/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Can Vision-Language Models Solve the Shell Game?. https://arxiv.org/pdf/2603.08436v1.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/mm79-x-stream-multistream-understanding/">
+              <span>X-Stream: Exploring MLLMs as Multiplexers for Multi-Stream Understanding</span>
+              <small>多模态基础模型 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/mm78-statekv-long-video-vlm/">
+              <span>Linear Scaling Video VLMs for Long Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/mm77-vlm3-native-3d-vlm/">
+              <span>VLM3: Vision Language Models Are Native 3D Learners</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm76-lomo-modality-substitution/">
+              <span>LoMo: Local Modality Substitution for Deeper Vision-Language Fusion</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm75-gasp-3d-spatial-priors-vlm/">
+              <span>Beyond 3D VQAs: Injecting 3D Spatial Priors into Vision-Language Models for Enhanced Geometric Reasoning</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/mm74-earlytom-video-token-compression/">
+              <span>EarlyTom: Early Token Compression Completes Fast Video Understanding</span>
+              <small>多模态基础模型 · 2026-05-28</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2603.08436v1.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

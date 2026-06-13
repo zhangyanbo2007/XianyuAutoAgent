@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gradient descent in materia through homodyne gradient extraction | DAST Papers</title>
+    <meta name="description" content="## 问题与背景
+问题与背景：物理神经网络和模拟计算长期受制于一个核心问题：如何在真实物理器件里获得可用于训练的梯度，而不是退回数字仿真中做反向传播。没有稳定梯度提取，物理网络就很难成为真正可训练的计算体系。
+
+## 方法/新意
+方法/新意：这篇工作提出基于 homodyne gradient extraction 的训练方法，直接从物理系统响应中抽取梯度信号，从而在材料/器件层完成更接近 gra" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/p17-gradient-descent-in-materia/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Gradient descent in materia through homodyne gradient extraction" />
+    <meta property="og:description" content="## 问题与背景
+问题与背景：物理神经网络和模拟计算长期受制于一个核心问题：如何在真实物理器件里获得可用于训练的梯度，而不是退回数字仿真中做反向传播。没有稳定梯度提取，物理网络就很难成为真正可训练的计算体系。
+
+## 方法/新意
+方法/新意：这篇工作提出基于 homodyne gradient extraction 的训练方法，直接从物理系统响应中抽取梯度信号，从而在材料/器件层完成更接近 gra" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/p17-gradient-descent-in-materia/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Gradient descent in materia through homodyne gradient extraction" />
+    <meta name="twitter:description" content="## 问题与背景
+问题与背景：物理神经网络和模拟计算长期受制于一个核心问题：如何在真实物理器件里获得可用于训练的梯度，而不是退回数字仿真中做反向传播。没有稳定梯度提取，物理网络就很难成为真正可训练的计算体系。
+
+## 方法/新意
+方法/新意：这篇工作提出基于 homodyne gradient extraction 的训练方法，直接从物理系统响应中抽取梯度信号，从而在材料/器件层完成更接近 gra" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Gradient descent in materia through homodyne gradient extraction</h1>
+          <p class="subtitle">物理与 AI for Science · 发表：2025-11-21</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">物理与 AI for Science</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-11-21</dd></div>
+          <div><dt>DOI</dt><dd><a href="https://doi.org/10.1038/s41467-025-65155-7" target="_blank" rel="noopener noreferrer">10.1038/s41467-025-65155-7</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>## 问题与背景</dd></div><div><dt>方法/机制</dt><dd>问题与背景：物理神经网络和模拟计算长期受制于一个核心问题：如何在真实物理器件里获得可用于训练的梯度，而不是退回数字仿真中做反向传播。没有稳定梯度提取，物理网络就很难成为真正可训练的计算体系。</dd></div><div><dt>结果/证据</dt><dd>## 方法/新意</dd></div><div><dt>收录价值</dt><dd>方法/新意：这篇工作提出基于 homodyne gradient extraction 的训练方法，直接从物理系统响应中抽取梯度信号，从而在材料/器件层完成更接近 gradient descent 的更新。它的重点是把“能训练”这个门槛从数字近似推进到更原生的 in-materia learning。</dd></div><div><dt>要点 5</dt><dd>## 意义/放在仓库中的位置</dd></div><div><dt>要点 6</dt><dd>意义/放在仓库中的位置：它适合放在 physical neural networks 与 AI hardware 主线，和 Training of physical neural networks 综述是上下游关系。前者给路线图，这篇给更接近可执行训练机制的原始研究。</dd></div><div><dt>要点 7</dt><dd>## 局限/为何不更高</dd></div><div><dt>要点 8</dt><dd>局限/为何不更高：它的长期价值很大，但当前影响仍集中在物理学习硬件这一子方向。距离范式级还差更广泛器件验证和系统级可扩展性证据，所以先归为突破性。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>## 问题与背景</p><p>问题与背景：物理神经网络和模拟计算长期受制于一个核心问题：如何在真实物理器件里获得可用于训练的梯度，而不是退回数字仿真中做反向传播。没有稳定梯度提取，物理网络就很难成为真正可训练的计算体系。</p><p>## 方法/新意</p><p>方法/新意：这篇工作提出基于 homodyne gradient extraction 的训练方法，直接从物理系统响应中抽取梯度信号，从而在材料/器件层完成更接近 gradient descent 的更新。它的重点是把“能训练”这个门槛从数字近似推进到更原生的 in-materia learning。</p><p>## 意义/放在仓库中的位置</p><p>意义/放在仓库中的位置：它适合放在 physical neural networks 与 AI hardware 主线，和 Training of physical neural networks 综述是上下游关系。前者给路线图，这篇给更接近可执行训练机制的原始研究。</p><p>## 局限/为何不更高</p><p>局限/为何不更高：它的长期价值很大，但当前影响仍集中在物理学习硬件这一子方向。距离范式级还差更广泛器件验证和系统级可扩展性证据，所以先归为突破性。</p>
+          </div>
+        </details>
+
+        
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20251121p17gradien,
+  title = {Gradient descent in materia through homodyne gradient extraction},
+  year = {2025},
+  url = {https://www.nature.com/articles/s41467-025-65155-7},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/p17-gradient-descent-in-materia/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Gradient descent in materia through homodyne gradient extraction. https://www.nature.com/articles/s41467-025-65155-7</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/p35-recursive-flow-matching/">
+              <span>Recursive Flow Matching</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p34-prism-thin-film-inverse-design/">
+              <span>PRISM: Position-encoded Regressive Inverse Spectral Model for Multilayer Thin-Film Design</span>
+              <small>物理与 AI for Science · 2026-05-26</small>
+            </a>
+            <a class="related-item" href="../../papers/p33-repa-p-physics-diffusion-alignment/">
+              <span>Learning to Think in Physics: Breaking Shortcut Learning in Scientific Diffusion via Representation Alignment</span>
+              <small>物理与 AI for Science · 2026-05-21</small>
+            </a>
+            <a class="related-item" href="../../papers/p32-ai-cfd-scientist/">
+              <span>AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents</span>
+              <small>物理与 AI for Science · 2026-05-07</small>
+            </a>
+            <a class="related-item" href="../../papers/c30-xdft-bandgap-mismatch-agent/">
+              <span>A self-evolving agent for explainable diagnosis of DFT-experiment band-gap mismatch</span>
+              <small>物理与 AI for Science · 2026-04-29</small>
+            </a>
+            <a class="related-item" href="../../papers/p28-cosine-symbolic-dynamics/">
+              <span>Interpretable Relational Inference with LLM-Guided Symbolic Dynamics Modeling</span>
+              <small>物理与 AI for Science · 2026-04-14</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://www.nature.com/articles/s41467-025-65155-7" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

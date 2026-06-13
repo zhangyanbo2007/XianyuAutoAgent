@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models | DAST Papers</title>
+    <meta name="description" content="CapVector 针对 VLA 机器人模型的一个现实瓶颈：标准 SFT 简单但适应慢，带辅助目标的 finetuning 能提升空间感知或长程推理等能力，却会带来额外模块、额外前向和训练开销。
+
+论文把辅助目标带来的通用能力增益与任务动作拟合拆到参数空间中处理：用同一小规模任务集训练标准 SFT 和辅助目标 SFT 两个模型，将二者参数差解释为 capability vector，再合并回预训练" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl69-capvector-vla-capability-vectors/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models" />
+    <meta property="og:description" content="CapVector 针对 VLA 机器人模型的一个现实瓶颈：标准 SFT 简单但适应慢，带辅助目标的 finetuning 能提升空间感知或长程推理等能力，却会带来额外模块、额外前向和训练开销。
+
+论文把辅助目标带来的通用能力增益与任务动作拟合拆到参数空间中处理：用同一小规模任务集训练标准 SFT 和辅助目标 SFT 两个模型，将二者参数差解释为 capability vector，再合并回预训练" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl69-capvector-vla-capability-vectors/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models" />
+    <meta name="twitter:description" content="CapVector 针对 VLA 机器人模型的一个现实瓶颈：标准 SFT 简单但适应慢，带辅助目标的 finetuning 能提升空间感知或长程推理等能力，却会带来额外模块、额外前向和训练开销。
+
+论文把辅助目标带来的通用能力增益与任务动作拟合拆到参数空间中处理：用同一小规模任务集训练标准 SFT 和辅助目标 SFT 两个模型，将二者参数差解释为 capability vector，再合并回预训练" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models</h1>
+          <p class="subtitle">机器人与具身智能 · 发表：2026-05-11</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">机器人与具身智能</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-11</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.10903" target="_blank" rel="noopener noreferrer">2605.10903</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>CapVector 针对 VLA 机器人模型的一个现实瓶颈：标准 SFT 简单但适应慢，带辅助目标的 finetuning 能提升空间感知或长程推理等能力，却会带来额外模块、额外前向和训练开销。</dd></div><div><dt>方法/机制</dt><dd>论文把辅助目标带来的通用能力增益与任务动作拟合拆到参数空间中处理：用同一小规模任务集训练标准 SFT 和辅助目标 SFT 两个模型，将二者参数差解释为 capability vector，再合并回预训练 VLA 得到 capability-enhanced meta model，并用轻量 orthogonal regularization 在下游 SFT 中减少能力遗忘。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它给机器人 foundation policy 提供了可复用的能力注入接口：把复杂辅助训练的收益压缩成可迁移参数向量，让新任务可以用接近标准 SFT 的成本继承空间/推理能力。对 VLA、PEFT、模型合并和机器人快速适配都有外溢价值。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为方法仍依赖作者选择的 capability extraction 任务和 VLA 家族；跨更大模型、更多真实机器人平台和非作者辅助目标的稳定性还需要独立验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>CapVector 针对 VLA 机器人模型的一个现实瓶颈：标准 SFT 简单但适应慢，带辅助目标的 finetuning 能提升空间感知或长程推理等能力，却会带来额外模块、额外前向和训练开销。</p><p>论文把辅助目标带来的通用能力增益与任务动作拟合拆到参数空间中处理：用同一小规模任务集训练标准 SFT 和辅助目标 SFT 两个模型，将二者参数差解释为 capability vector，再合并回预训练 VLA 得到 capability-enhanced meta model，并用轻量 orthogonal regularization 在下游 SFT 中减少能力遗忘。</p><p>它值得正式收录，因为它给机器人 foundation policy 提供了可复用的能力注入接口：把复杂辅助训练的收益压缩成可迁移参数向量，让新任务可以用接近标准 SFT 的成本继承空间/推理能力。对 VLA、PEFT、模型合并和机器人快速适配都有外溢价值。</p><p>它没有更高，是因为方法仍依赖作者选择的 capability extraction 任务和 VLA 家族；跨更大模型、更多真实机器人平台和非作者辅助目标的稳定性还需要独立验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>CapVector：在参数空间中学习视觉-语言-动作模型的可迁移能力向量 宋文轩1∗, 赵涵2,3∗†, 李富豪1,4, 周子扬1, 王曦4, 吕晶5, 丁鹏翔2,3, 王岩4, 王东林3‡, 李浩昂1‡ 1香港科技大学（广州）, 2浙江大学, 3西湖大学, 4清华大学, 5北京智源人工智能研究院 ∗共同第一作者, †项目负责人, ‡通讯作者</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models Wenxuan Song1∗ , Han Zhao2,3∗† , Fuhao Li1,4 , Ziyang Zhou1 , Xi Wang4 , Jing Lyu5 , Pengxiang Ding2,3 , Yan Wang4 , Donglin Wang3‡ , Haoang Li1‡ HKUST (GZ), 2 Zhejiang University, 3 Westlake University, 4 Tsinghua University, 5 Beijing Academy of Artificial Intelligence ∗ Equal Contribution, † Project Lead, ‡ Corresponding Author</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260511rl69capvec,
+  title = {CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.10903.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl69-capvector-vla-capability-vectors/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). CapVector: Learning Transferable Capability Vectors in Parametric Space for Vision-Language-Action Models. https://arxiv.org/pdf/2605.10903.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl95-humanoid-gpt-motion-tracking/">
+              <span>Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking</span>
+              <small>机器人与具身智能 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/rl99-dex4d-point-track-dexterity/">
+              <span>Dex4D: Task-Agnostic Point Track Policy for Sim-to-Real Dexterous Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl98-wall-wm-event-grounded-wam/">
+              <span>WALL-WM: Carving World Action Modeling at the Event Joints</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl97-ahead-dynamic-vla-world-model/">
+              <span>Intercepting the Future: Latent-Space Predictive World Model for Dynamic VLA Manipulation</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl96-robosemanticbench-vla-grounding/">
+              <span>RoboSemanticBench: Diagnosing Semantic Grounding in Action Prediction for VLA Models</span>
+              <small>机器人与具身智能 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/rl86-dynaflip-robotics-perception/">
+              <span>DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation</span>
+              <small>机器人与具身智能 · 2026-05-29</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.10903.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://capvector.github.io/" target="_blank" rel="noopener noreferrer">项目</a><a href="https://huggingface.co/papers/2605.10903" target="_blank" rel="noopener noreferrer">代码</a><a href="https://github.com/OpenHelix-Team/CapVector" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

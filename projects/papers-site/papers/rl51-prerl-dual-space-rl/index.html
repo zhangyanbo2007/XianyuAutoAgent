@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space | DAST Papers</title>
+    <meta name="description" content="问题与背景：RLVR 通常优化条件分布 P(y|x)，但它受限于 base model 原本能采到的输出空间。论文提出把一部分强化学习搬到 pre-train space，直接调节边缘分布 P(y)，用更宽的输出分布先塑造推理能力。
+
+方法与新意：PreRL 论证 log P(y) 与 log P(y|x) 的梯度对齐，并发现 Negative Sample Reinforcement 能快速剪除" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl51-prerl-dual-space-rl/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space" />
+    <meta property="og:description" content="问题与背景：RLVR 通常优化条件分布 P(y|x)，但它受限于 base model 原本能采到的输出空间。论文提出把一部分强化学习搬到 pre-train space，直接调节边缘分布 P(y)，用更宽的输出分布先塑造推理能力。
+
+方法与新意：PreRL 论证 log P(y) 与 log P(y|x) 的梯度对齐，并发现 Negative Sample Reinforcement 能快速剪除" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl51-prerl-dual-space-rl/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space" />
+    <meta name="twitter:description" content="问题与背景：RLVR 通常优化条件分布 P(y|x)，但它受限于 base model 原本能采到的输出空间。论文提出把一部分强化学习搬到 pre-train space，直接调节边缘分布 P(y)，用更宽的输出分布先塑造推理能力。
+
+方法与新意：PreRL 论证 log P(y) 与 log P(y|x) 的梯度对齐，并发现 Negative Sample Reinforcement 能快速剪除" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space</h1>
+          <p class="subtitle">强化学习 · 发表：2026-04-15</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-04-15</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2604.14142" target="_blank" rel="noopener noreferrer">2604.14142</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>问题与背景：RLVR 通常优化条件分布 P(y|x)，但它受限于 base model 原本能采到的输出空间。论文提出把一部分强化学习搬到 pre-train space，直接调节边缘分布 P(y)，用更宽的输出分布先塑造推理能力。</dd></div><div><dt>方法/机制</dt><dd>方法与新意：PreRL 论证 log P(y) 与 log P(y|x) 的梯度对齐，并发现 Negative Sample Reinforcement 能快速剪除错误推理空间、激发反思行为。随后 DSRL 用 PreRL 初始化推理 horizon，再切换到标准 RL 做精调。</dd></div><div><dt>结果/证据</dt><dd>收录意义：这篇重要在于重新划分了 reasoning RL 的优化空间：不只是在 prompt-conditioned rollout 上改策略，也可以先在 pretrain-like 边缘分布上做 reward-driven pruning。这个问题定义对后续 RLVR、reasoning pretraining 和 policy initialization 都有启发。</dd></div><div><dt>收录价值</dt><dd>局限：PreRL 的稳定性、数据效率和对普通语言能力的副作用仍需更大规模第三方复现；负样本强化是否普适也需要跨模型验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>问题与背景：RLVR 通常优化条件分布 P(y|x)，但它受限于 base model 原本能采到的输出空间。论文提出把一部分强化学习搬到 pre-train space，直接调节边缘分布 P(y)，用更宽的输出分布先塑造推理能力。</p><p>方法与新意：PreRL 论证 log P(y) 与 log P(y|x) 的梯度对齐，并发现 Negative Sample Reinforcement 能快速剪除错误推理空间、激发反思行为。随后 DSRL 用 PreRL 初始化推理 horizon，再切换到标准 RL 做精调。</p><p>收录意义：这篇重要在于重新划分了 reasoning RL 的优化空间：不只是在 prompt-conditioned rollout 上改策略，也可以先在 pretrain-like 边缘分布上做 reward-driven pruning。这个问题定义对后续 RLVR、reasoning pretraining 和 policy initialization 都有启发。</p><p>局限：PreRL 的稳定性、数据效率和对普通语言能力的副作用仍需更大规模第三方复现；负样本强化是否普适也需要跨模型验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>虽然带有可验证奖励的强化学习（RLVR）通过优化条件分布P(y|x)显著增强了LLM的推理能力，但其潜力从根本上受限于基础模型现有的输出分布。在预训练空间中优化边际分布P(y)解决了这一瓶颈，它编码了推理能力并保留了广泛的探索能力。然而，传统的预训练依赖静态语料库进行被动学习，导致分布偏移，从而阻碍了有针对性的推理增强。在本文中，我们引入了PreRL（预训练空间强化学习），它直接对P(y)应用奖励驱动的在线更新。我们从理论和经验上验证了log P(y)和log P(y|x)之间强大的梯度对齐，从而确立了PreRL作为标准RL的可行替代方案。此外，我们发现了一个关键机制：PreRL中的负样本强化（NSR）是推理的极其有效的驱动因素。NSR-PreRL快速修剪不正确的推理空间，同时刺激内源性反思行为，分别将过渡和反思思维增加了14.89倍和6.54倍。利用这些见解，我们提出了双空间强化学习（DSRL），这是一种策略转生（Policy Reincarnation）策略，它使用NSR-PreRL初始化模型以扩展推理范围，然后过渡到标准RL进行细粒度优化。大量实验表明，DSRL始终优于强大的基线，证明了预训练空间剪枝有效地将策略引导至一个经过优化的正确推理子空间。代码可在此处获取。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>While reinforcement learning with verifiable rewards (RLVR) significantly enhances LLM reasoning by optimizing the conditional distribution P(y| x ), its potential is fundamentally bounded by the base model’s existing output distribution. Optimizing the marginal distribution P(y) in the Pre-train Space addresses this bottleneck by encoding reasoning ability and preserving broad exploration capacity. Yet, conventional pre-training relies on static corpora for passive learning, leading to a distribution shift that hinders targeted reasoning enhancement. In this paper, we introduce PreRL (Pre-train Space RL), which applies reward-driven online updates directly to P(y). We theoretically and empirically validate the strong gradient alignment between log P(y) and log P(y| x ), establishing PreRL as a viable surrogate for standard RL. Furthermore, we uncover a critical mechanism: Negative Sample Reinforcement (NSR) within PreRL serves as an exceptionally effective driver for reasoning. NSR-PreRL rapidly prunes incorrect reasoning spaces while stimulating endogenous reflective behaviors, increasing transition and reflection thoughts by 14.89× and 6.54×, respectively. Leveraging these insights, we propose Dual Space RL (DSRL), a Policy Reincarnation strategy that initializes models with NSR-PreRL to expand the reasoning horizon before transitioning to standard RL for fine-grained optimization. Extensive experiments demonstrate that DSRL consistently outperforms strong baselines, proving that pre-train space pruning effectively steers the policy toward a refined correct reasoning subspace. Code is available here.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260415rl51prerld,
+  title = {From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2604.14142.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl51-prerl-dual-space-rl/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). From P(y|x) to P(y): Investigating Reinforcement Learning in Pre-train Space. https://arxiv.org/pdf/2604.14142.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2604.14142.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rethinking Bimanual Robotic Manipulation: Learning with Decoupled Interaction Framework | DAST Papers</title>
+    <meta name="description" content="双臂机器人操作常被统一建模成一个同时接收两只手观测和状态、再直接输出联合动作的大模型。但这类 integrated-control 设定默认所有任务都需要强耦合协作，忽略了大量其实只需要弱耦合甚至局部独立决策的子问题，结果既增加模型复杂度，也削弱了对不同协作结构的表达能力。
+
+这篇工作的关键新意是提出 decoupled interaction framework：先为每只手分别分配独立模型，专门" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/rl35-decoupled-interaction-framework/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Rethinking Bimanual Robotic Manipulation: Learning with Decoupled Interaction Framework" />
+    <meta property="og:description" content="双臂机器人操作常被统一建模成一个同时接收两只手观测和状态、再直接输出联合动作的大模型。但这类 integrated-control 设定默认所有任务都需要强耦合协作，忽略了大量其实只需要弱耦合甚至局部独立决策的子问题，结果既增加模型复杂度，也削弱了对不同协作结构的表达能力。
+
+这篇工作的关键新意是提出 decoupled interaction framework：先为每只手分别分配独立模型，专门" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/rl35-decoupled-interaction-framework/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rethinking Bimanual Robotic Manipulation: Learning with Decoupled Interaction Framework" />
+    <meta name="twitter:description" content="双臂机器人操作常被统一建模成一个同时接收两只手观测和状态、再直接输出联合动作的大模型。但这类 integrated-control 设定默认所有任务都需要强耦合协作，忽略了大量其实只需要弱耦合甚至局部独立决策的子问题，结果既增加模型复杂度，也削弱了对不同协作结构的表达能力。
+
+这篇工作的关键新意是提出 decoupled interaction framework：先为每只手分别分配独立模型，专门" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Rethinking Bimanual Robotic Manipulation: Learning with Decoupled Interaction Framework</h1>
+          <p class="subtitle">强化学习 · 发表：2025-03-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">强化学习</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2025-03-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2503.09186" target="_blank" rel="noopener noreferrer">2503.09186</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>双臂机器人操作常被统一建模成一个同时接收两只手观测和状态、再直接输出联合动作的大模型。但这类 integrated-control 设定默认所有任务都需要强耦合协作，忽略了大量其实只需要弱耦合甚至局部独立决策的子问题，结果既增加模型复杂度，也削弱了对不同协作结构的表达能力。</dd></div><div><dt>方法/机制</dt><dd>这篇工作的关键新意是提出 decoupled interaction framework：先为每只手分别分配独立模型，专门学习非强协作任务中的局部控制，再通过 selective interaction module 自适应决定来自另一只手的信息应该如何参与决策。这样它既保留了独立建模带来的灵活性，又能在需要时显式学习协调关系，而且还能无缝接到现有方法和 multi-agent manipulation 场景中。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为它不是再造一个更大的 manipulation policy，而是把双臂操作重新表述成“独立建模 + 选择性交互”的通用接口。这对 bimanual manipulation、multi-arm coordination 以及更一般的 embodied multi-agent control 都有可复用的方法外溢，而不只是单一 benchmark 提升。</dd></div><div><dt>收录价值</dt><dd>它暂时不升到更高一级，原因在于当前证据仍主要集中在双臂操作这一具体子领域。虽然方法 framing 很清晰，也有明显泛化潜力，但是否会成为机器人协作控制的默认建模范式，还需要更多跨平台和后续采用来验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>双臂机器人操作常被统一建模成一个同时接收两只手观测和状态、再直接输出联合动作的大模型。但这类 integrated-control 设定默认所有任务都需要强耦合协作，忽略了大量其实只需要弱耦合甚至局部独立决策的子问题，结果既增加模型复杂度，也削弱了对不同协作结构的表达能力。</p><p>这篇工作的关键新意是提出 decoupled interaction framework：先为每只手分别分配独立模型，专门学习非强协作任务中的局部控制，再通过 selective interaction module 自适应决定来自另一只手的信息应该如何参与决策。这样它既保留了独立建模带来的灵活性，又能在需要时显式学习协调关系，而且还能无缝接到现有方法和 multi-agent manipulation 场景中。</p><p>它值得正式收录，因为它不是再造一个更大的 manipulation policy，而是把双臂操作重新表述成“独立建模 + 选择性交互”的通用接口。这对 bimanual manipulation、multi-arm coordination 以及更一般的 embodied multi-agent control 都有可复用的方法外溢，而不只是单一 benchmark 提升。</p><p>它暂时不升到更高一级，原因在于当前证据仍主要集中在双臂操作这一具体子领域。虽然方法 framing 很清晰，也有明显泛化潜力，但是否会成为机器人协作控制的默认建模范式，还需要更多跨平台和后续采用来验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>重新思考双手机器人操作：基于解耦交互框架的学习双手机器人操作是机器人领域一个新兴且关键的课题。以往的工作主要依赖于集成控制模型，这些模型将双臂的感知和状态作为输入，直接预测它们的动作。然而，我们认为双手操作不仅涉及协调任务，还涉及各种在执行过程中不需要明确协作的非协调任务，例如用最近的手抓取物体；集成控制框架由于其在早期输入中强制的协作，往往忽略了对这些任务的考虑。在本文中，我们提出了一种新颖的解耦交互框架，该框架考虑了双手操作中不同任务的特性。我们框架的关键在于为每只手臂分配一个独立的模型，以增强非协调任务的学习，同时引入一个选择性交互模块，该模块自适应地从其自身手臂学习权重，以改进协调任务的学习。在RoboTwin数据集的七项任务上进行的广泛实验表明：(1) 我们的框架取得了卓越的性能，比SOTA方法提升了23.5%。(2) 我们的框架具有灵活性，可以无缝集成到现有方法中。(3) 我们的框架可以有效地扩展到多智能体操作任务，比集成控制SOTA提升了28%。(4) 性能提升源于解耦设计本身，在模型尺寸仅为1/6的情况下，成功率比SOTA高出16.5%。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Bimanual robotic manipulation is an emerging and critical topic in the robotics community. Previous works primarily rely on integrated control models that take the perceptions and states of both arms as inputs to directly predict their actions. However, we think bimanual manipulation involves not only coordinated tasks but also various uncoordinated tasks that do not require explicit cooperation during execution, such as grasping objects with the closest hand, which integrated control frameworks ignore to consider due to their enforced cooperation in the early inputs. In this paper, we propose a novel decoupled interaction framework that considers the characteristics of different tasks in bimanual manipulation. The key insight of our framework is to assign an independent model to each arm to enhance the learning of uncoordinated tasks, while introducing a selective interaction module that adaptively learns weights from its own arm to improve the learning of coordinated tasks. Extensive experiments on seven tasks in the RoboTwin dataset demonstrate that: (1) Our framework achieves outstanding performance, with a 23.5% boost over the SOTA method. (2) Our framework is flexible and can be seamlessly integrated into existing methods. (3) Our framework can be effectively extended to multi-agent manipulation tasks, achieving a 28% boost over the integrated control SOTA. (4) The performance boost stems from the decoupled design itself, surpassing the SOTA by 16.5% in success rate with only 1/6 of the model size.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20250312rl35decoup,
+  title = {Rethinking Bimanual Robotic Manipulation: Learning with Decoupled Interaction Framework},
+  year = {2025},
+  url = {https://arxiv.org/pdf/2503.09186.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/rl35-decoupled-interaction-framework/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2025). Rethinking Bimanual Robotic Manipulation: Learning with Decoupled Interaction Framework. https://arxiv.org/pdf/2503.09186.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/rl87-hideseek-vla-runtime-monitoring/">
+              <span>Hide-and-Seek in Trajectories: Discovering Failure Signals for VLA Runtime Monitoring</span>
+              <small>强化学习 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/rl82-dvao-multi-reward-rl/">
+              <span>DVAO: Dynamic Variance-adaptive Advantage Optimization for Multi-reward Reinforcement Learning</span>
+              <small>强化学习 · 2026-05-25</small>
+            </a>
+            <a class="related-item" href="../../papers/rl80-delta-rlvr-credit-assignment/">
+              <span>DelTA: Discriminative Token Credit Assignment for Reinforcement Learning from Verifiable Rewards</span>
+              <small>强化学习 · 2026-05-20</small>
+            </a>
+            <a class="related-item" href="../../papers/rl76-nudgerl-strategy-exploration/">
+              <span>Nudging Beyond the Comfort Zone: Efficient Strategy-Guided Exploration for RLVR</span>
+              <small>强化学习 · 2026-05-15</small>
+            </a>
+            <a class="related-item" href="../../papers/rl89-octopus-soft-robotic-arm/">
+              <span>Peripheral control enabled by distributed sensing in an octopus-inspired soft robotic arm for autonomous underwater grasping</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+            <a class="related-item" href="../../papers/rl75-eapo-agentic-reasoning/">
+              <span>Learning to Explore: Scaling Agentic Reasoning via Exploration-Aware Policy Optimization</span>
+              <small>强化学习 · 2026-05-12</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2503.09186.pdf" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

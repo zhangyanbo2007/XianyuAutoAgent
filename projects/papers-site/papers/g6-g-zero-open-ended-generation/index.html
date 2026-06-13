@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>G-Zero: Self-Play for Open-Ended Generation from Zero Data | DAST Papers</title>
+    <meta name="description" content="这篇论文的核心吸引力是把 self-play 引入开放式生成，并强调 zero-data bootstrapping。它不是普通数据增强，而是试图让生成系统通过自博弈产生可扩展训练信号。
+
+如果这个方向成立，生成模型可以减少对静态数据集和人工偏好标注的依赖，转向更开放的任务生成、评估和改进循环。
+
+它值得正式收录，因为本库关注 self-improving systems、generative m" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/g6-g-zero-open-ended-generation/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="G-Zero: Self-Play for Open-Ended Generation from Zero Data" />
+    <meta property="og:description" content="这篇论文的核心吸引力是把 self-play 引入开放式生成，并强调 zero-data bootstrapping。它不是普通数据增强，而是试图让生成系统通过自博弈产生可扩展训练信号。
+
+如果这个方向成立，生成模型可以减少对静态数据集和人工偏好标注的依赖，转向更开放的任务生成、评估和改进循环。
+
+它值得正式收录，因为本库关注 self-improving systems、generative m" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/g6-g-zero-open-ended-generation/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="G-Zero: Self-Play for Open-Ended Generation from Zero Data" />
+    <meta name="twitter:description" content="这篇论文的核心吸引力是把 self-play 引入开放式生成，并强调 zero-data bootstrapping。它不是普通数据增强，而是试图让生成系统通过自博弈产生可扩展训练信号。
+
+如果这个方向成立，生成模型可以减少对静态数据集和人工偏好标注的依赖，转向更开放的任务生成、评估和改进循环。
+
+它值得正式收录，因为本库关注 self-improving systems、generative m" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>G-Zero: Self-Play for Open-Ended Generation from Zero Data</h1>
+          <p class="subtitle">生成建模与扩散 · 发表：2026-05-12</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">生成建模与扩散</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-12</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.09959" target="_blank" rel="noopener noreferrer">2605.09959</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇论文的核心吸引力是把 self-play 引入开放式生成，并强调 zero-data bootstrapping。它不是普通数据增强，而是试图让生成系统通过自博弈产生可扩展训练信号。</dd></div><div><dt>方法/机制</dt><dd>如果这个方向成立，生成模型可以减少对静态数据集和人工偏好标注的依赖，转向更开放的任务生成、评估和改进循环。</dd></div><div><dt>结果/证据</dt><dd>它值得正式收录，因为本库关注 self-improving systems、generative modeling 和 test-time / training-time autonomy；G-Zero 正好落在这些路线的交汇点。</dd></div><div><dt>收录价值</dt><dd>它没有更高，是因为 open-ended generation 很容易出现评估漂移和自我强化伪进步，当前仍需更强外部验证。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇论文的核心吸引力是把 self-play 引入开放式生成，并强调 zero-data bootstrapping。它不是普通数据增强，而是试图让生成系统通过自博弈产生可扩展训练信号。</p><p>如果这个方向成立，生成模型可以减少对静态数据集和人工偏好标注的依赖，转向更开放的任务生成、评估和改进循环。</p><p>它值得正式收录，因为本库关注 self-improving systems、generative modeling 和 test-time / training-time autonomy；G-Zero 正好落在这些路线的交汇点。</p><p>它没有更高，是因为 open-ended generation 很容易出现评估漂移和自我强化伪进步，当前仍需更强外部验证。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>自进化的LLM在可验证领域表现出色，但在开放式任务中却举步维艰，因为依赖代理LLM评判器会引入能力瓶颈和奖励作弊。为了克服这一点，我们引入了G-Zero，一个无验证器、协同进化的自主自我改进框架。我们的核心创新是Hint-δ，这是一种内在奖励，它量化了生成器模型在无辅助响应与其在自生成提示条件下的响应之间的预测偏移。利用这一信号，Proposer模型通过GRPO进行训练，通过合成具有挑战性的查询和信息丰富的提示，持续针对生成器的盲点。生成器同时通过DPO进行优化，以内化这些提示引导的改进。理论上，我们证明了G-Zero的理想化标准DPO版本具有最佳迭代次优性保证，前提是Proposer诱导了足够的探索覆盖范围，并且数据过滤保持伪标签分数噪声较低。通过完全从内部分布动态中获取监督，G-Zero绕过了外部评判器的能力上限，为LLM在不可验证领域实现持续自我进化提供了一条可扩展、鲁棒的途径。代码：https://github.com/Chengsong-Huang/G-Zero</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Self-evolving LLMs excel in verifiable domains but struggle in open-ended tasks, where reliance on proxy LLM judges introduces capability bottlenecks and reward hacking. To overcome this, we introduce G-Zero, a verifier-free, co-evolutionary framework for autonomous self-improvement. Our core innovation is Hint-δ, an intrinsic reward that quantifies the predictive shift between a Generator model’s unassisted response and its response conditioned on a self-generated hint. Using this signal, a Proposer model is trained via GRPO to continuously target the Generator’s blind spots by synthesizing challenging queries and informative hints. The Generator is concurrently optimized via DPO to internalize these hint-guided improvements. Theoretically, we prove a best-iterate suboptimality guarantee for an idealized standard-DPO version of G-Zero, provided that the Proposer induces sufficient exploration coverage and the data filteration keeps pseudo-label score noise low. By deriving supervision entirely from internal distributional dynamics, G-Zero bypasses the capability ceilings of external judges, providing a scalable, robust pathway for continuous LLM self-evolution across unverifiable domains. § Code: https://github.com/Chengsong-Huang/G-Zero</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260512g6gzeroope,
+  title = {G-Zero: Self-Play for Open-Ended Generation from Zero Data},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.09959.pdf},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/g6-g-zero-open-ended-generation/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). G-Zero: Self-Play for Open-Ended Generation from Zero Data. https://arxiv.org/pdf/2605.09959.pdf</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/g32-omnidreams-av-world-model/">
+              <span>NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation</span>
+              <small>生成建模与扩散 · 2026-06-02</small>
+            </a>
+            <a class="related-item" href="../../papers/g34-gim-world-implicit-memory/">
+              <span>Geometry-Aware Implicit Memory for Video World Models</span>
+              <small>生成建模与扩散 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/g31-decmem-world-generation-memory/">
+              <span>DecMem: Towards Minute-Long Consistent World Generation with Decoupled Memory</span>
+              <small>生成建模与扩散 · 2026-05-29</small>
+            </a>
+            <a class="related-item" href="../../papers/g33-videomla-latent-kv-video-diffusion/">
+              <span>VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion</span>
+              <small>生成建模与扩散 · 2026-05-28</small>
+            </a>
+            <a class="related-item" href="../../papers/g27-gamma-world-multiagent-world-model/">
+              <span>Gamma-World: Generative Multi-Agent World Modeling Beyond Two Players</span>
+              <small>生成建模与扩散 · 2026-05-27</small>
+            </a>
+            <a class="related-item" href="../../papers/g23-wbench-interactive-video-world-model-eval/">
+              <span>WBench: A Comprehensive Multi-turn Benchmark for Interactive Video World Model Evaluation</span>
+              <small>生成建模与扩散 · 2026-05-25</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.09959.pdf" target="_blank" rel="noopener noreferrer">论文链接</a><a href="https://huggingface.co/papers/2605.09959" target="_blank" rel="noopener noreferrer">代码</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>

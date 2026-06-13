@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Polar: Agentic RL on Any Harness at Scale | DAST Papers</title>
+    <meta name="description" content="这篇 arXiv 论文提出 Polar，目标是解决 agent RL 训练中最实际的系统问题：真实 agent harness 往往包含长上下文、多轮工具使用、多 agent 编排和复杂运行时，难以直接移植成标准 RL environment。
+
+Polar 把 agent harness 当作黑盒，通过代理 LLM API 调用记录 token-level 交互，并重建 token-faithf" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://papers.dast.ai/papers/a339-polar-agentic-rl-harness/" />
+    <link rel="stylesheet" href="../../assets/styles.css" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="DAST Papers" />
+    <meta property="og:title" content="Polar: Agentic RL on Any Harness at Scale" />
+    <meta property="og:description" content="这篇 arXiv 论文提出 Polar，目标是解决 agent RL 训练中最实际的系统问题：真实 agent harness 往往包含长上下文、多轮工具使用、多 agent 编排和复杂运行时，难以直接移植成标准 RL environment。
+
+Polar 把 agent harness 当作黑盒，通过代理 LLM API 调用记录 token-level 交互，并重建 token-faithf" />
+    <meta property="og:url" content="https://papers.dast.ai/papers/a339-polar-agentic-rl-harness/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Polar: Agentic RL on Any Harness at Scale" />
+    <meta name="twitter:description" content="这篇 arXiv 论文提出 Polar，目标是解决 agent RL 训练中最实际的系统问题：真实 agent harness 往往包含长上下文、多轮工具使用、多 agent 编排和复杂运行时，难以直接移植成标准 RL environment。
+
+Polar 把 agent harness 当作黑盒，通过代理 LLM API 调用记录 token-level 交互，并重建 token-faithf" />
+  </head>
+  <body>
+    <header class="site-header compact-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow"><a href="../../">papers.dast.ai</a></p>
+          <h1>Polar: Agentic RL on Any Harness at Scale</h1>
+          <p class="subtitle">智能体与自主科学 · 发表：2026-05-22</p>
+        </div>
+      </div>
+    </header>
+    <main class="detail-main">
+      <article class="paper-card detail-card">
+        <div class="badges detail-badges">
+          <span class="badge">智能体与自主科学</span>
+          <span class="badge grade">突破级</span>
+          <span class="badge no-video">暂无讲解视频</span>
+        </div>
+        <dl class="detail-meta">
+          <div><dt>发表时间</dt><dd>2026-05-22</dd></div>
+          <div><dt>arXiv</dt><dd><a href="https://arxiv.org/abs/2605.24220" target="_blank" rel="noopener noreferrer">2605.24220</a></dd></div>
+        </dl>
+
+        <section class="detail-section fact-section">
+          <h2>核心要点</h2>
+          <dl class="fact-list">
+          <div><dt>问题/背景</dt><dd>这篇 arXiv 论文提出 Polar，目标是解决 agent RL 训练中最实际的系统问题：真实 agent harness 往往包含长上下文、多轮工具使用、多 agent 编排和复杂运行时，难以直接移植成标准 RL environment。</dd></div><div><dt>方法/机制</dt><dd>Polar 把 agent harness 当作黑盒，通过代理 LLM API 调用记录 token-level 交互，并重建 token-faithful trajectories。这样训练侧可以获得可用于 RL 的轨迹，而不需要重写 Codex、Claude Code、Qwen Code 等复杂 harness。</dd></div><div><dt>结果/证据</dt><dd>系统采用异步 rollout service 设计，每个 rollout node 管理 runtime prewarming、agent execution、trajectory reconstruction 和 evaluation，并通过服务端点供独立 trainer 消费，解耦 harness、训练基础设施和 RL 算法。</dd></div><div><dt>收录价值</dt><dd>收录价值在于它是 agentic RL infrastructure 的可复用接口层：把任意 agent harness 变成可训练环境，直接关系到软件工程 agent、工具使用 agent 和长时程 agent 的规模化后训练。</dd></div>
+          </dl>
+        </section>
+
+        
+        <details class="detail-section detail-expander">
+          <summary>完整收录解读</summary>
+          <div class="detail-expander-body">
+          <p>这篇 arXiv 论文提出 Polar，目标是解决 agent RL 训练中最实际的系统问题：真实 agent harness 往往包含长上下文、多轮工具使用、多 agent 编排和复杂运行时，难以直接移植成标准 RL environment。</p><p>Polar 把 agent harness 当作黑盒，通过代理 LLM API 调用记录 token-level 交互，并重建 token-faithful trajectories。这样训练侧可以获得可用于 RL 的轨迹，而不需要重写 Codex、Claude Code、Qwen Code 等复杂 harness。</p><p>系统采用异步 rollout service 设计，每个 rollout node 管理 runtime prewarming、agent execution、trajectory reconstruction 和 evaluation，并通过服务端点供独立 trainer 消费，解耦 harness、训练基础设施和 RL 算法。</p><p>收录价值在于它是 agentic RL infrastructure 的可复用接口层：把任意 agent harness 变成可训练环境，直接关系到软件工程 agent、工具使用 agent 和长时程 agent 的规模化后训练。</p>
+          </div>
+        </details>
+
+        
+        <section class="detail-section abstract-section">
+          <h2>原始摘要与中文对照</h2>
+          <div class="abstract-pair">
+            <div class="abstract-block abstract-translation">
+              <h3>中文对照翻译</h3>
+              <p>Polar：在任意代理框架上进行大规模智能体强化学习 语言智能体的强化学习越来越依赖于自定义的代理框架，这些框架管理着长时运行的上下文、多轮工具使用和多智能体编排。然而，将这些代理框架移植到强化学习环境接口中仍然很困难，并且常常会丢失重要的训练信号。我们通过 Polar 弥合了这一差距，Polar 是一个用于在任意智能体代理框架上进行可扩展异步强化学习的 rollout 框架。Polar 将智能体代理框架视为一个黑盒：它代理 LLM API 调用，记录令牌级别的模型交互，并重建令牌忠实的轨迹用于训练。每个 rollout 节点并行高效地管理运行时预热、智能体执行、轨迹重建和评估，暴露可供独立训练器大规模消费的异步服务端点。这种解耦设计使得 Polar 与智能体代理框架、训练基础设施和强化学习算法无关，同时提高了长时间运行智能体工作负载的计算资源利用率。我们通过使用流行的编码代理框架在软件工程任务上训练智能体来验证 Polar。使用简单的 GRPO，Polar 在 SWE-Bench Verified 上分别使用 Codex、Claude Code、Qwen Code 和 Pi 代理框架，将 Qwen3.5-4B 的性能提高了 22.6、4.8、0.6 和 6.2 个百分点。我们进一步展示了 Polar 在自定义代理框架上进行离线数据生成的能力，并对轨迹重建策略进行了消融研究。Polar 重写了其先前的工作 ProRL Agent1，并已被注册为 NeMo Gym 环境之一。图 1：Polar 架构概览。Polar 在一个隔离的运行时环境中运行现有的智能体代理框架，并在该框架和推理服务器之间放置一个模型 API 代理。该代理转发模型调用，记录令牌级别的请求和响应数据，并重建强化学习轨迹，而 rollout 网关则异步处理运行时预热、代理框架执行、评估和训练器回调。这种解耦设计使得 Polar 能够将智能体视为一个黑盒环境，从而在不同的训练框架之间实现无缝扩展。</p>
+            </div>
+            <div class="abstract-block abstract-original">
+              <h3>原始摘要</h3>
+              <p>Reinforcement learning for language agents increasingly depends on custom harnesses that manage longrunning context, multi-turn tool use and multi-agent orchestration. However, porting these harnesses into RL environment interfaces remains difficult and often loses important training signals. We bridge this gap with Polar, a rollout framework for scalable asynchronous RL over arbitrary agent harnesses. Polar treats the agent harness as a black box: it proxies LLM API calls, records token-level model interactions, and reconstructs token-faithful trajectories for training. Each rollout node efficiently manages runtime prewarming, agent execution, trajectory reconstruction, and evaluation in parallel, exposing asynchronous service endpoints that can be consumed by independent trainers at scale. This decoupled design makes Polar agnostic to agent harnesses, training infrastructure, and RL algorithms while improving compute utilization for long-running agent workloads. We validate Polar by training agents on software-engineering tasks with popular coding harnesses. Using simple GRPO, Polar improves Qwen3.5-4B by 22.6, 4.8, 0.6 and 6.2 points on SWE-Bench Verified with the Codex, Claude Code, Qwen Code and Pi harnesses, respectively. We further demonstrate Polar for offline data generation over custom harnesses and ablate trajectory reconstruction strategies. Polar rewrites its preceding work, ProRL Agent1 and has been registered as one of NeMo Gym environments. Figure 1: Polar architecture overview. Polar runs an existing agent harness inside an isolated runtime and places a model API proxy between the harness and the inference server. The proxy forwards model calls, records token-level request and response data, and reconstructs RL trajectories, while rollout gateways asynchronously handle runtime prewarming, harness execution, evaluation, and trainer callbacks. This decoupled design allows Polar to treat agents as a black-box environment, seamlessly scaling across different training frameworks.</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section citation-section">
+          <h2>引用</h2>
+          <div class="citation-grid">
+            <div class="citation-box">
+              <h3>BibTeX</h3>
+              <pre><code>@misc{paper20260522a339polara,
+  title = {Polar: Agentic RL on Any Harness at Scale},
+  year = {2026},
+  url = {https://arxiv.org/pdf/2605.24220v1},
+  note = {DAST Papers collection page: https://papers.dast.ai/papers/a339-polar-agentic-rl-harness/}
+}</code></pre>
+            </div>
+            <div class="citation-box">
+              <h3>APA</h3>
+              <p>Unknown author (2026). Polar: Agentic RL on Any Harness at Scale. https://arxiv.org/pdf/2605.24220v1</p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section class="detail-section">
+          <h2>相关论文</h2>
+          <div class="related-list">
+            <a class="related-item" href="../../papers/a360-reskill-agentic-rl-skills/">
+              <span>ReSkill: Reconciling Skill Creation with Policy Optimization in Agentic RL</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a359-paw-policy-world-modeling-agents/">
+              <span>Policy and World Modeling Co-Training for Language Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a358-multi-agent-computer-use/">
+              <span>Multi-Agent Computer Use</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a357-openwebrl-visual-web-agents/">
+              <span>OpenWebRL: Demystifying Online Multi-turn Reinforcement Learning for Visual Web Agents</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a356-jamel-agent-memory-exploration/">
+              <span>Joint Agent Memory and Exploration Learning via Novelty Signals</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+            <a class="related-item" href="../../papers/a355-mcp-persona-personal-tool-agents/">
+              <span>MCP-Persona: Benchmarking LLM Agents on Real-World Personal Applications via Environment Simulation</span>
+              <small>智能体与自主科学 · 2026-06-01</small>
+            </a>
+          </div>
+        </section>
+        
+        <section class="detail-section">
+          <h2>链接</h2>
+          <div class="links"><a href="https://arxiv.org/pdf/2605.24220v1" target="_blank" rel="noopener noreferrer">论文链接</a></div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>不提供 PDF 在线预览。站点只发布轻量索引和外部链接。</p>
+    </footer>
+  </body>
+</html>
