@@ -37,17 +37,16 @@ except: print('|||')
 log "===== 目标音箱: $SPK ====="
 log "初始: $(read_spk)"
 
-# 1. mute堵旧歌 → silent TTS打断 → media_stop终止 → 音量 → TTS说话(mute下) → 加载新歌 → 起播 → 最后unmute
-call "media_player/volume_mute" "{\"entity_id\":\"$SPK\",\"is_volume_muted\":true}"
-sleep 1
-call "xiaomi_miot/intelligent_speaker" "{\"entity_id\":\"$SPK\",\"text\":\"好的\",\"execute\":true,\"silent\":true}"
+# 1. 停止播放(和用户手动控制一样) → mute+pause双保险 → 音量
+call "xiaomi_miot/intelligent_speaker" "{\"entity_id\":\"$SPK\",\"text\":\"停止播放\",\"execute\":true}"
 sleep 3
-call "media_player/media_stop" "{\"entity_id\":\"$SPK\"}"
+call "media_player/volume_mute" "{\"entity_id\":\"$SPK\",\"is_volume_muted\":true}"
+call "media_player/media_pause" "{\"entity_id\":\"$SPK\"}"
 sleep 1
 call "media_player/volume_set" "{\"entity_id\":\"$SPK\",\"volume_level\":$VOL}"
-log "清场后(mute): $(read_spk)"
+log "清场后: $(read_spk)"
 
-# 2. TTS 播报 (execute:false 不触发播放，不会恢复旧歌) → 等说完
+# 2. TTS 播报 (execute:false 不触发播放)
 log "→ TTS: $TTS"
 call "xiaomi_miot/intelligent_speaker" "{\"entity_id\":\"$SPK\",\"text\":\"$TTS\",\"execute\":false}"
 sleep 8
