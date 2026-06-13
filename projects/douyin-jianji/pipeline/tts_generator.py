@@ -12,6 +12,23 @@ MAX_RETRIES = 3
 RETRY_DELAY = 5  # 秒
 
 
+def split_subtitle_text(text: str, max_chars: int = 24) -> list[str]:
+    """Split narration into short subtitle chunks."""
+    if not text:
+        return []
+
+    pieces = re.findall(r"[^。！？；，、.!?;]+[。！？；，、.!?;]?", text)
+    chunks = []
+    for piece in pieces or [text]:
+        piece = piece.strip()
+        while len(piece) > max_chars:
+            chunks.append(piece[:max_chars].strip())
+            piece = piece[max_chars:].strip()
+        if piece:
+            chunks.append(piece)
+    return chunks
+
+
 def generate_audio(text: str, output_path: str, voice: str = None) -> dict:
     """
     使用小米MiMo TTS生成音频
@@ -25,6 +42,17 @@ def generate_audio(text: str, output_path: str, voice: str = None) -> dict:
         {"audio_path": "...", "subtitle_path": "...", "duration_sec": 45.2}
     """
     srt_path = output_path.rsplit(".", 1)[0] + ".srt"
+
+    if os.path.exists(output_path) and os.path.getsize(output_path) > 0:
+        duration = _get_audio_duration(output_path)
+        if not os.path.exists(srt_path):
+            _generate_srt_from_text(text, duration, srt_path)
+        return {
+            "audio_path": output_path,
+            "subtitle_path": srt_path,
+            "duration_sec": duration,
+            "tts_status": "cached",
+        }
 
     # 尝试MiMo TTS
     for attempt in range(MAX_RETRIES):
@@ -86,6 +114,7 @@ def generate_audio(text: str, output_path: str, voice: str = None) -> dict:
                         "audio_path": output_path,
                         "subtitle_path": srt_path,
                         "duration_sec": duration,
+                        "tts_status": "mimo",
                     }
 
         except Exception as e:
@@ -123,18 +152,24 @@ def _generate_edge_tts(text: str, output_path: str, srt_path: str) -> dict:
             "audio_path": output_path,
             "subtitle_path": srt_path,
             "duration_sec": duration,
+            "tts_status": "edge",
         }
 
     except Exception as e:
         print(f"    ⚠ edge-tts error: {type(e).__name__}: {e}")
-        return {"audio_path": "", "subtitle_path": "", "duration_sec": 0}
+        fallback_duration = max(len(text) / 6.0, 1.0)
+        _generate_srt_from_text(text, fallback_duration, srt_path)
+        return {
+            "audio_path": "",
+            "subtitle_path": srt_path,
+            "duration_sec": 0,
+            "tts_status": "missing",
+        }
 
 
 def _generate_srt_from_text(text: str, duration: float, srt_path: str):
     """从文本生成SRT字幕"""
-    # 按中文句号分割
-    sentences = re.split(r'(?<=[。！？；.!?;])\s*', text)
-    sentences = [s.strip() for s in sentences if s.strip()]
+    sentences = split_subtitle_text(text)
 
     if not sentences:
         sentences = [text]
@@ -241,9 +276,10 @@ def concat_audio(section_results: list, output_path: str, pause_ms: int = 500) -
     with open(list_path, "w") as f:
         for i, result in enumerate(section_results):
             if result.get("audio_path") and os.path.exists(result["audio_path"]):
-                f.write(f"file '{result['audio_path']}'\n")
+                # 使用绝对路径
+                f.write(f"file '{os.path.abspath(result['audio_path'])}'\n")
                 if i < len(section_results) - 1:
-                    f.write(f"file '{silence_path}'\n")
+                    f.write(f"file '{os.path.abspath(silence_path)}'\n")
 
     # 连接音频
     subprocess.run([
