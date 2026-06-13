@@ -34,14 +34,27 @@ def render_slide(slide_data: dict, bg_image_path: str, output_path: str,
     draw = ImageDraw.Draw(img)
 
     # 4. 渲染顶部标题栏
-    if title_text:
-        _draw_title_bar(draw, title_text)
+    display_title = title_text or slide_data.get("title")
+    if display_title:
+        _draw_title_bar(draw, display_title)
 
     # 5. 根据模板类型渲染内容区域
     template = slide_data.get("template", "data_big")
     data = slide_data.get("data", {})
 
-    if template == "title":
+    if template in {"cover_dark", "headline_warning"}:
+        _render_title_template(draw, data)
+    elif template == "data_release":
+        _render_data_big_template(draw, data)
+    elif template == "process_flow":
+        _render_step_list_template(draw, data)
+    elif template == "zone_cards":
+        _render_grid_3x1_template(draw, data)
+    elif template in {"material_grid", "channel_steps"}:
+        _render_grid_2x2_template(draw, data)
+    elif template == "cta_summary":
+        _render_cta_template(draw, data)
+    elif template == "title":
         _render_title_template(draw, data)
     elif template == "grid_2x2":
         _render_grid_2x2_template(draw, data)
@@ -56,7 +69,12 @@ def render_slide(slide_data: dict, bg_image_path: str, output_path: str,
     else:
         _render_data_big_template(draw, data)
 
-    # 6. 保存为PNG
+    # 6. 渲染底部参考视频式字幕栏
+    subtitle = slide_data.get("subtitle") or data.get("subtitle")
+    if subtitle:
+        _draw_bottom_subtitle_bar(draw, subtitle)
+
+    # 7. 保存为PNG
     img = img.convert("RGB")
     img.save(output_path, "PNG")
     print(f"    幻灯片已保存: {output_path}")
@@ -79,10 +97,62 @@ def _draw_title_bar(draw: ImageDraw.Draw, title_text: str):
     draw.text((x, y), title_text, fill=COLORS["text_primary"], font=font)
 
 
+def _draw_bottom_subtitle_bar(draw: ImageDraw.Draw, subtitle: str):
+    """绘制底部字幕栏，贴近参考视频样式。"""
+    bar_height = LAYOUT.get("subtitle_bar_height", 120)
+    y0 = VIDEO_HEIGHT - bar_height
+    bar_color = (92, 148, 164, 245)
+    draw.rectangle([0, y0, VIDEO_WIDTH, VIDEO_HEIGHT], fill=bar_color)
+
+    font = _get_font("subtitle_bar")
+    lines = _wrap_text(draw, subtitle, font, VIDEO_WIDTH - 160)
+    line_height = 66
+    total_height = len(lines) * line_height
+    start_y = y0 + (bar_height - total_height) // 2 - 4
+
+    for i, line in enumerate(lines):
+        bbox = draw.textbbox((0, 0), line, font=font)
+        text_width = bbox[2] - bbox[0]
+        x = (VIDEO_WIDTH - text_width) // 2
+        y = start_y + i * line_height
+        draw.text((x + 3, y + 3), line, fill=(0, 0, 0, 180), font=font)
+        draw.text((x, y), line, fill=COLORS["text_primary"], font=font)
+
+
+def _wrap_text(draw: ImageDraw.Draw, text: str, font: ImageFont.FreeTypeFont,
+               max_width: int) -> list:
+    """按像素宽度换行。"""
+    text = str(text).strip()
+    if not text:
+        return []
+
+    lines = []
+    current = ""
+    for char in text:
+        candidate = current + char
+        bbox = draw.textbbox((0, 0), candidate, font=font)
+        if bbox[2] - bbox[0] <= max_width or not current:
+            current = candidate
+        else:
+            lines.append(current)
+            current = char
+    if current:
+        lines.append(current)
+    return lines[:2]
+
+
 def _render_title_template(draw: ImageDraw.Draw, data: dict):
     """渲染标题模板 - 居中大字 + 副标题"""
     headline = data.get("headline", "")
     subtitle = data.get("subtitle", "")
+
+    # 装饰元素 - 顶部渐变条
+    for i in range(5):
+        alpha = 200 - i * 40
+        draw.rectangle(
+            [0, i * 2, VIDEO_WIDTH, i * 2 + 2],
+            fill=COLORS["accent_blue"] + (alpha,)
+        )
 
     # 标题
     font_title = _get_font("title")
@@ -101,12 +171,14 @@ def _render_title_template(draw: ImageDraw.Draw, data: dict):
         y = VIDEO_HEIGHT // 2 + 50
         draw.text((x, y), subtitle, fill=COLORS["text_primary"], font=font_subtitle)
 
-    # 装饰线
+    # 装饰线 - 带渐变效果
     line_y = VIDEO_HEIGHT // 2 + 120
-    draw.rectangle(
-        [VIDEO_WIDTH // 2 - 100, line_y, VIDEO_WIDTH // 2 + 100, line_y + 4],
-        fill=COLORS["accent_blue"]
-    )
+    for i in range(3):
+        draw.rectangle(
+            [VIDEO_WIDTH // 2 - 100 + i * 5, line_y + i * 2,
+             VIDEO_WIDTH // 2 + 100 - i * 5, line_y + i * 2 + 4],
+            fill=COLORS["accent_blue"] + (200 - i * 50,)
+        )
 
 
 def _render_grid_2x2_template(draw: ImageDraw.Draw, data: dict):
@@ -134,6 +206,19 @@ def _render_grid_2x2_template(draw: ImageDraw.Draw, data: dict):
         (margin, 220 + card_height + gap),
         (margin + card_width + gap, 220 + card_height + gap),
     ]
+
+    # 绘制装饰元素
+    # 左侧装饰条
+    draw.rectangle(
+        [margin - 10, 220, margin, 220 + card_height * 2 + gap],
+        fill=COLORS["accent_blue"] + (150,)
+    )
+
+    # 右侧装饰条
+    draw.rectangle(
+        [VIDEO_WIDTH - margin, 220, VIDEO_WIDTH - margin + 10, 220 + card_height * 2 + gap],
+        fill=COLORS["accent_blue"] + (150,)
+    )
 
     for i, (x, y) in enumerate(positions):
         if i < len(items):
@@ -203,15 +288,32 @@ def _render_data_big_template(draw: ImageDraw.Draw, data: dict):
             x = start_x + i * 400
             y = VIDEO_HEIGHT // 2 - 50
 
-            # 大数字
+            # 装饰背景
+            draw.rounded_rectangle(
+                [x - 20, y - 30, x + 380, y + 180],
+                radius=16,
+                fill=COLORS["bg_card"] + (150,)
+            )
+
+            # 大数字 - 带阴影效果
             bbox = draw.textbbox((0, 0), value, font=font_data)
             text_width = bbox[2] - bbox[0]
+            # 阴影
+            draw.text((x + (400 - text_width) // 2 + 3, y + 3), value,
+                     fill=(0, 0, 0, 100), font=font_data)
+            # 主文字
             draw.text((x + (400 - text_width) // 2, y), value, fill=color, font=font_data)
 
             # 标签
             bbox = draw.textbbox((0, 0), label, font=font_label)
             text_width = bbox[2] - bbox[0]
             draw.text((x + (400 - text_width) // 2, y + 120), label, fill=COLORS["text_secondary"], font=font_label)
+
+            # 装饰线
+            draw.rectangle(
+                [x + 50, y + 160, x + 350, y + 163],
+                fill=color + (150,)
+            )
 
 
 def _render_step_list_template(draw: ImageDraw.Draw, data: dict):
@@ -238,27 +340,46 @@ def _render_step_list_template(draw: ImageDraw.Draw, data: dict):
         for i, step in enumerate(steps):
             y = start_y + i * (step_height + 40)
 
-            # 步骤编号（圆形背景）
+            # 步骤编号（圆形背景）- 带渐变效果
             circle_x = VIDEO_WIDTH // 2 - 300
             circle_y = y + 10
+
+            # 外圈渐变
+            for j in range(5):
+                alpha = 255 - j * 30
+                draw.ellipse(
+                    [circle_x - j, circle_y - j, circle_x + 60 + j, circle_y + 60 + j],
+                    fill=COLORS["accent_blue"] + (alpha,)
+                )
+
+            # 内圈
             draw.ellipse(
                 [circle_x, circle_y, circle_x + 60, circle_y + 60],
                 fill=COLORS["accent_blue"]
             )
+
+            # 步骤编号
             draw.text((circle_x + 15, circle_y + 5), str(i + 1),
                      fill=COLORS["text_primary"], font=font_step)
 
-            # 步骤文字
-            draw.text((VIDEO_WIDTH // 2 - 200, y + 15), step,
+            # 步骤文字 - 带背景条
+            text_x = VIDEO_WIDTH // 2 - 200
+            draw.rectangle(
+                [text_x - 10, y + 10, text_x + 400, y + 70],
+                fill=COLORS["bg_card"] + (200,)
+            )
+            draw.text((text_x, y + 15), step,
                      fill=COLORS["text_primary"], font=font_text)
 
-            # 连接线（除了最后一步）
+            # 连接线（除了最后一步）- 带渐变效果
             if i < len(steps) - 1:
                 line_y = y + step_height
-                draw.rectangle(
-                    [circle_x + 28, line_y, circle_x + 32, line_y + 40],
-                    fill=COLORS["divider"]
-                )
+                for j in range(3):
+                    draw.rectangle(
+                        [circle_x + 28 + j, line_y + j * 10,
+                         circle_x + 32 - j, line_y + 40 + j * 10],
+                        fill=COLORS["accent_blue"] + (200 - j * 60,)
+                    )
 
 
 def _render_cta_template(draw: ImageDraw.Draw, data: dict):
@@ -287,25 +408,44 @@ def _render_cta_template(draw: ImageDraw.Draw, data: dict):
 def _draw_card(draw: ImageDraw.Draw, x: int, y: int, w: int, h: int,
                title: str, desc: str):
     """绘制卡片"""
-    # 卡片背景
-    draw.rounded_rectangle(
-        [x, y, x + w, y + h],
-        radius=LAYOUT["card_radius"],
-        fill=COLORS["bg_card"],
-        outline=COLORS["divider"],
-        width=2
+    # 卡片背景 - 渐变效果
+    for i in range(LAYOUT["card_radius"]):
+        alpha = 255 - i * 5
+        draw.rounded_rectangle(
+            [x + i, y + i, x + w - i, y + h - i],
+            radius=LAYOUT["card_radius"] - i,
+            fill=COLORS["bg_card"] + (alpha,)
+        )
+
+    # 顶部装饰条
+    draw.rectangle(
+        [x, y, x + w, y + 6],
+        fill=COLORS["accent_blue"]
+    )
+
+    # 左侧装饰条
+    draw.rectangle(
+        [x, y, x + 6, y + h],
+        fill=COLORS["accent_blue"] + (150,)
     )
 
     # 标题
     font_title = _get_font("card_title")
-    draw.text((x + LAYOUT["card_padding"], y + LAYOUT["card_padding"]),
+    draw.text((x + LAYOUT["card_padding"] + 10, y + LAYOUT["card_padding"] + 10),
              title, fill=COLORS["accent_blue"], font=font_title)
 
     # 描述
     if desc:
         font_desc = _get_font("card_desc")
-        draw.text((x + LAYOUT["card_padding"], y + LAYOUT["card_padding"] + 50),
+        draw.text((x + LAYOUT["card_padding"] + 10, y + LAYOUT["card_padding"] + 60),
                  desc, fill=COLORS["text_secondary"], font=font_desc)
+
+    # 底部装饰线
+    draw.rectangle(
+        [x + LAYOUT["card_padding"], y + h - 20,
+         x + w - LAYOUT["card_padding"], y + h - 18],
+        fill=COLORS["divider"]
+    )
 
 
 def _draw_colored_card(draw: ImageDraw.Draw, x: int, y: int, w: int, h: int,
