@@ -94,12 +94,13 @@ body::after {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 24px 80px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
-  font-size: 28px;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.6;
+  padding: 28px 80px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  font-size: 30px;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.7;
   z-index: 10;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
 /* ── Decorative corner brackets ── */
@@ -182,20 +183,15 @@ def render_title_slide(section: dict) -> str:
     return _wrap(f"""
     <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
     <div class="corner-deco bl"></div><div class="corner-deco br"></div>
-    <div class="container" style="justify-content: center; align-items: center; text-align: center;">
-      <div style="font-size: 28px; color: rgba(255,255,255,0.7); letter-spacing: 3px; margin-bottom: 40px;">{top_label}</div>
-      <div style="position: relative; margin-bottom: 40px;">
-        <div style="font-size: 200px; opacity: 0.15; color: {color}; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);">🧠</div>
-        <div style="font-size: 180px; line-height: 1;">⚡</div>
-      </div>
-      <div style="font-size: 72px; font-weight: 900; color: {color}; margin-bottom: 20px;" class="glow-cyan">{title}</div>
-      <div class="accent-line" style="background: {color}; margin: 0 auto 24px;"></div>
-      <div style="font-size: 42px; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 16px;">{subtitle}</div>
-      <div style="font-size: 30px; color: rgba(255,255,255,0.6); margin-bottom: 30px;">{desc}</div>
-      <div style="font-size: 22px; color: rgba(255,255,255,0.4); letter-spacing: 2px; font-style: italic;">{english}</div>
+    <div class="container" style="justify-content: flex-end; align-items: center; text-align: center; padding-bottom: 80px;">
+      <div style="font-size: 32px; color: rgba(255,255,255,0.8); letter-spacing: 4px; margin-bottom: 40px; font-weight: 500;">{top_label}</div>
+      <div style="font-size: 82px; font-weight: 900; color: {color}; margin-bottom: 20px; letter-spacing: 3px;" class="glow-cyan">{title}</div>
+      <div style="font-size: 46px; font-weight: 700; color: rgba(255,255,255,0.95); margin-bottom: 16px;">{subtitle}</div>
+      <div style="font-size: 30px; color: rgba(255,255,255,0.7); margin-bottom: 20px;">{desc}</div>
+      <div style="font-size: 22px; color: rgba(255,255,255,0.5); letter-spacing: 2px; font-style: italic;">{english}</div>
     </div>
     """, f"""
-    .container {{ justify-content: center; align-items: center; text-align: center; }}
+    .container {{ justify-content: flex-end; align-items: center; text-align: center; padding-bottom: 80px; }}
     """)
 
 
@@ -698,7 +694,7 @@ body {{
   background: url('data:image/png;base64,{b64}') center/cover no-repeat !important;
 }}
 body::before {{
-  background: rgba(10,10,15,0.45) !important;
+  background: rgba(10,10,15,0.25) !important;
 }}
 """
         html = html.replace("</style>", f"{bg_css}</style>")

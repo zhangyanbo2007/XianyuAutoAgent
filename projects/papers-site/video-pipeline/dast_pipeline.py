@@ -295,10 +295,10 @@ def render_slides(sections, chart_paths):
 
     SLIDES_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Background image mapping: section index -> bg image index
-    # Maps slide types to available AI background images
-    bg_dir = OUTPUT_DIR / "bg_images"
-    bg_images = sorted([str(p) for p in bg_dir.glob("img_*.png")]) if bg_dir.exists() else []
+    # Background image mapping: use reference frames for maximum similarity
+    bg_dir = OUTPUT_DIR / "bg_ref"  # Use reference frames
+    if not bg_dir.exists():
+        bg_dir = OUTPUT_DIR / "bg_images"  # Fallback to generated images
 
     slide_paths = []
     for i, sec in enumerate(sections):
@@ -310,29 +310,10 @@ def render_slides(sections, chart_paths):
 
         chart_path = chart_paths.get(i)
 
-        # Assign background image based on section type
-        bg_image = None
-        if bg_images:
-            # Cycle through available images, matching type to image style
-            slide_type = sec.get("type", "")
-            if slide_type == "title":
-                bg_image = bg_images[0] if len(bg_images) > 0 else None  # brain image
-            elif slide_type in ("question", "problem"):
-                bg_image = bg_images[1] if len(bg_images) > 1 else bg_images[0]  # checkmark/question
-            elif slide_type == "method":
-                bg_image = bg_images[3] if len(bg_images) > 3 else bg_images[0]  # brain
-            elif slide_type == "test_intro":
-                bg_image = bg_images[i % len(bg_images)]  # cycle through
-            elif slide_type in ("data_result", "chart_result"):
-                bg_image = bg_images[i % len(bg_images)]
-            elif slide_type == "ranking":
-                bg_image = bg_images[8] if len(bg_images) > 8 else bg_images[0]
-            elif slide_type == "future":
-                bg_image = bg_images[3] if len(bg_images) > 3 else bg_images[0]
-            elif slide_type == "ending":
-                bg_image = bg_images[0] if len(bg_images) > 0 else None
-            else:
-                bg_image = bg_images[i % len(bg_images)]
+        # Use reference frame as background
+        bg_image = str(bg_dir / f"ref_{i:02d}.jpg") if bg_dir.exists() else None
+        if not bg_image or not os.path.exists(bg_image):
+            bg_image = str(OUTPUT_DIR / "bg_images" / f"slide_{i:02d}.png")
 
         print(f"  [slide] Section {i}: {sec.get('label', '')[:30]}...")
         try:
@@ -518,6 +499,8 @@ def main():
                         choices=["audio", "charts", "slides", "video"],
                         help="Which steps to run")
     parser.add_argument("--clean", action="store_true", help="Clean output directory")
+    parser.add_argument("--mode", choices=["ai", "static", "both"], default="both",
+                        help="Render mode: ai=custom backgrounds, static=reference frames, both=both")
     args = parser.parse_args()
 
     if args.clean and OUTPUT_DIR.exists():
