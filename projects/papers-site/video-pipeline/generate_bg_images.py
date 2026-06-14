@@ -26,27 +26,65 @@ API_KEY = os.environ.get("DASHSCOPE_API_KEY", "")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output", "dast-video", "bg_images")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# Slide-specific prompts matching reference video content
+# Slide-specific prompts matching reference video content exactly
+# Each prompt describes the EXACT visual elements including text and diagrams
 SLIDE_PROMPTS = {
-    0: "A glowing neon brain made of colorful circuit board traces, half organic brain half digital circuits, cyan magenta and green neon glow on pure black background, sci-fi aesthetic, no text, cinematic lighting, 4K",
-    1: "A large glowing green checkmark on the left and a glowing orange question mark on the right, separated by purple lightning bolts, dark background with scattered digital puzzle pieces and code fragments, sci-fi neon style, no text",
-    2: "A glowing neural network brain visualization with cyan wireframe mountains above it, connected by light beams to smaller purple nodes labeled with abstract concepts, dark background with circuit patterns, sci-fi neon style, no text",
-    3: "A glowing open book on the left connected by a cyan arrow to a glowing AI brain chip on the right, labeled Transfer, dark background with circuit traces, sci-fi neon style, no text",
-    4: "A glowing cyan circle with M3Eval text in the center, surrounded by four quadrant icons: a brain (divided attention), a wave (memory interference), crossing lines (interleaved events), and a sequence (N-back test), dark background with circuit patterns, sci-fi neon style, no text",
-    5: "Two side-by-side glowing brain illustrations, left showing a person cooking stir-fry, right showing a person adding bean sprouts, connected by neural pathways, dark background with green neon glow, sci-fi style, no text",
-    6: "A dark futuristic bar chart with glowing green bar at 90 percent and two red bars at 27 percent, neon glow effects, dark background with subtle circuit patterns, sci-fi data visualization style, no text",
-    7: "Two parallel flow diagrams showing retroactive interference (video A to similar B to test A) and proactive interference (video A to similar B to test B), cyan arrows on dark background, sci-fi neon style, no text",
-    8: "Two glowing balance scales side by side, left labeled Human showing retroactive heavier than proactive, right labeled AI showing both equal, cyan and red neon glow, dark background, sci-fi style, no text",
-    9: "Two interleaved film strips, one cyan (case A) and one magenta (case B), crossing and mixing in the middle with a glowing brain, dark background with neon glow, sci-fi style, no text",
-    10: "A grouped bar chart with multiple models on x-axis, green bars for repeat target and magenta bars for repeat interfering, showing improvement, neon glow on dark background, sci-fi data visualization, no text",
-    11: "A glowing N-back sequence diagram with boxes showing B A C and a question mark for match, connected by golden arc arrows, dark background with orange neon glow, sci-fi style, no text",
-    12: "A line chart showing human accuracy declining slowly from 95 to 40 percent, AI models dropping sharply to 22 percent, with a 25 percent random baseline, neon green and orange lines on dark background, sci-fi data visualization, no text",
-    13: "Split comparison: left side shows a glowing human brain with organized crystalline memory structures, right side shows an AI chip overflowing with colorful chaotic data streams, dark background, red and cyan neon glow, sci-fi style, no text",
-    14: "A 4x2 matrix grid with glowing checkmarks on left column (human) and red X marks on right column (AI), with category labels, dark background with purple neon glow, sci-fi style, no text",
-    15: "A horizontal ranking bar chart with six glowing bars of different lengths, gold silver and bronze colors for top three, cyan and orange for others, dark background with subtle circuit patterns, sci-fi style, no text",
-    16: "A glowing microchip in the center with three arrows pointing outward to different directions: structured attention (cyan), temporal grounding (magenta), strategic forgetting (orange), dark background with circuit traces, sci-fi style, no text",
-    17: "Three glowing cards side by side with different colors (cyan, magenta, orange), each with an icon: brain, magnifying glass, and trash can, dark background with subtle glow, sci-fi style, no text",
-    18: "A glowing tree made of colorful circuit board traces and neural pathways, branching out with cyan magenta and green neon lights, on pure black background, cinematic sci-fi aesthetic, no text",
+    # Title: brain with circuit traces, title text included
+    0: "A complete slide design on pure black background: top text 'Peking University & UW-Madison' in white, center shows a glowing brain made of circuit traces half gold half blue with lightning bolt, below in large cyan neon text 'AI看视频真的能过目不忘吗？', subtitle '揭秘顶尖大模型的人类级记忆缺陷', small text at bottom, cinematic neon glow style",
+
+    # Question: checkmark vs question mark with text
+    1: "A complete slide design on pure black background: large cyan text at top '上下文窗口越来越长，AI记忆力就越来越好？', left side large glowing green checkmark, right side large glowing orange question mark, purple lightning between them, bottom text bar with explanation, neon sci-fi style",
+
+    # Problem: brain network diagram with labels
+    2: "A complete slide design on pure black background: large white text at top '我们一直在考大模型的视力，却忽略了脑力', center shows wireframe brain with labels Visual Perception and Reasoning above, memory concepts below, bottom text bar, sci-fi diagram style",
+
+    # Method: transfer diagram with text
+    3: "A complete slide design on pure black background: large cyan text at top 'M3Eval：用人类认知心理学来审问AI', left golden book, center cyan arrow labeled Transfer, right blue AI chip, bottom text bar, neon transfer diagram style",
+
+    # Overview: four quadrant diagram with text
+    4: "A complete slide design on pure black background: large white text at top '解析记忆的四个切面', center cyan circle with M3Eval, four quadrants: green Divided Attention, cyan Memory Interference, pink Interleaved Events, orange N-Back, bottom text bar, radial diagram style",
+
+    # Test 1 intro: split screen with labels
+    5: "A complete slide design on pure black background: large green text at top '测试一：分散注意力（一心多用测试）', two green-bordered frames showing cooking scenes, labels '左边画面：炒肉' and '右边画面：加豆芽', bottom text bar, split screen style",
+
+    # Test 1 result: bar chart with conclusion
+    6: "A complete slide design on pure black background: large green text at top '面对双屏，顶级AI瞬间失忆', left side tall green bar at 90% and red bars at 27%, right side conclusion box with text about Attention Confusion, neon data dashboard style",
+
+    # Test 2 intro: interference flow diagram
+    7: "A complete slide design on pure black background: large cyan text at top '测试二：记忆干扰（相似内容的覆盖效应）', two flow diagrams with arrows showing retroactive and proactive interference, bottom text bar, neon flowchart style",
+
+    # Test 2 result: balance scale with insight
+    8: "A complete slide design on pure black background: large cyan text at top 'AI的记忆覆盖逻辑完全不同于人类', two balance scales comparing Human vs AI interference patterns, bottom insight box with explanation, comparison diagram style",
+
+    # Test 3 intro: film strips
+    9: "A complete slide design on pure black background: large magenta text at top '测试三：交错事件（时间线的拼图能力）', two interleaved film strips cyan Case A and magenta Case B, brain at intersection, bottom text bar, film diagram style",
+
+    # Test 3 result: grouped bar chart
+    10: "A complete slide design on pure black background: large green text at top '意外发现：重复播放竟能强化AI记忆', grouped bar chart with green and magenta bars showing improvement, right side insight box, neon data chart style",
+
+    # Test 4 intro: N-back sequence
+    11: "A complete slide design on pure black background: large orange text at top '测试四：N-Back（符号化与工作记忆容量极限）', sequence boxes B A C with golden arc arrow, bottom text bar, sequence diagram style",
+
+    # Test 4 result: line chart
+    12: "A complete slide design on pure black background: large orange text at top '鸿沟再现：大模型缺乏人类级的符号记忆力', line chart with green human line and orange AI lines, 25% baseline, right side findings box, neon chart style",
+
+    # Why crash: brain vs chip
+    13: "A complete slide design on pure black background: large red text at top '为什么AI的记忆力会在这里崩盘？', left organized brain, right chaotic AI chip, bottom text bar with technical explanation, comparison style",
+
+    # Summary matrix
+    14: "A complete slide design on pure black background: large purple text at top 'M3Eval评估结论矩阵：智能的岔路口', 4x2 matrix with green checkmarks for Human and red X for AI, category labels on left, matrix diagram style",
+
+    # Ranking bars
+    15: "A complete slide design on pure black background: large cyan text at top '现役大模型多模态记忆力摸底排行', horizontal bars: cyan GPT-5.4 75.4 and Gemini 70.1, green Qwen 55.4 and InternVL 45.1, orange M3-Agent 25 and VideoLucy 15, ranking dashboard style",
+
+    # Future chip
+    16: "A complete slide design on pure black background: large purple text at top '进化的方向：给AI装上真正的海马体', center chip with three arrows: cyan Structured Attention, magenta Temporal Grounding, orange Strategic Forgetting, chip diagram style",
+
+    # Takeaway cards
+    17: "A complete slide design on pure black background: large white text at top '我们学到了什么？(Key Takeaways)', three cards: cyan card about context length, magenta card about psychology, orange card about forgetting, card layout style",
+
+    # Ending
+    18: "A complete slide design on pure black background: large cyan text '真实的智能，藏在对记忆的重塑之中。', glowing circuit tree with neon branches, subtitle text below, cinematic ending style",
 }
 
 

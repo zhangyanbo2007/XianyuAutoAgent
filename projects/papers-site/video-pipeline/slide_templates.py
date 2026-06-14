@@ -94,13 +94,25 @@ body::after {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 28px 80px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.9));
-  font-size: 30px;
-  color: rgba(255,255,255,0.95);
-  line-height: 1.7;
+  padding: 30px 80px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  font-size: 28px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
   z-index: 10;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* ── Title at top ── */
+.slide-title {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 52px;
+  font-weight: 900;
+  z-index: 10;
+  padding: 0 60px;
 }
 
 /* ── Decorative corner brackets ── */
@@ -675,28 +687,30 @@ _TEMPLATE_MAP = {
 
 
 def render_slide(section: dict, chart_path: str = None, bg_image_path: str = None) -> str:
-    """Render a slide HTML from a section dict. Returns self-contained HTML string."""
+    """Render a slide HTML from a section dict. Returns self-contained HTML string.
+
+    If bg_image_path is provided and is a complete slide image (contains text),
+    render it directly without overlay. Otherwise use template with text overlay.
+    """
     slide_type = section.get("type", "detail")
-    renderer = _TEMPLATE_MAP.get(slide_type, render_problem_slide)
 
-    # Slides that accept chart_path
-    if slide_type in ("data_result", "chart_result"):
-        html = renderer(section, chart_path=chart_path)
-    else:
-        html = renderer(section)
-
-    # Inject background image if provided
+    # If we have a complete slide image, render it directly (no text overlay)
     if bg_image_path and os.path.exists(bg_image_path):
         with open(bg_image_path, "rb") as f:
             b64 = base64.b64encode(f.read()).decode()
-        bg_css = f"""
+        return f"""<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+* {{ margin: 0; padding: 0; box-sizing: border-box; }}
 body {{
-  background: url('data:image/png;base64,{b64}') center/cover no-repeat !important;
+  width: 1920px; height: 1080px; overflow: hidden;
+  background: url('data:image/png;base64,{b64}') center/contain no-repeat #0a0a0f;
 }}
-body::before {{
-  background: rgba(10,10,15,0.25) !important;
-}}
-"""
-        html = html.replace("</style>", f"{bg_css}</style>")
+</style>
+</head><body></body></html>"""
 
-    return html
+    # Fallback to template-based rendering
+    renderer = _TEMPLATE_MAP.get(slide_type, render_problem_slide)
+    if slide_type in ("data_result", "chart_result"):
+        return renderer(section, chart_path=chart_path)
+    return renderer(section)
