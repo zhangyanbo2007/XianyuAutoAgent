@@ -26,65 +26,65 @@ API_KEY = os.environ.get("DASHSCOPE_API_KEY", "")
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output", "dast-video", "bg_images")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-# Slide-specific prompts matching reference video content exactly
-# Each prompt describes the EXACT visual elements including text and diagrams
+# Slide-specific prompts based on M3Eval paper content
+# Each prompt generates a complete slide design with paper-specific data
 SLIDE_PROMPTS = {
-    # Title: brain with circuit traces, title text included
-    0: "A complete slide design on pure black background: top text 'Peking University & UW-Madison' in white, center shows a glowing brain made of circuit traces half gold half blue with lightning bolt, below in large cyan neon text 'AI看视频真的能过目不忘吗？', subtitle '揭秘顶尖大模型的人类级记忆缺陷', small text at bottom, cinematic neon glow style",
+    # Title: M3Eval paper introduction
+    0: "A complete presentation slide on pure black background: top text 'Peking University & UW-Madison' in white, center shows a glowing brain made of circuit traces half gold half blue with lightning bolt symbol, large cyan neon title text 'M3Eval: 多模态记忆评估', subtitle '基于认知心理学的首个多模态模型记忆评估基准', cinematic neon glow style",
 
-    # Question: checkmark vs question mark with text
-    1: "A complete slide design on pure black background: large cyan text at top '上下文窗口越来越长，AI记忆力就越来越好？', left side large glowing green checkmark, right side large glowing orange question mark, purple lightning between them, bottom text bar with explanation, neon sci-fi style",
+    # Core problem: context window vs memory
+    1: "A complete presentation slide on pure black background: large cyan text '上下文窗口越来越长，AI记忆力就越来越好？', left side glowing green checkmark representing context length improvement, right side glowing orange question mark representing memory gaps, purple lightning between them showing the contradiction, neon sci-fi style",
 
-    # Problem: brain network diagram with labels
-    2: "A complete slide design on pure black background: large white text at top '我们一直在考大模型的视力，却忽略了脑力', center shows wireframe brain with labels Visual Perception and Reasoning above, memory concepts below, bottom text bar, sci-fi diagram style",
+    # Research gap: perception vs memory
+    2: "A complete presentation slide on pure black background: large white text '我们一直在考大模型的视力，却忽略了脑力', top shows wireframe brain with labels 'Visual Perception' and 'Reasoning' (what we test), bottom shows memory concepts 'Capacity', 'Fidelity', 'Robustness' (what we miss), sci-fi diagram style",
 
-    # Method: transfer diagram with text
-    3: "A complete slide design on pure black background: large cyan text at top 'M3Eval：用人类认知心理学来审问AI', left golden book, center cyan arrow labeled Transfer, right blue AI chip, bottom text bar, neon transfer diagram style",
+    # Method: cognitive psychology transfer
+    3: "A complete presentation slide on pure black background: large cyan text 'M3Eval：用人类认知心理学来审问AI', left golden book representing psychology experiments, center cyan arrow labeled 'Transfer', right blue AI chip representing multimodal memory evaluation, neon transfer diagram style",
 
-    # Overview: four quadrant diagram with text
-    4: "A complete slide design on pure black background: large white text at top '解析记忆的四个切面', center cyan circle with M3Eval, four quadrants: green Divided Attention, cyan Memory Interference, pink Interleaved Events, orange N-Back, bottom text bar, radial diagram style",
+    # Four dimensions overview
+    4: "A complete presentation slide on pure black background: large white text '解析记忆的四个切面', center cyan circle with 'M3Eval' text, four colored quadrants: green 'Divided Attention', cyan 'Memory Interference', pink 'Interleaved Events', orange 'N-Back Test', radial diagram style",
 
-    # Test 1 intro: split screen with labels
-    5: "A complete slide design on pure black background: large green text at top '测试一：分散注意力（一心多用测试）', two green-bordered frames showing cooking scenes, labels '左边画面：炒肉' and '右边画面：加豆芽', bottom text bar, split screen style",
+    # Test 1: Divided Attention
+    5: "A complete presentation slide on pure black background: large green text '测试一：分散注意力（一心多用测试）', two green-bordered frames showing split-screen cooking scenes, labels showing parallel video streams, brain icons above representing attention competition, split screen style",
 
-    # Test 1 result: bar chart with conclusion
-    6: "A complete slide design on pure black background: large green text at top '面对双屏，顶级AI瞬间失忆', left side tall green bar at 90% and red bars at 27%, right side conclusion box with text about Attention Confusion, neon data dashboard style",
+    # Test 1 result: Human 90% vs AI 27%
+    6: "A complete presentation slide on pure black background: large green text '面对双屏，顶级AI瞬间失忆', left side bar chart with tall green bar 'Human 90%' and short red bars 'GPT-5.4 27%', right side conclusion box explaining 'Attention Confusion', neon data dashboard style",
 
-    # Test 2 intro: interference flow diagram
-    7: "A complete slide design on pure black background: large cyan text at top '测试二：记忆干扰（相似内容的覆盖效应）', two flow diagrams with arrows showing retroactive and proactive interference, bottom text bar, neon flowchart style",
+    # Test 2: Memory Interference
+    7: "A complete presentation slide on pure black background: large cyan text '测试二：记忆干扰（相似内容的覆盖效应）', two flow diagrams: top shows 'Retroactive: Video A → Similar B → Test A', bottom shows 'Proactive: Video A → Similar B → Test B', neon flowchart style",
 
-    # Test 2 result: balance scale with insight
-    8: "A complete slide design on pure black background: large cyan text at top 'AI的记忆覆盖逻辑完全不同于人类', two balance scales comparing Human vs AI interference patterns, bottom insight box with explanation, comparison diagram style",
+    # Test 2 result: Interference patterns differ
+    8: "A complete presentation slide on pure black background: large cyan text 'AI的记忆覆盖逻辑完全不同于人类', left balance scale showing Human: Retroactive > Proactive, right balance scale showing AI: Retroactive ≈ Proactive, comparison diagram style",
 
-    # Test 3 intro: film strips
-    9: "A complete slide design on pure black background: large magenta text at top '测试三：交错事件（时间线的拼图能力）', two interleaved film strips cyan Case A and magenta Case B, brain at intersection, bottom text bar, film diagram style",
+    # Test 3: Interleaved Events
+    9: "A complete presentation slide on pure black background: large magenta text '测试三：交错事件（时间线的拼图能力）', two interleaved film strips (cyan Case A, magenta Case B) crossing in middle, brain at intersection reconstructing stories, film diagram style",
 
-    # Test 3 result: grouped bar chart
-    10: "A complete slide design on pure black background: large green text at top '意外发现：重复播放竟能强化AI记忆', grouped bar chart with green and magenta bars showing improvement, right side insight box, neon data chart style",
+    # Test 3 result: Repeat播放 helps
+    10: "A complete presentation slide on pure black background: large green text '意外发现：重复播放竟能强化AI记忆', grouped bar chart showing 6 models with green bars (repeat target) and magenta bars (repeat interfering) both showing improvement, data chart style",
 
-    # Test 4 intro: N-back sequence
-    11: "A complete slide design on pure black background: large orange text at top '测试四：N-Back（符号化与工作记忆容量极限）', sequence boxes B A C with golden arc arrow, bottom text bar, sequence diagram style",
+    # Test 4: N-Back
+    11: "A complete presentation slide on pure black background: large orange text '测试四：N-Back（符号化与工作记忆容量极限）', sequence boxes showing 'Match? [B] [A] [C]' with golden curved arrow connecting back N steps, sequence diagram style",
 
-    # Test 4 result: line chart
-    12: "A complete slide design on pure black background: large orange text at top '鸿沟再现：大模型缺乏人类级的符号记忆力', line chart with green human line and orange AI lines, 25% baseline, right side findings box, neon chart style",
+    # Test 4 result: Human vs AI symbolic memory
+    12: "A complete presentation slide on pure black background: large orange text '鸿沟再现：大模型缺乏人类级的符号记忆力', line chart with green Human line (95%→40%), orange AI lines (50%→22%), dashed 25% random baseline, neon chart style",
 
-    # Why crash: brain vs chip
-    13: "A complete slide design on pure black background: large red text at top '为什么AI的记忆力会在这里崩盘？', left organized brain, right chaotic AI chip, bottom text bar with technical explanation, comparison style",
+    # Why AI fails: noise overload
+    13: "A complete presentation slide on pure black background: large red text '为什么AI的记忆力会在这里崩盘？', left shows organized crystalline brain (human selective memory), right shows overflowing chaotic AI chip (noise overload), comparison style",
 
     # Summary matrix
-    14: "A complete slide design on pure black background: large purple text at top 'M3Eval评估结论矩阵：智能的岔路口', 4x2 matrix with green checkmarks for Human and red X for AI, category labels on left, matrix diagram style",
+    14: "A complete presentation slide on pure black background: large purple text 'M3Eval评估结论矩阵：智能的岔路口', 4x2 matrix: rows for Spatial/Temporal/Logic/Abstract, columns Human (green checkmarks) vs AI (red X marks), matrix diagram style",
 
-    # Ranking bars
-    15: "A complete slide design on pure black background: large cyan text at top '现役大模型多模态记忆力摸底排行', horizontal bars: cyan GPT-5.4 75.4 and Gemini 70.1, green Qwen 55.4 and InternVL 45.1, orange M3-Agent 25 and VideoLucy 15, ranking dashboard style",
+    # Model ranking
+    15: "A complete presentation slide on pure black background: large cyan text '现役大模型多模态记忆力摸底排行', horizontal bars: cyan 'GPT-5.4 75.4' and 'Gemini 70.1', green 'Qwen 55.4' and 'InternVL 45.1', orange 'M3-Agent 25' and 'VideoLucy 15', ranking dashboard style",
 
-    # Future chip
-    16: "A complete slide design on pure black background: large purple text at top '进化的方向：给AI装上真正的海马体', center chip with three arrows: cyan Structured Attention, magenta Temporal Grounding, orange Strategic Forgetting, chip diagram style",
+    # Future directions
+    16: "A complete presentation slide on pure black background: large purple text '进化的方向：给AI装上真正的海马体', center microchip with three arrows: cyan 'Structured Attention', magenta 'Temporal Grounding', orange 'Strategic Forgetting', chip diagram style",
 
-    # Takeaway cards
-    17: "A complete slide design on pure black background: large white text at top '我们学到了什么？(Key Takeaways)', three cards: cyan card about context length, magenta card about psychology, orange card about forgetting, card layout style",
+    # Key takeaways
+    17: "A complete presentation slide on pure black background: large white text '我们学到了什么？(Key Takeaways)', three cards: cyan 'Context ≠ Memory', magenta 'Psychology as Litmus Test', orange 'Learn to Forget', card layout style",
 
     # Ending
-    18: "A complete slide design on pure black background: large cyan text '真实的智能，藏在对记忆的重塑之中。', glowing circuit tree with neon branches, subtitle text below, cinematic ending style",
+    18: "A complete presentation slide on pure black background: large cyan text '真实的智能，藏在对记忆的重塑之中。', glowing tree made of circuit traces with neon branches, subtitle about M3Eval revealing AGI path, cinematic ending style",
 }
 
 

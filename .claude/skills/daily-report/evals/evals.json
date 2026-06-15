@@ -1,0 +1,23 @@
+{
+  "skill_name": "daily-report",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我跑一下今天的智能体论文日报吧，我想看看最近arxiv上有什么新的agent相关论文",
+      "expected_output": "触发agent变体，执行完整流程（搜索→去重→Wiki入库→日报生成），日报包含中文标题和摘要、YYYY-MM-DD日期、子主题分组",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "today's AI news - what happened in the large model / agent space? Give me a tech news digest",
+      "expected_output": "触发news变体（英文prompt也应触发），执行prepare_digest.py采集→去重→日报生成，资讯来自一手官方源",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "我想追踪一下记忆系统的研究进展，最近有什么关于hippocampus、sleep consolidation、agent memory的新论文吗？做个深度日报",
+      "expected_output": "触发memory变体（默认深度日报），三板块（🤖🧠🔬）都有内容，认知科学板块是核心重点，日报含狐狸点评",
+      "files": []
+    }
+  ]
+}

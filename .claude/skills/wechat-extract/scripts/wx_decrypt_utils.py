@@ -14,10 +14,10 @@ IMAGE_AES = b'b999dcc3e32aa58e'; IMAGE_XOR = 0x6c; V1_KEY = b'cfcd208495d565ef'
 V2_MAGIC = b'\x07\x08V2\x08\x07'; V1_MAGIC = b'\x07\x08V1\x08\x07'
 
 # ─── Paths ───
-DB_ROOT = r"E:\xwechat_files\zhangyanbo4815_77a1\db_storage"
+DB_ROOT = r"E:\xwechat_files\wxid_ohydibgsbw4x22_eff4\db_storage"
 DB_DIR = os.path.join(DB_ROOT, "message")
-ATTACH_DIR = r"E:\xwechat_files\zhangyanbo4815_77a1\msg\attach"
-VIDEO_DIR = r"E:\xwechat_files\zhangyanbo4815_77a1\msg\video"
+ATTACH_DIR = r"E:\xwechat_files\wxid_ohydibgsbw4x22_eff4\msg\attach"
+VIDEO_DIR = r"E:\xwechat_files\wxid_ohydibgsbw4x22_eff4\msg\video"
 
 # ─── Fallback hardcoded keys (for backward compatibility) ───
 HARDCODED_KEYS = {

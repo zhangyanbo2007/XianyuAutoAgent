@@ -1,0 +1,43 @@
+#!/bin/bash
+# 猫眼电量同步调度器 — 每天 19:50 自动执行 ezviz_battery_sync.py
+# 用法: nohup bash ezviz_battery_scheduler.sh &
+# 停止: kill $(cat /tmp/ezviz_scheduler.pid)
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PYTHON="/home/zhangyanbo/owner/xiaowangzi/projects/privacy-engineering/.venv/bin/python3"
+SYNC_SCRIPT="$SCRIPT_DIR/ezviz_battery_sync.py"
+LOG="$SCRIPT_DIR/../.cache/logs/ezviz_battery_sync.log"
+PID_FILE="/tmp/ezviz_scheduler.pid"
+
+ts() { TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S'; }
+log() { echo "[$(ts)] $*" >> "$LOG"; }
+
+# 写 PID 文件
+echo $$ > "$PID_FILE"
+log "调度器启动 (PID=$$)"
+
+# 检查是否已在运行
+if [ -f "$PID_FILE" ]; then
+  OLD_PID=$(cat "$PID_FILE")
+  if [ "$OLD_PID" != "$$" ] && kill -0 "$OLD_PID" 2>/dev/null; then
+    log "已有调度器运行中 (PID=$OLD_PID)，退出"
+    exit 0
+  fi
+fi
+echo $$ > "$PID_FILE"
+
+while true; do
+  HOUR=$(TZ=Asia/Shanghai date '+%H')
+  MIN=$(TZ=Asia/Shanghai date '+%M')
+
+  # 19:50 执行同步
+  if [ "$HOUR" = "19" ] && [ "$MIN" = "50" ]; then
+    log "触发同步..."
+    $PYTHON "$SYNC_SCRIPT" >> "$LOG" 2>&1
+    log "同步完成"
+    # 执行后等 61 秒，避免同一分钟重复触发
+    sleep 61
+  fi
+
+  sleep 30
+done

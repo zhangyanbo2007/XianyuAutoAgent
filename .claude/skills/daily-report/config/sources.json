@@ -1,0 +1,66 @@
+{
+  "proxy": "http://127.0.0.1:7897",
+  "date_range_days": 1,
+
+  "arxiv": {
+    "categories": {
+      "memory": ["cs.AI", "cs.CL", "cs.LG", "cs.NE", "cs.CV", "cs.RO", "cs.SE", "cs.HC", "cs.IR", "stat.ML", "q-bio.NC", "q-bio.BM", "q-bio.QM"],
+      "llm": ["cs.CL", "cs.LG", "cs.AI"],
+      "agent": ["cs.AI", "cs.CL", "cs.NE", "cs.RO", "cs.HC", "cs.SE"],
+      "news": []
+    },
+    "max_results": 100
+  },
+
+  "keywords": {
+    "memory": {
+      "board1": ["KV cache", "context compression", "long-term dependency", "long context memory", "test-time training", "inference-time compute", "memory-augmented", "context caching"],
+      "board2": ["agent memory", "memory architecture", "memory retrieval", "memory compression", "experience replay", "RAG agent", "working memory", "episodic memory", "cognitive architecture", "persistent memory"],
+      "board3": ["memory consolidation", "hippocampus", "sleep memory", "synaptic plasticity", "forgetting", "Hopfield", "free energy memory", "engram", "place cell", "grid cell", "memory reconsolidation", "memory interference"]
+    },
+    "llm": {
+      "main": ["large language model", "foundation model", "LLM", "multimodal", "long context", "reasoning", "alignment", "model compression", "efficient inference", "training method"]
+    },
+    "agent": {
+      "main": ["agent", "multi-agent", "tool-use", "planning", "agent memory", "autonomous agent", "computer use", "agent RL", "agent benchmark", "agent security"]
+    }
+  },
+
+  "rss_feeds": [
+    {"url": "https://connect.biorxiv.org/biorxiv_xml.php?subject=neuroscience", "name": "bioRxiv Neuroscience", "category": "academic", "boards": ["memory"]},
+    {"url": "https://www.nature.com/nature.rss", "name": "Nature", "category": "journal", "boards": ["memory"]},
+    {"url": "https://www.nature.com/neuro.rss", "name": "Nature Neuroscience", "category": "journal", "boards": ["memory"]},
+    {"url": "https://blog.google/innovation-and-ai/technology/ai/rss/", "name": "Google AI Blog", "category": "tech", "boards": ["news"]},
+    {"url": "https://blogs.nvidia.com/feed/", "name": "NVIDIA Blog", "category": "tech", "boards": ["news"]},
+    {"url": "https://huggingface.co/blog/feed.xml", "name": "HuggingFace Blog", "category": "tech", "boards": ["news"]}
+  ],
+
+  "pubmed": {
+    "queries": {
+      "memory": ["memory consolidation hippocampus", "synaptic plasticity forgetting", "sleep memory consolidation"]
+    },
+    "retmax": 50
+  },
+
+  "openreview": {
+    "venues": ["ICLR.cc/2026/Conference"],
+    "keywords": ["memory", "KV cache", "context window", "long context", "retrieval", "RAG", "cache", "consolidation", "forgetting", "episodic", "working memory"]
+  },
+
+  "github_repos": [
+    {"owner": "langchain-ai", "repo": "langchain", "boards": ["news"]},
+    {"owner": "microsoft", "repo": "autogen", "boards": ["news"]},
+    {"owner": "crewAIInc", "repo": "crewAI", "boards": ["news"]},
+    {"owner": "langgenius", "repo": "dify", "boards": ["news"]}
+  ],
+
+  "huggingface": {"limit": 20},
+
+  "needs_websearch": [
+    {"source": "Anthropic", "url": "https://anthropic.com/news", "boards": ["news"], "reason": "No RSS feed"},
+    {"source": "OpenAI", "url": "https://openai.com/blog", "boards": ["news"], "reason": "No RSS feed"},
+    {"source": "Meta AI", "url": "https://ai.meta.com/blog", "boards": ["news"], "reason": "No RSS feed"},
+    {"source": "Mistral", "url": "https://mistral.ai/news", "boards": ["news"], "reason": "No RSS feed"},
+    {"source": "DeepSeek", "url": "https://deepseek.com", "boards": ["news"], "reason": "No RSS feed, Chinese company"}
+  ]
+}

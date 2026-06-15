@@ -295,10 +295,8 @@ def render_slides(sections, chart_paths):
 
     SLIDES_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Background image mapping: use reference frames for maximum similarity
-    bg_dir = OUTPUT_DIR / "bg_ref"  # Use reference frames
-    if not bg_dir.exists():
-        bg_dir = OUTPUT_DIR / "bg_images"  # Fallback to generated images
+    # Background image mapping: use AI-generated images only
+    bg_dir = OUTPUT_DIR / "bg_images"  # AI-generated backgrounds
 
     slide_paths = []
     for i, sec in enumerate(sections):
@@ -310,10 +308,8 @@ def render_slides(sections, chart_paths):
 
         chart_path = chart_paths.get(i)
 
-        # Use reference frame as background
-        bg_image = str(bg_dir / f"ref_{i:02d}.jpg") if bg_dir.exists() else None
-        if not bg_image or not os.path.exists(bg_image):
-            bg_image = str(OUTPUT_DIR / "bg_images" / f"slide_{i:02d}.png")
+        # Use AI-generated background image
+        bg_image = str(bg_dir / f"slide_{i:02d}.png") if bg_dir.exists() else None
 
         print(f"  [slide] Section {i}: {sec.get('label', '')[:30]}...")
         try:

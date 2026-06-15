@@ -1,0 +1,24 @@
+---
+title: "Phase Transitions in Attention: A Bayesian Theory of Copy Head Emergence"
+authors: [Itay Lavie, Kirsten Fischer, Andrey Lekov, Frederic Van Maele, Zohar Ringel]
+year: 2026
+venue: "stat.ML, cond-mat.dis-nn, cs.LG"
+tags: []
+arxiv_id: "2606.12058"
+ingested: "2026-06-11"
+---
+
+# 🤖 Phase Transitions in Attention: A Bayesian Theory of Copy Head Emergence
+
+- **Authors**: Itay Lavie, Kirsten Fischer, Andrey Lekov, Frederic Van Maele, Zohar Ringel
+- **Date**: 2026-06-10
+- **Source**: [arxiv](https://arxiv.org/abs/2606.12058)
+- **Category**: stat.ML, cond-mat.dis-nn, cs.LG
+
+## Abstract
+
+Attention is the key mechanism underlying in-context learning in transformers, and attention patterns have been observed empirically to emerge abruptly during training. We present a Bayesian theory of feature learning in attention; we then focus on how the copy subcircuit in the first layer of an induction head is learned by analyzing a single-layer softmax attention network trained on a copy task. We derive a closed-form posterior over the attention matrix and reduce it to a low-dimensional order parameter space. This reduction reveals a phase transition in the amount of training data, which we verify using both Bayesian sampling and standard training with Adam. We contrast our results with linear attention and find that softmax attention exhibits a \emph{first-order phase transition} while in linear attention an initial \emph{second-order phase transition} is followed by a smooth, continuous evolution toward the structured attention pattern (\emph{crossover}). Our work provides a first-principles theoretical account of the abrupt emergence of the copy subcircuit, reminiscent of the one observed in training large language models.
+
+## Notes
+
+<!-- Claude 在此添加中文解读 -->

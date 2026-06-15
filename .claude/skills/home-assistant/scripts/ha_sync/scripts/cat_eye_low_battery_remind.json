@@ -1,0 +1,32 @@
+{
+  "alias": "猫眼低电量提醒",
+  "fields": {},
+  "sequence": [
+    {
+      "alias": "1.取消静音",
+      "action": "media_player.volume_mute",
+      "data": {
+        "entity_id": "media_player.xiaomi_lx06_81cc_play_control",
+        "is_volume_muted": false
+      }
+    },
+    {
+      "alias": "2.设置音量",
+      "action": "media_player.volume_set",
+      "data": {
+        "entity_id": "media_player.xiaomi_lx06_81cc_play_control",
+        "volume_level": 0.5
+      }
+    },
+    {
+      "alias": "3.TTS提醒",
+      "action": "xiaomi_miot.intelligent_speaker",
+      "data": {
+        "entity_id": "media_player.xiaomi_lx06_81cc_play_control",
+        "text": "门口监控快没电了，记得给它充电哦",
+        "execute": true
+      }
+    }
+  ],
+  "mode": "single"
+}

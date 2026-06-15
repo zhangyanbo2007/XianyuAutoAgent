@@ -1,0 +1,185 @@
+{
+  "id": "door_welcome_home",
+  "alias": "进出门智能控制",
+  "description": "门开时：进门→欢迎+开灯30s关；出门→静默+开灯30s关",
+  "triggers": [
+    {
+      "platform": "state",
+      "entity_id": "binary_sensor.lumi_cn_719859620_acn001_contact_state_p_2_1",
+      "from": "off",
+      "to": "on"
+    }
+  ],
+  "conditions": [],
+  "actions": [
+    {
+      "variables": {
+        "lights": [
+          "light.lemesh_cn_1098009905_wy0c15_s_2_light",
+          "light.ftd_cn_1087912824_ftdlmp_s_2_light",
+          "light.leshi_cn_496706676_wy0b01_s_2"
+        ]
+      }
+    },
+    {
+      "alias": "开灯-外玄开关",
+      "action": "switch.turn_on",
+      "target": {
+        "entity_id": [
+          "switch.lemesh_cn_1002330562_sw4a02_on_p_2_1",
+          "switch.lemesh_cn_1002330562_sw4a02_on_p_3_1",
+          "switch.lemesh_cn_1002330562_sw4a02_on_p_4_1"
+        ]
+      },
+      "continue_on_error": true
+    },
+    {
+      "if": [
+        {
+          "condition": "template",
+          "value_template": "{{ (as_timestamp(now()) - as_timestamp(states.camera.ezviz_cat_eye.last_updated)) < 60 }}"
+        }
+      ],
+      "then": [
+        {
+          "delay": {
+            "seconds": 3
+          }
+        },
+        {
+          "if": {
+            "condition": "state",
+            "entity_id": "input_boolean.mao_yan_ren_xing_jian_ce",
+            "state": "on"
+          },
+          "then": [
+            {
+              "choose": [
+                {
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity_id": "input_text.mao_yan_shi_bie_jie_guo",
+                      "state": "xiaowangzi"
+                    }
+                  ],
+                  "sequence": [
+                    {
+                      "action": "xiaomi_miot.intelligent_speaker",
+                      "target": {
+                        "entity_id": "media_player.xiaomi_l15a_7e84_play_control"
+                      },
+                      "data": {
+                        "text": "欢迎主人回家",
+                        "execute": true,
+                        "silent": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity_id": "input_text.mao_yan_shi_bie_jie_guo",
+                      "state": "dad"
+                    }
+                  ],
+                  "sequence": [
+                    {
+                      "action": "xiaomi_miot.intelligent_speaker",
+                      "target": {
+                        "entity_id": "media_player.xiaomi_l15a_7e84_play_control"
+                      },
+                      "data": {
+                        "text": "欢迎爸爸回家",
+                        "execute": true,
+                        "silent": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity_id": "input_text.mao_yan_shi_bie_jie_guo",
+                      "state": "mom"
+                    }
+                  ],
+                  "sequence": [
+                    {
+                      "action": "xiaomi_miot.intelligent_speaker",
+                      "target": {
+                        "entity_id": "media_player.xiaomi_l15a_7e84_play_control"
+                      },
+                      "data": {
+                        "text": "欢迎妈妈回家",
+                        "execute": true,
+                        "silent": false
+                      }
+                    }
+                  ]
+                },
+                {
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity_id": "input_text.mao_yan_shi_bie_jie_guo",
+                      "state": "aunt"
+                    }
+                  ],
+                  "sequence": [
+                    {
+                      "action": "xiaomi_miot.intelligent_speaker",
+                      "target": {
+                        "entity_id": "media_player.xiaomi_l15a_7e84_play_control"
+                      },
+                      "data": {
+                        "text": "欢迎姑姑回家",
+                        "execute": true,
+                        "silent": false
+                      }
+                    }
+                  ]
+                }
+              ],
+              "default": [
+                {
+                  "action": "xiaomi_miot.intelligent_speaker",
+                  "target": {
+                    "entity_id": "media_player.xiaomi_l15a_7e84_play_control"
+                  },
+                  "data": {
+                    "text": "欢迎回家",
+                    "execute": true,
+                    "silent": false
+                  }
+                }
+              ]
+            }
+          ],
+          "else": []
+        }
+      ]
+    },
+    {
+      "delay": {
+        "seconds": 30
+      }
+    },
+    {
+      "alias": "关灯-外玄开关",
+      "action": "switch.turn_off",
+      "target": {
+        "entity_id": [
+          "switch.lemesh_cn_1002330562_sw4a02_on_p_2_1",
+          "switch.lemesh_cn_1002330562_sw4a02_on_p_3_1",
+          "switch.lemesh_cn_1002330562_sw4a02_on_p_4_1"
+        ]
+      },
+      "continue_on_error": true
+    }
+  ],
+  "mode": "restart"
+}

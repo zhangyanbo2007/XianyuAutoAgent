@@ -1,0 +1,49 @@
+# 抖音自动切片配置
+
+# 关注的创作者列表
+creators:
+  - name: "洛杉矶小唐"
+    douyin_url: ""  # 填入主页链接或具体视频链接
+    tags: ["海外生活", "搞笑"]
+
+  - name: "子安"
+    douyin_url: ""
+    tags: ["生活", "vlog"]
+
+# 切片参数（对标专业切片号：15-35秒，平均27秒）
+clip:
+  min_duration: 15        # 最短切片时长（秒）
+  max_duration: 35        # 最长切片时长（秒）
+  target_width: 1080      # 目标宽度（竖屏）
+  target_height: 1920     # 目标高度（竖屏）
+  output_fps: 30          # 输出帧率
+
+# 百炼 DashScope API 配置
+dashscope_api_key: "sk-938972c2bcdb4bebb5de7717b7da29f6"  # 百炼 API Key
+asr_model: "paraformer-v2"  # ASR 模型: paraformer-v2 / qwen3-asr-flash
+
+# Whisper 本地转写参数（备选引擎）
+whisper:
+  model_size: "medium"    # tiny/base/small/medium/large
+  language: "zh"          # 语言
+
+# 转写引擎: dashscope / whisper / auto（优先 DashScope，失败回退 Whisper）
+transcribe_engine: "auto"
+
+# 高光分析参数
+highlight:
+  min_tags: 1             # 至少命中几个标签才算高光
+  max_clips_per_video: 8  # 每个视频最多切几个片段
+
+# 代理设置（外网访问）
+proxy:
+  enabled: true
+  http: "http://127.0.0.1:7897"
+  https: "http://127.0.0.1:7897"
+
+# 路径配置
+paths:
+  downloads: "data/downloads"
+  transcripts: "data/transcripts"
+  highlights: "data/highlights"
+  clips: "data/clips"

@@ -136,7 +136,7 @@ unzip /tmp/<英文名>_data.zip -d projects/privacy-engineering/refs-people/<真
 ## 阶段 3 — Linux 后处理
 
 ```bash
-.venv/bin/python3.11 projects/privacy-engineering/.claude/skills/wechat-extract/scripts/post_process.py projects/privacy-engineering/refs-people/<真实姓名>/
+.claude/skills/wechat-extract/.venv/bin/python3.11 projects/privacy-engineering/.claude/skills/wechat-extract/scripts/post_process.py projects/privacy-engineering/refs-people/<真实姓名>/
 ```
 
 ## 阶段 4 — 删除 Windows 导出

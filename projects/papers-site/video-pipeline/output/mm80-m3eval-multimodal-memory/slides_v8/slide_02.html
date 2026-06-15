@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1920px; height: 1080px;
+  background: #0a0a0f;
+  font-family: 'Noto Sans SC', sans-serif;
+  color: #e2e8f0;
+  overflow: hidden;
+  position: relative;
+}
+.bg-image {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0.6; filter: blur(1px);
+}
+.bg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.7) 50%, rgba(10,10,15,0.95) 100%);
+}
+.header {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px; background: linear-gradient(90deg, #38bdf8, #f472b6, #a78bfa);
+  z-index: 10;
+}
+.label {
+  position: absolute; top: 40px; left: 60px;
+  background: #38bdf8; color: #000;
+  padding: 8px 20px; border-radius: 8px;
+  font-size: 20px; font-weight: 700;
+}
+.num {
+  position: absolute; top: 30px; right: 60px;
+  font-size: 140px; font-weight: 900;
+  color: rgba(56,189,248,0.08);
+}
+.title {
+  position: absolute; top: 100px; left: 60px; right: 60px;
+  font-size: 48px; font-weight: 900;
+  line-height: 1.3;
+}
+.content {
+  position: absolute; top: 200px; left: 60px; right: 60px; bottom: 100px;
+  display: flex; gap: 40px;
+}
+.left { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.right { flex: 1; display: flex; align-items: center; justify-content: center; }
+.text-block {
+  background: rgba(17,24,39,0.6);
+  border: 1px solid rgba(56,189,248,0.15);
+  border-radius: 16px; padding: 30px;
+  font-size: 36px; line-height: 1.6;
+  font-weight: 700;
+}
+.footer {
+  position: absolute; bottom: 30px; left: 60px; right: 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  color: #94a3b8; font-size: 16px;
+}
+.progress-bar {
+  position: absolute; bottom: 0; left: 0;
+  height: 4px; background: #38bdf8;
+  transition: width 0.3s;
+}
+.icon {
+  width: 80px; height: 80px;
+  border-radius: 20px; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 40px; margin-bottom: 20px;
+}
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.card {
+  background: rgba(17,24,39,0.6);
+  border: 1px solid rgba(56,189,248,0.15);
+  border-radius: 12px; padding: 20px;
+}
+.card h3 { font-size: 20px; margin-bottom: 8px; color: #38bdf8; }
+.card p { font-size: 18px; color: #94a3b8; }
+.chart-container { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+    <div class="header"></div>
+    <div class="num">03</div>
+    <div class="label">问题深化</div>
+    <div class="title" style="top:120px;">我们一直在考大模型的'视力'，也就是视觉感知能力，却忽略了'脑力'，也就是记忆和推理能力。。现有的视</div>
+    <div class="content" style="top:240px;">
+      <div class="left">
+        <div class="text-block">我们一直在考大模型的'视力'，也就是视觉感知能力，却忽略了'脑力'，也就是记忆和推理能力。。现有的视频数据集主要测试视觉感知和推理，无法系统评估：AI到底记住了什么？信息有多准确？在干扰下记忆有多脆弱？这些问题就像只考学生的阅读理解，却不考他们的记忆力，显然不够全面。</div>
+      </div>
+      <div class="right">
+        <div style="font-size:200px;color:rgba(56,189,248,0.1);">?</div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>DAST Papers · AI解读</span>
+      <span>03 / 26</span>
+    </div>
+    <div class="progress-bar" style="width:11.5%"></div>
+    
+</body>
+</html>

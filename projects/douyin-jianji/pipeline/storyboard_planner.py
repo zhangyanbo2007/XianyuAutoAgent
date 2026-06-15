@@ -47,11 +47,13 @@ def plan_storyboard(script: dict) -> dict:
 def _shots_for_section(section: dict, title: str, section_id: int) -> list[dict]:
     templates = _templates_for_section(section)
     chunks = _split_section_text(section, max(1, len(templates)))
-
     shots = []
     for index, template in enumerate(templates):
         subtitle = chunks[min(index, len(chunks) - 1)]
         duration = _bounded_duration(section.get("duration_sec", 4.0) / len(templates))
+        # 每帧都标注自己的模板类型
+        s_label = _section_label_for(template, section)
+        key_takeaway = _extract_key_takeaway(section, template) if index == len(templates) - 1 else ""
         shots.append(_make_shot(
             template=template,
             title=title,
@@ -60,8 +62,41 @@ def _shots_for_section(section: dict, title: str, section_id: int) -> list[dict]
             data=_data_for_template(template, section),
             section_id=section_id,
             bg_role="dark",
+            section_label=s_label,
+            key_takeaway=key_takeaway,
         ))
     return shots
+
+
+def _section_label_for(template: str, section: dict) -> str:
+    """根据模板类型生成简短的 section 标签。"""
+    label = section.get("label", "")
+    mapping = {
+        "headline_warning": "痛点警示",
+        "process_flow": "核心流程",
+        "material_grid": "必备材料",
+        "channel_steps": "办理渠道",
+        "data_release": "关键数据",
+        "zone_cards": "分区规则",
+        "policy_explain": "政策解读",
+        "cta_summary": "互动引导",
+    }
+    return mapping.get(template, label)
+
+
+def _extract_key_takeaway(section: dict, template: str) -> str:
+    """从段落文本中提取一句关键结论作为 footer。"""
+    text = section.get("text", "")
+    if not text:
+        return ""
+    # 取最后一句（通常是结论）
+    for sep in ["。", "！", "；"]:
+        if sep in text:
+            parts = text.split(sep)
+            last = parts[-2].strip() if len(parts) > 2 else parts[0].strip()
+            if len(last) > 8:
+                return last[:40]
+    return text[:40]
 
 
 def _cover_subtitle(script: dict, headline: str) -> str:
@@ -110,7 +145,10 @@ def _templates_for_section(section: dict) -> list[str]:
     if "绿" in text and "黄" in text and "红" in text:
         templates.append("zone_cards")
 
+    # 如果段落时长>8秒且有多种内容类型，用复合布局
     duration = float(section.get("duration_sec") or 0)
+    if duration > 10 and len(templates) >= 2:
+        return ["composite"]
     if duration > 8 and len(templates) < 3:
         templates.append("policy_explain")
     if duration > 12 and len(templates) < 3:
@@ -140,22 +178,48 @@ def _data_for_template(template: str, section: dict) -> dict:
     if _looks_like_visual_direction(headline):
         headline = _headline_from_text(text, section.get("label", ""))
 
+    if template == "headline_warning":
+        # 警示页：标题 + 正文内容（对标参考视频的多行布局）
+        return {"headline": headline, "body": text, "subtitle": text}
     if template == "data_release":
         return {"headline": headline, "stats": _extract_stats(f"{visual} {text}")}
     if template == "zone_cards":
         return {"headline": headline, "items": _zone_items(f"{visual} {text}")}
     if template == "process_flow":
-        return {"headline": headline, "steps": _extract_steps(visual)}
+        return {"headline": headline, "steps": _extract_steps(visual), "body": text}
     if template in {"material_grid", "channel_steps"}:
-        return {"headline": headline, "items": _extract_items(visual)}
+        return {"headline": headline, "items": _extract_items(visual), "body": text}
     if template == "cta_summary":
-        return {"headline": headline or "评论区答疑", "subtitle": text}
-    return {"headline": headline}
+        return {"headline": "评论区答疑", "subtitle": text}
+    if template == "policy_explain":
+        return {"headline": headline, "body": text}
+    if template == "composite":
+        # 复合布局：标题 + 正文 + 多栏内容 + 底部结论
+        data = {"headline": headline, "body": text}
+        # 提取数据
+        stats = _extract_stats(f"{visual} {text}")
+        if stats:
+            data["stats"] = stats
+        # 提取步骤
+        steps = _extract_steps(visual)
+        if steps:
+            data["steps"] = steps
+        # 提取项目
+        items = _extract_items(visual)
+        if items:
+            data["items"] = items
+        # 底部结论（取最后一句）
+        conclusion = _extract_key_takeaway(section, "composite")
+        if conclusion:
+            data["conclusion"] = conclusion
+        return data
+    return {"headline": headline, "body": text}
 
 
 def _make_shot(template: str, title: str, subtitle: str,
                duration: float, data: dict,
-               section_id: int = 0, bg_role: str = "dark") -> dict:
+               section_id: int = 0, bg_role: str = "dark",
+               section_label: str = "", key_takeaway: str = "") -> dict:
     return {
         "template": template,
         "title": title,
@@ -164,6 +228,8 @@ def _make_shot(template: str, title: str, subtitle: str,
         "data": data,
         "section_id": section_id,
         "bg_role": bg_role,
+        "section_label": section_label,
+        "key_takeaway": key_takeaway,
     }
 
 

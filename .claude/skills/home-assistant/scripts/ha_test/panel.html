@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能家居控制面板</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f5f5; color: #333; }
+.header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; position: sticky; top: 0; z-index: 100; }
+.header h1 { font-size: 18px; margin-bottom: 8px; }
+.header .status { font-size: 12px; opacity: 0.8; }
+.room-tabs { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: white; border-bottom: 1px solid #eee; position: sticky; top: 52px; z-index: 99; }
+.room-tab { flex-shrink: 0; padding: 8px 16px; border-radius: 20px; background: #f0f0f0; border: none; font-size: 14px; cursor: pointer; transition: all 0.2s; }
+.room-tab.active { background: #667eea; color: white; }
+.room-tab:hover { background: #e0e0e0; }
+.room-tab.active:hover { background: #5a6fd6; }
+.content { padding: 12px 16px; max-width: 800px; margin: 0 auto; }
+.device-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.device-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.device-name .icon { font-size: 20px; }
+.device-state { font-size: 12px; color: #888; margin-bottom: 12px; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { padding: 8px 16px; border-radius: 8px; border: 1px solid #ddd; background: white; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.btn:hover { background: #f5f5f5; }
+.btn:active { transform: scale(0.95); }
+.btn.on { background: #667eea; color: white; border-color: #667eea; }
+.btn.off { background: #ff6b6b; color: white; border-color: #ff6b6b; }
+.btn.primary { background: #667eea; color: white; border-color: #667eea; }
+.btn.danger { background: #ff6b6b; color: white; border-color: #ff6b6b; }
+.btn.success { background: #51cf66; color: white; border-color: #51cf66; }
+.slider-group { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.slider-group label { font-size: 13px; min-width: 60px; }
+.slider-group input[type="range"] { flex: 1; }
+.slider-group .value { font-size: 13px; min-width: 40px; text-align: right; }
+.tts-input { display: flex; gap: 8px; margin-top: 8px; }
+.tts-input input { flex: 1; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 13px; }
+.tts-input button { padding: 8px 16px; }
+.log { background: #1e1e1e; color: #d4d4d4; border-radius: 8px; padding: 12px; margin-top: 12px; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto; }
+.log .time { color: #888; }
+.log .ok { color: #51cf66; }
+.log .err { color: #ff6b6b; }
+.hidden { display: none; }
+.loading { text-align: center; padding: 40px; color: #888; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 智能家居控制面板</h1>
+  <div class="status" id="status">未连接</div>
+</div>
+
+<div class="room-tabs" id="roomTabs"></div>
+
+<div class="content" id="content">
+  <div class="loading">加载中...</div>
+</div>
+
+<div class="content">
+  <div class="log" id="log"></div>
+</div>
+
+<script>
+// ========== 配置 ==========
+const HA_URL = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  ? 'http://localhost:18123' : 'http://192.168.3.172:8123';
+let HA_TOKEN = '';
+
+// ========== 房间和设备定义 ==========
+const ROOMS = {
+  '客厅': {
+    icon: '🛋️',
+    devices: [
+      { name: '小爱音箱Pro-2', icon: '🔊', type: 'speaker', entity: 'media_player.xiaomi_lx06_81cc_play_control' },
+      { name: '空气净化器', icon: '🌬️', type: 'fan', entity: 'fan.zhimi_cn_78780876_ma2_s_2_air_purifier' },
+      { name: '酒柜灯', icon: '💡', type: 'light', entity: 'light.lemesh_cn_1094709687_wy0c09_s_2' },
+      { name: '电视氛围灯', icon: '📺', type: 'light', entity: 'light.leshi_cn_473801810_wy0b01_s_2' },
+    ]
+  },
+  '主卧': {
+    icon: '🛏️',
+    devices: [
+      { name: 'Mi AI Speaker Pro', icon: '🔊', type: 'speaker', entity: 'media_player.xiaomi_lx06_46d3_play_control' },
+      { name: '主卧灯', icon: '💡', type: 'light', entity: 'light.lemesh_cn_1082972916_wy0c09_s_2' },
+      { name: '床头灯', icon: '🌙', type: 'light', entity: 'light.leshi_cn_531512239_wy0b01_s_2' },
+      { name: '布帘', icon: '🪟', type: 'cover', entity: 'cover.babai_cn_557741642_bb82mj_s_2' },
+      { name: '纱帘', icon: '🪟', type: 'cover', entity: 'cover.babai_cn_557773468_bb82mj_s_2' },
+    ]
+  },
+  '次卧': {
+    icon: '🛌',
+    devices: [
+      { name: 'Mi AI Speaker Play Plus 2', icon: '🔊', type: 'speaker', entity: 'media_player.xiaomi_l05c_a0e2_play_control' },
+      { name: '新风空调', icon: '❄️', type: 'climate', entity: 'climate.xiaomi_cn_534089306_mt0' },
+      { name: '智能双色灯', icon: '💡', type: 'light', entity: 'light.ftd_cn_743728647_wfilmp_s_2_light' },
+    ]
+  },
+  '儿童房': {
+    icon: '🧸',
+    devices: [
+      { name: '小爱音箱Play增强版', icon: '🔊', type: 'speaker', entity: 'media_player.xiaomi_l05c_f45a_play_control' },
+      { name: '新风空调', icon: '❄️', type: 'climate', entity: 'climate.xiaomi_cn_553580582_mt0' },
+      { name: '儿童房灯', icon: '💡', type: 'light', entity: 'light.shhf_cn_572630176_slwfc3_s_2_light' },
+    ]
+  },
+  '书房': {
+    icon: '📚',
+    devices: [
+      { name: 'Xiaomi Smart Speaker', icon: '🔊', type: 'speaker', entity: 'media_player.xiaomi_oh2_5da4_play_control' },
+      { name: '新风空调', icon: '❄️', type: 'climate', entity: 'climate.xiaomi_cn_532962825_mt0' },
+      { name: '书房灯', icon: '💡', type: 'light', entity: 'light.leshi_cn_707866928_wy0b03_s_2_light' },
+      { name: '书桌灯', icon: '📝', type: 'light', entity: 'light.leshi_cn_590488180_wy0b01_s_2' },
+      { name: '书柜灯', icon: '📖', type: 'light', entity: 'light.leshi_cn_533406177_wy0b01_s_2' },
+    ]
+  },
+  '入户': {
+    icon: '🚪',
+    devices: [
+      { name: 'MI AI Speaker (2nd Gen)', icon: '🔊', type: 'speaker', entity: 'media_player.xiaomi_l15a_7e84_play_control' },
+      { name: '吊灯', icon: '💡', type: 'light', entity: 'light.lemesh_cn_1098009905_wy0c15_s_2_light' },
+      { name: '吸顶灯', icon: '💡', type: 'light', entity: 'light.ftd_cn_1087912824_ftdlmp_s_2_light' },
+      { name: '鞋柜灯', icon: '👟', type: 'light', entity: 'light.leshi_cn_496706676_wy0b01_s_2' },
+      { name: '智能鱼缸', icon: '🐟', type: 'light', entity: 'light.hfjh_cn_672530347_m100_s_15_light' },
+    ]
+  },
+  '餐厅': {
+    icon: '🍽️',
+    devices: [
+      { name: '餐厅灯', icon: '💡', type: 'fan_light', fan: 'fan.leshi_cn_683633544_wyfan_s_3_fan', light: 'light.leshi_cn_683633544_wyfan_s_2_light' },
+      { name: '餐边柜灯', icon: '💡', type: 'light', entity: 'light.lemesh_cn_1094709939_wy0c09_s_2' },
+      { name: '餐厅照明灯', icon: '💡', type: 'light', entity: 'light.leshi_cn_533371287_wy0b01_s_2' },
+      { name: '窗帘', icon: '🪟', type: 'cover', entity: 'cover.babai_cn_557805889_190812_s_2' },
+    ]
+  },
+  '阳台': {
+    icon: '🌱',
+    devices: [
+      { name: '左侧晾衣架', icon: '👕', type: 'cover', entity: 'cover.yszn01_cn_547934045_krq01_s_2_airer' },
+      { name: '右侧晾衣架', icon: '👕', type: 'cover', entity: 'cover.yszn01_cn_547959840_krq01_s_2_airer' },
+      { name: '窗帘', icon: '🪟', type: 'cover', entity: 'cover.novo_cn_548672564_n21_s_2_curtain' },
+      { name: '追觅S10 Pro Plus', icon: '🤖', type: 'vacuum', entity: 'vacuum.dreamebot_s10_pro_plus' },
+    ]
+  },
+  '卫生间': {
+    icon: '🚿',
+    devices: [
+      { name: '主卫浴霸', icon: '🔥', type: 'bath_heater', entity: 'light.zinguo_cn_593914286_b5m_s_4_light', switches: {
+        heating: 'switch.zinguo_cn_593914286_b5m_heating_p_3_6',
+        blow: 'switch.zinguo_cn_593914286_b5m_blow_p_3_7',
+        ventilation: 'switch.zinguo_cn_593914286_b5m_ventilation_p_3_8',
+      }},
+      { name: '主卫壁灯', icon: '💡', type: 'switch', entity: 'switch.babai_cn_557305964_bb101s_on_p_2_1' },
+      { name: '公卫浴霸', icon: '🔥', type: 'bath_heater', entity: 'light.zinguo_cn_593914301_b5m_s_4_light', switches: {
+        heating: 'switch.zinguo_cn_593914301_b5m_heating_p_3_6',
+        blow: 'switch.zinguo_cn_593914301_b5m_blow_p_3_7',
+        ventilation: 'switch.zinguo_cn_593914301_b5m_ventilation_p_3_8',
+      }},
+      { name: '公卫壁灯', icon: '💡', type: 'switch', entity: 'switch.babai_cn_557305710_bb101s_on_p_2_1' },
+    ]
+  },
+  '过道': {
+    icon: '🚶',
+    devices: [
+      { name: '过道灯', icon: '💡', type: 'switch', entity: 'switch.hope_cn_511746133_w1_on_p_2_1' },
+    ]
+  },
+};
+
+// ========== API 调用 ==========
+async function api(method, path, data) {
+  const opts = {
+    method,
+    headers: { 'Authorization': `Bearer ${HA_TOKEN}`, 'Content-Type': 'application/json' },
+  };
+  if (data) opts.body = JSON.stringify(data);
+  const r = await fetch(`${HA_URL}${path}`, opts);
+  return r.json();
+}
+
+async function getState(entityId) {
+  return api('GET', `/api/states/${entityId}`);
+}
+
+async function callService(domain, service, data) {
+  return api('POST', `/api/services/${domain}/${service}`, data);
+}
+
+// ========== 日志 ==========
+function log(msg, ok = true) {
+  const el = document.getElementById('log');
+  const time = new Date().toLocaleTimeString('zh-CN', { hour12: false });
+  el.innerHTML = `<div><span class="time">[${time}]</span> <span class="${ok ? 'ok' : 'err'}">${msg}</span></div>` + el.innerHTML;
+  if (el.children.length > 50) el.removeChild(el.lastChild);
+}
+
+// ========== UI 渲染 ==========
+let currentRoom = '客厅';
+
+function renderTabs() {
+  const el = document.getElementById('roomTabs');
+  el.innerHTML = Object.entries(ROOMS).map(([name, room]) =>
+    `<button class="room-tab ${name === currentRoom ? 'active' : ''}" onclick="switchRoom('${name}')">${room.icon} ${name}</button>`
+  ).join('');
+}
+
+function switchRoom(name) {
+  currentRoom = name;
+  renderTabs();
+  renderDevices();
+}
+
+function renderDevices() {
+  const room = ROOMS[currentRoom];
+  const el = document.getElementById('content');
+  el.innerHTML = room.devices.map((d, i) => renderDevice(d, i)).join('');
+  // 加载每个设备的状态
+  room.devices.forEach((d, i) => loadDeviceState(d, i));
+}
+
+function renderDevice(dev, idx) {
+  const id = `dev_${idx}`;
+  let controls = '';
+
+  switch (dev.type) {
+    case 'light':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="lightToggle('${dev.entity}', ${idx})">开关</button>
+          <button class="btn" onclick="lightOn('${dev.entity}')">开</button>
+          <button class="btn" onclick="lightOff('${dev.entity}')">关</button>
+        </div>
+        <div class="slider-group">
+          <label>亮度</label>
+          <input type="range" min="1" max="255" value="128" id="${id}_brightness" onchange="lightBrightness('${dev.entity}', this.value)">
+          <span class="value" id="${id}_brightness_val">-</span>
+        </div>`;
+      break;
+
+    case 'fan_light':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="lightToggle('${dev.light}', ${idx})">灯开关</button>
+          <button class="btn" onclick="fanToggle('${dev.fan}', ${idx})">风扇</button>
+        </div>`;
+      break;
+
+    case 'fan':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="fanToggle('${dev.entity}', ${idx})">开关</button>
+        </div>
+        <div class="slider-group">
+          <label>风速</label>
+          <input type="range" min="1" max="100" value="50" id="${id}_speed" onchange="fanSpeed('${dev.entity}', this.value)">
+          <span class="value" id="${id}_speed_val">-</span>
+        </div>`;
+      break;
+
+    case 'speaker':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="speakerMute('${dev.entity}', true)">静音</button>
+          <button class="btn" onclick="speakerMute('${dev.entity}', false)">取消静音</button>
+          <button class="btn" onclick="speakerStop('${dev.entity}')">停止</button>
+          <button class="btn" onclick="speakerPause('${dev.entity}')">暂停</button>
+          <button class="btn" onclick="speakerPlay('${dev.entity}')">播放</button>
+        </div>
+        <div class="slider-group">
+          <label>音量</label>
+          <input type="range" min="0" max="100" value="50" id="${id}_vol" onchange="speakerVolume('${dev.entity}', this.value)">
+          <span class="value" id="${id}_vol_val">-</span>
+        </div>
+        <div class="tts-input">
+          <input type="text" id="${id}_tts" placeholder="输入TTS内容..." onkeypress="if(event.key==='Enter')speakerTTS('${dev.entity}', '${id}_tts')">
+          <button class="btn primary" onclick="speakerTTS('${dev.entity}', '${id}_tts')">播报</button>
+        </div>`;
+      break;
+
+    case 'cover':
+      controls = `
+        <div class="controls">
+          <button class="btn success" onclick="coverOpen('${dev.entity}')">打开</button>
+          <button class="btn danger" onclick="coverClose('${dev.entity}')">关闭</button>
+          <button class="btn" onclick="coverStop('${dev.entity}')">停止</button>
+        </div>`;
+      break;
+
+    case 'climate':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="climateToggle('${dev.entity}', ${idx})">开关</button>
+          <button class="btn" onclick="climateMode('${dev.entity}', 'cool')">制冷</button>
+          <button class="btn" onclick="climateMode('${dev.entity}', 'heat')">制热</button>
+          <button class="btn" onclick="climateMode('${dev.entity}', 'auto')">自动</button>
+          <button class="btn" onclick="climateMode('${dev.entity}', 'fan_only')">送风</button>
+        </div>
+        <div class="slider-group">
+          <label>温度</label>
+          <input type="range" min="16" max="30" value="26" id="${id}_temp" onchange="climateTemp('${dev.entity}', this.value)">
+          <span class="value" id="${id}_temp_val">-</span>
+        </div>`;
+      break;
+
+    case 'switch':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="switchToggle('${dev.entity}', ${idx})">开关</button>
+        </div>`;
+      break;
+
+    case 'vacuum':
+      controls = `
+        <div class="controls">
+          <button class="btn primary" onclick="vacuumStart('${dev.entity}')">开始清扫</button>
+          <button class="btn danger" onclick="vacuumStop('${dev.entity}')">停止</button>
+          <button class="btn" onclick="vacuumPause('${dev.entity}')">暂停</button>
+          <button class="btn" onclick="vacuumReturn('${dev.entity}')">回充</button>
+        </div>`;
+      break;
+
+    case 'bath_heater':
+      controls = `
+        <div class="controls">
+          <button class="btn" onclick="lightToggle('${dev.entity}', ${idx})">灯开关</button>
+          <button class="btn" onclick="bathSwitch('${dev.switches.heating}', 'heating_${idx}')"> heating</button>
+          <button class="btn" onclick="bathSwitch('${dev.switches.blow}', 'blow_${idx}')"> 吹风</button>
+          <button class="btn" onclick="bathSwitch('${dev.switches.ventilation}', 'vent_${idx}')"> 换气</button>
+        </div>`;
+      break;
+  }
+
+  return `
+    <div class="device-card" id="${id}">
+      <div class="device-name"><span class="icon">${dev.icon}</span> ${dev.name}</div>
+      <div class="device-state" id="${id}_state">加载中...</div>
+      ${controls}
+    </div>`;
+}
+
+// ========== 状态加载 ==========
+async function loadDeviceState(dev, idx) {
+  const id = `dev_${idx}`;
+  const stateEl = document.getElementById(`${id}_state`);
+  if (!stateEl) return;
+
+  try {
+    let entityIds = [];
+    if (dev.type === 'fan_light') entityIds = [dev.fan, dev.light];
+    else if (dev.type === 'bath_heater') entityIds = [dev.entity, ...Object.values(dev.switches)];
+    else entityIds = [dev.entity];
+
+    const states = await Promise.all(entityIds.map(e => getState(e)));
+    const main = states[0];
+
+    let stateText = `状态: ${main.state}`;
+    if (main.attributes) {
+      if (dev.type === 'light' && main.attributes.brightness != null) {
+        stateText += ` | 亮度: ${Math.round(main.attributes.brightness / 255 * 100)}%`;
+        const sl = document.getElementById(`${id}_brightness`);
+        if (sl) { sl.value = main.attributes.brightness; document.getElementById(`${id}_brightness_val`).textContent = Math.round(main.attributes.brightness / 255 * 100) + '%'; }
+      }
+      if (dev.type === 'fan' && main.attributes.percentage != null) {
+        stateText += ` | 风速: ${main.attributes.percentage}%`;
+        const sl = document.getElementById(`${id}_speed`);
+        if (sl) { sl.value = main.attributes.percentage; document.getElementById(`${id}_speed_val`).textContent = main.attributes.percentage + '%'; }
+      }
+      if (dev.type === 'speaker') {
+        stateText += ` | 音量: ${Math.round((main.attributes.volume_level || 0) * 100)}%`;
+        if (main.attributes.media_title) stateText += ` | ${main.attributes.media_title}`;
+        const sl = document.getElementById(`${id}_vol`);
+        if (sl) { sl.value = Math.round((main.attributes.volume_level || 0) * 100); document.getElementById(`${id}_vol_val`).textContent = Math.round((main.attributes.volume_level || 0) * 100) + '%'; }
+      }
+      if (dev.type === 'climate') {
+        stateText += ` | 温度: ${main.attributes.temperature || '?'}°C | 模式: ${main.attributes.hvac_mode || '?'}`;
+        const sl = document.getElementById(`${id}_temp`);
+        if (sl) { sl.value = main.attributes.temperature || 26; document.getElementById(`${id}_temp_val`).textContent = (main.attributes.temperature || 26) + '°C'; }
+      }
+    }
+    stateEl.textContent = stateText;
+  } catch (e) {
+    stateEl.textContent = '获取失败: ' + e.message;
+  }
+}
+
+// ========== 设备控制 ==========
+async function lightToggle(entity) { await callService('light', 'turn_on', { entity_id: entity, toggle: true }); log(`toggle ${entity}`); }
+async function lightOn(entity) { await callService('light', 'turn_on', { entity_id: entity }); log(`开 ${entity}`, true); }
+async function lightOff(entity) { await callService('light', 'turn_off', { entity_id: entity }); log(`关 ${entity}`, true); }
+async function lightBrightness(entity, val) { await callService('light', 'turn_on', { entity_id: entity, brightness: parseInt(val) }); log(`亮度 ${entity}: ${val}`); }
+
+async function fanToggle(entity) { await callService('fan', 'toggle', { entity_id: entity }); log(`toggle fan ${entity}`); }
+async function fanSpeed(entity, val) { await callService('fan', 'set_percentage', { entity_id: entity, percentage: parseInt(val) }); log(`风速 ${entity}: ${val}%`); }
+
+async function speakerMute(entity, muted) { await callService('media_player', 'volume_mute', { entity_id: entity, is_volume_muted: muted }); log(`${muted ? '静音' : '取消静音'} ${entity}`); }
+async function speakerVolume(entity, val) { await callService('media_player', 'volume_set', { entity_id: entity, volume_level: parseInt(val) / 100 }); log(`音量 ${entity}: ${val}%`); }
+async function speakerStop(entity) { await callService('media_player', 'media_stop', { entity_id: entity }); log(`停止 ${entity}`); }
+async function speakerPause(entity) { await callService('media_player', 'media_pause', { entity_id: entity }); log(`暂停 ${entity}`); }
+async function speakerPlay(entity) { await callService('media_player', 'media_play', { entity_id: entity }); log(`播放 ${entity}`); }
+async function speakerTTS(entity, inputId) {
+  const text = document.getElementById(inputId).value.trim();
+  if (!text) return;
+  await callService('xiaomi_miot', 'intelligent_speaker', { entity_id: entity, text: text, execute: true });
+  log(`TTS → ${entity}: ${text}`);
+  document.getElementById(inputId).value = '';
+}
+
+async function coverOpen(entity) { await callService('cover', 'open_cover', { entity_id: entity }); log(`打开 ${entity}`); }
+async function coverClose(entity) { await callService('cover', 'close_cover', { entity_id: entity }); log(`关闭 ${entity}`); }
+async function coverStop(entity) { await callService('cover', 'stop_cover', { entity_id: entity }); log(`停止 ${entity}`); }
+
+async function climateToggle(entity) { await callService('climate', 'toggle', { entity_id: entity }); log(`toggle climate ${entity}`); }
+async function climateMode(entity, mode) { await callService('climate', 'set_hvac_mode', { entity_id: entity, hvac_mode: mode }); log(`模式 ${entity}: ${mode}`); }
+async function climateTemp(entity, val) { await callService('climate', 'set_temperature', { entity_id: entity, temperature: parseInt(val) }); log(`温度 ${entity}: ${val}°C`); }
+
+async function switchToggle(entity) { await callService('switch', 'toggle', { entity_id: entity }); log(`toggle ${entity}`); }
+
+async function vacuumStart(entity) { await callService('vacuum', 'start', { entity_id: entity }); log(`开始清扫 ${entity}`); }
+async function vacuumStop(entity) { await callService('vacuum', 'stop', { entity_id: entity }); log(`停止清扫 ${entity}`); }
+async function vacuumPause(entity) { await callService('vacuum', 'pause', { entity_id: entity }); log(`暂停清扫 ${entity}`); }
+async function vacuumReturn(entity) { await callService('vacuum', 'return_to_base', { entity_id: entity }); log(`回充 ${entity}`); }
+
+async function bathSwitch(entity) { await callService('switch', 'toggle', { entity_id: entity }); log(`toggle ${entity}`); }
+
+// ========== 初始化 ==========
+async function init() {
+  // 读 token
+  try {
+    const r = await fetch('/.cache/connection.env');
+    if (r.ok) {
+      const text = await r.text();
+      const m = text.match(/HA_TOKEN=(.+)/);
+      if (m) HA_TOKEN = m[1].trim();
+    }
+  } catch(e) {}
+
+  if (!HA_TOKEN) {
+    HA_TOKEN = prompt('请输入 HA Token:') || '';
+  }
+
+  // 测试连接
+  try {
+    const r = await api('GET', '/api/');
+    document.getElementById('status').textContent = `✅ 已连接 ${HA_URL}`;
+  } catch(e) {
+    document.getElementById('status').textContent = `❌ 连接失败: ${e.message}`;
+  }
+
+  renderTabs();
+  renderDevices();
+}
+
+init();
+</script>
+</body>
+</html>

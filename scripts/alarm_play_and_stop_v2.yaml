@@ -1,0 +1,37 @@
+alias: 闹钟播放歌曲完后停止
+fields:
+  music:
+    name: 音乐关键词
+    description: 要播放的歌曲
+    required: true
+sequence:
+  # 1. 取消静音
+  - data:
+      entity_id: media_player.xiaomi_lx06_46d3_play_control
+      is_volume_muted: false
+    action: media_player.volume_mute
+  - delay:
+      seconds: 1
+  # 2. 发送播放指令（用 intelligent_speaker，不用 text.set_value，否则报播放失败）
+  - data:
+      entity_id: media_player.xiaomi_lx06_46d3_play_control
+      text: 播放{{ music }}
+      execute: false
+    action: xiaomi_miot.intelligent_speaker
+  # 3. 等音箱进入 playing 状态（最多等15秒）
+  - wait_for_trigger:
+      - platform: state
+        entity_id: media_player.xiaomi_lx06_46d3_play_control
+        to: playing
+    timeout:
+      seconds: 15
+    continue_on_timeout: true
+  # 4. 再等3秒确保 media_duration 已加载
+  - delay:
+      seconds: 3
+  # 5. 读取 media_duration + 3秒后停止
+  - delay:
+      seconds: '{{ state_attr("media_player.xiaomi_lx06_46d3_play_control", "media_duration") | int(210) + 3 }}'
+  - target:
+      entity_id: media_player.xiaomi_lx06_46d3_play_control
+    action: media_player.media_pause
