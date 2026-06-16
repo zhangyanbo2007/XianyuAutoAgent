@@ -87,7 +87,16 @@ class ChatContextManager:
             last_updated DATETIME DEFAULT CURRENT_TIMESTAMP
         )
         ''')
-        
+
+        # 创建已收到说明书的用户表
+        cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users_received_manual (
+            user_id TEXT PRIMARY KEY,
+            manual_type TEXT,
+            received_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+        ''')
+
         conn.commit()
         conn.close()
         logger.info(f"聊天历史数据库初始化完成: {self.db_path}")
@@ -305,5 +314,54 @@ class ChatContextManager:
         except Exception as e:
             logger.error(f"获取议价次数时出错: {e}")
             return 0
+        finally:
+            conn.close()
+
+    def has_received_manual(self, user_id):
+        """
+        检查用户是否收到过说明书
+
+        Args:
+            user_id: 用户ID
+
+        Returns:
+            bool: 是否收到过说明书
+        """
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute(
+                "SELECT 1 FROM users_received_manual WHERE user_id = ?",
+                (user_id,)
+            )
+            return cursor.fetchone() is not None
+        except Exception as e:
+            logger.error(f"检查用户说明书状态时出错: {e}")
+            return False
+        finally:
+            conn.close()
+
+    def mark_received_manual(self, user_id, manual_type="basic"):
+        """
+        标记用户已收到说明书
+
+        Args:
+            user_id: 用户ID
+            manual_type: 说明书类型 (basic/detailed)
+        """
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute(
+                "INSERT OR REPLACE INTO users_received_manual (user_id, manual_type, received_at) VALUES (?, ?, ?)",
+                (user_id, manual_type, datetime.now().isoformat())
+            )
+            conn.commit()
+            logger.debug(f"用户 {user_id} 已标记为收到{manual_type}说明书")
+        except Exception as e:
+            logger.error(f"标记用户说明书状态时出错: {e}")
+            conn.rollback()
         finally:
             conn.close() 

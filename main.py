@@ -65,7 +65,6 @@ class XianyuLive:
         self.supplier_name = os.getenv("SUPPLIER_NAME", "尼日利亚招收代理")
         self.pending_deliveries = {}  # {buyer_user_id: {buyer_name, item_id, timestamp}}
         self.purchased_users = set()  # 已购买用户ID集合
-        self.users_received_manual = set()  # 已收到说明书的用户ID集合
 
         # API自动发货（supplier模式）
         if self.auto_deliver_mode == "api":
@@ -588,15 +587,17 @@ class XianyuLive:
             await self.send_msg(websocket, chat_id, send_user_id, bot_reply)
 
             # 检查是否需要追加说明书
-            if send_user_id not in self.users_received_manual:
+            if not self.context_manager.has_received_manual(send_user_id):
                 # 用户未收到过说明书，追加说明书链接
                 is_purchased = send_user_id in self.purchased_users
                 if is_purchased:
                     manual_url = "详细操作说明书：https://my.feishu.cn/wiki/L4QDwI8WWiT8JQkUd49c3xfTnwf"
+                    manual_type = "detailed"
                 else:
-                    manual_url = "基础说明书：https://my.feishu.cn/wiki/KgvywsJczitV6hkFPftcS2hCnme"
+                    manual_url = "基础说明书：https://www.kdocs.cn/l/cbc1goreAhj2"
+                    manual_type = "basic"
                 await self.send_msg(websocket, chat_id, send_user_id, manual_url)
-                self.users_received_manual.add(send_user_id)
+                self.context_manager.mark_received_manual(send_user_id, manual_type)
                 logger.info(f"已向用户 {send_user_name} 发送说明书")
 
         except Exception as e:
