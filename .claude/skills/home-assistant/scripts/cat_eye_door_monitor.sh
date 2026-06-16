@@ -58,11 +58,13 @@ while true; do
     cp "$TMP" "$SKILL_DIR/.cache/cat_eye_events/latest.jpg"
     if [ -n "$LAST_MD5" ] && [ "$CURRENT_MD5" != "$LAST_MD5" ]; then
       LAST_PIR_TIME=$NOW
-      # 保存PIR触发图片到事件文件夹
-      EVENT_TIME=$(TZ=Asia/Shanghai date '+%Y%m%d_%H%M%S')
-      EVENT_FILE="$SKILL_DIR/.cache/cat_eye_events/${EVENT_TIME}_pir.jpg"
-      cp "$TMP" "$EVENT_FILE"
-      log "PIR触发（图片变化）→ $EVENT_FILE"
+      # PIR触发时保存图片（按日期分文件夹）
+      PIR_DIR="$SKILL_DIR/.cache/cat_eye_events/$(TZ=Asia/Shanghai date '+%Y%m%d')_pir"
+      mkdir -p "$PIR_DIR"
+      PIR_TIME=$(TZ=Asia/Shanghai date '+%H%M%S')
+      PIR_FILE="$PIR_DIR/${PIR_TIME}_pir.jpg"
+      cp "$TMP" "$PIR_FILE"
+      log "PIR触发（图片变化）→ $PIR_FILE"
     fi
     LAST_MD5="$CURRENT_MD5"
   fi
@@ -75,8 +77,8 @@ while true; do
   if [ "$STATE" = "on" ] && [ "$LAST_STATE" = "off" ]; then
     log "门打开"
     PIR_DIFF=$(( NOW - LAST_PIR_TIME ))
-    EVENT_TIME=$(TZ=Asia/Shanghai date '+%Y%m%d_%H%M%S')
-    EVENT_DIR="$SKILL_DIR/.cache/cat_eye_events/${EVENT_TIME}_open"
+    EVENT_TIME=$(TZ=Asia/Shanghai date '+%H%M%S')
+    EVENT_DIR="$SKILL_DIR/.cache/cat_eye_events/$(TZ=Asia/Shanghai date '+%Y%m%d')/${EVENT_TIME}_open"
     mkdir -p "$EVENT_DIR"
 
     # 保存开门时的缓存图
@@ -158,8 +160,8 @@ while true; do
 
   # 检测关门
   if [ "$STATE" = "off" ] && [ "$LAST_STATE" = "on" ]; then
-    EVENT_TIME=$(TZ=Asia/Shanghai date '+%Y%m%d_%H%M%S')
-    EVENT_DIR="$SKILL_DIR/.cache/cat_eye_events/${EVENT_TIME}_close"
+    EVENT_TIME=$(TZ=Asia/Shanghai date '+%H%M%S')
+    EVENT_DIR="$SKILL_DIR/.cache/cat_eye_events/$(TZ=Asia/Shanghai date '+%Y%m%d')/${EVENT_TIME}_close"
     mkdir -p "$EVENT_DIR"
     echo "$EVENT_TIME 门关闭" > "$EVENT_DIR/info.txt"
     log "门关闭"
