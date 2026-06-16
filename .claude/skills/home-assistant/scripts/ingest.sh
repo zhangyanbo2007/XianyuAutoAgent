@@ -1,7 +1,7 @@
 #!/bin/bash
 # HA 全量摄入脚本
 # 用法: bash ingest.sh [HA_URL] [HA_TOKEN]
-# 从 .cache/connection.env 读取默认值，自动检测本地/远程
+# 从 .env 读取默认值，自动检测本地/远程
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 INSTANCE_DIR="$SCRIPT_DIR/../.cache"
@@ -10,8 +10,8 @@ AUTOMATIONS_YAML="$INSTANCE_DIR/automations.yaml"
 METHODS_REGISTRY="$INSTANCE_DIR/methods_registry.json"
 
 # 加载连接信息
-if [ -f "$INSTANCE_DIR/connection.env" ]; then
-  source "$INSTANCE_DIR/connection.env"
+if [ -f "$SCRIPT_DIR/../.env" ]; then
+  source "$SCRIPT_DIR/../.env"
 fi
 
 # 自动检测：能直连用 LOCAL，否则用 REMOTE
@@ -27,7 +27,7 @@ HA_TOKEN="${2:-$HA_TOKEN}"
 if [ -z "$HA_URL" ] || [ -z "$HA_TOKEN" ]; then
   echo "ERROR: HA_URL and HA_TOKEN required"
   echo "Usage: bash ingest.sh [HA_URL] [HA_TOKEN]"
-  echo "Or set them in .cache/connection.env"
+  echo "Or set them in .env"
   exit 1
 fi
 

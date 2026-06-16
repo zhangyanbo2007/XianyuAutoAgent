@@ -11,7 +11,7 @@
 
 ```bash
 # 1. 拉取（读 HA，存本地）
-source ../../.cache/connection.env
+source ../../.env
 for sid in alarm_play_and_stop remind_tts rest_remind cat_eye_low_battery_remind; do
   curl -s "$HA_URL/api/config/script/config/$sid" \
     -H "Authorization: Bearer $HA_TOKEN" > "${sid}.json"

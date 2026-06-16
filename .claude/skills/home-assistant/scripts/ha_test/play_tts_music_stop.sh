@@ -8,7 +8,7 @@
 #   - media_position 才是"真在放"的可靠依据；到 duration-buffer 或检测到换曲就 pause
 set -u
 SKILL_DIR="/home/zhangyanbo/owner/xiaowangzi/projects/privacy-engineering/.claude/skills/home-assistant"
-source "$SKILL_DIR/.cache/connection.env"
+source "$SKILL_DIR/.env"
 curl -s --connect-timeout 2 -o /dev/null "$HA_URL_LOCAL/api/" 2>/dev/null \
   && HA_URL="$HA_URL_LOCAL" || HA_URL="$HA_URL_REMOTE"
 

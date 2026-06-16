@@ -14,7 +14,7 @@ metadata: {"version": "8.0.0", "requires": {"env": ["HA_URL", "HA_TOKEN"], "bins
 
 ```bash
 # 1. 加载连接
-source .cache/connection.env
+source .env
 curl -s --connect-timeout 2 -o /dev/null "$HA_URL_LOCAL/api/" 2>/dev/null \
   && HA_URL="$HA_URL_LOCAL" || HA_URL="$HA_URL_REMOTE"
 
@@ -26,7 +26,7 @@ bash scripts/ingest.sh
 
 ```
 .cache/
-├── connection.env          ← 双URL + HA_TOKEN
+├── .env                    ← 双URL + HA_TOKEN
 ├── entities_registry.json    ← 实体注册表（区域/设备/实体映射）
 ├── automations.yaml        ← 全部自动化配置（HA YAML格式，ingest.sh 生成）
 └── methods_registry.json    ← HA 服务方法注册表
@@ -316,8 +316,8 @@ curl -s -X POST "$HA_URL/api/services/script/reload" \
 ## 5.4 连接配置修改
 
 ```bash
-# 编辑 .cache/connection.env
-vim .cache/connection.env
+# 编辑 .env
+vim .env
 
 # 格式：
 # HA_URL_LOCAL=http://192.168.x.x:8123

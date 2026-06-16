@@ -7,7 +7,7 @@
 
 SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 FACES_DIR="$SKILL_DIR/.cache/faces"
-source "$SKILL_DIR/.cache/connection.env"
+source "$SKILL_DIR/.env"
 source /home/zhangyanbo/owner/xiaowangzi/.env
 export BAILIAN_BASE_URL BAILIAN_API_KEY
 

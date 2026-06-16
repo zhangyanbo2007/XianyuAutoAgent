@@ -426,7 +426,7 @@ async function bathSwitch(entity) { await callService('switch', 'toggle', { enti
 async function init() {
   // 读 token
   try {
-    const r = await fetch('/.cache/connection.env');
+    const r = await fetch('/.env');
     if (r.ok) {
       const text = await r.text();
       const m = text.match(/HA_TOKEN=(.+)/);

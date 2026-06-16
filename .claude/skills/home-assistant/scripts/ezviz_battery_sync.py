@@ -17,12 +17,11 @@ EZVIZ_API = "https://open.ys7.com/api/lapp/device/status/get"
 EZVIZ_TOKEN = os.environ.get("EZVIZ_ACCESS_TOKEN", "")
 EZVIZ_SERIAL = "F66074055"
 
-# 从 .cache/connection.env 读取配置
-CACHE_DIR = Path(__file__).parent.parent / ".cache"
-ENV_FILE = CACHE_DIR / "connection.env"
+# 从 .env 读取配置
+ENV_FILE = Path(__file__).parent.parent / ".env"
 
 def load_env():
-    """从 connection.env 加载配置"""
+    """从 .env 加载配置"""
     global EZVIZ_TOKEN, EZVIZ_SERIAL
     if ENV_FILE.exists():
         for line in ENV_FILE.read_text().splitlines():
@@ -61,7 +60,7 @@ def get_battery_level():
 
 def update_ha_battery(level):
     """更新 HA 中的 input_number"""
-    # 从 connection.env 读取 HA 配置
+    # 从 .env 读取 HA 配置
     ha_url = ""
     ha_token = ""
     if ENV_FILE.exists():
