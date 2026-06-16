@@ -14,6 +14,7 @@ import random
 from utils.xianyu_utils import generate_mid, generate_uuid, trans_cookies, generate_device_id, decrypt
 from XianyuAgent import XianyuReplyBot
 from context_manager import ChatContextManager
+from supplier.dispatcher import OrderDispatcher
 
 
 class XianyuLive:
@@ -56,6 +57,27 @@ class XianyuLive:
         
         # 模拟人工输入配置
         self.simulate_human_typing = os.getenv("SIMULATE_HUMAN_TYPING", "False").lower() == "true"
+
+        # 自动发货相关配置
+        self.auto_deliver_enabled = os.getenv("AUTO_DELIVER_ENABLED", "True").lower() == "true"
+        self.auto_deliver_mode = os.getenv("AUTO_DELIVER_MODE", "supplier")  # "supplier"=转上家, "api"=API直发
+        self.supplier_user_id = os.getenv("SUPPLIER_USER_ID", "2222469828425")  # 上家用户ID
+        self.supplier_name = os.getenv("SUPPLIER_NAME", "尼日利亚招收代理")
+        self.pending_deliveries = {}  # {buyer_user_id: {buyer_name, item_id, timestamp}}
+        self.purchased_users = set()  # 已购买用户ID集合
+        self.users_received_manual = set()  # 已收到说明书的用户ID集合
+
+        # API自动发货（supplier模式）
+        if self.auto_deliver_mode == "api":
+            try:
+                self.dispatcher = OrderDispatcher()
+                logger.info("API自动发货模式已启用")
+            except Exception as e:
+                logger.error(f"订单分发器初始化失败: {e}，回退到supplier模式")
+                self.auto_deliver_mode = "supplier"
+                self.dispatcher = None
+        else:
+            self.dispatcher = None
 
     async def refresh_token(self):
         """刷新token"""
@@ -420,6 +442,15 @@ class XianyuLive:
                     user_id = message['1'].split('@')[0]
                     user_url = f'https://www.goofish.com/personal?userId={user_id}'
                     logger.info(f'交易成功 {user_url} 等待卖家发货')
+                    # 标记用户为已购买
+                    self.purchased_users.add(user_id)
+                    logger.info(f'用户 {user_id} 已标记为已购买')
+                    # 自动发货：发消息给上家
+                    if self.auto_deliver_enabled:
+                        # 获取买家昵称
+                        buyer_name = message.get('1', {}).get('10', {}).get('reminderTitle', '未知用户')
+                        item_id = message.get('1', {}).get('10', {}).get('reminderUrl', '').split('itemId=')[1].split('&')[0] if 'itemId=' in message.get('1', {}).get('10', {}).get('reminderUrl', '') else 'unknown'
+                        await self.start_auto_delivery(websocket, user_id, buyer_name, item_id)
                     return
 
             except:
@@ -455,6 +486,12 @@ class XianyuLive:
                 return
 
             # 检查是否为卖家（自己）发送的控制命令
+            # 检查是否为上家回复
+            if send_user_id == self.supplier_user_id:
+                logger.info(f"收到上家回复: {send_user_name}")
+                await self.handle_supplier_reply(websocket, send_message, send_user_name)
+                return
+
             if send_user_id == self.myid:
                 logger.debug("检测到卖家消息，检查是否为控制命令")
                 
@@ -504,14 +541,17 @@ class XianyuLive:
                 logger.info(f"从数据库获取商品信息: {item_id}")
                 
             item_description=f"当前商品的信息如下：{self.build_item_description(item_info)}"
-            
+
             # 获取完整的对话上下文
             context = self.context_manager.get_context_by_chat(chat_id)
+            # 检查用户购买状态
+            is_purchased = send_user_id in self.purchased_users
             # 生成回复
             bot_reply = bot.generate_reply(
                 send_message,
                 item_description,
-                context=context
+                context=context,
+                is_purchased=is_purchased
             )
             
             # 检查是否需要回复
@@ -546,10 +586,108 @@ class XianyuLive:
                 await asyncio.sleep(total_delay)
                 
             await self.send_msg(websocket, chat_id, send_user_id, bot_reply)
-            
+
+            # 检查是否需要追加说明书
+            if send_user_id not in self.users_received_manual:
+                # 用户未收到过说明书，追加说明书链接
+                is_purchased = send_user_id in self.purchased_users
+                if is_purchased:
+                    manual_url = "详细操作说明书：https://my.feishu.cn/wiki/L4QDwI8WWiT8JQkUd49c3xfTnwf"
+                else:
+                    manual_url = "基础说明书：https://my.feishu.cn/wiki/KgvywsJczitV6hkFPftcS2hCnme"
+                await self.send_msg(websocket, chat_id, send_user_id, manual_url)
+                self.users_received_manual.add(send_user_id)
+                logger.info(f"已向用户 {send_user_name} 发送说明书")
+
         except Exception as e:
             logger.error(f"处理消息时发生错误: {str(e)}")
             logger.debug(f"原始消息: {message_data}")
+
+    async def start_auto_delivery(self, websocket, buyer_user_id, buyer_name, item_id):
+        """启动自动发货流程"""
+        try:
+            # 记录待发货订单
+            self.pending_deliveries[buyer_user_id] = {
+                'buyer_user_id': buyer_user_id,
+                'buyer_name': buyer_name,
+                'item_id': item_id,
+                'timestamp': time.time()
+            }
+
+            # 回复买家
+            await self.send_msg(websocket, f"{buyer_user_id}@goofish", buyer_user_id, "稍等，马上为您发货。")
+
+            if self.auto_deliver_mode == "api" and self.dispatcher:
+                # ── API自动发货模式 ──
+                await self._api_fulfill(websocket, buyer_user_id, buyer_name, item_id)
+            else:
+                # ── 转上家模式（原有逻辑） ──
+                await self.send_msg(websocket, f"{self.supplier_user_id}@goofish", self.supplier_user_id, f"{buyer_name}买钱包")
+
+            logger.info(f"自动发货流程已启动({self.auto_deliver_mode}): 买家 {buyer_name}, 商品 {item_id}")
+        except Exception as e:
+            logger.error(f"启动自动发货失败: {e}")
+
+    async def _api_fulfill(self, websocket, buyer_user_id, buyer_name, item_id):
+        """API自动发货模式：调用供应商API直接发货"""
+        try:
+            # 获取商品信息（标题/描述，用于品类识别）
+            item_info = self.context_manager.get_item_info(item_id)
+            item_title = ""
+            item_desc = ""
+            if item_info:
+                item_title = item_info.get("title", "")
+                item_desc = item_info.get("desc", "")
+
+            # 调用分发器
+            result = await self.dispatcher.dispatch(
+                order_id=f"xy_{item_id}_{buyer_user_id}",
+                buyer_account=buyer_user_id,  # 买家需要在聊天中提供账号
+                item_title=item_title,
+                item_desc=item_desc,
+                item_id=item_id,
+            )
+
+            if result.success:
+                # 发货成功，回复买家
+                reply = f"发货成功！\n\n{result.message}"
+                if result.card_code:
+                    reply += f"\n\n卡密: {result.card_code}"
+                if result.card_url:
+                    reply += f"\n\n链接: {result.card_url}"
+                await self.send_msg(websocket, f"{buyer_user_id}@goofish", buyer_user_id, reply)
+                logger.info(f"API发货成功: 买家 {buyer_name}, 交易号 {result.trade_no}")
+            else:
+                # 发货失败，告知买家并准备人工介入
+                reply = f"自动发货遇到问题: {result.message}\n\n已通知客服处理，请稍候。"
+                await self.send_msg(websocket, f"{buyer_user_id}@goofish", buyer_user_id, reply)
+                # 通知卖家（自己）
+                await self.send_msg(websocket, f"{self.myid}@goofish", self.myid,
+                    f"⚠️ 自动发货失败\n买家: {buyer_name}\n商品: {item_id}\n原因: {result.message}")
+                logger.warning(f"API发货失败: {buyer_name}, {result.message}")
+
+        except Exception as e:
+            logger.error(f"API发货异常: {e}")
+            await self.send_msg(websocket, f"{buyer_user_id}@goofish", buyer_user_id,
+                "系统异常，已通知客服处理，请稍候。")
+
+    async def handle_supplier_reply(self, websocket, message, send_user_name):
+        """处理上家回复（卡密+图片）"""
+        try:
+            # 找到对应的待发货订单（最近1小时内）
+            for buyer_user_id, order_info in list(self.pending_deliveries.items()):
+                if time.time() - order_info['timestamp'] < 3600:
+                    # 转发给买家
+                    reply = f"您的账号信息：\n\n{message}"
+
+                    await self.send_msg(websocket, f"{buyer_user_id}@goofish", buyer_user_id, reply)
+                    del self.pending_deliveries[buyer_user_id]
+                    logger.info(f"自动发货完成: 买家 {order_info['buyer_name']}")
+                    break
+            else:
+                logger.warning(f"收到上家回复但未找到对应的待发货订单: {message[:50]}...")
+        except Exception as e:
+            logger.error(f"处理上家回复失败: {e}")
 
     async def send_heartbeat(self, ws):
         """发送心跳包并等待响应"""

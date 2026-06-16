@@ -1,0 +1,173 @@
+# ============================================================
+# 供应商配置 — 每个品类可配多个上游，按 priority 排序
+# ============================================================
+# 填入真实 API Key 后即可使用
+# 优先级: 数字越小越优先，故障自动切换下一家
+# ============================================================
+
+suppliers:
+  # ── 话费/流量充值 ──
+  phone_topup:
+    - name: "蚂蚁充"
+      module: "supplier.phone_topup"
+      api_url: "https://api.mayichao.com"
+      api_key: ""
+      api_secret: ""
+      enabled: false
+      priority: 1
+      fee_rate: 0.02            # 手续费率 2%
+      min_amount: 10
+      max_amount: 500
+      note: "支持三网话费/流量，到账快"
+
+    - name: "聚合金服"
+      module: "supplier.phone_topup"
+      api_url: "https://api.juhejf.com"
+      api_key: ""
+      api_secret: ""
+      enabled: false
+      priority: 2
+      fee_rate: 0.025
+      min_amount: 10
+      max_amount: 500
+      note: "备选渠道，稳定性好"
+
+  # ── 视频会员 ──
+  video_member:
+    - name: "卡密池-视频会员"
+      module: "supplier.video_member"
+      api_url: ""
+      api_key: ""
+      api_secret: ""
+      enabled: false
+      priority: 1
+      # 卡密来源说明: 从上游批发商处购买卡密，导入卡密池
+      # 格式: 产品ID -> [卡密列表]
+      card_pool_path: "data/card_pools/video_cards.json"
+      note: "爱奇艺/优酷/腾讯月卡"
+
+    - name: "API直充-视频"
+      module: "supplier.video_member"
+      api_url: ""
+      api_key: ""
+      enabled: false
+      priority: 2
+      note: "部分供应商支持直充，需确认"
+
+  # ── 游戏点券 ──
+  game_credit:
+    - name: "游戏充值平台"
+      module: "supplier.game_credit"
+      api_url: ""
+      api_key: ""
+      api_secret: ""
+      enabled: false
+      priority: 1
+      supported_games:
+        - "原神"
+        - "王者荣耀"
+        - "和平精英"
+        - "Steam"
+      note: "需对接具体游戏充值API"
+
+  # ── 音乐会员 ──
+  music_member:
+    - name: "卡密池-音乐会员"
+      module: "supplier.music_member"
+      api_url: ""
+      api_key: ""
+      enabled: false
+      priority: 1
+      card_pool_path: "data/card_pools/music_cards.json"
+      note: "QQ音乐/网易云音乐月卡"
+
+  # ── 外卖/电商红包券 ──
+  coupon_deal:
+    - name: "淘宝联盟"
+      module: "supplier.coupon_deal"
+      api_url: "https://eco.taobao.com/router/rest"
+      api_key: ""
+      api_secret: ""
+      app_key: ""
+      enabled: false
+      priority: 1
+      note: "淘宝客推广，生成优惠券链接"
+
+    - name: "京东联盟"
+      module: "supplier.coupon_deal"
+      api_url: "https://api.jd.com/routerjson"
+      api_key: ""
+      api_secret: ""
+      enabled: false
+      priority: 2
+      note: "京东联盟推广链接"
+
+  # ── 软件激活码 ──
+  software_key:
+    - name: "卡密池-软件激活码"
+      module: "supplier.software_key"
+      api_url: ""
+      api_key: ""
+      enabled: false
+      priority: 1
+      card_pool_path: "data/card_pools/software_cards.json"
+      supported_products:
+        - "Office 365"
+        - "Windows 11"
+        - "Adobe全家桶"
+        - "JetBrains"
+      note: "正规授权分销商渠道"
+
+# ── 品类路由映射 ──
+# 商品标题/描述中的关键词 → 品类
+category_keywords:
+  phone_topup:
+    - "话费"
+    - "流量"
+    - "充值"
+    - "移动"
+    - "联通"
+    - "电信"
+    - "手机充值"
+  video_member:
+    - "爱奇艺"
+    - "优酷"
+    - "腾讯视频"
+    - "芒果TV"
+    - "视频会员"
+    - "视频"
+    - "会员"
+    - "年卡"
+    - "月卡"
+  game_credit:
+    - "原神"
+    - "王者荣耀"
+    - "和平精英"
+    - "Steam"
+    - "游戏"
+    - "点券"
+    - "钻石"
+    - "充值"
+  music_member:
+    - "QQ音乐"
+    - "网易云"
+    - "酷狗"
+    - "酷我"
+    - "音乐会员"
+    - "音乐"
+    - "听歌"
+  coupon_deal:
+    - "外卖红包"
+    - "美团"
+    - "饿了么"
+    - "优惠券"
+    - "红包"
+    - "折扣"
+  software_key:
+    - "Office"
+    - "Windows"
+    - "Adobe"
+    - "JetBrains"
+    - "激活码"
+    - "序列号"
+    - "正版"

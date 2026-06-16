@@ -72,7 +72,7 @@ class XianyuReplyBot:
         user_assistant_msgs = [msg for msg in context if msg['role'] in ['user', 'assistant']]
         return "\n".join([f"{msg['role']}: {msg['content']}" for msg in user_assistant_msgs])
 
-    def generate_reply(self, user_msg: str, item_desc: str, context: List[Dict]) -> str:
+    def generate_reply(self, user_msg: str, item_desc: str, context: List[Dict], is_purchased: bool = False) -> str:
         """生成回复主流程"""
         # 记录用户消息
         # logger.debug(f'用户所发消息: {user_msg}')
@@ -112,7 +112,8 @@ class XianyuReplyBot:
             user_msg=user_msg,
             item_desc=item_desc,
             context=formatted_context,
-            bargain_count=bargain_count
+            bargain_count=bargain_count,
+            is_purchased=is_purchased
         )
     
     def _extract_bargain_count(self, context: List[Dict]) -> int:
@@ -206,16 +207,17 @@ class BaseAgent:
         self.system_prompt = system_prompt
         self.safety_filter = safety_filter
 
-    def generate(self, user_msg: str, item_desc: str, context: str, bargain_count: int = 0) -> str:
+    def generate(self, user_msg: str, item_desc: str, context: str, bargain_count: int = 0, is_purchased: bool = False) -> str:
         """生成回复模板方法"""
-        messages = self._build_messages(user_msg, item_desc, context)
+        messages = self._build_messages(user_msg, item_desc, context, is_purchased)
         response = self._call_llm(messages)
         return self.safety_filter(response)
 
-    def _build_messages(self, user_msg: str, item_desc: str, context: str) -> List[Dict]:
+    def _build_messages(self, user_msg: str, item_desc: str, context: str, is_purchased: bool = False) -> List[Dict]:
         """构建消息链"""
+        purchase_status = "已购买用户" if is_purchased else "未购买用户"
         return [
-            {"role": "system", "content": f"【商品信息】{item_desc}\n【你与客户对话历史】{context}\n{self.system_prompt}"},
+            {"role": "system", "content": f"【商品信息】{item_desc}\n【用户购买状态】{purchase_status}\n【你与客户对话历史】{context}\n{self.system_prompt}"},
             {"role": "user", "content": user_msg}
         ]
 
@@ -234,10 +236,10 @@ class BaseAgent:
 class PriceAgent(BaseAgent):
     """议价处理Agent"""
 
-    def generate(self, user_msg: str, item_desc: str, context: str, bargain_count: int=0) -> str:
+    def generate(self, user_msg: str, item_desc: str, context: str, bargain_count: int=0, is_purchased: bool = False) -> str:
         """重写生成逻辑"""
         dynamic_temp = self._calc_temperature(bargain_count)
-        messages = self._build_messages(user_msg, item_desc, context)
+        messages = self._build_messages(user_msg, item_desc, context, is_purchased)
         messages[0]['content'] += f"\n▲当前议价轮次：{bargain_count}"
 
         response = self.client.chat.completions.create(
@@ -256,9 +258,9 @@ class PriceAgent(BaseAgent):
 
 class TechAgent(BaseAgent):
     """技术咨询Agent"""
-    def generate(self, user_msg: str, item_desc: str, context: str, bargain_count: int=0) -> str:
+    def generate(self, user_msg: str, item_desc: str, context: str, bargain_count: int=0, is_purchased: bool = False) -> str:
         """重写生成逻辑"""
-        messages = self._build_messages(user_msg, item_desc, context)
+        messages = self._build_messages(user_msg, item_desc, context, is_purchased)
         # messages[0]['content'] += "\n▲知识库：\n" + self._fetch_tech_specs()
 
         response = self.client.chat.completions.create(
