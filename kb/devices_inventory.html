@@ -233,6 +233,48 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); line
   <div class="topo">
     <h3 style="color:var(--purple)">&#x1F310; FRP VPS 中转 — node37 / mobile-computer / home-computer / desktop-8bu7jbb-1 公用</h3>
     <div style="font-size:13px;color:var(--muted);margin-bottom:12px">VPS：8.163.122.236 | FRP v0.61.1 | 控制面：7000 | Web 面板：7500 | 已开通端口：8866-8888</div>
+    <div style="margin-bottom:12px">
+      <strong style="color:var(--purple);font-size:13px">📌 FRP SSH 端口映射：</strong>
+      <table style="width:100%;border-collapse:collapse;margin-top:8px;font-size:12px">
+        <tr style="background:rgba(167,139,250,0.1)">
+          <th style="padding:6px 10px;text-align:left;border:1px solid var(--border);color:var(--purple)">VPS端口</th>
+          <th style="padding:6px 10px;text-align:left;border:1px solid var(--border);color:var(--purple)">目标机器</th>
+          <th style="padding:6px 10px;text-align:left;border:1px solid var(--border);color:var(--purple)">本地端口</th>
+          <th style="padding:6px 10px;text-align:left;border:1px solid var(--border);color:var(--purple)">SSH命令</th>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono)">6000</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">node37</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">22</td>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:11px">sshpass -p 'zyb123456' ssh -p 6000 zhangyanbo@8.163.122.236</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono)">6001</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">walle</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">22</td>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:11px">sshpass -p 'zyb123456' ssh -p 6001 zhangyanbo@8.163.122.236</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono)">6002</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">mobile-computer</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">22</td>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:11px">sshpass -p 'zyb123456' ssh -p 6002 zhangyanbo@8.163.122.236</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono)">6003</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">home-computer</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">22</td>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:11px">sshpass -p 'zyb123456' ssh -p 6003 xiaowangzi@8.163.122.236</td>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono)">6004</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">desktop-8bu7jbb</td>
+          <td style="padding:6px 10px;border:1px solid var(--border)">22</td>
+          <td style="padding:6px 10px;border:1px solid var(--border);font-family:var(--mono);font-size:11px">sshpass -p 'zyb123456' ssh -p 6004 zhangyanbo@8.163.122.236</td>
+        </tr>
+      </table>
+      <div style="margin-top:6px;font-size:11px;color:var(--muted)">⚠️ 具体服务端口（如8867等）记录在各自服务的配置中，不在此处重复记录</div>
+    </div>
     <div class="topo-pre">                    ┌─ <span class="node">node37</span> <span class="link">(VPS:6000 → :33)</span> ── 训练服务器
  公司设备 ──────────┼─ <span class="node">walle</span> <span class="link">(VPS:6001 → :22)</span> ── 个人电脑
                     └─ <span class="node">desktop-8bu7jbb</span> <span class="link">(VPS:6004 → :22)</span> ── Dell笔记本
